@@ -1,0 +1,993 @@
+38639:function(e,t,a){"use strict";
+let i,r;
+a.r(t),a.d(t,{Globe:function(){return eI},GlobeFallback:function(){return ek}});
+var n=a(19488),o=a(82187),s=a.n(o),l=a(66725),c=a(98614),u=a(59248),h=a.n(u),d=a(95145);
+let p=new d.ZzF,m=new d.Pa4;
+class f extends d.L5s{constructor(){super(),this.isLineSegmentsGeometry=!0,this.type="LineSegmentsGeometry",this.setIndex([0,2,1,2,3,1,2,4,3,4,5,3,4,6,5,6,7,5]),this.setAttribute("position",new d.a$l([-1,2,0,1,2,0,-1,1,0,1,1,0,-1,0,0,1,0,0,-1,-1,0,1,-1,0],3)),this.setAttribute("uv",new d.a$l([-1,2,1,2,-1,1,1,1,-1,-1,1,-1,-1,-2,1,-2],2))}applyMatrix4(e){let t=this.attributes.instanceStart,a=this.attributes.instanceEnd;
+return void 0!==t&&(t.applyMatrix4(e),a.applyMatrix4(e),t.needsUpdate=!0),null!==this.boundingBox&&this.computeBoundingBox(),null!==this.boundingSphere&&this.computeBoundingSphere(),this}setPositions(e){let t;
+e instanceof Float32Array?t=e:Array.isArray(e)&&(t=new Float32Array(e));
+let a=new d.$TI(t,6,1);
+return this.setAttribute("instanceStart",new d.kB5(a,3,0)),this.setAttribute("instanceEnd",new d.kB5(a,3,3)),this.instanceCount=this.attributes.instanceStart.count,this.computeBoundingBox(),this.computeBoundingSphere(),this}setColors(e){let t;
+e instanceof Float32Array?t=e:Array.isArray(e)&&(t=new Float32Array(e));
+let a=new d.$TI(t,6,1);
+return this.setAttribute("instanceColorStart",new d.kB5(a,3,0)),this.setAttribute("instanceColorEnd",new d.kB5(a,3,3)),this}fromWireframeGeometry(e){return this.setPositions(e.attributes.position.array),this}fromEdgesGeometry(e){return this.setPositions(e.attributes.position.array),this}fromMesh(e){return this.fromWireframeGeometry(new d.Uk6(e.geometry)),this}fromLineSegments(e){let{geometry:t}=e;
+return this.setPositions(t.attributes.position.array),this}computeBoundingBox(){null===this.boundingBox&&(this.boundingBox=new d.ZzF);
+let e=this.attributes.instanceStart,t=this.attributes.instanceEnd;
+void 0!==e&&void 0!==t&&(this.boundingBox.setFromBufferAttribute(e),p.setFromBufferAttribute(t),this.boundingBox.union(p))}computeBoundingSphere(){null===this.boundingSphere&&(this.boundingSphere=new d.aLr),null===this.boundingBox&&this.computeBoundingBox();
+let e=this.attributes.instanceStart,t=this.attributes.instanceEnd;
+if(void 0!==e&&void 0!==t){let{center:a}=this.boundingSphere;
+this.boundingBox.getCenter(a);
+let i=0;
+for(let r=0,n=e.count;
+r<n;
+r+=1)m.fromBufferAttribute(e,r),i=Math.max(i,a.distanceToSquared(m)),m.fromBufferAttribute(t,r),i=Math.max(i,a.distanceToSquared(m));
+this.boundingSphere.radius=Math.sqrt(i),isNaN(this.boundingSphere.radius)}}toJSON(){}}var g=a(42255);
+g.rBU.line={worldUnits:{value:1},linewidth:{value:1},resolution:{value:new d.FM8(1,1)},dashOffset:{value:0},dashScale:{value:1},dashSize:{value:1},gapSize:{value:1}},g.Vj0.line={uniforms:d.rDY.merge([g.rBU.common,g.rBU.fog,g.rBU.line]),vertexShader:`
+		#include <common>
+		#include <color_pars_vertex>
+		#include <fog_pars_vertex>
+		#include <logdepthbuf_pars_vertex>
+		#include <clipping_planes_pars_vertex>
+
+		uniform float linewidth;
+
+		uniform vec2 resolution;
+
+
+		attribute vec3 instanceStart;
+
+		attribute vec3 instanceEnd;
+
+
+		attribute vec3 instanceColorStart;
+
+		attribute vec3 instanceColorEnd;
+
+
+		#ifdef WORLD_UNITS
+
+			varying vec4 worldPos;
+
+			varying vec3 worldStart;
+
+			varying vec3 worldEnd;
+
+
+			#ifdef USE_DASH
+
+				varying vec2 vUv;
+
+
+			#endif
+
+		#else
+
+			varying vec2 vUv;
+
+
+		#endif
+
+		#ifdef USE_DASH
+
+			uniform float dashScale;
+
+			attribute float instanceDistanceStart;
+
+			attribute float instanceDistanceEnd;
+
+			varying float vLineDistance;
+
+
+		#endif
+
+		void trimSegment( const in vec4 start, inout vec4 end ) {
+
+			// trim end segment so it terminates between the camera plane and the near plane
+
+			// conservative estimate of the near plane
+			float a = projectionMatrix[ 2 ][ 2 ];
+ // 3nd entry in 3th column
+			float b = projectionMatrix[ 3 ][ 2 ];
+ // 3nd entry in 4th column
+			float nearEstimate = - 0.5 * b / a;
+
+
+			float alpha = ( nearEstimate - start.z ) / ( end.z - start.z );
+
+
+			end.xyz = mix( start.xyz, end.xyz, alpha );
+
+
+		}
+
+		void main() {
+
+			#ifdef USE_COLOR
+
+				vColor.xyz = ( position.y < 0.5 ) ? instanceColorStart : instanceColorEnd;
+
+
+			#endif
+
+			#ifdef USE_DASH
+
+				vLineDistance = ( position.y < 0.5 ) ? dashScale * instanceDistanceStart : dashScale * instanceDistanceEnd;
+
+				vUv = uv;
+
+
+			#endif
+
+			float aspect = resolution.x / resolution.y;
+
+
+			// camera space
+			vec4 start = modelViewMatrix * vec4( instanceStart, 1.0 );
+
+			vec4 end = modelViewMatrix * vec4( instanceEnd, 1.0 );
+
+
+			#ifdef WORLD_UNITS
+
+				worldStart = start.xyz;
+
+				worldEnd = end.xyz;
+
+
+			#else
+
+				vUv = uv;
+
+
+			#endif
+
+			// special case for perspective projection, and segments that terminate either in, or behind, the camera plane
+			// clearly the gpu firmware has a way of addressing this issue when projecting into ndc space
+			// but we need to perform ndc-space calculations in the shader, so we must address this issue directly
+			// perhaps there is a more elegant solution -- WestLangley
+
+			bool perspective = ( projectionMatrix[ 2 ][ 3 ] == - 1.0 );
+ // 4th entry in the 3rd column
+
+			if ( perspective ) {
+
+				if ( start.z < 0.0 && end.z >= 0.0 ) {
+
+					trimSegment( start, end );
+
+
+				} else if ( end.z < 0.0 && start.z >= 0.0 ) {
+
+					trimSegment( end, start );
+
+
+				}
+
+			}
+
+			// clip space
+			vec4 clipStart = projectionMatrix * start;
+
+			vec4 clipEnd = projectionMatrix * end;
+
+
+			// ndc space
+			vec3 ndcStart = clipStart.xyz / clipStart.w;
+
+			vec3 ndcEnd = clipEnd.xyz / clipEnd.w;
+
+
+			// direction
+			vec2 dir = ndcEnd.xy - ndcStart.xy;
+
+
+			// account for clip-space aspect ratio
+			dir.x *= aspect;
+
+			dir = normalize( dir );
+
+
+			#ifdef WORLD_UNITS
+
+				vec3 worldDir = normalize( end.xyz - start.xyz );
+
+				vec3 tmpFwd = normalize( mix( start.xyz, end.xyz, 0.5 ) );
+
+				vec3 worldUp = normalize( cross( worldDir, tmpFwd ) );
+
+				vec3 worldFwd = cross( worldDir, worldUp );
+
+				worldPos = position.y < 0.5 ? start: end;
+
+
+				// height offset
+				float hw = linewidth * 0.5;
+
+				worldPos.xyz += position.x < 0.0 ? hw * worldUp : - hw * worldUp;
+
+
+				// don't extend the line if we're rendering dashes because we
+				// won't be rendering the endcaps
+				#ifndef USE_DASH
+
+					// cap extension
+					worldPos.xyz += position.y < 0.5 ? - hw * worldDir : hw * worldDir;
+
+
+					// add width to the box
+					worldPos.xyz += worldFwd * hw;
+
+
+					// endcaps
+					if ( position.y > 1.0 || position.y < 0.0 ) {
+
+						worldPos.xyz -= worldFwd * 2.0 * hw;
+
+
+					}
+
+				#endif
+
+				// project the worldpos
+				vec4 clip = projectionMatrix * worldPos;
+
+
+				// shift the depth of the projected points so the line
+				// segments overlap neatly
+				vec3 clipPose = ( position.y < 0.5 ) ? ndcStart : ndcEnd;
+
+				clip.z = clipPose.z * clip.w;
+
+
+			#else
+
+				vec2 offset = vec2( dir.y, - dir.x );
+
+				// undo aspect ratio adjustment
+				dir.x /= aspect;
+
+				offset.x /= aspect;
+
+
+				// sign flip
+				if ( position.x < 0.0 ) offset *= - 1.0;
+
+
+				// endcaps
+				if ( position.y < 0.0 ) {
+
+					offset += - dir;
+
+
+				} else if ( position.y > 1.0 ) {
+
+					offset += dir;
+
+
+				}
+
+				// adjust for linewidth
+				offset *= linewidth;
+
+
+				// adjust for clip-space to screen-space conversion // maybe resolution should be based on viewport ...
+				offset /= resolution.y;
+
+
+				// select end
+				vec4 clip = ( position.y < 0.5 ) ? clipStart : clipEnd;
+
+
+				// back to clip space
+				offset *= clip.w;
+
+
+				clip.xy += offset;
+
+
+			#endif
+
+			gl_Position = clip;
+
+
+			vec4 mvPosition = ( position.y < 0.5 ) ? start : end;
+ // this is an approximation
+
+			#include <logdepthbuf_vertex>
+			#include <clipping_planes_vertex>
+			#include <fog_vertex>
+
+		}
+		`,fragmentShader:`
+		uniform vec3 diffuse;
+
+		uniform float opacity;
+
+		uniform float linewidth;
+
+
+		#ifdef USE_DASH
+
+			uniform float dashOffset;
+
+			uniform float dashSize;
+
+			uniform float gapSize;
+
+
+		#endif
+
+		varying float vLineDistance;
+
+
+		#ifdef WORLD_UNITS
+
+			varying vec4 worldPos;
+
+			varying vec3 worldStart;
+
+			varying vec3 worldEnd;
+
+
+			#ifdef USE_DASH
+
+				varying vec2 vUv;
+
+
+			#endif
+
+		#else
+
+			varying vec2 vUv;
+
+
+		#endif
+
+		#include <common>
+		#include <color_pars_fragment>
+		#include <fog_pars_fragment>
+		#include <logdepthbuf_pars_fragment>
+		#include <clipping_planes_pars_fragment>
+
+		vec2 closestLineToLine(vec3 p1, vec3 p2, vec3 p3, vec3 p4) {
+
+			float mua;
+
+			float mub;
+
+
+			vec3 p13 = p1 - p3;
+
+			vec3 p43 = p4 - p3;
+
+
+			vec3 p21 = p2 - p1;
+
+
+			float d1343 = dot( p13, p43 );
+
+			float d4321 = dot( p43, p21 );
+
+			float d1321 = dot( p13, p21 );
+
+			float d4343 = dot( p43, p43 );
+
+			float d2121 = dot( p21, p21 );
+
+
+			float denom = d2121 * d4343 - d4321 * d4321;
+
+
+			float numer = d1343 * d4321 - d1321 * d4343;
+
+
+			mua = numer / denom;
+
+			mua = clamp( mua, 0.0, 1.0 );
+
+			mub = ( d1343 + d4321 * ( mua ) ) / d4343;
+
+			mub = clamp( mub, 0.0, 1.0 );
+
+
+			return vec2( mua, mub );
+
+
+		}
+
+		void main() {
+
+			float alpha = opacity;
+
+			vec4 diffuseColor = vec4( diffuse, alpha );
+
+
+			#include <clipping_planes_fragment>
+
+			#ifdef USE_DASH
+
+				if ( vUv.y < - 1.0 || vUv.y > 1.0 ) discard;
+ // discard endcaps
+
+				if ( mod( vLineDistance + dashOffset, dashSize + gapSize ) > dashSize ) discard;
+ // todo - FIX
+
+			#endif
+
+			#ifdef WORLD_UNITS
+
+				// Find the closest points on the view ray and the line segment
+				vec3 rayEnd = normalize( worldPos.xyz ) * 1e5;
+
+				vec3 lineDir = worldEnd - worldStart;
+
+				vec2 params = closestLineToLine( worldStart, worldEnd, vec3( 0.0, 0.0, 0.0 ), rayEnd );
+
+
+				vec3 p1 = worldStart + lineDir * params.x;
+
+				vec3 p2 = rayEnd * params.y;
+
+				vec3 delta = p1 - p2;
+
+				float len = length( delta );
+
+				float norm = len / linewidth;
+
+
+				#ifndef USE_DASH
+
+					#ifdef USE_ALPHA_TO_COVERAGE
+
+						float dnorm = fwidth( norm );
+
+						alpha = 1.0 - smoothstep( 0.5 - dnorm, 0.5 + dnorm, norm );
+
+
+					#else
+
+						if ( norm > 0.5 ) {
+
+							discard;
+
+
+						}
+
+					#endif
+
+				#endif
+
+			#else
+
+				#ifdef USE_ALPHA_TO_COVERAGE
+
+					// artifacts appear on some hardware if a derivative is taken within a conditional
+					float a = vUv.x;
+
+					float b = ( vUv.y > 0.0 ) ? vUv.y - 1.0 : vUv.y + 1.0;
+
+					float len2 = a * a + b * b;
+
+					float dlen = fwidth( len2 );
+
+
+					if ( abs( vUv.y ) > 1.0 ) {
+
+						alpha = 1.0 - smoothstep( 1.0 - dlen, 1.0 + dlen, len2 );
+
+
+					}
+
+				#else
+
+					if ( abs( vUv.y ) > 1.0 ) {
+
+						float a = vUv.x;
+
+						float b = ( vUv.y > 0.0 ) ? vUv.y - 1.0 : vUv.y + 1.0;
+
+						float len2 = a * a + b * b;
+
+
+						if ( len2 > 1.0 ) discard;
+
+
+					}
+
+				#endif
+
+			#endif
+
+			#include <logdepthbuf_fragment>
+			#include <color_fragment>
+
+			gl_FragColor = vec4( diffuseColor.rgb, alpha );
+
+
+			#include <tonemapping_fragment>
+			#include <colorspace_fragment>
+			#include <fog_fragment>
+			#include <premultiplied_alpha_fragment>
+
+		}
+		`};
+class v extends d.jyz{constructor(e){super({type:"LineMaterial",uniforms:d.rDY.clone(g.Vj0.line.uniforms),vertexShader:g.Vj0.line.vertexShader,fragmentShader:g.Vj0.line.fragmentShader,clipping:!0}),this.isLineMaterial=!0,this.setValues(e)}get color(){return this.uniforms.diffuse.value}set color(e){this.uniforms.diffuse.value=e}get worldUnits(){return"WORLD_UNITS"in this.defines}set worldUnits(e){!0===e?this.defines.WORLD_UNITS="":delete this.defines.WORLD_UNITS}get linewidth(){return this.uniforms.linewidth.value}set linewidth(e){this.uniforms.linewidth&&(this.uniforms.linewidth.value=e)}get dashed(){return"USE_DASH"in this.defines}set dashed(e){!0===e!==this.dashed&&(this.needsUpdate=!0),!0===e?this.defines.USE_DASH="":delete this.defines.USE_DASH}get dashScale(){return this.uniforms.dashScale.value}set dashScale(e){this.uniforms.dashScale.value=e}get dashSize(){return this.uniforms.dashSize.value}set dashSize(e){this.uniforms.dashSize.value=e}get dashOffset(){return this.uniforms.dashOffset.value}set dashOffset(e){this.uniforms.dashOffset.value=e}get gapSize(){return this.uniforms.gapSize.value}set gapSize(e){this.uniforms.gapSize.value=e}get opacity(){return this.uniforms.opacity.value}set opacity(e){this.uniforms&&(this.uniforms.opacity.value=e)}get resolution(){return this.uniforms.resolution.value}set resolution(e){this.uniforms.resolution.value.copy(e)}get alphaToCoverage(){return"USE_ALPHA_TO_COVERAGE"in this.defines}set alphaToCoverage(e){this.defines&&(!0===e!==this.alphaToCoverage&&(this.needsUpdate=!0),!0===e?this.defines.USE_ALPHA_TO_COVERAGE="":delete this.defines.USE_ALPHA_TO_COVERAGE)}}let y=new d.Ltg,S=new d.Pa4,M=new d.Pa4,A=new d.Ltg,P=new d.Ltg,b=new d.Ltg,w=new d.Pa4,_=new d.yGw,C=new d.Zzh,x=new d.Pa4,E=new d.ZzF,T=new d.aLr,z=new d.Ltg;
+function U(e,t,a){return z.set(0,0,-t,1).applyMatrix4(e.projectionMatrix),z.multiplyScalar(1/z.w),z.x=r/a.width,z.y=r/a.height,z.applyMatrix4(e.projectionMatrixInverse),z.multiplyScalar(1/z.w),Math.abs(Math.max(z.x,z.y))}class D extends d.Kj0{constructor(e=new f,t=new v({color:16777215*Math.random()})){super(e,t),this.isLineSegments2=!0,this.type="LineSegments2"}computeLineDistances(){let{geometry:e}=this,{instanceStart:t}=e.attributes,{instanceEnd:a}=e.attributes,i=new Float32Array(2*t.count);
+for(let e=0,r=0,n=t.count;
+e<n;
+e+=1,r+=2)S.fromBufferAttribute(t,e),M.fromBufferAttribute(a,e),i[r]=0===r?0:i[r-1],i[r+1]=i[r]+S.distanceTo(M);
+let r=new d.$TI(i,2,1);
+return e.setAttribute("instanceDistanceStart",new d.kB5(r,1,0)),e.setAttribute("instanceDistanceEnd",new d.kB5(r,1,1)),this}raycast(e,t){let a,n;
+let{worldUnits:o}=this.material,{camera:s}=e,l=void 0!==e.params.Line2&&e.params.Line2.threshold||0;
+i=e.ray;
+let{matrixWorld:c}=this,{geometry:u}=this,{material:h}=this;
+if(r=h.linewidth+l,null===u.boundingSphere&&u.computeBoundingSphere(),T.copy(u.boundingSphere).applyMatrix4(c),o)a=.5*r;
+else{let e=Math.max(s.near,T.distanceToPoint(i.origin));
+a=U(s,e,h.resolution)}if(T.radius+=a,!1!==i.intersectsSphere(T)){if(null===u.boundingBox&&u.computeBoundingBox(),E.copy(u.boundingBox).applyMatrix4(c),o)n=.5*r;
+else{let e=Math.max(s.near,E.distanceToPoint(i.origin));
+n=U(s,e,h.resolution)}E.expandByScalar(n),!1!==i.intersectsBox(E)&&(o?function(e,t){let{matrixWorld:a}=e,{geometry:n}=e,{instanceStart:o}=n.attributes,{instanceEnd:s}=n.attributes,l=Math.min(n.instanceCount,o.count);
+for(let n=0;
+n<l;
+n+=1){C.start.fromBufferAttribute(o,n),C.end.fromBufferAttribute(s,n),C.applyMatrix4(a);
+let l=new d.Pa4,c=new d.Pa4;
+i.distanceSqToSegment(C.start,C.end,c,l),c.distanceTo(l)<.5*r&&t.push({point:c,pointOnLine:l,distance:i.origin.distanceTo(c),object:e,face:null,faceIndex:n,uv:null,uv1:null})}}(this,t):function(e,t,a){let{projectionMatrix:n}=t,{material:o}=e,{resolution:s}=o,{matrixWorld:l}=e,{geometry:c}=e,{instanceStart:u}=c.attributes,{instanceEnd:h}=c.attributes,p=Math.min(c.instanceCount,u.count),m=-t.near;
+i.at(1,b),b.w=1,b.applyMatrix4(t.matrixWorldInverse),b.applyMatrix4(n),b.multiplyScalar(1/b.w),b.x*=s.x/2,b.y*=s.y/2,b.z=0,w.copy(b),_.multiplyMatrices(t.matrixWorldInverse,l);
+for(let t=0;
+t<p;
+t+=1)if(A.fromBufferAttribute(u,t),P.fromBufferAttribute(h,t),A.w=1,P.w=1,A.applyMatrix4(_),P.applyMatrix4(_),!(A.z>m&&P.z>m)){if(A.z>m){let e=A.z-P.z,t=(A.z-m)/e;
+A.lerp(P,t)}else if(P.z>m){let e=P.z-A.z,t=(P.z-m)/e;
+P.lerp(A,t)}A.applyMatrix4(n),P.applyMatrix4(n),A.multiplyScalar(1/A.w),P.multiplyScalar(1/P.w),A.x*=s.x/2,A.y*=s.y/2,P.x*=s.x/2,P.y*=s.y/2,C.start.copy(A),C.start.z=0,C.end.copy(P),C.end.z=0;
+let o=C.closestPointToPointParameter(w,!0);
+C.at(o,x);
+let c=d.M8C.lerp(A.z,P.z,o),p=c>=-1&&c<=1,f=w.distanceTo(x)<.5*r;
+if(p&&f){C.start.fromBufferAttribute(u,t),C.end.fromBufferAttribute(h,t),C.start.applyMatrix4(l),C.end.applyMatrix4(l);
+let r=new d.Pa4,n=new d.Pa4;
+i.distanceSqToSegment(C.start,C.end,n,r),a.push({point:n,pointOnLine:r,distance:i.origin.distanceTo(n),object:e,face:null,faceIndex:t,uv:null,uv1:null})}}}(this,s,t))}}onBeforeRender(e){let{uniforms:t}=this.material;
+t&&t.resolution&&(e.getViewport(y),this.material.uniforms.resolution.value.set(y.z,y.w))}}class I extends f{constructor(){super(),this.isLineGeometry=!0,this.type="LineGeometry"}setPositions(e){let t=e.length-3,a=new Float32Array(2*t);
+for(let i=0;
+i<t;
+i+=3)a[2*i]=e[i],a[2*i+1]=e[i+1],a[2*i+2]=e[i+2],a[2*i+3]=e[i+3],a[2*i+4]=e[i+4],a[2*i+5]=e[i+5];
+return super.setPositions(a),this}setColors(e){let t=e.length-3,a=new Float32Array(2*t);
+for(let i=0;
+i<t;
+i+=3)a[2*i]=e[i],a[2*i+1]=e[i+1],a[2*i+2]=e[i+2],a[2*i+3]=e[i+3],a[2*i+4]=e[i+4],a[2*i+5]=e[i+5];
+return super.setColors(a),this}setFromPoints(e){let t=e.length-1,a=new Float32Array(6*t);
+for(let i=0;
+i<t;
+i+=1)a[6*i]=e[i].x,a[6*i+1]=e[i].y,a[6*i+2]=e[i].z||0,a[6*i+3]=e[i+1].x,a[6*i+4]=e[i+1].y,a[6*i+5]=e[i+1].z||0;
+return super.setPositions(a),this}fromLine(e){let{geometry:t}=e;
+return this.setPositions(t.attributes.position.array),this}}class k extends D{constructor(e=new I,t=new v({color:16777215*Math.random()})){super(e,t),this.isLine2=!0,this.type="Line2"}}var R=a(79930),G=a.n(R),F=a(47780),O=a.n(F),L=a(99001),N=a.n(L),B=a(91396),V=a.n(B),H=a(67381),K=a.n(H),W=a(41669),j=a.n(W),Z=a(33784),$=a.n(Z),q=a(22740),X=a.n(q),Y=a(8734),J=a(49873),Q=a(21919),ee=a(48343),et=a(36393),ea=a(53366),ei=a(90126);
+let er={DOT_COUNT_MAX_DESKTOP:6e4,DOT_COUNT_MAX_MOBILE:3e4,DOT_SIZE_DESKTOP:12,DOT_SIZE_MOBILE:14,CAMERA_Z_DESKTOP:11.7,CAMERA_Z_MOBILE:11.3,DOT_GRADIENT_STOP_COUNT:3,ARC_UI_MIN_OFFSET:.01,ARC_UI_MAX_OFFSET:.25,ARC_UI_HIDE_DOT_THRESHOLD:-.5,ARC_UI_MIN_SCALE:.75,ARC_UI_MAX_SCALE:1,MARKER_TANGENT_OFFSET:.02,IMAGE_PATH:"https://images.stripeassets.com/fzn2n1nzq965/2hmAf1AbLIejlWrAYU4iiK/cf0f4918753c76d8e37782e084d16320/map_dots.png"},en={markerA:{durationMs:600,easing:"easeOutCubic"},markerB:{durationMs:550,easing:"easeOutCubic"},line:{durationMs:2800,easing:"easeOutCubic"},uiIntro:{durationMs:800,easing:"easeOutCubic"},uiTravel:{durationMs:5e3,easing:"easeInOutCubic",distanceScale:{factor:.12,min:.6,max:1.2}},uiOutro:{durationMs:600,easing:"easeInCubic"},lineRetreat:{durationMs:2200,easing:"easeInOutCubic"},markerFade:{durationMs:600,easing:"easeOutCubic"},lineDistanceScale:{baseDurationMs:2800,referenceKm:8e3,min:1800,max:4500}},eo={markerA:{durationMs:300,easing:"easeOutCubic"},markerB:{durationMs:250,easing:"easeOutCubic"},line:{durationMs:1200,easing:"easeOutCubic"},lineRetreat:{durationMs:800,easing:"easeInOutCubic"},markerFade:{durationMs:400,easing:"easeOutCubic"}},es={ENABLED:!0,MAX_ACTIVE_ARCS:4,MIN_SPAWN_INTERVAL_MS:1500,MAX_SPAWN_INTERVAL_MS:4e3,INITIAL_DELAY_MS:0,CITY_MIN_DISTANCE_KM:2e3,MIN_UI_SCREEN_DISTANCE:80,MAX_SPAWN_DISTANCE_ATTEMPTS:5},el=[{name:"New York City",lat:40.7128,lon:-74.006,ux:.208854,uy:.652268,uz:.728647,country:"US"},{name:"Los Angeles",lat:34.0522,lon:-118.2437,ux:-.392078,uy:.559948,uz:.729886,country:"US"},{name:"Mexico City",lat:19.4326,lon:-99.1332,ux:-.149688,uy:.332698,uz:.931078,country:"MX"},{name:"Toronto",lat:43.6532,lon:-79.3832,ux:.133303,uy:.690292,uz:.711145,country:"CA"},{name:"Chicago",lat:41.8781,lon:-87.6298,ux:.030792,uy:.667548,uz:.74393,country:"US"},{name:"Miami",lat:25.7617,lon:-80.1918,ux:.153419,uy:.434629,uz:.887446,country:"US"},{name:"Vancouver",lat:49.2827,lon:-123.1207,ux:-.356435,uy:.757937,uz:.546338,country:"CA"},{name:"Houston",lat:29.7604,lon:-95.3698,ux:-.078251,uy:.496481,uz:.864467,country:"US"},{name:"San Francisco",lat:37.7749,lon:-122.4194,ux:-.440285,uy:.612231,uz:.656953,country:"US"},{name:"Seattle",lat:47.6062,lon:-122.3321,ux:-.396264,uy:.738349,uz:.545133,country:"US"},{name:"Boston",lat:42.3601,lon:-71.0589,ux:.237618,uy:.673879,uz:.699487,country:"US"},{name:"Atlanta",lat:33.749,lon:-84.388,ux:.076123,uy:.555436,uz:.828087,country:"US"},{name:"Montreal",lat:45.5017,lon:-73.5673,ux:.196539,uy:.713171,uz:.672597,country:"CA"},{name:"Denver",lat:39.7392,lon:-104.9903,ux:-.196538,uy:.639153,uz:.743601,country:"US"},{name:"S\xe3o Paulo",lat:-23.5505,lon:-46.6333,ux:.629472,uy:-.399557,uz:.666423,country:"BR"},{name:"Buenos Aires",lat:-34.6037,lon:-58.3816,ux:.431518,uy:-.567897,uz:.700918,country:"AR"},{name:"Santiago",lat:-33.4489,lon:-70.6693,ux:.276196,uy:-.551193,uz:.787339,country:"CL"},{name:"Lima",lat:-12.0464,lon:-77.0428,ux:.219285,uy:-.208704,uz:.953077,country:"PE"},{name:"Rio de Janeiro",lat:-22.9068,lon:-43.1729,ux:.67178,uy:-.389233,uz:.630246,country:"BR"},{name:"Bogot\xe1",lat:4.711,lon:-74.0721,ux:.273651,uy:.082151,uz:.958354,country:"CO"},{name:"Bras\xedlia",lat:-15.7975,lon:-47.8919,ux:.643556,uy:-.272307,uz:.715204,country:"BR"},{name:"London",lat:51.5074,lon:-.1278,ux:.622412,uy:.782689,uz:.001388,country:"GB"},{name:"Paris",lat:48.8566,lon:2.3522,ux:.657391,uy:.753065,uz:-.027003,country:"FR"},{name:"Berlin",lat:52.52,lon:13.405,ux:.591907,uy:.793566,uz:-.141067,country:"DE"},{name:"Madrid",lat:40.4168,lon:-3.7038,ux:.759758,uy:.648343,uz:.049182,country:"ES"},{name:"Rome",lat:41.9028,lon:12.4964,ux:.726647,uy:.667869,uz:-.161046,country:"IT"},{name:"Frankfurt",lat:50.1109,lon:8.6821,ux:.633955,uy:.767287,uz:-.096806,country:"DE"},{name:"Warsaw",lat:52.2297,lon:21.0122,ux:.571769,uy:.790473,uz:-.219621,country:"PL"},{name:"Amsterdam",lat:52.3676,lon:4.9041,ux:.608358,uy:.791944,uz:-.052199,country:"NL"},{name:"Stockholm",lat:59.3293,lon:18.0686,ux:.484948,uy:.860113,uz:-.158211,country:"SE"},{name:"Munich",lat:48.1351,lon:11.582,ux:.652312,uy:.744769,uz:-.140312,country:"DE"},{name:"Barcelona",lat:41.3851,lon:2.1734,ux:.746481,uy:.661142,uz:-.0752,country:"ES"},{name:"Milan",lat:45.4642,lon:9.19,ux:.692238,uy:.712552,uz:-.112137,country:"IT"},{name:"Vienna",lat:48.2082,lon:16.3738,ux:.631452,uy:.745437,uz:-.215286,country:"AT"},{name:"Dublin",lat:53.3498,lon:-6.2603,ux:.586911,uy:.802356,uz:.106418,country:"IE"},{name:"Brussels",lat:50.8503,lon:4.3517,ux:.625117,uy:.776047,uz:-.076419,country:"BE"},{name:"Lisbon",lat:38.7223,lon:-9.1393,ux:.772119,uy:.625547,uz:.124091,country:"PT"},{name:"Accra",lat:5.6037,lon:-.187,ux:.995216,uy:.097647,uz:.003248,country:"GH"},{name:"Addis Ababa",lat:8.9806,lon:38.7578,ux:.77024,uy:.1561,uz:-.618355,country:"ET"},{name:"Johannesburg",lat:-26.2041,lon:28.0473,ux:.791856,uy:-.44157,uz:-.421876,country:"ZA"},{name:"Dakar",lat:14.6928,lon:-17.4467,ux:.9228,uy:.253636,uz:.290014,country:"SN"},{name:"Tunis",lat:36.8065,lon:10.1815,ux:.788055,uy:.599114,uz:-.141531,country:"TN"},{name:"Lom\xe9",lat:6.1725,lon:1.2314,ux:.993973,uy:.107522,uz:-.021366,country:"TG"},{name:"Lagos",lat:6.5244,lon:3.3792,ux:.990145,uy:.113598,uz:-.082516,country:"NG"},{name:"Cairo",lat:30.0444,lon:31.2357,ux:.740154,uy:.500978,uz:-.449012,country:"EG"},{name:"Cape Town",lat:-33.9249,lon:18.4241,ux:.778571,uy:-.558362,uz:-.285411,country:"ZA"},{name:"Nairobi",lat:-1.2921,lon:36.8219,ux:.79784,uy:-.022554,uz:-.602471,country:"KE"},{name:"Tokyo",lat:35.6762,lon:139.6503,ux:-.619079,uy:.583204,uz:-.525941,country:"JP"},{name:"New Delhi",lat:28.6139,lon:77.209,ux:.194356,uy:.478905,uz:-.856082,country:"IN"},{name:"Seoul",lat:37.5665,lon:126.978,ux:-.476783,uy:.609682,uz:-.633219,country:"KR"},{name:"Mumbai",lat:19.076,lon:72.8777,ux:.278245,uy:.326822,uz:-.903198,country:"IN"},{name:"Kuala Lumpur",lat:3.139,lon:101.6869,ux:-.202259,uy:.054758,uz:-.9778,country:"MY"},{name:"Taipei",lat:25.033,lon:121.5654,ux:-.474299,uy:.42314,uz:-.772006,country:"TW"},{name:"Bangkok",lat:13.7563,lon:100.5018,ux:-.177038,uy:.237793,uz:-.955046,country:"TH"},{name:"Singapore",lat:1.3521,lon:103.8198,ux:-.238803,uy:.023596,uz:-.970781,country:"SG"},{name:"Dubai",lat:25.2048,lon:55.2708,ux:.515458,uy:.425855,uz:-.743606,country:"AE"},{name:"Beijing",lat:39.9042,lon:116.4074,ux:-.342618,uy:.641432,uz:-.687216,country:"CN"},{name:"Shanghai",lat:31.2304,lon:121.4737,ux:-.436321,uy:.518516,uz:-.735112,country:"CN"},{name:"Hong Kong",lat:22.3193,lon:114.1694,ux:-.370418,uy:.379621,uz:-.847213,country:"HK"},{name:"Osaka",lat:34.6937,lon:135.5023,ux:-.576941,uy:.569245,uz:-.585752,country:"JP"},{name:"Bangalore",lat:12.9716,lon:77.5946,ux:.209124,uy:.224491,uz:-.951786,country:"IN"},{name:"Jakarta",lat:-6.2088,lon:106.8456,ux:-.285321,uy:-.108151,uz:-.952321,country:"ID"},{name:"Manila",lat:14.5995,lon:120.9842,ux:-.491218,uy:.252105,uz:-.833512,country:"PH"},{name:"Ho Chi Minh City",lat:10.8231,lon:106.6297,ux:-.280954,uy:.187828,uz:-.941215,country:"VN"},{name:"Tel Aviv",lat:32.0853,lon:34.7818,ux:.694283,uy:.531063,uz:-.485618,country:"IL"},{name:"Sydney",lat:-33.8688,lon:151.2093,ux:-.727676,uy:-.557293,uz:-.39989,country:"AU"},{name:"Auckland",lat:-36.8509,lon:174.7645,ux:-.796861,uy:-.599735,uz:-.073018,country:"NZ"},{name:"Melbourne",lat:-37.8136,lon:144.9631,ux:-.666523,uy:-.612654,uz:-.424891,country:"AU"},{name:"Brisbane",lat:-27.4698,lon:153.0251,ux:-.761432,uy:-.461152,uz:-.455311,country:"AU"}],ec=["CN","UA","IL","SG","HK"],eu={US:["US"],UK:["GB"],EUR:["FR","DE","ES","IT","NL","AT","IE","BE","PT"],AU:["AU"],CA:["CA"],NZ:["NZ"]},eh={US:["US","UK","EUR","AU","CA","NZ"],CA:["US","UK","EUR","AU","CA","NZ"],MX:["US","UK","EUR","AU","CA","NZ"],BR:["US","UK","EUR","AU","CA","NZ"],AR:["US","UK","EUR","AU","CA","NZ"],CO:["US","UK","EUR","AU","CA","NZ"],GB:["US","UK","EUR","AU","CA","NZ"],FR:["US","UK","EUR","AU","CA","NZ"],DE:["US","UK","EUR","AU","CA","NZ"],ES:["US","UK","EUR","AU","CA","NZ"],NL:["US","UK","EUR","AU","CA","NZ"],IE:["US","UK","EUR","AU","CA","NZ"],PT:["US","UK","EUR","AU","CA","NZ"],NG:["US","UK","EUR","AU","CA","NZ"],KE:["US","UK","EUR","AU","CA","NZ"],EG:["US","UK","EUR","AU","CA","NZ"],ZA:["US","UK","EUR","AU","CA","NZ"],SN:["US","UK","EUR","AU","CA","NZ"],JP:["US","UK","EUR","AU","CA","NZ"],IN:["US","UK","EUR","AU","CA","NZ"],KR:["US","UK","EUR","AU","CA","NZ"],TH:["US","UK","EUR","AU","CA","NZ"],AE:["US","UK","EUR","AU","CA","NZ"],PH:["US","UK","EUR","AU","CA","NZ"],AU:["US","UK","EUR","AU","CA","NZ"],NZ:["US","UK","EUR","AU","CA","NZ"]},ed=new Set(Object.entries(eh).flatMap(([e,t])=>(t??[]).flatMap(t=>eu[t].map(t=>`${t}->${e}`)))),ep=new Set(Object.values(eu).flat()),em=new Set(Object.keys(eh)),ef=["New York City","San Francisco","Miami","Toronto","Mexico City","S\xe3o Paulo","Buenos Aires","Bogot\xe1","London","Paris","Berlin","Madrid","Amsterdam","Dublin","Lisbon","Lagos","Nairobi","Cairo","Johannesburg","Dakar","Tokyo","Singapore","Hong Kong","New Delhi","Seoul","Bangkok","Dubai","Manila","Tel Aviv","Sydney","Auckland"].map(e=>el.findIndex(t=>t.name===e)).filter(e=>-1!==e),eg=[{from:"Los Angeles",to:"Tokyo"},{from:"Los Angeles",to:"Singapore"},{from:"Los Angeles",to:"Sydney"},{from:"New York City",to:"Beijing"},{from:"New York City",to:"Auckland"},{from:"Singapore",to:"Auckland"},{from:"Miami",to:"Sydney"},{from:"Santiago",to:"Tokyo"},{from:"Santiago",to:"Seoul"},{from:"Santiago",to:"Kuala Lumpur"},{from:"Lima",to:"Tokyo"},{from:"Los Angeles",to:"Auckland"},{from:"Vancouver",to:"Sydney"},{from:"Mexico City",to:"Seoul"},{from:"Mexico City",to:"Singapore"},{from:"Mexico City",to:"Sydney"},{from:"Mexico City",to:"Taipei"}],ev=[{name:"Phantom",svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 0H0v24h24z" fill="#000"/><path d="M24 0H0v24h24z" fill="#ab9ff2"/><path fill-rule="evenodd" clip-rule="evenodd" d="M10.4444 15.2962c-.94238 1.4439-2.52146 3.2713-4.62262 3.2713-.99328 0-1.94836-.409-1.94836-2.1852 0-4.5236 6.17618-11.52615 11.90668-11.52615 3.26 0 4.5589 2.2618 4.5589 4.83026 0 3.29689-2.1394 7.06649-4.2661 7.06649-.6749 0-1.006-.3706-1.006-.9584 0-.1533.0255-.3194.0764-.4983-.7258 1.2395-2.1266 2.3895-3.4382 2.3895-.9551 0-1.439-.6006-1.439-1.4439 0-.3067.0636-.6262.1783-.9456m4.9363-5.69895c0 .74845-.4416 1.12265-.9355 1.12265-.5015 0-.9356-.3742-.9356-1.12265 0-.74842.4341-1.12264.9356-1.12264.4939 0 .9355.37422.9355 1.12264m2.8066.00002c0 .74843-.4415 1.12263-.9355 1.12263-.5015 0-.9355-.3742-.9355-1.12263 0-.74844.434-1.12266.9355-1.12266.494 0 .9355.37422.9355 1.12266" fill="#fffdf8"/></svg>'},{name:"MetaMask",svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="2" fill="#ebf1f7"/><path d="m18.8095 5-5.8759 4.36414 1.0866-2.57544z" fill="#e2761b"/><path d="m5.24339 5 5.82881 4.4053-1.0337-2.6166-4.79511-1.78811zM16.6947 15.116l-1.5653 2.3984 3.3487.9214.9625-3.2663-2.7459-.053zm-12.07165.0535.95667 3.2663 3.34866-.9214-1.56525-2.3979z" fill="#e4761b"/><path d="m8.74009 11.0643-.93198 1.4124 3.32459.1476-.1176-3.57269-2.27384 2.01389zm6.57321 0-2.3032-2.05502-.0764 3.61442 3.3187-.147-.9391-1.4118zm-6.38388 6.4498 1.99628-.9743-1.72462-1.3465zm4.19888-.9743 2.0022.9743-.2776-2.3214-1.7246 1.3465z" fill="#e4761b"/><path d="m15.1307 17.5145-2.0021-.9744.1593 1.3054-.0176.5486zm-6.20101 0 1.86041.8796-.0117-.5492.147-1.3053z" fill="#d7c1b3"/><path d="m10.8195 14.3308-1.6652-.4904 1.1748-.5374zm2.4155 0 .4904-1.0278 1.1807.5374z" fill="#233447"/><path d="m8.92951 17.5141.28342-2.3979-1.84867.0529zm5.91759-2.3985.2835 2.3985 1.5652-2.345-1.8487-.0529zm1.4054-2.6395-3.3187.1476.3069 1.7069.4904-1.0278 1.1807.5374zm-7.09837 1.3641 1.18067-.5374.4845 1.0278.3129-1.7069-3.32459-.147 1.34652 1.3641z" fill="#cd6116"/><path d="m7.80762 12.4761 1.39356 2.7165-.04704-1.3524zm7.10418 1.3641-.0588 1.3524 1.3995-2.7165zm-3.7796-1.2165-.3128 1.7069.3898 2.0139.0882-2.6519-.1646-1.0689zm1.8016 0-.1593 1.0631.0705 2.6577.3957-2.0139z" fill="#e4751f"/><path d="m13.2709 18.3936.0176-.5492-.1481-.1294h-2.2262l-.1358.1294.0117.5492-1.86041-.8797.64974.5316 1.31707.9149h2.2615l1.323-.9149.6497-.5316-1.8604.8797z" fill="#c0ad9e"/><path d="m13.1281 16.5399-.2834-.1952h-1.6359l-.2834.1952-.1476 1.3054.1353-.1305h2.2267l.1476.1299-.1587-1.3053z" fill="#161616"/><path d="m19.0577 9.64755.5022-2.40962L18.8096 5l-5.6813 4.21655 2.185 1.84865 3.0888.9032.6856-.7968-.2958-.2128.4728-.431-.3663-.2834.4727-.36047zM4.5 7.23793l.50215 2.40962-.31928.23638.47275.36047-.36044.2834.47275.431-.29577.2128.67973.7968 3.08877-.9032 2.18504-1.84865L5.24441 5z" fill="#763d16"/><path d="m13.2409 14.3312-.3957 2.0139.2834.1952 1.7246-1.3465.0588-1.3524zm-4.0866-.4904.04704 1.3524 1.72456 1.3465.2835-.1946-.3899-2.0139z" fill="#f6851b"/><path d="m18.4011 11.9682-3.0888-.9032.939 1.4112-1.3994 2.7166 1.8428-.0236h2.7459zm-9.66205-.9038-3.08818.9038-1.02782 3.201h2.74008l1.83691.0236-1.39356-2.7166.93257-1.4112zm4.19365 1.5594.1946-3.40747.8979-2.42727h-3.9867l.8861 2.42727.2064 3.40747.0706 1.0749.0059 2.646h1.6364l.0117-2.646.0765-1.0749z" fill="#f6851b"/></svg>'},{name:"Rainbow",svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="2" fill="#ebf1f7"/><path fill="url(#rainbow-bg)" d="M0 0h24v24H0z"/><path d="M4.5 7.87498h1.125c5.799 0 10.5 4.70102 10.5 10.49992v1.125h2.25c.6213 0 1.125-.5037 1.125-1.125C19.5 10.712 13.288 4.5 5.625 4.5c-.62132 0-1.125.50368-1.125 1.12499z" fill="url(#rainbow-outer)"/><path d="M4.5 7.50024h1.125c6.0061 0 10.875 4.86886 10.875 10.87496v1.125h-3.375v-1.125c0-4.1421-3.35786-7.5-7.5-7.5H4.5z" fill="url(#rainbow-mid)"/><path d="M4.5 12.3752c0 .6213.50368 1.125 1.125 1.125 2.69239 0 4.875 2.1826 4.875 4.875 0 .6213.5037 1.125 1.125 1.125H13.5v-1.125c0-4.3492-3.52575-7.875-7.875-7.875H4.5z" fill="url(#rainbow-inner)"/><defs><radialGradient id="rainbow-outer" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -13.8749 13.875 0 5.625 18.3749)"><stop offset=".770277" stop-color="#ff4000"/><stop offset="1" stop-color="#8754c9"/></radialGradient><radialGradient id="rainbow-mid" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -10.8749 10.875 0 5.625 18.3752)"><stop offset=".723929" stop-color="#fff700"/><stop offset="1" stop-color="#ff9901"/></radialGradient><radialGradient id="rainbow-inner" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0 -7.87495 7.875 0 5.625 18.3752)"><stop offset=".59513" stop-color="#0af"/><stop offset="1" stop-color="#01da40"/></radialGradient><linearGradient id="rainbow-bg" x1="12" y1="0" x2="12" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#174299"/><stop offset="1" stop-color="#001e59"/></linearGradient></defs></svg>'},{name:"Crypto.com",svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="2" fill="#ebf1f7"/><path d="M0 0v23.9999h24V0z" fill="url(#crypto-bg)"/><path d="M9.35965 7.55055H14.635l.6356 2.66135H8.74766zM13.157 12.1003l.5629-1.4862h-3.4156l.5754 1.4862-.1755 1.6668h1.302l1.3144-.0059z" fill="#fff"/><path d="m15.283 11.1116-1.5447.9951v1.7686l-1.1809 1.1213v.5268l1.1383 1.0377h.9511l2.3984-4.1369zm-4.9846.9951-1.56314-.9834-1.76812 1.3009 2.41022 4.1486h.96354l1.1383-1.0494v-.5268l-1.1808-1.1214z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.01771 7.9902 12.0009 4 19 8.00014v7.99916L12.0009 20l-.0178-.0099L5 15.9993V8.00014zm6.98319-3.17404L5.71537 8.40941v7.18299l6.28553 3.5914 6.2855-3.5914V8.40941z" fill="#fff"/><defs><radialGradient id="crypto-bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="rotate(90)scale(24 52.3481)"><stop offset=".0249942" stop-color="#3c62d1"/><stop offset=".286382" stop-color="#1e379d"/><stop offset=".553401" stop-color="#041c73"/><stop offset=".988775" stop-color="#010348"/></radialGradient></defs></svg>'},{name:"Base",svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="2" fill="#00f"/><path d="M5.84 19Q5 19 5 18.16V5.84Q5 5 5.84 5h12.32q.84 0 .84.84v12.32q0 .84-.84.84z" fill="#fff"/></svg>'},{name:"Kraken",svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="2" fill="#7132f5"/><path d="M11.9981 6C7.58072 6 4 9.41938 4 13.6373v3.2729C4 17.5123 4.511 18 5.14179 18s1.14553-.4877 1.14553-1.0898v-3.2729c0-.6038.50912-1.0915 1.14178-1.0915.63079 0 1.14178.4877 1.14178 1.0915v3.2729c0 .6021.51102 1.0898 1.1418 1.0898.63262 0 1.14362-.4877 1.14362-1.0898v-3.2729c0-.6038.511-1.0915 1.1418-1.0915.6327 0 1.1455.4877 1.1455 1.0915v3.2729c0 .6021.5111 1.0898 1.1418 1.0898.6308 0 1.1418-.4877 1.1418-1.0898v-3.2729c0-.6038.511-1.0915 1.1456-1.0915.6307 0 1.1417.4877 1.1417 1.0915v3.2729c0 .6021.511 1.0898 1.1437 1.0898C19.489 18 20 17.5123 20 16.9102v-3.2729C20 9.41938 16.4174 6 11.9981 6" fill="#fff"/></svg>'}],ey=ev.map(e=>({...e,template:e.svg.replace(/id="([^"]+)"/g,'id="$1-UID"').replace(/url\(#([^)]+)\)/g,"url(#$1-UID)")})),eS=["USDC","USDB"],eM={US:"USD",GB:"GBP",FR:"EUR",DE:"EUR",ES:"EUR",IT:"EUR",NL:"EUR",AT:"EUR",IE:"EUR",BE:"EUR",PT:"EUR",AU:"AUD",CA:"CAD",SG:"SGD",HK:"HKD",NZ:"NZD",MX:"MXN",BR:"BRL",AR:"ARS",CO:"COP",JP:"JPY",KR:"KRW",IN:"INR",TH:"THB",AE:"AED",NG:"NGN",KE:"KES",EG:"EGP",ZA:"ZAR",SN:"XOF",PH:"PHP",IL:"ILS"};
+function eA(e){e.userData.visibleRange=new d.FM8(0,0),e.userData.totalSegments=1,e.onBeforeCompile=t=>{let a=e.userData.visibleRange||new d.FM8(0,1),i=e.userData.totalSegments||1;
+t.uniforms.u_visibleRange={value:a},t.uniforms.u_totalSegments={value:i},e.userData.shader=t,e.userData.u_totalSegmentsUniform=t.uniforms.u_totalSegments,t.vertexShader=`
+      uniform vec2 u_visibleRange;
+
+      uniform float u_totalSegments;
+
+      varying float v_instanceProgress;
+
+      ${t.vertexShader}
+    `;
+let r="void main() {";
+t.vertexShader=t.vertexShader.replace(r,`
+      ${r}
+        float instanceProg = float(gl_InstanceID) / max(u_totalSegments, 1.0);
+
+        v_instanceProgress = instanceProg;
+
+      `),t.fragmentShader=`
+      varying float v_instanceProgress;
+
+      uniform vec2 u_visibleRange;
+
+      ${t.fragmentShader}
+    `;
+let n="void main() {";
+t.fragmentShader=t.fragmentShader.replace(n,`
+      ${n}
+        if (v_instanceProgress < u_visibleRange.x || v_instanceProgress > u_visibleRange.y) {
+          discard;
+
+        }
+      `)}}let eP=0;
+class eb{initArcLinePool(){if(!this.arcLinePoolInitialized){for(let e=0;
+e<this.ARC_LINE_POOL_SIZE;
+e+=1){let e=new I,t=this.ARC_MAX_SEGMENTS+1,a=new Float32Array(3*t),i=new Float32Array(3*t);
+e.setPositions(a),e.setColors(i);
+let r=new v({transparent:!0,depthTest:!0,depthWrite:!0,linewidth:.007,vertexColors:!0}),n=this.cachedWidth||this.canvas.clientWidth,o=this.cachedHeight||this.canvas.clientHeight;
+r.resolution.set(n,o),r.worldUnits=!0,r.opacity=0,eA(r);
+let s=new k(e,r);
+s.computeLineDistances(),s.renderOrder=10,s.visible=!1,e.instanceCount=0,this.arcLinePool.push({line:s,geometry:e,material:r,inUse:!1})}this.arcLinePoolInitialized=!0}}acquireArcLine(){this.initArcLinePool();
+let e=this.arcLinePool.find(e=>!e.inUse);
+return e?(e.inUse=!0,e.line.parent||this.arcsGroup.add(e.line),e):null}releaseArcLine(e){e.inUse=!1,e.line.visible=!1,e.material.opacity=0,e.geometry.instanceCount=0,e.material.userData.visibleRange.set(0,0),e.material.userData.totalSegments=1,e.material.userData.u_totalSegmentsUniform&&(e.material.userData.u_totalSegmentsUniform.value=1),e.material.userData.shader?.uniforms?.u_totalSegments&&(e.material.userData.shader.uniforms.u_totalSegments.value=1)}initSimpleArcLinePool(){if(!this.simpleArcLinePoolInitialized){for(let e=0;
+e<this.SIMPLE_ARC_LINE_POOL_SIZE;
+e+=1){let e=new I,t=this.SIMPLE_ARC_MAX_SEGMENTS+1,a=new Float32Array(3*t),i=new Float32Array(3*t);
+e.setPositions(a),e.setColors(i);
+let r=new v({transparent:!0,depthTest:!0,depthWrite:!0,linewidth:.004,vertexColors:!0}),n=this.cachedWidth||this.canvas.clientWidth,o=this.cachedHeight||this.canvas.clientHeight;
+r.resolution.set(n,o),r.worldUnits=!0,r.opacity=0,eA(r);
+let s=new k(e,r);
+s.computeLineDistances(),s.renderOrder=10,s.visible=!1,e.instanceCount=0,this.simpleArcLinePool.push({line:s,geometry:e,material:r,inUse:!1})}this.simpleArcLinePoolInitialized=!0}}acquireSimpleArcLine(){this.initSimpleArcLinePool();
+let e=this.simpleArcLinePool.find(e=>!e.inUse);
+return e?(e.inUse=!0,e.line.parent||this.arcsGroup.add(e.line),e):null}releaseSimpleArcLine(e){e.inUse=!1,e.line.visible=!1,e.material.opacity=0,e.geometry.instanceCount=0,e.material.userData.visibleRange.set(0,0),e.material.userData.totalSegments=1,e.material.userData.u_totalSegmentsUniform&&(e.material.userData.u_totalSegmentsUniform.value=1),e.material.userData.shader?.uniforms?.u_totalSegments&&(e.material.userData.shader.uniforms.u_totalSegments.value=1)}initMarkerPool(){if(!this.markerPoolInitialized){for(let e=0;
+e<this.MARKER_POOL_SIZE;
+e+=1){let e=new d.vBJ({transparent:!0,depthWrite:!1,depthTest:!0}),t=new d.Kj0(this.markerGeometry,e);
+t.visible=!1,this.markerPool.push({mesh:t,inUse:!1})}this.markerPoolInitialized=!0}}acquireMarker(e){this.initMarkerPool();
+let t=this.markerPool.find(e=>!e.inUse);
+if(t){t.inUse=!0;
+let a=this.getOrCreateMarkerTexture(e),i=t.mesh.material;
+return i.map=a,i.needsUpdate=!0,t.mesh.parent||this.arcsGroup.add(t.mesh),t.mesh}return null}releaseMarker(e){let t=this.markerPool.find(t=>t.mesh===e);
+t&&(t.inUse=!1,t.mesh.visible=!1)}initArcPointsPool(){if(this.arcPointsPoolInitialized)return;
+let e=this.ARC_MAX_SEGMENTS+1;
+for(let t=0;
+t<this.ARC_LINE_POOL_SIZE;
+t+=1){let t=[];
+for(let a=0;
+a<e;
+a+=1)t.push(new d.Pa4);
+this.arcPointsPool.push({points:t,inUse:!1})}this.arcPointsPoolInitialized=!0}acquireArcPoints(){this.initArcPointsPool();
+let e=this.arcPointsPool.find(e=>!e.inUse);
+return e?(e.inUse=!0,e):null}releaseArcPoints(e){e.inUse=!1}initSimpleArcPointsPool(){if(this.simpleArcPointsPoolInitialized)return;
+let e=this.SIMPLE_ARC_MAX_SEGMENTS+1;
+for(let t=0;
+t<this.SIMPLE_ARC_LINE_POOL_SIZE;
+t+=1){let t=[];
+for(let a=0;
+a<e;
+a+=1)t.push(new d.Pa4);
+this.simpleArcPointsPool.push({points:t,inUse:!1})}this.simpleArcPointsPoolInitialized=!0}acquireSimpleArcPoints(){this.initSimpleArcPointsPool();
+let e=this.simpleArcPointsPool.find(e=>!e.inUse);
+return e?(e.inUse=!0,e):null}releaseSimpleArcPoints(e){e.inUse=!1}getOrCreateMarkerTexture(e){if(this.markerTextureCache[e])return this.markerTextureCache[e];
+let t=this.createMarkerTexture(e);
+return this.markerTextureCache[e]=t,t}createMarkerTexture(e){let t=Math.min(Math.ceil(window.devicePixelRatio||1),2),a=new d.Ilk(e),i=e=>`rgba(${Math.floor(255*a.r)},${Math.floor(255*a.g)},${Math.floor(255*a.b)},${e})`,r=document.createElement("canvas");
+r.width=128*t,r.height=128*t;
+let n=r.getContext("2d");
+n.setTransform(t,0,0,t,0,0),n.clearRect(0,0,128,128),n.fillStyle=i(.25),n.beginPath(),n.arc(64,64,64,0,2*Math.PI),n.fill(),n.fillStyle=i(1),n.beginPath(),n.arc(64,64,38.4,0,2*Math.PI),n.arc(64,64,25.6,0,2*Math.PI,!0),n.closePath(),n.fill(),n.fillStyle="rgba(255,255,255,1.0)",n.beginPath(),n.arc(64,64,25.6,0,2*Math.PI),n.fill();
+let o=new d.ROQ(r);
+return o.needsUpdate=!0,o.generateMipmaps=!0,o.minFilter=d.D1R,o.magFilter=d.wem,o}findCityByName(e){return el.find(t=>t.name.toLowerCase()===e.toLowerCase())??null}latLonToVector(e,t,a,i=this.radius){let r=e*Math.PI/180,n=-t*Math.PI/180,o=i*Math.cos(r)*Math.cos(n),s=i*Math.sin(r),l=i*Math.cos(r)*Math.sin(n);
+return a.set(o,s,l)}cityToVector(e,t,a=this.radius){return void 0!==e.ux&&void 0!==e.uy&&void 0!==e.uz?t.set(e.ux*a,e.uy*a,e.uz*a):this.latLonToVector(e.lat,e.lon,t,a)}getCityDistanceKm(e,t){let a=d.M8C.degToRad(e.lat),i=d.M8C.degToRad(e.lon),r=d.M8C.degToRad(t.lat),n=d.M8C.degToRad(t.lon),o=r-a,s=n-i,l=Math.sin(o/2)*Math.sin(o/2)+Math.cos(a)*Math.cos(r)*Math.sin(s/2)*Math.sin(s/2);
+return 2*Math.atan2(Math.sqrt(l),Math.sqrt(1-l))*6371}getVisibleCityIndices(e=this.arcVisibleCityDotThreshold){if(this.visibleCityIndicesCache.length=0,!this.globeGroup||!this.camera)return this.visibleCityIndicesCache;
+let t=d.M8C.clamp(e,-1,1),a=this.tempVecA;
+this.globeGroup.getWorldPosition(a);
+let i=this.tempVecB.copy(this.camera.position).sub(a).normalize(),r=this.tempVecD,n=this.arcsGroup?.matrixWorld??this.globeGroup.matrixWorld,o=1-2*this.arcRightEdgeExclusionRatio;
+for(let e=0;
+e<this.cityVectors.length;
+e+=1){r.copy(this.cityVectors[e]),r.applyMatrix4(n);
+let s=this.tempVecC.copy(r).sub(a);
+s.lengthSq()>1e-6&&(s.normalize(),s.dot(i)>=t&&this.tempVecE.copy(r).project(this.camera).x<o&&this.visibleCityIndicesCache.push(e))}return this.visibleCityIndicesCache}createArcUIElement(){return document.createElement("div")}acquireFlagElement(e){let t=this.flagPool?.find(e=>!this.activeArcs.some(t=>t.flagStartElement===e||t.flagEndElement===e))??null;
+return t?(this.renderFlagContent?.(t,e),t):null}computeProjection(e,t,a,i,r){let n=this.tempVecE.copy(e);
+n.project(this.camera);
+let o=this.tempVecF.copy(e).sub(t).normalize().dot(a);
+return this._proj.x=(.5*n.x+.5)*i,this._proj.y=(-(.5*n.y)+.5)*r,this._proj.isOffscreen=n.x<-1.1||n.x>1.1||n.y<-1.1||n.y>1.1,this._proj.isBehindGlobe=o<er.ARC_UI_HIDE_DOT_THRESHOLD,this._proj.depthFade=o<=-.1?d.M8C.smoothstep(o,-.35,-.1):1,this._proj}updateFlagOverlayPosition(e,t,a,i,r,n,o){if(o<=.001){e.style.display="none";
+return}let s=this.tempVecD.copy(t).applyMatrix4(this.arcsGroup.matrixWorld),{x:l,y:c,isOffscreen:u,isBehindGlobe:h,depthFade:d}=this.computeProjection(s,a,i,r,n);
+if(u||h){e.style.display="none";
+return}e.style.display="",e.style.setProperty("--ui-x",`${l.toFixed(2)}px`),e.style.setProperty("--ui-y",`${c.toFixed(2)}px`),e.style.setProperty("--ui-opacity",(o*d).toFixed(3))}updateSingleArcFlagOverlays(e,t,a,i,r){let n;
+n="done"===e.uiState?0:"outro"===e.uiState?e.uiOpacity:1,e.flagStartElement&&this.updateFlagOverlayPosition(e.flagStartElement,e.startMarker.position,t,a,i,r,e.markerAOpacity*n),e.flagEndElement&&this.updateFlagOverlayPosition(e.flagEndElement,e.endMarker.position,t,a,i,r,e.markerBOpacity*n)}updateUIElementContent(e,t,a,i){if("flags"===this.uiVariant){let t=e.querySelector(".globe__arc-flag-ui-currency");
+t&&(t.textContent=i);
+return}let r=e.querySelector(".globe__arc-ui-icon"),n=e.querySelector(".globe__arc-ui-amount"),o=e.querySelector(".globe__arc-ui-currency");
+if(r){r.style.display="";
+let e=ey[t%ey.length];
+eP+=1;
+let a=e.template.replaceAll("-UID",`-${eP}`),i=new DOMParser().parseFromString(a,"image/svg+xml").documentElement;
+r.replaceChildren(i)}n&&(n.style.display="",n.textContent=`$${a}`),o&&(o.textContent=i)}getRandomUIData(e){let t=Math.floor(Math.random()*ev.length),a="Phantom"===ev[t].name;
+return{walletIndex:t,amount:Math.floor(999*Math.random())+1,currencyLabel:"flags"===this.uiVariant&&e?eM[e]??"USD":a?"CASH":eS[Math.floor(Math.random()*eS.length)]}}updateArcsConsolidated(e){let t=this.tempVecA;
+this.globeGroup.getWorldPosition(t);
+let a=this.tempVecC.copy(this.camera.position).sub(t).normalize(),i=this.cachedWidth,r=this.cachedHeight,n=i>0&&r>0;
+for(let o=this.activeArcs.length-1;
+o>=0;
+o-=1){let s=this.activeArcs[o];
+this.updateSingleArcAnimation(s,e),"flags"===this.uiVariant&&s.lineProgress>=.999&&"idle"===s.finalizeState&&this.startArcFinalization(s,e),n&&s.uiElement&&this.updateSingleArcUIPosition(s,t,a,i,r),n&&"flags"===this.uiVariant&&this.updateSingleArcFlagOverlays(s,t,a,i,r),"done"===s.finalizeState&&"done"===s.uiState&&(this.disposeArcResources(s),this.activeArcs.splice(o,1))}}updateSingleArcAnimation(e,t){let{markerA:a,markerB:i,line:r,startTime:n,markerAEasing:o,markerBEasing:s,lineEasing:l}=e.animation,c=Math.max(0,t-n),{x:u,y:h}=this.getArcFinalizationFactors(e,t),p=r<=0?1:d.M8C.clamp(Math.max(0,c-a-i)/r,0,1),m=(0,Y.Ri)(a<=0?1:Math.min(1,c/a),o);
+e.startMarker.material.opacity=m*u,e.markerAOpacity=m*u,e.startMarker.scale.setScalar(Math.max(1e-4,e.markerScale*m*u));
+let f=c>=a?(0,Y.Ri)(i<=0?1:Math.min(1,Math.max(0,c-a)/i),s):0;
+e.endMarker.material.opacity=f*u,e.markerBOpacity=f*u,e.endMarker.scale.setScalar(Math.max(1e-4,e.markerScale*f*u));
+let g=e.mesh.material,v=(0,Y.Ri)(p,l),y=0;
+if("idle"!==e.finalizeState&&(y=h),g.userData.visibleRange.set(y,v),g.userData.totalSegments=e.lineSegmentCount,g.userData.u_totalSegmentsUniform&&(g.userData.u_totalSegmentsUniform.value=e.lineSegmentCount),g.userData.shader?.uniforms?.u_totalSegments&&(g.userData.shader.uniforms.u_totalSegments.value=e.lineSegmentCount),e.linePoolItem){let t=e.linePoolItem.geometry;
+t.instanceCount!==e.lineSegmentCount&&(t.instanceCount=e.lineSegmentCount)}if(h>1e-4&&e.lineProgress>=.999&&"idle"!==e.finalizeState){let t=Math.max(0,1-h);
+y>=v||t<=.001?(e.mesh.visible=!1,g.opacity=0):(e.mesh.visible=!0,g.opacity=t)}else p<=0?(e.mesh.visible=!1,g.opacity=0):(e.mesh.visible=!0,g.opacity=v);
+e.lineProgress=p,this.updateArcUIState(e,t)}updateSingleArcUIPosition(e,t,a,i,r){if(!e.uiElement)return;
+let n=d.M8C.clamp(e.uiTravelProgress??.5,0,1),o=this.getPointOnArc(e,n,this.tempVecK),s=this.tempVecI.copy(o).normalize(),l=Math.max(0,o.length()-this.radius),c=d.M8C.clamp(l/(.75*this.radius),0,1),u=d.M8C.lerp(er.ARC_UI_MIN_OFFSET,er.ARC_UI_MAX_OFFSET,c),h=this.tempVecJ.copy(o).add(s.multiplyScalar(u));
+h.applyMatrix4(this.arcsGroup.matrixWorld);
+let{x:p,y:m,isOffscreen:f,isBehindGlobe:g,depthFade:v}=this.computeProjection(h,t,a,i,r),y=g||f;
+e.uiHideFade=d.M8C.lerp(e.uiHideFade,y?1:0,y?.25:.15);
+let S=d.M8C.clamp(e.uiOpacity??0,0,1)*v*(1-e.uiHideFade);
+if(S>.001){let t=d.M8C.lerp(er.ARC_UI_MIN_SCALE,er.ARC_UI_MAX_SCALE,c),a=d.M8C.clamp(e.uiScaleValue??0,0,1),i=0;
+if("intro"===e.uiState)i=d.M8C.lerp(0,t,a);
+else if("travel"===e.uiState)i=t;
+else if("outro"===e.uiState){let r=e.uiOutroStartScale>0?e.uiOutroStartScale:t;
+i=d.M8C.lerp(r,0,a)}else"done"===e.uiState&&(i=0);
+let r=e.uiElement.style,n=Math.round(p),o=Math.round(m);
+(void 0===e.uiLastX||void 0===e.uiLastY||Math.abs(n-(e.uiLastX??0))>=1||Math.abs(o-(e.uiLastY??0))>=1)&&(r.setProperty("--ui-x",`${n}px`),r.setProperty("--ui-y",`${o}px`),e.uiLastX=n,e.uiLastY=o),e.uiCurrentScale!==i&&r.setProperty("--ui-scale",i.toFixed(3)),r.setProperty("--ui-opacity",S.toFixed(3)),"none"===r.display&&(r.display="block"),e.uiCurrentScale=i}else e.uiElement.style.display="none"}startArcFinalization(e,t){"idle"===e.finalizeState&&(e.finalizeState="active",e.finalizeStartTime=t)}getArcFinalizationFactors(e,t){if("done"===e.finalizeState)return e.lineRetreatProgress=1,e.markerFadeProgress=1,this.tempArcFactors.set(0,1);
+if("active"!==e.finalizeState)return this.tempArcFactors.set(1,0);
+let a=Math.max(0,t-e.finalizeStartTime),i=Math.max(100,e.lineRetreatDuration),r=d.M8C.clamp(a/i,0,1),n=(0,Y.Ri)(r,e.lineRetreatEasing);
+e.lineRetreatProgress=n;
+let o=Math.max(50,e.markerFadeDuration),s=d.M8C.clamp(Math.max(0,a-.8*i)/o,0,1),l=(0,Y.Ri)(s,e.markerFadeEasing);
+return e.markerFadeProgress=l,n>=1&&l>=1&&(e.finalizeState="done"),this.tempArcFactors.set(Math.max(0,1-l),d.M8C.clamp(n,0,1))}getPointOnArc(e,t,a){if(!e.points.length)return a.set(0,0,0);
+if(!e.totalLineLength||e.totalLineLength<=0)return a.copy(e.points[e.points.length-1]);
+let i=e.pointDistances,r=d.M8C.clamp(t,0,1)*e.totalLineLength;
+for(let t=1;
+t<i.length;
+t+=1)if(r<=i[t]){let n=e.points[t-1],o=e.points[t],s=i[t]-i[t-1],l=s<=1e-5?0:(r-i[t-1])/s;
+return a.copy(n).lerp(o,l)}return a.copy(e.points[e.points.length-1])}disposeArcResources(e){e.linePoolItem&&(e.isSimpleArc?this.releaseSimpleArcLine(e.linePoolItem):this.releaseArcLine(e.linePoolItem)),e.pointsPoolItem&&(e.isSimpleArc?this.releaseSimpleArcPoints(e.pointsPoolItem):this.releaseArcPoints(e.pointsPoolItem)),e.startMarker&&this.releaseMarker(e.startMarker),e.endMarker&&this.releaseMarker(e.endMarker),e.uiElement&&(e.uiElement.style.display="none"),e.flagStartElement&&(e.flagStartElement.style.display="none"),e.flagEndElement&&(e.flagEndElement.style.display="none")}updateArcController(e){if(!this.arcControllerEnabled||el.length<2||(0===this.arcControllerNextSpawnTime&&(this.arcControllerNextSpawnTime=e),e<this.arcControllerNextSpawnTime))return;
+if(this.activeArcs.length>=this.arcControllerMaxActive){this.arcControllerNextSpawnTime=e+250;
+return}let t=!1;
+for(let a=0;
+a<2&&!t;
+a+=1)t=this.spawnRandomCityArc(e);
+t?this.scheduleNextArcSpawn(e):this.arcControllerNextSpawnTime=e+200}scheduleNextArcSpawn(e){let t=Math.max(0,Math.floor(this.arcSpawnIntervalMin)),a=Math.max(t,Math.floor(this.arcSpawnIntervalMax)),i=t===a?t:d.M8C.randInt(t,a);
+this.arcControllerNextSpawnTime=e+Math.max(100,i)}spawnRandomCityArc(e){let t=this.pickRandomCityPair();
+if(!t)return!1;
+let a=this.arcColorPalettes.length>0?this.arcColorPalettes[Math.floor(Math.random()*this.arcColorPalettes.length)]:{start:16736162,end:8042751},i=this.drawArc({from:t.from,to:t.to,colorStart:a.start,colorEnd:a.end,currentTime:e});
+return i&&this.updateSingleArcAnimation(i,e),!!i}updateSimpleArcController(e){if(!this.simpleArcControllerEnabled||el.length<2||(0===this.simpleArcControllerNextSpawnTime&&(this.simpleArcControllerNextSpawnTime=e),e<this.simpleArcControllerNextSpawnTime))return;
+let t=0;
+for(let e of this.activeSimpleArcs)"done"!==e.finalizeState&&(t+=1);
+if(t>=this.simpleArcMaxActive){this.simpleArcControllerNextSpawnTime=e+150;
+return}let a=!1;
+for(let t=0;
+t<2&&!a;
+t+=1)a=this.spawnSimpleArc(e);
+a?this.scheduleNextSimpleArcSpawn(e):this.simpleArcControllerNextSpawnTime=e+150}scheduleNextSimpleArcSpawn(e){let t=Math.max(0,Math.floor(this.simpleArcSpawnIntervalMin)),a=Math.max(t,Math.floor(this.simpleArcSpawnIntervalMax)),i=t===a?t:d.M8C.randInt(t,a);
+this.simpleArcControllerNextSpawnTime=e+Math.max(50,i)}spawnSimpleArc(e){let t=this.pickSimpleArcCityPair();
+if(!t)return!1;
+let a=this.simpleArcColorPalettes.length>0?this.simpleArcColorPalettes[Math.floor(Math.random()*this.simpleArcColorPalettes.length)]:{start:8443135,end:5089023},i=this.drawSimpleArc({from:t.from,to:t.to,colorStart:a.start,colorEnd:a.end,currentTime:e});
+return!!i&&(this.activeSimpleArcs.push(i),this.updateSingleArcAnimation(i,e),!0)}getActiveUIArcCityNames(){let e=new Set;
+for(let t of this.activeArcs)t.uiElement&&(t.fromCityName&&e.add(t.fromCityName),t.toCityName&&e.add(t.toCityName));
+return e}pickSimpleArcCityPair(){let e=this.candidateCityIndices,t=e.length;
+if(t<2)return null;
+let a=this.getActiveUIArcCityNames(),i=this.simpleArcMinDistanceKm,r=this.simpleArcMaxDistanceKm;
+for(let n=0;
+n<30;
+n+=1){let n=e[Math.floor(Math.random()*t)],o=e[Math.floor(Math.random()*t)],s=0;
+for(;
+o===n&&s<10;
+)o=e[Math.floor(Math.random()*t)],s+=1;
+if(o!==n){let e=el[n],t=el[o];
+if(e&&t&&!a.has(e.name)&&!a.has(t.name)){let a=`${e.name}-${t.name}`;
+if(a!==this.lastSimpleArcPairKey){let n=this.getCityDistanceKm(e,t);
+if(n>=i&&n<=r)return this.lastSimpleArcPairKey=a,{from:e,to:t}}}}}return null}drawSimpleArc(e){let{from:t,to:a,colorStart:i=8443135,colorEnd:r=5089023,currentTime:n}=e,o=this.cityToVector(t,this.arcTempP0),s=this.cityToVector(a,this.arcTempP3),l=this.arcTempU0Orig.copy(o).normalize(),c=this.arcTempU3Orig.copy(s).normalize(),u=this.arcTempChordDir.copy(s).sub(o),h=this.arcTempTangentStart.copy(u).addScaledVector(l,-u.dot(l)).normalize(),p=this.arcTempTangentEnd.copy(u).addScaledVector(c,-u.dot(c)).normalize(),m=this.arcTempP0Final.copy(o).addScaledVector(h,er.MARKER_TANGENT_OFFSET);
+m.normalize().multiplyScalar(this.radius);
+let f=this.arcTempP3Final.copy(s).addScaledVector(p,-er.MARKER_TANGENT_OFFSET);
+f.normalize().multiplyScalar(this.radius);
+let g=this.arcTempU0.copy(m).normalize(),v=this.arcTempU3.copy(f).normalize(),y=Math.acos(d.M8C.clamp(g.dot(v),-1,1)),S=d.M8C.clamp(y/Math.PI,0,1),M=d.M8C.clamp(S,0,1)**1,A=d.M8C.lerp(.06,.18,M)*this.radius,P=Math.sin(y),b=this.SIMPLE_ARC_MAX_SEGMENTS,w=this.acquireSimpleArcPoints();
+if(!w)return;
+let{points:_}=w;
+for(let e=0;
+e<=b;
+e+=1){let t=e/b,a=this.arcTempDir;
+if(P>1e-6){let e=Math.sin((1-t)*y)/P,i=Math.sin(t*y)/P;
+a.copy(g).multiplyScalar(e).addScaledVector(v,i).normalize()}else a.copy(g).lerp(v,t).normalize();
+let i=Math.sin(Math.PI*t)*A;
+_[e].set(a.x*(this.radius+i),a.y*(this.radius+i),a.z*(this.radius+i))}this.arcPointDistancesPool.length=0,this.arcPointDistancesPool.push(0);
+let C=0;
+for(let e=1;
+e<_.length;
+e+=1)C+=_[e].distanceTo(_[e-1]),this.arcPointDistancesPool.push(C);
+this.arcLinePositionsPool.length=0,this.arcLineColorsPool.length=0;
+let x=this.arcColorA.setHex(i),E=this.arcColorB.setHex(r),T=_.length;
+for(let e=0;
+e<T;
+e+=1){let t=_[e];
+this.arcLinePositionsPool.push(t.x,t.y,t.z);
+let a=e/Math.max(1,T-1);
+this.arcColorTemp.copy(x).lerp(E,a),this.arcLineColorsPool.push(this.arcColorTemp.r,this.arcColorTemp.g,this.arcColorTemp.b)}let z=this.arcLinePositionsPool.slice(),U=this.arcLineColorsPool.slice(),D=this.arcPointDistancesPool.slice(),I=this.acquireSimpleArcLine();
+if(!I){this.releaseSimpleArcPoints(w);
+return}let{line:k,geometry:R,material:G}=I;
+R.setPositions(z),R.setColors(U);
+let F=this.cachedWidth||this.canvas.clientWidth,O=this.cachedHeight||this.canvas.clientHeight;
+G.resolution.set(F,O),G.opacity=0,k.computeLineDistances();
+let L=Math.max(1,_.length-1);
+R.instanceCount=L,k.visible=!1,G.userData.totalSegments=L,G.userData.visibleRange.set(0,0),G.userData.u_totalSegmentsUniform&&(G.userData.u_totalSegmentsUniform.value=L),G.userData.shader?.uniforms?.u_totalSegments&&(G.userData.shader.uniforms.u_totalSegments.value=L);
+let N=this.acquireMarker(i),B=this.acquireMarker(r);
+if(!N||!B){this.releaseSimpleArcLine(I),this.releaseSimpleArcPoints(w),N&&this.releaseMarker(N),B&&this.releaseMarker(B);
+return}let V=this.arcTempTangent.copy(o).normalize(),H=this.arcTempForward.copy(s).normalize();
+N.position.copy(o),N.scale.setScalar(.01),N.visible=!0,this.arcTempQuat.setFromUnitVectors(this.tempVecA.set(0,0,1),V),N.quaternion.copy(this.arcTempQuat);
+let K=N.material;
+K.opacity=0,K.transparent=!0,B.position.copy(s),B.scale.setScalar(.01),B.visible=!0,this.arcTempQuat.setFromUnitVectors(this.tempVecA.set(0,0,1),H),B.quaternion.copy(this.arcTempQuat);
+let W=B.material;
+W.opacity=0,W.transparent=!0;
+let j=n??performance.now();
+return{mesh:k,points:_,linePositions:z,lineColors:U,startMarker:N,endMarker:B,uiElement:null,start:j,duration:1/0,markerScale:.12,animation:{startTime:j,markerA:eo.markerA.durationMs,markerB:eo.markerB.durationMs,line:eo.line.durationMs,markerAEasing:eo.markerA.easing,markerBEasing:eo.markerB.easing,lineEasing:eo.line.easing},lineSegmentCount:L,lineProgress:0,pointDistances:D,totalLineLength:C,arcDistanceKm:this.getCityDistanceKm(t,a),uiState:"done",uiStartTime:0,uiIntroDuration:0,uiTravelDuration:0,uiOutroDuration:0,uiIntroEasing:"easeOutCubic",uiTravelEasing:"easeInOutCubic",uiOutroEasing:"easeInCubic",uiOpacity:0,uiScaleValue:0,uiTravelProgress:0,uiTravelStartT:0,uiTravelEndT:1,uiCurrentScale:0,uiOutroStartScale:0,uiHideFade:0,finalizeState:"idle",finalizeStartTime:0,lineRetreatDuration:eo.lineRetreat.durationMs,markerFadeDuration:eo.markerFade.durationMs,lineRetreatEasing:eo.lineRetreat.easing,markerFadeEasing:eo.markerFade.easing,lineRetreatProgress:0,markerFadeProgress:0,colorStart:new d.Ilk(i),colorEnd:new d.Ilk(r),uiWalletIndex:0,uiAmount:0,uiCurrencyLabel:"",linePoolItem:I,pointsPoolItem:w,isSimpleArc:!0,fromCityName:t.name??"",toCityName:a.name??"",flagStartElement:null,flagEndElement:null,markerAOpacity:0,markerBOpacity:0}}updateSimpleArcsConsolidated(e){for(let t=this.activeSimpleArcs.length-1;
+t>=0;
+t-=1){let a=this.activeSimpleArcs[t];
+this.updateSingleArcAnimation(a,e),a.lineProgress>=.999&&"idle"===a.finalizeState&&this.startArcFinalization(a,e),"done"===a.finalizeState&&(this.disposeArcResources(a),this.activeSimpleArcs.splice(t,1))}}checkArcSpawnDistance(e,t){if(0===this.activeArcs.length)return!0;
+let a=this.arcMinUIScreenDistance;
+if(a<=0)return!0;
+let i=this.cityToVector(e,this.tempVecA),r=this.cityToVector(t,this.tempVecB),n=this.tempVecC.copy(i).lerp(r,.5).normalize();
+n.multiplyScalar(1.1*this.radius),this.arcsGroup&&n.applyMatrix4(this.arcsGroup.matrixWorld);
+let o=this.tempVecD.copy(n);
+o.project(this.camera);
+let s=this.cachedWidth,l=this.cachedHeight;
+if(0===s||0===l)return!0;
+let c=(.5*o.x+.5)*s,u=(-(.5*o.y)+.5)*l;
+if(o.z>1||o.x<-1.2||o.x>1.2||o.y<-1.2||o.y>1.2)return!0;
+for(let e=0;
+e<this.activeArcs.length;
+e+=1){let t=this.activeArcs[e];
+if("done"!==t.uiState&&"outro"!==t.uiState){if(void 0!==t.uiLastX&&void 0!==t.uiLastY){let e=c-t.uiLastX,i=u-t.uiLastY;
+if(Math.sqrt(e*e+i*i)<a)return!1}let e=this.tempVecE.copy(t.startMarker.position);
+e.applyMatrix4(this.arcsGroup.matrixWorld);
+let i=this.tempVecF.copy(e).project(this.camera),r=(.5*i.x+.5)*s,n=(-(.5*i.y)+.5)*l,o=this.tempVecG.copy(t.endMarker.position);
+o.applyMatrix4(this.arcsGroup.matrixWorld);
+let h=this.tempVecH.copy(o).project(this.camera),d=(.5*h.x+.5)*s,p=(-(.5*h.y)+.5)*l,m=.7*a,f=c-r,g=u-n;
+if(Math.sqrt(f*f+g*g)<m)return!1;
+let v=c-d,y=u-p;
+if(Math.sqrt(v*v+y*y)<m)return!1}}return!0}getViewedLongitude(){if(!this.globeGroup)return 0;
+let e=this.globeGroup.rotation.y%(2*Math.PI);
+return e>Math.PI&&(e-=2*Math.PI),e<-Math.PI&&(e+=2*Math.PI),-(180/Math.PI*e)}isLongitudeInPacific(e,t,a){return e<=t||e>=a}isPacificOceanVisible(){let e=this.getViewedLongitude();
+return this.isLongitudeInPacific(e,this.arcPacificWestBoundary,this.arcPacificEastBoundary)}isPacificForSpeedAcceleration(){let e=this.getViewedLongitude();
+return this.isLongitudeInPacific(e,this.arcPacificSpeedWestBoundary,this.arcPacificSpeedEastBoundary)}hasActiveTranspacificArc(){for(let e of this.activeArcs){let t=e.startMarker.position,a=e.endMarker.position,i=Math.atan2(t.x,t.z)*(180/Math.PI),r=Math.atan2(a.x,a.z)*(180/Math.PI),n=i<-100,o=i>100,s=r<-100,l=r>100;
+if(n&&l||o&&s)return!0}return!1}pickTranspacificPair(){for(let e of[...eg].sort(()=>Math.random()-.5)){let t=this.findCityByName(e.from),a=this.findCityByName(e.to);
+if(t&&a){.5>Math.random()&&([t,a]=[a,t]);
+let e=`${t.name}-${a.name}`,i=`${a.name}-${t.name}`;
+if(e!==this.lastArcPairKey&&i!==this.lastArcPairKey&&this.checkArcSpawnDistance(t,a))return{from:t,to:a}}}return null}pickRandomCityPair(){let e=this.candidateCityIndices,t=e.length;
+if(t<2)return null;
+if("flags"!==this.uiVariant&&this.arcPreferTranspacific&&this.isPacificOceanVisible()&&!this.hasActiveTranspacificArc()){let e=this.pickTranspacificPair();
+if(e){let t=`${e.from.name}-${e.to.name}`;
+return this.lastArcPairKey=t,e}}let a=Math.max(0,this.arcCityMinDistanceKm),i=Math.max(20,4*t),r=this.arcMaxSpawnDistanceAttempts,n=null,o=-1/0,s=!1,l=this.getVisibleCityIndices(),c=new Set(l),u=e,h=e;
+if("flags"===this.uiVariant){let t=e.filter(e=>ep.has(el[e].country)),a=e.filter(e=>em.has(el[e].country));
+if(l.length>0?(u=t.filter(e=>c.has(e)),h=a.filter(e=>c.has(e))):(u=t,h=a),0===u.length||0===h.length)return null}else if(l.length>0){let t=e.length<el.length?l.filter(e=>c.has(e)):l;
+t.length>0&&(.5>Math.random()?u=t:h=t)}let d=[];
+if("flags"===this.uiVariant){let e=Object.keys(eu),t=new Map;
+for(let a of u){let{country:i}=el[a],r=e.find(e=>eu[e].includes(i));
+if(r){let e=t.get(r)??[];
+e.push(a),t.set(r,e)}}d=[...t.values()]}let p=null;
+if("flags"===this.uiVariant)for(let e of(p=new Map,ep))p.set(e,h.filter(t=>el[t].country!==e&&ed.has(`${e}->${el[t].country}`)));
+let m=0;
+for(let e=0;
+e<i;
+e+=1){let e;
+if("flags"===this.uiVariant&&d.length>0){let t=d[Math.floor(Math.random()*d.length)];
+e=t[Math.floor(Math.random()*t.length)]}else e=u[Math.floor(Math.random()*u.length)];
+let i=h;
+if(null!==p){let t=el[e]?.country;
+t&&(i=p.get(t)??h)}let l=i[Math.floor(Math.random()*i.length)],c=0;
+for(;
+l===e&&c<i.length+5;
+)l=i[Math.floor(Math.random()*i.length)],c+=1;
+if(l!==e){let i=el[e],c=el[l];
+if(i&&c&&i!==c){let e=`${i.name}-${c.name}`;
+if(!(e===this.lastArcPairKey&&t>2)){let t=this.getCityDistanceKm(i,c);
+if(this.checkArcSpawnDistance(i,c)){if((t>o||!s)&&(o=t,n={from:i,to:c},s=!0),t>=a)return this.lastArcPairKey=e,{from:i,to:c}}else m+=1,!s&&t>o&&(o=t,n={from:i,to:c});
+if(m>=r&&!s&&n&&t>=a)return this.lastArcPairKey=e,{from:i,to:c}}}}}if(n){if("flags"===this.uiVariant){let e=el.indexOf(n.from),t=el.indexOf(n.to),a=this.getVisibleCityIndices();
+if(!a.includes(e)||!a.includes(t))return null}let e=`${n.from.name}-${n.to.name}`;
+return this.lastArcPairKey=e,n}return null}updateArcUIState(e,t){if("done"===e.uiState){e.uiOpacity=0,e.uiScaleValue=0;
+return}if("flags"===this.uiVariant){e.uiOpacity=0,e.uiScaleValue=0,"done"===e.finalizeState&&(e.uiState="done");
+return}if("idle"===e.uiState){e.uiOpacity=0,e.uiScaleValue=0,e.uiTravelProgress=e.uiTravelStartT,e.lineProgress>=1&&(e.uiState="intro",e.uiStartTime=t,e.uiScaleValue=0);
+return}if("intro"===e.uiState){let a=Math.max(1,e.uiIntroDuration),i=(t-e.uiStartTime)/a,r=(0,Y.Ri)(i,e.uiIntroEasing);
+e.uiOpacity=r,e.uiScaleValue=r,e.uiTravelProgress=e.uiTravelStartT,i>=1&&(e.uiState="travel",e.uiStartTime=t,e.uiScaleValue=0);
+return}if("travel"===e.uiState){let a=Math.max(1,e.uiTravelDuration),i=d.M8C.clamp((t-e.uiStartTime)/a,0,1),r=(0,Y.Ri)(i,e.uiTravelEasing);
+e.uiOpacity=1,e.uiScaleValue=r,e.uiTravelProgress=d.M8C.lerp(e.uiTravelStartT,e.uiTravelEndT,r),i>=1&&(e.uiState="outro",e.uiStartTime=t,e.uiScaleValue=0,this.startArcFinalization(e,t),e.uiOutroStartScale=e.uiCurrentScale??0);
+return}if("outro"===e.uiState){let a=Math.max(1,e.uiOutroDuration),i=(t-e.uiStartTime)/a,r=(0,Y.Ri)(i,e.uiOutroEasing);
+e.uiOpacity=Math.max(0,1-r),e.uiScaleValue=r,e.uiTravelProgress=e.uiTravelEndT,i>=1&&(e.uiState="done",e.uiOpacity=0,e.uiScaleValue=0)}}drawArc(e){let{from:t,to:a,duration:i=1/0,colorStart:r=16736162,colorEnd:n=8042751,uiElement:o,currentTime:s}=e,l=this.cityToVector(t,this.arcTempP0),c=this.cityToVector(a,this.arcTempP3),u=this.arcTempU0Orig.copy(l).normalize(),h=this.arcTempU3Orig.copy(c).normalize(),p=this.arcTempChordDir.copy(c).sub(l),m=this.arcTempTangentStart.copy(p).addScaledVector(u,-p.dot(u)).normalize(),f=this.arcTempTangentEnd.copy(p).addScaledVector(h,-p.dot(h)).normalize(),g=this.arcTempP0Final.copy(l).addScaledVector(m,er.MARKER_TANGENT_OFFSET);
+g.normalize().multiplyScalar(this.radius);
+let v=this.arcTempP3Final.copy(c).addScaledVector(f,-er.MARKER_TANGENT_OFFSET);
+v.normalize().multiplyScalar(this.radius);
+let y=this.arcTempU0.copy(g).normalize(),S=this.arcTempU3.copy(v).normalize(),M=Math.acos(d.M8C.clamp(y.dot(S),-1,1)),A=d.M8C.clamp(M/Math.PI,0,1),P=d.M8C.clamp(A,0,1)**d.M8C.clamp(this.arcPeakAnglePower,.01,5),b=Math.max(.01,this.arcPeakMinHeight),w=Math.max(b,this.arcPeakMaxHeight),_=d.M8C.lerp(b,w,P)*this.radius,C=Math.sin(M),x=this.acquireArcPoints();
+if(!x)return;
+let{points:E}=x;
+for(let e=0;
+e<=256;
+e+=1){let t=e/256,a=this.arcTempDir;
+if(C>1e-6){let e=Math.sin((1-t)*M)/C,i=Math.sin(t*M)/C;
+a.copy(y).multiplyScalar(e).addScaledVector(S,i).normalize()}else a.copy(y).lerp(S,t).normalize();
+let i=Math.sin(Math.PI*t)*_;
+E[e].set(a.x*(this.radius+i),a.y*(this.radius+i),a.z*(this.radius+i))}this.arcPointDistancesPool.length=0,this.arcPointDistancesPool.push(0);
+let T=0;
+for(let e=1;
+e<E.length;
+e+=1)T+=E[e].distanceTo(E[e-1]),this.arcPointDistancesPool.push(T);
+this.arcLinePositionsPool.length=0,this.arcLineColorsPool.length=0;
+let z=this.arcColorA.setHex(r),U=this.arcColorB.setHex(n),D=E.length;
+for(let e=0;
+e<D;
+e+=1){let t=E[e];
+this.arcLinePositionsPool.push(t.x,t.y,t.z);
+let a=e/Math.max(1,D-1);
+this.arcColorTemp.copy(z).lerp(U,a),this.arcLineColorsPool.push(this.arcColorTemp.r,this.arcColorTemp.g,this.arcColorTemp.b)}let I=this.arcLinePositionsPool.slice(),k=this.arcLineColorsPool.slice(),R=this.arcPointDistancesPool.slice(),G=this.acquireArcLine();
+if(!G){this.releaseArcPoints(x);
+return}let{line:F,geometry:O,material:L}=G;
+O.setPositions(I),O.setColors(k);
+let N=this.cachedWidth||this.canvas.clientWidth,B=this.cachedHeight||this.canvas.clientHeight;
+L.resolution.set(N,B),L.opacity=0,F.computeLineDistances();
+let V=Math.max(1,E.length-1);
+O.instanceCount=V,F.visible=!1,L.userData.totalSegments=V,L.userData.visibleRange.set(0,0),L.userData.u_totalSegmentsUniform&&(L.userData.u_totalSegmentsUniform.value=V),L.userData.shader?.uniforms?.u_totalSegments&&(L.userData.shader.uniforms.u_totalSegments.value=V);
+let H=this.acquireMarker(r),K=this.acquireMarker(n);
+if(!H||!K){this.releaseArcLine(G),this.releaseArcPoints(x),H&&this.releaseMarker(H),K&&this.releaseMarker(K);
+return}let W=this.arcTempTangent.copy(l).normalize(),j=this.arcTempForward.copy(c).normalize();
+H.position.copy(l),H.scale.setScalar(.02),H.visible=!0,this.arcTempQuat.setFromUnitVectors(this.tempVecA.set(0,0,1),W),H.quaternion.copy(this.arcTempQuat);
+let Z=H.material;
+Z.opacity=0,Z.transparent=!0,K.position.copy(c),K.scale.setScalar(.02),K.visible=!0,this.arcTempQuat.setFromUnitVectors(this.tempVecA.set(0,0,1),j),K.quaternion.copy(this.arcTempQuat);
+let $=K.material;
+$.opacity=0,$.transparent=!0;
+let q=null,X=this.getRandomUIData(t.country);
+if("flags"!==this.uiVariant){let e=o;
+if(!e&&this.uiPool.length>0){let t=new Set(this.activeArcs.filter(e=>"done"!==e.uiState&&e.uiElement).map(e=>e.uiElement)),a=this.uiPool.find(e=>!t.has(e));
+a&&(e=a,this.activeArcs.forEach(t=>{t.uiElement===e&&(t.uiElement&&(t.uiElement.style.display="none"),t.uiElement=null,t.uiState="done",t.uiOpacity=0)}))}(q=e||this.createArcUIElement())&&(this.updateUIElementContent(q,X.walletIndex,X.amount,X.currencyLabel),q.style.setProperty("--ui-opacity","0"),q.style.setProperty("--ui-scale","0"),q.style.setProperty("--ui-x","0px"),q.style.setProperty("--ui-y","0px"),e?q.style.display="block":q.style.display="none")}let Y=this.getCityDistanceKm({lat:t.lat,lon:t.lon},{lat:a.lat,lon:a.lon}),J=s??performance.now(),Q=d.M8C.clamp(Y/1e4*en.uiTravel.distanceScale.factor+1,en.uiTravel.distanceScale.min,en.uiTravel.distanceScale.max),ee=en.uiTravel.durationMs*Q,et=d.M8C.clamp(en.lineDistanceScale.baseDurationMs*(Y/en.lineDistanceScale.referenceKm),en.lineDistanceScale.min,en.lineDistanceScale.max);
+this.activeArcs.push({mesh:F,points:E,linePositions:I,lineColors:k,startMarker:H,endMarker:K,uiElement:q,start:J,duration:i,markerScale:.2,animation:{startTime:J,markerA:en.markerA.durationMs,markerB:en.markerB.durationMs,line:et,markerAEasing:en.markerA.easing,markerBEasing:en.markerB.easing,lineEasing:en.line.easing},lineSegmentCount:V,lineProgress:0,pointDistances:R,totalLineLength:T,arcDistanceKm:Y,uiState:"idle",uiStartTime:0,uiIntroDuration:en.uiIntro.durationMs,uiTravelDuration:ee,uiOutroDuration:en.uiOutro.durationMs,uiIntroEasing:en.uiIntro.easing,uiTravelEasing:en.uiTravel.easing,uiOutroEasing:en.uiOutro.easing,uiOpacity:0,uiScaleValue:0,uiTravelProgress:.05,uiTravelStartT:.05,uiTravelEndT:.95,uiCurrentScale:0,uiOutroStartScale:0,uiHideFade:0,finalizeState:"idle",finalizeStartTime:0,lineRetreatDuration:en.lineRetreat.durationMs,markerFadeDuration:en.markerFade.durationMs,lineRetreatEasing:en.lineRetreat.easing,markerFadeEasing:en.markerFade.easing,lineRetreatProgress:0,markerFadeProgress:0,colorStart:new d.Ilk(r),colorEnd:new d.Ilk(n),uiWalletIndex:X.walletIndex,uiAmount:X.amount,uiCurrencyLabel:X.currencyLabel,linePoolItem:G,pointsPoolItem:x,fromCityName:t.name??"",toCityName:a.name??"",flagStartElement:null,flagEndElement:null,markerAOpacity:0,markerBOpacity:0});
+let ea=this.activeArcs[this.activeArcs.length-1];
+return"flags"===this.uiVariant&&t.country&&a.country&&(ea.flagStartElement=this.acquireFlagElement(t.country),ea.flagEndElement=this.acquireFlagElement(a.country)),ea}createMarkerSet(e){if(this.markerTextureCache[e]){let t=this.markerTextureCache[e],a=new d.vBJ({map:t,transparent:!0,depthWrite:!1,depthTest:!0});
+return new d.Kj0(this.markerGeometry,a)}let t=Math.min(Math.ceil(window.devicePixelRatio||1),2),a=new d.Ilk(e),i=e=>`rgba(${Math.floor(255*a.r)},${Math.floor(255*a.g)},${Math.floor(255*a.b)},${e})`,r=document.createElement("canvas");
+r.width=128*t,r.height=128*t;
+let n=r.getContext("2d");
+n.setTransform(t,0,0,t,0,0),n.clearRect(0,0,128,128),n.fillStyle=i(.25),n.beginPath(),n.arc(64,64,64,0,2*Math.PI),n.fill(),n.fillStyle=i(1),n.beginPath(),n.arc(64,64,38.4,0,2*Math.PI),n.arc(64,64,25.6,0,2*Math.PI,!0),n.closePath(),n.fill(),n.fillStyle="rgba(255,255,255,1.0)",n.beginPath(),n.arc(64,64,25.6,0,2*Math.PI),n.fill();
+let o=new d.xEZ(r);
+o.needsUpdate=!0,o.generateMipmaps=!0,o.minFilter=d.D1R,o.magFilter=d.wem,this.markerTextureCache[e]=o;
+let s=new d.vBJ({map:o,transparent:!0,depthWrite:!1,depthTest:!0});
+return new d.Kj0(this.markerGeometry,s)}constructor(e,{uiVariant:t,uiPool:a,flagPool:i,renderFlagContent:r,onError:n,dotCount:o}){this.dpr=1,this.radius=2,this.globeRotationMatrix=new d.Vkp,this.globePosition=new d.Pa4(0,0,0),this.dotsStartTime=0,this.uiPool=[],this.uiVariant="default",this.flagPool=[],this.renderFlagContent=null,this.activeArcs=[],this.arcColorPalettes=[{start:16747607,end:16595686},{start:7363583,end:16595686},{start:16747607,end:7363583}],this.simpleArcColorPalettes=[{start:8443135,end:5089023},{start:16766080,end:16754253},{start:13936383,end:10898943}],this.arcControllerEnabled=es.ENABLED,this.arcControllerMaxActive=es.MAX_ACTIVE_ARCS,this.arcPeakMinHeight=.1,this.arcPeakMaxHeight=.275,this.arcPeakAnglePower=1.2,this.arcSpawnIntervalMin=es.MIN_SPAWN_INTERVAL_MS,this.arcSpawnIntervalMax=es.MAX_SPAWN_INTERVAL_MS,this.arcInitialDelayMs=es.INITIAL_DELAY_MS,this.arcCityMinDistanceKm=es.CITY_MIN_DISTANCE_KM,this.arcMinUIScreenDistance=es.MIN_UI_SCREEN_DISTANCE,this.arcMaxSpawnDistanceAttempts=es.MAX_SPAWN_DISTANCE_ATTEMPTS,this.arcVisibleCityDotThreshold=.25,this.arcRightEdgeExclusionRatio=.3,this.arcPreferTranspacific=!0,this.arcPacificWestBoundary=-170,this.arcPacificEastBoundary=55,this.arcPacificSpeedWestBoundary=-165,this.arcPacificSpeedEastBoundary=50,this.arcPacificSpeedMultiplier=1.25,this.arcControllerNextSpawnTime=0,this.lastArcPairKey=null,this.simpleArcControllerEnabled=!0,this.simpleArcMaxActive=3,this.simpleArcSpawnIntervalMin=800,this.simpleArcSpawnIntervalMax=2e3,this.simpleArcInitialDelayMs=500,this.simpleArcMaxDistanceKm=8e3,this.simpleArcMinDistanceKm=500,this.simpleArcControllerNextSpawnTime=0,this.lastSimpleArcPairKey=null,this.activeSimpleArcs=[],this.dotDensity=.85,this.dotSize=12,this.dotColorTop=new d.Ilk(16743487),this.dotColorMid=new d.Ilk(16595686),this.dotColorBottom=new d.Ilk(5454589),this.dotGradientStopTop=.024,this.dotGradientStopMid=.3794,this.dotGradientStopBottom=.7941,this.dotGradientAngle=225,this.dotGradientWidth=1,this.dotGradientHeight=1,this.dotOpacity=.6,this.dotDepthFadeEnabled=!0,this.dotDepthFadeFront=.25,this.dotDepthFadeBack=-.1,this.dotDepthFadeMinOpacity=.15,this.dotDepthFadeCurve=2,this.dotSizeVariation=.75,this.dotOpacityVariation=.3,this.poissonJitter=.75,this.globeGradientColorA=new d.Ilk(16777215),this.globeGradientColorB=new d.Ilk(24319),this.globeGradientClockAngle=215,this.globeGradientDepth=-.1,this.globeGradientContrast=2,this.globeGradientOffset=-.4,this.globeOpacity=.2,this.globeFresnelColor=new d.Ilk(13088490),this.globeFresnelStrength=.1,this.globeFresnelPower=.3,this.atmosphereColor=new d.Ilk("#a953ff"),this.atmosphereIntensity=.08,this.atmosphereOpacity=.35,this.atmosphereFalloff=.4,this.atmosphereRadius=1.02,this.glowEnabled=!1,this.glowColorA=new d.Ilk("#533afd"),this.glowColorB=new d.Ilk("#ff40b2"),this.glowOpacity=1,this.glowCenter=new d.FM8(.5,.5),this.glowRadius=new d.FM8(.48,.48),this.dotCoronaParticipation=.2,this.dotCoronaDistance=.6,this.dotCoronaLaunchRate=.15,this.dotCoronaTravelSpeed=.35,this.dotCoronaOpacityDrop=.5,this.dotCoronaNoiseStrength=.42,this.dotCoronaNoiseScale=.75,this.isHovered=!1,this.hoverMultiplier=1,this.hoverBoostAmount=1.33,this.hoverAttackSpeed=.1,this.hoverDecaySpeed=.04,this.renderLoop=null,this._paused=!1,this.pauseStartTime=null,this.initialized=!1,this.loaded=!1,this.onLoadCallback=null,this.imagePreloadPromise=null,this.precomputedDots=null,this.dotsPrecomputePromise=null,this.lastRender=null,this.accumulatedTime=0,this.autoRotate=!0,this.rotationSpeedX=0,this.rotationSpeedY=.00115,this.currentRotationSpeedY=.00115,this.rotationSpeedZ=0,this.globeAxisTiltX=-2,this.globeAxisTiltZ=8,this.globeInitialRotationY=70,this.tempVecA=new d.Pa4,this.tempVecB=new d.Pa4,this.tempVecC=new d.Pa4,this.tempVecD=new d.Pa4,this.tempVecE=new d.Pa4,this.tempVecF=new d.Pa4,this.tempVecG=new d.Pa4,this.tempVecH=new d.Pa4,this.tempVecI=new d.Pa4,this.tempVecJ=new d.Pa4,this.tempVecK=new d.Pa4,this.tempArcFactors=new d.FM8,this._proj={x:0,y:0,depthFade:0,isBehindGlobe:!1,isOffscreen:!1},this.arcTempP0=new d.Pa4,this.arcTempP3=new d.Pa4,this.arcTempU0=new d.Pa4,this.arcTempU3=new d.Pa4,this.arcTempDir=new d.Pa4,this.arcTempTangent=new d.Pa4,this.arcTempForward=new d.Pa4,this.arcColorA=new d.Ilk,this.arcColorB=new d.Ilk,this.arcColorTemp=new d.Ilk,this.arcTempQuat=new d._fP,this.arcTempU0Orig=new d.Pa4,this.arcTempU3Orig=new d.Pa4,this.arcTempChordDir=new d.Pa4,this.arcTempTangentStart=new d.Pa4,this.arcTempTangentEnd=new d.Pa4,this.arcTempP0Final=new d.Pa4,this.arcTempP3Final=new d.Pa4,this.arcPointDistancesPool=[],this.arcLinePositionsPool=[],this.arcLineColorsPool=[],this.visibleCityIndicesCache=[],this.candidateCityIndices=[],this.cityVectors=[],this.markerTextureCache={},this.markerGeometry=new d._12(.4,.4),this.cachedWidth=0,this.cachedHeight=0,this.ARC_LINE_POOL_SIZE=10,this.ARC_MAX_SEGMENTS=256,this.arcLinePool=[],this.arcLinePoolInitialized=!1,this.SIMPLE_ARC_LINE_POOL_SIZE=6,this.SIMPLE_ARC_MAX_SEGMENTS=64,this.simpleArcLinePool=[],this.simpleArcLinePoolInitialized=!1,this.MARKER_POOL_SIZE=20,this.markerPool=[],this.markerPoolInitialized=!1,this.arcPointsPool=[],this.arcPointsPoolInitialized=!1,this.simpleArcPointsPool=[],this.simpleArcPointsPoolInitialized=!1,this.tempCityVec=new d.Pa4,this.animate=e=>{if(this._paused||!this.loaded)return;
+let t=performance.now();
+null===this.lastRender&&(this.lastRender=t);
+let a=(t-this.lastRender)/1e3;
+a=Math.min(a,.05),this.lastRender=t,this.accumulatedTime+=a,this.updateAndRender(a,t)},this.updateUI=()=>{if(this._paused||!this.loaded)return;
+let e=performance.now();
+this.updateArcsConsolidated(e),this.updateSimpleArcsConsolidated(e),this.updateArcController(e),this.updateSimpleArcController(e)},(0,J.g)();
+let{renderer:s,hasMajorPerformanceCaveat:l,hasRequiredCapabilities:c}=(0,ei.Us)({canvas:e,antialias:!0,alpha:!1,powerPreference:"high-performance",failIfMajorPerformanceCaveat:!0});
+if(!s||!c||l)throw Error("WebGL disabled based on capabilities check");
+this.dpr=Math.min(window.devicePixelRatio,2),this.renderer=s,this.renderer.setClearColor(16777215,1),this.renderer.setPixelRatio(this.dpr),this.canvas=e,this.uiVariant=t,this.uiPool=a,this.flagPool=i,this.renderFlagContent=r,this.onError=n,this.dotSize=(0,Q.t)()?er.DOT_SIZE_MOBILE:er.DOT_SIZE_DESKTOP,this.arcCityMinDistanceKm="flags"===this.uiVariant?3e3:es.CITY_MIN_DISTANCE_KM,this.scene=new d.xsS,this.camera=new d.cPb(25,1,.1,1e3),this.candidateCityIndices="flags"===this.uiVariant?ef.filter(e=>!ec.includes(el[e].country)):el.map((e,t)=>t),this.dotCountOverride=o,void 0===o&&ea.y.dots?(this.precomputedDots=ea.y.dots,this.dotsPrecomputePromise=Promise.resolve(ea.y.dots)):void 0===o&&ea.y.promise?this.dotsPrecomputePromise=ea.y.promise.then(e=>(this.precomputedDots=e,e)):this.startImagePreload()}startImagePreload(){this.imagePreloadPromise=new Promise(e=>{new d.S3k().load(er.IMAGE_PATH,t=>{let a=function(e){let t=e.width,a=e.height,i=document.createElement("canvas");
+i.width=t,i.height=a;
+let r=i.getContext("2d");
+return r.drawImage(e,0,0),r.getImageData(0,0,t,a)}(t);
+e(a),this.startDotsPrecompute(a)})})}startDotsPrecompute(e){this.dotsPrecomputePromise=this.generateDotsAsync(e).then(e=>(this.precomputedDots=e,e))}initScene(){if(this.initialized)return;
+this.initialized=!0;
+let e=this.cachedWidth||this.canvas.clientWidth,t=this.cachedHeight||this.canvas.clientHeight;
+this.renderer.setSize(e,t,!1),this.camera.aspect=e/t||1,this.camera.updateProjectionMatrix();
+let a=(0,Q.t)()?er.CAMERA_Z_MOBILE:er.CAMERA_Z_DESKTOP;
+this.camera.position.set(0,0,a),this.camera.lookAt(0,0,0),this.createGlobe();
+let i=0,r=2;
+this.renderLoop=(0,ei.K7)(e=>{i%r==0&&this.animate(e),this.updateUI(),i+=1}),this.renderLoop.onPerformanceWarning=e=>{r=Math.max(e+1,r)},this.renderLoop.onPerformanceRecovered=e=>{r=Math.max(e+1,2)},this.renderLoop.start()}createGlobe(){this.globeGroup=new d.ZAu,this.globeGroup.position.copy(this.globePosition),this.globeGroup.rotation.x=d.M8C.degToRad(this.globeAxisTiltX),this.globeGroup.rotation.y=d.M8C.degToRad(this.globeInitialRotationY),this.globeGroup.rotation.z=d.M8C.degToRad(this.globeAxisTiltZ),this.scene.add(this.globeGroup);
+let e=new d.xo$(.993*this.radius,64,64),t=new d.vBJ({transparent:!0,opacity:0,side:d.Wl3,depthWrite:!0,colorWrite:!1});
+this.backgroundSphere=new d.Kj0(e,t),this.backgroundSphere.renderOrder=-1,this.globeGroup.add(this.backgroundSphere);
+let a=6*this.radius,i=new d._12(a,a,1,1);
+if(this.atmosphereMaterial=new d.jyz({uniforms:{u_color:{value:this.atmosphereColor.clone()},u_intensity:{value:this.atmosphereIntensity},u_opacity:{value:this.atmosphereOpacity},u_innerRadius:{value:this.radius},u_outerRadius:{value:this.radius*this.atmosphereRadius},u_outerFade:{value:Math.max(.01,this.atmosphereFalloff)*this.radius}},vertexShader:G(),fragmentShader:O(),blending:d.bdR,transparent:!0,depthWrite:!1,depthTest:!1,side:d.ehD}),this.atmosphereMesh=new d.Kj0(i,this.atmosphereMaterial),this.atmosphereMesh.frustumCulled=!1,this.atmosphereMesh.renderOrder=-4,this.scene.add(this.atmosphereMesh),this.glowEnabled){let e=new d._12(1,1,1,1);
+this.glowMaterial=new d.jyz({uniforms:{u_colorA:{value:this.glowColorA.clone()},u_colorB:{value:this.glowColorB.clone()},u_center:{value:this.glowCenter.clone()},u_radius:{value:this.glowRadius.clone()},u_opacity:{value:this.glowOpacity}},vertexShader:$(),fragmentShader:X(),blending:d.bdR,transparent:!0,depthWrite:!1,depthTest:!0,side:d.ehD}),this.glowMesh=new d.Kj0(e,this.glowMaterial),this.glowMesh.frustumCulled=!1,this.glowMesh.renderOrder=-.5,this.scene.add(this.glowMesh),this.updateGlowPlaneSize()}let r=new d.xo$(.9995*this.radius,128,128);
+this.globeSurfaceMaterial=new d.jyz({uniforms:{u_colorA:{value:this.globeGradientColorA.clone()},u_colorB:{value:this.globeGradientColorB.clone()},u_fresnelColor:{value:this.globeFresnelColor.clone()},u_fresnelStrength:{value:this.globeFresnelStrength},u_fresnelPower:{value:this.globeFresnelPower},u_opacity:{value:this.globeOpacity},u_gradientDir:{value:new d.Pa4(1,0,0)},u_gradientContrast:{value:this.globeGradientContrast},u_gradientOffset:{value:this.globeGradientOffset},u_cameraPosition:{value:this.camera.position.clone()},u_cameraRight:{value:new d.Pa4(1,0,0)},u_cameraUp:{value:new d.Pa4(0,1,0)},u_cameraForward:{value:new d.Pa4(0,0,-1)}},vertexShader:N(),fragmentShader:V(),transparent:!0,depthWrite:!0,depthTest:!0}),this.globeSurface=new d.Kj0(r,this.globeSurfaceMaterial),this.globeSurface.renderOrder=-.5,this.globeGroup.add(this.globeSurface),this.updateGlobeSurfaceUniforms(),this.updateCameraBasisUniforms(),this.updateAtmosphereMaterial(),this.arcsGroup=new d.ZAu,this.arcsGroup.rotation.x=-Math.PI,this.arcsGroup.rotation.z=-Math.PI,this.globeGroup.add(this.arcsGroup),this.dotsGroup=new d.ZAu,this.dotsGroup.rotation.x=-Math.PI,this.dotsGroup.rotation.z=-Math.PI,this.globeGroup.add(this.dotsGroup),this.loadDotsImage(),this.cityVectors=el.map(e=>new d.Pa4(e.ux,e.uy,e.uz).multiplyScalar(this.radius)),this.globeGroup.updateMatrixWorld(!0),this.globeRotationMatrix.setFromMatrix4(this.globeGroup.matrixWorld),this.globeRotationMatrix.transpose()}loadDotsImage(){let e=e=>{if(this.applyDotsToScene(e),this.loaded=!0,this.onLoadCallback&&(this.onLoadCallback(),this.onLoadCallback=null),this.paused){let e=performance.now();
+this.updateAndRender(0,e)}};
+this.precomputedDots?e(this.precomputedDots):this.dotsPrecomputePromise?this.dotsPrecomputePromise.then(t=>{e(t)}):this.imagePreloadPromise?this.imagePreloadPromise.then(()=>{this.dotsPrecomputePromise&&this.dotsPrecomputePromise.then(e)}):(this.startImagePreload(),this.imagePreloadPromise.then(()=>{this.dotsPrecomputePromise.then(e)}))}resolveDotCount(){let e=er.DOT_COUNT_MAX_MOBILE/er.DOT_COUNT_MAX_DESKTOP;
+return void 0!==this.dotCountOverride?(0,Q.t)()?Math.round(this.dotCountOverride*e):this.dotCountOverride:(0,Q.t)()?er.DOT_COUNT_MAX_MOBILE:er.DOT_COUNT_MAX_DESKTOP}generateDotsAsync(e){let t={imageWidth:e.width,imageHeight:e.height,imageData:e.data,dotCount:this.resolveDotCount(),radius:this.radius,poissonJitter:this.poissonJitter,dotSizeVariation:this.dotSizeVariation,dotOpacityVariation:this.dotOpacityVariation};
+if("undefined"!=typeof Worker)try{let e=new Worker(et.Z);
+return new Promise(a=>{e.onmessage=t=>{e.terminate(),a(t.data)},e.onerror=i=>{this.onError?.(Error(i.message),{component:"GradientNoiseGlobe",workerType:"dotGeneration",errorType:"worker_error"}),e.terminate();
+let r=(0,ee.A)(t);
+a(r)},e.postMessage(t)})}catch(e){return this.onError?.(e instanceof Error?e:Error(String(e)),{component:"GradientNoiseGlobe",workerType:"dotGeneration",errorType:"worker_creation_failed"}),Promise.resolve((0,ee.A)(t))}return Promise.resolve((0,ee.A)(t))}applyDotsToScene(e){let t=new d.u9r;
+t.setAttribute("position",new d.a$l(e.positions,3)),t.setAttribute("rndId",new d.a$l(e.rndIds,1)),t.setAttribute("sizeVariation",new d.a$l(e.sizeVariations,1)),t.setAttribute("opacityVariation",new d.a$l(e.opacityVariations,1)),t.setAttribute("coronaSeed",new d.a$l(e.coronaSeeds,1)),t.setAttribute("varianceRate",new d.a$l(e.varianceRates,1)),t.setAttribute("varianceMotion",new d.a$l(e.varianceMotions,1)),t.setAttribute("coronaCanParticipate",new d.a$l(e.coronaCanParticipate,1));
+let a=Math.max(.1,this.dotCoronaTravelSpeed),i=Math.max(.45,1/Math.max(this.dotCoronaLaunchRate,.001));
+this.dotsMaterial=new d.jyz({transparent:!0,depthTest:!1,depthWrite:!1,uniforms:{u_timeSec:{value:0},u_radius:{value:this.radius},u_dotSize:{value:.01*this.dotSize},u_opacity_factor:{value:this.dotOpacity},u_coronaBurstDistance:{value:this.dotCoronaDistance},u_coronaParticipation:{value:this.dotCoronaParticipation},u_coronaOpacityDrop:{value:this.dotCoronaOpacityDrop},u_coronaNoiseStrength:{value:this.dotCoronaNoiseStrength},u_coronaNoiseScale:{value:this.dotCoronaNoiseScale},u_coronaBaseFlightDur:{value:Math.min(20,Math.max(.3,3.1/a))},u_coronaBaseFadeDur:{value:Math.min(20,Math.max(.05,.6/a))},u_coronaLaunchInterval:{value:i},u_canvasHeight:{value:this.cachedHeight||this.canvas.clientHeight},u_pixelRatio:{value:this.dpr},u_depthFadeEnabled:{value:this.dotDepthFadeEnabled?1:0},u_depthFadeFront:{value:this.dotDepthFadeFront},u_depthFadeBack:{value:this.dotDepthFadeBack},u_depthFadeMin:{value:this.dotDepthFadeMinOpacity},u_depthFadeCurve:{value:this.dotDepthFadeCurve},u_gradientAngle:{value:this.dotGradientAngle},u_gradientScale:{value:new d.FM8(Math.max(.05,this.dotGradientWidth),Math.max(.05,this.dotGradientHeight))},u_cameraRight:{value:new d.Pa4(1,0,0)},u_cameraUp:{value:new d.Pa4(0,1,0)},u_cameraForward:{value:new d.Pa4(0,0,-1)},u_cameraPosition:{value:new d.Pa4},u_gradientStops:{value:new Float32Array(er.DOT_GRADIENT_STOP_COUNT)},u_gradientColors:{value:Array.from({length:er.DOT_GRADIENT_STOP_COUNT},()=>new d.Ilk(16777215))}},vertexShader:K(),fragmentShader:j()}),this.updateDotGradientUniforms(),this.updateDotDepthFadeUniforms();
+let r=new d.woe(t,this.dotsMaterial);
+for(;
+this.dotsGroup.children.length>0;
+){let e=this.dotsGroup.children[0];
+this.dotsGroup.remove(e),e.geometry?.dispose(),e.material&&(Array.isArray(e.material)?e.material.forEach(e=>e.dispose()):e.material.dispose())}this.dotsGroup.add(r),this.dotsStartTime=performance.now()}updateGlobeSurfaceUniforms(){if(!this.globeSurfaceMaterial)return;
+let{uniforms:e}=this.globeSurfaceMaterial;
+e.u_colorA.value.copy(this.globeGradientColorA),e.u_colorB.value.copy(this.globeGradientColorB),e.u_fresnelColor.value.copy(this.globeFresnelColor),e.u_fresnelStrength.value=this.globeFresnelStrength,e.u_fresnelPower.value=this.globeFresnelPower,e.u_opacity.value=this.globeOpacity,e.u_gradientContrast.value=this.globeGradientContrast,e.u_gradientOffset.value=this.globeGradientOffset,e.u_cameraPosition.value.copy(this.camera.position),e.u_gradientDir.value.copy(this.getGradientDirectionCamera()),this.globeSurfaceMaterial.needsUpdate=!0}getGradientDirectionCamera(){let e=d.M8C.degToRad(this.globeGradientClockAngle),t=this.tempVecI.set(Math.sin(e),Math.cos(e),0),a=d.M8C.clamp(this.globeGradientDepth,-1,1);
+return this.tempVecJ.copy(t).multiplyScalar(1-Math.abs(a)).add(this.tempVecG.set(0,0,-a)).normalize()}updateAtmosphereMaterial(){if(!this.atmosphereMaterial||!this.atmosphereMesh)return;
+let{uniforms:e}=this.atmosphereMaterial;
+e.u_color.value.copy(this.atmosphereColor),e.u_intensity.value=this.atmosphereIntensity,e.u_opacity.value=this.atmosphereOpacity,e.u_innerRadius.value=this.radius,e.u_outerRadius.value=this.radius*this.atmosphereRadius,e.u_outerFade.value=Math.max(.01,this.atmosphereFalloff)*this.radius,this.atmosphereMesh.position.copy(this.globeGroup.position),this.atmosphereMaterial.needsUpdate=!0}updateDotDepthFadeUniforms(){if(!this.dotsMaterial)return;
+let e=this.dotsMaterial.uniforms;
+e.u_depthFadeEnabled&&(e.u_depthFadeEnabled.value=this.dotDepthFadeEnabled?1:0,e.u_depthFadeFront.value=this.dotDepthFadeFront,e.u_depthFadeBack.value=this.dotDepthFadeBack,e.u_depthFadeMin.value=this.dotDepthFadeMinOpacity,e.u_depthFadeCurve.value=Math.max(.01,this.dotDepthFadeCurve))}updateDotGradientUniforms(){if(!this.dotsMaterial)return;
+let e=this.dotsMaterial.uniforms;
+e.u_gradientStops&&e.u_gradientColors&&e.u_gradientAngle&&e.u_gradientScale&&(e.u_gradientStops.value[0]=d.M8C.clamp(this.dotGradientStopTop,0,1),e.u_gradientStops.value[1]=d.M8C.clamp(this.dotGradientStopMid,0,1),e.u_gradientStops.value[2]=d.M8C.clamp(this.dotGradientStopBottom,0,1),e.u_gradientColors.value[0].copy(this.dotColorTop),e.u_gradientColors.value[1].copy(this.dotColorMid),e.u_gradientColors.value[2].copy(this.dotColorBottom),e.u_gradientAngle.value=this.dotGradientAngle,e.u_gradientScale.value.set(Math.max(.05,this.dotGradientWidth),Math.max(.05,this.dotGradientHeight)))}updateCameraBasisUniforms(){let e=this.tempVecH,t=this.tempVecG,a=this.tempVecF;
+if(this.camera.matrixWorld.extractBasis(e,t,a),a.negate(),this.dotsMaterial&&(this.dotsMaterial.uniforms.u_cameraRight.value.copy(e),this.dotsMaterial.uniforms.u_cameraUp.value.copy(t),this.dotsMaterial.uniforms.u_cameraForward.value.copy(a)),this.globeSurfaceMaterial){let{uniforms:i}=this.globeSurfaceMaterial;
+i.u_cameraRight.value.copy(e),i.u_cameraUp.value.copy(t),i.u_cameraForward.value.copy(a)}}updateAndRender(e,t){this.updateCameraBasisUniforms(),this.globeSurfaceMaterial&&(this.globeSurfaceMaterial.uniforms.u_cameraPosition.value.copy(this.camera.position),this.globeSurfaceMaterial.uniforms.u_gradientDir.value.copy(this.getGradientDirectionCamera())),this.atmosphereMaterial&&(this.atmosphereMesh?.quaternion.copy(this.camera.quaternion),this.atmosphereMesh?.position.copy(this.globeGroup.position));
+let a=this.isHovered?this.hoverBoostAmount:1;
+if(!(.001>Math.abs(this.hoverMultiplier-a))){let e=this.isHovered?this.hoverAttackSpeed:this.hoverDecaySpeed;
+if(this.hoverMultiplier=d.M8C.clamp(d.M8C.lerp(this.hoverMultiplier,a,e),1,this.hoverBoostAmount),this.dotsMaterial){let e=this.dotsMaterial.uniforms;
+e.u_coronaBurstDistance&&(e.u_coronaBurstDistance.value=this.dotCoronaDistance*this.hoverMultiplier),e.u_coronaParticipation&&(e.u_coronaParticipation.value=Math.min(1,this.dotCoronaParticipation*this.hoverMultiplier))}}let i=(performance.now()-this.dotsStartTime)*.001;
+if(this.dotsMaterial&&(this.dotsMaterial.uniforms.u_timeSec.value=i+100,this.dotsMaterial.uniforms.u_cameraPosition.value.copy(this.camera.position)),this.autoRotate&&this.globeGroup){let t=this.isPacificForSpeedAcceleration()?this.rotationSpeedY*this.arcPacificSpeedMultiplier:this.rotationSpeedY;
+this.currentRotationSpeedY=d.M8C.lerp(this.currentRotationSpeedY,t,.01),this.globeGroup.rotation.x+=this.rotationSpeedX*e*60,this.globeGroup.rotation.y+=this.currentRotationSpeedY*e*60,this.globeGroup.rotation.z+=this.rotationSpeedZ*e*60}this.globeGroup&&(this.globeGroup.updateMatrixWorld(!0),this.arcsGroup?.updateMatrixWorld(!0),this.globeRotationMatrix.setFromMatrix4(this.globeGroup.matrixWorld),this.globeRotationMatrix.transpose()),this.renderer.render(this.scene,this.camera)}shiftTimestamps(e){for(let t of(this.dotsStartTime+=e,this.activeArcs))t.animation.startTime+=e,t.uiStartTime+=e,t.finalizeStartTime+=e;
+for(let t of this.activeSimpleArcs)t.animation.startTime+=e,t.finalizeStartTime+=e;
+this.arcControllerNextSpawnTime>0&&(this.arcControllerNextSpawnTime+=e),this.simpleArcControllerNextSpawnTime>0&&(this.simpleArcControllerNextSpawnTime+=e)}get paused(){return this._paused}set paused(e){if(e!==this._paused){if(e)this.pauseStartTime=performance.now(),this.lastRender=null;
+else if(null!==this.pauseStartTime){let e=performance.now()-this.pauseStartTime;
+this.shiftTimestamps(e),this.pauseStartTime=null}this._paused=e}}setHovered(e){this.isHovered=e}onLoad(e){this.loaded?e():this.onLoadCallback=e}setSize(e,t){this.cachedWidth=e,this.cachedHeight=t,this.resize()}updateGlowPlaneSize(){if(!this.glowMesh)return;
+let e=2*this.camera.position.z*Math.tan(d.M8C.degToRad(this.camera.fov)/2),t=e*this.camera.aspect;
+this.glowMesh.scale.set(t,e,1)}resize(){let e=this.cachedWidth,t=this.cachedHeight;
+e&&t&&(this.dpr=Math.min(window.devicePixelRatio,2),this.renderer.setSize(e,t,!1),this.renderer.setPixelRatio(this.dpr),this.camera.aspect=e/t,this.camera.updateProjectionMatrix(),this.updateGlowPlaneSize(),this.dotsMaterial&&(this.dotsMaterial.uniforms.u_canvasHeight.value=t,this.dotsMaterial.uniforms.u_pixelRatio.value=this.dpr),this.arcsGroup?.children.forEach(a=>{let i=a.material;
+i&&i.isLineMaterial&&i.resolution&&i.resolution.set(e,t)}))}dispose(){this.renderLoop&&this.renderLoop.stop(),this.renderLoop=null,this.dotsMaterial?.dispose(),this.renderer?.dispose(),this.backgroundSphere&&(this.backgroundSphere.geometry.dispose(),this.backgroundSphere.material.dispose()),this.globeSurface&&(this.globeSurface.geometry.dispose(),this.globeSurface.material.dispose(),this.globeSurface=void 0,this.globeSurfaceMaterial=void 0),this.atmosphereMesh&&(this.atmosphereMesh.parent?.remove(this.atmosphereMesh),this.atmosphereMesh.geometry.dispose(),this.atmosphereMesh.material.dispose(),this.atmosphereMesh=void 0,this.atmosphereMaterial=void 0),this.glowMesh&&(this.glowMesh.parent?.remove(this.glowMesh),this.glowMesh.geometry.dispose(),this.glowMesh.material.dispose(),this.glowMesh=void 0,this.glowMaterial=void 0),this.activeArcs.forEach(e=>{e.linePoolItem&&this.releaseArcLine(e.linePoolItem),e.startMarker&&this.releaseMarker(e.startMarker),e.endMarker&&this.releaseMarker(e.endMarker),e.uiElement&&(e.uiElement.style.display="none"),e.flagStartElement&&(e.flagStartElement.style.display="none"),e.flagEndElement&&(e.flagEndElement.style.display="none")}),this.activeArcs=[],this.flagPool?.forEach(e=>{e.style.display="none"}),this.activeSimpleArcs.forEach(e=>{this.disposeArcResources(e)}),this.activeSimpleArcs=[],this.arcLinePool.forEach(e=>{this.arcsGroup?.remove(e.line),e.geometry.dispose(),e.material.dispose()}),this.arcLinePool=[],this.arcLinePoolInitialized=!1,this.simpleArcLinePool.forEach(e=>{this.arcsGroup?.remove(e.line),e.geometry.dispose(),e.material.dispose()}),this.simpleArcLinePool=[],this.simpleArcLinePoolInitialized=!1,this.arcPointsPool=[],this.arcPointsPoolInitialized=!1,this.simpleArcPointsPool=[],this.simpleArcPointsPoolInitialized=!1,this.markerPool.forEach(e=>{this.arcsGroup?.remove(e.mesh),e.mesh.material?.dispose?.()}),this.markerPool=[],this.markerPoolInitialized=!1,Object.values(this.markerTextureCache).forEach(e=>e.dispose()),this.markerTextureCache={},this.markerGeometry.dispose(),this.dotsGroup?.children.forEach(e=>{e.geometry?.dispose?.(),e.material?.dispose?.()})}}var ew=a(20825);
+a(3851);
+var e_=a(93036),eC=a(88690),ex=a(82779),eE=a(8470),eT=a(1107);
+let ez=Array.from({length:5},(e,t)=>t),eU=Array.from({length:10},(e,t)=>t),eD={AE:h()(()=>a.e(57814).then(a.bind(a,57814)).then(e=>e.AESvg),{loadableGenerated:{webpack:()=>[57814]}}),AR:h()(()=>a.e(91194).then(a.bind(a,91194)).then(e=>e.ARSvg),{loadableGenerated:{webpack:()=>[91194]}}),AT:h()(()=>a.e(47679).then(a.bind(a,47679)).then(e=>e.ATSvg),{loadableGenerated:{webpack:()=>[47679]}}),AU:h()(()=>a.e(73994).then(a.bind(a,73994)).then(e=>e.AUSvg),{loadableGenerated:{webpack:()=>[73994]}}),BE:h()(()=>a.e(30780).then(a.bind(a,30780)).then(e=>e.BESvg),{loadableGenerated:{webpack:()=>[30780]}}),BR:h()(()=>a.e(77002).then(a.bind(a,77002)).then(e=>e.BRSvg),{loadableGenerated:{webpack:()=>[77002]}}),CA:h()(()=>a.e(21322).then(a.bind(a,96542)).then(e=>e.CASvg),{loadableGenerated:{webpack:()=>[96542]}}),CL:h()(()=>a.e(11507).then(a.bind(a,11507)).then(e=>e.CLSvg),{loadableGenerated:{webpack:()=>[11507]}}),CN:h()(()=>a.e(12779).then(a.bind(a,12779)).then(e=>e.CNSvg),{loadableGenerated:{webpack:()=>[12779]}}),CO:h()(()=>a.e(30262).then(a.bind(a,30262)).then(e=>e.COSvg),{loadableGenerated:{webpack:()=>[30262]}}),DE:h()(()=>a.e(34936).then(a.bind(a,34936)).then(e=>e.DESvg),{loadableGenerated:{webpack:()=>[34936]}}),EG:h()(()=>a.e(5540).then(a.bind(a,5540)).then(e=>e.EGSvg),{loadableGenerated:{webpack:()=>[5540]}}),ES:h()(()=>a.e(86074).then(a.bind(a,86074)).then(e=>e.ESSvg),{loadableGenerated:{webpack:()=>[86074]}}),ET:h()(()=>a.e(8242).then(a.bind(a,8242)).then(e=>e.ETSvg),{loadableGenerated:{webpack:()=>[8242]}}),FR:h()(()=>a.e(5123).then(a.bind(a,5123)).then(e=>e.FRSvg),{loadableGenerated:{webpack:()=>[5123]}}),GB:h()(()=>a.e(58215).then(a.bind(a,58215)).then(e=>e.GBSvg),{loadableGenerated:{webpack:()=>[58215]}}),GH:h()(()=>a.e(59440).then(a.bind(a,59440)).then(e=>e.GHSvg),{loadableGenerated:{webpack:()=>[59440]}}),HK:h()(()=>a.e(56128).then(a.bind(a,80130)).then(e=>e.HKSvg),{loadableGenerated:{webpack:()=>[80130]}}),ID:h()(()=>a.e(62903).then(a.bind(a,62903)).then(e=>e.IDSvg),{loadableGenerated:{webpack:()=>[62903]}}),IE:h()(()=>a.e(44429).then(a.bind(a,44429)).then(e=>e.IESvg),{loadableGenerated:{webpack:()=>[44429]}}),IL:h()(()=>a.e(28655).then(a.bind(a,28655)).then(e=>e.ILSvg),{loadableGenerated:{webpack:()=>[28655]}}),IN:h()(()=>a.e(41020).then(a.bind(a,41020)).then(e=>e.INSvg),{loadableGenerated:{webpack:()=>[41020]}}),IT:h()(()=>a.e(30459).then(a.bind(a,30459)).then(e=>e.ITSvg),{loadableGenerated:{webpack:()=>[30459]}}),JP:h()(()=>a.e(36779).then(a.bind(a,36779)).then(e=>e.JPSvg),{loadableGenerated:{webpack:()=>[36779]}}),KE:h()(()=>a.e(89413).then(a.bind(a,89413)).then(e=>e.KESvg),{loadableGenerated:{webpack:()=>[89413]}}),KR:h()(()=>a.e(82306).then(a.bind(a,82306)).then(e=>e.KRSvg),{loadableGenerated:{webpack:()=>[82306]}}),MX:h()(()=>a.e(71714).then(a.bind(a,71714)).then(e=>e.MXSvg),{loadableGenerated:{webpack:()=>[71714]}}),MY:h()(()=>a.e(52142).then(a.bind(a,52142)).then(e=>e.MYSvg),{loadableGenerated:{webpack:()=>[52142]}}),NG:h()(()=>a.e(95365).then(a.bind(a,95365)).then(e=>e.NGSvg),{loadableGenerated:{webpack:()=>[95365]}}),NL:h()(()=>a.e(93922).then(a.bind(a,93922)).then(e=>e.NLSvg),{loadableGenerated:{webpack:()=>[93922]}}),NZ:h()(()=>a.e(18235).then(a.bind(a,18235)).then(e=>e.NZSvg),{loadableGenerated:{webpack:()=>[18235]}}),PE:h()(()=>a.e(81684).then(a.bind(a,81684)).then(e=>e.PESvg),{loadableGenerated:{webpack:()=>[81684]}}),PH:h()(()=>a.e(91583).then(a.bind(a,91583)).then(e=>e.PHSvg),{loadableGenerated:{webpack:()=>[91583]}}),PL:h()(()=>a.e(74439).then(a.bind(a,74439)).then(e=>e.PLSvg),{loadableGenerated:{webpack:()=>[74439]}}),PT:h()(()=>a.e(33991).then(a.bind(a,33991)).then(e=>e.PTSvg),{loadableGenerated:{webpack:()=>[33991]}}),SE:h()(()=>a.e(16114).then(a.bind(a,16114)).then(e=>e.SESvg),{loadableGenerated:{webpack:()=>[16114]}}),SG:h()(()=>a.e(45445).then(a.bind(a,45445)).then(e=>e.SGSvg),{loadableGenerated:{webpack:()=>[45445]}}),SN:h()(()=>a.e(55612).then(a.bind(a,55612)).then(e=>e.SNSvg),{loadableGenerated:{webpack:()=>[55612]}}),TG:h()(()=>a.e(33514).then(a.bind(a,33514)).then(e=>e.TGSvg),{loadableGenerated:{webpack:()=>[33514]}}),TH:h()(()=>a.e(35427).then(a.bind(a,35427)).then(e=>e.THSvg),{loadableGenerated:{webpack:()=>[35427]}}),TN:h()(()=>a.e(1718).then(a.bind(a,1718)).then(e=>e.TNSvg),{loadableGenerated:{webpack:()=>[1718]}}),TW:h()(()=>a.e(22843).then(a.bind(a,22843)).then(e=>e.TWSvg),{loadableGenerated:{webpack:()=>[22843]}}),US:h()(()=>a.e(39513).then(a.bind(a,39513)).then(e=>e.USSvg),{loadableGenerated:{webpack:()=>[39513]}}),VN:h()(()=>a.e(69446).then(a.bind(a,69446)).then(e=>e.VNSvg),{loadableGenerated:{webpack:()=>[69446]}}),ZA:h()(()=>a.e(99455).then(a.bind(a,99455)).then(e=>e.ZASvg),{loadableGenerated:{webpack:()=>[99455]}})},eI=(0,c.forwardRef)(({apiRef:e,className:t,position:a,dots:i,arcs:r,surface:o,atmosphere:u,uiVariant:h,glow:d},p)=>{let m=(0,c.useRef)(null),f=(0,c.useRef)(null),g=(0,c.useRef)([,,,,,].fill(null)),v=(0,c.useRef)(Array(10).fill(null)),[y,S]=(0,c.useState)(()=>Array(10).fill(null)),M=(0,c.useRef)(null),[A]=(0,eC.T)(),{error:P}=(0,ex.Z)(),b=(0,c.useMemo)(()=>ez.map(e=>t=>{g.current[e]=t}),[]),w=(0,c.useMemo)(()=>eU.map(e=>t=>{v.current[e]=t}),[]),_=(0,c.useCallback)((e,t)=>{let a=v.current.indexOf(e);
+a>=0&&S(e=>{let i=[...e];
+return i[a]=t,i})},[]),{isIntersecting:C}=(0,l.S)({ref:f,threshold:.1,root:null,rootMargin:"100px",initialIsIntersecting:!1,freezeOnceVisible:!1}),{isDialogOpen:x}=(0,e_.l)();
+(0,c.useEffect)(()=>{let e=g.current.every(e=>null!==e),t="flags"===h?e&&v.current.every(e=>null!==e):e;
+if(m.current&&t){let e=new eb(m.current,{uiVariant:h,uiPool:g.current,flagPool:v.current,renderFlagContent:_,dotCount:i?.count,onError:(e,t)=>{P(e,{tags:t})}});
+M.current=e,function(e,t){let{position:a,dots:i,arcs:r,surface:n,atmosphere:o,glow:s}=t;
+a&&(void 0!==a.x&&(e.globePosition.x=a.x),void 0!==a.y&&(e.globePosition.y=a.y),void 0!==a.z&&(e.globePosition.z=a.z)),i&&(void 0!==i.colorTop&&e.dotColorTop.set(i.colorTop),void 0!==i.colorMid&&e.dotColorMid.set(i.colorMid),void 0!==i.colorBottom&&e.dotColorBottom.set(i.colorBottom),void 0!==i.gradientStopTop&&(e.dotGradientStopTop=i.gradientStopTop),void 0!==i.gradientStopMid&&(e.dotGradientStopMid=i.gradientStopMid),void 0!==i.gradientStopBottom&&(e.dotGradientStopBottom=i.gradientStopBottom),void 0!==i.gradientAngle&&(e.dotGradientAngle=i.gradientAngle)),r&&(void 0!==r.enabled&&(e.arcControllerEnabled=r.enabled),void 0!==r.maxActive&&(e.arcControllerMaxActive=r.maxActive),void 0!==r.palettes&&(e.arcColorPalettes=r.palettes),void 0!==r.simpleEnabled&&(e.simpleArcControllerEnabled=r.simpleEnabled),void 0!==r.simpleMaxActive&&(e.simpleArcMaxActive=r.simpleMaxActive),void 0!==r.simplePalettes&&(e.simpleArcColorPalettes=r.simplePalettes)),n&&(void 0!==n.gradientColorA&&e.globeGradientColorA.set(n.gradientColorA),void 0!==n.gradientColorB&&e.globeGradientColorB.set(n.gradientColorB),void 0!==n.gradientClockAngle&&(e.globeGradientClockAngle=n.gradientClockAngle),void 0!==n.gradientContrast&&(e.globeGradientContrast=n.gradientContrast),void 0!==n.gradientOffset&&(e.globeGradientOffset=n.gradientOffset),void 0!==n.fresnelColor&&e.globeFresnelColor.set(n.fresnelColor),void 0!==n.fresnelStrength&&(e.globeFresnelStrength=n.fresnelStrength),void 0!==n.fresnelPower&&(e.globeFresnelPower=n.fresnelPower),void 0!==n.opacity&&(e.globeOpacity=n.opacity)),o&&(void 0!==o.color&&e.atmosphereColor.set(o.color),void 0!==o.intensity&&(e.atmosphereIntensity=o.intensity),void 0!==o.opacity&&(e.atmosphereOpacity=o.opacity),void 0!==o.falloff&&(e.atmosphereFalloff=o.falloff)),void 0!==s&&(e.glowEnabled=s)}(e,{position:a,dots:i,arcs:r,surface:o,atmosphere:u,glow:d}),e.paused=!0,e.initScene(),e.onLoad(()=>{f.current?.dispatchEvent(new CustomEvent(eE.FN,{bubbles:!0}))})}return()=>{M.current&&(M.current.dispose(),M.current=null)}},[P]),(0,c.useEffect)(()=>{let e=M.current;
+e&&(C?e.paused=A||x:e.paused=!0)},[C,x,A]);
+let E=(0,c.useCallback)(({width:e,height:t})=>{M.current&&e&&t&&M.current.setSize(e,t)},[]);
+return(0,ew.y)({ref:f,onResize:E,delay:150}),(0,c.useImperativeHandle)(p,()=>({setHovered:e=>{M.current?.setHovered(e)}}),[]),(0,c.useEffect)(()=>{if(e)return e({setHovered:e=>{M.current?.setHovered(e)}}),()=>e(null)},[e]),(0,n.jsxs)("div",{className:s()("globe",t),ref:f,"aria-hidden":"true",children:[(0,n.jsx)("canvas",{ref:m,"aria-hidden":"true",className:"globe__canvas"}),(0,n.jsxs)("div",{className:"globe__ui-container",children:["flags"===h?ez.map(e=>(0,n.jsx)("div",{ref:b[e],className:"globe__arc-flag-ui",style:{display:"none"},children:(0,n.jsx)("span",{className:"globe__arc-flag-ui-currency"})},e)):ez.map(e=>(0,n.jsx)("div",{ref:b[e],className:"globe__arc-ui",style:{display:"none"},children:(0,n.jsxs)("div",{className:"globe__arc-ui-content",children:[(0,n.jsx)("div",{className:"globe__arc-ui-icon"}),(0,n.jsxs)("div",{className:"globe__arc-ui-text",children:[(0,n.jsx)("span",{className:"globe__arc-ui-amount"}),(0,n.jsx)("span",{className:"globe__arc-ui-currency"})]})]})},e)),"flags"===h&&eU.map(e=>{let t=y[e]?eD[y[e]]:null;
+return(0,n.jsx)("span",{ref:w[e],className:"globe__flag-overlay",style:{display:"none"},children:t?(0,n.jsx)(t,{}):null},`flag-${e}`)})]})]})}),ek=({className:e})=>(0,n.jsx)("div",{className:s()("globe",e),children:(0,n.jsx)("div",{className:"globe__static",children:(0,n.jsx)(eT.t,{src:"https://images.stripeassets.com/fzn2n1nzq965/7dwxc06fkzWOmlwBs9GezW/667c1af2d03a023fc61ea4cec995204d/money-movement-fallback_2x.png",width:894,height:1456,alt:""})})})},

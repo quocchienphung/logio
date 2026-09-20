@@ -1,0 +1,810 @@
+{
+  "products": {
+    "contentCls": "navigation__content navigation__content--products",
+    "contentStyle": "--mouse-in-dir: right; --mouse-out-dir: left;",
+    "blocks": [
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Payments",
+        "titleId": "payments-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/payments",
+            "label": "Payments",
+            "desc": "Online payments",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/managed-payments",
+            "label": "Managed Payments",
+            "desc": "Merchant of record solution",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/payments/payment-links",
+            "label": "Payment links",
+            "desc": "No-code payments",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/payments/checkout",
+            "label": "Checkout",
+            "desc": "Prebuilt payment UIs",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/payments/elements",
+            "label": "Elements",
+            "desc": "Flexible UI components",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/payments/payment-methods",
+            "label": "Payment methods",
+            "desc": "Access to 125+",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/terminal",
+            "label": "Terminal",
+            "desc": "In-person payments",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/authorization-boost",
+            "label": "Authorization Boost",
+            "desc": "Acceptance optimizations",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/payments/link",
+            "label": "Link",
+            "desc": "Accelerated checkout",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/financial-connections",
+            "label": "Financial Connections",
+            "desc": "Linked financial account data",
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Revenue",
+        "titleId": "revenue-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/billing",
+            "label": "Billing",
+            "desc": "Recurring revenue",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/billing/usage-based-billing",
+            "label": "Metronome",
+            "desc": "Usage-based billing",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/billing/subscriptions",
+            "label": "Subscriptions",
+            "desc": "Subscription management",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/invoicing",
+            "label": "Invoicing",
+            "desc": "One-time or recurring",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/tax",
+            "label": "Tax",
+            "desc": "Sales tax & VAT automation",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/revenue-recognition",
+            "label": "Revenue Recognition",
+            "desc": "Accounting automation",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/sigma",
+            "label": "Stripe Sigma",
+            "desc": "Custom reports",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/data-pipeline",
+            "label": "Data Pipeline",
+            "desc": "Data sync",
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Money Management",
+        "titleId": "money-management-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/treasury",
+            "label": "Treasury",
+            "desc": "Business finances",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/payouts",
+            "label": "Global Payouts",
+            "desc": "Payouts to third parties",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/capital",
+            "label": "Capital",
+            "desc": "Business financing",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/crypto",
+            "label": "Crypto",
+            "desc": "Wallet, stablecoin issuing, and card infrastructure",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/crypto-onramp",
+            "label": "Crypto Onramp",
+            "desc": "Embeddable crypto purchases",
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Platforms and marketplaces",
+        "titleId": "platforms-and-marketplaces-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/connect",
+            "label": "Connect",
+            "desc": "Payments for platforms",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/capital/platforms",
+            "label": "Capital for platforms",
+            "desc": "Customer financing",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/treasury/platforms",
+            "label": "Treasury for platforms",
+            "desc": "Embedded financial services",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/issuing",
+            "label": "Issuing",
+            "desc": "Physical and virtual cards",
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "aside",
+        "cls": "navigation__section--secondary",
+        "title": "More",
+        "titleId": "more-products-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/roadmap",
+            "label": "Product roadmap",
+            "desc": "See what’s ahead",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/radar",
+            "label": "Radar",
+            "desc": "Fraud prevention",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/atlas",
+            "label": "Atlas",
+            "desc": "Startup incorporation",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/climate",
+            "label": "Climate",
+            "desc": "Carbon removal",
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/identity",
+            "label": "Identity",
+            "desc": "Online identity verification",
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": [
+          "<div class=\"sessions-banner\"><div class=\"sessions-banner__card\"><div class=\"sessions-banner__content\"><div><span class=\"hds-text hds-text--sm hds-text--emphasized\" id=\"sessions-banner-opening-text\">St"
+        ]
+      },
+      {
+        "tag": "div",
+        "cls": "personalize-banner",
+        "links": [],
+        "extras": [
+          "<span class=\"hds-text hds-text--sm hds-text--subdued\" id=\":r7:\"><strong class=\"hds-text hds-text--sm hds-text--emphasized\">Not sure where to start?</strong> Tell us about your business to get personal",
+          "<a class=\"hds-link hds-link--callout\" href=\"/personalize\" aria-describedby=\":r7:\" data-analytics-label=\"global_nav__products__find_whats_right\">Find what's right for you<span class=\"hds-nowrap-svg\"><s"
+        ]
+      }
+    ],
+    "trailing": []
+  },
+  "solutions": {
+    "contentCls": "navigation__content navigation__content--solutions",
+    "contentStyle": null,
+    "blocks": [
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "By stage",
+        "titleId": "by-stage-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/enterprise",
+            "label": "Enterprises",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/startups",
+            "label": "Startups",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "By use case",
+        "titleId": "by-use-case-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/use-cases/agentic-commerce",
+            "label": "Agentic commerce",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/crypto",
+            "label": "Crypto",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/ecommerce",
+            "label": "Ecommerce",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/embedded-finance",
+            "label": "Embedded finance",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/finance-automation",
+            "label": "Finance automation",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/global-businesses",
+            "label": "Global businesses",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/in-app-payments",
+            "label": "In-app payments",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/marketplaces",
+            "label": "Marketplaces",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/money-management/availability",
+            "label": "Money management",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/platforms",
+            "label": "Platforms",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/saas",
+            "label": "SaaS",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "By industry",
+        "titleId": "by-industry-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/use-cases/ai",
+            "label": "AI companies",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/use-cases/creator-economy",
+            "label": "Creator economy",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/fintech",
+            "label": "Fintech",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/gaming",
+            "label": "Gaming",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/travel",
+            "label": "Hospitality, travel, and leisure",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/insurance",
+            "label": "Insurance",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/media-entertainment",
+            "label": "Media and entertainment",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/nonprofits",
+            "label": "Nonprofits",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/professional-services",
+            "label": "Professional services",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/public-sector",
+            "label": "Public sector",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/industries/retail",
+            "label": "Retail",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "navigation__section--secondary navigation__section--ecosystem ",
+        "title": "Ecosystem",
+        "titleId": "ecosystem-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/partners",
+            "label": "Partners",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://marketplace.stripe.com/",
+            "label": "Stripe App Marketplace",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      }
+    ],
+    "trailing": []
+  },
+  "developers": {
+    "contentCls": "navigation__content navigation__content--developers",
+    "contentStyle": null,
+    "blocks": [
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Documentation",
+        "titleId": "documentation-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "https://docs.stripe.com/",
+            "label": "Stripe docs",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/api",
+            "label": "API reference",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/development",
+            "label": "Libraries and SDKs",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/apps",
+            "label": "Stripe Apps",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Guides",
+        "titleId": "guides-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "https://docs.stripe.com/payments",
+            "label": "Accept online payments",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/payments/checkout",
+            "label": "Implement a prebuilt checkout",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/connect",
+            "label": "Build a platform or marketplace",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/billing",
+            "label": "Manage subscriptions",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/billing/subscriptions/usage-based",
+            "label": "Offer usage-based billing",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/treasury/stablecoins",
+            "label": "Issue stablecoin-backed cards",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://docs.stripe.com/projects",
+            "label": "Provision and manage services with agents",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Resources",
+        "titleId": "resources-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "https://marketplace.stripe.com/",
+            "label": "App integrations",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://github.com/stripe-samples",
+            "label": "Code samples",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://stripe.dev/",
+            "label": "Developer blog",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://status.stripe.com/",
+            "label": "API status",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      }
+    ],
+    "trailing": []
+  },
+  "resources": {
+    "contentCls": "navigation__content navigation__content--resources",
+    "contentStyle": null,
+    "blocks": [
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Learn",
+        "titleId": "learn-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/blog",
+            "label": "Blog",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/customers",
+            "label": "Customer stories",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/guides",
+            "label": "Guides",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Support",
+        "titleId": "support-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "https://support.stripe.com/",
+            "label": "Get support",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/support-plans",
+            "label": "Managed support plans",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/professional-services",
+            "label": "Professional services",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "",
+        "title": "Company",
+        "titleId": "company-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/roadmap",
+            "label": "Product roadmap",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/sessions",
+            "label": "Sessions annual conference",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/careers",
+            "label": "Careers",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/newsroom",
+            "label": "Newsroom",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "https://press.stripe.com/",
+            "label": "Stripe Press",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/about",
+            "label": "About",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      },
+      {
+        "tag": "section",
+        "cls": "navigation__section--secondary navigation__section--contact",
+        "title": "Contact",
+        "titleId": "contact-section-title",
+        "ulCls": "navigation__links",
+        "links": [
+          {
+            "href": "/contact/sales",
+            "label": "Contact sales",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          },
+          {
+            "href": "/partners/become-a-partner",
+            "label": "Become a partner",
+            "desc": null,
+            "icon": null,
+            "cls": "hds-link"
+          }
+        ],
+        "extras": []
+      }
+    ],
+    "trailing": []
+  }
+}

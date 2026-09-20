@@ -1,0 +1,452 @@
+{
+  "assets": [
+    {
+      "contentType": "image/webp",
+      "id": "e21d5efa290a7c4d",
+      "kind": "image",
+      "name": "palette.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/e21d5efa290a7c4d.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/5DrmXrFYpKk43Kj0I1MXQr/287b3c2a13ae8d4d7d0bf8305037de4e/palette.png?fm=webp&q=95"
+    },
+    {
+      "contentType": "text/css",
+      "id": "01f1bfa79252498e",
+      "kind": "stylesheet",
+      "name": "5f8c822d1f0f2d3e.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/01f1bfa79252498e.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/5f8c822d1f0f2d3e.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "bc11a53020b6e4e9",
+      "kind": "stylesheet",
+      "name": "3194942a3bd6eca4.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/bc11a53020b6e4e9.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/3194942a3bd6eca4.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "dd70ac6ea9a30c67",
+      "kind": "stylesheet",
+      "name": "e5be0f41b7fa7f3f.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/dd70ac6ea9a30c67.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/e5be0f41b7fa7f3f.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "e422b11417ee129a",
+      "kind": "stylesheet",
+      "name": "94342c617ab45d83.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/e422b11417ee129a.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/94342c617ab45d83.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "8868943e7568f710",
+      "kind": "stylesheet",
+      "name": "c3ca6e08b62a6ac3.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/8868943e7568f710.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/c3ca6e08b62a6ac3.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "1baf8334042bfd7f",
+      "kind": "stylesheet",
+      "name": "f0e2ab8fd074466f.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/1baf8334042bfd7f.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/f0e2ab8fd074466f.css"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "2cc4a4b33051c243",
+      "kind": "image",
+      "name": "issuing-palette.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/2cc4a4b33051c243.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/3ybjmQ6DTTkLCgjGUEfh78/11df94fe6aa9931d1e1bc6a8bd4446cc/issuing-palette.png?fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "6469feb694db9f02",
+      "kind": "image",
+      "name": "issuing_card_fg.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/6469feb694db9f02.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/5aX9aGpHZ4QT80EUfElAki/5cb769dcb801286aaf934ac638e203ac/issuing_card_fg.png?fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "daada8b8635bfce0",
+      "kind": "image",
+      "name": "issuing_card_bg.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/daada8b8635bfce0.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/I0JvzCn6SNxFosX2VFVF7/4be20d65bbb970021b5e5b75c3e2aac8/issuing_card_bg.png?fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "5793385d75281137",
+      "kind": "image",
+      "name": "shirt-blue.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/5793385d75281137.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/2rL4pJabxq9Yo0haXwK2HO/83c05122b463c882c8c89111154d77ec/shirt-blue.png?w=160&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "3125347a5caec288",
+      "kind": "image",
+      "name": "hoodie-navy.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/3125347a5caec288.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6KmB7XGsUbTefNew25WF4T/6a949fbf5567dcd145339f5fcf207fae/hoodie-navy.png?w=160&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "99395119465ecbbf",
+      "kind": "image",
+      "name": "payment-bento-background.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/99395119465ecbbf.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/vYmk6v8n7oDAwbDpwhjV6/846f9b3e214549b8f14e2b8c8cfe9343/payment-bento-background.jpg?w=860&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "5b041e8d7850f15e",
+      "kind": "image",
+      "name": "bento-terminal.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/5b041e8d7850f15e.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1Vf8oT9Fm6dEwpnEx5PgK1/055956f38d7fd8b0cc7419692ef29778/bento-terminal.png?w=308&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "d537cfaab2a2fdc6",
+      "kind": "image",
+      "name": "payments-electric-kettle.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/d537cfaab2a2fdc6.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6BTjJGdjfGVA8brPwj7p3M/fcf084ff85142366e118fe85ee78b632/payments-electric-kettle.jpg?w=80&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "0572982e6693159b",
+      "kind": "image",
+      "name": "wave-fallback-desktop.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/0572982e6693159b.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/115d4Vd5LVAsqFGDR1ClAv/0ceb2c44a7a7182cd624262420af7544/wave-fallback-desktop.png?w=1392&fm=webp&q=60"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "62297a6c829bb7a2",
+      "kind": "image",
+      "name": "connect-bento-card-background-image.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/62297a6c829bb7a2.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/3NcSrMqMgaKe75QNr8wZI8/46d520dfc48c5b9f1c59dcde9460b58c/connect-bento-card-background-image.jpg?w=1232&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "2007c6b53562ee3e",
+      "kind": "image",
+      "name": "payments-hoodie.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/2007c6b53562ee3e.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/5Dr3Oc550drIrxyzzXgFbq/f6e4fb0b8b4b40d73e94fdf7c9bc7028/payments-hoodie.jpg?w=80&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "eabb3ecd56e1c6e0",
+      "kind": "image",
+      "name": "showflix-streaming.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/eabb3ecd56e1c6e0.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1UE1lPgwbfQRH586XfTWKM/f90bfc79f87b3e60a4189cc0f5a03228/showflix-streaming.jpg?w=80&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "406cb61bb026509a",
+      "kind": "image",
+      "name": "sessions-2026-on-demand-bg.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/406cb61bb026509a.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/2YFdgdFPeIiDpmQbhHPAx8/186752498bf713fea245f31bcec84f8a/sessions-2026-on-demand-bg.png?w=1632&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "a9f2229a44be8368",
+      "kind": "image",
+      "name": "point_spritesheet.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/a9f2229a44be8368.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6vyKd0ycEpRdidbphWpbyy/da3e69f893b1f3e3ae34481f5387593e/point_spritesheet.png?fm=webp&q=95"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "533e3d6f8020cdc9",
+      "kind": "image",
+      "name": "enterprise-accordion-hertz.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/533e3d6f8020cdc9.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/24BNV3GGtvCprFLrYovyaa/b2eac20a1d5ec75e4bff3888b998d163/enterprise-accordion-hertz.png?w=1632&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "972ee253d7ca9a24",
+      "kind": "image",
+      "name": "lovable.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/972ee253d7ca9a24.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1CBkJePR5Cwf2QNIVCia1I/c0a702cec7a3814c69f21f86b89ed718/lovable.png?w=432&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "d46c5612769dc1af",
+      "kind": "image",
+      "name": "Runway.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/d46c5612769dc1af.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6fpvaTP1TZWXKWVMewABjV/4412b9ca2940d89d3834ac65c1fc329d/Runway.png?w=432&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "217d37ee590be1df",
+      "kind": "image",
+      "name": "Gamma.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/217d37ee590be1df.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/2QjRFO1cRvocACDtyA7g9e/44245671788d6e086ab7d82b37937450/Gamma.png?w=432&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "77b72612fc8940e3",
+      "kind": "image",
+      "name": "linear.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/77b72612fc8940e3.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/4b8Ubw7N2kYwb7QZl3Ogri/422cc19f725aa68e647d90ce2833c8d0/linear.png?w=432&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "fa2b8531433bb31e",
+      "kind": "image",
+      "name": "Supabase.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/fa2b8531433bb31e.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/7fM8bvEbivprOMM1zyow9N/3cad3cc826f96e4038b4ea88d81ebe3b/Supabase.png?w=432&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "0ee2cea304cc1fa3",
+      "kind": "image",
+      "name": "Eleven_Labs.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/0ee2cea304cc1fa3.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/JK7aZoMzWA3uUbLb35kxx/dea1444a0aee29751c0c7098ffb33534/Eleven_Labs.png?w=432&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "3d41293d993eb137",
+      "kind": "image",
+      "name": "card_startups.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/3d41293d993eb137.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1DZkp4Ce0kiwj2F2Z0kJ16/fcb4904fd728f49521385059618245b9/card_startups.png?w=585&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "52afe3dd1ff7b1b4",
+      "kind": "image",
+      "name": "platform-graphic-background_2x.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/52afe3dd1ff7b1b4.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/5dQAw5oJf3TOO1Jt6IKDRH/f391594c11f38d821259acdd3412a7a6/platform-graphic-background_2x.png?w=1632&fm=webp&q=90"
+    },
+    {
+      "contentType": "text/css",
+      "id": "de792ecb13320901",
+      "kind": "stylesheet",
+      "name": "d829866f0dc0cad9.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/de792ecb13320901.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/d829866f0dc0cad9.css"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "5a7afa697a9da5b5",
+      "kind": "image",
+      "name": "KurtisMoyer.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/5a7afa697a9da5b5.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/4oTkzvOAoM5Ruub2qYNVRC/cfb038e66b1d8bc034b6a178484862a8/KurtisMoyer.png?w=48&fm=webp&q=90"
+    },
+    {
+      "contentType": "text/css",
+      "id": "35f361bce1836c09",
+      "kind": "stylesheet",
+      "name": "7fe9607f2fcd2964.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/35f361bce1836c09.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/7fe9607f2fcd2964.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "08bb71c05e2eaff6",
+      "kind": "stylesheet",
+      "name": "5e8a245fcb880dab.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/08bb71c05e2eaff6.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/5e8a245fcb880dab.css"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "d45112ec3675785a",
+      "kind": "image",
+      "name": "palette.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/d45112ec3675785a.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/3cjVwJCaCw71JmfHX6NF9g/9ec881b5189f0ff53a405d5b0263d1db/palette.png?fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "caeb2ab07ca1960c",
+      "kind": "image",
+      "name": "QRCode.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/caeb2ab07ca1960c.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/2AQaqFVlwXgXxBRIwIp9ry/c597bf42bd93eef022cbc6933c0d7cbc/QRCode.png?w=70&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "9dd920926fe2799a",
+      "kind": "image",
+      "name": "annual-letter-desktop.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/9dd920926fe2799a.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/Y7G5D3VhjwO68bdA184Co/b75ee8a57b8380f28e319a516f6e9754/annual-letter-desktop.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "aa155eeb1d5aac86",
+      "kind": "image",
+      "name": "the-happenings-bfcm.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/aa155eeb1d5aac86.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/4A5cyeaWZkRbEslyjm1Elg/914e742c8459fe438d8746132cb634a3/the-happenings-bfcm.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "67c335e428381365",
+      "kind": "image",
+      "name": "the-happenings-tidemark.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/67c335e428381365.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6AfkiqtqXocOFPkmOjqe8N/9a89d706bd8ad1500c5b189e05270487/the-happenings-tidemark.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "921436b7aae2895e",
+      "kind": "image",
+      "name": "the-happenings-cheeky-pint.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/921436b7aae2895e.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/44P8uzAQSXCD3mOObNfmoP/c4226e9b4e40f328ce2ccf68324500ee/the-happenings-cheeky-pint.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "91da2eb08ae016ba",
+      "kind": "image",
+      "name": "the-happenings-payment-processing.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/91da2eb08ae016ba.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1ZY0hhcESN4qWmha0ISm5R/14f4ce82b8b8644e56692427b1f56dfa/the-happenings-payment-processing.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "e8350fff0914ffeb",
+      "kind": "image",
+      "name": "the-happenings-crypto.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/e8350fff0914ffeb.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1pEVpyQu2XQ92txRRpfd1q/7d05e6e635bc9974dbff576828336ca7/the-happenings-crypto.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "7cfa6b5ea6009a19",
+      "kind": "image",
+      "name": "the-happenings-payment-retailers.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/7cfa6b5ea6009a19.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/42GJHxlnEVsoUsSVeVfvbL/884b4c63f5fd52cf127958ac4936de05/the-happenings-payment-retailers.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "ded3cad3537b002e",
+      "kind": "image",
+      "name": "the-happenings-agentic.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/ded3cad3537b002e.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6mg4xss8cmX0Wx46RemzLm/266638f904dc8b908dc22f12c37ee27b/the-happenings-agentic.png?w=866&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "889bed4359b4fe11",
+      "kind": "image",
+      "name": "WorkInProgressIcon.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/889bed4359b4fe11.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1hmjWQj2Xwglop2rAW62zf/2899db472c5095e1a6b69bee0ead60c9/WorkInProgressIcon.png?w=32&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "c9d025da7cad77d7",
+      "kind": "image",
+      "name": "Book_cover__10_.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/c9d025da7cad77d7.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/398SZ6TAV3HLwAVSx9DN3i/f3a4e32abbf90cdedad4cdfa8a7a285c/Book_cover__10_.png?w=592&fm=webp&q=90"
+    }
+  ],
+  "directoryPath": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b",
+  "failures": [
+    {
+      "contentType": null,
+      "id": "0ab0832c8cc92b35",
+      "name": "Sohne.cb178166.woff2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/media/Sohne.cb178166.woff2"
+    },
+    {
+      "contentType": null,
+      "id": "ec203ee56b415fcf",
+      "name": "SourceCodePro-Medium.f5ba3e6a.woff2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/media/SourceCodePro-Medium.f5ba3e6a.woff2"
+    },
+    {
+      "contentType": null,
+      "id": "989930483eff12c6",
+      "name": "wave-fallback-desktop.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/115d4Vd5LVAsqFGDR1ClAv/0ceb2c44a7a7182cd624262420af7544/wave-fallback-desktop.png?w=2784&fm=webp&q=60"
+    },
+    {
+      "contentType": null,
+      "id": "5edba69b5bdcec20",
+      "name": "payment-bento-background.jpg",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/vYmk6v8n7oDAwbDpwhjV6/846f9b3e214549b8f14e2b8c8cfe9343/payment-bento-background.jpg?w=1720&fm=webp&q=80"
+    },
+    {
+      "contentType": null,
+      "id": "3ef4ceb83bc21421",
+      "name": "map_dots.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/2hmAf1AbLIejlWrAYU4iiK/cf0f4918753c76d8e37782e084d16320/map_dots.png"
+    },
+    {
+      "contentType": null,
+      "id": "f427e55471cc2b2f",
+      "name": "bento-terminal.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1Vf8oT9Fm6dEwpnEx5PgK1/055956f38d7fd8b0cc7419692ef29778/bento-terminal.png?w=616&fm=webp&q=90"
+    },
+    {
+      "contentType": null,
+      "id": "e6b1a280963066b6",
+      "name": "payments-electric-kettle.jpg",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6BTjJGdjfGVA8brPwj7p3M/fcf084ff85142366e118fe85ee78b632/payments-electric-kettle.jpg?w=160&fm=webp&q=90"
+    },
+    {
+      "contentType": null,
+      "id": "1afea23f6be9bd77",
+      "name": "wave-fallback-mobile.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/18ArQFiazlljjIKGV0OnTb/2e15cabc1c905bb65e7de2678d3b60a9/wave-fallback-mobile.png?w=624&fm=webp&q=60"
+    },
+    {
+      "contentType": null,
+      "id": "fdd87a76a6d787eb",
+      "name": "favicon.ico",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://assets.stripeassets.com/fzn2n1nzq965/nu0iR4KqmkdJ52fgRts09/c3a10df318e7ffb1f516073daadea625/favicon.ico"
+    },
+    {
+      "contentType": null,
+      "id": "fb612e66f70950ab",
+      "name": "1x1.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/3jUP7c85zrHqgs8uEwI2at/ec0e38a66611918dcb1bb168e33b7a28/1x1.png?fm=webp"
+    }
+  ],
+  "manifestPath": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/97472b6d-3787-4021-a5ea-d8efd3ff144b/manifest.json",
+  "summary": {
+    "downloadedCount": 46,
+    "elapsedMs": 1296.1735000000335,
+    "failedCount": 10,
+    "requestedCount": 56
+  }
+}

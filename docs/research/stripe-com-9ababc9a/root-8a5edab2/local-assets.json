@@ -1,0 +1,1454 @@
+[
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/media/Sohne.cb178166.woff2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0ab0832c8cc9.woff2",
+    "kind": "font",
+    "bytes": 58852
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/media/SourceCodePro-Medium.f5ba3e6a.woff2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ec203ee56b41.woff2",
+    "kind": "font",
+    "bytes": 11880
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/5DrmXrFYpKk43Kj0I1MXQr/287b3c2a13ae8d4d7d0bf8305037de4e/palette.png?fm=webp&q=95",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e21d5efa290a.png",
+    "kind": "image",
+    "bytes": 11524
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/5f8c822d1f0f2d3e.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/01f1bfa79252.css",
+    "kind": "stylesheet",
+    "bytes": 2723
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/115d4Vd5LVAsqFGDR1ClAv/0ceb2c44a7a7182cd624262420af7544/wave-fallback-desktop.png?w=2784&fm=webp&q=60",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/989930483eff.png",
+    "kind": "image",
+    "bytes": 93584
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/3194942a3bd6eca4.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/bc11a53020b6.css",
+    "kind": "stylesheet",
+    "bytes": 32185
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/e5be0f41b7fa7f3f.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/dd70ac6ea9a3.css",
+    "kind": "stylesheet",
+    "bytes": 303489
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/94342c617ab45d83.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e422b11417ee.css",
+    "kind": "stylesheet",
+    "bytes": 66289
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/c3ca6e08b62a6ac3.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8868943e7568.css",
+    "kind": "stylesheet",
+    "bytes": 79486
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/vYmk6v8n7oDAwbDpwhjV6/846f9b3e214549b8f14e2b8c8cfe9343/payment-bento-background.jpg?w=1720&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5edba69b5bdc.jpg",
+    "kind": "image",
+    "bytes": 37176
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/2hmAf1AbLIejlWrAYU4iiK/cf0f4918753c76d8e37782e084d16320/map_dots.png",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3ef4ceb83bc2.png",
+    "kind": "image",
+    "bytes": 73064
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1Vf8oT9Fm6dEwpnEx5PgK1/055956f38d7fd8b0cc7419692ef29778/bento-terminal.png?w=616&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f427e55471cc.png",
+    "kind": "image",
+    "bytes": 69504
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/6BTjJGdjfGVA8brPwj7p3M/fcf084ff85142366e118fe85ee78b632/payments-electric-kettle.jpg?w=160&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e6b1a2809630.jpg",
+    "kind": "image",
+    "bytes": 1354
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/f0e2ab8fd074466f.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1baf8334042b.css",
+    "kind": "stylesheet",
+    "bytes": 2805
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/3ybjmQ6DTTkLCgjGUEfh78/11df94fe6aa9931d1e1bc6a8bd4446cc/issuing-palette.png?fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/2cc4a4b33051.png",
+    "kind": "image",
+    "bytes": 3308
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/5aX9aGpHZ4QT80EUfElAki/5cb769dcb801286aaf934ac638e203ac/issuing_card_fg.png?fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6469feb694db.png",
+    "kind": "image",
+    "bytes": 25298
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/I0JvzCn6SNxFosX2VFVF7/4be20d65bbb970021b5e5b75c3e2aac8/issuing_card_bg.png?fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/daada8b8635b.png",
+    "kind": "image",
+    "bytes": 3540
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/2rL4pJabxq9Yo0haXwK2HO/83c05122b463c882c8c89111154d77ec/shirt-blue.png?w=160&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5793385d7528.png",
+    "kind": "image",
+    "bytes": 5558
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/6KmB7XGsUbTefNew25WF4T/6a949fbf5567dcd145339f5fcf207fae/hoodie-navy.png?w=160&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3125347a5cae.png",
+    "kind": "image",
+    "bytes": 6472
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/18ArQFiazlljjIKGV0OnTb/2e15cabc1c905bb65e7de2678d3b60a9/wave-fallback-mobile.png?w=624&fm=webp&q=60",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1afea23f6be9.png",
+    "kind": "image",
+    "bytes": 17926
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/vYmk6v8n7oDAwbDpwhjV6/846f9b3e214549b8f14e2b8c8cfe9343/payment-bento-background.jpg?w=860&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/99395119465e.jpg",
+    "kind": "image",
+    "bytes": 12700
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1Vf8oT9Fm6dEwpnEx5PgK1/055956f38d7fd8b0cc7419692ef29778/bento-terminal.png?w=308&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5b041e8d7850.png",
+    "kind": "image",
+    "bytes": 12362
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/6BTjJGdjfGVA8brPwj7p3M/fcf084ff85142366e118fe85ee78b632/payments-electric-kettle.jpg?w=80&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d537cfaab2a2.jpg",
+    "kind": "image",
+    "bytes": 650
+  },
+  {
+    "url": "https://assets.stripeassets.com/fzn2n1nzq965/nu0iR4KqmkdJ52fgRts09/c3a10df318e7ffb1f516073daadea625/favicon.ico",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/fdd87a76a6d7.ico",
+    "kind": "image",
+    "bytes": 15086
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/115d4Vd5LVAsqFGDR1ClAv/0ceb2c44a7a7182cd624262420af7544/wave-fallback-desktop.png?w=1392&fm=webp&q=60",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0572982e6693.png",
+    "kind": "image",
+    "bytes": 33544
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/3NcSrMqMgaKe75QNr8wZI8/46d520dfc48c5b9f1c59dcde9460b58c/connect-bento-card-background-image.jpg?w=1232&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/62297a6c829b.jpg",
+    "kind": "image",
+    "bytes": 77144
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/5Dr3Oc550drIrxyzzXgFbq/f6e4fb0b8b4b40d73e94fdf7c9bc7028/payments-hoodie.jpg?w=80&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/2007c6b53562.jpg",
+    "kind": "image",
+    "bytes": 762
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1UE1lPgwbfQRH586XfTWKM/f90bfc79f87b3e60a4189cc0f5a03228/showflix-streaming.jpg?w=80&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/eabb3ecd56e1.jpg",
+    "kind": "image",
+    "bytes": 684
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/2YFdgdFPeIiDpmQbhHPAx8/186752498bf713fea245f31bcec84f8a/sessions-2026-on-demand-bg.png?w=1632&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/406cb61bb026.png",
+    "kind": "image",
+    "bytes": 54524
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/6vyKd0ycEpRdidbphWpbyy/da3e69f893b1f3e3ae34481f5387593e/point_spritesheet.png?fm=webp&q=95",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a9f2229a44be.png",
+    "kind": "image",
+    "bytes": 2294
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/24BNV3GGtvCprFLrYovyaa/b2eac20a1d5ec75e4bff3888b998d163/enterprise-accordion-hertz.png?w=1632&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/533e3d6f8020.png",
+    "kind": "image",
+    "bytes": 205658
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1CBkJePR5Cwf2QNIVCia1I/c0a702cec7a3814c69f21f86b89ed718/lovable.png?w=432&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/972ee253d7ca.png",
+    "kind": "image",
+    "bytes": 16218
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/6fpvaTP1TZWXKWVMewABjV/4412b9ca2940d89d3834ac65c1fc329d/Runway.png?w=432&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d46c5612769d.png",
+    "kind": "image",
+    "bytes": 22402
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/2QjRFO1cRvocACDtyA7g9e/44245671788d6e086ab7d82b37937450/Gamma.png?w=432&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/217d37ee590b.png",
+    "kind": "image",
+    "bytes": 18208
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/4b8Ubw7N2kYwb7QZl3Ogri/422cc19f725aa68e647d90ce2833c8d0/linear.png?w=432&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/77b72612fc89.png",
+    "kind": "image",
+    "bytes": 2922
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/7fM8bvEbivprOMM1zyow9N/3cad3cc826f96e4038b4ea88d81ebe3b/Supabase.png?w=432&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/fa2b8531433b.png",
+    "kind": "image",
+    "bytes": 4046
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/JK7aZoMzWA3uUbLb35kxx/dea1444a0aee29751c0c7098ffb33534/Eleven_Labs.png?w=432&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0ee2cea304cc.png",
+    "kind": "image",
+    "bytes": 5328
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1DZkp4Ce0kiwj2F2Z0kJ16/fcb4904fd728f49521385059618245b9/card_startups.png?w=585&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3d41293d993e.png",
+    "kind": "image",
+    "bytes": 7394
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/5dQAw5oJf3TOO1Jt6IKDRH/f391594c11f38d821259acdd3412a7a6/platform-graphic-background_2x.png?w=1632&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/52afe3dd1ff7.png",
+    "kind": "image",
+    "bytes": 146764
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/d829866f0dc0cad9.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/de792ecb1332.css",
+    "kind": "stylesheet",
+    "bytes": 15822
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/4oTkzvOAoM5Ruub2qYNVRC/cfb038e66b1d8bc034b6a178484862a8/KurtisMoyer.png?w=48&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5a7afa697a9d.png",
+    "kind": "image",
+    "bytes": 1364
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/7fe9607f2fcd2964.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/35f361bce183.css",
+    "kind": "stylesheet",
+    "bytes": 318
+  },
+  {
+    "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/5e8a245fcb880dab.css",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/08bb71c05e2e.css",
+    "kind": "stylesheet",
+    "bytes": 104
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/3cjVwJCaCw71JmfHX6NF9g/9ec881b5189f0ff53a405d5b0263d1db/palette.png?fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d45112ec3675.png",
+    "kind": "image",
+    "bytes": 4414
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/2AQaqFVlwXgXxBRIwIp9ry/c597bf42bd93eef022cbc6933c0d7cbc/QRCode.png?w=70&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/caeb2ab07ca1.png",
+    "kind": "image",
+    "bytes": 2666
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/3jUP7c85zrHqgs8uEwI2at/ec0e38a66611918dcb1bb168e33b7a28/1x1.png?fm=webp",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/fb612e66f709.png",
+    "kind": "image",
+    "bytes": 38
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/Y7G5D3VhjwO68bdA184Co/b75ee8a57b8380f28e319a516f6e9754/annual-letter-desktop.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9dd920926fe2.png",
+    "kind": "image",
+    "bytes": 19630
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/4A5cyeaWZkRbEslyjm1Elg/914e742c8459fe438d8746132cb634a3/the-happenings-bfcm.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/aa155eeb1d5a.png",
+    "kind": "image",
+    "bytes": 45568
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/6AfkiqtqXocOFPkmOjqe8N/9a89d706bd8ad1500c5b189e05270487/the-happenings-tidemark.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/67c335e42838.png",
+    "kind": "image",
+    "bytes": 72620
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/44P8uzAQSXCD3mOObNfmoP/c4226e9b4e40f328ce2ccf68324500ee/the-happenings-cheeky-pint.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/921436b7aae2.png",
+    "kind": "image",
+    "bytes": 31704
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1ZY0hhcESN4qWmha0ISm5R/14f4ce82b8b8644e56692427b1f56dfa/the-happenings-payment-processing.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/91da2eb08ae0.png",
+    "kind": "image",
+    "bytes": 28990
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1pEVpyQu2XQ92txRRpfd1q/7d05e6e635bc9974dbff576828336ca7/the-happenings-crypto.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e8350fff0914.png",
+    "kind": "image",
+    "bytes": 19148
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/42GJHxlnEVsoUsSVeVfvbL/884b4c63f5fd52cf127958ac4936de05/the-happenings-payment-retailers.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/7cfa6b5ea600.png",
+    "kind": "image",
+    "bytes": 60860
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/6mg4xss8cmX0Wx46RemzLm/266638f904dc8b908dc22f12c37ee27b/the-happenings-agentic.png?w=866&fm=webp&q=80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ded3cad3537b.png",
+    "kind": "image",
+    "bytes": 7312
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/1hmjWQj2Xwglop2rAW62zf/2899db472c5095e1a6b69bee0ead60c9/WorkInProgressIcon.png?w=32&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/889bed4359b4.png",
+    "kind": "image",
+    "bytes": 370
+  },
+  {
+    "url": "https://images.stripeassets.com/fzn2n1nzq965/398SZ6TAV3HLwAVSx9DN3i/f3a4e32abbf90cdedad4cdfa8a7a285c/Book_cover__10_.png?w=592&fm=webp&q=90",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c9d025da7cad.png",
+    "kind": "image",
+    "bytes": 44846
+  },
+  {
+    "url": "inline-svg:26c38877489e0b4f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1e2a6cdfb6d8.svg",
+    "kind": "image",
+    "bytes": 1922
+  },
+  {
+    "url": "inline-svg:3b1a951c4ecbd107",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0126bc8bd38d.svg",
+    "kind": "image",
+    "bytes": 416
+  },
+  {
+    "url": "inline-svg:2a8da5c5d3b4b2cc",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5b8cb48bc3fd.svg",
+    "kind": "image",
+    "bytes": 416
+  },
+  {
+    "url": "inline-svg:7fc594725a8dab88",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/902ff5ef774d.svg",
+    "kind": "image",
+    "bytes": 416
+  },
+  {
+    "url": "inline-svg:989efd2ceb9405d2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/bf07c5ee8649.svg",
+    "kind": "image",
+    "bytes": 416
+  },
+  {
+    "url": "inline-svg:eca7a153e158d3c2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8353854234c2.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:639f1a7279b2b626",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/969323a70749.svg",
+    "kind": "image",
+    "bytes": 247
+  },
+  {
+    "url": "inline-svg:a8283e27f0f829b9",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a45c02b0cf76.svg",
+    "kind": "image",
+    "bytes": 590
+  },
+  {
+    "url": "inline-svg:9a30c498318d23bb",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e62ad4612f84.svg",
+    "kind": "image",
+    "bytes": 500
+  },
+  {
+    "url": "inline-svg:ca464511a39e779d",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/094b9657f552.svg",
+    "kind": "image",
+    "bytes": 515
+  },
+  {
+    "url": "inline-svg:4656e4e055e24551",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1807cf9cd7a6.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:8b8862ac5c14c908",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/513456f68a84.svg",
+    "kind": "image",
+    "bytes": 1243
+  },
+  {
+    "url": "inline-svg:a1cda10477a941af",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a6dec3401f27.svg",
+    "kind": "image",
+    "bytes": 1393
+  },
+  {
+    "url": "inline-svg:2a8500ea6ed0df8a",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/763771f86d84.svg",
+    "kind": "image",
+    "bytes": 4599
+  },
+  {
+    "url": "inline-svg:95a32f2408581ef6",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b05673d3ef84.svg",
+    "kind": "image",
+    "bytes": 1992
+  },
+  {
+    "url": "inline-svg:d6019900f5e94471",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/32f2777c41ad.svg",
+    "kind": "image",
+    "bytes": 4978
+  },
+  {
+    "url": "inline-svg:31767f1d332b5943",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9716ae4b7d9c.svg",
+    "kind": "image",
+    "bytes": 2609
+  },
+  {
+    "url": "inline-svg:9d0b3c3e67896538",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/166b750a0bf5.svg",
+    "kind": "image",
+    "bytes": 2152
+  },
+  {
+    "url": "inline-svg:db4cd5848919b4c0",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3fa1e69e4a09.svg",
+    "kind": "image",
+    "bytes": 3787
+  },
+  {
+    "url": "inline-svg:bb7942f746756ce7",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6c9fa8e27442.svg",
+    "kind": "image",
+    "bytes": 2424
+  },
+  {
+    "url": "inline-svg:80590577ec51c149",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/cca058b8628f.svg",
+    "kind": "image",
+    "bytes": 2945
+  },
+  {
+    "url": "inline-svg:95a477cc1450df56",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a4af5b2c58eb.svg",
+    "kind": "image",
+    "bytes": 3059
+  },
+  {
+    "url": "inline-svg:35e47a031acde247",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/00e6e1a1d7f8.svg",
+    "kind": "image",
+    "bytes": 2329
+  },
+  {
+    "url": "inline-svg:7cdcfc40487e72a6",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c9431a1322b6.svg",
+    "kind": "image",
+    "bytes": 1958
+  },
+  {
+    "url": "inline-svg:798d1f948627fa41",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/544935f1c14a.svg",
+    "kind": "image",
+    "bytes": 1133
+  },
+  {
+    "url": "inline-svg:d0dde8469b389e09",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c80060cd1427.svg",
+    "kind": "image",
+    "bytes": 1901
+  },
+  {
+    "url": "inline-svg:66bf8fc4101c47a2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c3f1c6a2302a.svg",
+    "kind": "image",
+    "bytes": 1973
+  },
+  {
+    "url": "inline-svg:87666a0f388be492",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/70dcd9f0db39.svg",
+    "kind": "image",
+    "bytes": 1935
+  },
+  {
+    "url": "inline-svg:5f22dea4ea8f3374",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/df9fc4384d17.svg",
+    "kind": "image",
+    "bytes": 9116
+  },
+  {
+    "url": "inline-svg:4be5f1eb229e1609",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/31a167225ac6.svg",
+    "kind": "image",
+    "bytes": 2545
+  },
+  {
+    "url": "inline-svg:d5daa4c043172653",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/05ef0090c77d.svg",
+    "kind": "image",
+    "bytes": 1393
+  },
+  {
+    "url": "inline-svg:943f1b8dbf664186",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/7cb483afa537.svg",
+    "kind": "image",
+    "bytes": 4599
+  },
+  {
+    "url": "inline-svg:11f4f16f1eeb3073",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5d120d0f7ca8.svg",
+    "kind": "image",
+    "bytes": 1992
+  },
+  {
+    "url": "inline-svg:d93dcbb02bc35145",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/2ebebe45c184.svg",
+    "kind": "image",
+    "bytes": 4978
+  },
+  {
+    "url": "inline-svg:901a05a03e75745c",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0a05740f4f09.svg",
+    "kind": "image",
+    "bytes": 2609
+  },
+  {
+    "url": "inline-svg:8ab32cf74b1981bd",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1d4c5507e055.svg",
+    "kind": "image",
+    "bytes": 2152
+  },
+  {
+    "url": "inline-svg:66b7ee3d70aacf69",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6555e4b500fa.svg",
+    "kind": "image",
+    "bytes": 3787
+  },
+  {
+    "url": "inline-svg:9e5f82d4186f1e85",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/909383dc8a50.svg",
+    "kind": "image",
+    "bytes": 2424
+  },
+  {
+    "url": "inline-svg:23934bca747b75aa",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a5c86e27fcdf.svg",
+    "kind": "image",
+    "bytes": 2945
+  },
+  {
+    "url": "inline-svg:0006cbb3711612cb",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5352d839ade2.svg",
+    "kind": "image",
+    "bytes": 3059
+  },
+  {
+    "url": "inline-svg:730803554d97d469",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c2cfbae46ca3.svg",
+    "kind": "image",
+    "bytes": 2329
+  },
+  {
+    "url": "inline-svg:f464f9c470fbcbc7",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/7f879b702eab.svg",
+    "kind": "image",
+    "bytes": 1958
+  },
+  {
+    "url": "inline-svg:6b0d1330379ef564",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f6ca9051e0c4.svg",
+    "kind": "image",
+    "bytes": 1133
+  },
+  {
+    "url": "inline-svg:aeec88719abe0381",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b89bef9ee9c1.svg",
+    "kind": "image",
+    "bytes": 1901
+  },
+  {
+    "url": "inline-svg:fdf3f0a6a2c64a80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0cbf3f2eef71.svg",
+    "kind": "image",
+    "bytes": 1973
+  },
+  {
+    "url": "inline-svg:07824799afcb43a0",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a809595b382d.svg",
+    "kind": "image",
+    "bytes": 1935
+  },
+  {
+    "url": "inline-svg:7f23dd037f40a804",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/95270b4264ed.svg",
+    "kind": "image",
+    "bytes": 9116
+  },
+  {
+    "url": "inline-svg:603ca657e301641a",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9f9dc89742da.svg",
+    "kind": "image",
+    "bytes": 2545
+  },
+  {
+    "url": "inline-svg:ed6c2ff1da3437dd",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/eef7c1ada32a.svg",
+    "kind": "image",
+    "bytes": 300
+  },
+  {
+    "url": "inline-svg:d2e7a4733e7661c5",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ad2a80a503e9.svg",
+    "kind": "image",
+    "bytes": 6451
+  },
+  {
+    "url": "inline-svg:dde7070ab0880e10",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b12bd0a28e1d.svg",
+    "kind": "image",
+    "bytes": 335
+  },
+  {
+    "url": "inline-svg:7fbb2d27e80bddee",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/88a810d2c6c0.svg",
+    "kind": "image",
+    "bytes": 604
+  },
+  {
+    "url": "inline-svg:d8b83abba1abedbd",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a649ea2e7ad0.svg",
+    "kind": "image",
+    "bytes": 6499
+  },
+  {
+    "url": "inline-svg:92b07077538946ec",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3dd1889239cc.svg",
+    "kind": "image",
+    "bytes": 5058
+  },
+  {
+    "url": "inline-svg:924e62ea7413468f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/909692536188.svg",
+    "kind": "image",
+    "bytes": 12510
+  },
+  {
+    "url": "inline-svg:749bd0a0f32dea31",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d3574d80665c.svg",
+    "kind": "image",
+    "bytes": 6499
+  },
+  {
+    "url": "inline-svg:a189ec0cf0965989",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/91354749c290.svg",
+    "kind": "image",
+    "bytes": 1064
+  },
+  {
+    "url": "inline-svg:f22a53e788b59780",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b2eb2238c67c.svg",
+    "kind": "image",
+    "bytes": 2257
+  },
+  {
+    "url": "inline-svg:67ab0aa075140a98",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0e0fdfd86bfb.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:ef20713f7145099e",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/daa5bdfe235f.svg",
+    "kind": "image",
+    "bytes": 666
+  },
+  {
+    "url": "inline-svg:86847156e4ff951f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f10c24dc1fd2.svg",
+    "kind": "image",
+    "bytes": 686
+  },
+  {
+    "url": "inline-svg:7912bfede389f923",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1fa769b399f3.svg",
+    "kind": "image",
+    "bytes": 2007
+  },
+  {
+    "url": "inline-svg:d717e6a875819ce4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/812977576718.svg",
+    "kind": "image",
+    "bytes": 686
+  },
+  {
+    "url": "inline-svg:55304e3c23b1c4e7",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3ef7958a9774.svg",
+    "kind": "image",
+    "bytes": 2750
+  },
+  {
+    "url": "inline-svg:ed5a872d2470920f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b92885a04d8a.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:06494bab9afed669",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1cec4319b5a7.svg",
+    "kind": "image",
+    "bytes": 666
+  },
+  {
+    "url": "inline-svg:2c48cd6c15932414",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/22bcf39eff1d.svg",
+    "kind": "image",
+    "bytes": 707
+  },
+  {
+    "url": "inline-svg:b62404dcb6c6acd8",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9c29d5889149.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:f6ebfd810d80ae99",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9dbca5a17ce3.svg",
+    "kind": "image",
+    "bytes": 666
+  },
+  {
+    "url": "inline-svg:9cafa79ddc4e3317",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0c2c0f8be9c2.svg",
+    "kind": "image",
+    "bytes": 1316
+  },
+  {
+    "url": "inline-svg:500d542460dd54fc",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a676d2f71b48.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:fba1c8fb1e6e2674",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a49b8908d4cf.svg",
+    "kind": "image",
+    "bytes": 2282
+  },
+  {
+    "url": "inline-svg:ce8050589fe102a4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/41568f65815a.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:837a4e22f56b6934",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9d0bfe7bba1a.svg",
+    "kind": "image",
+    "bytes": 1748
+  },
+  {
+    "url": "inline-svg:a00bcc7191296a1e",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/5a00c584acc8.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:288cbea85941118b",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/03c53f8dc9bf.svg",
+    "kind": "image",
+    "bytes": 554
+  },
+  {
+    "url": "inline-svg:97aa64f36629c6a2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0fe770f5948a.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:39413b8ccdc975c6",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3e7d50933d25.svg",
+    "kind": "image",
+    "bytes": 260
+  },
+  {
+    "url": "inline-svg:ccee6d18a2984cda",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f6174e68945d.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:f3fd22d40a874853",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c35fcde87145.svg",
+    "kind": "image",
+    "bytes": 1507
+  },
+  {
+    "url": "inline-svg:760adc9cd8529307",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9da65c7d362b.svg",
+    "kind": "image",
+    "bytes": 377
+  },
+  {
+    "url": "inline-svg:4f52f13411781471",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a65cfe3e25bb.svg",
+    "kind": "image",
+    "bytes": 859
+  },
+  {
+    "url": "inline-svg:142beb3398466ea2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b74382fa0860.svg",
+    "kind": "image",
+    "bytes": 300
+  },
+  {
+    "url": "inline-svg:a7e204811cc38a05",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/86cbf2b40591.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:7a01fed9c9f8d11f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/207de8815f0d.svg",
+    "kind": "image",
+    "bytes": 971
+  },
+  {
+    "url": "inline-svg:5a33e138dbcd0e72",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6522cfbba5e9.svg",
+    "kind": "image",
+    "bytes": 300
+  },
+  {
+    "url": "inline-svg:07fe4475a0b4029d",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/70b597447c30.svg",
+    "kind": "image",
+    "bytes": 300
+  },
+  {
+    "url": "inline-svg:ddb16687e4abb1e3",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/dc001265d030.svg",
+    "kind": "image",
+    "bytes": 300
+  },
+  {
+    "url": "inline-svg:d82e5d3e7b2afe37",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/adffe04250e0.svg",
+    "kind": "image",
+    "bytes": 300
+  },
+  {
+    "url": "inline-svg:4dc4c640b0b8cf28",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f798af3e0c56.svg",
+    "kind": "image",
+    "bytes": 515
+  },
+  {
+    "url": "inline-svg:a66e00dd80d4d8d9",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3211b2f5410b.svg",
+    "kind": "image",
+    "bytes": 4811
+  },
+  {
+    "url": "inline-svg:6006f88012526e80",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a85dda9f1ee4.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:ec6fc5b01858bb22",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/801ce8bbc014.svg",
+    "kind": "image",
+    "bytes": 426
+  },
+  {
+    "url": "inline-svg:b4b4be1a2bd54f2f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/01347b495705.svg",
+    "kind": "image",
+    "bytes": 556
+  },
+  {
+    "url": "inline-svg:6c4b329981b735f4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d1eac82c0350.svg",
+    "kind": "image",
+    "bytes": 218
+  },
+  {
+    "url": "inline-svg:f8fb002e7ed5da87",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/014f63a2a063.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:21611b7581ad9442",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/4d8f88a476da.svg",
+    "kind": "image",
+    "bytes": 1523
+  },
+  {
+    "url": "inline-svg:aa1a0bf879d7b04a",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/671ae6df2c57.svg",
+    "kind": "image",
+    "bytes": 556
+  },
+  {
+    "url": "inline-svg:15375b3a98f7d6d6",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6350b7606596.svg",
+    "kind": "image",
+    "bytes": 218
+  },
+  {
+    "url": "inline-svg:1cd90ce930d28fa7",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f3eb2d896019.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:f39b5c6565852759",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/79fdc85efdf7.svg",
+    "kind": "image",
+    "bytes": 596
+  },
+  {
+    "url": "inline-svg:f96b2849bcb717a2",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/02e1aa74692b.svg",
+    "kind": "image",
+    "bytes": 556
+  },
+  {
+    "url": "inline-svg:139315c6a49b4f0f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/4f7285385bb2.svg",
+    "kind": "image",
+    "bytes": 218
+  },
+  {
+    "url": "inline-svg:cff6512e27041fee",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/80bc29c3a98a.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:558b0a542f57c913",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e84fa76c1afb.svg",
+    "kind": "image",
+    "bytes": 2025
+  },
+  {
+    "url": "inline-svg:18b0b4a0632ee1a0",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/217f42a2844f.svg",
+    "kind": "image",
+    "bytes": 556
+  },
+  {
+    "url": "inline-svg:7b1fde589cf4ca32",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8bfcfb7c674d.svg",
+    "kind": "image",
+    "bytes": 218
+  },
+  {
+    "url": "inline-svg:c928c2739368dda4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/bc6a67bbf531.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:dc8446da13f25cbd",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/27b47d83246b.svg",
+    "kind": "image",
+    "bytes": 1068
+  },
+  {
+    "url": "inline-svg:74ec26c9f7833c37",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d41ec8276a0c.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:7e0c642e1b1bf8e0",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/925afb42fbc5.svg",
+    "kind": "image",
+    "bytes": 1506
+  },
+  {
+    "url": "inline-svg:2f6914cba1c4ebf9",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f91bcebcb2ae.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:8905289515be55f4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ceab46e96e4f.svg",
+    "kind": "image",
+    "bytes": 1558
+  },
+  {
+    "url": "inline-svg:67441964e411b3dd",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3d749e36a225.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:5a1bebabc3e699dc",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/182ba3b66093.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:0ed28c81fcc69e95",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/aab12b8b798a.svg",
+    "kind": "image",
+    "bytes": 208
+  },
+  {
+    "url": "inline-svg:3ee3709093f2ab49",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/62ff12530932.svg",
+    "kind": "image",
+    "bytes": 211
+  },
+  {
+    "url": "inline-svg:754b8ad45d5ac296",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/befbf49e0793.svg",
+    "kind": "image",
+    "bytes": 9967
+  },
+  {
+    "url": "inline-svg:03faa84f58049b87",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/577c0ae26ba7.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:1b99c0b82a36e159",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/49114f22cc79.svg",
+    "kind": "image",
+    "bytes": 3171
+  },
+  {
+    "url": "inline-svg:2476112075ecc643",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8c7ea489f6ab.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:1b25e94dcc1247a5",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/7036ae5410d9.svg",
+    "kind": "image",
+    "bytes": 2191
+  },
+  {
+    "url": "inline-svg:07fe7f0c843eb8f7",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a6c98c6c2d19.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:a90a839300a7fbe3",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3faed023bd51.svg",
+    "kind": "image",
+    "bytes": 6241
+  },
+  {
+    "url": "inline-svg:9aebeb7d065ea199",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e05ce60d9e56.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:b6af2152d6c4d98c",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0f5b2db83e84.svg",
+    "kind": "image",
+    "bytes": 5954
+  },
+  {
+    "url": "inline-svg:58dfb8c4ba3677cd",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/00e531d6d853.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:5506ecb1fe5a3434",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ec78faf1c27a.svg",
+    "kind": "image",
+    "bytes": 3438
+  },
+  {
+    "url": "inline-svg:52236936309a54a4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/3da6a6f62169.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:d8a5b9a4913f8d94",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/e0246808c487.svg",
+    "kind": "image",
+    "bytes": 4687
+  },
+  {
+    "url": "inline-svg:562bf4c760a87941",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b27388d235bd.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:758ac16677febc05",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8b7998605d6d.svg",
+    "kind": "image",
+    "bytes": 8382
+  },
+  {
+    "url": "inline-svg:cbd6210267f520c0",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8f1e6fd308be.svg",
+    "kind": "image",
+    "bytes": 521
+  },
+  {
+    "url": "inline-svg:1fdd04aad6e43d4e",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ffb24a2395da.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:8cc12e8b22559cca",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/a63f660ecbb6.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:33348f9e54588777",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/bb3724abc43b.svg",
+    "kind": "image",
+    "bytes": 1500
+  },
+  {
+    "url": "inline-svg:0ced57021500356f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8a091a8822e2.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:93e9b556d8a70d6d",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/0945d3155391.svg",
+    "kind": "image",
+    "bytes": 850
+  },
+  {
+    "url": "inline-svg:209856b08a84fc7d",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/7406a5c3cbba.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:57186028e0800712",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/70a6c89214e0.svg",
+    "kind": "image",
+    "bytes": 793
+  },
+  {
+    "url": "inline-svg:307a43d3e4583ded",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1129e66a9804.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:c6f34be7fca2ede7",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/cf264a72c68a.svg",
+    "kind": "image",
+    "bytes": 789
+  },
+  {
+    "url": "inline-svg:775ed88efdc34f1f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/4e159db34707.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:3ee112d63a2c645d",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d88b5b49f9bb.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:4bd2dd272a5c0c07",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d757f5d57664.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:a05e123533202756",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/404e54dd8ba8.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:cb2c4fd58c688370",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/689564b3d435.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:5d5ead08be098918",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/7840724d04ae.svg",
+    "kind": "image",
+    "bytes": 2410
+  },
+  {
+    "url": "inline-svg:3ed8b088051b4280",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b00f27a5b8f3.svg",
+    "kind": "image",
+    "bytes": 3667
+  },
+  {
+    "url": "inline-svg:2b487582bf88d32d",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/2246bd18cf38.svg",
+    "kind": "image",
+    "bytes": 7835
+  },
+  {
+    "url": "inline-svg:e520060917fda74e",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c5050fe58b5c.svg",
+    "kind": "image",
+    "bytes": 3508
+  },
+  {
+    "url": "inline-svg:0aec5a9a8ff15171",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/510113193a1b.svg",
+    "kind": "image",
+    "bytes": 515
+  },
+  {
+    "url": "inline-svg:a76ffc035e4ad9fc",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/068e9375f630.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:d8e4edf59fdb0cd4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f8672bd8a567.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:b566144ea6d7acef",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8bfe9d3bce9e.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:d3e97772de34c875",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/03f36fd52138.svg",
+    "kind": "image",
+    "bytes": 208
+  },
+  {
+    "url": "inline-svg:62607693eede398c",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d04ec33abb7a.svg",
+    "kind": "image",
+    "bytes": 211
+  },
+  {
+    "url": "inline-svg:542c58ca614bb58f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/c1900546738f.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:a97fe72a2c277bd4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/1e599bd62995.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:e57c1989a632532b",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/bb3871fbee4d.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:590d828406527743",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6f50d4851a4d.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:f1fd997ef952fef7",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f5afe518210a.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:5c794d504252f1be",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b77483557da6.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:49a50da0fcea1347",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/31781824f3eb.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:97d0fbac90774687",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/263ceee3c643.svg",
+    "kind": "image",
+    "bytes": 519
+  },
+  {
+    "url": "inline-svg:1cbf7e991d530f28",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/840be0a8f8d0.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:ef0022052e7543dc",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d1ff0f29474f.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:f1746a9cea2f4cee",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6be1e38e94c9.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:e006cee097934acc",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/006e732f4422.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:9d57ac3ac77806be",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ca0597146a23.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:d69e57b6b80a58e9",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/d252fb9ae11c.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:3f27fa5fba3a9fad",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/abe566e1b35a.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:aafaa426abd4a9f0",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/01de1d2bacf9.svg",
+    "kind": "image",
+    "bytes": 517
+  },
+  {
+    "url": "inline-svg:461c008aecf3377b",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f112255344c7.svg",
+    "kind": "image",
+    "bytes": 20454
+  },
+  {
+    "url": "inline-svg:99d89ce0e25edd41",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/945d6b661d08.svg",
+    "kind": "image",
+    "bytes": 3723
+  },
+  {
+    "url": "inline-svg:3a5c4b6779ca334f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/9e5f635f31dd.svg",
+    "kind": "image",
+    "bytes": 515
+  },
+  {
+    "url": "inline-svg:835964c7892271e9",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/14dba6194c44.svg",
+    "kind": "image",
+    "bytes": 1432
+  },
+  {
+    "url": "inline-svg:fe0763c13a9940e0",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/6176f8cfec7b.svg",
+    "kind": "image",
+    "bytes": 515
+  },
+  {
+    "url": "inline-svg:4f4561e7976de61b",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/8153717a8619.svg",
+    "kind": "image",
+    "bytes": 979
+  },
+  {
+    "url": "inline-svg:7dc30442e53faecb",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/f6508c1cd1c3.svg",
+    "kind": "image",
+    "bytes": 515
+  },
+  {
+    "url": "inline-svg:b1ece141fef6f2bc",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/ad6916c776cb.svg",
+    "kind": "image",
+    "bytes": 513
+  },
+  {
+    "url": "inline-svg:47d70963bff6c9d4",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/40aa0ffa2ce7.svg",
+    "kind": "image",
+    "bytes": 1914
+  },
+  {
+    "url": "inline-svg:4abbbb6ff277772f",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/188890dbbaf2.svg",
+    "kind": "image",
+    "bytes": 201
+  },
+  {
+    "url": "inline-svg:b4d31637b13b01b1",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/13405b6584a1.svg",
+    "kind": "image",
+    "bytes": 3207
+  },
+  {
+    "url": "inline-svg:7a18c8d2c49092ab",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/68009359f66f.svg",
+    "kind": "image",
+    "bytes": 1439
+  },
+  {
+    "url": "inline-svg:a025edb1ad9ac822",
+    "local": "/sites/stripe-com-9ababc9a/root-8a5edab2/b3950f6bed62.svg",
+    "kind": "image",
+    "bytes": 771
+  }
+]

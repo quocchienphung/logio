@@ -1,0 +1,828 @@
+"use client";
+
+import { SqueezyCarousel } from "./SqueezyCarousel";
+
+/* Markup captured from stripe.com on 2026-09-17 (scripts/forensics/gen-component.mjs "main > section" 7).
+   Class names are the reference's so the partitioned stylesheet applies unchanged. */
+export function News() {
+  return (
+    <>
+      <section className="hds-color-mode section section--white hds-mode--light">
+        <div className="section-container events-section-container">
+          <div
+            className="section-row section-row-gap"
+            style={{
+              "--section-row-gap-mb": "var(--hds-space-core-500)",
+              "--section-row-gap-tb": "var(--hds-space-core-600)",
+              "--section-row-gap-dt": "var(--hds-space-core-800)",
+            }}
+          >
+            <section
+              className="section-row section-row-gap"
+              aria-labelledby="events-carousel-heading"
+              style={{ "--section-row-gap-mb": "var(--hds-space-core-500)" }}
+            >
+              <SqueezyCarousel />
+              <div className="events-mobile-carousel">
+                <div className="carousel__section-container mobile-carousel">
+                  <ul
+                    role="list"
+                    className="carousel__scroller mobile-carousel__scroller"
+                    style={{ "--carousel-scroll-progress": "0" }}
+                  >
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "0" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/annual-letter-mobile-w336-eecac401-mono.webp 1x, /stripe/annual-letter-mobile-w672-6a000dee-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/annual-letter-mobile-w336-6160f439-mono.png 1x, /stripe/annual-letter-mobile-w672-d65dee9d-mono.png 2x"
+                                src="/stripe/annual-letter-mobile-w336-6160f439-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {"Businesses on Stripe generated $1.9T in 2025."}
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "Our annual letter explores the trends defining the internet economy—including steeper growth for newer businesses, faster international expansion, stablecoin progress, agentic commerce, and more."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="/annual-updates/2025"
+                            data-analytics-label="whats_happening__annual_letter"
+                          >
+                            {"Read the letter"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Reoupmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Reoupmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "1" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/the-happenings-bfcm-mobile-w336-28a8b259-mono.webp 1x, /stripe/the-happenings-bfcm-mobile-w672-f5abfc84-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/the-happenings-bfcm-mobile-w336-8021947b-mono.png 1x, /stripe/the-happenings-bfcm-mobile-w672-4f1e793b-mono.png 2x"
+                                src="/stripe/the-happenings-bfcm-mobile-w336-8021947b-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {
+                                "150K+ users have their best day ever on Stripe."
+                              }
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "From Black Friday through Cyber Monday 2025, Stripe processed more than $40B for businesses while maintaining a 99.9999% uptime."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="/newsroom/news/bfcm2025"
+                            data-analytics-label="whats_happening__bfcm"
+                          >
+                            {"See the numbers"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Repepmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Repepmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "2" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/the-happenings-tidemark-mobile-w336-f46ac5a6-mono.webp 1x, /stripe/the-happenings-tidemark-mobile-w672-249d80e7-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/the-happenings-tidemark-mobile-w336-644f0742-mono.png 1x, /stripe/the-happenings-tidemark-mobile-w672-97934462-mono.png 2x"
+                                src="/stripe/the-happenings-tidemark-mobile-w336-644f0742-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {
+                                "Tidemark’s vertical and SMB SaaS benchmark report."
+                              }
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "Learn what’s driving growth in vertical SaaS in 2025—going multiproduct, embedding fintech, and integrating AI into the core of their products."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="/lp/vertical-saas-benchmark-2025?utm_medium=owned-surfaces&utm_source=33d6&utm_campaign=GLOBAL_4250&utm_content=819a&utm_term=a6a6d7b23e01"
+                            data-analytics-label="whats_happening__tidemark"
+                            aria-label="Get the Tidemark SaaS benchmark data"
+                          >
+                            {"Get the data"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Repupmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Repupmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "3" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/the-happenings-cheeky-pint-mobile-w336-b834ff7c-mono.webp 1x, /stripe/the-happenings-cheeky-pint-mobile-w672-d454b891-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/the-happenings-cheeky-pint-mobile-w336-e7c9d1b1-mono.png 1x, /stripe/the-happenings-cheeky-pint-mobile-w672-753e5c98-mono.png 2x"
+                                src="/stripe/the-happenings-cheeky-pint-mobile-w336-e7c9d1b1-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {
+                                "Shopify’s Tobi Lütke sits down with John Collison."
+                              }
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "Hear them discuss the choices that shaped Shopify and Stripe, the future of commerce, and their advice for founders."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="https://www.youtube.com/watch?v=eMSqlQMk480"
+                            data-analytics-label="whats_happening__shopify"
+                            aria-label="Watch Tobi Lütke and John Collison conversation"
+                          >
+                            {"Watch video"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Reqepmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Reqepmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "4" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/the-happenings-payment-processing-mobile-w336-786f36a4-mono.webp 1x, /stripe/the-happenings-payment-processing-mobile-w672-92d531cf-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/the-happenings-payment-processing-mobile-w336-a93b1685-mono.png 1x, /stripe/the-happenings-payment-processing-mobile-w672-c55aa031-mono.png 2x"
+                                src="/stripe/the-happenings-payment-processing-mobile-w336-a93b1685-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {
+                                "New tools to process payments outside app stores."
+                              }
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "New regulations mean new opportunities. Read how Stripe can help you process payments outside of the iOS and Android app stores, giving you more control and helping grow your revenue."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="/use-cases/in-app-payments"
+                            data-analytics-label="whats_happening__app_stores"
+                            aria-label="Learn how to process payments outside app stores"
+                          >
+                            {"Learn how"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Requpmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Requpmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "5" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/the-happenings-crypto-mobile-w336-604f43f3-mono.webp 1x, /stripe/the-happenings-crypto-mobile-w672-1fc676b0-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/the-happenings-crypto-mobile-w336-999d522f-mono.png 1x, /stripe/the-happenings-crypto-mobile-w672-818b9af6-mono.png 2x"
+                                src="/stripe/the-happenings-crypto-mobile-w336-999d522f-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {
+                                "Crypto.com partners with Stripe to enable better crypto payments."
+                              }
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "Learn how the partnership can help you tap into a new global customer base by letting customers pay with their crypto balance directly at checkout."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="/customers/crypto-com-spotlight"
+                            data-analytics-label="whats_happening__crypto_com"
+                          >
+                            {"View announcement"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Rerepmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Rerepmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "6" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/the-happenings-agentic-mobile-w336-0afb0711-mono.webp 1x, /stripe/the-happenings-agentic-mobile-w672-12475cc6-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/the-happenings-agentic-mobile-w336-aa9b7c46-mono.png 1x, /stripe/the-happenings-agentic-mobile-w672-e7d87fc9-mono.png 2x"
+                                src="/stripe/the-happenings-agentic-mobile-w336-aa9b7c46-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {
+                                "Make your products shoppable through AI platforms."
+                              }
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "Find out how the Agentic Commerce Protocol (ACP) allows any business to accept purchases from AI platforms without requiring any major technical changes."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="/blog/introducing-our-agentic-commerce-solutions"
+                            data-analytics-label="whats_happening__agentic_ai"
+                            aria-label="Read more about agentic commerce solutions"
+                          >
+                            {"Read more"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Rerupmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Rerupmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="carousel__item mobile-carousel__item"
+                      style={{ "--carousel-item-index": "7" }}
+                    >
+                      <div className="carousel__inner">
+                        <div className="events-mobile-carousel-card">
+                          <div className="events-mobile-carousel-card__media">
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet="/stripe/the-happenings-payment-retailers-mobile-w336-6edcd8b4-mono.webp 1x, /stripe/the-happenings-payment-retailers-mobile-w672-de061f2f-mono.webp 2x"
+                              />
+                              <img
+                                loading="lazy"
+                                width="672"
+                                height="700"
+                                alt=""
+                                className="events-mobile-carousel-card__image"
+                                srcSet="/stripe/the-happenings-payment-retailers-mobile-w336-7d1834cb-mono.png 1x, /stripe/the-happenings-payment-retailers-mobile-w672-41846fed-mono.png 2x"
+                                src="/stripe/the-happenings-payment-retailers-mobile-w336-7d1834cb-mono.png"
+                              />
+                            </picture>
+                          </div>
+                          <div className="events-mobile-carousel-card__title">
+                            <span className="hds-heading hds-heading--md hds-heading--inline">
+                              {
+                                "How leading retailers unify customer experiences and drive growth."
+                              }
+                            </span>
+                            <span className="hds-heading squeezy-carousel__itemDescription hds-heading--md hds-heading--subdued hds-heading--inline">
+                              {
+                                "Get insights into how other brands have unified their online and in-store experiences and optimized their checkouts for a seamless shopping experience."
+                              }
+                            </span>
+                          </div>
+                          <a
+                            className="hds-button events-mobile-carousel-card__link hds-button--secondary"
+                            href="/lp/how-retailers-drive-growth"
+                            data-analytics-label="whats_happening__retailers"
+                          >
+                            {"Get the report"}
+                            <span className="hds-nowrap-svg">
+                              <svg
+                                className="hds-icon hds-icon-hover-arrow"
+                                width="5"
+                                height="8"
+                                fill="none"
+                                viewBox="0 0.5 5 8"
+                              >
+                                <defs>
+                                  <clipPath id=":Resepmr6l6:">
+                                    <rect x="0" y="0" width="12" height="9" />
+                                  </clipPath>
+                                </defs>
+                                <g clipPath="url(#:Resepmr6l6:)">
+                                  <g className="arrow-group">
+                                    <rect
+                                      className="shaft"
+                                      x="-10"
+                                      y="3.375"
+                                      width="13"
+                                      height="1.75"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M4.84766 3.63379L5.45898 4.25L4.84766 4.86621L1.24219 8.49902L0 7.2666L2.99316 4.24902L0 1.23242L1.24219 0L4.84766 3.63379Z"
+                                      fill="currentColor"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <div className="divider-wrapper">
+              <div className="divider-container divider-container--is-canvas-active">
+                <div className="divider-line"></div>
+                <div className="divider-canvas-wrapper">
+                  <canvas
+                    className="divider-canvas"
+                    aria-hidden="true"
+                    width="1264"
+                    height="20"
+                  ></canvas>
+                </div>
+              </div>
+            </div>
+            <div
+              className="section-row section-row-gap"
+              style={{
+                "--section-row-gap-mb": "var(--hds-space-core-500)",
+                "--section-row-gap-tb": "var(--hds-space-core-600)",
+                "--section-row-gap-dt": "var(--hds-space-core-800)",
+              }}
+            >
+              <div className="section-title section-title--span-6 section-title--stacked">
+                <h3 className="hds-heading hds-heading--lg">
+                  {"Book of the week"}
+                </h3>
+                <p className="hds-heading hds-heading--lg hds-heading--subdued">
+                  {"Entrepreneurship starts with ideas."}
+                </p>
+              </div>
+              <div>
+                <div className="book-of-the-week">
+                  <div
+                    className="book-of-the-week__image-container"
+                    style={{ "--book-of-the-week-background-color": "#3d3d3d" }}
+                  >
+                    <picture className="book-of-the-week__picture">
+                      <source
+                        type="image/webp"
+                        srcSet="/stripe/Book_cover__10_-w296-5c5a008f-mono.webp 296w, /stripe/Book_cover__10_-w396-aa9cd6a6-mono.webp 396w, /stripe/Book_cover__10_-w592-2c17acdb-mono.webp 592w"
+                      />
+                      <img
+                        loading="lazy"
+                        width="592"
+                        height="880"
+                        alt="The Rise of Theodore Roosevelt book cover by Penguin Random House"
+                        className="book-of-the-week__image"
+                        sizes="(max-width: 639px) 220px, (max-width: 939px) 33vw, (max-width: 1295px) calc((100vw - 64px) * 0.25), 296px"
+                        srcSet="/stripe/Book_cover__10_-w296-79479041-mono.png 296w, /stripe/Book_cover__10_-w396-3e88c1fd-mono.png 396w, /stripe/Book_cover__10_-w592-34caa29f-mono.png 592w"
+                        src="/stripe/Book_cover__10_-w296-79479041-mono.png"
+                      />
+                    </picture>
+                  </div>
+                  <div className="book-of-the-week__content">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="85"
+                      height="136"
+                      fill="none"
+                      viewBox="0 0 85 136"
+                      className="book-of-the-week__icon"
+                    >
+                      <path
+                        fill="#fff"
+                        d="M42.5 135.69c-23.435 0-42.5-19.065-42.5-42.5V42.5C0 19.065 19.065 0 42.5 0S85 19.065 85 42.5v50.69c0 23.435-19.065 42.5-42.5 42.5M5.977 42.5v50.69c0 20.139 16.384 36.524 36.523 36.524s36.523-16.385 36.523-36.524V42.5"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M83.008 93.19c0 22.372-18.136 40.508-40.508 40.508S1.992 115.562 1.992 93.19V42.5c0-22.372 18.136-40.508 40.508-40.508S83.008 20.128 83.008 42.5zm-1.992 0V42.5c0-21.237-17.28-38.516-38.516-38.516-21.237 0-38.516 17.28-38.516 38.516v50.69c0 21.237 17.28 38.516 38.516 38.516 21.237 0 38.516-17.279 38.516-38.516"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M42.5 130.378c-20.506 0-37.187-16.682-37.187-37.188V42.5c0-20.506 16.68-37.187 37.187-37.187S79.688 21.993 79.688 42.5v50.69c0 20.506-16.682 37.188-37.188 37.188"
+                      />
+                      <path
+                        fill="#fff"
+                        d="M78.36 93.19V42.5c0-19.774-16.086-35.86-35.86-35.86S6.64 22.727 6.64 42.5v50.69c0 19.774 16.086 35.859 35.86 35.859s35.86-16.085 35.86-35.859"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M31.86 108.41c.726 0 1.166.331 1.166.815 0 .329-.198.582-.528.681h-.209c-.033-.594-.286-1.067-.715-1.067-.506 0-.869.495-1.012 2.167h1.342l-.066.528h-1.342l-.748 3.641c-.605 2.947-1.287 3.938-2.508 3.938-.582 0-.99-.253-.99-.671 0-.44.308-.594.583-.66h.154c.11.55.309.859.66.859.33-.001.616-.234 1.067-2.795l.748-4.312h-.901l.065-.374.935-.22c.297-1.595 1.056-2.53 2.3-2.53m21.604 3.41c.429-.594 1.023-.99 1.848-.99 1.463 0 2.288 1.167 2.288 2.773 0 2.067-1.288 3.343-2.838 3.343-.594 0-1.067-.209-1.298-.495v1.43c0 .505.308.561.803.627v.495H51.34v-.495c.495-.066.792-.122.792-.627v-5.753l-.738-.473v-.275l1.783-.571h.286zm-27.428-.924c1.144.001 1.892.803 1.892 2.211 0 1.826-1.244 3.839-3.036 3.839-1.144 0-1.892-.803-1.892-2.211 0-1.826 1.243-3.839 3.036-3.839m10.547-1.892c.946 0 1.77.286 2.343.682v1.683h-.528c-.275-1.012-.836-1.76-1.892-1.76-.858 0-1.298.495-1.298 1.133 0 .726.386 1.034 1.684 1.474 1.616.539 2.441 1.133 2.441 2.453 0 1.507-1.276 2.277-2.805 2.277-1.056 0-1.97-.341-2.475-.748l-.088-1.815h.595c.33 1.177.957 1.947 2.045 1.947.924 0 1.507-.441 1.507-1.276 0-.693-.44-1.023-1.738-1.463-1.54-.517-2.332-1.079-2.332-2.376 0-1.298.968-2.211 2.541-2.211m5.162 1.936h1.616v.66h-1.616v3.707c0 .582.253.792.814.792.308 0 .67-.088.946-.231l.142.341c-.417.451-1.022.737-1.78.737-.88 0-1.453-.419-1.453-1.43V111.6h-.781v-.418c.615-.319 1.21-.836 1.716-1.539h.396zm19.085-.11c1.496 0 2.276 1.056 2.276 2.475v.363h-3.838c0 1.331.748 2.222 1.914 2.222.78 0 1.298-.363 1.694-.891l.242.143c-.275 1.066-1.111 1.804-2.398 1.804-1.617 0-2.64-1.221-2.64-2.871 0-1.947 1.188-3.245 2.75-3.245m-14.886 1.782c.627-1.341.957-1.782 1.66-1.782.198 0 .342.066.43.143v1.211h-.242c-.682 0-1.199.088-1.848.792v2.716c0 .528.264.561 1.012.649v.495h-3.135v-.495c.484-.066.792-.122.792-.627v-3.586l-.737-.473v-.275l1.749-.571h.32zm4.44 3.102c0 .505.297.561.792.627v.495H48.26v-.495c.483-.066.791-.122.792-.627v-3.597l-.738-.473v-.264l1.76-.55h.309zm-24.381-4.378c-1.199 0-1.969 2.101-1.969 3.663 0 .957.33 1.507.89 1.507 1.2 0 1.97-2.101 1.97-3.663 0-.957-.33-1.507-.891-1.507m28.66.396c-.452.001-.902.143-1.2.418v2.805c.001.924.452 1.408 1.232 1.408.946 0 1.563-.903 1.563-2.266 0-1.276-.496-2.365-1.596-2.365m5.99-.296c-.791 0-1.264.781-1.352 1.671h2.562c-.01-1.012-.407-1.671-1.21-1.671m-10.973-2.915c.483 0 .836.373.836.824a.82.82 0 0 1-.836.825.823.823 0 0 1-.848-.825c0-.451.353-.824.848-.824m19.626-6.933c-.572.077-.782.132-.782.396 0 .088.011.165.088.341l1.298 3.179 1.233-3.179c.066-.176.087-.253.088-.341 0-.264-.21-.319-.77-.396v-.484h2.188v.484c-.462.165-.538.198-.637.44l-2.464 5.995c-.33.803-.715 1.254-1.42 1.254-.384 0-.703-.165-.868-.407v-.66h.593c.716 0 .99-.121 1.233-.737l.176-.44-2.234-5.005c-.11-.231-.175-.264-.637-.44v-.484h2.915zm-38.31-.594c1.495 0 2.276 1.056 2.277 2.475v.363h-3.84c0 1.331.749 2.222 1.915 2.222.78 0 1.297-.363 1.693-.891l.242.143c-.275 1.067-1.11 1.804-2.397 1.804-1.617 0-2.64-1.221-2.64-2.871 0-1.947 1.187-3.245 2.75-3.245m16.422.99c.418-.594 1.023-.99 1.837-.99 1.474 0 2.299 1.166 2.299 2.772 0 2.067-1.32 3.344-2.97 3.344-1.067 0-1.97-.308-2.497-.737v-6.48l-.737-.461v-.287l1.771-.516h.297zm11.405-.99c1.353 0 2.08.605 2.08 2.013 0 .264-.034 2.212-.034 2.553 0 .439.143.692.451.692.1 0 .341-.022.506-.065l.066.351c-.374.374-.792.572-1.254.572-.583 0-.901-.407-1.033-1.001-.386.462-.98.991-1.816.991-.979 0-1.485-.65-1.485-1.508 0-1.012.781-1.363 1.518-1.616l1.75-.628v-.582c0-.715-.221-1.2-.947-1.2-.539 0-.803.264-.803.77 0 .209.022.396.077.627l-.968.143c-.21-.143-.308-.352-.308-.649 0-.957.935-1.463 2.2-1.463m-37.695.671h-.506c-.605-1.419-.759-1.815-1.716-1.815h-.65v5.83c0 .649.364.77 1.09.792V107H15.77v-.528c.737-.022 1.09-.143 1.09-.792v-5.83h-.64c-.956 0-1.11.396-1.726 1.815H14l.165-2.387h6.798zm2.285.429c.517-.528 1.177-1.1 2.1-1.1 1.002 0 1.585.539 1.585 1.804v3.08c0 .506.308.561.803.627V107h-2.904v-.495c.484-.066.77-.121.77-.627v-2.97c0-.682-.264-.946-.912-.946-.529 0-1.057.198-1.442.462v3.454c0 .506.287.561.77.627V107H21.28v-.495c.495-.066.803-.121.803-.627v-5.984l-.748-.462v-.287l1.782-.516h.297zm15.833-2.288c-.715.033-1.034.143-1.034.792v5.06c0 .594.297.748 1.022.748h.529c.89 0 1.111-.429 1.815-1.705h.517L41.72 107h-5.962v-.528c.737-.022 1.045-.143 1.045-.792v-5.082c0-.65-.308-.76-1.045-.792v-.528h3.487zm5.268 6.072c0 .506.297.561.792.627V107h-2.914v-.495c.483-.066.792-.121.792-.627v-3.597l-.738-.473v-.264l1.76-.55h.308zm9.561-3.102c.627-1.342.957-1.782 1.661-1.782.198 0 .341.066.429.143v1.211h-.241c-.682 0-1.2.088-1.849.792v2.716c0 .528.265.561 1.013.649V107h-3.136v-.495c.484-.066.792-.121.792-.627v-3.586l-.736-.473v-.275l1.749-.571h.318zm10.07 0c.627-1.342.957-1.782 1.66-1.782.198 0 .341.066.43.143v1.211h-.243c-.682 0-1.199.088-1.848.792v2.716c0 .528.264.561 1.012.649V107h-3.135v-.495c.484-.066.792-.121.792-.627v-3.586l-.737-.473v-.275l1.75-.571h.318zm-15.54-.88c-.45 0-.901.143-1.187.417v2.817c0 .99.45 1.397 1.231 1.397.946 0 1.563-.902 1.563-2.266 0-1.276-.507-2.365-1.607-2.365m9.68 2.486c-.408.154-.638.451-.638.869 0 .605.296.946.824.946.429 0 .726-.121 1.1-.385v-1.925zM30.818 101.6c-.792 0-1.264.78-1.352 1.671h2.562c-.01-1.012-.407-1.671-1.21-1.671m12.991-2.915a.82.82 0 0 1 .837.824.82.82 0 0 1-.837.825.823.823 0 0 1-.847-.825c0-.451.353-.824.847-.824M60.024 65.999s.78-.122 1.583.852c.804.973.804 1.12 1.461 1.436.004 0 .657-.124.682-1.047 0 0 1.388 3.117.097 5.893s-1.875 4.919-1.875 4.919 1.827-1.73 3.385-4.797c1.559-3.068 4.602-5.722 6.648-3.896 2.044 1.827 1.338 4.14-1.705 5.04 0 0 1.947-1.801 1.412-2.873-.536-1.071-2.24-1.023-4.31 1.558-2.028 2.53-8.223 8.775-13.508 12.553 1.3-.915 6.262-4.26 9.436-4.323 4.345-.086 6.843-.104 6.821-1.85-.015-1.317-.761-1.798-3.628-1.267l.005-.002c.02-.014 2.685-1.92 4.334-1.242 1.656.682 2.532 2.776 1.071 4.189-1.46 1.412-3.896 2.313-6.233 1.607-2.338-.706-3.721-.784-5.28-.054 4.66-.108 7.1 1.93 6.954 5.535-.146 3.603-4.733 6.59-9.466 3.021 0 0 1.165 2.111 3.713 2.293s8.853-1.979 5.482-9.126a6.3 6.3 0 0 1 1.176 1.447c2.191 3.701-1.29 8.644-5.405 9.107s-6.015-2.143-7.086-3.214-1.68-1.778-2.46-1.997c.031-.03 2.152-2.126 3.458.122.002-.011.785-4.528 4.627-3.628 0 0-2.094 2.216.681 3.75s4.748-.366 4.261-2.776-2.605-3.628-5.21-3.628-6.283 1.924-10.52 4.82c-4.236 2.898-9.86 4.992-15.193 4.067-5.332-.925-10.495-3.895-10.495-3.895s3.068 2.385 3.287 3.822c.22 1.437.098 2.776-1.412 2.605 0 0 1.388-2.166-1.168-4.577s-3.945-3.799-3.823-4.675c.828.723.78.65 1.941 1.312 2.8 1.348 5.53.59 6.557.393 1.266-.244 3.92.17 5.43.779 1.501.605 4.905.415 4.942.413-.02.012-4.393 2.568-12.811.804 2.917 1.4 6.133 2.289 10.206 2.289 7.012 0 10.957-5.795 9.058-8.668-.097-.244-4.042-1.997-4.772-3.897s-3.069-4.041-4.92-3.603-1.119 2.727 2.144 4.383c-.032-.014-2.205-.979-4.09-1.559-1.9-.584-2.436-3.311-1.754-4.285s1.997-2.143 5.113-1.461 4.95 1.829 5.309 2.338c.925 1.315-.007 2.302.772 2.789.78.487 1.857.622 1.858 1.498 0 .876.73 1.705 1.655 1.559-.003-.008-.198-.538-.584-.78-.365-.228-.688-.541-.607-1.141l.043-.248c.075-.594-.304-.854-.897-.9-.633-.049-1.559-.487-1.316-1.46.244-.975-.64-1.986-2.921-3.215-1.03-.553-1.54-1.467-1.284-2.89.257-1.424 2.302-2.866 5.023-.493 0 0-2.32.893-.713 2.793 1.607 1.899 2.556 1.625 3.433 3.69s1.26 2.886 1.186 3.853c-.073.968-.987 1.59-1.022 2.41-.038.822.018 2.393-.403 3.58-.42 1.186-1.297 2.922-2.046 3.597 0 0 5.006-1.686 11.434-7.993 6.428-6.306 4.26-10.835 2.24-15.656M32.096 92.61c.877.293 3.603.73 4.529.755s1.242.414 1.193.925-.414.706-1.047.682c-.633-.025-3.043-.755-4.675-2.362M12.493 67.606c.257-2.302 6.466-7.123 11.726-2.813 0 0-2.484-.696-4.53-.769-2.045-.072-5.44 1.243-6.282 4.165-.839 2.921.731 3.946 2.668 6.027s1.79 7.013 7.269 10.665c-.033-.008-2.277-.523-3.402-2.228l-.003.003c-.007-.005-1.278-.96-2.031-1.684-.755-.726-.638-1.975-1.625-3.367-.987-1.393-2.28-.102-2.207.77s.363 1.596 2.555 2.627c2.19 1.031 3.394 2.615 3.99 4.007 0 0 1.134 2.946 1.333 8.531-.008.001-1.059.141-1.169-1.022-.05.05-5.964 6.016-8.219-5.079 1.204 3.36 4.859 4.821 4.748.804-.108-4.017-2.264-5.809-3.579-7.89s-3.8-6.647-2.887-8.327c.915-1.68 1.388-2.118 1.645-4.42m38.428 23.617c3.895-.122 4.747 1.338 4.626 1.363-.122.024-1.486-.244-3.385.17-1.9.414-2.216 1.022-4.894 1.12-.002-.026-.223-2.532 3.653-2.653m16.605-7.33c1.85-.024 3.214 1.071 4.748 3.36s.658 4.796.025 5.503-1.9.78-1.949-.146c-.048-.916 1.433-.806 1.461-.803 1.145-2.362.195-5.089-4.285-7.913M24.6 75.036c3.506 3.798 5.915 5.51 11.783 7.763 2.888 1.109 6.937 1.66 10.45 1.157l.058.203c.115.49.083 1.048-.095 1.639-.826.106-1.679.164-2.553.164-9.257 0-8.927-2.303-13.456-2.303-2.349 0-4.697 1.989-4.697 1.989zm13.48-35.249c.18.682.24 1.316.228 1.831-4.477.784-6.841 4.122-6.841 6.46 0 2.726.487 6.232 10.81 10.03a74 74 0 0 1 4.432 1.783q.27.664.681 1.368l.425.725.608-.582q.255-.243.482-.475c6.337 3.185 10.027 6.981 10.027 12.378l-.011.562c-.236 5.789-4.099 9.91-9.649 11.442.122-.68.158-1.373.173-1.97 2.8-.974 4.812-2.902 4.812-6.14 0-6.136-9.544-9.643-14.317-11.59-4.772-1.949-11.882-7.987-11.882-15.292 0-5.835 4.352-9.492 10.023-10.53m-23.058 37.99c.941-.303 1.897 2.555 1.902 2.569-1.685-.523-2.236-1.872-1.902-2.57m6.678-.165h-.002l.001-.003zm-6.1-8.839c.181-2.08 2.667-5.99 7.377-3.544-.026.008-3.432.925-3.397 3.544.037 2.629 3.175 7.082 2.12 8.836-.699-3.25-6.282-6.755-6.1-8.836m9.864-14.647c1.899 5.917 3.178 7.963 7.123 10.046 3.944 2.083 7.78 6.282 7.888 7.962-.032 0-3.771.033-5.88-.987-2.119-1.025-4.091-3.288-5.625-3.326-1.534-.037-2.995 1.316-1.243 2.668 1.754 1.353 4.31 3.068 3.58 5.297 0 0-1.68-2.96-3.36-4.055-1.68-1.096-5.37-2.338-3.325-4.675-.007-.016-.446-.95-1.425-1.06.044-.02 3.308-1.454 6.393-.438 3.104 1.022 4.127 1.936 4.42 2.52.292.584.657.476 1.095.439.439-.038 1.28 0 1.353.622s1.28 1.241 1.718.803c0 0-.184-.549-.804-.511-.62.037-.403-.146-.803-.876s-.622-.731-1.499-.659c-.876.074-.877-.437-1.607-1.24-.73-.804-3.179-2.01-4.675-2.484s-5.333-3.8-5.078-5.59c0 0 1.023.804 1.754.877 0 0-1.534-3.945 0-5.333m32.968 2.451c0 .002 2.878 3.218 4.256 4.637 1.38 1.419 2.739 2.838 3.179 4.996s-.36 5.934-1.678 7.273l-.005-.001c.76-2.059.96-4.737.402-5.715.016.021.797 1.05.699 2.177.004-.012.872-3.065-2.398-7.173-3.276-4.118-3.716-4.038-4.256-4.457s-.56-1.338-.2-1.737m12.164-13.275c2.483 0 3.335 2.679 3.335 4.578-2.848-3.068-3.397 2.375-2.448 8.876.95 6.501-.988 9.204-5.59 14.598 1.194-3.798 2.217-9.301 2.12-12.564-.098-3.262-1.705-4.747-2.606-4.553-.9.195-.755 2.216-.049 4.967-.012-.014-3.263-3.926-3.385-7.426-.121-3.506 1.389-4.042 2.29-4.066.9-.024 2.029.084 2.784 1.423 1.025 2.211 1.915 4.604 1.846 6.588s-.091 2.485-.41 4.035-.455 3.17.41 3.829c-.752.502-1.002 1.209-.98 2.03s-.092 1.664-.32 2.005c0 0 .797-.09.822-.797.024-.706-.319-1.983 1.277-3.236-.014-.012-.797-.673-.821-2.189-.024-1.53.524-1.915.774-4.513.25-2.599-.912-6.088-1.709-7.684-.796-1.596-1.524-3.178-.92-4.633l.088.31c.17.564.558 1.69.96 1.709 0-.046.065-3.287 2.531-3.287M30.344 55.865c3.116 5.016 5.551 6.672 10.275 8.474 4.723 1.802 8.132 3.36 9.203 4.383 1.071 1.022 1.704.584 1.071-.147-.633-.73-4.454-2.625-7.255-3.847-4.372-1.905-5.909-2.125-8.84-4.586-2.917-2.449-4.439-4.258-4.454-4.277m5.05 3.086c4.75 3.498 5.676 3.763 8.217 4.781 2.54 1.018 3.402 1.207 3.904 1.49.503.283.88-.047.3-.407-.582-.362-4.423-1.977-5.99-2.603s-5.112-2.305-6.429-3.26zM20.418 32.866c2.41-1.388 8.4-4.02 14.025-1.28 5.625 2.741 9.166 1.68 10.446 1.389 1.279-.293 2.047-.476 2.082.365.036.839 1.608.766 2.557.108.95-.657 1.642-.657 1.753.038.11.693.438 1.572 2.01.95s1.864-2.155 1.315-3.178c.05.01 4.118.872 2.994 4.273-.885 2.68-5.985 2.792-10.824 1.924-1.826-.328-5.77-1.052-7.89-2.165.05.013 12.52 3.368 15.247.353 0 0-3.02.894-7.378.256-7.742-1.13-13.402-4.017-16.435-4.237 7.13 2.191 8.858 5.112 10.075 9.24 0 0 .914 3.982.22 6.32s-1.535 4.345-.658 6.866c0 0-2.74-1.206-1.461-3.836s1.682-3.763 1.28-5.37c-.005.035-.666 5.919-3.18 5.954-2.52.035-2.959-2.886-1.826-4.055.439 1.79 1.68 2.082 2.595.695.914-1.388.402-1.534.072-2.52-.33-.988 1.096-.55 1.461-2.596.365-2.045-.546-6.684-5.697-8.51.008.026.729 2.383.11 3.909-.11-.22-.402-2.374-2.593-3.215 0 0 .183 1.316-.585 2.376 0 0-2.23-5.37-10.41-1.461-6.88 3.285-6.528 12.276-3.985 17.792l-.01.005.172.334c.202.411.416.804.642 1.169l.18.303v-.002l-.175-.297q.093.152.19.299h-.002q.316.48.65.887.476.575.974 1.125c-.274.377-.358.87-.223 1.328.179.611.756 1.007 1.471 1.007.281 0 .574-.062.862-.177 3.092 2.937 6.177 5.002 6.948 5.301-3.799-.682-9.593-5.113-12.661-9.74-3.068-4.625-3.726-11.297-2.777-15.096.95-3.798.585-5.625.585-5.917 0 0 2.448 1.17 2.118 4.603 0 0 3.325-4.129 5.736-5.517m-5.846 22.82q.342.482.717.959c-.21 1.68.73 3.947 3.927 6.173-2.995-.476-5.297-3.179-4.894-6.173.047-.346.133-.665.25-.96m24.572 3.313c1.191.97 2.744 1.63 3.777 2.068s1.24.533 1.551.752c.313.22.941-.11.439-.564-.503-.454-1.333-.642-2.258-.972-.924-.33-2.411-.861-3.509-1.284m16.378-5.35c3.068-.073 2.23 3.873 2.23 3.873s-.623-1.134-1.06-.659c0 0 1.132 1.973.291 4.748-.01-.001-1.94-.294-3.14-1.206 0 0-.512.95-.95 1.388v.003c-1.28-.987-3.18-3.983-.696-5.59 0 0 0 1.68 1.207 2.191-.073-.22-1.31-4.666 2.118-4.748m-6.392 6.794c1.27-1.993 2 .945 2.01.987-.014-.01-.672-.443-2.01-.987m-1.17.476c-1.606-2.74-1.498-5.113.585-4.821-.006.01-.728 1.463-.219 2.083.004-.014.588-2.154 1.499-1.534.914.622.84 1.68-1.864 4.274zm-31.308-7.32c1.076-.445 2.3-.4 3.184.164 1.826 1.168 2.082 3.58 1.096 4.42-.988.839-1.973.657-2.157.035-.18-.622.33-1.352 1.353-.987 0 0 1.753-2.046-1.242-3.106v.003a2.5 2.5 0 0 0-1.893.088q-.175-.3-.34-.617m10.022 2.051c.697.233 1.48.437 2.368.594 0 0-.937.175-2.123.091q-.122-.33-.245-.685m19.387-7.114c2.23 1.461 5.625 1.207 6.721 2.814s.585 3.652-.84 4.237c-1.426.584-2.96-.33-4.422-1.134-1.46-.803-1.753-1.534-3.287-1.68 0 0 .877-.949 2.63-.914 0 0-1.426-1.79-.804-3.325zm-19.755-9.753s-.33 1.497-.476 2.411-.33 1.607-1.571 2.886c-1.244 1.28-1.902 3.214-.477 3.617 1.423.4 1.389-1.022 1.316-1.571-.074-.547.987-1.864 1.279-1.9l.108.804s.585-1.096 1.353-.803c0 0-1.534 1.826-1.535 3.652s-.73 2.738-1.607 2.775c-.876.038-1.352-.327-2.228-1.168-.877-.84-1.426-.11-1.28.366.147.473 1.169.91.26 1.677l.027.074c.137.338.815 1.763 2.894 3.002a3.8 3.8 0 0 0-.217.94 4.1 4.1 0 0 1-.842-.655c-2.007-2.046-2.445-3.031-3.432-3.215-.985-.182-.146-2.446-1.461-2.922-1.315-.474-3.106-2.045-1.718-4.163s1.644-4.347 1.606-4.932c.915.804 1.061 1.425.95 2.52.013 0 .844-.076 1.061-.583.004.012.473 1.683-.293 2.667-.768.987-.146 2.374.73 2.01.877-.366 1.134-1.861.95-2.995-.183-1.133-.183-4.164 4.602-4.494m23.43 12.142c-.542.05-.799.584.246.807s1.218.212 1.463.667c.144.266.378.995.144 1.362s-.41.593-.953.409c-.541-.184-.542-.175-.807-.276-.266-.102-.852.19-.278.617.504.223.99.376 1.431.376.226 0 .43-.04.624-.12.377-.154.66-.491.797-.952.19-.63.085-1.385-.351-1.967-.576-.77-1.773-.974-2.316-.923m-33.673 2.977q.152.293.315.57c-.163-.28-.325-.571-.474-.878zm-.159-.31-.173-.334.012-.004q.079.17.161.338m21.318-2.096c.002.037.093 3.091-2.959.803 1.627.144 2.931-.782 2.96-.803m15.081-1.756c.184-.806.988-1.972 2.157-1.534 1.165.437 2.185.548 2.191.549h.002c.257 2.702.074 4.237-1.06 4.31-1.133.074-2.814-1.133-1.28-3.141-.012-.013-.371-.392-.767.22-.403.621-1.426.402-1.242-.404m-9.712-3.395c1.133-.11.84 1.207.73 1.499s.769 1.937 2.74 3.544c-.026.003-2.195.26-2.848.876-.658.62-1.754.622-1.865-.184-.11-.805.769-1.28 1.535-.804.958.594 2.156-.11 2.156-.11-.007-.005-.738-.512-2.192-.73-1.46-.22-2.19.475-2.375-.33-.183-.806.804-1.864 1.426-1.023.622.84.584.769 2.407 1.315-1.75-2.043-1.823-2.373-2.372-2.554-.548-.184-.476-1.389.658-1.5m-.956-6.867q.465.004.933.025c5.448.277 10.228 5.162 14.513 1.169l2.532 10.42c-5.651-6.08-11.305-8.771-16.692-9.464a32 32 0 0 0-1.738-.188c-.133-.783-.448-1.937-.456-1.965.014 0 .41 0 .908.003m17.637-8.984c.038.004 3.287.387 3.287 4.212.011-.025.888-2.076 2.606-3.165 1.729-1.096 5.575-1.729 8.521.439-.021.016-1.137.884-.39 1.704.755.827 2.046 4.017.147 5.746-1.899 1.728-4.504 1.047-5.844-.292.003.005.784 1.801 3.798 1.802-.013.016-.938 1.213-2.824.657-1.9-.56-4.309-4.773-.535-7.013 0 0-.901 1.948 1.192 3.068s4.505-1.728 3.069-3.944c-1.437-2.216-3.872-2.508-5.528-1.973-1.655.536-3.7 3.263-3.238 7.013s3.238 6.672 2.995 9.082c-2.337-3.895-5.795-6.257-6.89-7.134-1.096-.876-.366-1.632-.147-1.73.22-.097.925-.12 1.363.635.439.754 1.316 2.166 2.363 3.116-.012-.027-1.656-3.61-1.68-5.162-.024-1.559-.658-5.892-2.265-7.06M42.456 42.301c.885 1.295 1.972 2.093 4.736 3.348-.053-.007-4.028-.539-5.963-3.455zm-23.824-5.16c1.498-2.082 4.31-2.302 4.931-.95 0 0-1.68-.876-4.931.95m2.946-10.786c-1.704 1.704-1.73 2.873-1.632 3.409s.097 1.534-1.096 1.485-.95-1.948.317-3.02c1.266-1.07 2.41-1.874 2.41-1.874M41.3 27.377c1.485.56 1.63 1.948.998 3.385 0 0-.122-1.315-1.461-1.242.015-.01 1.018-.693.463-2.143m-8.158-3.53c.195-2.825 4.578-2.168 5.138-.463.56 1.704-.195 2.727-1.29 3.238 0 0 1.022.414 1.898-.876 0 0 2.29.511 1.875 2.192-.414 1.68-1.704 2.531-3.944 1.68.008-.016.795-1.559-.901-1.462-1.704.098-2.264-.048-2.46-.73 0 0 .659-.243 1.243-1.023s.365-2.751-1.559-2.556M47.996 11.62s2.362.39 2.021 2.29c-.34 1.898-1.63 4.893 1.364 3.31.002.032.163 2.295-.828 3.141-.999.852-1.924 1.51-3.239 1.802s-1.583 1.12-1.558 1.485c0 0 .706 1.267 2.995-.292s3.872.366 3.872.366-2.119.194-1.17.998c.95.803 1.219 1.973 1.17 2.752-.05.78-1.072 3.822-4.213 1.047 0 0 1.997.17 1.997-1.243 0-1.412-1.631-1.265-2.24-1.265s-3.214 1.436-5.187.949c-1.972-.487-2.361-2.46-1.46-2.63.9-.17 3.555-1.363 5.283-6.038-.008.014-3.314 5.43-5.016 5.575-1.704.146-3.043-.608-3.19-2.75s.487-7.646-4.164-5.528c.147-2.922 1.973-3.506 3.069-3.238s2.75 1.704 2.8.048c0 0 1.193.17 1.485 1.486.292 1.315.122 2.702-.657 3.87-.78 1.17-.22 2.387.34 2.436.56.05 1.656-.292 1.729-2.386s.828-4.31 2.752-3.896c-.011.019-.943 1.56.17 1.826 1.12.268 3.068-1.704 1.875-4.115m-16.581 4.677c.828-.024 1.12.78.486 1.29-.633.512-1.631 1.194-1.802 2.387-.17 1.193-.584 1.875-2.093 2.995-1.51 1.12-3.287 2.85-2.922 3.847.365.998 2.143.657 3.579-1.583 1.425-2.222 3.21-3.917 3.238-3.944-.027.042-2.343 3.613-3.36 5.259-1.022 1.656-3.506 3.093-4.967 2.046s-.925-3.653.73-4.968 2.411-1.218 2.655-1.85.414-.78 1.096-.877c.681-.097 1.144-1.071.365-1.583 0 0-.025 1.29-.682 1.17-.657-.122-.974.097-1.193.608s-.074.9-.804 1.022-1.412.147-1.753.634-1.729.535-2.167.194c1.85-.633 2.483-1.193 3.165-2.361s1.535-2.314 2.362-2.728c.828-.413 1.778-.121 2.533-.316s.706-1.218 1.534-1.242m-7.768 7.11c-1.144 2.216-2.994 2.606-4.99 4.042-1.997 1.437-3.142 1.486-3.97 1.242-.827-.243-.803-1.51.366-1.631 1.168-.122 2.556.39 4.114-.584s2.191-.95 4.48-3.069m30.78-4.772c.413-1.023 1.898-1.144 2.775-.268.877.877 3.069 2.898 4.676 2.898 1.597 0 2.617-1.204 2.629-1.218 0 0 1.071 2.605-3.263 2.605-.006.014-.47.997-1.485.73-1.023-.267-1.388-1.193-2.07-2.605s-2.288-.998-2.07-.097c.22.9.56 2.07 2.776 3.239s3.92 2.02 3.263 3.214c-.658 1.193-2.922 2.313-4.09.073 1.363 1.217 2.824.267 1.582-1.193-1.242-1.461-2.946-2.679-3.92-3.628s-1.217-2.728-.803-3.75m7.718 7.158c2.338-.609 4.115-.048 4.359 1.048.243 1.095-.95 2.142-1.826.73-.874-1.408-2.523-1.776-2.533-1.778m-23.28-2.386c.414.585 1.68.998 1.68.998-.46.46.308 1.81.317 1.826-1.583-.852-2.24-2.142-1.997-2.824m28.053-.463s-1.778 2.874-4.846 1.997c2.678-.39 3.92-1.12 4.846-1.997m-10.592-2.51c1.242 1.072.608 1.437.608 1.437-.706-.34-.754-1.217-.608-1.436m-23.183.195c1.12-1.29 3.337-1.071 3.8.877 0 0-.61.365-1.365.073s-1.144-.999-2.435-.95m21.065-5.795c.006.01 1.049 1.925 1.826 2.313 0 0-1.17.147-1.73.463 0-1.996-.096-2.776-.096-2.776"
+                      />
+                    </svg>
+                    <div className="book-of-the-week__text">
+                      <div className="book-of-the-week__author-block">
+                        <h4 className="hds-heading book-of-the-week__book-title hds-heading--md">
+                          {"The Rise of Theodore Roosevelt"}
+                        </h4>
+                        <span className="hds-heading book-of-the-week__author hds-heading--md hds-heading--subdued">
+                          {"Edmund Morris"}
+                        </span>
+                      </div>
+                      <div className="hds-text book-of-the-week__description hds-text--md hds-text--soft">
+                        {
+                          "Theodore Roosevelt entered Harvard as a frail boy with severe asthma and emerged as a boxer, naturalist, rancher, author, and soldier who would accidentally become the youngest president in history. Morris follows Roosevelt through the Dakota Badlands, the New York City Board of Police Commissioners, and the Spanish-American War, meticulously chronicling the triumphs and tragedies of his improbable life. The "
+                        }
+                        <a
+                          className="hds-link hds-link--secondary"
+                          href="https://www.penguinrandomhouse.com/books/117457/the-rise-of-theodore-roosevelt-by-edmund-morris/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {"book"}
+                        </a>
+                        {
+                          " is a portrait of a Renaissance man whose inexhaustible energy and will reinvigorated a complacent, late-nineteenth-century America."
+                        }
+                      </div>
+                      <div className="book-of-the-week__button-container">
+                        <p className="hds-text book-of-the-week__see-also hds-text--xxs hds-text--soft">
+                          {
+                            "For more ideas on economic progress and technological advancement, see our in-house publications:"
+                          }
+                        </p>
+                        <div className="hds-button-group">
+                          <a
+                            className="book-button"
+                            href="https://press.stripe.com/"
+                            data-analytics-label="book_of_the__stripe_press"
+                          >
+                            <div className="book-button__icon-container">
+                              <svg
+                                width="32"
+                                height="32"
+                                viewBox="0 0 32 32"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <rect
+                                  width="32"
+                                  height="32"
+                                  rx="2"
+                                  fill="#000"
+                                />
+                                <g opacity=".9" fill="#fff">
+                                  <path d="M12.5125 16.1345v5.2996h-.9181v-6.5826c.2419.4703.5527.9026.9223 1.283zm1.5336 1.1135v4.1861h-.9434V16.662c.2505.1943.5173.3672.7975.5169l.1417.0691zm2.5448.7954h.0402c.8314.1862 1.337.5588 1.5443 1.1407.1048.2936.1173.6117.0359.9125-.2115.8037-1.0577 1.3228-2.1154 1.3228h-1.4807v-3.9181c.4357.1611.8969.2846 1.3898.4186.1904.0481.3829.0921.569.1339zm-.5034 3.9872c1.3327 0 2.384-.6886 2.6759-1.7519.1126-.4137.0964-.8514-.0465-1.2558-.2792-.7744-.9413-1.2851-1.9715-1.5174h-.0423c-.1798-.0398-.3681-.0817-.5479-.1298-.6894-.1523-1.3587-.3827-1.9948-.6865-.7819-.4148-1.4342-1.0333-1.8865-1.7884-.4522-.7552-.6872-1.6183-.6795-2.496-.0051-.6307.1175-1.2561.3605-1.8391.2431-.58308.6017-1.11209 1.0547-1.55583.5069-.47616 1.1049-.84733 1.7587-1.09173.6539-.24441 1.3505-.35712 2.049-.33153h.7848c.0785 0 .1539-.03087.2094-.08582s.0868-.12948.0868-.2072c0-.07771-.0313-.15224-.0868-.2072-.0555-.05495-.1309-.08582-.2094-.08582h-.7827c-.7769-.02677-1.5513.10034-2.2779.37386-.7265.27353-1.3905.68795-1.9529 1.21893-.5089.49803-.9118 1.09186-1.185 1.74644-.2733.6546-.4112 1.3567-.4057 2.065v9.3202c0 .0773.0309.1516.086.2064.055.0549.1298.0861.208.0866z" />
+                                  <path d="M14.6321 12.404c.0006-.4794.1933-.939.5359-1.278.3427-.3391.8072-.5298 1.2918-.5303.484.0011.9478.1921 1.2896.5311.3419.339.5338.7984.5338 1.2772 0 1.0466-.8461 1.9654-1.8276 1.9654h-.0297c-1.0936-.2512-1.798-1.0172-1.798-1.9695zm4.6496-1.8104c.3537.5374.5419 1.165.5415 1.8063-.0032.4936-.1146.9807-.3264 1.4276-.2118.447-.519.8432-.9005 1.1614-.3267-.1395-.6624-.2577-1.0048-.3537.3888-.2331.7111-.5606.9362-.9514.225-.3908.3455-.832.35-1.2818.0004-.3427-.0738-.6814-.2176-.9931-.1439-.3117-.3539-.5891-.6159-.8132zm1.6923 0c.3551.8667.4474 1.8169.2656 2.7346-.1819.9177-.6299 1.7632-1.2894 2.4331-.248-.1846-.5096-.3504-.7827-.4961.3891-.3709.6993-.8152.9122-1.3066.2128-.4913.3242-1.0199.3274-1.5546.0006-.6282-.1525-1.2472-.4464-1.8041zm-.5711 5.5444c.7278-.7502 1.2219-1.6921 1.423-2.7128.201-1.0208.1007-2.0772-.2892-3.043-.0445-.1098-.1214-.2039-.2206-.2699-.0992-.0661-.2162-.1011-.3357-.1006h-4.5206c-.6411.0006-1.2558.2528-1.7091.7013-.4533.4486-.7082 1.0567-.7088 1.691 0 1.2559.9477 2.2794 2.3671 2.564 3.1266.5358 4.9162 2.2374 4.9162 4.657 0 2.746-2.2466 4.8139-5.225 4.8139h-1.1995c-.0408-.0034-.0819.0016-.1207.0147s-.0744.0341-.1046.0615c-.0302.0275-.0543.0608-.0708.098-.0165.0371-.025.0772-.025.1178s.0085.0807.025.1178c.0165.0372.0406.0705.0708.098.0302.0274.0658.0484.1046.0615s.0799.0181.1207.0147h1.2037c3.3148 0 5.8152-2.3233 5.8152-5.4021.009-.6534-.1214-1.3014-.3827-1.9016-.2614-.6001-.6478-1.1389-1.134-1.5812" />
+                                  <path d="M20.4071 19.6256c0-1.9277-1.3517-3.217-3.9135-3.7319-2.1154-.4019-3.3846-1.7079-3.3846-3.4891.0006-.4251.0872-.8457.2547-1.2372.1675-.3914.4125-.7458.7205-1.0421.3621-.34702.791-.6185 1.2612-.79828.4703-.17978.9722-.26419 1.4761-.24821h2.9108c.0389 0 .0774-.00758.1133-.02231s.0686-.03631.0961-.06352.0493-.05951.0642-.09506.0225-.07366.0225-.11214-.0076-.07658-.0225-.11213-.0367-.06786-.0642-.09507-.0602-.04879-.0961-.06352c-.0359-.01472-.0744-.0223-.1133-.0223h-2.9129c-.581-.01537-1.1594.08387-1.7012.29193-.5419.20806-1.0365.52078-1.455.91993-.3638.35068-.6531.76988-.8507 1.23288-.1976.4629-.2996.9604-.3 1.4629 0 2.0931 1.4469 3.6042 3.8669 4.0626 2.2804.4584 3.4375 1.5216 3.4375 3.1584 0 1.8837-1.5971 3.3195-3.7125 3.3195h-3.3c-.0786 0-.1539.0309-.2094.0858-.0556.055-.0868.1295-.0868.2072s.0312.1523.0868.2072c.0555.055.1308.0858.2094.0858h3.3c2.4538 0 4.3027-1.6744 4.3027-3.9055" />
+                                </g>
+                              </svg>
+                            </div>
+                            <span className="book-button__text">
+                              {"Stripe Press"}
+                            </span>
+                          </a>
+                          <a
+                            className="book-button"
+                            href="https://worksinprogress.co/"
+                            data-analytics-label="book_of_the__works_in_progress"
+                          >
+                            <div className="book-button__icon-container">
+                              <picture>
+                                <source
+                                  type="image/webp"
+                                  srcSet="/stripe/WorkInProgressIcon-w32-aebd3060.webp 1x, /stripe/WorkInProgressIcon-w64-714398c2.webp 2x"
+                                />
+                                <img
+                                  loading="lazy"
+                                  width="64"
+                                  height="64"
+                                  alt=""
+                                  srcSet="/stripe/WorkInProgressIcon-w32-ff527d88.png 1x, /stripe/WorkInProgressIcon-w64-15c23ff7.png 2x"
+                                  src="/stripe/WorkInProgressIcon-w32-ff527d88.png"
+                                />
+                              </picture>
+                            </div>
+                            <span className="book-button__text">
+                              {"Works in Progress"}
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

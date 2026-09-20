@@ -1,0 +1,1 @@
+function(e,t,n){"use strict";n.d(t,{t:function(){return i}});let i=()=>window.matchMedia("(pointer: coarse)").matches&&"ontouchstart"in window}

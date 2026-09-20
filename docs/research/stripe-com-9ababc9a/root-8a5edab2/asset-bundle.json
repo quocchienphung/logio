@@ -1,0 +1,1743 @@
+{
+  "assets": [
+    {
+      "contentType": "image/webp",
+      "id": "e21d5efa290a7c4d",
+      "kind": "image",
+      "name": "palette.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/e21d5efa290a7c4d.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/5DrmXrFYpKk43Kj0I1MXQr/287b3c2a13ae8d4d7d0bf8305037de4e/palette.png?fm=webp&q=95"
+    },
+    {
+      "contentType": "",
+      "id": "01f1bfa79252498e",
+      "kind": "stylesheet",
+      "name": "5f8c822d1f0f2d3e.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/01f1bfa79252498e.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/5f8c822d1f0f2d3e.css"
+    },
+    {
+      "contentType": "",
+      "id": "bc11a53020b6e4e9",
+      "kind": "stylesheet",
+      "name": "3194942a3bd6eca4.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/bc11a53020b6e4e9.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/3194942a3bd6eca4.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "dd70ac6ea9a30c67",
+      "kind": "stylesheet",
+      "name": "e5be0f41b7fa7f3f.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/dd70ac6ea9a30c67.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/e5be0f41b7fa7f3f.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "e422b11417ee129a",
+      "kind": "stylesheet",
+      "name": "94342c617ab45d83.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/e422b11417ee129a.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/94342c617ab45d83.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "8868943e7568f710",
+      "kind": "stylesheet",
+      "name": "c3ca6e08b62a6ac3.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/8868943e7568f710.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/c3ca6e08b62a6ac3.css"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "e6b1a280963066b6",
+      "kind": "image",
+      "name": "payments-electric-kettle.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/e6b1a280963066b6.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6BTjJGdjfGVA8brPwj7p3M/fcf084ff85142366e118fe85ee78b632/payments-electric-kettle.jpg?w=160&fm=webp&q=90"
+    },
+    {
+      "contentType": "text/css",
+      "id": "1baf8334042bfd7f",
+      "kind": "stylesheet",
+      "name": "f0e2ab8fd074466f.css",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/1baf8334042bfd7f.css",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/css/f0e2ab8fd074466f.css"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "2cc4a4b33051c243",
+      "kind": "image",
+      "name": "issuing-palette.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/2cc4a4b33051c243.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/3ybjmQ6DTTkLCgjGUEfh78/11df94fe6aa9931d1e1bc6a8bd4446cc/issuing-palette.png?fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "6469feb694db9f02",
+      "kind": "image",
+      "name": "issuing_card_fg.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/6469feb694db9f02.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/5aX9aGpHZ4QT80EUfElAki/5cb769dcb801286aaf934ac638e203ac/issuing_card_fg.png?fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "daada8b8635bfce0",
+      "kind": "image",
+      "name": "issuing_card_bg.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/daada8b8635bfce0.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/I0JvzCn6SNxFosX2VFVF7/4be20d65bbb970021b5e5b75c3e2aac8/issuing_card_bg.png?fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "5793385d75281137",
+      "kind": "image",
+      "name": "shirt-blue.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5793385d75281137.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/2rL4pJabxq9Yo0haXwK2HO/83c05122b463c882c8c89111154d77ec/shirt-blue.png?w=160&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "3125347a5caec288",
+      "kind": "image",
+      "name": "hoodie-navy.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/3125347a5caec288.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6KmB7XGsUbTefNew25WF4T/6a949fbf5567dcd145339f5fcf207fae/hoodie-navy.png?w=160&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "99395119465ecbbf",
+      "kind": "image",
+      "name": "payment-bento-background.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/99395119465ecbbf.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/vYmk6v8n7oDAwbDpwhjV6/846f9b3e214549b8f14e2b8c8cfe9343/payment-bento-background.jpg?w=860&fm=webp&q=80"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "5b041e8d7850f15e",
+      "kind": "image",
+      "name": "bento-terminal.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5b041e8d7850f15e.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1Vf8oT9Fm6dEwpnEx5PgK1/055956f38d7fd8b0cc7419692ef29778/bento-terminal.png?w=308&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "d537cfaab2a2fdc6",
+      "kind": "image",
+      "name": "payments-electric-kettle.jpg",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d537cfaab2a2fdc6.jpg",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/6BTjJGdjfGVA8brPwj7p3M/fcf084ff85142366e118fe85ee78b632/payments-electric-kettle.jpg?w=80&fm=webp&q=90"
+    },
+    {
+      "contentType": "image/webp",
+      "id": "0572982e6693159b",
+      "kind": "image",
+      "name": "wave-fallback-desktop.png",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/0572982e6693159b.png",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/115d4Vd5LVAsqFGDR1ClAv/0ceb2c44a7a7182cd624262420af7544/wave-fallback-desktop.png?w=1392&fm=webp&q=60"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "26c38877489e0b4f",
+      "kind": "image",
+      "name": "Stripe logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/26c38877489e0b4f.svg",
+      "url": "inline-svg:26c38877489e0b4f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "3b1a951c4ecbd107",
+      "kind": "image",
+      "name": "svg-2",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/3b1a951c4ecbd107.svg",
+      "url": "inline-svg:3b1a951c4ecbd107"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "2a8da5c5d3b4b2cc",
+      "kind": "image",
+      "name": "svg-3",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/2a8da5c5d3b4b2cc.svg",
+      "url": "inline-svg:2a8da5c5d3b4b2cc"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7fc594725a8dab88",
+      "kind": "image",
+      "name": "svg-4",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7fc594725a8dab88.svg",
+      "url": "inline-svg:7fc594725a8dab88"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "989efd2ceb9405d2",
+      "kind": "image",
+      "name": "svg-5",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/989efd2ceb9405d2.svg",
+      "url": "inline-svg:989efd2ceb9405d2"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "eca7a153e158d3c2",
+      "kind": "image",
+      "name": "svg-6",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/eca7a153e158d3c2.svg",
+      "url": "inline-svg:eca7a153e158d3c2"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "639f1a7279b2b626",
+      "kind": "image",
+      "name": "svg-7",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/639f1a7279b2b626.svg",
+      "url": "inline-svg:639f1a7279b2b626"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a8283e27f0f829b9",
+      "kind": "image",
+      "name": "svg-8",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a8283e27f0f829b9.svg",
+      "url": "inline-svg:a8283e27f0f829b9"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "9a30c498318d23bb",
+      "kind": "image",
+      "name": "svg-9",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/9a30c498318d23bb.svg",
+      "url": "inline-svg:9a30c498318d23bb"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ca464511a39e779d",
+      "kind": "image",
+      "name": "svg-10",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ca464511a39e779d.svg",
+      "url": "inline-svg:ca464511a39e779d"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4656e4e055e24551",
+      "kind": "image",
+      "name": "svg-11",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/4656e4e055e24551.svg",
+      "url": "inline-svg:4656e4e055e24551"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "8b8862ac5c14c908",
+      "kind": "image",
+      "name": "svg-12",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/8b8862ac5c14c908.svg",
+      "url": "inline-svg:8b8862ac5c14c908"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a1cda10477a941af",
+      "kind": "image",
+      "name": "OpenAI",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a1cda10477a941af.svg",
+      "url": "inline-svg:a1cda10477a941af"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "2a8500ea6ed0df8a",
+      "kind": "image",
+      "name": "Amazon",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/2a8500ea6ed0df8a.svg",
+      "url": "inline-svg:2a8500ea6ed0df8a"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "95a32f2408581ef6",
+      "kind": "image",
+      "name": "Nvidia",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/95a32f2408581ef6.svg",
+      "url": "inline-svg:95a32f2408581ef6"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d6019900f5e94471",
+      "kind": "image",
+      "name": "Ford",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d6019900f5e94471.svg",
+      "url": "inline-svg:d6019900f5e94471"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "31767f1d332b5943",
+      "kind": "image",
+      "name": "Coinbase",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/31767f1d332b5943.svg",
+      "url": "inline-svg:31767f1d332b5943"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "9d0b3c3e67896538",
+      "kind": "image",
+      "name": "Google",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/9d0b3c3e67896538.svg",
+      "url": "inline-svg:9d0b3c3e67896538"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "db4cd5848919b4c0",
+      "kind": "image",
+      "name": "Shopify",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/db4cd5848919b4c0.svg",
+      "url": "inline-svg:db4cd5848919b4c0"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "bb7942f746756ce7",
+      "kind": "image",
+      "name": "Mindbody",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/bb7942f746756ce7.svg",
+      "url": "inline-svg:bb7942f746756ce7"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "80590577ec51c149",
+      "kind": "image",
+      "name": "MetLife",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/80590577ec51c149.svg",
+      "url": "inline-svg:80590577ec51c149"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "95a477cc1450df56",
+      "kind": "image",
+      "name": "Ramp",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/95a477cc1450df56.svg",
+      "url": "inline-svg:95a477cc1450df56"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "35e47a031acde247",
+      "kind": "image",
+      "name": "Marriott",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/35e47a031acde247.svg",
+      "url": "inline-svg:35e47a031acde247"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7cdcfc40487e72a6",
+      "kind": "image",
+      "name": "Figma",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7cdcfc40487e72a6.svg",
+      "url": "inline-svg:7cdcfc40487e72a6"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "798d1f948627fa41",
+      "kind": "image",
+      "name": "WooCommerce",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/798d1f948627fa41.svg",
+      "url": "inline-svg:798d1f948627fa41"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d0dde8469b389e09",
+      "kind": "image",
+      "name": "Vercel",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d0dde8469b389e09.svg",
+      "url": "inline-svg:d0dde8469b389e09"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "66bf8fc4101c47a2",
+      "kind": "image",
+      "name": "Uber",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/66bf8fc4101c47a2.svg",
+      "url": "inline-svg:66bf8fc4101c47a2"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "87666a0f388be492",
+      "kind": "image",
+      "name": "Anthropic",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/87666a0f388be492.svg",
+      "url": "inline-svg:87666a0f388be492"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "5f22dea4ea8f3374",
+      "kind": "image",
+      "name": "Brightwheel",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5f22dea4ea8f3374.svg",
+      "url": "inline-svg:5f22dea4ea8f3374"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4be5f1eb229e1609",
+      "kind": "image",
+      "name": "Cursor",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/4be5f1eb229e1609.svg",
+      "url": "inline-svg:4be5f1eb229e1609"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d5daa4c043172653",
+      "kind": "image",
+      "name": "OpenAI",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d5daa4c043172653.svg",
+      "url": "inline-svg:d5daa4c043172653"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "943f1b8dbf664186",
+      "kind": "image",
+      "name": "Amazon",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/943f1b8dbf664186.svg",
+      "url": "inline-svg:943f1b8dbf664186"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "11f4f16f1eeb3073",
+      "kind": "image",
+      "name": "Nvidia",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/11f4f16f1eeb3073.svg",
+      "url": "inline-svg:11f4f16f1eeb3073"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d93dcbb02bc35145",
+      "kind": "image",
+      "name": "Ford",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d93dcbb02bc35145.svg",
+      "url": "inline-svg:d93dcbb02bc35145"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "901a05a03e75745c",
+      "kind": "image",
+      "name": "Coinbase",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/901a05a03e75745c.svg",
+      "url": "inline-svg:901a05a03e75745c"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "8ab32cf74b1981bd",
+      "kind": "image",
+      "name": "Google",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/8ab32cf74b1981bd.svg",
+      "url": "inline-svg:8ab32cf74b1981bd"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "66b7ee3d70aacf69",
+      "kind": "image",
+      "name": "Shopify",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/66b7ee3d70aacf69.svg",
+      "url": "inline-svg:66b7ee3d70aacf69"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "9e5f82d4186f1e85",
+      "kind": "image",
+      "name": "Mindbody",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/9e5f82d4186f1e85.svg",
+      "url": "inline-svg:9e5f82d4186f1e85"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "23934bca747b75aa",
+      "kind": "image",
+      "name": "MetLife",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/23934bca747b75aa.svg",
+      "url": "inline-svg:23934bca747b75aa"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "0006cbb3711612cb",
+      "kind": "image",
+      "name": "Ramp",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/0006cbb3711612cb.svg",
+      "url": "inline-svg:0006cbb3711612cb"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "730803554d97d469",
+      "kind": "image",
+      "name": "Marriott",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/730803554d97d469.svg",
+      "url": "inline-svg:730803554d97d469"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f464f9c470fbcbc7",
+      "kind": "image",
+      "name": "Figma",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f464f9c470fbcbc7.svg",
+      "url": "inline-svg:f464f9c470fbcbc7"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "6b0d1330379ef564",
+      "kind": "image",
+      "name": "WooCommerce",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/6b0d1330379ef564.svg",
+      "url": "inline-svg:6b0d1330379ef564"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "aeec88719abe0381",
+      "kind": "image",
+      "name": "Vercel",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/aeec88719abe0381.svg",
+      "url": "inline-svg:aeec88719abe0381"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "fdf3f0a6a2c64a80",
+      "kind": "image",
+      "name": "Uber",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/fdf3f0a6a2c64a80.svg",
+      "url": "inline-svg:fdf3f0a6a2c64a80"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "07824799afcb43a0",
+      "kind": "image",
+      "name": "Anthropic",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/07824799afcb43a0.svg",
+      "url": "inline-svg:07824799afcb43a0"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7f23dd037f40a804",
+      "kind": "image",
+      "name": "Brightwheel",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7f23dd037f40a804.svg",
+      "url": "inline-svg:7f23dd037f40a804"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "603ca657e301641a",
+      "kind": "image",
+      "name": "Cursor",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/603ca657e301641a.svg",
+      "url": "inline-svg:603ca657e301641a"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ed6c2ff1da3437dd",
+      "kind": "image",
+      "name": "svg-49",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ed6c2ff1da3437dd.svg",
+      "url": "inline-svg:ed6c2ff1da3437dd"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d2e7a4733e7661c5",
+      "kind": "image",
+      "name": "svg-50",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d2e7a4733e7661c5.svg",
+      "url": "inline-svg:d2e7a4733e7661c5"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "dde7070ab0880e10",
+      "kind": "image",
+      "name": "svg-51",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/dde7070ab0880e10.svg",
+      "url": "inline-svg:dde7070ab0880e10"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7fbb2d27e80bddee",
+      "kind": "image",
+      "name": "svg-52",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7fbb2d27e80bddee.svg",
+      "url": "inline-svg:7fbb2d27e80bddee"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d8b83abba1abedbd",
+      "kind": "image",
+      "name": "svg-53",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d8b83abba1abedbd.svg",
+      "url": "inline-svg:d8b83abba1abedbd"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "92b07077538946ec",
+      "kind": "image",
+      "name": "svg-54",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/92b07077538946ec.svg",
+      "url": "inline-svg:92b07077538946ec"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "924e62ea7413468f",
+      "kind": "image",
+      "name": "svg-55",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/924e62ea7413468f.svg",
+      "url": "inline-svg:924e62ea7413468f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "749bd0a0f32dea31",
+      "kind": "image",
+      "name": "svg-56",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/749bd0a0f32dea31.svg",
+      "url": "inline-svg:749bd0a0f32dea31"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a189ec0cf0965989",
+      "kind": "image",
+      "name": "svg-57",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a189ec0cf0965989.svg",
+      "url": "inline-svg:a189ec0cf0965989"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f22a53e788b59780",
+      "kind": "image",
+      "name": "svg-58",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f22a53e788b59780.svg",
+      "url": "inline-svg:f22a53e788b59780"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "67ab0aa075140a98",
+      "kind": "image",
+      "name": "svg-59",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/67ab0aa075140a98.svg",
+      "url": "inline-svg:67ab0aa075140a98"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ef20713f7145099e",
+      "kind": "image",
+      "name": "svg-60",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ef20713f7145099e.svg",
+      "url": "inline-svg:ef20713f7145099e"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "86847156e4ff951f",
+      "kind": "image",
+      "name": "svg-61",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/86847156e4ff951f.svg",
+      "url": "inline-svg:86847156e4ff951f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7912bfede389f923",
+      "kind": "image",
+      "name": "svg-62",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7912bfede389f923.svg",
+      "url": "inline-svg:7912bfede389f923"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d717e6a875819ce4",
+      "kind": "image",
+      "name": "svg-63",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d717e6a875819ce4.svg",
+      "url": "inline-svg:d717e6a875819ce4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "55304e3c23b1c4e7",
+      "kind": "image",
+      "name": "svg-64",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/55304e3c23b1c4e7.svg",
+      "url": "inline-svg:55304e3c23b1c4e7"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ed5a872d2470920f",
+      "kind": "image",
+      "name": "svg-65",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ed5a872d2470920f.svg",
+      "url": "inline-svg:ed5a872d2470920f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "06494bab9afed669",
+      "kind": "image",
+      "name": "svg-66",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/06494bab9afed669.svg",
+      "url": "inline-svg:06494bab9afed669"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "2c48cd6c15932414",
+      "kind": "image",
+      "name": "svg-67",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/2c48cd6c15932414.svg",
+      "url": "inline-svg:2c48cd6c15932414"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "b62404dcb6c6acd8",
+      "kind": "image",
+      "name": "svg-68",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/b62404dcb6c6acd8.svg",
+      "url": "inline-svg:b62404dcb6c6acd8"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f6ebfd810d80ae99",
+      "kind": "image",
+      "name": "svg-69",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f6ebfd810d80ae99.svg",
+      "url": "inline-svg:f6ebfd810d80ae99"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "9cafa79ddc4e3317",
+      "kind": "image",
+      "name": "svg-70",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/9cafa79ddc4e3317.svg",
+      "url": "inline-svg:9cafa79ddc4e3317"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "500d542460dd54fc",
+      "kind": "image",
+      "name": "svg-71",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/500d542460dd54fc.svg",
+      "url": "inline-svg:500d542460dd54fc"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "fba1c8fb1e6e2674",
+      "kind": "image",
+      "name": "svg-72",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/fba1c8fb1e6e2674.svg",
+      "url": "inline-svg:fba1c8fb1e6e2674"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ce8050589fe102a4",
+      "kind": "image",
+      "name": "svg-73",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ce8050589fe102a4.svg",
+      "url": "inline-svg:ce8050589fe102a4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "837a4e22f56b6934",
+      "kind": "image",
+      "name": "svg-74",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/837a4e22f56b6934.svg",
+      "url": "inline-svg:837a4e22f56b6934"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a00bcc7191296a1e",
+      "kind": "image",
+      "name": "svg-75",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a00bcc7191296a1e.svg",
+      "url": "inline-svg:a00bcc7191296a1e"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "288cbea85941118b",
+      "kind": "image",
+      "name": "svg-76",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/288cbea85941118b.svg",
+      "url": "inline-svg:288cbea85941118b"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "97aa64f36629c6a2",
+      "kind": "image",
+      "name": "svg-77",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/97aa64f36629c6a2.svg",
+      "url": "inline-svg:97aa64f36629c6a2"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "39413b8ccdc975c6",
+      "kind": "image",
+      "name": "svg-78",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/39413b8ccdc975c6.svg",
+      "url": "inline-svg:39413b8ccdc975c6"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ccee6d18a2984cda",
+      "kind": "image",
+      "name": "svg-79",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ccee6d18a2984cda.svg",
+      "url": "inline-svg:ccee6d18a2984cda"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f3fd22d40a874853",
+      "kind": "image",
+      "name": "svg-80",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f3fd22d40a874853.svg",
+      "url": "inline-svg:f3fd22d40a874853"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "760adc9cd8529307",
+      "kind": "image",
+      "name": "svg-81",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/760adc9cd8529307.svg",
+      "url": "inline-svg:760adc9cd8529307"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4f52f13411781471",
+      "kind": "image",
+      "name": "svg-82",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/4f52f13411781471.svg",
+      "url": "inline-svg:4f52f13411781471"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "142beb3398466ea2",
+      "kind": "image",
+      "name": "svg-83",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/142beb3398466ea2.svg",
+      "url": "inline-svg:142beb3398466ea2"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a7e204811cc38a05",
+      "kind": "image",
+      "name": "svg-84",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a7e204811cc38a05.svg",
+      "url": "inline-svg:a7e204811cc38a05"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7a01fed9c9f8d11f",
+      "kind": "image",
+      "name": "svg-85",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7a01fed9c9f8d11f.svg",
+      "url": "inline-svg:7a01fed9c9f8d11f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "5a33e138dbcd0e72",
+      "kind": "image",
+      "name": "svg-86",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5a33e138dbcd0e72.svg",
+      "url": "inline-svg:5a33e138dbcd0e72"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "07fe4475a0b4029d",
+      "kind": "image",
+      "name": "svg-87",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/07fe4475a0b4029d.svg",
+      "url": "inline-svg:07fe4475a0b4029d"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ddb16687e4abb1e3",
+      "kind": "image",
+      "name": "svg-88",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ddb16687e4abb1e3.svg",
+      "url": "inline-svg:ddb16687e4abb1e3"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d82e5d3e7b2afe37",
+      "kind": "image",
+      "name": "svg-89",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d82e5d3e7b2afe37.svg",
+      "url": "inline-svg:d82e5d3e7b2afe37"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4dc4c640b0b8cf28",
+      "kind": "image",
+      "name": "svg-90",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/4dc4c640b0b8cf28.svg",
+      "url": "inline-svg:4dc4c640b0b8cf28"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a66e00dd80d4d8d9",
+      "kind": "image",
+      "name": "Stripe Sessions logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a66e00dd80d4d8d9.svg",
+      "url": "inline-svg:a66e00dd80d4d8d9"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "6006f88012526e80",
+      "kind": "image",
+      "name": "svg-92",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/6006f88012526e80.svg",
+      "url": "inline-svg:6006f88012526e80"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ec6fc5b01858bb22",
+      "kind": "image",
+      "name": "svg-93",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ec6fc5b01858bb22.svg",
+      "url": "inline-svg:ec6fc5b01858bb22"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "b4b4be1a2bd54f2f",
+      "kind": "image",
+      "name": "svg-94",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/b4b4be1a2bd54f2f.svg",
+      "url": "inline-svg:b4b4be1a2bd54f2f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "6c4b329981b735f4",
+      "kind": "image",
+      "name": "svg-95",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/6c4b329981b735f4.svg",
+      "url": "inline-svg:6c4b329981b735f4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f8fb002e7ed5da87",
+      "kind": "image",
+      "name": "svg-96",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f8fb002e7ed5da87.svg",
+      "url": "inline-svg:f8fb002e7ed5da87"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "21611b7581ad9442",
+      "kind": "image",
+      "name": "svg-97",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/21611b7581ad9442.svg",
+      "url": "inline-svg:21611b7581ad9442"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "aa1a0bf879d7b04a",
+      "kind": "image",
+      "name": "svg-98",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/aa1a0bf879d7b04a.svg",
+      "url": "inline-svg:aa1a0bf879d7b04a"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "15375b3a98f7d6d6",
+      "kind": "image",
+      "name": "svg-99",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/15375b3a98f7d6d6.svg",
+      "url": "inline-svg:15375b3a98f7d6d6"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "1cd90ce930d28fa7",
+      "kind": "image",
+      "name": "svg-100",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/1cd90ce930d28fa7.svg",
+      "url": "inline-svg:1cd90ce930d28fa7"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f39b5c6565852759",
+      "kind": "image",
+      "name": "svg-101",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f39b5c6565852759.svg",
+      "url": "inline-svg:f39b5c6565852759"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f96b2849bcb717a2",
+      "kind": "image",
+      "name": "svg-102",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f96b2849bcb717a2.svg",
+      "url": "inline-svg:f96b2849bcb717a2"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "139315c6a49b4f0f",
+      "kind": "image",
+      "name": "svg-103",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/139315c6a49b4f0f.svg",
+      "url": "inline-svg:139315c6a49b4f0f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "cff6512e27041fee",
+      "kind": "image",
+      "name": "svg-104",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/cff6512e27041fee.svg",
+      "url": "inline-svg:cff6512e27041fee"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "558b0a542f57c913",
+      "kind": "image",
+      "name": "svg-105",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/558b0a542f57c913.svg",
+      "url": "inline-svg:558b0a542f57c913"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "18b0b4a0632ee1a0",
+      "kind": "image",
+      "name": "svg-106",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/18b0b4a0632ee1a0.svg",
+      "url": "inline-svg:18b0b4a0632ee1a0"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7b1fde589cf4ca32",
+      "kind": "image",
+      "name": "svg-107",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7b1fde589cf4ca32.svg",
+      "url": "inline-svg:7b1fde589cf4ca32"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "c928c2739368dda4",
+      "kind": "image",
+      "name": "svg-108",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/c928c2739368dda4.svg",
+      "url": "inline-svg:c928c2739368dda4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "dc8446da13f25cbd",
+      "kind": "image",
+      "name": "svg-109",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/dc8446da13f25cbd.svg",
+      "url": "inline-svg:dc8446da13f25cbd"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "74ec26c9f7833c37",
+      "kind": "image",
+      "name": "svg-110",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/74ec26c9f7833c37.svg",
+      "url": "inline-svg:74ec26c9f7833c37"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7e0c642e1b1bf8e0",
+      "kind": "image",
+      "name": "svg-111",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7e0c642e1b1bf8e0.svg",
+      "url": "inline-svg:7e0c642e1b1bf8e0"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "2f6914cba1c4ebf9",
+      "kind": "image",
+      "name": "svg-112",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/2f6914cba1c4ebf9.svg",
+      "url": "inline-svg:2f6914cba1c4ebf9"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "8905289515be55f4",
+      "kind": "image",
+      "name": "svg-113",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/8905289515be55f4.svg",
+      "url": "inline-svg:8905289515be55f4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "67441964e411b3dd",
+      "kind": "image",
+      "name": "svg-114",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/67441964e411b3dd.svg",
+      "url": "inline-svg:67441964e411b3dd"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "5a1bebabc3e699dc",
+      "kind": "image",
+      "name": "svg-115",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5a1bebabc3e699dc.svg",
+      "url": "inline-svg:5a1bebabc3e699dc"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "0ed28c81fcc69e95",
+      "kind": "image",
+      "name": "svg-116",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/0ed28c81fcc69e95.svg",
+      "url": "inline-svg:0ed28c81fcc69e95"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "3ee3709093f2ab49",
+      "kind": "image",
+      "name": "svg-117",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/3ee3709093f2ab49.svg",
+      "url": "inline-svg:3ee3709093f2ab49"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "754b8ad45d5ac296",
+      "kind": "image",
+      "name": "Lovable logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/754b8ad45d5ac296.svg",
+      "url": "inline-svg:754b8ad45d5ac296"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "03faa84f58049b87",
+      "kind": "image",
+      "name": "svg-119",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/03faa84f58049b87.svg",
+      "url": "inline-svg:03faa84f58049b87"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "1b99c0b82a36e159",
+      "kind": "image",
+      "name": "Gamma logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/1b99c0b82a36e159.svg",
+      "url": "inline-svg:1b99c0b82a36e159"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "2476112075ecc643",
+      "kind": "image",
+      "name": "svg-121",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/2476112075ecc643.svg",
+      "url": "inline-svg:2476112075ecc643"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "1b25e94dcc1247a5",
+      "kind": "image",
+      "name": "Runway logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/1b25e94dcc1247a5.svg",
+      "url": "inline-svg:1b25e94dcc1247a5"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "07fe7f0c843eb8f7",
+      "kind": "image",
+      "name": "svg-123",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/07fe7f0c843eb8f7.svg",
+      "url": "inline-svg:07fe7f0c843eb8f7"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a90a839300a7fbe3",
+      "kind": "image",
+      "name": "Supabase logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a90a839300a7fbe3.svg",
+      "url": "inline-svg:a90a839300a7fbe3"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "9aebeb7d065ea199",
+      "kind": "image",
+      "name": "svg-125",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/9aebeb7d065ea199.svg",
+      "url": "inline-svg:9aebeb7d065ea199"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "b6af2152d6c4d98c",
+      "kind": "image",
+      "name": "Linear logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/b6af2152d6c4d98c.svg",
+      "url": "inline-svg:b6af2152d6c4d98c"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "58dfb8c4ba3677cd",
+      "kind": "image",
+      "name": "svg-127",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/58dfb8c4ba3677cd.svg",
+      "url": "inline-svg:58dfb8c4ba3677cd"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "5506ecb1fe5a3434",
+      "kind": "image",
+      "name": "ElevenLabs logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5506ecb1fe5a3434.svg",
+      "url": "inline-svg:5506ecb1fe5a3434"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "52236936309a54a4",
+      "kind": "image",
+      "name": "svg-129",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/52236936309a54a4.svg",
+      "url": "inline-svg:52236936309a54a4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d8a5b9a4913f8d94",
+      "kind": "image",
+      "name": "Browserbase logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d8a5b9a4913f8d94.svg",
+      "url": "inline-svg:d8a5b9a4913f8d94"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "562bf4c760a87941",
+      "kind": "image",
+      "name": "svg-131",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/562bf4c760a87941.svg",
+      "url": "inline-svg:562bf4c760a87941"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "758ac16677febc05",
+      "kind": "image",
+      "name": "Decagon logo",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/758ac16677febc05.svg",
+      "url": "inline-svg:758ac16677febc05"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "cbd6210267f520c0",
+      "kind": "image",
+      "name": "svg-133",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/cbd6210267f520c0.svg",
+      "url": "inline-svg:cbd6210267f520c0"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "1fdd04aad6e43d4e",
+      "kind": "image",
+      "name": "svg-134",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/1fdd04aad6e43d4e.svg",
+      "url": "inline-svg:1fdd04aad6e43d4e"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "8cc12e8b22559cca",
+      "kind": "image",
+      "name": "svg-135",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/8cc12e8b22559cca.svg",
+      "url": "inline-svg:8cc12e8b22559cca"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "33348f9e54588777",
+      "kind": "image",
+      "name": "svg-136",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/33348f9e54588777.svg",
+      "url": "inline-svg:33348f9e54588777"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "0ced57021500356f",
+      "kind": "image",
+      "name": "svg-137",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/0ced57021500356f.svg",
+      "url": "inline-svg:0ced57021500356f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "93e9b556d8a70d6d",
+      "kind": "image",
+      "name": "svg-138",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/93e9b556d8a70d6d.svg",
+      "url": "inline-svg:93e9b556d8a70d6d"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "209856b08a84fc7d",
+      "kind": "image",
+      "name": "svg-139",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/209856b08a84fc7d.svg",
+      "url": "inline-svg:209856b08a84fc7d"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "57186028e0800712",
+      "kind": "image",
+      "name": "svg-140",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/57186028e0800712.svg",
+      "url": "inline-svg:57186028e0800712"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "307a43d3e4583ded",
+      "kind": "image",
+      "name": "svg-141",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/307a43d3e4583ded.svg",
+      "url": "inline-svg:307a43d3e4583ded"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "c6f34be7fca2ede7",
+      "kind": "image",
+      "name": "svg-142",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/c6f34be7fca2ede7.svg",
+      "url": "inline-svg:c6f34be7fca2ede7"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "775ed88efdc34f1f",
+      "kind": "image",
+      "name": "svg-143",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/775ed88efdc34f1f.svg",
+      "url": "inline-svg:775ed88efdc34f1f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "3ee112d63a2c645d",
+      "kind": "image",
+      "name": "svg-144",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/3ee112d63a2c645d.svg",
+      "url": "inline-svg:3ee112d63a2c645d"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4bd2dd272a5c0c07",
+      "kind": "image",
+      "name": "svg-145",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/4bd2dd272a5c0c07.svg",
+      "url": "inline-svg:4bd2dd272a5c0c07"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a05e123533202756",
+      "kind": "image",
+      "name": "svg-146",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a05e123533202756.svg",
+      "url": "inline-svg:a05e123533202756"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "cb2c4fd58c688370",
+      "kind": "image",
+      "name": "svg-147",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/cb2c4fd58c688370.svg",
+      "url": "inline-svg:cb2c4fd58c688370"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "5d5ead08be098918",
+      "kind": "image",
+      "name": "svg-148",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5d5ead08be098918.svg",
+      "url": "inline-svg:5d5ead08be098918"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "3ed8b088051b4280",
+      "kind": "image",
+      "name": "svg-149",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/3ed8b088051b4280.svg",
+      "url": "inline-svg:3ed8b088051b4280"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "2b487582bf88d32d",
+      "kind": "image",
+      "name": "svg-150",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/2b487582bf88d32d.svg",
+      "url": "inline-svg:2b487582bf88d32d"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "e520060917fda74e",
+      "kind": "image",
+      "name": "svg-151",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/e520060917fda74e.svg",
+      "url": "inline-svg:e520060917fda74e"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "0aec5a9a8ff15171",
+      "kind": "image",
+      "name": "svg-152",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/0aec5a9a8ff15171.svg",
+      "url": "inline-svg:0aec5a9a8ff15171"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a76ffc035e4ad9fc",
+      "kind": "image",
+      "name": "svg-153",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a76ffc035e4ad9fc.svg",
+      "url": "inline-svg:a76ffc035e4ad9fc"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d8e4edf59fdb0cd4",
+      "kind": "image",
+      "name": "svg-154",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d8e4edf59fdb0cd4.svg",
+      "url": "inline-svg:d8e4edf59fdb0cd4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "b566144ea6d7acef",
+      "kind": "image",
+      "name": "svg-155",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/b566144ea6d7acef.svg",
+      "url": "inline-svg:b566144ea6d7acef"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d3e97772de34c875",
+      "kind": "image",
+      "name": "svg-156",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d3e97772de34c875.svg",
+      "url": "inline-svg:d3e97772de34c875"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "62607693eede398c",
+      "kind": "image",
+      "name": "svg-157",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/62607693eede398c.svg",
+      "url": "inline-svg:62607693eede398c"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "542c58ca614bb58f",
+      "kind": "image",
+      "name": "svg-158",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/542c58ca614bb58f.svg",
+      "url": "inline-svg:542c58ca614bb58f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a97fe72a2c277bd4",
+      "kind": "image",
+      "name": "svg-159",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a97fe72a2c277bd4.svg",
+      "url": "inline-svg:a97fe72a2c277bd4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "e57c1989a632532b",
+      "kind": "image",
+      "name": "svg-160",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/e57c1989a632532b.svg",
+      "url": "inline-svg:e57c1989a632532b"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "590d828406527743",
+      "kind": "image",
+      "name": "svg-161",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/590d828406527743.svg",
+      "url": "inline-svg:590d828406527743"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f1fd997ef952fef7",
+      "kind": "image",
+      "name": "svg-162",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f1fd997ef952fef7.svg",
+      "url": "inline-svg:f1fd997ef952fef7"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "5c794d504252f1be",
+      "kind": "image",
+      "name": "svg-163",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/5c794d504252f1be.svg",
+      "url": "inline-svg:5c794d504252f1be"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "49a50da0fcea1347",
+      "kind": "image",
+      "name": "svg-164",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/49a50da0fcea1347.svg",
+      "url": "inline-svg:49a50da0fcea1347"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "97d0fbac90774687",
+      "kind": "image",
+      "name": "svg-165",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/97d0fbac90774687.svg",
+      "url": "inline-svg:97d0fbac90774687"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "1cbf7e991d530f28",
+      "kind": "image",
+      "name": "svg-166",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/1cbf7e991d530f28.svg",
+      "url": "inline-svg:1cbf7e991d530f28"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "ef0022052e7543dc",
+      "kind": "image",
+      "name": "svg-167",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/ef0022052e7543dc.svg",
+      "url": "inline-svg:ef0022052e7543dc"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "f1746a9cea2f4cee",
+      "kind": "image",
+      "name": "svg-168",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/f1746a9cea2f4cee.svg",
+      "url": "inline-svg:f1746a9cea2f4cee"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "e006cee097934acc",
+      "kind": "image",
+      "name": "svg-169",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/e006cee097934acc.svg",
+      "url": "inline-svg:e006cee097934acc"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "9d57ac3ac77806be",
+      "kind": "image",
+      "name": "svg-170",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/9d57ac3ac77806be.svg",
+      "url": "inline-svg:9d57ac3ac77806be"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "d69e57b6b80a58e9",
+      "kind": "image",
+      "name": "svg-171",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/d69e57b6b80a58e9.svg",
+      "url": "inline-svg:d69e57b6b80a58e9"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "3f27fa5fba3a9fad",
+      "kind": "image",
+      "name": "svg-172",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/3f27fa5fba3a9fad.svg",
+      "url": "inline-svg:3f27fa5fba3a9fad"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "aafaa426abd4a9f0",
+      "kind": "image",
+      "name": "svg-173",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/aafaa426abd4a9f0.svg",
+      "url": "inline-svg:aafaa426abd4a9f0"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "461c008aecf3377b",
+      "kind": "image",
+      "name": "svg-174",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/461c008aecf3377b.svg",
+      "url": "inline-svg:461c008aecf3377b"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "99d89ce0e25edd41",
+      "kind": "image",
+      "name": "svg-175",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/99d89ce0e25edd41.svg",
+      "url": "inline-svg:99d89ce0e25edd41"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "3a5c4b6779ca334f",
+      "kind": "image",
+      "name": "svg-176",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/3a5c4b6779ca334f.svg",
+      "url": "inline-svg:3a5c4b6779ca334f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "835964c7892271e9",
+      "kind": "image",
+      "name": "svg-177",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/835964c7892271e9.svg",
+      "url": "inline-svg:835964c7892271e9"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "fe0763c13a9940e0",
+      "kind": "image",
+      "name": "svg-178",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/fe0763c13a9940e0.svg",
+      "url": "inline-svg:fe0763c13a9940e0"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4f4561e7976de61b",
+      "kind": "image",
+      "name": "svg-179",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/4f4561e7976de61b.svg",
+      "url": "inline-svg:4f4561e7976de61b"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7dc30442e53faecb",
+      "kind": "image",
+      "name": "svg-180",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7dc30442e53faecb.svg",
+      "url": "inline-svg:7dc30442e53faecb"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "b1ece141fef6f2bc",
+      "kind": "image",
+      "name": "svg-181",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/b1ece141fef6f2bc.svg",
+      "url": "inline-svg:b1ece141fef6f2bc"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "47d70963bff6c9d4",
+      "kind": "image",
+      "name": "svg-182",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/47d70963bff6c9d4.svg",
+      "url": "inline-svg:47d70963bff6c9d4"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4abbbb6ff277772f",
+      "kind": "image",
+      "name": "svg-183",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/4abbbb6ff277772f.svg",
+      "url": "inline-svg:4abbbb6ff277772f"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "b4d31637b13b01b1",
+      "kind": "image",
+      "name": "svg-184",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/b4d31637b13b01b1.svg",
+      "url": "inline-svg:b4d31637b13b01b1"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "7a18c8d2c49092ab",
+      "kind": "image",
+      "name": "svg-185",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/7a18c8d2c49092ab.svg",
+      "url": "inline-svg:7a18c8d2c49092ab"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "a025edb1ad9ac822",
+      "kind": "image",
+      "name": "svg-186",
+      "path": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/a025edb1ad9ac822.svg",
+      "url": "inline-svg:a025edb1ad9ac822"
+    }
+  ],
+  "directoryPath": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7",
+  "failures": [
+    {
+      "contentType": null,
+      "id": "0ab0832c8cc92b35",
+      "name": "Sohne.cb178166.woff2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/media/Sohne.cb178166.woff2"
+    },
+    {
+      "contentType": null,
+      "id": "ec203ee56b415fcf",
+      "name": "SourceCodePro-Medium.f5ba3e6a.woff2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/media/SourceCodePro-Medium.f5ba3e6a.woff2"
+    },
+    {
+      "contentType": null,
+      "id": "989930483eff12c6",
+      "name": "wave-fallback-desktop.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/115d4Vd5LVAsqFGDR1ClAv/0ceb2c44a7a7182cd624262420af7544/wave-fallback-desktop.png?w=2784&fm=webp&q=60"
+    },
+    {
+      "contentType": null,
+      "id": "5edba69b5bdcec20",
+      "name": "payment-bento-background.jpg",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/vYmk6v8n7oDAwbDpwhjV6/846f9b3e214549b8f14e2b8c8cfe9343/payment-bento-background.jpg?w=1720&fm=webp&q=80"
+    },
+    {
+      "contentType": null,
+      "id": "3ef4ceb83bc21421",
+      "name": "map_dots.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/2hmAf1AbLIejlWrAYU4iiK/cf0f4918753c76d8e37782e084d16320/map_dots.png"
+    },
+    {
+      "contentType": null,
+      "id": "561f0d1800c6cac1",
+      "name": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&from_mkt_srv=true&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&viewed_name=home&event=home.viewed&event_count=1&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_1&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&from_mkt_srv=true&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&viewed_name=home&event=home.viewed&event_count=1&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_1&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true"
+    },
+    {
+      "contentType": null,
+      "id": "977be53aac3497fd",
+      "name": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&fromMktSrv=true&experimentId=wpp_curator_h2&variantId=control&arbId=45015655-90b6-2d04-a713-04c767b58154&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=experiment_exposed&viewed_name=home&event=experiment_exposed.action&event_count=2&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_2&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&fromMktSrv=true&experimentId=wpp_curator_h2&variantId=control&arbId=45015655-90b6-2d04-a713-04c767b58154&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=experiment_exposed&viewed_name=home&event=experiment_exposed.action&event_count=2&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_2&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true"
+    },
+    {
+      "contentType": null,
+      "id": "c643aa2e108957d3",
+      "name": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&fromMktSrv=true&experimentId=wpp_react_homepage_aa&variantId=treatment&arbId=ac49bbc6-6d62-e0b9-d46c-f2f9603be131&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=experiment_exposed&viewed_name=home&event=experiment_exposed.action&event_count=3&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_3&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&fromMktSrv=true&experimentId=wpp_react_homepage_aa&variantId=treatment&arbId=ac49bbc6-6d62-e0b9-d46c-f2f9603be131&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=experiment_exposed&viewed_name=home&event=experiment_exposed.action&event_count=3&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_3&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true"
+    },
+    {
+      "contentType": null,
+      "id": "85754801aef03c39",
+      "name": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&fromMktSrv=true&experimentId=wpp_curator_input_strength&variantId=treatment&arbId=77707f06-00d7-b367-c0c9-a3727f62d736&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=experiment_exposed&viewed_name=home&event=experiment_exposed.action&event_count=4&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_4&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&title=Stripe%20%7C%20Financial%20Infrastructure%20to%20Grow%20Your%20Revenue&mkt_path=%2F&fromMktSrv=true&experimentId=wpp_curator_input_strength&variantId=treatment&arbId=77707f06-00d7-b367-c0c9-a3727f62d736&document_height=13934&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=experiment_exposed&viewed_name=home&event=experiment_exposed.action&event_count=4&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_4&privacy_consent_loaded=true&privacy_consent_advertising=false&privacy_consent_functional=true"
+    },
+    {
+      "contentType": null,
+      "id": "f427e55471cc2b2f",
+      "name": "bento-terminal.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/1Vf8oT9Fm6dEwpnEx5PgK1/055956f38d7fd8b0cc7419692ef29778/bento-terminal.png?w=616&fm=webp&q=90"
+    },
+    {
+      "contentType": null,
+      "id": "961f0a77f2f82ea5",
+      "name": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&category=Custom%20interactive%20components&label=Cookie%20notification%20(Reject%20all)%3A%20Banner%20displayed&value=undefined&from_mkt_srv=true&document_height=14558&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=viewed&viewed_name=home&event=viewed.action&event_count=5&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_5&privacy_consent_loaded=true&privacy_consent_functional=true&privacy_consent_advertising=false",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&category=Custom%20interactive%20components&label=Cookie%20notification%20(Reject%20all)%3A%20Banner%20displayed&value=undefined&from_mkt_srv=true&document_height=14558&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=viewed&viewed_name=home&event=viewed.action&event_count=5&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_5&privacy_consent_loaded=true&privacy_consent_functional=true&privacy_consent_advertising=false"
+    },
+    {
+      "contentType": null,
+      "id": "a8034146ac3322c5",
+      "name": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&from_mkt_srv=true&ttfb=311.30000000074506&fps=3.2172444301455805&document_height=14558&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=web_vitals&viewed_name=home&event=web_vitals.action&event_count=6&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_6&privacy_consent_loaded=true&privacy_consent_functional=true&privacy_consent_advertising=false",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=742&viewport_width=1536&from_mkt_srv=true&ttfb=311.30000000074506&fps=3.2172444301455805&document_height=14558&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=web_vitals&viewed_name=home&event=web_vitals.action&event_count=6&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_6&privacy_consent_loaded=true&privacy_consent_functional=true&privacy_consent_advertising=false"
+    },
+    {
+      "contentType": null,
+      "id": "1afea23f6be9bd77",
+      "name": "wave-fallback-mobile.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://images.stripeassets.com/fzn2n1nzq965/18ArQFiazlljjIKGV0OnTb/2e15cabc1c905bb65e7de2678d3b60a9/wave-fallback-mobile.png?w=624&fm=webp&q=60"
+    },
+    {
+      "contentType": null,
+      "id": "fdd87a76a6d787eb",
+      "name": "favicon.ico",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://assets.stripeassets.com/fzn2n1nzq965/nu0iR4KqmkdJ52fgRts09/c3a10df318e7ffb1f516073daadea625/favicon.ico"
+    },
+    {
+      "contentType": null,
+      "id": "2a60cd90beb66e83",
+      "name": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=1000&viewport_width=1440&category=Buttons&label=Cookie%20notification%20(Reject%20all)%3A%20Reject%20all&value=undefined&from_mkt_srv=true&document_height=14734&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=clicked&viewed_name=home&event=clicked.action&event_count=7&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_7&privacy_consent_loaded=true&privacy_consent_functional=true&privacy_consent_advertising=false",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js:1:3633\n    at chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/200.js:1:1266\n    at https://b.stripecdn.com/mkt-ssr-statics/assets/_next/static/chunks/pages/_app-d55d85405abc055e.js:3:1472732\n    at kX (<anonymous>:1:41)\n    at <anonymous>:1:354",
+      "url": "https://q.stripe.com/?cid=7d95fe97-16a5-c6c7-a48f-ccb625952455&lsid=7d95fe97-16a5-c6c7-a48f-ccb625952455&analytics_ua=analytics.js-CURRENT_VERSION&ua_browser_name=Chrome&ua_browser_version=153.0.0.0&ua_os_name=Windows&ua_os_version=10&ua_engine_name=Blink&ua_engine_version=153.0.0.0&page=%2F&referrer=&domain=stripe.com&viewport_height=1000&viewport_width=1440&category=Buttons&label=Cookie%20notification%20(Reject%20all)%3A%20Reject%20all&value=undefined&from_mkt_srv=true&document_height=14734&scroll_y=0&stripe_locale=en-US&unglobalized_path=%2F&token_b057adf6=b057adf682d1cf40afa3c35e51ddf591f927493f&action_name=clicked&viewed_name=home&event=clicked.action&event_count=7&page_view_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4&event_id=d952bdd5-1dfe-4201-ac30-619120f1b7c4_7&privacy_consent_loaded=true&privacy_consent_functional=true&privacy_consent_advertising=false"
+    }
+  ],
+  "manifestPath": "C:\\Users\\ADMIN\\AppData\\Local\\Temp/browser-use/assets/c78063c5-fc33-4829-b78a-51351e546ac7/manifest.json",
+  "summary": {
+    "downloadedCount": 203,
+    "elapsedMs": 330.0654000000068,
+    "failedCount": 15,
+    "requestedCount": 218
+  }
+}

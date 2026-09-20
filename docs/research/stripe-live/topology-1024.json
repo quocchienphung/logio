@@ -1,0 +1,197 @@
+[
+  {
+    "tag": "HEADER",
+    "cls": "hds-color-mode navigation section section--white hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 76
+    },
+    "bg": "rgba(0, 0, 0, 0)",
+    "text": "Products Solutions Developers Resources Pricing Sign in Sign in Contact sales"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode hero-section-container section section--white hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 76,
+      "w": 1024,
+      "h": 595.234375
+    },
+    "bg": "rgb(255, 255, 255)",
+    "text": "Global GDP running on Stripe: 1.71683021% 1.71683021% Financial infrastructure to grow your revenue. Accept payments, offer financial services, and implement cu"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode section section--white hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 671.234375,
+      "w": 1024,
+      "h": 1795.765625
+    },
+    "bg": "rgb(255, 255, 255)",
+    "text": "Flexible solutions for every business model. Grow your business with a comprehensive set of payments and financial tools⁠—⁠designed to work individually or toge"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode section section--white hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 2467,
+      "w": 1024,
+      "h": 560
+    },
+    "bg": "rgb(255, 255, 255)",
+    "text": "Building the economic infrastructure for AI Watch now"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode stats-section stats-section--time-daytime section section--white hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 3027,
+      "w": 1024,
+      "h": 862.171875
+    },
+    "bg": "rgb(255, 255, 255)",
+    "text": "The backbone of global commerce 135+ currencies and payment methods supported $1.9T in payments volume processed in 2025 99.999% historical uptime for Stripe se"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode business-sizes-section section section--white hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 3889.171875,
+      "w": 1024,
+      "h": 4513.9375
+    },
+    "bg": "rgb(255, 255, 255)",
+    "text": "Powering businesses of all sizes. Run your business on a reliable platform that adapts to your needs. Transform your enterprise with agile financial infrastruct"
+  },
+  {
+    "tag": "HEADER",
+    "cls": "section-header section-header--title-span-5",
+    "id": "",
+    "rect": {
+      "x": 33,
+      "y": 4184.546875,
+      "w": 958,
+      "h": 130.21875
+    },
+    "bg": "rgba(0, 0, 0, 0)",
+    "text": "Transform your enterprise with agile financial infrastructure Stripe for enterprises 50% of Fortune 100 companies have used Stripe to grow their businesses—from"
+  },
+  {
+    "tag": "HEADER",
+    "cls": "section-header section-header--title-span-5",
+    "id": "",
+    "rect": {
+      "x": 33,
+      "y": 5659.109375,
+      "w": 958,
+      "h": 130.21875
+    },
+    "bg": "rgba(0, 0, 0, 0)",
+    "text": "Build a foundation for your startup that enables faster growth Stripe for startups From stablecoin pioneers to 88% of the Forbes AI 50, Stripe helps startups bu"
+  },
+  {
+    "tag": "HEADER",
+    "cls": "section-header section-header--title-span-5",
+    "id": "",
+    "rect": {
+      "x": 33,
+      "y": 6770.59375,
+      "w": 958,
+      "h": 159.328125
+    },
+    "bg": "rgba(0, 0, 0, 0)",
+    "text": "Make your SaaS platform a complete financial operating system Stripe for platforms From the Fortune 100 to the Forbes Cloud 100, vertical SaaS platforms use Str"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode section hds-mode--dark",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 8403.109375,
+      "w": 1024,
+      "h": 2296.609375
+    },
+    "bg": "rgb(13, 23, 56)",
+    "text": "Reliable, extensible infrastructure for every stack. Adapt Stripe to your business needs with flexible integration options. View developer docs View Stripe’s Gi"
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode section section--white hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 10699.71875,
+      "w": 1024,
+      "h": 1697.34375
+    },
+    "bg": "rgb(255, 255, 255)",
+    "text": "What’s happening See the latest from Stripe. Businesses on Stripe generated $1.9T in 2025. Our annual letter explores the trends defining the internet economy—i"
+  },
+  {
+    "tag": "HEADER",
+    "cls": "events-carousel__header",
+    "id": "",
+    "rect": {
+      "x": 33,
+      "y": 10795.71875,
+      "w": 958,
+      "h": 102.375
+    },
+    "bg": "rgba(0, 0, 0, 0)",
+    "text": "What’s happening See the latest from Stripe."
+  },
+  {
+    "tag": "SECTION",
+    "cls": "hds-color-mode section hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 12397.0625,
+      "w": 1024,
+      "h": 380.1875
+    },
+    "bg": "rgb(248, 250, 253)",
+    "text": "Ready to get started? Create an account instantly, or contact us to design a custom package for your business. Start now Contact sales See what you’ll pay Integ"
+  },
+  {
+    "tag": "DIV",
+    "cls": "",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+    },
+    "bg": "rgba(0, 0, 0, 0)",
+    "text": ""
+  },
+  {
+    "tag": "FOOTER",
+    "cls": "hds-color-mode footer section hds-mode--light",
+    "id": "",
+    "rect": {
+      "x": 0,
+      "y": 12777.25,
+      "w": 1024,
+      "h": 1121.765625
+    },
+    "bg": "rgb(248, 250, 253)",
+    "text": "Products and pricing Pricing Atlas Authorization Boost Billing Capital Capital for platforms Checkout Climate Connect Crypto Crypto Onramp Data Pipeline Element"
+  }
+]

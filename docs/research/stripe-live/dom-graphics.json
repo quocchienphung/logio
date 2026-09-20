@@ -1,0 +1,172 @@
+{
+  "payments-terminal-dom-graphic": {
+    "390": {
+      "w": 300,
+      "h": 496,
+      "max": "300px"
+    },
+    "768": {
+      "w": 300,
+      "h": 496,
+      "max": "300px"
+    },
+    "1440": {
+      "w": 280,
+      "h": 496,
+      "max": "280px"
+    }
+  },
+  "payments-checkout-dom-graphic": {
+    "390": {
+      "w": 190,
+      "h": 580,
+      "max": "190px"
+    },
+    "768": {
+      "w": 200,
+      "h": 580,
+      "max": "200px"
+    },
+    "1440": {
+      "w": 516,
+      "h": 580,
+      "max": "516px"
+    }
+  },
+  "null": {
+    "390": {
+      "w": 306,
+      "h": 224,
+      "max": "306px"
+    },
+    "768": {
+      "w": 306,
+      "h": 224,
+      "max": "306px"
+    },
+    "1440": {
+      "w": 306,
+      "h": 224,
+      "max": "306px"
+    }
+  },
+  "agentic-commerce-graphic": {
+    "390": {
+      "w": 324,
+      "h": 378,
+      "max": "324px"
+    },
+    "768": {
+      "w": 324,
+      "h": 378,
+      "max": "324px"
+    },
+    "1440": {
+      "w": 324,
+      "h": 378,
+      "max": "324px"
+    }
+  },
+  "connect-platform-dom-graphic": {
+    "390": {
+      "w": 420,
+      "h": 457,
+      "max": "420px"
+    },
+    "768": {
+      "w": 400,
+      "h": 457,
+      "max": "400px"
+    },
+    "1440": {
+      "w": 1000,
+      "h": 457,
+      "max": "1000px"
+    }
+  },
+  "platform-graphic__dom__browser": {
+    "390": {
+      "w": 800,
+      "h": 600,
+      "max": "800px"
+    },
+    "768": {
+      "w": 800,
+      "h": 600,
+      "max": "800px"
+    },
+    "1440": {
+      "w": 800,
+      "h": 600,
+      "max": "800px"
+    }
+  },
+  "platform-graphic__dom__phone": {
+    "390": {
+      "w": 356,
+      "h": 706,
+      "max": "356px"
+    },
+    "768": {
+      "w": 336,
+      "h": 686,
+      "max": "336px"
+    },
+    "1440": {
+      "w": 336,
+      "h": 686,
+      "max": "336px"
+    }
+  },
+  "A chat conversation with a potential customer asking for a simple day cream post. The business responds with a payment link to buy their “pure glow cream”. To the right is a QR code that directs to the same payment link.": {
+    "390": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    },
+    "768": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    },
+    "1440": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    }
+  },
+  "A grid of logos representing various online platforms and services, set against a dark blue background.": {
+    "390": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    },
+    "768": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    },
+    "1440": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    }
+  },
+  "JavaScript code that initializes the Stripe library using a test API key and lists various Stripe functions. Below, a terminal displays a message indicating the server is running and waiting for requests.": {
+    "390": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    },
+    "768": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    },
+    "1440": {
+      "w": 400,
+      "h": 294,
+      "max": "400px"
+    }
+  }
+}

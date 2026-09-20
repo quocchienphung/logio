@@ -1,0 +1,109 @@
+/* Local adjustments on top of the generated reference rules (kept separate so the generated
+   files can be regenerated). Add rules here only with a measurement that justifies them. */
+
+/* Base UI sets the overlay's position inline on the reference; the authored CSS only supplies
+   inset/top/z-index. */
+.hds-navigation-menu__overlay {
+  position: fixed;
+  pointer-events: none;
+}
+
+/* Static fallbacks for the WebGL bento backgrounds (the reference renders these through its
+   responsive image component; the canvas fills the same -20px inset box). */
+.issuing-graphic__background-static,
+.agentic-graphic__background-static {
+  width: 100%;
+  height: 100%;
+}
+.issuing-graphic__background-static img,
+.agentic-graphic__background-static img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.globe__static {
+  width: 100%;
+  height: 100%;
+}
+.globe__static img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Measured: the reference does not render the product-recommendations section between the tablet
+   and desktop breakpoints (present at 768 and ≥1280, absent at 1024). */
+@media (min-width: 940px) and (max-width: 1263px) {
+  .personalize-section {
+    display: none;
+  }
+  .section:has(> .personalize-section) {
+    display: none;
+  }
+}
+
+/* Hero ribbon tail. The reference clips the wave at the bottom of the hero/logo strip
+   (`.section-background { overflow: hidden }`), which reads as a hard horizontal seam. The canvas
+   is extended below the strip by `--wave-tail` and only that lower tail is alpha-masked to nothing.
+   WaveRenderer reads the same variable to keep the orthographic frustum anchored to the reference
+   top edge, so the upper ribbon is pixel-identical; the tail simply reveals more of the same mesh. */
+@property --wave-tail {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+.hero-section-container {
+  --wave-tail: 440px;
+}
+@media (max-width: 1263px) {
+  .hero-section-container {
+    --wave-tail: 340px;
+  }
+}
+@media (max-width: 639px) {
+  .hero-section-container {
+    --wave-tail: 240px;
+  }
+}
+/* Let the tail overflow vertically while keeping the horizontal bleed clipped (no x scrollbar). */
+.hero-section__background {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+.hero-wave-animation {
+  bottom: calc(-1 * var(--wave-tail));
+}
+/* Static fallback stays centred on the reference region, not the extended canvas. The source
+   image only carries ~40px below the former cut line, so it also fades over its own lower edge
+   (the tail mask below still applies on top); WebGL devices hide this layer after the first draw. */
+.hero-wave-animation__static {
+  top: calc((100% - var(--wave-tail)) / 2);
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 140px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 140px), transparent 100%);
+}
+/* Alpha falloff on the tail only: fully opaque through the former cut line, then a long ease-out. */
+.hero-wave-animation__contents {
+  --wave-cut: calc(100% - var(--wave-tail));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(var(--wave-cut) - 64px),
+    rgba(0, 0, 0, 0.97) var(--wave-cut),
+    rgba(0, 0, 0, 0.84) calc(100% - var(--wave-tail) * 0.76),
+    rgba(0, 0, 0, 0.58) calc(100% - var(--wave-tail) * 0.52),
+    rgba(0, 0, 0, 0.3) calc(100% - var(--wave-tail) * 0.3),
+    rgba(0, 0, 0, 0.1) calc(100% - var(--wave-tail) * 0.12),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(var(--wave-cut) - 64px),
+    rgba(0, 0, 0, 0.97) var(--wave-cut),
+    rgba(0, 0, 0, 0.84) calc(100% - var(--wave-tail) * 0.76),
+    rgba(0, 0, 0, 0.58) calc(100% - var(--wave-tail) * 0.52),
+    rgba(0, 0, 0, 0.3) calc(100% - var(--wave-tail) * 0.3),
+    rgba(0, 0, 0, 0.1) calc(100% - var(--wave-tail) * 0.12),
+    transparent 100%
+  );
+}

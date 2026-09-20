@@ -1,0 +1,337 @@
+{
+  "heroDesktop": {
+    "theme": "light",
+    "guiState": {
+      "controllers": {},
+      "folders": {
+        "Post Processing": {
+          "controllers": {
+            "blurAmount": 0.02,
+            "grainAmount": 1.1
+          },
+          "folders": {}
+        }
+      }
+    },
+    "camState": {
+      "position": {
+        "x": 100.00000000000004,
+        "y": 3.06222926004786e-13,
+        "z": 5000
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": -6.124458520095719e-17,
+        "_y": 0.019997333973150542,
+        "_z": 1.2246467991473536e-18,
+        "_order": "XYZ"
+      },
+      "lookat": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "zoom": 1
+    },
+    "materialProps": {
+      "speed": 0.00004,
+      "timeOffset": 17500,
+      "colorContrast": 1,
+      "colorSaturation": 1,
+      "colorHueShift": -0.00159265358979299,
+      "displaceFrequencyX": 0.005831,
+      "displaceFrequencyZ": 0.016001,
+      "displaceAmount": -7.821,
+      "positionX": 380,
+      "positionY": -301.7,
+      "positionZ": -11.0999999999999,
+      "rotationX": -0.449592653589793,
+      "rotationY": -0.117592653589793,
+      "rotationZ": 1.87440734641021,
+      "scaleX": 9,
+      "scaleY": 8,
+      "scaleZ": 5,
+      "twistFrequencyX": -0.649999999999999,
+      "twistFrequencyY": 0.41,
+      "twistFrequencyZ": -0.58,
+      "twistPowerX": 3.63,
+      "twistPowerY": 0.7,
+      "twistPowerZ": 3.95,
+      "glowRamp": 0.834,
+      "glowAmount": 1.98,
+      "glowPower": 0.806,
+      "lineThickness": 1,
+      "lineAmount": 1,
+      "lineDerivativePower": 1,
+      "lights": []
+    }
+  },
+  "heroTablet": {
+    "theme": "light",
+    "guiState": {
+      "controllers": {},
+      "folders": {
+        "Post Processing": {
+          "controllers": {
+            "blurAmount": 0.02,
+            "grainAmount": 1.1
+          },
+          "folders": {}
+        }
+      }
+    },
+    "camState": {
+      "position": {
+        "x": 100.00000000000004,
+        "y": 3.06222926004786e-13,
+        "z": 5000
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": -6.124458520095719e-17,
+        "_y": 0.019997333973150542,
+        "_z": 1.2246467991473536e-18,
+        "_order": "XYZ"
+      },
+      "lookat": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "zoom": 1
+    },
+    "materialProps": {
+      "speed": 0.00004,
+      "timeOffset": 17500,
+      "colorContrast": 1,
+      "colorSaturation": 1,
+      "colorHueShift": -0.00159265358979299,
+      "displaceFrequencyX": 0.005831,
+      "displaceFrequencyZ": 0.016001,
+      "displaceAmount": -7.821,
+      "positionX": 525,
+      "positionY": -301.7,
+      "positionZ": -11.0999999999999,
+      "rotationX": -0.64,
+      "rotationY": -0.117592653589793,
+      "rotationZ": 1.68,
+      "scaleX": 9,
+      "scaleY": 8,
+      "scaleZ": 5,
+      "twistFrequencyX": -0.649999999999999,
+      "twistFrequencyY": 0.41,
+      "twistFrequencyZ": -0.58,
+      "twistPowerX": 3.63,
+      "twistPowerY": 0.7,
+      "twistPowerZ": 3.95,
+      "glowRamp": 0.834,
+      "glowAmount": 1.98,
+      "glowPower": 0.806,
+      "lineThickness": 1,
+      "lineAmount": 1,
+      "lineDerivativePower": 1,
+      "lights": []
+    }
+  },
+  "heroMobile": {
+    "theme": "light",
+    "guiState": {
+      "controllers": {},
+      "folders": {
+        "Post Processing": {
+          "controllers": {
+            "blurAmount": 0.02,
+            "grainAmount": 1.1
+          },
+          "folders": {}
+        }
+      }
+    },
+    "camState": {
+      "position": {
+        "x": 100.00000000000004,
+        "y": 3.06222926004786e-13,
+        "z": 5000
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": -6.124458520095719e-17,
+        "_y": 0.019997333973150542,
+        "_z": 1.2246467991473536e-18,
+        "_order": "XYZ"
+      },
+      "lookat": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "zoom": 1
+    },
+    "materialProps": {
+      "speed": 0.00004,
+      "timeOffset": 17500,
+      "colorContrast": 1,
+      "colorSaturation": 1,
+      "colorHueShift": -0.00159265358979299,
+      "displaceFrequencyX": 0.005831,
+      "displaceFrequencyZ": 0.016001,
+      "displaceAmount": -7.821,
+      "positionX": 320,
+      "positionY": -315,
+      "positionZ": -11.0999999999999,
+      "rotationX": -0.5,
+      "rotationY": -0.117592653589793,
+      "rotationZ": 1.64,
+      "scaleX": 9,
+      "scaleY": 8,
+      "scaleZ": 5,
+      "twistFrequencyX": -0.649999999999999,
+      "twistFrequencyY": 0.41,
+      "twistFrequencyZ": -0.58,
+      "twistPowerX": 3.63,
+      "twistPowerY": 0.7,
+      "twistPowerZ": 3.95,
+      "glowRamp": 0.834,
+      "glowAmount": 1.98,
+      "glowPower": 0.806,
+      "lineThickness": 1,
+      "lineAmount": 1,
+      "lineDerivativePower": 1,
+      "lights": []
+    }
+  },
+  "developer": {
+    "theme": "dark",
+    "guiState": {
+      "controllers": {},
+      "folders": {
+        "Post Processing": {
+          "controllers": {
+            "blurAmount": 0.02,
+            "grainAmount": 1.2
+          },
+          "folders": {}
+        }
+      }
+    },
+    "camState": {
+      "position": {
+        "x": 100.00000000000001,
+        "y": 3.06222926004786e-13,
+        "z": 5000
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": -6.124458520095719e-17,
+        "_y": 0.019997333973150535,
+        "_z": 1.2246467991473532e-18,
+        "_order": "XYZ"
+      },
+      "lookat": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "zoom": 1
+    },
+    "materialProps": {
+      "speed": 0.00004,
+      "timeOffset": 1150,
+      "colorContrast": 1,
+      "colorSaturation": 1.15,
+      "colorHueShift": -0.0315926535897932,
+      "displaceFrequencyX": 0.003234,
+      "displaceFrequencyZ": 0.00799,
+      "displaceAmount": 6.051,
+      "positionX": -24.3,
+      "positionY": -56.4,
+      "positionZ": -11.0999999999999,
+      "rotationX": -0.159592653589793,
+      "rotationY": -0.283592653589793,
+      "rotationZ": -2.81559265358979,
+      "scaleX": 10,
+      "scaleY": 10,
+      "scaleZ": 7,
+      "twistFrequencyX": -0.0549999999999997,
+      "twistFrequencyY": 0.077,
+      "twistFrequencyZ": -0.518,
+      "twistPowerX": 3.95,
+      "twistPowerY": 5.85,
+      "twistPowerZ": 6.33,
+      "glowRamp": 1,
+      "glowAmount": 0.6,
+      "glowPower": 0.589,
+      "lineThickness": 1,
+      "lineAmount": 425,
+      "lineDerivativePower": 0.95,
+      "lights": []
+    }
+  },
+  "issuing": {
+    "theme": "light",
+    "guiState": {
+      "controllers": {},
+      "folders": {
+        "Post Processing": {
+          "controllers": {
+            "blurAmount": 0.02,
+            "grainAmount": 1.2
+          },
+          "folders": {}
+        }
+      }
+    },
+    "camState": {
+      "position": {
+        "x": 100.00000000000001,
+        "y": 3.06222926004786e-13,
+        "z": 5000
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": -6.124458520095719e-17,
+        "_y": 0.019997333973150535,
+        "_z": 1.2246467991473532e-18,
+        "_order": "XYZ"
+      },
+      "lookat": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "zoom": 1
+    },
+    "materialProps": {
+      "speed": 0.00008,
+      "timeOffset": 2275,
+      "colorContrast": 1,
+      "colorSaturation": 1,
+      "colorHueShift": -0.00159265358979299,
+      "displaceFrequencyX": 0.005831,
+      "displaceFrequencyZ": 0.016001,
+      "displaceAmount": -7.821,
+      "positionX": -200.7,
+      "positionY": -65.4,
+      "positionZ": -11.0999999999999,
+      "rotationX": -2.87559265358979,
+      "rotationY": 3.09592653589793,
+      "rotationZ": -2.9259265358979,
+      "scaleX": 3,
+      "scaleY": 3,
+      "scaleZ": 3,
+      "twistFrequencyX": 0.0590000000000002,
+      "twistFrequencyY": 0.32,
+      "twistFrequencyZ": -0.397,
+      "twistPowerX": 3.63,
+      "twistPowerY": 0.44,
+      "twistPowerZ": 5.99,
+      "glowAmount": 3.86,
+      "glowPower": 0.923,
+      "glowRamp": 1,
+      "lineThickness": 0,
+      "lineAmount": 0,
+      "lineDerivativePower": 0,
+      "lights": []
+    }
+  }
+}
