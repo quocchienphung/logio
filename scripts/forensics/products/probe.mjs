@@ -1,0 +1,10 @@
+import { chromium } from "playwright";
+const [url, expr, w="1440"] = process.argv.slice(2);
+const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+const ctx = await b.newContext({ viewport: { width: +w, height: 900 } });
+await ctx.route("**/*", (r) => /^(http:\/\/(127\.0\.0\.1|localhost)|data:|blob:)/.test(r.request().url()) ? r.continue() : r.abort());
+const p = await ctx.newPage();
+await p.goto(url, { waitUntil: "load" });
+await p.waitForTimeout(800);
+console.log(JSON.stringify(await p.evaluate(expr), null, 1));
+await b.close();

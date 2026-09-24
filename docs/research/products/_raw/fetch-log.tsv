@@ -1,0 +1,18 @@
+payments	/payments	200	0	https://stripe.com/payments	1232013	
+managed-payments	/managed-payments	200	0	https://stripe.com/managed-payments	536733	lang="en-US"
+payment-links	/payments/payment-links	200	0	https://stripe.com/payments/payment-links	664325	
+checkout	/payments/checkout	200	0	https://stripe.com/payments/checkout	1151603	
+elements	/payments/elements	200	0	https://stripe.com/payments/elements	879261	
+payment-methods	/payments/payment-methods	200	0	https://stripe.com/payments/payment-methods	2927790	
+terminal	/terminal	200	0	https://stripe.com/terminal	769680	
+authorization-boost	/authorization-boost	200	0	https://stripe.com/authorization-boost	854328	
+link	/payments/link	200	0	https://stripe.com/payments/link	639760	
+financial-connections	/financial-connections	200	0	https://stripe.com/financial-connections	902819	
+billing	/billing	200	0	https://stripe.com/billing	738847	lang="en-US"
+metronome	/billing/usage-based-billing	200	0	https://stripe.com/billing/usage-based-billing	704057	lang="en-US"
+subscriptions	/billing/subscriptions	200	0	https://stripe.com/billing/subscriptions	492245	lang="en-US"
+invoicing	/invoicing	200	0	https://stripe.com/invoicing	808549	
+tax	/tax	200	0	https://stripe.com/tax	942465	
+revenue-recognition	/revenue-recognition	200	0	https://stripe.com/revenue-recognition	769152	
+sigma	/sigma	200	0	https://stripe.com/sigma	666118	
+data-pipeline	/data-pipeline	200	0	https://stripe.com/data-pipeline	847704	

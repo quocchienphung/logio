@@ -1,0 +1,15 @@
+/* Hand-written integration of the legacy-stack pages with the shared chrome.
+   The reference renders its own SiteHeader (z-index 100) on top of the angled hero gradient; the
+   shared navigation takes that slot, so it gets the same stacking and the page's body background. */
+header.navigation {
+  z-index: 100;
+}
+
+/* theme--Light body (#f6f9fc in the reference, mono #f9f9f9) shows behind the transparent navigation */
+body:has(.v1-root .v1-body.theme--Light) {
+  background-color: #f9f9f9;
+}
+body:has(.v1-root .v1-body.theme--White),
+body:has(.v1-root .v1-body:not([class*="theme--"])) {
+  background-color: #ffffff;
+}
