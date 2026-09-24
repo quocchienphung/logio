@@ -21,10 +21,12 @@ import { controllers as PgDataPipeline } from "./pg-data-pipeline";
 
 const CONTROLLERS: Record<string, Controller> = { ...Core, ...Carousels, ...Forms, ...PgPayments, ...PgCheckout, ...PgPaymentLinks, ...PgElements, ...PgLink, ...PgPaymentMethods, ...PgTerminal, ...PgAuthorizationBoost, ...PgFinancialConnections, ...PgInvoicing, ...PgTax, ...PgRevenueRecognition, ...PgSigma, ...PgDataPipeline };
 
-/** Mount every known controller under root (document order, like the reference loader). */
+/** Mount every known controller under root. Deepest elements first, so child controllers (the
+ * reference's dependencies) have exposed their API before their parent connects. */
 export function mountControllers(root: HTMLElement): () => void {
   const cleanups: (() => void)[] = [];
-  root.querySelectorAll<HTMLElement>("[data-js-controller]").forEach((el) => {
+  const nodes = Array.from(root.querySelectorAll<HTMLElement>("[data-js-controller]")).reverse();
+  nodes.forEach((el) => {
     for (const name of (el.dataset.jsController || "").split(/\s+/)) {
       const c = CONTROLLERS[name];
       if (!c) continue;
