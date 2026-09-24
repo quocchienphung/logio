@@ -105,7 +105,7 @@ export function S09CaseStudies() {
                                 </button>
                                 {" "}
                                 <video data-js-target="Video.video" className="Video__video" controlsList="nodownload" crossOrigin="anonymous" preload="metadata" loop>
-                                  <source type="video/mp4" src="https://videos.stripeassets.com/fzn2n1nzq965/7mqu0igBq2eAPFIiBygCFe/ff8b18f7b7005347f644e3572ae79f2d/STRIPES700_16x9_web.mp4" />
+                                  <source type="video/mp4" src="/sites/stripe-com-9ababc9a/products/STRIPES700_16x9_web-40ecd27af8.mp4" />
                                 </video>
                               </div>
                             </div>
@@ -185,7 +185,7 @@ export function S09CaseStudies() {
                                 </button>
                                 {" "}
                                 <video data-js-target="Video.video" className="Video__video" controlsList="nodownload" crossOrigin="anonymous" preload="metadata" loop>
-                                  <source type="video/mp4" src="https://videos.stripeassets.com/fzn2n1nzq965/54xIlDdQ4F5dEjHBZ4RXk5/c0d4bddaedb78bbbd41db14f7114dc48/StripexSQUIRE_TTPA_H264_16x9.mp4" />
+                                  <source type="video/mp4" src="/sites/stripe-com-9ababc9a/products/StripexSQUIRE_TTPA_H264_16x9-e5fd1e23d9.mp4" />
                                 </video>
                               </div>
                             </div>
@@ -265,7 +265,7 @@ export function S09CaseStudies() {
                                 </button>
                                 {" "}
                                 <video data-js-target="Video.video" className="Video__video" controlsList="nodownload" crossOrigin="anonymous" preload="metadata" loop>
-                                  <source type="video/mp4" src="https://videos.stripeassets.com/fzn2n1nzq965/6nKVGyaZhPCmWEkLYhPXDE/cdf02a14c9f6ed98d081b4661dcaceab/Stripe_User_Films_Dines__External__web.mp4" />
+                                  <source type="video/mp4" src="/sites/stripe-com-9ababc9a/products/Stripe_User_Films_Dines__External__web-bb034c1480.mp4" />
                                 </video>
                               </div>
                             </div>
@@ -345,7 +345,7 @@ export function S09CaseStudies() {
                                 </button>
                                 {" "}
                                 <video data-js-target="Video.video" className="Video__video" controlsList="nodownload" crossOrigin="anonymous" preload="metadata">
-                                  <source type="video/mp4" src="https://videos.stripeassets.com/fzn2n1nzq965/2n7kopTmalNWrzBBEYQMBk/297ec0511b613a92d0f350c14ac0097d/Stripe_atVenu_External_H264_web.mp4" />
+                                  <source type="video/mp4" src="/sites/stripe-com-9ababc9a/products/Stripe_atVenu_External_H264_web-243f8e8595.mp4" />
                                 </video>
                               </div>
                             </div>

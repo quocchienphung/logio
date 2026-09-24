@@ -95,6 +95,14 @@ def main():
                 print("skip", name, e)
                 counts["skipped"] += 1
                 continue
+        elif ext in ("mp4", "webm") and not name.endswith("-540p-mono.mp4") and "540p-mono" not in name:
+            # videos: luminance only (format=gray), same size/bitrate class; audio copied
+            import subprocess, imageio_ffmpeg
+            tmp = path + ".tmp.mp4"
+            subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), "-loglevel", "error", "-y", "-i", path, "-vf", "format=gray,format=yuv420p",
+                            "-c:v", "libx264", "-crf", "24", "-preset", "medium", "-c:a", "copy", "-movflags", "+faststart", tmp], check=True)
+            os.replace(tmp, path)
+            counts["video"] = counts.get("video", 0) + 1
         else:
             counts["skipped"] += 1
             continue

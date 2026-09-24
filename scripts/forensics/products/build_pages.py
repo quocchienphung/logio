@@ -101,8 +101,13 @@ def localize(u: str) -> str:
         return u
     size = os.path.getsize(lp)
     if size > MAX_ASSET_BYTES:
-        oversize[u] = size
-        return u
+        # long customer films: use the 540p grayscale web transcode (see mono_assets.py --transcode)
+        stem0 = urllib.parse.urlsplit(u).path.rsplit("/", 1)[-1].rsplit(".", 1)[0]
+        tc = os.path.join(MIRROR, "transcoded", f"{stem0}-540p-mono.mp4")
+        if not os.path.isfile(tc):
+            oversize[u] = size
+            return u
+        lp = tc
     p = urllib.parse.urlsplit(u)
     stem = re.sub(r"[^A-Za-z0-9_-]+", "-", p.path.rsplit("/", 1)[-1].rsplit(".", 1)[0])[:48].strip("-") or "asset"
     name = f"{stem}-{hashlib.sha1(u.encode()).hexdigest()[:10]}.{ext_for(u)}"

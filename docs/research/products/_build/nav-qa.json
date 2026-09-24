@@ -1,0 +1,237 @@
+[
+ {
+  "name": "desktop: Products panel lists 18 Payments+Revenue links",
+  "pass": true,
+  "detail": "(18)"
+ },
+ {
+  "name": "  link \"Payments\" -> /payments",
+  "pass": true,
+  "detail": "href=/payments visible=true"
+ },
+ {
+  "name": "  link \"Managed Payments\" -> /managed-payments",
+  "pass": true,
+  "detail": "href=/managed-payments visible=true"
+ },
+ {
+  "name": "  link \"Payment links\" -> /payments/payment-links",
+  "pass": true,
+  "detail": "href=/payments/payment-links visible=true"
+ },
+ {
+  "name": "  link \"Checkout\" -> /payments/checkout",
+  "pass": true,
+  "detail": "href=/payments/checkout visible=true"
+ },
+ {
+  "name": "  link \"Elements\" -> /payments/elements",
+  "pass": true,
+  "detail": "href=/payments/elements visible=true"
+ },
+ {
+  "name": "  link \"Payment methods\" -> /payments/payment-methods",
+  "pass": true,
+  "detail": "href=/payments/payment-methods visible=true"
+ },
+ {
+  "name": "  link \"Terminal\" -> /terminal",
+  "pass": true,
+  "detail": "href=/terminal visible=true"
+ },
+ {
+  "name": "  link \"Authorization Boost\" -> /authorization-boost",
+  "pass": true,
+  "detail": "href=/authorization-boost visible=true"
+ },
+ {
+  "name": "  link \"Link\" -> /payments/link",
+  "pass": true,
+  "detail": "href=/payments/link visible=true"
+ },
+ {
+  "name": "  link \"Financial Connections\" -> /financial-connections",
+  "pass": true,
+  "detail": "href=/financial-connections visible=true"
+ },
+ {
+  "name": "  link \"Billing\" -> /billing",
+  "pass": true,
+  "detail": "href=/billing visible=true"
+ },
+ {
+  "name": "  link \"Metronome\" -> /billing/usage-based-billing",
+  "pass": true,
+  "detail": "href=/billing/usage-based-billing visible=true"
+ },
+ {
+  "name": "  link \"Subscriptions\" -> /billing/subscriptions",
+  "pass": true,
+  "detail": "href=/billing/subscriptions visible=true"
+ },
+ {
+  "name": "  link \"Invoicing\" -> /invoicing",
+  "pass": true,
+  "detail": "href=/invoicing visible=true"
+ },
+ {
+  "name": "  link \"Tax\" -> /tax",
+  "pass": true,
+  "detail": "href=/tax visible=true"
+ },
+ {
+  "name": "  link \"Revenue Recognition\" -> /revenue-recognition",
+  "pass": true,
+  "detail": "href=/revenue-recognition visible=true"
+ },
+ {
+  "name": "  link \"Stripe Sigma\" -> /sigma",
+  "pass": true,
+  "detail": "href=/sigma visible=true"
+ },
+ {
+  "name": "  link \"Data Pipeline\" -> /data-pipeline",
+  "pass": true,
+  "detail": "href=/data-pipeline visible=true"
+ },
+ {
+  "name": "desktop: panel stays open while pointer travels trigger -> panel",
+  "pass": true,
+  "detail": "closed samples=0"
+ },
+ {
+  "name": "desktop: Escape closes the panel",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "desktop: leaving the menu closes it",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "keyboard: focusing Products opens the panel",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "click \"Payments\" -> /payments",
+  "pass": true,
+  "detail": "title=\"Stripe Payments | Global Payment Processing Platform\""
+ },
+ {
+  "name": "click \"Managed Payments\" -> /managed-payments",
+  "pass": true,
+  "detail": "title=\"Your Merchant of Record Provider | Stripe Managed Payments\""
+ },
+ {
+  "name": "click \"Payment links\" -> /payments/payment-links",
+  "pass": true,
+  "detail": "title=\"Stripe Payment Links | Simple Links to Accept Payments\""
+ },
+ {
+  "name": "click \"Checkout\" -> /payments/checkout",
+  "pass": true,
+  "detail": "title=\"Stripe Checkout | Checkout Pages for Your Website\""
+ },
+ {
+  "name": "click \"Elements\" -> /payments/elements",
+  "pass": true,
+  "detail": "title=\"Stripe Elements | Custom Checkout Design and UI\""
+ },
+ {
+  "name": "click \"Payment methods\" -> /payments/payment-methods",
+  "pass": true,
+  "detail": "title=\"Stripe Payment Methods for Business\""
+ },
+ {
+  "name": "click \"Terminal\" -> /terminal",
+  "pass": true,
+  "detail": "title=\"Stripe Terminal | Unified Commerce Platform\""
+ },
+ {
+  "name": "click \"Authorization Boost\" -> /authorization-boost",
+  "pass": true,
+  "detail": "title=\"Stripe Authorization Boost | Increase Your Authorization Rat\""
+ },
+ {
+  "name": "click \"Link\" -> /payments/link",
+  "pass": true,
+  "detail": "title=\"Link by Stripe: One-click payments\""
+ },
+ {
+  "name": "click \"Financial Connections\" -> /financial-connections",
+  "pass": true,
+  "detail": "title=\"Stripe Financial Connections | Secure Open Banking Platform\""
+ },
+ {
+  "name": "click \"Billing\" -> /billing",
+  "pass": true,
+  "detail": "title=\"Stripe Billing | Recurring Payments & Subscription Solutions\""
+ },
+ {
+  "name": "click \"Metronome\" -> /billing/usage-based-billing",
+  "pass": true,
+  "detail": "title=\"Usage-based billing software for AI | Metronome, a Stripe pr\""
+ },
+ {
+  "name": "click \"Subscriptions\" -> /billing/subscriptions",
+  "pass": true,
+  "detail": "title=\"Stripe Billing | Flexible Subscription Management Tool\""
+ },
+ {
+  "name": "click \"Invoicing\" -> /invoicing",
+  "pass": true,
+  "detail": "title=\"Create and Send Invoices Online | Stripe Invoicing\""
+ },
+ {
+  "name": "click \"Tax\" -> /tax",
+  "pass": true,
+  "detail": "title=\"Stripe Tax | Sales Tax Software for Global Compliance\""
+ },
+ {
+  "name": "click \"Revenue Recognition\" -> /revenue-recognition",
+  "pass": true,
+  "detail": "title=\"Stripe Revenue Recognition | Revenue Recognition Software\""
+ },
+ {
+  "name": "click \"Stripe Sigma\" -> /sigma",
+  "pass": true,
+  "detail": "title=\"Stripe Sigma | Analyze Stripe Data Using SQL and AI\""
+ },
+ {
+  "name": "click \"Data Pipeline\" -> /data-pipeline",
+  "pass": true,
+  "detail": "title=\"Stripe Data Pipeline | Sync Stripe Data to Your Data Warehou\""
+ },
+ {
+  "name": "refresh keeps route",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "Back returns to previous route",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "Forward returns",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "mobile: Products lists 18 Payments+Revenue links",
+  "pass": true,
+  "detail": "(18)"
+ },
+ {
+  "name": "mobile: tapping Tax navigates",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "name": "mobile: no horizontal overflow on /tax",
+  "pass": true,
+  "detail": "scrollWidth=390"
+ }
+]
