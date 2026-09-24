@@ -174,7 +174,9 @@ def camel(s: str) -> str:
 
 
 # SVG presentation attributes React does not know as camelCase props: keep the hyphenated name
-PASSTHROUGH = {"transform-origin", "transform-box", "paint-order", "vector-effect", "mask-type", "white-space"}
+PASSTHROUGH = {"transform-box", "paint-order", "vector-effect", "mask-type", "white-space"}
+# presentation attributes React only accepts as CSS: folded into the inline style
+TO_STYLE = {"transform-origin": "transform-origin"}
 
 
 def jsx_attr_name(name: str) -> str:
@@ -304,6 +306,10 @@ def _serialize(node: Node, ctx: Ctx, ind: str = "", parent_tag: str = "") -> str
     if not ctx.in_brand and ctx.is_brand and tag in ("svg", "img", "picture", "span", "div", "li") and ctx.is_brand(node):
         ctx.in_brand = True
     recolor = ctx.mono if (ctx.mono and not ctx.in_brand) else (lambda v: v)
+    extra_style = "".join(f"{TO_STYLE[k]}:{v};" for k, v in node.attrs if k in TO_STYLE and v)
+    if extra_style:
+        node = Node(node.tag, [(k, v) for k, v in node.attrs if k not in TO_STYLE and k != "style"] +
+                    [("style", extra_style + (node.get("style") or ""))], node.children, node.parent)
     for k, v in node.attrs:
         if DROP_ATTRS.match(k):
             continue

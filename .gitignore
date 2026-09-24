@@ -57,3 +57,6 @@ temp/
 
 # Local Git worktrees
 .worktrees/
+
+# Agent worktrees
+.claude/worktrees/

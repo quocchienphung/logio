@@ -1,0 +1,608 @@
+{
+ "/payments@1440": {
+  "height": 17699,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments@1280": {
+  "height": 17683,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments@768": {
+  "height": 20316,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments@390": {
+  "height": 24649,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/managed-payments@1440": {
+  "height": 10628,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/managed-payments@1280": {
+  "height": 10573,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/managed-payments@768": {
+  "height": 10083,
+  "scrollWidth": 1000,
+  "clientWidth": 768,
+  "worst": {
+   "right": 4145,
+   "cls": "logo-carousel__marquee"
+  },
+  "overflow": true,
+  "errors": []
+ },
+ "/managed-payments@390": {
+  "height": 14053,
+  "scrollWidth": 624,
+  "clientWidth": 390,
+  "worst": {
+   "right": 4128,
+   "cls": "logo-carousel__marquee"
+  },
+  "overflow": true,
+  "errors": []
+ },
+ "/payments/payment-links@1440": {
+  "height": 9191,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/payment-links@1280": {
+  "height": 9191,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/payment-links@768": {
+  "height": 9017,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/payment-links@390": {
+  "height": 12746,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/checkout@1440": {
+  "height": 12879,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/checkout@1280": {
+  "height": 12887,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/checkout@768": {
+  "height": 15697,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/checkout@390": {
+  "height": 19995,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/elements@1440": {
+  "height": 10553,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/elements@1280": {
+  "height": 10553,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/elements@768": {
+  "height": 12665,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/elements@390": {
+  "height": 15872,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/payment-methods@1440": {
+  "height": 10470,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/payment-methods@1280": {
+  "height": 10478,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/payment-methods@768": {
+  "height": 12343,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/payment-methods@390": {
+  "height": 19552,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/terminal@1440": {
+  "height": 12465,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": [
+   "console: Failed to load resource: net::ERR_FAILED",
+   "console: Invalid DOM property `%s`. Did you mean `%s`? transform-origin transformOrigin"
+  ]
+ },
+ "/terminal@1280": {
+  "height": 12465,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": [
+   "console: Failed to load resource: net::ERR_FAILED",
+   "console: Invalid DOM property `%s`. Did you mean `%s`? transform-origin transformOrigin"
+  ]
+ },
+ "/terminal@768": {
+  "height": 14620,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": [
+   "console: Failed to load resource: net::ERR_FAILED",
+   "console: Invalid DOM property `%s`. Did you mean `%s`? transform-origin transformOrigin"
+  ]
+ },
+ "/terminal@390": {
+  "height": 17982,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": [
+   "console: Failed to load resource: net::ERR_FAILED",
+   "console: Invalid DOM property `%s`. Did you mean `%s`? transform-origin transformOrigin"
+  ]
+ },
+ "/authorization-boost@1440": {
+  "height": 12785,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/authorization-boost@1280": {
+  "height": 12785,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/authorization-boost@768": {
+  "height": 13438,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/authorization-boost@390": {
+  "height": 17943,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/link@1440": {
+  "height": 10522,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/link@1280": {
+  "height": 10522,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/link@768": {
+  "height": 11168,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/payments/link@390": {
+  "height": 16774,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/financial-connections@1440": {
+  "height": 10935,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/financial-connections@1280": {
+  "height": 10935,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/financial-connections@768": {
+  "height": 11730,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/financial-connections@390": {
+  "height": 16371,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing@1440": {
+  "height": 10568,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing@1280": {
+  "height": 10578,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing@768": {
+  "height": 11367,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing@390": {
+  "height": 14031,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing/usage-based-billing@1440": {
+  "height": 9569,
+  "scrollWidth": 1457,
+  "clientWidth": 1440,
+  "worst": {
+   "right": 5248,
+   "cls": "logo-carousel__marquee"
+  },
+  "overflow": true,
+  "errors": []
+ },
+ "/billing/usage-based-billing@1280": {
+  "height": 9565,
+  "scrollWidth": 1360,
+  "clientWidth": 1280,
+  "worst": {
+   "right": 5177,
+   "cls": "logo-carousel__marquee"
+  },
+  "overflow": true,
+  "errors": []
+ },
+ "/billing/usage-based-billing@768": {
+  "height": 10090,
+  "scrollWidth": 966,
+  "clientWidth": 768,
+  "worst": {
+   "right": 5177,
+   "cls": "logo-carousel__marquee"
+  },
+  "overflow": true,
+  "errors": []
+ },
+ "/billing/usage-based-billing@390": {
+  "height": 13335,
+  "scrollWidth": 462,
+  "clientWidth": 390,
+  "worst": {
+   "right": 5160,
+   "cls": "logo-carousel__marquee"
+  },
+  "overflow": true,
+  "errors": []
+ },
+ "/billing/subscriptions@1440": {
+  "height": 9832,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing/subscriptions@1280": {
+  "height": 9802,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing/subscriptions@768": {
+  "height": 10474,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/billing/subscriptions@390": {
+  "height": 14395,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/invoicing@1440": {
+  "height": 11725,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/invoicing@1280": {
+  "height": 11734,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/invoicing@768": {
+  "height": 14115,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/invoicing@390": {
+  "height": 18609,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/tax@1440": {
+  "height": 16635,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/tax@1280": {
+  "height": 16635,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/tax@768": {
+  "height": 17758,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/tax@390": {
+  "height": 25242,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/revenue-recognition@1440": {
+  "height": 9150,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/revenue-recognition@1280": {
+  "height": 9160,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/revenue-recognition@768": {
+  "height": 9822,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/revenue-recognition@390": {
+  "height": 12502,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/sigma@1440": {
+  "height": 8424,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/sigma@1280": {
+  "height": 8432,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/sigma@768": {
+  "height": 9102,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/sigma@390": {
+  "height": 12153,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/data-pipeline@1440": {
+  "height": 9701,
+  "scrollWidth": 1440,
+  "clientWidth": 1440,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/data-pipeline@1280": {
+  "height": 9718,
+  "scrollWidth": 1280,
+  "clientWidth": 1280,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/data-pipeline@768": {
+  "height": 11617,
+  "scrollWidth": 768,
+  "clientWidth": 768,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ },
+ "/data-pipeline@390": {
+  "height": 15647,
+  "scrollWidth": 390,
+  "clientWidth": 390,
+  "worst": null,
+  "overflow": false,
+  "errors": []
+ }
+}

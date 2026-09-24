@@ -78,9 +78,9 @@ export function S12ReadyToGetStarted() {
                               </defs>
                               <use href="#terminalIconCode" fill="var(--blendBackground)" />
                               <use href="#terminalIconCursor" fill="var(--knockoutColor)" data-js-target="TerminalIcon.cursor" />
-                              <use href="#terminalIconGear" fill="var(--blendForeground)" transform-origin="42 55" data-js-target-list="TerminalIcon.gears" />
+                              <use href="#terminalIconGear" fill="var(--blendForeground)" data-js-target-list="TerminalIcon.gears" style={{ transformOrigin: "42 55" }} />
                               <g clipPath="url(#terminalIconClipPath)">
-                                <use href="#terminalIconGear" fill="var(--blendIntersection)" transform-origin="42 55" data-js-target-list="TerminalIcon.gears" />
+                                <use href="#terminalIconGear" fill="var(--blendIntersection)" data-js-target-list="TerminalIcon.gears" style={{ transformOrigin: "42 55" }} />
                               </g>
                             </svg>
                           </div>
