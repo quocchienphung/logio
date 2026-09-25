@@ -1,1 +1,10 @@
 /* Styles added by the "forms" controller group (state classes the ports toggle, mono tweaks). */
+
+/* The reference shows these focus rings only under a .keyboard-navigation root class set by its global
+   keyboard tracker; :focus-visible gives the same rings for keyboard users without that tracker. */
+.v1-root .CheckboxField__hiddenInput:focus-visible + .CheckboxField__checkbox {
+  box-shadow: var(--focusBoxShadow);
+}
+.v1-root .ControlledFilterSelect__trigger:focus-visible {
+  box-shadow: var(--focusBoxShadow), var(--cardShadowSmall);
+}
