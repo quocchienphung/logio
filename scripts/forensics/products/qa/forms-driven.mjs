@@ -173,6 +173,31 @@ if (which === "setcode") {
   await browser.close();
 }
 
+if (which === "all-editors") {
+  // every CodeEditor on a page: scroll through, then report which initialised with multi-line code
+  const path = process.argv[5] || "/sigma";
+  const { browser, page, errors } = await open(path, { width: +width });
+  const total = await page.evaluate(() => document.documentElement.scrollHeight);
+  for (let y = 0; y < total; y += 500) {
+    await page.evaluate((v) => scrollTo(0, v), y);
+    await page.waitForTimeout(250);
+  }
+  await page.waitForTimeout(1500);
+  const r = await page.$$eval(".CodeEditor", (eds) =>
+    eds.map((ed) => ({
+      visible: ed.getClientRects().length > 0,
+      init: ed.classList.contains("CodeEditor--initialized"),
+      lines: ed.querySelector("[data-js-target='CodeEditor.editor']").textContent.split("\n").length,
+      finalCode: !!ed.querySelector("[data-js-target='CodeEditor.finalCode']"),
+    })),
+  );
+  const shown = r.filter((e) => e.visible && e.finalCode);
+  console.log(JSON.stringify(r));
+  check(`${path}: every visible editor initialised with multi-line code`, shown.every((e) => e.init && e.lines > 1), `${shown.filter((e) => e.init).length}/${shown.length} visible, ${r.length} total`);
+  check("all-editors: no console errors", errors.length === 0, errors.join(" / "));
+  await browser.close();
+}
+
 if (which === "table") {
   const { browser, page, errors } = await open("/invoicing", { width: +width });
   const r = await page.evaluate(() => {
