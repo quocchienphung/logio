@@ -140,3 +140,22 @@ Page: revenue-recognition ("What's included" icons).
   live pages; frames in `docs/design-references/products/<slug>/<viewport>-<section>-carousel-<state>.png`.
 - `carousels-harness.mjs`: transpiles the ports and runs them on a blank page with mock child APIs (icons,
   Track, CodeEditor, HorizontalOverflowContainer) to check the sequencing and contracts.
+- `carousels-sweep.mjs` (one load per route, resized through 1440×900, 1280×800, 768×1024, 390×844, scrolled
+  top to bottom) and `carousels-pages.sh` (the same through `shot.mjs`, one load per viewport): console errors
+  and horizontal overflow.
+
+Measured results (dev server, webpack):
+
+| Check | Result |
+|---|---|
+| Testimonial (/payments #2, 1440) | indicator 3 click: scroll 0 → 2160 px in ~280 ms, bg mixes through intermediate greys, active indicator/logo follow the page; nav logo 2 → 1080 px; Enter on focused indicator 1 → 0; half-page scroll → both cards at 0.50 opacity |
+| FullWidthFeature (/payments, 1440) | next → 540 → 1080 (prev/next `--inactive` at the ends); 60 px drag → next item; 20 px drag back → stays; Enter on prev → 0; click on item 3 → clamped to 1080. 390: live indicator offsets `frac × 24px` (6.0/−18.0, 12/−12, 18.0/−6.0 at ¼, ½, ¾); bar 3 click → item 3 |
+| SegmentedControl (/payments, 1440) | clip-path inset interpolates to the new button within ~240 ms; clicks land on the supporting copies; Tab + Enter moves the pill; `changed`/`buttonClicked` events carry index/alreadyActive |
+| CaseStudy (/terminal) | 1440: logo 3 → 2480 px, line clip `inset(0 25% 0 50%)`, logo 3 in colour; Enter on logo 1 → 0. 390: swipe → indicator 2 active |
+| Stacked (/payments/payment-methods) | 1440: step advances at 3.5 s, old image 0.25@37 px / new 0.67@−16 px at +150 ms, click stops autoplay (no change 4 s later), Enter on step 3 selects it, offscreen hold, restart on re-entry. 390: section max visible ratio 0.44 < 0.75 → no autoplay (as reference) |
+| CyclingCards (/tax, /revenue-recognition) | intro staggered (card 3 at 0.17 opacity when card 1 is at 1.0), step every 5 s, mid-slide top card fading out / new card at 0.22, offscreen replay; reduced motion: static 3-card stack |
+| Harness | AnimationSequence: icon (400 ms) → 2500 ms gap → next icon; offscreen pause keeps the remaining gap (resumed 1822 ms); after the last gap all icons restart and the loop begins. DetailCodeSnippetCarousel: `setCode(snippet 0)` at mount, click → `Track.index = 1` + `setCode(snippet 1)`; `makeSureElementIsInView(button, 56)`; supporting buttons removed on cleanup; no throw when child APIs are absent |
+| Sweep, 4 viewports | no horizontal overflow and no console errors from these controllers on /payments/link, /data-pipeline, /payments/payment-methods, /tax, /revenue-recognition, /financial-connections, /terminal (only error: generated `transform-origin` JSX prop in terminal sections, not from a controller) |
+
+Not verifiable here: the real icon/Track/CodeEditor/Video behaviour (other groups' ports; mocks only), and a
+side-by-side against the live reference (no external network).
