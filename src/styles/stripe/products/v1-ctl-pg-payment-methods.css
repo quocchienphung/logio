@@ -1,1 +1,7 @@
 /* Styles added by the "pg-payment-methods" controller group (state classes the ports toggle, mono tweaks). */
+
+/* PaymentMethodHubHeroCarousel: slot wrapping each cloned card so its controllers mount while attached. It
+   generates no box, so the card keeps its absolute position inside .PaymentMethodHubHeroCarousel. */
+.v1-root .PgPmHeroCarouselSlot {
+  display: contents;
+}
