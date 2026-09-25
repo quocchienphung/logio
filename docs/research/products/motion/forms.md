@@ -67,6 +67,11 @@ reference module; "inf" = inferred / our decision.
 | ControlledFilter | wraps the select; change events debounced 100ms | src | UYNMLKL6 |
 | PaymentMethodHubGrid (+FilterText) | options built from the page's payment-method JSON (types, use cases, countries sorted by localised label); filter = AND across families, OR within; country filter sorts featured countries first; search matches name / localised name / family / use cases / country names ignoring non-word chars; states initial ↔ filtered ↔ showingAll; clear-all and "Show all" | fade out current cards: opacity 1→0, 320ms; fade in: opacity 0→1 + translateY(15px) scale(.95) → none, 360ms, stagger 40ms; easing `cubic-bezier(0.65,0,0.35,1)` | Grid-MJLPPXEZ + PE5OG4GE (src). Cards come from the card `<template>`; the generator drops it, so the grid lazily loads the same markup from `data/pmCards.ts` (mono colours outside brand logos, via the generator's rules). Controllers inside inserted cards are mounted with `mountControllers` (the reference's MutationObserver does this). |
 
+## Keyboard / focus
+Filter checkboxes are native inputs (Space toggles; focusable only while the dropdown is open, as in the
+reference). The reference shows focus rings only under its `.keyboard-navigation` root class; that tracker is
+not part of this group, so `v1-ctl-forms.css` applies the same rings on `:focus-visible` (inf).
+
 ## Mobile differences
 None of these controllers branch on viewport width in the reference; layout differences are CSS only (src).
 
