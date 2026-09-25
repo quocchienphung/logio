@@ -151,8 +151,21 @@ its own name and under `"AnimationController"`. On completion it dispatches a bu
 | HealthIcon | out: line fade + checks `scale(.75)`, 500ms → in: line `stroke-dashoffset 81 → 0` + checks pop 500ms | 1000ms |
 | PricingIcon | backs: `rotate(45 → 0)` 750ms `(.5,−1.75,1,.5)`, Delay 655ms, back to 45° 550ms `(.4,0,0,1)`; fronts: delay 655ms then `rotate(0 → −67.5)` 500ms `(.4,0,.4,1)`, back 350ms `(.4,0,1,1)` | ≈1955ms |
 
-## Verification summary
+## Verification summary (localhost :3102, headless Chromium + SwiftShader)
 
-See the final report for what was run. QA scripts: `scripts/forensics/products/qa/core-qa.mjs` (scenarios),
+- Gradient (/payments, GPU string spoofed): canvas 1440×600 gets `isLoaded`, and the parent gets it 3 s later. Frame differences confirm the gradient animates and resumes after scrolling. Its placement matches the band in `docs/design-references/products/payments/reference-replay-partial-1440-full.jpg`. Without the spoof (plain SwiftShader) it keeps the CSS fallback, as in the reference.
+- PaymentsStickyNav/FixedNav (1440, 390): flags go fixedBefore → fixed. The active item follows the sections, the indicator clip grows, and the 390 dropdown expands to `max-height` 346px. StickyNav pricing flags are before/after, with `--stickyNavHeight` set.
+- MobileStickyNav (390): gets `--isSticky` past `innerHeight` and loses it back above; body padding is 74px (the iOS branch matches the headless mobile UA).
+- Icons: all 10 were driven through their exposed API. Each dispatches one `AnimationStep:done`, `play()` resolves, and it replays after `restart()`. Measured durations: FastForward 1.06 s, Blocks 1.1 s, Health 1.03 s, Gears 1.3 s, Terminal 1.4 s, DocumentWithArrows 1.6 s, Shield 1.65 s, DocumentWithCheckmark 1.65 s, Nodes 2.0 s, Pricing 2.1 s. None self-play.
+- Page behaviours: Tab adds `keyboard-navigation` to `.MktBody` and mousedown removes it; Escape dispatches `escape:keydown` on body.
+- StripeSet (/payments, spoofed GPU): the scroll-linked translate matches the formula, e.g. `translateY(2 → 7.5 → 11px)` and intersection `−2.25 → −11.25px`.
+- DomGraphic: every figure is sized on /payments (15/15), /tax (6/6), /terminal (5/5) and /authorization-boost (7/7).
+- ProductNavDropdownItem (/invoicing): hover opens; leave closes after 100 ms; Enter/Escape work and focus returns to the trigger.
+- PortalTooltipItem (/payments, /payments/payment-methods): portaled into `.MktBody`, placed above the trigger, hidden (`display:none`) after leave.
+- Video (/terminal): the play click adds `Video--playing Video--posterHidden` and controls. The mp4 is an external URL, blocked offline, so no frames play.
+- GuidesCard (/tax): the stroke draw-in runs with 3000 ms and a 200 ms-per-column stagger.
+- Globe (/payments, /authorization-boost): the canvas sizes to its parent; dots, fill and arcs render; the static (SwiftShader) path shows 5 fully drawn arcs.
+- Sweeps (scroll the full page, no console errors from core, no horizontal overflow): /payments at 1440, 768 and 390; /tax at 1440 and 390; /terminal at 1440 and 390; /authorization-boost at 1440 and 768. On /terminal the only console errors are the blocked external mp4 and a React `transform-origin` warning from generated section markup.
+- Not run (the shared machine was overloaded, load average 50–100): the 1280×800 sweeps, /payments/payment-methods sweeps, and a reduced-motion browser pass. The reduced-motion paths are implemented per the source (Gradient single frame, StripeSet/GuidesCard/Globe static, HOC instant scroll) but were not exercised in a browser. QA scripts: `scripts/forensics/products/qa/core-qa.mjs` (scenarios),
 `core-probe.mjs` (expression probe; `QA_SPOOF=1` reports a hardware GPU) and `core-run.sh` (starts :3102, runs the
 scenarios, stops the server by PID). Evidence frames: `docs/design-references/products/<slug>/*-core-*.png`.

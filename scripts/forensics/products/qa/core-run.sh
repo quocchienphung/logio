@@ -18,7 +18,7 @@ for spec in "$@"; do
   echo "=== $spec"
   # compile the route before the browser opens it (keeps peak memory down)
   [ -n "${path:-}" ] && curl -s -o /dev/null --max-time 300 "http://localhost:3102${path}"
-  QA_PATH="${path:-}" node scripts/forensics/products/qa/core-qa.mjs "$scenario" http://localhost:3102 "${width:-1440}" "${height:-900}" "$OUT" 2>&1 | grep -v "GL Driver"
+  QA_PATH="${path:-}" timeout 400 node scripts/forensics/products/qa/core-qa.mjs "$scenario" http://localhost:3102 "${width:-1440}" "${height:-900}" "$OUT" 2>&1 | grep -v "GL Driver"
 done
 # stop the server and its children (npx → sh → node) by PID
 kill_tree() {
