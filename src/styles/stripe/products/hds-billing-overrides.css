@@ -1,1 +1,191 @@
 /* Hand-written fixes for /billing (mono tweaks, integration). */
+
+/* HDS Dialog (reference stylesheet 986b2e4562aa9061.css, @layer base). The dialog is client-only in the
+   reference, so the captured page CSS does not contain it; it hosts the mobile "billing platform"
+   accordion items (hds/billing/accordionDialog.ts). Overlay tint mapped to neutral grey (monochrome). */
+@layer base {
+  .hds-dialog__overlay {
+    --hds-overlay-alpha: 0.9;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(236 236 236 / var(--hds-overlay-alpha, 0.9));
+    position: fixed;
+    overflow: auto;
+    inset: 0;
+    max-height: 100vh;
+    transition-property: opacity, background-color;
+  }
+  @supports (animation-timeline: scroll()) {
+    .hds-dialog__overlay {
+      timeline-scope: --dialog-snap-timeline;
+      animation-name: revenue-hds-dialog-overlay;
+      animation-duration: 1ms;
+      animation-direction: alternate;
+      animation-timeline: --dialog-snap-timeline;
+    }
+  }
+  @keyframes revenue-hds-dialog-overlay {
+    0% {
+      background-color: rgb(236 236 236 / 0);
+    }
+    to {
+      background-color: rgb(236 236 236 / 0.9);
+    }
+  }
+  html:has(.hds-dialog__overlay) {
+    overflow: hidden;
+    padding-right: var(--scrollbarWidth);
+  }
+  .hds-dialog {
+    background-color: var(--hds-color-surface-bg-quiet);
+    border-radius: 1rem;
+    margin: 5vh 0;
+    --hds-dialog-padding-inline: var(--hds-space-core-300);
+    --hds-dialog-pbs: var(--hds-space-core-700);
+    padding-block: var(--hds-dialog-pbs) var(--hds-space-core-1000);
+    padding-inline: var(--hds-dialog-padding-inline);
+    max-width: 75vw;
+    overflow-y: auto;
+    transform-origin: top;
+    transition-property: transform;
+  }
+  @media (min-width: 940px) {
+    .hds-dialog {
+      padding-block: var(--hds-space-core-900) var(--hds-space-core-1400);
+      padding-inline: var(--hds-space-core-900);
+    }
+  }
+  .hds-dialog__snap-container {
+    position: absolute;
+  }
+  @media (max-width: 639px) {
+    .hds-dialog {
+      align-self: end;
+      width: 100%;
+      max-width: none;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      padding-block: 0;
+      padding-inline: 0;
+      --hds-dialog-blur-height: 30px;
+      overflow-x: hidden;
+      overflow-y: initial;
+    }
+    .hds-dialog__inner-content {
+      overflow-y: auto;
+      max-height: 95svh;
+      padding-inline: var(--hds-dialog-padding-inline);
+      padding-block-end: var(--hds-space-core-1000);
+    }
+    .hds-dialog__overlay {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      touch-action: none;
+    }
+    .hds-dialog__snap-container {
+      position: relative;
+      display: block;
+      height: 100dvh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior: none;
+      scrollbar-width: none;
+    }
+    @supports (animation-timeline: scroll()) {
+      .hds-dialog__snap-container {
+        scroll-timeline-axis: block;
+        scroll-timeline-name: --dialog-snap-timeline;
+      }
+    }
+    .hds-dialog__snap-container::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    .hds-dialog__snap-spacer {
+      height: 100vh;
+      height: 100dvh;
+      scroll-snap-align: start;
+    }
+    .hds-dialog__snap-content {
+      scroll-snap-align: end;
+    }
+    .hds-dialog__drag-icon-container-blur {
+      width: calc(100% + (var(--hds-dialog-padding-inline) * 2));
+      height: var(--hds-dialog-blur-height);
+      position: absolute;
+      border-top-right-radius: 1rem;
+      border-top-left-radius: 1rem;
+      z-index: 999;
+      top: 0;
+      --drag-left-bleed: calc(var(--hds-dialog-padding-inline) * -1);
+      margin-left: var(--drag-left-bleed);
+    }
+    .hds-dialog__drag-icon-container-blur:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: linear-gradient(180deg, #fff 25.78%, hsla(0, 0%, 100%, 0.7) 60.75%, hsla(0, 0%, 100%, 0) 98.22%);
+      pointer-events: none;
+    }
+    .hds-dialog__drag-icon {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(calc(-50% + var(--drag-left-bleed)));
+      z-index: 1;
+    }
+    .hds-ui-button.hds-dialog__close-button {
+      z-index: 999;
+      position: relative;
+      width: 28px;
+      height: 28px;
+      margin-top: var(--hds-space-core-200);
+      left: calc(100% - 22px);
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+    .hds-ui-button.hds-dialog__close-button svg {
+      width: 12px;
+      height: 13px;
+    }
+  }
+  @media (min-width: 640px) {
+    .hds-dialog__drag-icon-container-blur {
+      display: none;
+    }
+    .hds-ui-button.hds-dialog__close-button {
+      z-index: 1;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: var(--hds-space-core-300);
+      right: var(--hds-space-core-300);
+    }
+  }
+  .hds-dialog[data-status="initial"] {
+    transform: translateY(200px);
+  }
+  .hds-dialog[data-status="open"] {
+    transform: translateY(0);
+    transition-duration: 0.8s;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hds-dialog[data-status="close"] {
+    transform: translateY(100px);
+    transition-duration: 0.3s;
+  }
+  .hds-dialog__overlay[data-status="initial"] {
+    opacity: 0;
+  }
+  .hds-dialog__overlay[data-status="open"] {
+    opacity: 1;
+    transition-duration: 0.25s;
+  }
+  .hds-dialog__overlay[data-status="close"] {
+    opacity: 0;
+    transition-duration: 0.3s;
+  }
+}
