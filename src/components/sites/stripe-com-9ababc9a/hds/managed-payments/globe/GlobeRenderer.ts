@@ -292,7 +292,7 @@ export class GlobeRenderer {
     const canvas = document.createElement("canvas");
     canvas.width = 128 * scale;
     canvas.height = 128 * scale;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true }); // CPU-backed: uploaded to WebGL once
     if (ctx) {
       ctx.setTransform(scale, 0, 0, scale, 0, 0);
       ctx.fillStyle = rgba(0.25);
