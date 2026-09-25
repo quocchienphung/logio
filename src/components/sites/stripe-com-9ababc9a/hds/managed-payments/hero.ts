@@ -24,8 +24,8 @@ import { HERO_GLOBE_PROPS, MAP_DOTS_URL } from "./globe/config";
 import { flagSvg } from "./globe/flags";
 import { gpuSupportsGlobe } from "./globe/capabilities";
 
-/** GlobeFallback image (the reference's money-movement-fallback_2x.png, local copy). */
-const FALLBACK_SRC = "/stripe/money-movement-fallback_2x-w894-1283768c.webp";
+/** GlobeFallback image: the reference money-movement-fallback_2x.png, mono copy (qa/managed-payments-mono-fallback.py). */
+const FALLBACK_SRC = "/sites/stripe-com-9ababc9a/managed-payments/globe-fallback-mono.webp";
 const FLAG_POOL = 10;
 const ARC_UI_POOL = 5;
 
