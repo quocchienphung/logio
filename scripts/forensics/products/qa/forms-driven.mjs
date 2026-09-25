@@ -67,8 +67,14 @@ if (which === "card" || which === "card-links") await cardField("/payments/payme
 
 if (which === "shipping") {
   const { browser, page, errors } = await open("/payments/checkout", { width: +width });
-  const sel = "[data-js-controller=ShippingField]";
-  await page.locator(sel).first().scrollIntoViewIfNeeded();
+  // pick a rendered ShippingField (the sticky-animation copies can be display:none at this viewport)
+  await page.evaluate(() => {
+    const all = [...document.querySelectorAll("[data-js-controller=ShippingField]")];
+    const el = all.find((n) => n.getBoundingClientRect().width > 0) || all[0];
+    el.setAttribute("data-qa", "shipping");
+  });
+  const sel = "[data-qa=shipping]";
+  await page.locator(sel).scrollIntoViewIfNeeded().catch(() => {});
   await page.evaluate((s) => {
     const el = document.querySelector(s);
     const api = window.__v1FormsApi(el, "ShippingField");
