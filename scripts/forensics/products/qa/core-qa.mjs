@@ -11,13 +11,13 @@ mkdirSync(outDir, { recursive: true });
 const W = +w;
 const H = +h;
 const mobile = W < 600;
-const spoof = ["gradient", "globe", "keyboard"].includes(scenario);
+const spoof = ["gradient", "globe", "keyboard", "stripes", "icons", "guides"].includes(scenario);
 
 const browser = await chromium.launch({
   executablePath: "/opt/pw-browsers/chromium",
   args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist", "--hide-scrollbars"],
 });
-const ctx = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile });
+const ctx = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile, reducedMotion: process.env.QA_REDUCED ? "reduce" : "no-preference" });
 await ctx.route("**/*", (r) => (/^(http:\/\/(127\.0\.0\.1|localhost)|data:|blob:)/.test(r.request().url()) ? r.continue() : r.abort()));
 if (spoof) {
   await ctx.addInitScript(() => {
@@ -37,12 +37,15 @@ page.on("console", (m) => {
   if (m.type() === "error" || m.type() === "warning") errors.push(m.type().toUpperCase() + " " + m.text().slice(0, 300));
 });
 const log = (...a) => console.log(...a);
+let slug = "page";
 const shot = async (name, clip) => {
-  const path = `${outDir}/${name}.png`;
+  mkdirSync(`${outDir}/${slug}`, { recursive: true });
+  const path = `${outDir}/${slug}/${name}.png`;
   await page.screenshot({ path, clip, fullPage: false });
   log("shot", path);
 };
 const go = async (path) => {
+  slug = path.split("/").filter(Boolean).pop() || "home";
   await page.goto(base + path, { waitUntil: "load", timeout: 180000 });
   await page.waitForTimeout(1500);
 };
@@ -149,14 +152,18 @@ switch (scenario) {
       const t = document.querySelector("[role=tooltip]");
       if (!t) return null;
       const r = t.getBoundingClientRect();
-      const b = document.querySelector("[aria-describedby]")?.getBoundingClientRect();
-      return { parent: t.parentElement.className, cls: t.className, rect: r.toJSON(), btn: b?.toJSON(), opacity: getComputedStyle(t).opacity, transform: getComputedStyle(t).transform };
+      const owner = document.querySelector(`[aria-describedby="${t.id}"]`);
+      return { parent: t.parentElement.className, cls: t.className, rect: r.toJSON(), btn: owner?.getBoundingClientRect().toJSON(), opacity: getComputedStyle(t).opacity, transform: getComputedStyle(t).transform };
     });
     log(JSON.stringify(s));
-    if (s) await shot(`${W}x${H}-tooltip-core-open`, { x: Math.max(0, Math.min(s.rect.x, s.btn.x) - 40), y: Math.max(0, Math.min(s.rect.y, s.btn.y) - 40), width: Math.min(W - Math.max(0, Math.min(s.rect.x, s.btn.x) - 40), 420), height: 260 });
+    if (s) {
+      const x0 = Math.max(0, Math.min(s.rect.x, box.x) - 40);
+      const y0 = Math.max(0, Math.min(s.rect.y, box.y) - 40);
+      await shot(`${W}x${H}-tooltip-core-open`, { x: x0, y: y0, width: Math.min(W - x0, 420), height: Math.min(H - y0, Math.max(s.rect.bottom, box.y + box.height) - y0 + 40) });
+    }
     await page.mouse.move(5, 5);
     await page.waitForTimeout(700);
-    log("after leave", JSON.stringify(await page.evaluate(() => { const t = document.querySelector("[role=tooltip]"); return t && [t.style.display, t.style.opacity, document.querySelectorAll("[aria-describedby]").length]; })));
+    log("after leave", JSON.stringify(await page.evaluate(() => { const t = document.querySelector("[role=tooltip]"); return t && [t.style.display, t.style.opacity, document.querySelectorAll("[aria-describedby^=PortalTooltipItem]").length]; })));
     break;
   }
   case "dropdown": {

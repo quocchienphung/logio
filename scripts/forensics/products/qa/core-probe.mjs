@@ -10,6 +10,17 @@ const b = await chromium.launch({
 });
 const mobile = +w < 600;
 const ctx = await b.newContext({ viewport: { width: +w, height: +h }, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile });
+if (process.env.QA_SPOOF) {
+  // Report a hardware renderer so the GPU paths (disabled on SwiftShader, as in the reference) run.
+  await ctx.addInitScript(() => {
+    for (const C of [WebGLRenderingContext, WebGL2RenderingContext]) {
+      const orig = C.prototype.getParameter;
+      C.prototype.getParameter = function (p) {
+        return p === 0x9246 ? "ANGLE (QA hardware spoof)" : orig.call(this, p);
+      };
+    }
+  });
+}
 await ctx.route("**/*", (r) => (/^(http:\/\/(127\.0\.0\.1|localhost)|data:|blob:)/.test(r.request().url()) ? r.continue() : r.abort()));
 const p = await ctx.newPage();
 const errs = [];
