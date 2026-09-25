@@ -1,1 +1,41 @@
 /* Styles added by the "carousels" controller group (state classes the ports toggle, mono tweaks). */
+
+/* Keyboard focus. The captured CSS removes outlines from these controls (outline: none) and only
+   some of them have a :focus-visible replacement; these rings appear for keyboard focus only. */
+.v1-root .TestimonialCarousel__indicator:focus-visible,
+.v1-root .CarouselNavItem:focus-visible,
+.v1-root .CaseStudyCarouselNavItem__button:focus-visible,
+.v1-root .FullWidthFeatureCarouselMobileNav__controlButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.v1-root .TestimonialCarousel__indicator:focus-visible {
+  color: #ffffff;
+}
+.v1-root .CaseStudyCarouselNavItem__button:focus-visible,
+.v1-root .CarouselNavItem:focus-visible {
+  color: var(--accentColor, #111111);
+}
+
+/* SegmentedControl: a ring inside the button (it stays visible within the clipped pill layer), and
+   the same ring mirrored onto the supporting label that is visible in place of a clipped button. */
+.v1-root .SegmentedControlButton:focus-visible,
+.v1-root .SegmentedControlButton.SegmentedControlButton--focusMirror {
+  outline: 2px solid currentColor;
+  outline-offset: -4px;
+}
+
+/* Mono: the mobile case-study indicator is coloured with the section accent; accent--Teal maps to
+   #b9b9b9, which is indistinguishable from the 30 % black inactive bars. Accents are near-black on
+   light themes (MONOCHROME_SYSTEM.md), so the active bar uses that role here. */
+.v1-root :is(.theme--White, .theme--Light) .CaseStudyCarouselNav__indicator--active {
+  background-color: #111111;
+}
+
+/* StackedCarousel steps are focusable (Enter/Space selects, ≥ 600 px like a click). */
+.v1-root .StackedCarousel__detailContainer:focus-visible {
+  outline: 2px solid var(--accentColor, #111111);
+  outline-offset: 8px;
+  border-radius: 8px;
+}
