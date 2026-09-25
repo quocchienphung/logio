@@ -63,7 +63,7 @@ const center = (p, sel) => p.locator(sel).first().evaluate((n) => n.scrollIntoVi
   await p.hover(card);
   await p.waitForTimeout(1300);
   f.bentoAfter = await p.textContent(".usage-based-billing-bento-graphic__value");
-  f.bentoBarTransform = await p.evaluate(() => document.querySelector(".usage-based-billing-bento-graphic__chart-bar--animated:last-of-type").style.transform);
+  f.bentoBarTransform = await p.evaluate(() => [...document.querySelectorAll(".usage-based-billing-bento-graphic__chart-bar--animated")].pop().style.transform);
   await shot(p, "billing", "1440x900-bento-usage-hover", card);
   await p.mouse.move(5, 5);
   await p.waitForTimeout(900);
