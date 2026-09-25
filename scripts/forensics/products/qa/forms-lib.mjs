@@ -12,7 +12,8 @@ export async function open(path, { width = 1440, height = 900, reducedMotion = "
   const errors = [];
   page.on("pageerror", (e) => errors.push("PAGEERROR " + e.message.slice(0, 300)));
   page.on("console", (m) => {
-    if (m.type() === "error") errors.push("CONSOLE " + m.text().slice(0, 300));
+    // ignored: requests the offline route blocks, and React's dev warning about generated markup attributes
+    if (m.type() === "error" && !/net::ERR_FAILED|Invalid DOM property/.test(m.text())) errors.push("CONSOLE " + m.text().slice(0, 300));
   });
   await page.goto(BASE + path, { waitUntil: "load", timeout: 300000 });
   // controllers are mounted after hydration; the dev-only accessor appears with the first forms controller

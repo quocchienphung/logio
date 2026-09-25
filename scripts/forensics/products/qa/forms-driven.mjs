@@ -1,6 +1,6 @@
 // QA: controllers that parent controllers (other groups) drive through their API. The parents are simulated
 // here through the development-only window.__v1FormsApi accessor.
-// node scripts/forensics/products/qa/forms-driven.mjs <card|shipping|email|inputs|table> [width] [shotDir]
+// node scripts/forensics/products/qa/forms-driven.mjs <card|card-checkout|card-invoicing|card-links|shipping|email|inputs|table> [width] [shotDir]
 import { check, open, shotEl } from "./forms-lib.mjs";
 
 const [which = "card", width = "1440", shotDir = ""] = process.argv.slice(2);
@@ -61,11 +61,9 @@ async function cardField(path, name, focusClass) {
   await browser.close();
 }
 
-if (which === "card") {
-  await cardField("/payments/checkout", "CheckoutCardField", "GraphicFormFieldInput--focused");
-  await cardField("/invoicing", "InvoicingCardField", "InvoicingFieldInput--focused");
-  await cardField("/payments/payment-links", "PaymentLinksCardField", "PaymentLinksFieldInput--focused");
-}
+if (which === "card" || which === "card-checkout") await cardField("/payments/checkout", "CheckoutCardField", "GraphicFormFieldInput--focused");
+if (which === "card" || which === "card-invoicing") await cardField("/invoicing", "InvoicingCardField", "InvoicingFieldInput--focused");
+if (which === "card" || which === "card-links") await cardField("/payments/payment-links", "PaymentLinksCardField", "PaymentLinksFieldInput--focused");
 
 if (which === "shipping") {
   const { browser, page, errors } = await open("/payments/checkout", { width: +width });
@@ -144,8 +142,7 @@ if (which === "inputs") {
     const api = window.__v1FormsApi(sel, "SelectInput");
     out.selectValid = api.isValid();
     const input = document.querySelector("input[data-js-controller=TextInput]");
-    input.focus();
-    input.blur();
+    input.dispatchEvent(new FocusEvent("blur"));
     out.textTouched = input.classList.contains("TextInput__input--touched");
     const t = window.__v1FormsApi(input, "TextInput");
     t.setDisabled(true);
@@ -156,6 +153,23 @@ if (which === "inputs") {
   check("SelectInput: touched + document event", r.selectTouched && r.fired === 1, JSON.stringify(r));
   check("TextInput: touched on blur, setDisabled", r.textTouched && r.disabled, JSON.stringify(r));
   check("inputs: no console errors", errors.length === 0, errors.join(" / "));
+  await browser.close();
+}
+
+if (which === "setcode") {
+  // DetailCodeSnippetCarousel (carousels group) calls CodeEditor.setCode(codeSnippets[i].innerHTML)
+  const { browser, page, errors } = await open("/financial-connections", { width: +width });
+  const r = await page.evaluate(async () => {
+    const car = document.querySelector("[data-js-controller=DetailCodeSnippetCarousel]");
+    const edEl = car.querySelector("[data-js-controller=CodeEditor]");
+    const api = window.__v1FormsApi(edEl, "CodeEditor");
+    const snips = car.querySelectorAll("[data-js-target-list='DetailCodeSnippetCarousel.codeSnippets']");
+    await api.setCode(snips[2].innerHTML);
+    const code = edEl.querySelector("[data-js-target='CodeEditor.editor']").textContent;
+    return { lines: code.split("\n").length, first: code.split("\n").slice(0, 2), nums: edEl.querySelectorAll(".CodeEditorLineNumbers__number").length };
+  });
+  check("setCode(innerHTML) restores line breaks and updates line numbers", r.lines > 10 && r.nums >= r.lines, JSON.stringify(r));
+  check("setcode: no console errors", errors.length === 0, errors.join(" / "));
   await browser.close();
 }
 
