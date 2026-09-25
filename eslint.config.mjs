@@ -8,7 +8,7 @@ const eslintConfig = defineConfig([
   // Override default ignores of eslint-config-next.
   {
     // The Stripe reconstruction mirrors the reference's <img srcset> markup byte-for-byte.
-    files: ["src/components/stripe/**/*.tsx"],
+    files: ["src/components/stripe/**/*.tsx", "src/components/sites/**/*.tsx"],
     rules: { "@next/next/no-img-element": "off" },
   },
   globalIgnores([
@@ -19,6 +19,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Frozen reference bundles captured for forensics, not project code.
     "docs/**",
+    // Builder-agent git worktrees (each has its own checkout and .next output).
+    ".claude/worktrees/**",
   ]),
 ]);
 
