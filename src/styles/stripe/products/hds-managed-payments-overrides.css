@@ -1,1 +1,25 @@
 /* Hand-written fixes for /managed-payments (mono tweaks, integration). */
+
+/* hds-managed-payments.css (generated) ends with an unterminated `@layer reset, base, app` statement,
+   which makes the browser swallow the next rule in the bundle. Repeating the statement with its
+   semicolon (same layer order the generated file declares first) closes it; harmless once fixed. */
+@layer reset, base, app;
+
+/* Hero overlay cards under prefers-reduced-motion. The reference pauses the 15s card cycle in a
+   single-class rule, but its `.lazy-hero-globe.lazy-animation--loaded ~ ...` "running" rule is more
+   specific, so the cycle keeps playing. The project requires a static state for reduced motion: once
+   the globe (or its fallback) is loaded, show the first card at its resting position, hide the rest. */
+@media (prefers-reduced-motion: reduce) {
+  .lazy-hero-globe.lazy-animation--loaded ~ .managed-payments-hero__ui-anim-container .managed-payments-hero__ui-anim-overlay {
+    animation: none;
+    opacity: 0;
+  }
+  .lazy-hero-globe.lazy-animation--loaded ~ .managed-payments-hero__ui-anim-container .managed-payments-hero__ui-anim-overlay:first-child {
+    opacity: 1;
+  }
+  @media (max-width: 639px) {
+    .lazy-hero-globe.lazy-animation--loaded ~ .managed-payments-hero__ui-anim-container .managed-payments-hero__ui-anim-overlay:first-child {
+      transform: translate3d(-50%, 0, 1px);
+    }
+  }
+}
