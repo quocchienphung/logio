@@ -1,1 +1,5 @@
-/* Styles added by the "core" controller group (state classes the ports toggle, mono tweaks). */
+/* Styles added by the "core" controller group (state classes the ports toggle, mono tweaks).
+   Nothing is needed so far: every state class/attribute the core ports toggle (isLoaded, data-fixed*,
+   data-sticky*, PaymentsStickyNav__item--active, MobileStickyNav--isSticky, Video--playing,
+   PortalTooltipItem__tooltip--direction*, ProductNavDropdownItem__panel--isClosing, keyboard-navigation,
+   is-globe-dragging) is already styled by the captured reference CSS in v1-base.css. */

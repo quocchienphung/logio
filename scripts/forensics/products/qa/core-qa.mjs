@@ -11,7 +11,7 @@ mkdirSync(outDir, { recursive: true });
 const W = +w;
 const H = +h;
 const mobile = W < 600;
-const spoof = ["gradient", "globe", "keyboard", "stripes", "icons", "guides"].includes(scenario);
+const spoof = ["gradient", "globe", "keyboard", "stripes", "icons", "guides", "sweep"].includes(scenario);
 
 const browser = await chromium.launch({
   executablePath: "/opt/pw-browsers/chromium",
@@ -295,6 +295,26 @@ switch (scenario) {
   case "overflow": {
     await go(process.env.QA_PATH || "/payments");
     log(JSON.stringify(await page.evaluate(() => [...document.querySelectorAll("[data-js-controller=ProductNav]")].map((n) => { const t = n.querySelector(".HorizontalOverflowContainer__track"); const a = n.querySelector("[data-js-active]"); return { scrollLeft: t.scrollLeft, sw: t.scrollWidth, cw: t.clientWidth, active: a?.textContent.trim(), activeLeft: a?.offsetLeft, api: Object.keys(n.querySelector("[data-js-controller=HorizontalOverflowContainer]").__v1CoreApi || {}) }; }))));
+    break;
+  }
+  case "sweep": {
+    // scroll the whole page (mounts every lazy path), then report controller state, overflow and errors
+    await go(process.env.QA_PATH || "/payments");
+    const total = await page.evaluate(() => document.documentElement.scrollHeight);
+    for (let y = 0; y < total; y += Math.round(H * 0.8)) {
+      await page.evaluate((v) => window.scrollTo(0, v), y);
+      await page.waitForTimeout(150);
+    }
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(800);
+    log(JSON.stringify(await page.evaluate(() => ({
+      gradient: document.querySelector(".Gradient__canvas")?.className,
+      domGraphicsSized: [...document.querySelectorAll("[data-js-controller=DomGraphic]")].filter((e) => e.style.getPropertyValue("--aspectRatio")).length + "/" + document.querySelectorAll("[data-js-controller=DomGraphic]").length,
+      mobileStickyNav: document.querySelector(".MobileStickyNav")?.className,
+      bodyPadding: document.body.style.paddingBottom,
+      globes: [...document.querySelectorAll("[data-js-controller=BackgroundGlobe] canvas")].length,
+    }))));
+    await shot(`${W}x${H}-top-core-loaded`, { x: 0, y: 0, width: W, height: H });
     break;
   }
   default:
