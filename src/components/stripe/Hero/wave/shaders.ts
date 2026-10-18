@@ -92,6 +92,7 @@ uniform float u_displaceAmount;
 #ifdef HERO_SOFT_CURVE
 uniform float u_tailStart;
 uniform float u_tailLength;
+uniform float u_tailBend;
 #endif
 
 varying float v_time;
@@ -302,10 +303,9 @@ float heroSmootherStep(float x) {
   return x * x * x * (x * (x * 6.0 - 15.0) + 10.0);
 }
 
-float heroTwistProfile(float lengthPosition, float power) {
+float heroTwistProfile(float lengthPosition) {
   // Spread the turn over the full sheet. Value, tangent and curvature ease together at its ends.
-  float relaxed = 1.0 - heroSmootherStep(lengthPosition);
-  return mix(expStep(lengthPosition, power), relaxed, 0.88);
+  return 1.0 - heroSmootherStep(lengthPosition);
 }
 #endif
 
@@ -319,8 +319,8 @@ void main(void) {
   float phase = u_time * u_speed * 0.72;
   float freeEnd = heroSmootherStep((v_uv.y - 0.18) / 0.82);
   float breathingTwist = sin(phase * 0.75 - v_uv.y * 3.2) * 0.032 * freeEnd;
-  mat4 rotationB = rotationMatrix(vec3(0.0, 0.5, 0.5), u_twistFrequencyX * 0.88 * heroTwistProfile(v_uv.y, u_twistPowerX) + breathingTwist);
-  mat4 rotationC = rotationMatrix(vec3(0.5, 0.0, 0.5), u_twistFrequencyZ * 0.88 * heroTwistProfile(v_uv.y, u_twistPowerZ) - breathingTwist * 0.4);
+  mat4 rotationB = rotationMatrix(vec3(0.0, 0.5, 0.5), u_twistFrequencyX * 0.88 * heroTwistProfile(v_uv.y) + breathingTwist);
+  mat4 rotationC = rotationMatrix(vec3(0.5, 0.0, 0.5), u_twistFrequencyZ * 0.88 * heroTwistProfile(v_uv.y) - breathingTwist * 0.4);
   vec3 displacedPosition = displace(uv, position.xyz, phase, u_displaceFrequencyX * 0.65, u_displaceFrequencyZ * 0.72, u_displaceAmount * 0.55);
   // One long traveling wave moves the lower sheet coherently instead of rippling each fold sharply.
   displacedPosition.y += sin(v_uv.y * 4.2 - phase * 0.8) * 2.0 * freeEnd;
@@ -344,7 +344,7 @@ void main(void) {
   float wind = phase * 2.6;
   // A shared, gently traveling S-curve bends the whole cross-section coherently. Its first
   // two derivatives start at zero, so the hanging end never hinges away from the upper body.
-  worldPosition.x -= (sin(tailArc * 4.0 - wind) - sin(-wind)) * 44.0 * tailBlend;
+  worldPosition.x -= (sin(tailArc * 4.0 - wind) - sin(-wind)) * u_tailBend * tailBlend;
   v_clipPosition = projectionMatrix * viewMatrix * worldPosition;
   #else
   v_clipPosition = projectionMatrix * modelViewMatrix * vec4(v_position, 1.0);

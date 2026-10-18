@@ -262,8 +262,9 @@ export class WaveRenderer {
         u_displaceFrequencyX: { value: 2.25 },
         u_displaceFrequencyZ: { value: 2.25 },
         u_displaceAmount: { value: 0 },
-        u_tailStart: { value: (this.canvasSize.y - this.tail) * 0.35 },
+        u_tailStart: { value: (this.canvasSize.y - this.tail) * 0.2 },
         u_tailLength: { value: Math.max(this.tail, 1) },
+        u_tailBend: { value: Math.min(52, this.canvasSize.x * 0.052) },
         u_twistFrequencyY: { value: 0 },
         u_twistFrequencyX: { value: 0 },
         u_twistFrequencyZ: { value: 0 },
@@ -396,8 +397,9 @@ export class WaveRenderer {
     this.sceneTarget?.setSize(res.x, res.y);
     if (this.material) {
       this.material.uniforms.u_resolution.value = this.referenceResolution();
-      this.material.uniforms.u_tailStart.value = (this.canvasSize.y - this.tail) * 0.35;
+      this.material.uniforms.u_tailStart.value = (this.canvasSize.y - this.tail) * 0.2;
       this.material.uniforms.u_tailLength.value = Math.max(this.tail, 1);
+      this.material.uniforms.u_tailBend.value = Math.min(52, this.canvasSize.x * 0.052);
     }
     this.sizeCamera();
     this.updateMonoLit();
