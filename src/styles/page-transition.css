@@ -1,0 +1,73 @@
+/* Page-to-page transition (cross-document View Transitions); behaviour and timings are documented in
+   src/components/page-transition/pageTransitionRuntime.ts, which drives the radius, lens filters and
+   text reveals below. */
+@view-transition {
+  navigation: auto;
+}
+
+/* disc radius, animated on :root and inherited by the transition pseudo-elements */
+@property --pt-r {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+/* the outgoing page stays under the disc (bent by the lens filter) until it is fully covered */
+::view-transition-old(root) {
+  animation: pt-hold 800ms linear both;
+  filter: url(#pt-lens-out);
+}
+
+/* the incoming page is revealed through a feathered disc from the viewport centre */
+::view-transition-new(root) {
+  animation: pt-hold 1250ms linear both;
+  filter: url(#pt-lens-in);
+  mask-image: radial-gradient(
+    circle at 50% 50%,
+    #000 0,
+    #000 calc(var(--pt-r) * 0.55),
+    rgb(0 0 0 / 0.8) calc(var(--pt-r) * 0.68),
+    rgb(0 0 0 / 0.45) calc(var(--pt-r) * 0.8),
+    rgb(0 0 0 / 0.15) calc(var(--pt-r) * 0.91),
+    transparent var(--pt-r)
+  );
+  mask-repeat: no-repeat;
+}
+
+/* text blocks of the incoming page: revealed line by line by the runtime */
+::view-transition-group(*.pt-text) {
+  animation: none;
+}
+::view-transition-new(*.pt-text) {
+  animation: none;
+}
+
+/* the site header stays still for the whole transition */
+header.navigation {
+  view-transition-name: pt-header;
+}
+::view-transition-group(pt-header) {
+  animation: none;
+  z-index: 1;
+}
+::view-transition-old(pt-header) {
+  display: none;
+}
+::view-transition-new(pt-header) {
+  animation: pt-hold 1250ms linear both;
+}
+
+@keyframes pt-hold {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
