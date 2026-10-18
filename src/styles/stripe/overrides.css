@@ -115,3 +115,37 @@
     transparent 100%
   );
 }
+
+/* Desktop navigation popup: a compositor-only pop (transform + opacity) instead of the reference's
+   clip-path/max-height wipe, which repaints the popup (and the blurred overlay behind it) every frame.
+   The popup drops 8px and grows from 97% under the hovered item with a soft overshoot; switching
+   between menus keeps the reference height glide and content slide. */
+@media (min-width: 940px) and (prefers-reduced-motion: no-preference) {
+  .hds-navigation-menu__popup {
+    clip-path: none;
+    max-height: none;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: 50% 0;
+    will-change: transform, opacity;
+    transition-property: opacity, transform, height;
+    transition-duration: 160ms, 260ms, 240ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1), cubic-bezier(0.34, 1.3, 0.64, 1), cubic-bezier(0.2, 0, 0, 1);
+  }
+  .hds-navigation-menu__popup[data-status="open"] {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+  }
+  .hds-navigation-menu__popup[data-status="close"] {
+    clip-path: none;
+    opacity: 0;
+    transform: translateY(-4px) scale(0.985);
+    transition-duration: 140ms, 180ms, 240ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1), cubic-bezier(0.4, 0, 1, 1), cubic-bezier(0.2, 0, 0, 1);
+  }
+  .hds-navigation-menu__overlay {
+    will-change: opacity;
+    transition-duration: 180ms;
+  }
+}

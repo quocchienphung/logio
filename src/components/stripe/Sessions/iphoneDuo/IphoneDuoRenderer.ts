@@ -10,6 +10,7 @@ import {
   PMREMGenerator,
   Scene,
   SRGBColorSpace,
+  Texture,
   WebGLRenderer,
   type Material,
 } from "three";
@@ -112,13 +113,21 @@ export class IphoneDuoRenderer {
     this.load();
   }
 
+  /**
+   * Loads without blocking the page: meshes are decoded in a worker, textures are uploaded one per
+   * frame and shader programs are compiled in parallel (KHR_parallel_shader_compile) before the first
+   * draw, so scrolling into the section does not stall on a single long task.
+   */
   private load() {
+    // decodeGltfBufferAsync (used by GLTFLoader) runs in workers once enabled; missing from the typings
+    (MeshoptDecoder as unknown as { useWorkers?: (count: number) => void }).useWorkers?.(1);
     const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
-    loader.load(
-      this.options.modelUrl,
-      (gltf) => {
+    loader
+      .loadAsync(this.options.modelUrl)
+      .then(async (gltf) => {
         if (this.disposed) return;
+        const textures = new Set<Texture>();
         gltf.scene.traverse((object) => {
           if (!(object instanceof Mesh)) return;
           object.frustumCulled = false;
@@ -127,17 +136,25 @@ export class IphoneDuoRenderer {
             disposeMaterial(object.material);
             object.material = new MeshBasicMaterial({ color: 0x000000 });
           }
+          for (const m of Array.isArray(object.material) ? object.material : [object.material])
+            for (const v of Object.values(m)) if (v instanceof Texture) textures.add(v);
         });
+        const nextFrame = () => new Promise<void>((r) => requestAnimationFrame(() => r()));
+        for (const texture of textures) {
+          if (this.disposed) return;
+          this.renderer.initTexture(texture);
+          await nextFrame();
+        }
         this.device.add(gltf.scene);
+        await this.renderer.compileAsync(this.scene, this.camera);
+        if (this.disposed) return;
         this.loaded = true;
         this.screenObject.visible = true;
         this.dirty = true;
         this.options.onReady?.();
         this.kick();
-      },
-      undefined,
-      (error) => this.options.onError?.(error),
-    );
+      })
+      .catch((error) => this.options.onError?.(error));
   }
 
   /** Size the stage and lay the screen out for `layout` (landscape: as unfolded; portrait: a quarter turn). */

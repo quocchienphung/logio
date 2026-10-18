@@ -24,7 +24,8 @@ import { MENUS, type Menu } from "./menus";
 type MenuId = Menu["id"];
 type Status = "initial" | "open" | "close";
 
-const OPEN_DELAY = 100;
+// Menus open on the first hover frame; the close delay alone keeps passing pointers from flickering them.
+const OPEN_DELAY = 0;
 const CLOSE_DELAY = 150;
 const CLOSE_ANIM = 300; // --navigation-duration-slow
 const MOBILE_QUERY = "(max-width: 939px)";
@@ -162,7 +163,8 @@ function NavigationMenu() {
   const scheduleOpen = (id: MenuId) => {
     if (mobile) return;
     clear("open");
-    timers.current.open = window.setTimeout(() => open(id), OPEN_DELAY);
+    if (OPEN_DELAY === 0) open(id);
+    else timers.current.open = window.setTimeout(() => open(id), OPEN_DELAY);
   };
 
   const close = useCallback(() => {
@@ -204,12 +206,10 @@ function NavigationMenu() {
     setPopupStatus("initial");
   };
 
-  // initial → open on the next frame so the clip-path/opacity transitions run
+  // initial → open on the next frame so the open transition starts from the initial styles
   useLayoutEffect(() => {
     if (popupStatus !== "initial") return;
-    let raf = requestAnimationFrame(() => {
-      raf = requestAnimationFrame(() => setPopupStatus("open"));
-    });
+    const raf = requestAnimationFrame(() => setPopupStatus("open"));
     return () => cancelAnimationFrame(raf);
   }, [popupStatus]);
 
