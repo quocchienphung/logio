@@ -27,13 +27,14 @@ import { RoomEnvironment } from "./roomEnvironment";
  * light, ACES at 1.18 exposure, a 40-unit camera distance.
  *
  * The inner display is not a texture: a CSS3DObject carries the real DOM screen (status bar and the
- * interactive usage meter) on the display plane, so every control stays a normal, focusable element.
+ * interactive Agent Steering demo) on the display plane, so every control stays a normal, focusable
+ * element. The device holds one front-facing showcase pose: no orbit, tilt, fold or scroll motion, and
+ * a frame is drawn only when the model arrives or the stage is resized.
  */
 
 const CAMERA_Z = 40;
-const MAX_TILT_X = MathUtils.degToRad(5);
-const MAX_TILT_Y = MathUtils.degToRad(8);
-const ENTRANCE_TILT = MathUtils.degToRad(14);
+/** Margin around the device footprint. */
+const FIT = 1.04;
 
 export interface IphoneDuoRendererOptions {
   modelUrl: string;
@@ -49,24 +50,14 @@ export class IphoneDuoRenderer {
   private css: CSS3DRenderer;
   private scene = new Scene();
   private camera = new PerspectiveCamera(32, 1, 0.1, 250);
-  /** Tilts toward the pointer and settles as the section scrolls into place. */
-  private pivot = new Group();
-  /** Holds the device; rotated a quarter turn for portrait stages. */
   private device = new Group();
   private screenObject: CSS3DObject;
   private width = 1;
   private height = 1;
   private layout: ScreenLayout | null = null;
-  private tilt = { x: 0, y: 0 };
-  private tiltTarget = { x: 0, y: 0 };
-  private entrance = 0;
-  private entranceTarget = 0;
   private raf = 0;
-  private dirty = true;
   private disposed = false;
   private loaded = false;
-  paused = true;
-  reducedMotion = false;
 
   constructor(private host: HTMLElement, private options: IphoneDuoRendererOptions) {
     this.renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
@@ -101,8 +92,7 @@ export class IphoneDuoRenderer {
 
     this.camera.position.set(0, 0, CAMERA_Z);
     this.camera.lookAt(0, 0, 0);
-    this.pivot.add(this.device);
-    this.scene.add(this.pivot);
+    this.scene.add(this.device);
 
     options.screen.classList.add("iphone-duo__screen");
     this.screenObject = new CSS3DObject(options.screen);
@@ -114,13 +104,12 @@ export class IphoneDuoRenderer {
   }
 
   /**
-   * Loads without blocking the page: meshes are decoded in a worker, textures are uploaded one per
-   * frame and shader programs are compiled in parallel (KHR_parallel_shader_compile) before the first
-   * draw, so scrolling into the section does not stall on a single long task.
+   * Loads without blocking the page: textures are uploaded one per frame and shader programs are
+   * compiled in parallel (KHR_parallel_shader_compile) before the first draw, so scrolling into the
+   * section does not stall on a single long task. (meshopt's worker mode is not used: it rebuilds its
+   * worker from function source, which minification breaks.)
    */
   private load() {
-    // decodeGltfBufferAsync (used by GLTFLoader) runs in workers once enabled; missing from the typings
-    (MeshoptDecoder as unknown as { useWorkers?: (count: number) => void }).useWorkers?.(1);
     const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
     loader
@@ -150,14 +139,13 @@ export class IphoneDuoRenderer {
         if (this.disposed) return;
         this.loaded = true;
         this.screenObject.visible = true;
-        this.dirty = true;
         this.options.onReady?.();
-        this.kick();
+        this.requestRender();
       })
       .catch((error) => this.options.onError?.(error));
   }
 
-  /** Size the stage and lay the screen out for `layout` (landscape: as unfolded; portrait: a quarter turn). */
+  /** Size the stage and fit the unfolded device into it (the reference fits by pixels per unit). */
   setSize(width: number, height: number, layout: ScreenLayout) {
     this.width = Math.max(1, width);
     this.height = Math.max(1, height);
@@ -167,73 +155,27 @@ export class IphoneDuoRenderer {
     this.canvas.style.height = `${this.height}px`;
     this.css.setSize(this.width, this.height);
 
-    const portrait = layout.orientation === "portrait";
-    this.device.rotation.z = portrait ? Math.PI / 2 : 0;
-    this.screenObject.rotation.z = portrait ? -Math.PI / 2 : 0;
     this.screenObject.scale.setScalar(1 / layout.unit);
     const el = this.options.screen;
     el.style.width = `${layout.width}px`;
     el.style.height = `${layout.height}px`;
 
-    // Fit the device footprint with a small margin (the reference fits 25 x 17 units at <= 37px/unit).
-    const footW = (portrait ? DEVICE.height : DEVICE.width) * 1.06;
-    const footH = (portrait ? DEVICE.width : DEVICE.height) * 1.06;
-    const pixelsPerUnit = Math.min(this.width / footW, this.height / footH);
+    const pixelsPerUnit = Math.min(this.width / (DEVICE.width * FIT), this.height / (DEVICE.height * FIT));
     this.camera.aspect = this.width / this.height;
     this.camera.fov = MathUtils.radToDeg(2 * Math.atan(this.height / pixelsPerUnit / 2 / CAMERA_Z));
     this.camera.updateProjectionMatrix();
-    this.dirty = true;
-    this.kick();
+    this.requestRender();
   }
 
-  /** Pointer position over the stage in -1..1; `null` (or over the screen) settles the device flat. */
-  setPointer(nx: number | null, ny: number | null) {
-    if (nx === null || ny === null || this.reducedMotion) this.tiltTarget = { x: 0, y: 0 };
-    else this.tiltTarget = { x: ny * MAX_TILT_X, y: nx * MAX_TILT_Y };
-    this.kick();
+  private requestRender() {
+    if (this.disposed || this.raf) return;
+    this.raf = requestAnimationFrame(() => {
+      this.raf = 0;
+      if (this.disposed || !this.layout || !this.loaded) return;
+      this.renderer.render(this.scene, this.camera);
+      this.css.render(this.scene, this.camera);
+    });
   }
-
-  /** 0 when the section's centre is in the middle of the viewport, 1 when it is a viewport away. */
-  setScrollOffset(offset: number) {
-    this.entranceTarget = this.reducedMotion ? 0 : MathUtils.clamp(offset, -1, 1);
-    this.kick();
-  }
-
-  setPaused(paused: boolean) {
-    this.paused = paused;
-    this.kick();
-  }
-
-  private kick() {
-    if (this.disposed || this.paused || this.raf) return;
-    this.raf = requestAnimationFrame(this.frame);
-  }
-
-  private frame = () => {
-    this.raf = 0;
-    if (this.disposed || this.paused) return;
-    const ease = this.reducedMotion ? 1 : 0.08;
-    let moving = false;
-    const approach = (from: number, to: number) => {
-      const next = from + (to - from) * ease;
-      if (Math.abs(to - next) > 1e-5) moving = true;
-      return Math.abs(to - next) > 1e-5 ? next : to;
-    };
-    this.tilt.x = approach(this.tilt.x, this.tiltTarget.x);
-    this.tilt.y = approach(this.tilt.y, this.tiltTarget.y);
-    this.entrance = approach(this.entrance, this.entranceTarget);
-    const before = `${this.pivot.rotation.x},${this.pivot.rotation.y}`;
-    this.pivot.rotation.x = this.tilt.x - this.entrance * ENTRANCE_TILT;
-    this.pivot.rotation.y = this.tilt.y;
-    if (this.dirty || before !== `${this.pivot.rotation.x},${this.pivot.rotation.y}`) {
-      this.dirty = false;
-      if (this.layout && this.loaded) {
-        this.renderer.render(this.scene, this.camera);
-        this.css.render(this.scene, this.camera);
-      }
-    }
-    if (moving) this.kick();
-  };
 
   dispose() {
     this.disposed = true;

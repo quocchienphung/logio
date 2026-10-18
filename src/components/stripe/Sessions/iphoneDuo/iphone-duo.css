@@ -1,21 +1,14 @@
 /* Homepage iPhone Duo stage (replaces the Sessions on-demand banner). */
 
-.iphone-duo-wrap {
-  container-type: inline-size;
-}
-
 .iphone-duo {
   position: relative;
   width: 100%;
-  /* Portrait: the unfolded device a quarter turn round (11.84 x 16.61 units), kept within the viewport. */
-  aspect-ratio: 11.84 / 16.613;
-  max-height: max(560px, 92svh);
+  /* the unfolded device (16.61 x 11.84 units); the renderer fits it with a 4% margin */
+  aspect-ratio: 16.613 / 11.84;
 }
-@container (min-width: 880px) {
-  .iphone-duo {
-    aspect-ratio: 16.613 / 11.84;
-    max-height: 820px;
-  }
+/* a screen too small to use stays visible but out of reach (tap-to-expand opens it instead) */
+.iphone-duo[data-interactive="false"] .iphone-duo__screen {
+  pointer-events: none !important;
 }
 
 .iphone-duo__canvas,
@@ -69,8 +62,11 @@
   position: absolute;
   inset: 0;
   z-index: 11;
-  color: var(--text);
+  color: #0a0a0a;
   pointer-events: none;
+}
+.phone-screen[data-theme="dark"] .phone-status {
+  color: #ededed;
 }
 .phone-status__time,
 .phone-status__ring {

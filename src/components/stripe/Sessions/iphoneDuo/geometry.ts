@@ -17,7 +17,6 @@ export const DEVICE = {
 } as const;
 
 export interface ScreenLayout {
-  orientation: "landscape" | "portrait";
   /** CSS px of the DOM screen. */
   width: number;
   height: number;
@@ -25,13 +24,10 @@ export interface ScreenLayout {
   unit: number;
 }
 
-/** Landscape (unfolded, as shipped) on wide stages; a quarter turn to portrait on narrow ones. */
-export function screenLayout(stageWidth: number): ScreenLayout {
-  const { width, height } = DEVICE.screen;
-  if (stageWidth >= 880) {
-    const w = 1000;
-    return { orientation: "landscape", width: w, height: (w * height) / width, unit: w / width };
-  }
-  const w = stageWidth >= 560 ? 480 : 360;
-  return { orientation: "portrait", width: w, height: (w * width) / height, unit: w / height };
+/**
+ * The unfolded display as a 660 x 464 CSS px screen: at the showcase's ≈740–790 px device width it is
+ * drawn at ≈1.0–1.1x, so the Agent Steering card keeps its reference type sizes.
+ */
+export function screenLayout(width = 660): ScreenLayout {
+  return { width, height: (width * DEVICE.screen.height) / DEVICE.screen.width, unit: width / DEVICE.screen.width };
 }

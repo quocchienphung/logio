@@ -1,10 +1,8 @@
 /* affectUI Usage Meter (https://www.affectui.com/components/usage-meter), captured 2026-10-19.
    The two component stylesheets below are the ones the components inject at runtime (classic: .ui-um,
    clean: .ui-umc), copied verbatim from the shipped bundles. */
+@import "../affectui-fonts.css";
 
-@font-face { font-family: Inter; font-style: normal; font-display: swap; font-weight: 400; src: url("/sites/affectui-usage-meter/fonts/inter-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: Inter; font-style: normal; font-display: swap; font-weight: 500; src: url("/sites/affectui-usage-meter/fonts/inter-latin-500-normal.woff2") format("woff2"); }
-@font-face { font-family: Inter; font-style: normal; font-display: swap; font-weight: 600; src: url("/sites/affectui-usage-meter/fonts/inter-latin-600-normal.woff2") format("woff2"); }
 
 /* ---- Classic style ---- */
 /* Colors and motion as variables – override them on .ui-um */
