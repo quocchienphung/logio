@@ -33,7 +33,6 @@ function foldedGeometry(width = 400, height = 400, segX = 128, segY = 256, refin
   const xAxis = new THREE.Vector3(1, 0, 0);
   const yAxis = new THREE.Vector3(0, 1, 0);
   const parabola = (x: number, k: number) => Math.pow(4 * x * (1 - x), k);
-  const smootherStep = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
   for (let i = 0; i < pos.count; i++) {
     p.fromBufferAttribute(pos, i);
     if (refineFold) {
@@ -49,15 +48,10 @@ function foldedGeometry(width = 400, height = 400, segX = 128, segY = 256, refin
     }
     // Keep the two sides separated through the twist. The old tight gap self-intersected in
     // the extended tail, exposing dark rows of triangle tips once the heavy blur was removed.
-    const r = refineFold
-      ? (4 - 1.5 * Math.sin(Math.PI * uv.getY(i)) ** 2) * 1.75
-      : 4 - 2 * parabola(uv.getY(i), 9.5);
+    const r = (4 - 2 * parabola(uv.getY(i), 9.5)) * (refineFold ? 1.75 : 1);
     if (p.x < -16) p.z += r;
     else if (p.x < 16) {
-      const fold = THREE.MathUtils.mapLinear(p.x, -16, 16, 0, 1);
-      // Quintic depth has zero curvature at both joins to the straight wings. A circular
-      // U-turn jumps from a flat wing directly into constant curvature and reads as a hard crease.
-      p.z = refineFold ? (1 - 2 * smootherStep(fold)) * r : Math.cos(fold * Math.PI) * r;
+      p.z = Math.cos(THREE.MathUtils.mapLinear(p.x, -16, 16, 0, Math.PI)) * r;
       p.x =
         Math.cos(
           THREE.MathUtils.mapLinear(p.x, -16, 16, -Math.PI / 2, Math.PI / 2),
@@ -240,7 +234,7 @@ export class WaveRenderer {
     this.sizeCamera();
 
     this.material = new THREE.ShaderMaterial({
-      defines: this.theme === "light" ? { HERO_REFINED_FIBERS: 1, HERO_SOFT_CURVE: 1 } : {},
+      defines: this.theme === "light" ? { HERO_REFINED_FIBERS: 1 } : {},
       uniforms: {
         u_time: { value: 0 },
         u_speed: { value: 4e-5 },
@@ -262,9 +256,6 @@ export class WaveRenderer {
         u_displaceFrequencyX: { value: 2.25 },
         u_displaceFrequencyZ: { value: 2.25 },
         u_displaceAmount: { value: 0 },
-        u_tailStart: { value: (this.canvasSize.y - this.tail) * 0.2 },
-        u_tailLength: { value: Math.max(this.tail, 1) },
-        u_tailBend: { value: Math.min(52, this.canvasSize.x * 0.052) },
         u_twistFrequencyY: { value: 0 },
         u_twistFrequencyX: { value: 0 },
         u_twistFrequencyZ: { value: 0 },
@@ -301,10 +292,7 @@ export class WaveRenderer {
             blendDst: THREE.ZeroFactor,
           }),
     });
-    this.mesh = new THREE.Mesh(
-      foldedGeometry(400, 400, 128, this.theme === "light" ? 384 : 256, this.theme === "light"),
-      this.material,
-    );
+    this.mesh = new THREE.Mesh(foldedGeometry(400, 400, 128, 256, this.theme === "light"), this.material);
     this.scene.add(this.mesh);
     this.applyConfig(this.config);
 
@@ -395,12 +383,8 @@ export class WaveRenderer {
     this.renderer.setPixelRatio(this.dpr);
     this.renderer.setSize(rect.width, rect.height, false);
     this.sceneTarget?.setSize(res.x, res.y);
-    if (this.material) {
+    if (this.material)
       this.material.uniforms.u_resolution.value = this.referenceResolution();
-      this.material.uniforms.u_tailStart.value = (this.canvasSize.y - this.tail) * 0.2;
-      this.material.uniforms.u_tailLength.value = Math.max(this.tail, 1);
-      this.material.uniforms.u_tailBend.value = Math.min(52, this.canvasSize.x * 0.052);
-    }
     this.sizeCamera();
     this.updateMonoLit();
     const next = this.pickConfig();
