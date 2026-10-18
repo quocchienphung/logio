@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+- Pin Next.js and eslint-config-next to 16.3.8 to patch GHSA-vcvr-r3jv-pc5j (critical RCE in `next/og` ImageResponse) and other advisories affecting 16.0.0–16.3.7.
+
+### Fixed
+- Count the README token badge in CI so it reflects the current default branch instead of a stale hosted count.
+
+## [0.6.1] - 2026-10-05
+
+### Changed
+- Generalize cloning guidance: treat each observation as a sample of a rule found by varying width, height, input, and state; use the source's actual files; and build shared components from every observed state.
+
+## [0.6.0] - 2026-10-05
+
+### Changed
+- Simplify the shared website-cloning workflow, improve responsive and motion guidance, and align the project documentation.
+
+## [0.5.1] - 2026-09-26
+
+### Changed
+- Recommend Claude Code with Opus 5.5 in the README
+- Refreshed the static Star History chart through September 2026
+- Removed a redundant note about editing the canonical skill from the README
+
+### Security
+- Update Next.js and eslint-config-next to 16.3.5 with exact version pins, and refresh vulnerable transitive dependencies. Thanks to @atahan150 for the report in [#117](https://github.com/JCodesMore/ai-website-cloner-template/issues/117) and proposed fix in [#118](https://github.com/JCodesMore/ai-website-cloner-template/pull/118).
+
+## [0.5.0] - 2026-09-17
+
+### Added
+- Repository ranking badges in the README
+
+### Changed
+- Simplified Quick Start with a copyable agent setup prompt, a template button, and one cloning command example
+- Consolidated Claude Code, Codex, Cursor, and OpenCode support around one canonical Agent Skill in `.agents/skills/clone-website/`
+- Reduced the Claude Code integration to a thin command bridge that forwards arguments to the canonical skill without creating a duplicate skill in other agents
+- Moved the website inspection guide into the canonical skill's on-demand references
+
+### Removed
+- Expired sponsor integrations
+- Japanese and Simplified Chinese READMEs; the English README is the single maintained entry point
+- Redundant workflow diagrams from the READMEs
+- Generated skill and instruction copies for unsupported or redundant agent platforms
+- The agent-rule and skill synchronization scripts and their generated-file CI gate
+
 ## [0.4.0] - 2026-08-10
 
 ### Added
@@ -101,7 +145,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - MIT license
 - README with badges, demo section, quick start, and star history
 
-[Unreleased]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.6.0...v0.6.1
+[0.6.0]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.5.1...v0.6.0
+[0.5.1]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.5.0...v0.5.1
+[0.5.0]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/JCodesMore/ai-website-cloner-template/compare/v0.2.0...v0.3.0

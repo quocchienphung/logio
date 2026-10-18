@@ -15,7 +15,7 @@ A reusable template for reverse-engineering any website into a clean, modern Nex
 
 ## Tech Stack
 - **Framework:** Next.js 16 (App Router, React 19, TypeScript strict)
-- **UI:** shadcn/ui (Radix primitives, Tailwind CSS v4, `cn()` utility)
+- **UI:** shadcn/ui (Base UI primitives, Tailwind CSS v4, `cn()` utility)
 - **Icons:** Lucide React (default — will be replaced/supplemented by extracted SVGs)
 - **Styling:** Tailwind CSS v4 with oklch design tokens
 - **Deployment:** Vercel
@@ -30,7 +30,7 @@ A reusable template for reverse-engineering any website into a clean, modern Nex
 ## Code Style
 - TypeScript strict mode, no `any`
 - Named exports, PascalCase components, camelCase utils
-- Tailwind utility classes, no inline styles
+- Tailwind utilities or scoped CSS; avoid inline styles unless behavior needs dynamic values
 - 2-space indentation
 - Responsive: mobile-first
 
@@ -46,24 +46,32 @@ src/
   app/              # Next.js routes
   components/       # React components
     ui/             # shadcn/ui primitives
-    icons.tsx       # Extracted SVG icons as React components
+    sites/<site>/   # Source-specific components, including extracted SVGs
   lib/
     utils.ts        # cn() utility (shadcn)
   types/            # TypeScript interfaces
   hooks/            # Custom React hooks
 public/
-  images/           # Downloaded images from target site
-  videos/           # Downloaded videos from target site
-  seo/              # Favicons, OG images, webmanifest
+  sites/<site>/     # Source-specific images, fonts, video, and other assets
 docs/
-  research/         # Inspection output (design tokens, components, layout)
+  research/<site>/  # Page brief, asset map, and inspection evidence
   design-references/ # Screenshots and visual references
 scripts/            # Asset download scripts
+.agents/
+  skills/
+    clone-website/  # Canonical cross-agent cloning workflow
+.claude/
+  commands/
+    clone-website.md # Thin Claude Code invocation bridge
 ```
 
-## MOST IMPORTANT NOTES
-- When launching Claude Code agent teams, ALWAYS have each teammate work in their own worktree branch and merge everyone's work at the end, resolving any merge conflicts smartly since you are basically serving the orchestrator role and have full context to our goals, work given, work achieved, and desired outcomes.
-- After editing `AGENTS.md`, run `bash scripts/sync-agent-rules.sh` to regenerate platform-specific instruction files.
-- After editing `.claude/skills/clone-website/SKILL.md`, run `node scripts/sync-skills.mjs` to regenerate the skill for all platforms.
+## Agent Workflow
+- Edit `.agents/skills/clone-website/` for cloning-workflow changes. It is the canonical skill used by Codex, Cursor, and OpenCode.
+- Keep `.claude/commands/clone-website.md` as a thin Claude Code bridge to the canonical skill; do not duplicate the workflow there.
 
-@docs/research/INSPECTION_GUIDE.md
+## This Repository: Stripe Clone
+This checkout already holds a stripe.com reconstruction. Read `docs/stripe-handoff.md`, `docs/stripe-component-status.md`, and `docs/stripe-forensics.md` before changing it.
+- Homepage: `src/app/page.tsx` + `src/components/stripe/`; product pages: `src/app/(v1)/` and `src/app/(hds)/` + `src/components/sites/stripe-com-*/`.
+- Styles in `src/styles/stripe/generated/` and `src/styles/stripe/products/hds-*.css` are generated — put fixes in the matching `*-overrides.css`.
+- Assets: `public/stripe/` and `public/sites/`; frozen reference captures: `docs/research/`.
+- Visual/QA tooling (Playwright + pixelmatch): `scripts/forensics/`.
