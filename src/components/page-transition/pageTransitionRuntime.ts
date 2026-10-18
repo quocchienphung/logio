@@ -1,16 +1,21 @@
 /**
- * Page-to-page transition (cross-document View Transitions).
+ * Page-to-page transition (cross-document View Transitions), rebuilt from the reference capture
+ * (docs/zzzz.mp4, 1152×720, measured frame by frame; hd = half the viewport diagonal):
  *
- * Timeline, measured frame by frame from the reference capture (30 fps; t = 0 at the click):
- *  - 0 → ~780 ms   a feathered disc of the incoming page grows from the viewport centre
- *                  (covered area ≈ 2 % @ 67 ms, 21 % @ 200 ms, 59 % @ 333 ms, 95 % @ 467 ms).
- *                  The outgoing page is bent around the disc edge like a lens (pushed outward
- *                  with a slight swirl) with RGB channel separation.
- *  - ~150 → 900 ms the incoming page is barrel-warped with RGB separation inside the disc, decaying to 0.
- *  - ~380 → 1150 ms headline / paragraph lines in the first viewport are revealed top-to-bottom,
- *                  one line after the other (~55 ms apart), with RGB fringes and a skew that settle.
- *  - the site header stays still for the whole transition.
+ *  - disc     the incoming page is revealed through a disc that grows from the viewport centre at a
+ *             constant 1.858 hd/s (fitted on two transitions, ≈20 px RMSE) with a soft edge (90→10 % over
+ *             ≈60 px at 1152×720, then a faint tail ≈50 px further out); it reaches the corners after ≈0.6 s.
+ *  - lens in  inside the disc the incoming page is seen through a magnifying lens:
+ *             sample = p − k·(p − c)·(1 − ρ²), ρ = |p − c| / R, k = 0.85·(1 − τ/0.75 s)^1.4
+ *             (≈2.9× at the centre while the disc is small, gone by 0.75 s), with chromatic aberration.
+ *  - lens out the outgoing page is pushed out around the disc edge (0.16·R at the edge, decaying over
+ *             0.45·R), with chromatic aberration, until the disc covers it.
+ *  - text     text blocks in the first viewport are revealed line by line, top to bottom (first line at
+ *             0.35 s, 55 ms apart, 170 ms each), leaning (skew) while the lens and aberration settle.
+ *  - media    large images/canvases fade in from 0.48 s over 0.67 s.
+ *  - header   the site header stays still.
  *
+ * All reference timings are multiplied by TIME_SCALE (the motion is kept, only slowed down so it reads).
  * The function is serialised with `toString()` and inlined into <head> (it must register `pagereveal`
  * before the first render of the new document), so it must stay self-contained: no imports, no
  * references to module scope.
@@ -18,21 +23,33 @@
 export function pageTransitionRuntime(): void {
   if (!("onpagereveal" in window)) return;
 
-  // disc radius curve least-squares fitted to the coverage measured in the reference (≈11 px RMSE)
-  const DISC_MS = 780;
-  const DISC_EASE = [0.7, 0.6, 0.75, 0.9] as const;
-  const CORE = 0.55; // opaque part of the disc (fraction of the outer radius)
-  const TEXT_START = 380;
+  const TIME_SCALE = 1.6;
+  const DISC_SPEED = 1.858; // hd per second (reference)
+  // soft edge: incoming alpha at R + x·hd, from the measured profile (0.9→0.1 over ≈60 px, then a long faint tail)
+  const EDGE: [number, number][] = [[-0.088, 1], [-0.047, 0.9], [-0.024, 0.72], [0, 0.5], [0.021, 0.3], [0.041, 0.1], [0.074, 0.04], [0.118, 0]];
+  const LENS_K0 = 0.85;
+  const LENS_MS = 750;
+  const LENS_POW = 1.4;
+  const OUT_PUSH = 0.16; // × R at the edge
+  const OUT_DECAY = 0.45; // × R beyond the edge
+  const CA_IN = [1.12, 1, 0.88];
+  const CA_OUT = [1.12, 1, 0.88];
+  const TEXT_START = 350;
   const LINE_STAGGER = 55;
-  const LINE_MS = 280;
-  const TOTAL_MS = 1250;
-  const MAX_TEXT_BLOCKS = 8;
+  const LINE_MS = 170;
+  const MEDIA_START = 480;
+  const MEDIA_MS = 670;
+  const MAX_TEXT = 6;
+  const MAX_MEDIA = 4;
+  const PAD = 48; // filter region margin around named elements
+  const MAP = 256;
   const SVG_NS = "http://www.w3.org/2000/svg";
+  const S = (ms: number) => ms * TIME_SCALE;
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   // Next.js <Link> navigations are client-side and would skip the cross-document transition:
-  // let same-origin page links fall through to a normal navigation instead.
+  // let same-origin page links fall through to a normal (prerendered) navigation instead.
   window.addEventListener(
     "click",
     (e: MouseEvent) => {
@@ -71,25 +88,24 @@ export function pageTransitionRuntime(): void {
       return sy(Math.min(1, Math.max(0, t)));
     };
   };
-  const discEase = bezier(DISC_EASE[0], DISC_EASE[1], DISC_EASE[2], DISC_EASE[3]);
   const outEase = bezier(0.22, 1, 0.36, 1);
+  const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
   const smooth = (a: number, b: number, x: number) => {
-    const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+    const t = clamp01((x - a) / (b - a));
     return t * t * (3 - 2 * t);
   };
 
-  /** Displacement map as a data URL: R/G = 0.5 ± vector (feDisplacementMap convention). */
-  const makeMap = (size: number, w: number, h: number, field: (ux: number, uy: number) => [number, number]) => {
+  /** Square displacement map over [-span, span]² as a PNG data URL (R/G = 0.5 ± vector). */
+  const makeMap = (span: number, field: (ux: number, uy: number) => [number, number]) => {
     const c = document.createElement("canvas");
-    c.width = size;
-    c.height = Math.max(1, Math.round((size * h) / w));
+    c.width = c.height = MAP;
     const ctx = c.getContext("2d");
     if (!ctx) return "";
-    const img = ctx.createImageData(c.width, c.height);
-    for (let y = 0; y < c.height; y++) {
-      for (let x = 0; x < c.width; x++) {
-        const [vx, vy] = field((x + 0.5) / c.width, (y + 0.5) / c.height);
-        const i = (y * c.width + x) * 4;
+    const img = ctx.createImageData(MAP, MAP);
+    for (let y = 0; y < MAP; y++) {
+      for (let x = 0; x < MAP; x++) {
+        const [vx, vy] = field(((x + 0.5) / MAP - 0.5) * 2 * span, ((y + 0.5) / MAP - 0.5) * 2 * span);
+        const i = (y * MAP + x) * 4;
         img.data[i] = Math.round(128 + 127 * Math.max(-1, Math.min(1, vx)));
         img.data[i + 1] = Math.round(128 + 127 * Math.max(-1, Math.min(1, vy)));
         img.data[i + 2] = 128;
@@ -100,31 +116,76 @@ export function pageTransitionRuntime(): void {
     return c.toDataURL("image/png");
   };
 
-  /** Lens filter: one displacement per colour channel (slightly different strengths), recombined. */
-  const makeFilter = (svg: SVGSVGElement, id: string, w: number, h: number) => {
+  // incoming lens: displacement −u(1 − |u|²) inside the unit disc, normalised by its maximum (2/(3√3))
+  const LENS_MAX = 2 / (3 * Math.sqrt(3));
+  const OUT_SPAN = 1 + 5 * OUT_DECAY;
+  const maps = (() => {
+    const key = "pt-maps-v2";
+    try {
+      const cached = sessionStorage.getItem(key);
+      if (cached) return JSON.parse(cached) as { lens: string; push: string };
+    } catch {}
+    const lens = makeMap(1, (ux, uy) => {
+      const u2 = ux * ux + uy * uy;
+      if (u2 >= 1) return [0, 0];
+      const f = (1 - u2) / LENS_MAX;
+      return [-ux * f, -uy * f];
+    });
+    // outgoing push: sample toward the centre, peaking at the disc edge (|u| = 1)
+    const push = makeMap(OUT_SPAN, (ux, uy) => {
+      const u = Math.hypot(ux, uy) || 1e-6;
+      const h = u < 1 ? smooth(0.5, 1, u) : Math.exp(-(u - 1) / OUT_DECAY);
+      return [(-ux / u) * h, (-uy / u) * h];
+    });
+    const out = { lens, push };
+    try {
+      sessionStorage.setItem(key, JSON.stringify(out));
+    } catch {}
+    return out;
+  })();
+
+  /**
+   * Displacement filter with one pass per colour channel (chromatic aberration), recombined.
+   * `dark` is for dark ink on a transparent snapshot (text): the channels are split in inverted colour so
+   * the fringes come out as the complementary colours they show on a light page instead of black.
+   */
+  const INVERT = "-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0";
+  const makeFilter = (svg: SVGSVGElement, id: string, x: number, y: number, w: number, h: number, href: string, dark = false) => {
     const el = (name: string, attrs: Record<string, string | number>, parent: Element) => {
       const n = document.createElementNS(SVG_NS, name);
       for (const k in attrs) n.setAttribute(k, String(attrs[k]));
       parent.appendChild(n);
       return n;
     };
-    const f = el("filter", { id, x: 0, y: 0, width: w, height: h, filterUnits: "userSpaceOnUse", primitiveUnits: "userSpaceOnUse", "color-interpolation-filters": "sRGB" }, svg);
+    const f = el("filter", { id, x, y, width: w, height: h, filterUnits: "userSpaceOnUse", primitiveUnits: "userSpaceOnUse", "color-interpolation-filters": "sRGB" }, svg);
     el("feFlood", { "flood-color": "rgb(128,128,128)", result: "neutral" }, f);
-    const image = el("feImage", { x: 0, y: 0, width: w, height: h, preserveAspectRatio: "none", result: "mapImg" }, f);
+    const image = el("feImage", { href, x: 0, y: 0, width: 1, height: 1, preserveAspectRatio: "none", result: "mapImg" }, f);
     el("feComposite", { in: "mapImg", in2: "neutral", operator: "over", result: "map" }, f);
-    const maps: Element[] = [];
+    if (dark) el("feColorMatrix", { in: "SourceGraphic", type: "matrix", values: INVERT, result: "src" }, f);
+    const src = dark ? "src" : "SourceGraphic";
+    const passes: Element[] = [];
     const channels: [string, string][] = [
       ["dR", "1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"],
       ["dG", "0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"],
       ["dB", "0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"],
     ];
     for (const [name, matrix] of channels) {
-      maps.push(el("feDisplacementMap", { in: "SourceGraphic", in2: "map", scale: 0, xChannelSelector: "R", yChannelSelector: "G", result: name + "raw" }, f));
+      passes.push(el("feDisplacementMap", { in: src, in2: "map", scale: 0, xChannelSelector: "R", yChannelSelector: "G", result: name + "raw" }, f));
       el("feColorMatrix", { in: name + "raw", type: "matrix", values: matrix, result: name }, f);
     }
+    // premultiplied sum: where the passes overlap the colour is whole, at the edges each channel shows alone
     el("feComposite", { in: "dR", in2: "dG", operator: "arithmetic", k1: 0, k2: 1, k3: 1, k4: 0, result: "rg" }, f);
-    el("feComposite", { in: "rg", in2: "dB", operator: "arithmetic", k1: 0, k2: 1, k3: 1, k4: 0 }, f);
-    return { image, maps };
+    el("feComposite", { in: "rg", in2: "dB", operator: "arithmetic", k1: 0, k2: 1, k3: 1, k4: 0, result: "sum" }, f);
+    if (dark) el("feColorMatrix", { in: "sum", type: "matrix", values: INVERT }, f);
+    return {
+      place(ix: number, iy: number, size: number, scale: number, ca: number[]) {
+        image.setAttribute("x", ix.toFixed(1));
+        image.setAttribute("y", iy.toFixed(1));
+        image.setAttribute("width", size.toFixed(1));
+        image.setAttribute("height", size.toFixed(1));
+        passes.forEach((p, i) => p.setAttribute("scale", (scale * ca[i]).toFixed(2)));
+      },
+    };
   };
 
   /** Stable selector for an element (nth-child path from <body>). */
@@ -140,29 +201,50 @@ export function pageTransitionRuntime(): void {
     return n ? "body > " + parts.join(" > ") : null;
   };
 
-  /** Line boxes of an element's text, relative to its border box. */
+  /** Line boxes of an element's text, relative to its border box, tiling the whole block. */
   const linesOf = (el: Element) => {
     const box = el.getBoundingClientRect();
     const range = document.createRange();
     range.selectNodeContents(el);
-    const tops: { top: number; bottom: number }[] = [];
+    const lines: { top: number; bottom: number }[] = [];
     for (const r of Array.from(range.getClientRects())) {
       if (r.width < 1 || r.height < 1) continue;
       const top = r.top - box.top;
       const bottom = r.bottom - box.top;
-      const line = tops.find((l) => Math.abs(l.top - top) < r.height * 0.5);
+      const line = lines.find((l) => Math.abs(l.top - top) < r.height * 0.5);
       if (line) {
         line.top = Math.min(line.top, top);
         line.bottom = Math.max(line.bottom, bottom);
-      } else tops.push({ top, bottom });
+      } else lines.push({ top, bottom });
     }
-    tops.sort((a, b) => a.top - b.top);
-    // close the gaps so the revealed bands tile the whole block
-    for (let i = 0; i < tops.length; i++) {
-      tops[i].top = i === 0 ? 0 : tops[i - 1].bottom;
-      if (i === tops.length - 1) tops[i].bottom = Math.max(tops[i].bottom, box.height);
+    lines.sort((a, b) => a.top - b.top);
+    for (let i = 0; i < lines.length; i++) {
+      lines[i].top = i === 0 ? 0 : lines[i - 1].bottom;
+      if (i === lines.length - 1) lines[i].bottom = Math.max(lines[i].bottom, box.height);
     }
-    return { box, lines: tops };
+    return lines;
+  };
+
+  /** A separate snapshot would escape clipping by an ancestor: only take elements nothing clips. */
+  const unclipped = (el: Element, r: DOMRect) => {
+    for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) {
+      const cs = window.getComputedStyle(a);
+      if (cs.viewTransitionName && cs.viewTransitionName !== "none") return false;
+      if (Number(cs.opacity) < 1 || (cs.transform && cs.transform !== "none" && el.tagName !== "IMG")) return false;
+      if (cs.overflowX === "visible" && cs.overflowY === "visible") continue;
+      const b = a.getBoundingClientRect();
+      const rounded = parseFloat(cs.borderTopLeftRadius) > 0 || parseFloat(cs.borderBottomRightRadius) > 0;
+      if (rounded || r.left < b.left - 1 || r.top < b.top - 1 || r.right > b.right + 1 || r.bottom > b.bottom + 1) return false;
+    }
+    return true;
+  };
+
+  const visible = (el: Element, r: DOMRect, W: number, H: number) => {
+    if (r.width < 1 || r.height < 1 || r.bottom <= 0 || r.top >= H || r.right <= 0 || r.left >= W) return false;
+    if (el.closest("header.navigation, footer")) return false;
+    const cs = window.getComputedStyle(el);
+    if (cs.visibility === "hidden" || cs.display === "none" || cs.display === "contents" || Number(cs.opacity) === 0) return false;
+    return !cs.viewTransitionName || cs.viewTransitionName === "none";
   };
 
   const run = (vt: ViewTransition) => {
@@ -170,8 +252,10 @@ export function pageTransitionRuntime(): void {
     const H = window.innerHeight;
     const cx = W / 2;
     const cy = H / 2;
-    const halfDiag = Math.hypot(cx, cy);
-    const rEnd = (halfDiag / CORE) * 1.04;
+    const hd = Math.hypot(cx, cy);
+    const rEnd = hd * (1 + EDGE[EDGE.length - 1][0]) + 4;
+    const discMs = S((1000 * rEnd) / (DISC_SPEED * hd));
+    const speed = rEnd / discMs; // px per ms
 
     const svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttribute("aria-hidden", "true");
@@ -179,118 +263,156 @@ export function pageTransitionRuntime(): void {
     svg.setAttribute("height", "0");
     svg.style.position = "fixed";
     svg.style.pointerEvents = "none";
-    const outF = makeFilter(svg, "pt-lens-out", W, H);
-    const inF = makeFilter(svg, "pt-lens-in", W, H);
-    // outgoing page: a ring around the disc edge pushes content outward (sampling toward the centre)
-    // with a slight tangential swirl; map spans ±2 outer radii around the centre.
-    outF.image.setAttribute(
-      "href",
-      makeMap(256, 1, 1, (fx, fy) => {
-        const ux = (fx - 0.5) * 4;
-        const uy = (fy - 0.5) * 4;
-        const u = Math.hypot(ux, uy) || 1e-6;
-        const m = smooth(0.45, 0.92, u) * (1 - smooth(1.0, 2.0, u));
-        const dx = ux / u;
-        const dy = uy / u;
-        return [-(dx - 0.35 * dy) * m, -(dy + 0.35 * dx) * m];
-      }),
-    );
-    // incoming page: fisheye over the whole viewport, magnifying toward the corners (samples inward,
-    // so it never reads outside the snapshot)
-    inF.image.setAttribute(
-      "href",
-      makeMap(256, W, H, (fx, fy) => {
-        const ux = ((fx - 0.5) * W) / halfDiag;
-        const uy = ((fy - 0.5) * H) / halfDiag;
-        const u = Math.hypot(ux, uy);
-        return [-ux * u, -uy * u];
-      }),
-    );
-    document.body.appendChild(svg);
+    const outF = makeFilter(svg, "pt-lens-out", 0, 0, W, H, maps.push);
+    const inF = makeFilter(svg, "pt-lens-in", 0, 0, W, H, maps.lens);
 
-    // text blocks in the first viewport get their own snapshot so their lines can be revealed
+    // the disc with its soft edge, centred on (x, y) in the box's px
+    const disc = (x: number, y: number) => {
+      const stops = EDGE.map(([o, a]) => `rgb(0 0 0 / ${a}) calc(var(--pt-r) + ${(o * hd).toFixed(1)}px)`);
+      return `radial-gradient(circle at ${x.toFixed(1)}px ${y.toFixed(1)}px, ${stops.join(", ")})`;
+    };
+
+    // named snapshots get PAD of padding (pulled back with translate) so the lens can push their
+    // content past the element's edges without the mask or filter clipping it
+    const padBox = `padding:${PAD}px;translate:${-PAD}px ${-PAD}px`;
+    const discLayer = (r: DOMRect) => disc(cx - r.left + PAD, cy - r.top + PAD);
+
     const style = document.createElement("style");
     style.id = "pt-runtime-style";
-    const blocks: { name: string; lines: { top: number; bottom: number }[]; width: number }[] = [];
-    let css = "";
-    const candidates = Array.from(document.querySelectorAll("main h1, main h2, main h3, main p"));
-    for (const el of candidates) {
-      if (blocks.length >= MAX_TEXT_BLOCKS) break;
-      if (!(el.textContent || "").trim()) continue;
-      if (el.closest("header.navigation, footer")) continue;
+    let css = `::view-transition-new(root){mask-image:${disc(cx, cy)};mask-repeat:no-repeat}`;
+    // the lens filters live in their own sheet, dropped as soon as the lens has settled (they are the
+    // expensive part of each frame; the rest of the transition is masks and opacity)
+    let lensCss = "::view-transition-old(root){filter:url(#pt-lens-out)}::view-transition-new(root){filter:url(#pt-lens-in)}";
+
+    type Named = { name: string; box: DOMRect; filter: ReturnType<typeof makeFilter> };
+    const blocks: (Named & { lines: { top: number; bottom: number }[] })[] = [];
+    const media: Named[] = [];
+    const taken: Element[] = [];
+    const inside = (el: Element) => taken.some((t) => t.contains(el) || el.contains(t));
+
+    for (const el of Array.from(document.querySelectorAll("main h1, main h2, main h3, main h4, main p"))) {
+      if (blocks.length >= MAX_TEXT) break;
+      if (!(el.textContent || "").trim() || inside(el)) continue;
       const r = el.getBoundingClientRect();
-      if (r.width < 1 || r.height < 1 || r.bottom <= 0 || r.top >= H) continue;
-      const cs = window.getComputedStyle(el);
-      if (cs.visibility === "hidden" || cs.display === "none" || cs.display === "contents" || Number(cs.opacity) === 0) continue;
+      if (!visible(el, r, W, H) || !unclipped(el, r)) continue;
+      const sel = pathOf(el);
+      const lines = sel ? linesOf(el) : [];
+      if (!sel || !lines.length) continue;
+      const name = `pt-text-${blocks.length}`;
+      const ink = (window.getComputedStyle(el).color.match(/[\d.]+/g) || ["0", "0", "0"]).slice(0, 3).map(Number);
+      const dark = 0.2126 * ink[0] + 0.7152 * ink[1] + 0.0722 * ink[2] < 128;
+      const filter = makeFilter(svg, `pt-f-${name}`, 0, 0, r.width + 2 * PAD, r.height + 2 * PAD, maps.lens, dark);
+      blocks.push({ name, box: r, filter, lines });
+      taken.push(el);
+      // the outer lines reach PAD beyond the box so the lens can push glyphs past its edges
+      lines[0].top -= PAD;
+      lines[lines.length - 1].bottom += PAD;
+      const masks = lines.map(() => "linear-gradient(#000, #000)").join(", ");
+      const positions = lines.map((l) => `0 ${(l.top + PAD).toFixed(1)}px`).join(", ");
+      const sizes = lines.map(() => "100% 0px").join(", ");
+      const ops = lines.map(() => "add").join(", ");
+      css += `${sel}{view-transition-name:${name};view-transition-class:pt-text}`;
+      // disc ∩ (union of the revealed lines): the top layer intersects with everything below it
+      lensCss += `::view-transition-new(${name}){filter:url(#pt-f-${name})}`;
+      css += `::view-transition-new(${name}){${padBox};mask-repeat:no-repeat;mask-image:${discLayer(r)}, ${masks};mask-position:0 0, ${positions};mask-size:100% 100%, ${sizes};mask-composite:intersect, ${ops}}`;
+    }
+
+    const mediaCandidates = Array.from(document.querySelectorAll("main img, main video, main canvas"))
+      .map((el) => ({ el, r: el.getBoundingClientRect() }))
+      .filter(({ el, r }) => r.width * r.height >= 0.008 * W * H && visible(el, r, W, H) && !inside(el) && unclipped(el, r))
+      .sort((a, b) => b.r.width * b.r.height - a.r.width * a.r.height);
+    for (const { el, r } of mediaCandidates) {
+      if (media.length >= MAX_MEDIA) break;
+      if (inside(el)) continue;
       const sel = pathOf(el);
       if (!sel) continue;
-      const { lines } = linesOf(el);
-      if (!lines.length) continue;
-      const name = `pt-text-${blocks.length}`;
-      blocks.push({ name, lines, width: r.width });
-      const masks = lines.map(() => "linear-gradient(#000, #000)").join(", ");
-      const positions = lines.map((l) => `0 ${l.top.toFixed(1)}px`).join(", ");
-      const sizes = lines.map(() => "100% 0px").join(", ");
-      css += `${sel}{view-transition-name:${name};view-transition-class:pt-text}`;
-      css += `::view-transition-new(${name}){mask-image:${masks};mask-repeat:no-repeat;mask-position:${positions};mask-size:${sizes}}`;
+      const name = `pt-media-${media.length}`;
+      const filter = makeFilter(svg, `pt-f-${name}`, 0, 0, r.width + 2 * PAD, r.height + 2 * PAD, maps.lens);
+      media.push({ name, box: r, filter });
+      taken.push(el);
+      css += `${sel}{view-transition-name:${name};view-transition-class:pt-media}`;
+      lensCss += `::view-transition-new(${name}){filter:url(#pt-f-${name})}`;
+      css += `::view-transition-new(${name}){${padBox};mask-repeat:no-repeat;mask-image:${discLayer(r)}}`;
     }
+
+    // timeline (reference ms → scaled)
+    let globalLine = 0;
+    const lineStarts = blocks.map((b) => b.lines.map(() => S(TEXT_START + LINE_STAGGER * globalLine++)));
+    const textEnd = blocks.length ? Math.max(...lineStarts.map((ls) => ls[ls.length - 1])) + S(LINE_MS) : 0;
+    const mediaEnd = media.length ? S(MEDIA_START + MEDIA_MS) : 0;
+    const total = Math.max(discMs, S(LENS_MS), textEnd + S(120), mediaEnd) + 20;
+    css += `::view-transition-old(root){animation-duration:${discMs.toFixed(0)}ms}`;
+    css += `::view-transition-new(root),::view-transition-new(pt-header){animation-duration:${total.toFixed(0)}ms}`;
     style.textContent = css;
     document.head.appendChild(style);
+    const lensStyle = document.createElement("style");
+    lensStyle.textContent = lensCss;
+    document.head.appendChild(lensStyle);
+    const lensEnd = Math.max(discMs, S(LENS_MS));
+    document.body.appendChild(svg);
+    const root = document.documentElement;
 
     let raf = 0;
-    // filter parameters follow the transition's own clock (an animation on :root), so they stay in
-    // sync with the disc even when animations are slowed down or throttled
+    // filter parameters follow the transition's own clock (an animation on :root), so they stay in sync
+    // with the disc even when animations are slowed down or throttled
     let clock: Animation | null = null;
     const tick = () => {
       const t = clock ? Number(clock.currentTime) || 0 : 0;
-      const r = rEnd * discEase(Math.min(1, t / DISC_MS));
-      // outgoing lens follows the disc; strength ramps in over the first 250 ms
-      const outScale = 0.28 * r * smooth(0, 250, t);
-      outF.image.setAttribute("x", String(cx - 2 * r));
-      outF.image.setAttribute("y", String(cy - 2 * r));
-      outF.image.setAttribute("width", String(4 * r));
-      outF.image.setAttribute("height", String(4 * r));
-      outF.maps.forEach((m, i) => m.setAttribute("scale", String(outScale * [1.08, 1, 0.92][i])));
-      // incoming barrel + RGB split: peaks around 380 ms, gone by 900 ms
-      const inK = smooth(150, 380, t) * (1 - outEase(Math.min(1, Math.max(0, (t - 380) / 520))));
-      const inScale = 0.16 * halfDiag * inK;
-      inF.maps.forEach((m, i) => m.setAttribute("scale", String(inScale * [1.1, 1, 0.9][i])));
+      if (t >= lensEnd) {
+        lensStyle.remove();
+        return;
+      }
+      const r = Math.min(rEnd, speed * t);
+      // outgoing push around the edge, eased in over the first 60 ms so the disc does not pop
+      const span = OUT_SPAN * r;
+      outF.place(cx - span, cy - span, 2 * span, ((OUT_PUSH * r) / 0.498) * smooth(0, S(60), t), CA_OUT);
+      // incoming lens, sized to the disc (or the screen once the disc is larger than it)
+      const k = t < S(LENS_MS) ? LENS_K0 * Math.pow(1 - t / S(LENS_MS), LENS_POW) : 0;
+      const lr = Math.max(r, 1);
+      const scale = (k * lr * LENS_MAX) / 0.498;
+      inF.place(cx - lr, cy - lr, 2 * lr, scale, CA_IN);
+      for (const n of [...blocks, ...media]) n.filter.place(cx - lr - n.box.left + PAD, cy - lr - n.box.top + PAD, 2 * lr, scale, CA_IN);
       if (clock && clock.playState !== "finished") raf = requestAnimationFrame(tick);
+      else lensStyle.remove();
     };
 
-    const root = document.documentElement;
     const anims: Animation[] = [];
     vt.ready
       .then(() => {
-        clock = root.animate([{ "--pt-clock": "0" }, { "--pt-clock": "1" }] as Keyframe[], { duration: TOTAL_MS, fill: "both" });
+        clock = root.animate([{ "--pt-clock": "0" }, { "--pt-clock": "1" }] as Keyframe[], { duration: total, fill: "both" });
         anims.push(clock);
-        anims.push(root.animate([{ "--pt-r": "0px" }, { "--pt-r": `${rEnd}px` }] as Keyframe[], {
-          duration: DISC_MS,
-          easing: `cubic-bezier(${DISC_EASE.join(",")})`,
-          fill: "both",
-        }));
+        anims.push(root.animate([{ "--pt-r": "0px" }, { "--pt-r": `${rEnd.toFixed(1)}px` }] as Keyframe[], { duration: discMs, easing: "linear", fill: "both" }));
         raf = requestAnimationFrame(tick);
         blocks.forEach((b, bi) => {
-          const steps = 24;
+          const starts = lineStarts[bi];
+          const end = starts[starts.length - 1] + S(LINE_MS) + S(120);
+          const steps = 30;
           const frames: Keyframe[] = [];
-          const lineStart = (li: number) => TEXT_START + (bi === 0 ? 0 : 60) + (blocks.slice(0, bi).reduce((n, x) => n + x.lines.length, 0) + li) * LINE_STAGGER;
-          const end = lineStart(b.lines.length - 1) + LINE_MS;
           for (let s = 0; s <= steps; s++) {
             const tt = (end * s) / steps;
             const sizes = b.lines.map((l, li) => {
-              const p = outEase(Math.min(1, Math.max(0, (tt - lineStart(li)) / LINE_MS)));
-              return `100% ${((l.bottom - l.top) * p).toFixed(2)}px`;
+              // the margin above the first line opens as soon as that line starts, the text then wipes down
+              const p = outEase(clamp01((tt - starts[li]) / S(LINE_MS)));
+              const lead = li === 0 ? PAD * clamp01(p * 8) : 0;
+              const h = lead + (l.bottom - l.top - (li === 0 ? PAD : 0)) * p;
+              return `100% ${h.toFixed(2)}px`;
             });
-            const k = 1 - outEase(Math.min(1, Math.max(0, (tt - lineStart(0)) / (LINE_MS + 120))));
-            const off = (10 * k).toFixed(2);
-            frames.push({
-              offset: s / steps,
-              maskSize: sizes.join(", "),
-              transform: `skewX(${(-9 * k).toFixed(2)}deg) translateY(${(6 * k).toFixed(2)}px)`,
-              filter: `drop-shadow(${-off}px 0 0 rgba(255,0,64,${(0.85 * k).toFixed(3)})) drop-shadow(${off}px 0 0 rgba(0,200,255,${(0.85 * k).toFixed(3)}))`,
-            });
+            // the block leans while its lines come in, then straightens
+            const lean = 1 - outEase(clamp01((tt - starts[0]) / (end - starts[0])));
+            frames.push({ offset: s / steps, maskSize: `100% 100%, ${sizes.join(", ")}`, transform: `skewX(${(-9 * lean).toFixed(2)}deg)` });
           }
           anims.push(root.animate(frames, { duration: end, easing: "linear", fill: "both", pseudoElement: `::view-transition-new(${b.name})` }));
+        });
+        media.forEach((m) => {
+          anims.push(
+            root.animate([{ opacity: 0 }, { opacity: 1 }], {
+              delay: S(MEDIA_START),
+              duration: S(MEDIA_MS),
+              easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              fill: "both",
+              pseudoElement: `::view-transition-new(${m.name})`,
+            }),
+          );
         });
       })
       .catch(() => {});
@@ -301,6 +423,7 @@ export function pageTransitionRuntime(): void {
         anims.forEach((a) => a.cancel());
         svg.remove();
         style.remove();
+        lensStyle.remove();
       })
       .catch(() => {});
   };

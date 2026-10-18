@@ -1,6 +1,6 @@
 /* Page-to-page transition (cross-document View Transitions); behaviour and timings are documented in
-   src/components/page-transition/pageTransitionRuntime.ts, which drives the radius, lens filters and
-   text reveals below. */
+   src/components/page-transition/pageTransitionRuntime.ts, which injects the disc masks, durations and
+   lens filters (old/new page and per element) and drives them frame by frame. */
 @view-transition {
   navigation: auto;
 }
@@ -12,33 +12,23 @@
   initial-value: 0px;
 }
 
-/* the outgoing page stays under the disc (bent by the lens filter) until it is fully covered */
+/* the outgoing page stays under the disc, pushed out around its edge, until the disc covers it */
 ::view-transition-old(root) {
-  animation: pt-hold 800ms linear both;
-  filter: url(#pt-lens-out);
+  animation: pt-hold 600ms linear both;
 }
 
-/* the incoming page is revealed through a feathered disc from the viewport centre */
+/* the incoming page is revealed through the disc, seen through a lens that settles */
 ::view-transition-new(root) {
-  animation: pt-hold 1250ms linear both;
-  filter: url(#pt-lens-in);
-  mask-image: radial-gradient(
-    circle at 50% 50%,
-    #000 0,
-    #000 calc(var(--pt-r) * 0.55),
-    rgb(0 0 0 / 0.8) calc(var(--pt-r) * 0.68),
-    rgb(0 0 0 / 0.45) calc(var(--pt-r) * 0.8),
-    rgb(0 0 0 / 0.15) calc(var(--pt-r) * 0.91),
-    transparent var(--pt-r)
-  );
-  mask-repeat: no-repeat;
+  animation: pt-hold 1200ms linear both;
 }
 
-/* text blocks of the incoming page: revealed line by line by the runtime */
-::view-transition-group(*.pt-text) {
+/* text blocks and media of the incoming page: revealed / faded in by the runtime */
+::view-transition-group(*.pt-text),
+::view-transition-group(*.pt-media) {
   animation: none;
 }
-::view-transition-new(*.pt-text) {
+::view-transition-new(*.pt-text),
+::view-transition-new(*.pt-media) {
   animation: none;
 }
 
@@ -54,7 +44,7 @@ header.navigation {
   display: none;
 }
 ::view-transition-new(pt-header) {
-  animation: pt-hold 1250ms linear both;
+  animation: pt-hold 1200ms linear both;
 }
 
 @keyframes pt-hold {
