@@ -89,6 +89,11 @@ uniform float u_displaceFrequencyX;
 uniform float u_displaceFrequencyZ;
 uniform float u_displaceAmount;
 
+#ifdef HERO_SOFT_CURVE
+uniform float u_tailStart;
+uniform float u_tailLength;
+#endif
+
 varying float v_time;
 varying float v_speed;
 varying vec2 v_uv;
@@ -291,24 +296,59 @@ vec3 displace(vec2 uv, vec3 position, float time, float frequencyX, float freque
   return position;
 }
 
+#ifdef HERO_SOFT_CURVE
+float heroSmootherStep(float x) {
+  x = clamp(x, 0.0, 1.0);
+  return x * x * x * (x * (x * 6.0 - 15.0) + 10.0);
+}
+
+float heroTwistProfile(float lengthPosition, float power) {
+  // Spread the turn over the full sheet. Value, tangent and curvature ease together at its ends.
+  float relaxed = 1.0 - heroSmootherStep(lengthPosition);
+  return mix(expStep(lengthPosition, power), relaxed, 0.88);
+}
+#endif
+
 void main(void) {
   v_time = u_time;
   v_uv = uv;
   v_resolution = u_resolution;
 
   mat4 rotationA = rotationMatrix(vec3(0.5, 0.0, 0.5), u_twistFrequencyY * expStep(v_uv.x, u_twistPowerY));
+  #ifdef HERO_SOFT_CURVE
+  float phase = u_time * u_speed * 0.72;
+  float freeEnd = heroSmootherStep((v_uv.y - 0.18) / 0.82);
+  float breathingTwist = sin(phase * 0.75 - v_uv.y * 3.2) * 0.032 * freeEnd;
+  mat4 rotationB = rotationMatrix(vec3(0.0, 0.5, 0.5), u_twistFrequencyX * 0.88 * heroTwistProfile(v_uv.y, u_twistPowerX) + breathingTwist);
+  mat4 rotationC = rotationMatrix(vec3(0.5, 0.0, 0.5), u_twistFrequencyZ * 0.88 * heroTwistProfile(v_uv.y, u_twistPowerZ) - breathingTwist * 0.4);
+  vec3 displacedPosition = displace(uv, position.xyz, phase, u_displaceFrequencyX * 0.65, u_displaceFrequencyZ * 0.72, u_displaceAmount * 0.55);
+  // One long traveling wave moves the lower sheet coherently instead of rippling each fold sharply.
+  displacedPosition.y += sin(v_uv.y * 4.2 - phase * 0.8) * 2.0 * freeEnd;
+  #else
   mat4 rotationB = rotationMatrix(vec3(0.0, 0.5, 0.5), u_twistFrequencyX * expStep(v_uv.y, u_twistPowerX));
   mat4 rotationC = rotationMatrix(vec3(0.5, 0.0, 0.5), u_twistFrequencyZ * expStep(v_uv.y, u_twistPowerZ));
 
   vec3 displacedPosition = displace(uv, position.xyz, u_time * u_speed, u_displaceFrequencyX, u_displaceFrequencyZ, u_displaceAmount);
+  #endif
 
   v_position = displacedPosition;
   v_position = (vec4(v_position, 1.0) * rotationA).xyz;
   v_position = (vec4(v_position, 1.0) * rotationB).xyz;
   v_position = (vec4(v_position, 1.0) * rotationC).xyz;
 
+  #ifdef HERO_SOFT_CURVE
+  vec4 worldPosition = modelMatrix * vec4(v_position, 1.0);
+  float tailDistance = max(0.0, -worldPosition.y - u_tailStart);
+  float tailArc = tailDistance / max(u_tailLength, 1.0);
+  float tailBlend = heroSmootherStep(tailArc / 0.55);
+  float wind = phase * 2.6;
+  // A shared, gently traveling S-curve bends the whole cross-section coherently. Its first
+  // two derivatives start at zero, so the hanging end never hinges away from the upper body.
+  worldPosition.x -= (sin(tailArc * 4.0 - wind) - sin(-wind)) * 44.0 * tailBlend;
+  v_clipPosition = projectionMatrix * viewMatrix * worldPosition;
+  #else
   v_clipPosition = projectionMatrix * modelViewMatrix * vec4(v_position, 1.0);
-  vec4 clipPosition = projectionMatrix * modelViewMatrix * vec4(v_position, 1.0);
+  #endif
   gl_Position = v_clipPosition;
 }
 `;
@@ -604,6 +644,9 @@ vec3 surfaceColor(vec2 uv, vec3 pos, float pdy, float deep) {
   vec3 color = vec3(monoValue(texture2D(u_paletteTexture, vec2(uv.x, uv.y)).rgb, deep));
 
   float strength = 0.2;
+  #ifdef HERO_REFINED_FIBERS
+  strength = 0.09;
+  #endif
   float freq = 600.0;
   float colorAtten = 0.9;
   float paraPow = 3.0;
@@ -628,8 +671,14 @@ vec3 surfaceColor(vec2 uv, vec3 pos, float pdy, float deep) {
 
   float p = 1.0 - parabola(uv.x, paraPow);
   float n0 = simplexNoise(vec2(v_uv.x * 0.1, v_uv.y * 0.5));
-  float n1 = simplexNoise(vec2(v_uv.x * (freq + (freq * 0.5 * n0)), v_uv.y * 4.0 * n0));
+  vec2 fiberUv = vec2(v_uv.x * (freq + (freq * 0.5 * n0)), v_uv.y * 4.0 * n0);
+  float n1 = simplexNoise(fiberUv);
   n1 = mapLinear(n1, -1.0, 1.0, 0.0, 1.0);
+  #ifdef HERO_REFINED_FIBERS
+  // Subpixel fibers blend into their average at grazing folds instead of crawling/shimmering.
+  float footprint = max(length(dFdx(fiberUv)), length(dFdy(fiberUv)));
+  n1 = mix(0.5, n1, 1.0 - smoothstep(0.35, 1.0, footprint));
+  #endif
 
   vec3 textureColor = color;
   textureColor += (n1 * strength * (1.0 - textureColor.b * colorAtten) * pdy * p);

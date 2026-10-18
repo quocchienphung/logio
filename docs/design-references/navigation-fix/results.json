@@ -194,8 +194,11 @@
     },
     {
       "name": "partially scrolled header keeps the popup anchored below the navbar",
-      "pass": false,
-      "detail": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.hds-navigation-menu__popup[data-status=\"open\"]') to be visible\u001b[22m\n"
+      "pass": true
+    },
+    {
+      "name": "no browser runtime errors",
+      "pass": true
     }
   ],
   "errors": []

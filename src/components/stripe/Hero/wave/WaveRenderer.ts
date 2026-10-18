@@ -1,15 +1,15 @@
 import * as THREE from "three";
 import {
-  POST_FRAG,
   POST_VERT,
   WAVE_DARK_FRAG,
   WAVE_LIGHT_FRAG,
   WAVE_VERT,
 } from "./shaders";
 import type { WaveConfig, WaveMaterialProps } from "./config";
+import { HERO_POST_FRAG } from "./heroPost";
 
 export interface WaveRendererOptions {
-  /** light = hero (src*src blending + blur/grain post pass); dark = developers section (transparent, antialiased). */
+  /** light = hero (multisampled surface); dark = developers section (transparent, antialiased). */
   theme: "light" | "dark";
   configs: { wide: WaveConfig; medium: WaveConfig; small: WaveConfig };
   paletteUrl: string;
@@ -24,8 +24,8 @@ export interface WaveRendererOptions {
   onFirstDraw: () => void;
 }
 
-/** Folded plane geometry exactly as built by the reference (PlaneGeometry 400×400, 128×256 segments). */
-function foldedGeometry(width = 400, height = 400, segX = 128, segY = 256) {
+/** Reference folded-plane topology, with denser fold sampling for the refined hero. */
+function foldedGeometry(width = 400, height = 400, segX = 128, segY = 256, refineFold = false) {
   const geo = new THREE.PlaneGeometry(width, height, segX, segY);
   const pos = geo.attributes.position;
   const uv = geo.attributes.uv;
@@ -33,12 +33,31 @@ function foldedGeometry(width = 400, height = 400, segX = 128, segY = 256) {
   const xAxis = new THREE.Vector3(1, 0, 0);
   const yAxis = new THREE.Vector3(0, 1, 0);
   const parabola = (x: number, k: number) => Math.pow(4 * x * (1 - x), k);
+  const smootherStep = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
   for (let i = 0; i < pos.count; i++) {
     p.fromBufferAttribute(pos, i);
-    const r = 4 - 2 * parabola(uv.getY(i), 9.5);
+    if (refineFold) {
+      // Spend a quarter of the existing columns on the narrow curved fold (previously ~10).
+      // Keep UVs in the original plane's space so shading and motion retain their proportions.
+      const u = uv.getX(i);
+      p.x = u < 0.375
+        ? THREE.MathUtils.mapLinear(u, 0, 0.375, -width / 2, -16)
+        : u <= 0.625
+          ? THREE.MathUtils.mapLinear(u, 0.375, 0.625, -16, 16)
+          : THREE.MathUtils.mapLinear(u, 0.625, 1, 16, width / 2);
+      uv.setX(i, (p.x + width / 2) / width);
+    }
+    // Keep the two sides separated through the twist. The old tight gap self-intersected in
+    // the extended tail, exposing dark rows of triangle tips once the heavy blur was removed.
+    const r = refineFold
+      ? (4 - 1.5 * Math.sin(Math.PI * uv.getY(i)) ** 2) * 1.75
+      : 4 - 2 * parabola(uv.getY(i), 9.5);
     if (p.x < -16) p.z += r;
     else if (p.x < 16) {
-      p.z = Math.cos(THREE.MathUtils.mapLinear(p.x, -16, 16, 0, Math.PI)) * r;
+      const fold = THREE.MathUtils.mapLinear(p.x, -16, 16, 0, 1);
+      // Quintic depth has zero curvature at both joins to the straight wings. A circular
+      // U-turn jumps from a flat wing directly into constant curvature and reads as a hard crease.
+      p.z = refineFold ? (1 - 2 * smootherStep(fold)) * r : Math.cos(fold * Math.PI) * r;
       p.x =
         Math.cos(
           THREE.MathUtils.mapLinear(p.x, -16, 16, -Math.PI / 2, Math.PI / 2),
@@ -65,8 +84,8 @@ const isCoarseTouch = () =>
 /**
  * Port of the reference hero renderer (bundle module 4014 + mesh module 82401):
  * orthographic camera at z=5000, folded plane with time-driven simplex displacement,
- * custom src*src blending, angular blur + grain post pass on non-touch desktops,
- * frameInterval 2, intro time ramp, pause while offscreen/hidden.
+ * custom src*src blending, multisampled hero surface and a sharp composite,
+ * time-based motion, bounded pixel cost, and no render loop while offscreen/hidden.
  */
 export class WaveRenderer {
   private renderer: THREE.WebGLRenderer;
@@ -83,13 +102,13 @@ export class WaveRenderer {
   /** Extra height (CSS px) the canvas extends below the reference region, read from `--wave-tail`. */
   private tail = 0;
   private config: WaveConfig;
-  private introTimeRamp = 0;
-  private firstDrawTime: number | null = null;
   private lastDrawTime: number | null = null;
-  private pausedAtTime: number | null = null;
-  private resumedAtTime: number | null = null;
-  private pausedTime = 0;
-  private frameCount = 0;
+  private elapsed = 0;
+  private nextFrameTime = 0;
+  private qualityScale = 1;
+  private qualityWindowStart = 0;
+  private qualityFrames = 0;
+  private delayedFrames = 0;
   private rafId: number | null = null;
   private _paused = true;
   private disposed = false;
@@ -121,7 +140,7 @@ export class WaveRenderer {
       );
     this.renderer = new THREE.WebGLRenderer({
       canvas,
-      antialias: dark,
+      antialias: dark || isCoarseTouch(),
       alpha: true,
       powerPreference: "high-performance",
       failIfMajorPerformanceCaveat: true,
@@ -141,6 +160,17 @@ export class WaveRenderer {
     const px = parseFloat(raw);
     if (!Number.isFinite(px) || px <= 0) return 0;
     return Math.min(px, this.canvasSize.y * 0.9);
+  }
+
+  private updatePixelRatio() {
+    if (this.theme === "dark") return;
+    // Supersample 1x displays a little, but bound total pixel work on large/Retina canvases.
+    // MSAA smooths the silhouette without forcing a 4x full-screen fragment workload.
+    const desired = Math.min(Math.max(window.devicePixelRatio, 1.25), 2);
+    const budget = isCoarseTouch() ? 2_400_000 : 3_600_000;
+    const base = Math.min(desired, Math.sqrt(budget / Math.max(1, this.canvasSize.x * this.canvasSize.y)));
+    this.dpr = Math.max(Math.min(1, base), base * this.qualityScale);
+    this.renderer.setPixelRatio(this.dpr);
   }
 
   /**
@@ -195,17 +225,22 @@ export class WaveRenderer {
 
   async init() {
     const texture = await new THREE.TextureLoader().loadAsync(this.paletteUrl);
-    if (this.disposed) return;
+    if (this.disposed) {
+      texture.dispose();
+      return;
+    }
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
 
     const rect = this.canvas.getBoundingClientRect();
     this.canvasSize.set(rect.width, rect.height);
+    this.updatePixelRatio();
     this.tail = this.readTail();
     this.renderer.setSize(rect.width, rect.height, false);
     this.sizeCamera();
 
     this.material = new THREE.ShaderMaterial({
+      defines: this.theme === "light" ? { HERO_REFINED_FIBERS: 1, HERO_SOFT_CURVE: 1 } : {},
       uniforms: {
         u_time: { value: 0 },
         u_speed: { value: 4e-5 },
@@ -227,6 +262,8 @@ export class WaveRenderer {
         u_displaceFrequencyX: { value: 2.25 },
         u_displaceFrequencyZ: { value: 2.25 },
         u_displaceAmount: { value: 0 },
+        u_tailStart: { value: (this.canvasSize.y - this.tail) * 0.35 },
+        u_tailLength: { value: Math.max(this.tail, 1) },
         u_twistFrequencyY: { value: 0 },
         u_twistFrequencyX: { value: 0 },
         u_twistFrequencyZ: { value: 0 },
@@ -263,7 +300,10 @@ export class WaveRenderer {
             blendDst: THREE.ZeroFactor,
           }),
     });
-    this.mesh = new THREE.Mesh(foldedGeometry(), this.material);
+    this.mesh = new THREE.Mesh(
+      foldedGeometry(400, 400, 128, this.theme === "light" ? 384 : 256, this.theme === "light"),
+      this.material,
+    );
     this.scene.add(this.mesh);
     this.applyConfig(this.config);
 
@@ -277,31 +317,24 @@ export class WaveRenderer {
 
     this.updateMonoLit();
 
-    this.resizeObserver = new ResizeObserver(() => {
-      window.clearTimeout(this.resizeTimer);
-      this.resizeTimer = window.setTimeout(() => this.resize(), 300);
-    });
+    this.resizeObserver = new ResizeObserver(this.scheduleResize);
     this.resizeObserver.observe(this.canvas);
+    window.addEventListener("resize", this.scheduleResize);
     this.start();
   }
 
   private initPostProcessing() {
     const res = this.canvasSize.clone().multiplyScalar(this.dpr);
-    this.sceneTarget = new THREE.WebGLRenderTarget(res.x, res.y);
+    this.sceneTarget = new THREE.WebGLRenderTarget(res.x, res.y, {
+      samples: Math.min(4, this.renderer.capabilities.maxSamples),
+      stencilBuffer: false,
+    });
     this.postMaterial = new THREE.ShaderMaterial({
       uniforms: {
         u_scene: { value: this.sceneTarget.texture },
-        u_resolution: { value: res.clone() },
-        u_blurAmount: { value: this.config.post.blurAmount },
-        u_blurSamples: { value: 6 },
-        u_diffuseBlur: { value: 0 },
-        u_grainAmount: { value: this.config.post.grainAmount },
-        u_tailFraction: { value: this.tail / this.canvasSize.y },
-        u_opaque: { value: 0 },
-        u_clearColor: { value: new THREE.Vector3(0, 0, 0) },
       },
       vertexShader: POST_VERT,
-      fragmentShader: POST_FRAG,
+      fragmentShader: HERO_POST_FRAG,
       side: THREE.DoubleSide,
     });
     this.postScene = new THREE.Scene();
@@ -355,18 +388,17 @@ export class WaveRenderer {
     if (this.disposed) return;
     const rect = this.canvas.getBoundingClientRect();
     this.canvasSize.set(rect.width, rect.height);
+    this.updatePixelRatio();
     this.tail = this.readTail();
     const res = this.canvasSize.clone().multiplyScalar(this.dpr);
     this.renderer.setPixelRatio(this.dpr);
     this.renderer.setSize(rect.width, rect.height, false);
     this.sceneTarget?.setSize(res.x, res.y);
-    if (this.postMaterial) {
-      this.postMaterial.uniforms.u_resolution.value = res.clone();
-      this.postMaterial.uniforms.u_tailFraction.value =
-        this.tail / this.canvasSize.y;
-    }
-    if (this.material)
+    if (this.material) {
       this.material.uniforms.u_resolution.value = this.referenceResolution();
+      this.material.uniforms.u_tailStart.value = (this.canvasSize.y - this.tail) * 0.35;
+      this.material.uniforms.u_tailLength.value = Math.max(this.tail, 1);
+    }
     this.sizeCamera();
     this.updateMonoLit();
     const next = this.pickConfig();
@@ -377,32 +409,65 @@ export class WaveRenderer {
     if (this._paused) this.render();
   }
 
+  private scheduleResize = () => {
+    window.clearTimeout(this.resizeTimer);
+    this.resizeTimer = window.setTimeout(() => this.resize(), 100);
+  };
+
+  private trackFrameBudget(t: number, dt: number) {
+    if (this.theme !== "light" || this.qualityScale <= 0.72) return;
+    if (!this.qualityWindowStart) this.qualityWindowStart = t;
+    this.qualityFrames++;
+    if (dt > 28) this.delayedFrames++;
+    if (t - this.qualityWindowStart < 2000) return;
+    // Only a sustained missed budget reduces resolution. MSAA stays enabled, and there is no
+    // repeated up/down quality oscillation while the fabric moves.
+    if (this.qualityFrames >= 4 && this.delayedFrames / this.qualityFrames > 0.2) {
+      this.qualityScale = Math.max(0.7, this.qualityScale * 0.85);
+      this.resize();
+    }
+    this.qualityWindowStart = t;
+    this.qualityFrames = 0;
+    this.delayedFrames = 0;
+  }
+
   get paused() {
     return this._paused;
   }
   set paused(v: boolean) {
-    if (v) {
-      this.resumedAtTime = null;
-      this.pausedAtTime = this.lastDrawTime;
-      this.lastDrawTime = null;
-    }
+    if (v === this._paused) return;
     this._paused = v;
+    this.lastDrawTime = null;
+    this.nextFrameTime = 0;
+    this.qualityWindowStart = 0;
+    this.qualityFrames = 0;
+    this.delayedFrames = 0;
+    if (v && this.rafId != null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    } else if (!v) this.start();
   }
 
-  /** Reference behaviour when starting paused (reduced motion): draw a single frame at full ramp. */
+  /** Draw the current pose without scheduling continuous animation. */
   drawOnce() {
-    this.introTimeRamp = 1;
-    this.update(0);
+    this.update(this.elapsed);
     this.render();
     this.markDrawn();
   }
 
   private start() {
-    if (this.rafId != null) return;
+    if (this.rafId != null || this._paused || this.disposed) return;
+    const interval = 1000 / (this.theme === "light" ? 60 : 30);
     const loop = (t: number) => {
+      if (this._paused || this.disposed) {
+        this.rafId = null;
+        return;
+      }
       this.rafId = requestAnimationFrame(loop);
-      this.frameCount++;
-      if (this.frameCount % 2 !== 0) return; // frameInterval = 2
+      if (t + 0.5 < this.nextFrameTime) return;
+      this.nextFrameTime = this.nextFrameTime && t - this.nextFrameTime < interval
+        ? this.nextFrameTime + interval
+        : t + interval;
       this.updateAndRender(t);
     };
     this.rafId = requestAnimationFrame(loop);
@@ -410,24 +475,18 @@ export class WaveRenderer {
 
   private updateAndRender(t: number) {
     if (this._paused || !this.material) return;
-    if (this.firstDrawTime === null) this.firstDrawTime = t;
-    if (this.resumedAtTime === null) {
-      this.resumedAtTime = t;
-      if (this.pausedAtTime != null) {
-        this.pausedTime += this.resumedAtTime - this.pausedAtTime;
-        this.pausedAtTime = null;
-      }
-    }
+    // Integrate time rather than multiplying elapsed time by a frame-dependent intro ramp.
+    // Cap one delayed frame so tab restoration or a busy main thread cannot snap the fabric.
+    const dt = this.lastDrawTime === null ? 0 : Math.min(t - this.lastDrawTime, 50);
+    if (this.lastDrawTime !== null) this.trackFrameBudget(t, t - this.lastDrawTime);
+    this.elapsed += dt;
     this.lastDrawTime = t;
-    const elapsed =
-      (t - this.firstDrawTime - this.pausedTime) * this.introTimeRamp;
-    this.update(elapsed);
+    this.update(this.elapsed);
     this.render();
     if (!this.firstDrawComplete) {
       this.markDrawn();
       return;
     }
-    this.introTimeRamp = Math.min(this.introTimeRamp + 0.016, 1);
   }
 
   private update(elapsed: number) {
@@ -449,6 +508,7 @@ export class WaveRenderer {
   }
 
   private markDrawn() {
+    if (this.firstDrawComplete) return;
     this.firstDrawComplete = true;
     this.onFirstDraw();
   }
@@ -457,6 +517,7 @@ export class WaveRenderer {
     this.disposed = true;
     if (this.rafId != null) cancelAnimationFrame(this.rafId);
     this.resizeObserver?.disconnect();
+    window.removeEventListener("resize", this.scheduleResize);
     window.clearTimeout(this.resizeTimer);
     this.mesh?.geometry.dispose();
     this.material?.dispose();
@@ -465,6 +526,9 @@ export class WaveRenderer {
         THREE.Texture | undefined
     )?.dispose();
     this.sceneTarget?.dispose();
+    this.postScene?.traverse((object) => {
+      if (object instanceof THREE.Mesh) object.geometry.dispose();
+    });
     this.postMaterial?.dispose();
     this.renderer.dispose();
   }

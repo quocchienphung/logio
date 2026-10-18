@@ -44,5 +44,5 @@ explicitly to verify that handler; the Back/Forward route checks use real browse
 Screenshots and the machine-readable result are in
 [`docs/design-references/navigation-fix/`](../../design-references/navigation-fix/).
 
-Validation: production build with Next.js 16.3.8, TypeScript, ESLint, and the browser regression.
-The repository's existing ESLint warnings are unrelated to this change.
+Validation: production build with Next.js 16.3.8, TypeScript, ESLint (zero errors, four existing
+warnings), and 50/50 passing browser regression scenarios with no browser runtime errors.

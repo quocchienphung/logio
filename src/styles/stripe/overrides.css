@@ -63,16 +63,16 @@
   initial-value: 0px;
 }
 .hero-section-container {
-  --wave-tail: 440px;
+  --wave-tail: 900px;
 }
 @media (max-width: 1263px) {
   .hero-section-container {
-    --wave-tail: 340px;
+    --wave-tail: 680px;
   }
 }
 @media (max-width: 639px) {
   .hero-section-container {
-    --wave-tail: 240px;
+    --wave-tail: 460px;
   }
 }
 /* Let the tail overflow vertically while keeping the horizontal bleed clipped (no x scrollbar). */
@@ -98,22 +98,20 @@
     to bottom,
     #000 0,
     #000 calc(var(--wave-cut) - 64px),
-    rgba(0, 0, 0, 0.97) var(--wave-cut),
-    rgba(0, 0, 0, 0.84) calc(100% - var(--wave-tail) * 0.76),
-    rgba(0, 0, 0, 0.58) calc(100% - var(--wave-tail) * 0.52),
-    rgba(0, 0, 0, 0.3) calc(100% - var(--wave-tail) * 0.3),
-    rgba(0, 0, 0, 0.1) calc(100% - var(--wave-tail) * 0.12),
+    #000 calc(var(--wave-cut) + var(--wave-tail) * 0.12),
+    rgba(0, 0, 0, 0.9) calc(var(--wave-cut) + var(--wave-tail) * 0.4),
+    rgba(0, 0, 0, 0.62) calc(var(--wave-cut) + var(--wave-tail) * 0.65),
+    rgba(0, 0, 0, 0.22) calc(var(--wave-cut) + var(--wave-tail) * 0.85),
     transparent 100%
   );
   mask-image: linear-gradient(
     to bottom,
     #000 0,
     #000 calc(var(--wave-cut) - 64px),
-    rgba(0, 0, 0, 0.97) var(--wave-cut),
-    rgba(0, 0, 0, 0.84) calc(100% - var(--wave-tail) * 0.76),
-    rgba(0, 0, 0, 0.58) calc(100% - var(--wave-tail) * 0.52),
-    rgba(0, 0, 0, 0.3) calc(100% - var(--wave-tail) * 0.3),
-    rgba(0, 0, 0, 0.1) calc(100% - var(--wave-tail) * 0.12),
+    #000 calc(var(--wave-cut) + var(--wave-tail) * 0.12),
+    rgba(0, 0, 0, 0.9) calc(var(--wave-cut) + var(--wave-tail) * 0.4),
+    rgba(0, 0, 0, 0.62) calc(var(--wave-cut) + var(--wave-tail) * 0.65),
+    rgba(0, 0, 0, 0.22) calc(var(--wave-cut) + var(--wave-tail) * 0.85),
     transparent 100%
   );
 }
