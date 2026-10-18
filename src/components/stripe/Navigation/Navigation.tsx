@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   useCallback,
   useEffect,
@@ -38,6 +39,11 @@ const MOBILE_QUERY = "(max-width: 939px)";
  * Start now / Contact sales footer, and a stacked second `__content` for the chosen submenu.
  */
 export function Navigation() {
+  const pathname = usePathname();
+  return <NavigationMenu key={pathname} />;
+}
+
+function NavigationMenu() {
   const [mobile, setMobile] = useState(false);
   const [active, setActive] = useState<MenuId | null>(null);
   const [leaving, setLeaving] = useState<MenuId | null>(null);
@@ -55,29 +61,51 @@ export function Navigation() {
     leave?: number;
   }>({});
   const navRef = useRef<HTMLElement>(null);
+  const restoringFocus = useRef(false);
   const contentRefs = useRef<Partial<Record<MenuId, HTMLDivElement | null>>>(
     {},
   );
   const [anchor, setAnchor] = useState({ x: 0, y: 0, w: 0, h: 0, avail: 0 });
   const [portalHost, setPortalHost] = useState<HTMLElement | null>(null);
 
+  const reset = useCallback(() => {
+    Object.values(timers.current).forEach((id) => window.clearTimeout(id));
+    Object.keys(timers.current).forEach((key) => {
+      timers.current[key as keyof typeof timers.current] = undefined;
+    });
+    setActive(null);
+    setLeaving(null);
+    setPopupStatus(null);
+    setPopupHeight(undefined);
+    setDirection(undefined);
+    setMobileOpen(false);
+    setMobileSub(null);
+  }, []);
+
   // Portal host + breakpoint subscription (initial values are derived in the same microtask so the
   // first client paint already knows the breakpoint).
   useEffect(() => {
     const host = document.createElement("div");
+    host.dataset.navigationPortal = "";
     document.body.appendChild(host);
     const mq = window.matchMedia(MOBILE_QUERY);
-    const sync = () => setMobile(mq.matches);
+    let disposed = false;
+    const sync = () => {
+      reset();
+      setMobile(mq.matches);
+    };
     queueMicrotask(() => {
+      if (disposed) return;
       setPortalHost(host);
       sync();
     });
     mq.addEventListener("change", sync);
     return () => {
+      disposed = true;
       host.remove();
       mq.removeEventListener("change", sync);
     };
-  }, []);
+  }, [reset]);
 
   const clear = (k: keyof typeof timers.current) => {
     if (timers.current[k]) window.clearTimeout(timers.current[k]);
@@ -99,8 +127,8 @@ export function Navigation() {
       });
     } else {
       setAnchor({
-        x: r.left,
-        y: r.top + r.height,
+        x: r.left + window.scrollX,
+        y: r.bottom + window.scrollY,
         w: r.width,
         h: r.height,
         avail: window.innerHeight - (r.top + r.height),
@@ -110,26 +138,25 @@ export function Navigation() {
 
   const open = useCallback(
     (id: MenuId) => {
+      clear("open");
       clear("close");
       clear("unmount");
-      setActive((prev) => {
-        if (prev && prev !== id) {
-          const order = MENUS.map((m) => m.id);
-          setDirection(
-            order.indexOf(id) > order.indexOf(prev) ? "following" : "preceding",
-          );
-          setLeaving(prev);
-          clear("leave");
-          timers.current.leave = window.setTimeout(() => setLeaving(null), 500);
-        } else {
-          setDirection(undefined);
-        }
-        return id;
-      });
+      if (active && active !== id) {
+        const order = MENUS.map((m) => m.id);
+        setDirection(
+          order.indexOf(id) > order.indexOf(active) ? "following" : "preceding",
+        );
+        setLeaving(active);
+        clear("leave");
+        timers.current.leave = window.setTimeout(() => setLeaving(null), 500);
+      } else {
+        setDirection(undefined);
+      }
+      setActive(id);
       measureAnchor();
       setPopupStatus((s) => (s === "open" ? s : "initial"));
     },
-    [measureAnchor],
+    [active, measureAnchor],
   );
 
   const scheduleOpen = (id: MenuId) => {
@@ -140,6 +167,7 @@ export function Navigation() {
 
   const close = useCallback(() => {
     clear("open");
+    clear("close");
     setPopupStatus((s) => (s ? "close" : s));
     clear("unmount");
     timers.current.unmount = window.setTimeout(() => {
@@ -168,18 +196,20 @@ export function Navigation() {
       closeMobile();
       return;
     }
+    // A mobile close hides the drawer immediately, while its desktop transition timer can still
+    // be pending. Cancel it before reopening so it cannot unmount the newly opened drawer.
+    reset();
     measureAnchor();
     setMobileOpen(true);
-    setMobileSub(null);
     setPopupStatus("initial");
   };
 
   // initial → open on the next frame so the clip-path/opacity transitions run
   useLayoutEffect(() => {
     if (popupStatus !== "initial") return;
-    const raf = requestAnimationFrame(() =>
-      requestAnimationFrame(() => setPopupStatus("open")),
-    );
+    let raf = requestAnimationFrame(() => {
+      raf = requestAnimationFrame(() => setPopupStatus("open"));
+    });
     return () => cancelAnimationFrame(raf);
   }, [popupStatus]);
 
@@ -187,27 +217,59 @@ export function Navigation() {
   useLayoutEffect(() => {
     if (!active || mobile) return;
     const el = contentRefs.current[active];
-    if (el) setPopupHeight(el.offsetHeight);
+    if (!el) return;
+    const measure = () => setPopupHeight(el.offsetHeight);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [active, popupStatus, mobile]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeMobile();
+      if (e.key !== "Escape") return;
+      if (mobileOpen) {
+        closeMobile();
+        navRef.current?.querySelector<HTMLButtonElement>(".navigation-hamburger-button")?.focus();
+      } else if (active) {
+        close();
+        restoringFocus.current = true;
+        navRef.current?.querySelector<HTMLButtonElement>(`[aria-controls="navigation-popup-${active}"]`)?.focus();
+        restoringFocus.current = false;
+      }
+    };
+    const outside = (e: Event) => {
+      if (!(e.target instanceof Node)) return;
+      if (!navRef.current?.contains(e.target) && !portalHost?.contains(e.target)) closeMobile();
+    };
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) reset();
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", measureAnchor);
-    const t = timers.current;
+    window.addEventListener("pageshow", onPageShow);
+    document.addEventListener("pointerdown", outside);
+    document.addEventListener("focusin", outside);
     return () => {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("resize", measureAnchor);
-      Object.values(t).forEach((id) => id && window.clearTimeout(id));
+      window.removeEventListener("pageshow", onPageShow);
+      document.removeEventListener("pointerdown", outside);
+      document.removeEventListener("focusin", outside);
     };
-  }, [closeMobile, measureAnchor]);
+  }, [active, close, closeMobile, measureAnchor, mobileOpen, portalHost, reset]);
 
   useEffect(() => {
-    document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
+    const t = timers.current;
+    return () => Object.values(t).forEach((id) => window.clearTimeout(id));
+  }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previous = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
     return () => {
-      document.documentElement.style.overflow = "";
+      document.documentElement.style.overflow = previous;
     };
   }, [mobileOpen]);
 
@@ -244,7 +306,9 @@ export function Navigation() {
               aria-controls={`navigation-popup-${m.id}`}
               data-active={active === m.id ? "" : undefined}
               onMouseEnter={() => scheduleOpen(m.id)}
-              onFocus={() => !mobile && open(m.id)}
+              onFocus={(e) => {
+                if (!mobile && !restoringFocus.current && e.currentTarget.matches(":focus-visible")) open(m.id);
+              }}
               onClick={() => {
                 if (mobile) setMobileSub(m.id);
                 else if (active === m.id && isOpen) close();
@@ -497,6 +561,9 @@ export function Navigation() {
               />
               <div
                 className="hds-navigation-menu__positioner"
+                onClickCapture={(e) => {
+                  if (e.target instanceof Element && e.target.closest("a[href]") && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) reset();
+                }}
                 style={{
                   "--position-x": `${anchor.x}px`,
                   "--position-y": `${anchor.y}px`,

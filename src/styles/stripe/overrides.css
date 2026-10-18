@@ -8,6 +8,16 @@
   pointer-events: none;
 }
 
+/* A desktop popup locks background scrolling, but must keep the document's full height. The
+   captured mobile height lock collapses a scrolled page to one viewport, resets scrollY, and moves
+   the trigger away from the pointer while its menu opens. */
+@media (min-width: 940px) {
+  html:has(.hds-navigation-menu__overlay),
+  html:has(.hds-navigation-menu__overlay) body {
+    height: auto;
+  }
+}
+
 /* Static fallbacks for the WebGL bento backgrounds (the reference renders these through its
    responsive image component; the canvas fills the same -20px inset box). */
 .issuing-graphic__background-static,

@@ -1,0 +1,202 @@
+{
+  "results": [
+    {
+      "name": "1677: menu -> /payments -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /managed-payments -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /payments/payment-links -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /payments/checkout -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /payments/elements -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /payments/payment-methods -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /terminal -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /authorization-boost -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /payments/link -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /financial-connections -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /billing -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /billing/usage-based-billing -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /billing/subscriptions -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /invoicing -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /tax -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /revenue-recognition -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /sigma -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "1677: menu -> /data-pipeline -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /payments -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /managed-payments -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /payments/payment-links -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /payments/checkout -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /payments/elements -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /payments/payment-methods -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /terminal -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /authorization-boost -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /payments/link -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /financial-connections -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /billing -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /billing/usage-based-billing -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /billing/subscriptions -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /invoicing -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /tax -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /revenue-recognition -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /sigma -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "390: menu -> /data-pipeline -> logo -> Back -> Forward",
+      "pass": true
+    },
+    {
+      "name": "resize 1677: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "resize 1300: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "resize 1299: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "resize 1024: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "resize 940: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "resize 939: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "resize 390: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "resize 1440: all menus and Products layout",
+      "pass": true
+    },
+    {
+      "name": "open mobile menu -> desktop -> mobile releases scroll and old submenu",
+      "pass": true
+    },
+    {
+      "name": "mobile: repeated close/reopen cancels the previous close timer",
+      "pass": true
+    },
+    {
+      "name": "desktop hover travel, rapid switches, outside click, keyboard Escape",
+      "pass": true
+    },
+    {
+      "name": "persisted pageshow handler clears an open menu",
+      "pass": true
+    },
+    {
+      "name": "partially scrolled header keeps the popup anchored below the navbar",
+      "pass": false,
+      "detail": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.hds-navigation-menu__popup[data-status=\"open\"]') to be visible\u001b[22m\n"
+    }
+  ],
+  "errors": []
+}

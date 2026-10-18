@@ -192,8 +192,10 @@ for (const f of fs.readdirSync(path.join(ROOT, "src/styles/stripe/generated"), {
 }
 
 // navigation / footer class prefixes owned by the shared chrome (see scripts/forensics/partition-css.mjs)
-const CHROME = ["navigation-hover-arrow", "navigation-hamburger", "navigation-menu-header", "navigation-menu-footer", "navigation-menu-home-link", "navigation-menu-overflow", "locale-switcher", "link-brand-logo", "mobile-safari-solid-bars", "navigation", "navigation-item", "navigation-menu", "navigation-menu-list", "navigation-hamburger-button", "hds-navigation-menu", "personalize-banner", "navigation-mobile", "guide-me", "footer", "footer-links-block", "hds-globalization-picker", "footer-links", "footer-links-section", "footer-bottom", "sessions-banner"];
-const chromeRe = new RegExp(`\\.(${CHROME.map((c) => c.replace(/[-]/g, "\\-")).join("|")})(?![\\w-])`);
+const CHROME = ["navigation-hover-arrow", "navigation-hamburger", "navigation-menu-header", "navigation-menu-footer", "navigation-menu-home-link", "navigation-menu-overflow", "navigation-menu-content", "locale-switcher", "link-brand-logo", "mobile-safari-solid-bars", "navigation", "navigation-item", "navigation-menu", "navigation-menu-list", "navigation-hamburger-button", "hds-navigation-menu", "personalize-banner", "navigation-mobile", "guide-me", "footer", "footer-links-block", "hds-globalization-picker", "footer-links", "footer-links-section", "footer-bottom", "sessions-banner"];
+// Shared classes include BEM elements/modifiers (navigation__content, footer--compact, ...).
+// Keep single-hyphen namespaces explicit: footer-cta-section belongs to product content.
+const chromeRe = new RegExp(`\\.(${CHROME.map((c) => c.replace(/[-]/g, "\\-")).join("|")})(?=__|--|[^\\w-]|$)`);
 const isChromeOnly = (sel) => sel.split(",").every((s) => chromeRe.test(s));
 
 // Browsers drop a whole rule when any selector in its list is invalid; Next's CSS parser errors
