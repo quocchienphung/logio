@@ -75,3 +75,4 @@ This checkout already holds a stripe.com reconstruction. Read `docs/stripe-hando
 - Styles in `src/styles/stripe/generated/` and `src/styles/stripe/products/hds-*.css` are generated — put fixes in the matching `*-overrides.css`.
 - Assets: `public/stripe/` and `public/sites/`; frozen reference captures: `docs/research/`.
 - Visual/QA tooling (Playwright + pixelmatch): `scripts/forensics/`.
+- The Sessions slot is an iPhone Duo (three.js + CSS3D) showing the affectUI usage meter as live DOM: `src/components/stripe/Sessions/iphoneDuo/`, `src/components/sites/affectui-usage-meter/`; assets via `scripts/iphone-duo/README.md`.
