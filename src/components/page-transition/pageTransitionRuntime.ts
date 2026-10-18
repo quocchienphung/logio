@@ -435,6 +435,8 @@ export function pageTransitionRuntime(): void {
       vt.skipTransition();
       return;
     }
+    // lets page motion that the transition already performs (hero word reveal) stand down
+    document.documentElement.classList.add("pt-arrived");
     run(vt);
   });
 }

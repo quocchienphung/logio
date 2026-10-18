@@ -6,3 +6,4 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "../styles/stripe/index.css";
 @import "../styles/page-transition.css";
+@import "../styles/motion.css";

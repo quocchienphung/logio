@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MotionScript } from "@/components/motion/MotionScript";
 import { PageTransitionScript } from "@/components/page-transition/PageTransitionScript";
 import "./globals.css";
 
@@ -13,6 +14,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-US">
       <head>
         <PageTransitionScript />
+        <MotionScript />
       </head>
       <body>
         <div id="__next">{children}</div>
