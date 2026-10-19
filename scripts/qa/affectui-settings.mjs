@@ -45,7 +45,8 @@ try {
     assert.equal(await page.getByRole('radio',{name:/Yearly/}).getAttribute('aria-checked'),'true');
   });
   await check('Payment form validates and saves masked local card',async()=>{
-    await page.getByRole('button',{name:'Update',exact:true}).click();const dialog=page.locator('dialog[open]');await dialog.getByLabel('Card ending').fill('123');
+    await page.getByRole('button',{name:'Update',exact:true}).click();await page.locator('dialog[open]').getByLabel('Card ending').fill('5555');await page.locator('dialog[open]').getByRole('button',{name:'Cancel',exact:true}).click();
+    await page.getByRole('button',{name:'Update',exact:true}).click();const dialog=page.locator('dialog[open]');assert.equal(await dialog.getByLabel('Card ending').inputValue(),'4242');await dialog.getByLabel('Card ending').fill('123');
     await dialog.getByRole('button',{name:'Save payment method'}).click();assert.equal(await dialog.count(),1);
     await dialog.getByLabel('Card ending').fill('1234');await dialog.getByLabel('Expiry',{exact:true}).fill('2030-12');await dialog.getByRole('button',{name:'Save payment method'}).click();assert.match(await page.locator('.ui-sb-pay').innerText(),/1234/);assert.match(await page.locator('.ui-sb-pay').innerText(),/12\/2030/);
   });

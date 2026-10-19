@@ -4,8 +4,28 @@
 // node scripts/forensics/page-transition/frames.mjs [base] [from] [menuLabel] [runs]
 import { chromium } from "playwright";
 const [base = "http://localhost:3000", from = "/billing", label = "Payments", runs = "3"] = process.argv.slice(2);
-const b = await chromium.launch({ channel: "chrome", headless: true });
+// PT_SW=1 renders on the CPU (SwiftShader), a stand-in for a weak or integrated GPU: the frame count is then
+// bounded by the transition's GPU cost. PT_OFF=lens-in|lens-out|text-fx|mask|all-fx|cut switches parts off.
+const b = await chromium.launch({ channel: "chrome", headless: true, args: process.env.PT_SW ? ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] : [] });
 const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
+const OFF = {
+  "lens-in": "html::view-transition-image-pair(root){filter:none!important}",
+  "lens-out": "html::view-transition-image-pair(pt-out){filter:none!important}",
+  "text-fx": "html::view-transition-new(*){filter:none!important}",
+  mask: "html::view-transition-group(*),html::view-transition-image-pair(*){mask:none!important}",
+  "all-fx": "html::view-transition-image-pair(*),html::view-transition-new(*){filter:none!important}",
+  cut: "@view-transition{navigation:none}",
+}[process.env.PT_OFF || ""];
+if (OFF)
+  await ctx.addInitScript((css) => {
+    const add = () => {
+      const s = document.createElement("style");
+      s.textContent = css;
+      document.head.appendChild(s);
+    };
+    if (document.head) add();
+    else document.addEventListener("readystatechange", add, { once: true });
+  }, OFF);
 const p = await ctx.newPage();
 const cdp = await ctx.newCDPSession(p);
 const sum = [];
@@ -29,7 +49,7 @@ for (let run = 0; run < +runs; run++) {
   await p.waitForTimeout(300);
   const t0 = Date.now();
   await link.click({ noWaitAfter: true });
-  await p.waitForTimeout(2600);
+  await p.waitForTimeout(process.env.PT_SW ? 5000 : 2600);
   await cdp.send("Page.stopScreencast");
   // only the transition: from the first frame after the click until the visuals go quiet
   const moving = frames.filter((f) => f >= frames[0] + 300);
@@ -37,6 +57,7 @@ for (let run = 0; run < +runs; run++) {
   let end = moving[moving.length - 1];
   const gaps = moving.slice(1).map((f, i) => f - moving[i]).filter((g) => g < 1500);
   const r = { run, frames: moving.length, spanMs: Math.round(end - first), maxGap: Math.round(Math.max(0, ...gaps)), over50: gaps.filter((g) => g > 50).length, over100: gaps.filter((g) => g > 100).length, over200: gaps.filter((g) => g > 200).length };
+  if (process.env.PT_GAPS) console.log("   gaps>50", moving.slice(1).map((f, i) => [Math.round(moving[i + 1] - first), Math.round(f - moving[i])]).filter(([, g]) => g > 50 && g < 1500).map(([t, g]) => `${g}@${t}`).join(" "));
   sum.push(r);
   console.log(JSON.stringify(r));
 }

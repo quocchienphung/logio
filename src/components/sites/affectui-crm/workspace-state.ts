@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore, type Dispatch, type SetStateAction } from "react";
 
-export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "Settings", "New business", "Renewals", "Partnerships"] as const;
+export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "Run", "Settings", "New business", "Renewals", "Partnerships"] as const;
 export type WorkspaceSection = (typeof workspaceSections)[number];
 
 /** Hydrates after SSR and only writes after the matching key has been read. */

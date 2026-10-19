@@ -2,22 +2,22 @@
   "environment": "Chrome headless, production Next start, 1440×1100, this machine; not a cross-device benchmark",
   "lazyChunks": [
     {
-      "file": "23m0x8ipjcr80.js",
-      "encodedBytes": 14821,
-      "decodedBytes": 54533
+      "file": "38mt4ljaq0604.js",
+      "encodedBytes": 14837,
+      "decodedBytes": 54541
     }
   ],
-  "lazyEncodedBytes": 14821,
+  "lazyEncodedBytes": 14837,
   "interaction": {
-    "frames": 276,
+    "frames": 268,
     "medianFrameMs": 6.1,
-    "p95FrameMs": 6.2,
+    "p95FrameMs": 6.4,
     "framesOver25ms": 1,
     "longTasks": [],
     "priceMidAnimation": [
       "$16",
-      "$41",
-      "$83"
+      "$40",
+      "$82"
     ],
     "priceSettled": [
       "$15",

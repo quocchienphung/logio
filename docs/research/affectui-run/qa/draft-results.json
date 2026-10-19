@@ -1,0 +1,12 @@
+{
+  "passed": [
+    "Initial draft is actual selectable HTML with nine exact source suggestions",
+    "Pointer hover reveals review popover and pointer leave dismisses it",
+    "Single decision animates original text away and focuses next pending change",
+    "Y and N keyboard review, previous/next wrapping, Escape dismissal",
+    "Accept all changes only pending decisions and Undo restores previous snapshot",
+    "Draft decisions and undo survive page refresh",
+    "Settled draft text follows accepted/rejected decisions with no duplicated deleted text for assistive technology"
+  ],
+  "errors": []
+}

@@ -12,7 +12,7 @@ await page.waitForTimeout(1800);
 await page.locator('.ui-um__spark').focus();
 await page.keyboard.press('ArrowRight');
 const days=[];
-for(let index=0;index<31;index++){
+for(let index=0;index<30;index++){
   await page.waitForTimeout(25);
   days.push(await page.locator('.ui-um__daily-read').innerText());
   await page.keyboard.press('ArrowRight');
