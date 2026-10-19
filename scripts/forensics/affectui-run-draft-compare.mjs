@@ -14,9 +14,11 @@ try{
     for(const url of ['https://www.affectui.com/screens/agent-run/full',`${base}/personalize?section=run`]){
       const context=await browser.newContext({viewport:{width,height:1000}});contexts.push(context);
       const page=await context.newPage();pages.push(page);
-      await page.goto(url,{waitUntil:'networkidle'});await page.locator('.ui-df').waitFor({state:'attached'});await page.evaluate(()=>document.fonts.ready);
+      await page.goto(url,{waitUntil:'networkidle'});await page.locator('.ui-ar').waitFor();await page.evaluate(()=>document.fonts.ready);
       const show=page.getByRole('button',{name:'Show side panel',exact:true});
       if(await show.isVisible())await show.click();
+      await page.locator('.ui-df').waitFor({state:'attached'});
+      await page.getByRole('button',{name:'Approve',exact:true}).waitFor({state:'visible'});
       await page.locator('.ui-df').scrollIntoViewIfNeeded();
       await page.addStyleTag({content:'nextjs-portal{display:none!important}'});
       await page.mouse.move(0,0);await page.waitForTimeout(800);
@@ -25,11 +27,12 @@ try{
       for(let index=0;index<pages.length;index++){
         const page=pages[index],draft=page.locator('.ui-df');
         if(state==='active')await draft.locator('.ui-df__chg[data-state="pending"]').nth(1).click();
-        if(state==='accepted')await draft.getByRole('button',{name:'Accept all',exact:true}).click();
+        if(state==='accepted'){await page.keyboard.press('Escape');await page.mouse.move(0,0);await page.waitForTimeout(300);await draft.getByRole('button',{name:'Accept all',exact:true}).click();}
         if(state==='rejected'){
           await draft.getByRole('button',{name:'Undo',exact:true}).click();
           await draft.getByRole('button',{name:'Reject all',exact:true}).click();
         }
+        if(state==='accepted'||state==='rejected')await page.mouse.move(0,0);
         await page.waitForTimeout(800);
         await draft.screenshot({path:`${out}/${width}-${state}-${index===0?'source':'local'}.png`});
       }

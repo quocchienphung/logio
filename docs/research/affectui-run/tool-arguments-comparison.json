@@ -1,0 +1,24 @@
+[
+  {
+    "name": "source",
+    "rect": {
+      "x": 352,
+      "y": 703,
+      "width": 622,
+      "height": 165.125
+    }
+  },
+  {
+    "name": "local",
+    "rect": {
+      "x": 352,
+      "y": 703,
+      "width": 622,
+      "height": 165.125
+    }
+  },
+  {
+    "differentPixels": 0,
+    "percent": 0
+  }
+]

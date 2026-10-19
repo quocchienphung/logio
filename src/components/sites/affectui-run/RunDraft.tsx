@@ -82,7 +82,7 @@ export function RunDraft({ workspaceId, resetKey = 0, notify, onTextChange }: {
       const width = popover.current?.offsetWidth || 218;
       const height = popover.current?.offsetHeight || 34;
       const left = Math.max(8, Math.min(frame.width - width - 8, rect.left - frame.left + rect.width / 2 - width / 2));
-      const top = Math.max(8, rect.top - frame.top - height - 8);
+      const top = Math.max(8, rect.top - frame.top - height - 6);
       setPosition(previous => previous.left === left && previous.top === top ? previous : { left, top });
     };
     const observer = new ResizeObserver(place);

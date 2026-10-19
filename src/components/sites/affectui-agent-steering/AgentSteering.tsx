@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useLayoutEffect, useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
 import { activeElapsed, runElapsed, type RunState, type StepStatus } from "./agentSteeringModel";
 import "./agent-steering.css";
 
@@ -150,14 +150,37 @@ export function AgentSteering({
     else nodes.current.delete(key);
   };
 
-  // Positions are re-measured after every commit; when the steps, notes or queue change (the
-  // signature) everything that moved is animated from where it was in the previous commit.
+  // Positions are measured when the layout can have changed (a new signature, a growing draft, a resize);
+  // when the steps, notes or queue change (the signature) everything that moved is animated from where it
+  // was at the previous measurement. The clock re-renders this 10× a second: it must not touch layout, as
+  // reading offsets after each commit forced a synchronous layout of the whole CSS3D scene every 100 ms.
   const signature = JSON.stringify([steps.map((s) => [s.id, s.status, s.title, s.notes.map((n) => n.id)]), queue.map((n) => n.id)]);
   const lastSignature = useRef(signature);
+  const measured = useRef({ signature: "", draft: "" });
+  const measure = () => {
+    const root = rootRef.current;
+    const card = cardRef.current;
+    if (!root || !card) return;
+    const after = new Map<string, { x: number; y: number }>();
+    for (const [key, el] of nodes.current) after.set(key, localPos(el, root));
+    positions.current = after;
+    cardHeight.current = card.offsetHeight;
+  };
+  // a resize can re-wrap the card: keep the reference positions current
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const ro = new ResizeObserver(() => measure());
+    ro.observe(root);
+    return () => ro.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useLayoutEffect(() => {
     const root = rootRef.current;
     const card = cardRef.current;
     if (!root || !card) return;
+    if (measured.current.signature === signature && measured.current.draft === draft) return;
+    measured.current = { signature, draft };
     const before = positions.current;
     const after = new Map<string, { x: number; y: number }>();
     for (const [key, el] of nodes.current) after.set(key, localPos(el, root));
