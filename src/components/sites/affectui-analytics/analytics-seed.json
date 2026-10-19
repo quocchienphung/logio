@@ -129,7 +129,16 @@
           "Mar 6",
           "Mar 9"
         ],
-        "footer": "Top 4 channels"
+        "footer": "Top 4 channels",
+        "dates": [
+          "Mon, Mar 3",
+          "Tue, Mar 4",
+          "Wed, Mar 5",
+          "Thu, Mar 6",
+          "Fri, Mar 7",
+          "Sat, Mar 8",
+          "Sun, Mar 9"
+        ]
       },
       {
         "title": "Sessions over time",
@@ -174,7 +183,16 @@
           "Mar 6",
           "Mar 9"
         ],
-        "footer": "This week vs. last week"
+        "footer": "This week vs. last week",
+        "dates": [
+          "Mon, Mar 3",
+          "Tue, Mar 4",
+          "Wed, Mar 5",
+          "Thu, Mar 6",
+          "Fri, Mar 7",
+          "Sat, Mar 8",
+          "Sun, Mar 9"
+        ]
       },
       {
         "title": "Average order value",
@@ -219,7 +237,16 @@
           "Mar 6",
           "Mar 9"
         ],
-        "footer": "This week vs. last week"
+        "footer": "This week vs. last week",
+        "dates": [
+          "Mon, Mar 3",
+          "Tue, Mar 4",
+          "Wed, Mar 5",
+          "Thu, Mar 6",
+          "Fri, Mar 7",
+          "Sat, Mar 8",
+          "Sun, Mar 9"
+        ]
       }
     ],
     "breakdown": [
@@ -413,7 +440,16 @@
           "Feb 24",
           "Mar 9"
         ],
-        "footer": "Top 4 channels"
+        "footer": "Top 4 channels",
+        "dates": [
+          "Feb 9",
+          "Feb 14",
+          "Feb 19",
+          "Feb 24",
+          "Mar 1",
+          "Mar 5",
+          "Mar 9"
+        ]
       },
       {
         "title": "Sessions over time",
@@ -458,7 +494,16 @@
           "Feb 24",
           "Mar 9"
         ],
-        "footer": "This period vs. the one before"
+        "footer": "This period vs. the one before",
+        "dates": [
+          "Feb 9",
+          "Feb 14",
+          "Feb 19",
+          "Feb 24",
+          "Mar 1",
+          "Mar 5",
+          "Mar 9"
+        ]
       },
       {
         "title": "Average order value",
@@ -503,7 +548,16 @@
           "Feb 24",
           "Mar 9"
         ],
-        "footer": "This period vs. the one before"
+        "footer": "This period vs. the one before",
+        "dates": [
+          "Feb 9",
+          "Feb 14",
+          "Feb 19",
+          "Feb 24",
+          "Mar 1",
+          "Mar 5",
+          "Mar 9"
+        ]
       }
     ],
     "breakdown": [
@@ -697,7 +751,16 @@
           "Jan 24",
           "Mar 9"
         ],
-        "footer": "Top 4 channels"
+        "footer": "Top 4 channels",
+        "dates": [
+          "Dec 10",
+          "Dec 25",
+          "Jan 9",
+          "Jan 24",
+          "Feb 8",
+          "Feb 23",
+          "Mar 9"
+        ]
       },
       {
         "title": "Sessions over time",
@@ -742,7 +805,16 @@
           "Jan 24",
           "Mar 9"
         ],
-        "footer": "This period vs. the one before"
+        "footer": "This period vs. the one before",
+        "dates": [
+          "Dec 10",
+          "Dec 25",
+          "Jan 9",
+          "Jan 24",
+          "Feb 8",
+          "Feb 23",
+          "Mar 9"
+        ]
       },
       {
         "title": "Average order value",
@@ -787,7 +859,16 @@
           "Jan 24",
           "Mar 9"
         ],
-        "footer": "This period vs. the one before"
+        "footer": "This period vs. the one before",
+        "dates": [
+          "Dec 10",
+          "Dec 25",
+          "Jan 9",
+          "Jan 24",
+          "Feb 8",
+          "Feb 23",
+          "Mar 9"
+        ]
       }
     ],
     "breakdown": [

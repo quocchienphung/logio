@@ -10,11 +10,11 @@ Pixelmatch threshold 0.15, device scale 1, Chrome; fonts loaded and entrance tra
 
 | Viewport | Changed pixels | Reference | Local | Diff |
 | --- | ---: | --- | --- | --- |
-| 1440 × 1000 | 0.081% | [source](comparison/source-1440.png) | [local](comparison/local-1440.png) | [diff](comparison/diff-1440.png) |
-| 1920 × 1080 | 0.056% | [source](comparison/source-1920.png) | [local](comparison/local-1920.png) | [diff](comparison/diff-1920.png) |
-| 900 × 900 | 0.106% | [source](comparison/source-900.png) | [local](comparison/local-900.png) | [diff](comparison/diff-900.png) |
-| 768 × 1024 | 0.096% | [source](comparison/source-768.png) | [local](comparison/local-768.png) | [diff](comparison/diff-768.png) |
-| 390 × 844 | 0.159% | [source](comparison/source-390.png) | [local](comparison/local-390.png) | [diff](comparison/diff-390.png) |
+| 1440 × 1000 | 0.220% | [source](comparison/source-1440.png) | [local](comparison/local-1440.png) | [diff](comparison/diff-1440.png) |
+| 1920 × 1080 | 0.155% | [source](comparison/source-1920.png) | [local](comparison/local-1920.png) | [diff](comparison/diff-1920.png) |
+| 900 × 900 | 0.347% | [source](comparison/source-900.png) | [local](comparison/local-900.png) | [diff](comparison/diff-900.png) |
+| 768 × 1024 | 0.318% | [source](comparison/source-768.png) | [local](comparison/local-768.png) | [diff](comparison/diff-768.png) |
+| 390 × 844 | 0.449% | [source](comparison/source-390.png) | [local](comparison/local-390.png) | [diff](comparison/diff-390.png) |
 
 No document horizontal overflow at these widths. Mobile table and tabs scroll within their own panels. Geometry/computed styles are recorded in [metrics.json](comparison/metrics.json).
 
@@ -22,11 +22,11 @@ No document horizontal overflow at these widths. Mobile table and tabs scroll wi
 
 | State | Changed pixels | Reference | Local |
 | --- | ---: | --- | --- |
-| Team strategy | 0.152% | [source](comparison/source-Team-strategy.png) | [local](comparison/local-Team-strategy.png) |
-| Pixel integration | 0.016% | [source](comparison/source-Pixel-integration.png) | [local](comparison/local-Pixel-integration.png) |
-| Sales docs | 0.013% | [source](comparison/source-Sales-docs.png) | [local](comparison/local-Sales-docs.png) |
+| Team strategy | 0.080% | [source](comparison/source-Team-strategy.png) | [local](comparison/local-Team-strategy.png) |
+| Pixel integration | 0.090% | [source](comparison/source-Pixel-integration.png) | [local](comparison/local-Pixel-integration.png) |
+| Sales docs | 1.180% | [source](comparison/source-Sales-docs.png) | [local](comparison/local-Sales-docs.png) |
 
-Remaining small differences include the breadcrumb/favorite icon geometry, company mark framing, and some board detail. Hidden menus and the local search/document dialogs are not covered by the pixel comparison percentages. Source menu, checklist, tag-picker and drawer captures are saved as `source-*.png` with matching HTML/text files.
+The Sales docs difference intentionally includes the newly requested document toolbar (create/upload/folders) and locally editable drafts. Other remaining small differences include the breadcrumb/favorite icon geometry and company mark framing. Hidden menus and local search/document dialogs are not covered by these percentages. Source menu, checklist, tag-picker and drawer captures are saved as `source-*.png` with matching HTML/text files.
 
 ## Functional checks
 
@@ -48,4 +48,4 @@ Remaining small differences include the breadcrumb/favorite icon geometry, compa
 
 ## Scope
 
-This is a client-side UI reconstruction from public previews. Company edits reset on refresh. Pixel connection is simulated and document contents are unavailable from the original demo. Pro installation source, Classic variants and other library interaction states are outside this delivery. See the handoff for local extensions and how Claude Code should continue.
+This is a client-side UI reconstruction from public previews. Company edits now survive refresh in per-workspace localStorage; undo/redo history is session-only. Built-in document bodies are editable workspace drafts, and user files can be uploaded/downloaded. Pixel connection is simulated. Reports now contains the [Analytics reconstruction](../affectui-analytics/README.md), with 17 additional tested workflow groups. Pro installation source, Classic variants and other library interaction states are outside this delivery. See the handoff for local extensions and how Claude Code should continue.

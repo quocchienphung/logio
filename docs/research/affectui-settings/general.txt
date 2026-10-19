@@ -1,0 +1,19 @@
+Settings
+
+Manage your workspace, your team, your plan and access to the API.
+
+General
+Members
+Billing
+API keys
+Logo
+Shown in the sidebar and on invites. Square, at least 128 px.
+A
+Upload
+Workspace name
+Your team sees this name everywhere.
+Data region
+Where chats, files and embeddings are stored.
+Europe (Frankfurt)
+Discard
+Save changes

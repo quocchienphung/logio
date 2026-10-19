@@ -4,7 +4,7 @@
       "width": 1440,
       "height": 1000
     },
-    "diffPercent": 0.081,
+    "diffPercent": 0.22,
     "source": {
       ".ui-as-side": {
         "x": 0,
@@ -178,7 +178,7 @@
       "width": 1920,
       "height": 1080
     },
-    "diffPercent": 0.056,
+    "diffPercent": 0.155,
     "source": {
       ".ui-as-side": {
         "x": 0,
@@ -352,7 +352,7 @@
       "width": 900,
       "height": 900
     },
-    "diffPercent": 0.106,
+    "diffPercent": 0.347,
     "source": {
       ".ui-as-side": {
         "x": -288,
@@ -526,7 +526,7 @@
       "width": 768,
       "height": 1024
     },
-    "diffPercent": 0.096,
+    "diffPercent": 0.318,
     "source": {
       ".ui-as-side": {
         "x": -288,
@@ -700,7 +700,7 @@
       "width": 390,
       "height": 844
     },
-    "diffPercent": 0.159,
+    "diffPercent": 0.449,
     "source": {
       ".ui-as-side": {
         "x": -288,

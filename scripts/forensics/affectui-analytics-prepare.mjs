@@ -10,6 +10,7 @@ await fs.copyFile(`${research}/icons.json`,`${out}/icons.json`);
 const browser=await chromium.launch({channel:'chrome'});
 const page=await browser.newPage();
 const periods=[];
+const capturedDates=JSON.parse(await fs.readFile(`${research}/period-dates.json`,'utf8'));
 for(const [days,name] of [[7,'desktop'],[30,'last-30-days'],[90,'last-90-days']]){
   await page.setContent(await fs.readFile(`${research}/${name}.html`,'utf8'));
   const data=await page.evaluate(days=>{
@@ -35,6 +36,7 @@ for(const [days,name] of [[7,'desktop'],[30,'last-30-days'],[90,'last-90-days']]
     const products=[...document.querySelectorAll('.ui-as-rev__product')].map(el=>({name:el.querySelector('span').childNodes[0].textContent,value:numeric(el.querySelector('b').textContent),width:el.querySelector('i').style.width}));
     return {days,stats,charts,breakdown,products};
   },days);
+  data.charts.forEach(chart=>{chart.dates=capturedDates[days];});
   periods.push(data);
 }
 await fs.writeFile(`${out}/analytics-seed.json`,JSON.stringify(periods,null,2));

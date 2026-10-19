@@ -61,6 +61,7 @@ try {
     assert.equal(await page.locator('tbody tr').count(),11);
     await page.getByRole('checkbox',{name:'Select Notion',exact:true}).last().click();
     await page.getByRole('button',{name:'Delete',exact:true}).click();
+    await page.waitForFunction(()=>document.querySelectorAll('tbody tr').length===10);
     assert.equal(await page.locator('tbody tr').count(),10);
   });
   await check('clipboard rectangle paste and keyboard navigation',async()=>{
@@ -96,6 +97,7 @@ try {
   });
   await check('documents, sidebar, workspace and theme',async()=>{
     await page.getByRole('button',{name:'Sales docs',exact:true}).click();
+    await page.locator('.ui-as-template').first().waitFor();
     assert.equal(await page.locator('.ui-as-template').count(),4);
     await page.locator('.ui-as-template').first().click();
     assert.equal(await page.locator('dialog[open]').count(),1);
@@ -105,6 +107,8 @@ try {
     await page.locator('.ui-as-side__workspace').click();
     await page.getByRole('menuitemradio',{name:/Personal/}).click();
     assert.match(await page.locator('.ui-as-side__workspace').innerText(),/Personal/);
+    await page.locator('.ui-as-side__workspace').click();
+    await page.getByRole('menuitemradio',{name:/Acme/}).click();
     await page.locator('.ui-as-user').click();
     await page.getByRole('menuitem',{name:'Dark mode',exact:true}).click();
     await page.keyboard.press('Escape');
@@ -119,6 +123,7 @@ try {
     await page.getByRole('button',{name:'Close getting started',exact:true}).click();
     await page.keyboard.press('Control+k');
     await page.getByRole('textbox',{name:'Search workspace'}).fill('Figma');
+    await page.waitForFunction(()=>document.querySelectorAll('.crm-search__results button').length===1);
     assert.equal(await page.locator('.crm-search__results button').count(),1);
     await page.locator('.crm-search__results button').click();
     assert.equal(await page.locator('dialog[open]').count(),0);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import seed from "./seed.json";
 
 export interface Company {
@@ -44,8 +44,9 @@ export function setCell(row: Company, key: ColumnKey, value: string): Company {
 }
 
 interface History { rows: Company[]; past: Company[][]; future: Company[][] }
-type Action = { type: "change"; rows: Company[] } | { type: "undo" | "redo" };
+type Action = { type: "change" | "hydrate"; rows: Company[] } | { type: "undo" | "redo" };
 function reducer(state: History, action: Action): History {
+  if (action.type === "hydrate") return { rows: action.rows, past: [], future: [] };
   if (action.type === "change") {
     if (JSON.stringify(state.rows) === JSON.stringify(action.rows)) return state;
     return { rows: action.rows, past: [...state.past.slice(-99), state.rows], future: [] };
@@ -58,8 +59,31 @@ function reducer(state: History, action: Action): History {
   }
   return state;
 }
-export function useCrmEngine() {
+export function useCrmEngine(workspaceId = "acme") {
   const [state, dispatch] = useReducer(reducer, { rows: initialCompanies, past: [], future: [] });
+  const [ready, setReady] = useState<string | null>(null);
+  useEffect(() => {
+    let disposed = false;
+    queueMicrotask(() => {
+      if (disposed) return;
+      let rows = workspaceId === "acme" ? initialCompanies : [];
+      try {
+        const saved: unknown = JSON.parse(localStorage.getItem(`affectui:${workspaceId}:companies`) || "null");
+        if (Array.isArray(saved) && saved.every((row: unknown) => {
+          if (!row || typeof row !== "object") return false;
+          const candidate = row as Record<string, unknown>;
+          return typeof candidate.id === "string" && typeof candidate.value === "number" && ["company", "category", "domain", "owner", "stage", "lastContact"].every(key => typeof candidate[key] === "string");
+        })) rows = saved as Company[];
+      } catch { /* Use the original demo when storage is unavailable. */ }
+      dispatch({ type: "hydrate", rows });
+      setReady(workspaceId);
+    });
+    return () => { disposed = true; };
+  }, [workspaceId]);
+  useEffect(() => {
+    if (ready !== workspaceId) return;
+    try { localStorage.setItem(`affectui:${workspaceId}:companies`, JSON.stringify(state.rows)); } catch { /* Session editing still works. */ }
+  }, [ready, state.rows, workspaceId]);
   return {
     rows: state.rows,
     change: (rows: Company[]) => dispatch({ type: "change", rows }),

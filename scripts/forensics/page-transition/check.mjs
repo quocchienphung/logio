@@ -2,7 +2,11 @@
 // errors/warnings (hydration) on every document and whether a cross-document view transition ran.
 import { chromium } from "playwright";
 const base = process.argv[2] || "http://localhost:3000";
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium", args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] });
+const b = await chromium.launch(
+  process.platform === "linux"
+    ? { executablePath: "/opt/pw-browsers/chromium", args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] }
+    : { channel: "chrome", headless: true },
+);
 const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } });
 await ctx.route("**/*", (r) => (/^(http:\/\/(127\.0\.0\.1|localhost)|data:|blob:)/.test(r.request().url()) ? r.continue() : r.abort()));
 await ctx.addInitScript(() => {

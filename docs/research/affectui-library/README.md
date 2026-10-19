@@ -2,7 +2,7 @@
 
 Captured 2026-10-19. Read [the handoff](../../affectui-handoff.md) before implementation.
 
-These are reference observations, not installed Pro source. Only CRM has been rebuilt and audited across interaction states and mobile widths. Other items have a desktop initial-state screenshot, public documentation/API text, visible controls, class inventory and deduplicated runtime styles.
+These are reference observations, not installed Pro source. CRM and Analytics have separate local implementations and interaction/mobile audits. The library inventory itself records a desktop initial-state screenshot, public documentation/API text, visible controls, class inventory and deduplicated runtime styles for each item.
 
 | Family | Public items |
 | --- | ---: |

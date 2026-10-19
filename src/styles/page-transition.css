@@ -1,34 +1,26 @@
 /* Page-to-page transition (cross-document View Transitions); behaviour and timings are documented in
-   src/components/page-transition/pageTransitionRuntime.ts, which injects the disc masks, durations and
-   lens filters (old/new page and per element) and drives them frame by frame. */
+   src/components/page-transition/pageTransitionRuntime.ts, which injects the disc, lens and reveal
+   animations (all compositor-run: scale, transform, opacity) and the lens filters. */
 @view-transition {
   navigation: auto;
 }
 
-/* disc radius, animated on :root and inherited by the transition pseudo-elements */
-@property --pt-r {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 0px;
+/* the outgoing page is captured under its own name (the runtime adds the class on `pageswap`), so the
+   incoming root is revealed through its disc without the outgoing page sharing that mask */
+html.pt-leaving {
+  view-transition-name: pt-out;
 }
 
-/* the outgoing page stays under the disc, pushed out around its edge, until the disc covers it */
-::view-transition-old(root) {
-  animation: pt-hold 600ms linear both;
+/* stacking: outgoing page, incoming page, its text blocks and media (z-index 2, set by the runtime), header */
+html::view-transition-group(root) {
+  z-index: 1;
 }
 
-/* the incoming page is revealed through the disc, seen through a lens that settles */
-::view-transition-new(root) {
-  animation: pt-hold 1200ms linear both;
-}
-
-/* text blocks and media of the incoming page: revealed / faded in by the runtime */
-::view-transition-group(*.pt-text),
-::view-transition-group(*.pt-media) {
-  animation: none;
-}
-::view-transition-new(*.pt-text),
-::view-transition-new(*.pt-media) {
+/* the runtime drives every pseudo-element; without it the pages simply cut over */
+html::view-transition-old(pt-out),
+html::view-transition-new(root),
+html::view-transition-new(*.pt-text),
+html::view-transition-new(*.pt-media) {
   animation: none;
 }
 
@@ -36,24 +28,15 @@
 header.navigation {
   view-transition-name: pt-header;
 }
-::view-transition-group(pt-header) {
+html::view-transition-group(pt-header) {
   animation: none;
-  z-index: 1;
+  z-index: 3;
 }
-::view-transition-old(pt-header) {
+html::view-transition-old(pt-header) {
   display: none;
 }
-::view-transition-new(pt-header) {
-  animation: pt-hold 1200ms linear both;
-}
-
-@keyframes pt-hold {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 1;
-  }
+html::view-transition-new(pt-header) {
+  animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

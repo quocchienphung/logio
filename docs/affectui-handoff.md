@@ -8,7 +8,8 @@ Ngày khảo sát: 2026-10-19. Bắt đầu bằng `AGENTS.md` và `.agents/skil
 | --- | --- | --- |
 | https://www.affectui.com/screens/crm | `/personalize` | Dựng app CRM trong preview, không dựng trang marketing/documentation bao ngoài |
 | https://www.affectui.com/screens/crm/full | `/personalize` | Reference toàn màn hình cho đối chiếu trực tiếp |
-| 109 trang thư viện | `docs/research/affectui-library/` | Hồ sơ khảo sát; chưa dựng 108 item còn lại thành route mới |
+| https://www.affectui.com/screens/analytics/full | `/personalize?section=reports` | Analytics trong Reports, dùng sidebar CRM |
+| 109 trang thư viện | `docs/research/affectui-library/` | Hồ sơ khảo sát; đã dựng CRM + Analytics, còn 107 item tham khảo |
 
 Navigation desktop giữ tên và biểu tượng **Guide me**, link `/personalize`. Menu mobile có cùng link trong callout Company CRM. Trong menu tài khoản CRM có **Back to Stripe** để quay lại `/`.
 
@@ -49,13 +50,19 @@ Những quy tắc xác minh trực tiếp trên CRM:
 | `crm-engine.ts` | Company schema, seed, cell conversion, lịch sử undo/redo dùng reducer |
 | `CrmTable.tsx` | Spreadsheet: edit, tag picker, cell/range selection, bàn phím, TSV copy/paste, sort, bulk duplicate/delete, add row |
 | `CrmViews.tsx` | Board, pixel demo, document covers và dialog |
+| `WorkspacePages.tsx` | Home, Contacts CRUD, Deals và các pipeline có filter/export |
+| `WorkspaceDocuments.tsx` | Folder, tạo/sửa/upload/download tài liệu |
+| `WorkspaceEditors.tsx`, `WorkspaceDialog.tsx` | Profile, Settings, feedback, changelog, tạo workspace/view và native dialog có animation |
+| `workspace-state.ts` | State lưu theo key trong browser, history/query navigation, CSV/download helpers |
+| `workspace-interactions.css` | Motion và các màn tương tác mở rộng, được scope trong CRM |
+| `src/components/sites/affectui-analytics/` | Reports: 3 period dataset, chart SVG tương tác, morph đường/số, CSV và saved reports |
 | `reference.css` | CSS quan sát từ public preview; được sinh lại bởi prepare script |
 | `crm-overrides.css` | Tích hợp và điều chỉnh cục bộ |
 | `CrmIcon.tsx`, `icons.json`, `seed.json` | SVG tĩnh và dữ liệu lấy từ DOM công khai; không chạy remote bundle |
 | `src/components/sites/affectui-fonts.css` | Inter dùng chung với hai affectUI component đã tồn tại |
 | `src/components/stripe/Navigation/Navigation.tsx` | Entry Guide me desktop/mobile |
 
-History giới hạn 100 snapshot. Thay đổi company cập nhật board trong cùng session. Refresh tải lại seed; hiện không có database/persistence. Dữ liệu CRM là dữ liệu demo đúng nội dung gốc.
+History undo/redo giới hạn 100 snapshot trong session. Company, contact, view tùy chỉnh, tài liệu/folder, saved report, kỳ báo cáo, checklist và favorite được lưu trong localStorage riêng từng workspace. Profile/preferences dùng chung tài khoản cục bộ. Refresh giữ dữ liệu; không có backend hoặc đồng bộ đa thiết bị. Acme khởi tạo bằng seed, Personal và workspace mới khởi tạo rỗng. Dữ liệu Analytics 7/30/90 ngày lấy từ preview gốc, độc lập với số liệu pipeline CRM.
 
 Bàn phím: Enter/F2 sửa ô, Enter lưu và xuống hàng, Tab lưu và chuyển ô, Escape hủy, Arrow chuyển ô, Shift+Arrow chọn vùng, Delete/Backspace xóa vùng, Ctrl/Cmd+C/V cho TSV, Ctrl/Cmd+Z và Ctrl/Cmd+Shift+Z undo/redo. Ctrl/Cmd+K mở tìm kiếm. Board hỗ trợ kéo thả; có select Move to khi focus để dùng bàn phím.
 
@@ -82,6 +89,8 @@ node scripts/forensics/affectui-engine-map.mjs
 
 node scripts/forensics/affectui-compare.mjs http://localhost:3000
 node scripts/qa/affectui-crm.mjs http://localhost:3000
+node scripts/forensics/affectui-analytics-compare.mjs http://localhost:3000
+node scripts/qa/affectui-workspace.mjs http://localhost:3000
 npm run check
 ```
 
@@ -89,15 +98,18 @@ Không chạy lại prepare sau khi sửa trực tiếp `reference.css`, `icons.
 
 ## Giới hạn và cách tiếp tục
 
-- Pixel connection là mô phỏng; snippet Acme được hiển thị như văn bản, không được thực thi và không gửi tracking event. Document gốc không được preview cung cấp; local có cover và dialog thông tin.
-- Contacts/Reports và các thao tác tài khoản là callback/toast của demo, chưa phải app backend hoàn chỉnh. Workspace là state cục bộ. Local bổ sung tìm kiếm, chuyển theme và return link trong menu.
-- New view/All views có menu mở các tab trong bản local. Public preview được khảo sát chưa cho thấy trạng thái tương ứng của hai nút này; đây là phần bổ sung có chức năng, không phải state đã đối chiếu ảnh.
+- Pixel connection là mô phỏng; snippet Acme được hiển thị như văn bản, không được thực thi và không gửi tracking event. Trạng thái kết nối được giữ khi chuyển tab/refresh.
+- Document gốc không được preview cung cấp. Bản local giữ cover gốc và bổ sung **workspace draft** có thể sửa/lưu/download; Pipeline Forecast có thể khởi tạo từ company hiện tại. File upload của người dùng được đọc/lưu cục bộ, giới hạn 2 MB mỗi file.
+- Contacts có create/edit/delete/search/export. Profile và Settings có form lưu thực tế trong browser; Help lưu feedback trên thiết bị, không gửi tới người khác. Full changelog mở nội dung chi tiết.
+- New view tạo tab table/board có filter owner và lưu theo workspace. All views mở các tab. Preset Account executive/Partner manager lọc owner tương ứng. Đây là các workflow cục bộ bổ sung ngoài những state đã quan sát được trong public CRM demo.
 - Board kéo thả và lựa chọn stage dùng chung model table; không giả định đó là toàn bộ nghiệp vụ của sản phẩm gốc.
-- Classic variants, toàn bộ trạng thái của 108 item khác, animation timeline và backend không được inventory desktop ban đầu xác minh. Phải khảo sát thêm item đang dựng.
+- Reports có tooltip chuột/bàn phím/cảm ứng, chọn 7/30/90 ngày, ẩn/hiện series, thông tin metric/product, CSV thật và báo cáo đặt tên có thể mở/xóa. Xem [Analytics brief](research/affectui-analytics/README.md) cho đối chiếu và file ownership.
+- Motion chạy theo tương tác: shared selection pill, crossfade màn/tab/menu, layout animation khi sort/thêm/xóa/di chuyển card, accordion, native dialog, số và SVG path morph khi đổi period. Tôn trọng reduced motion; không có vòng lặp cập nhật dữ liệu giả khi người dùng không thao tác.
+- Classic variants, toàn bộ trạng thái của 107 item khác và backend không được inventory desktop ban đầu xác minh. Phải khảo sát thêm item đang dựng.
 - Kiểm tra pixel chỉ áp dụng viewport/state đã ghi trong JSON; không coi phần trăm này là bằng chứng mọi state giống tuyệt đối.
 - `npm run check` có thể in 4 warning có sẵn ở `capture-nav-menus.mjs`, `products/build_css.mjs`, `Footer.tsx`, `Stats.tsx`. Phần CRM mới phải không có lint error.
 
-Kết quả bàn giao: `npm run check` thành công (0 lint error, 4 warning cũ), 11 nhóm workflow trong `qa/results.json` thành công, không có page error. So ảnh trạng thái ban đầu: 0,056–0,159% pixel khác ở 390/768/900/1440/1920; tab phụ 0,013–0,152% tại 1440. Xem [báo cáo hình ảnh và QA](research/affectui-crm/README.md).
+Kết quả bản mở rộng: 11 nhóm workflow CRM và 17 nhóm workspace/Analytics đã qua, không có page error. Bộ workspace kiểm tra cả dữ liệu sau refresh, tách workspace, file export/upload và intermediate frame của path animation. Analytics so riêng phần main content vì sidebar cố ý giữ CRM: 0,052–0,308% pixel khác ở 390/768/1024/1440/1920. Số đo hiện hành nằm trong các `comparison/metrics.json`; ảnh Sales docs có thêm toolbar chức năng ngoài reference gốc.
 
 ## Prompt tiếp nối cho Claude Code
 

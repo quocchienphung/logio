@@ -1,0 +1,106 @@
+Settings
+
+Manage your workspace, your team, your plan and access to the API.
+
+General
+Members
+Billing
+API keys
+Usage this period
+
+Pro plan·Resets in 24 days
+
+34,000
+of 50,000 credits
+
+68%
+Chat
+18,400
+54%
+Agents
+9,200
+27%
+API
+4,100
+12%
+Images
+2,300
+7%
+Per day
+Avg 1,481 / day
+Seats
+8 of 10
+Storage
+42.6 of 100 GB
+16,000 credits left
+Upgrade
+Current plan
+Cancels soon
+Pro · $49/mo
+
+Your plan ends on Nov 12, 2026. You keep every feature until then.
+
+Change plan
+Resume plan
+VISA
+Visa •••• 4242
+Expires 08/2028
+Update
+billing@acme.com
+Invoices and receipts go here
+Edit
+Plans
+
+Switch any time – we prorate the difference.
+
+Monthly
+Monthly
+Yearly
+Yearly
+−20%
+Starter
+$19
+/ month
+
+For individuals trying things out
+
+10,000 credits / month
+3 seats
+10 GB storage
+Switch to Starter
+Pro
+Current
+$49
+/ month
+
+For small teams shipping every day
+
+50,000 credits / month
+10 seats
+100 GB storage
+Agents and API access
+Current plan
+Team
+$99
+/ month
+
+For growing teams with more seats
+
+150,000 credits / month
+25 seats
+1 TB storage
+SSO and audit log
+Switch to Team
+Invoices
+Download all
+Date	Invoice	Amount	Status	
+Oct 12, 2026	INV-2026-0412	$49.00	Due	
+
+Sep 12, 2026	INV-2026-0371	$49.00	Paid	
+
+Aug 12, 2026	INV-2026-0329	$69.00	Paid	
+
+Jul 12, 2026	INV-2026-0288	$49.00	Paid	
+
+Jun 12, 2026	INV-2026-0240	$49.00	Paid	
+Payment method updated

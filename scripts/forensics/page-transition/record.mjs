@@ -6,7 +6,11 @@ import fs from "node:fs";
 import { chromium } from "playwright";
 const [base = "http://localhost:3000", from = "/payments", label = "Tax", out = "/tmp/pt", w = "1152", h = "720", rate = "0.1"] = process.argv.slice(2);
 fs.mkdirSync(out, { recursive: true });
-const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium", args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] });
+const b = await chromium.launch(
+  process.platform === "linux"
+    ? { executablePath: "/opt/pw-browsers/chromium", args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] }
+    : { channel: "chrome", headless: true },
+);
 const ctx = await b.newContext({ viewport: { width: +w, height: +h }, deviceScaleFactor: 1 });
 await ctx.route("**/*", (r) => (/^(http:\/\/(127\.0\.0\.1|localhost)|data:|blob:)/.test(r.request().url()) ? r.continue() : r.abort()));
 const p = await ctx.newPage();

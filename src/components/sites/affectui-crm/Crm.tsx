@@ -2,117 +2,138 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { ArrowLeft, Check, ChevronDown, ChevronRight, Folder, Moon, Plus, Search, Sun, X } from "lucide-react";
+import dynamic from "next/dynamic";
+import { AnimatePresence, LayoutGroup, MotionConfig, motion, useReducedMotion } from "motion/react";
+import { ArrowLeft, Check, ChevronDown, ChevronRight, Folder, Moon, Search, Settings, Star, Sun, X } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
 import { CrmTable } from "./CrmTable";
-import { crmTabs, PipelineBoard, PixelIntegration, SalesDocuments, type CrmTab } from "./CrmViews";
-import { useCrmEngine } from "./crm-engine";
+import { crmTabs, PipelineBoard, PixelIntegration, SalesDocuments } from "./CrmViews";
+import { useCrmEngine, type Company } from "./crm-engine";
+import { useStoredState, useWorkspaceRoute, workspaceSections, type WorkspaceSection } from "./workspace-state";
+import { WorkspaceDialog } from "./WorkspaceDialog";
+import { WorkspaceEditors, type CustomView, type EditorKind, type WorkspacePreferences, type WorkspaceProfile } from "./WorkspaceEditors";
+import { ContactsPage, DealsPage, WorkspaceHome } from "./WorkspacePages";
+import { Analytics } from "../affectui-analytics/Analytics";
 import "./reference.css";
 import "./crm-overrides.css";
+import "./workspace-interactions.css";
 
-const sideItems = ["Home", "Companies", "Contacts", "Deals", "Reports"];
-const pipelines = ["New business", "Renewals", "Partnerships"];
-const setupGroups = [
-  { title: "Set up your workspace", items: ["Name your workspace", "Invite your teammates", "Connect your first app"] },
-  { title: "Start working", items: ["Create a folder", "Start your first chat", "Upload a file"] },
-  { title: "Make it yours", items: ["Add a profile picture", "Choose your notifications"] },
+const SettingsBilling=dynamic(()=>import("../affectui-settings/SettingsBilling").then(module=>module.SettingsBilling),{loading:()=> <div className="ui-sb" role="status">Loading settings…</div>});
+const sideItems: WorkspaceSection[]=["Home","Companies","Contacts","Deals","Reports","Settings"];
+const pipelines: WorkspaceSection[]=["New business","Renewals","Partnerships"];
+const setupGroups=[
+  {title:"Set up your workspace",items:["Name your workspace","Invite your teammates","Connect your first app"]},
+  {title:"Start working",items:["Create a folder","Start your first chat","Upload a file"]},
+  {title:"Make it yours",items:["Add a profile picture","Choose your notifications"]},
 ];
 
-export function Crm({ workspace = "Acme", user = { name: "Alex Morgan" }, onNavigate, className = "" }: {
-  workspace?: string;
-  user?: { name: string; avatar?: string };
-  onNavigate?: (label: string) => void;
-  className?: string;
-}) {
-  const engine = useCrmEngine();
-  const [tab, setTab] = useState<CrmTab>("Company CRM");
-  const [view, setView] = useState("Head of Sales");
-  const [collapsed, setCollapsed] = useState(false);
-  const [drawer, setDrawer] = useState(false);
-  const [favorite, setFavorite] = useState(false);
-  const [menu, setMenu] = useState<string | null>(null);
-  const [dark, setDark] = useState(false);
-  const [news, setNews] = useState(2);
-  const [guide, setGuide] = useState(false);
-  const [guideGroup, setGuideGroup] = useState<string | null>("Set up your workspace");
-  const [completed, setCompleted] = useState(["Name your workspace"]);
-  const [toast, setToast] = useState<{ text: string; id: number } | null>(null);
-  const [search, setSearch] = useState("");
-  const [workspaceName, setWorkspaceName] = useState(workspace);
-  const root = useRef<HTMLDivElement>(null);
-  const searchDialog = useRef<HTMLDialogElement>(null);
-  const createDialog = useRef<HTMLDialogElement>(null);
-  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const initials = user.name.split(" ").map(part => part[0]).slice(0, 2).join("");
-  function notify(text: string) {
-    setToast(current => ({ text, id: (current?.id ?? 0) + 1 }));
-    if (toastTimer.current) clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(null), 2400);
-  }
-  function navigate(label: string) {
-    onNavigate?.(label);
-    setDrawer(false);
-    setMenu(null);
-    if (label === "Companies" || label === "Home") setTab("Company CRM");
-    else if (label === "Deals" || pipelines.includes(label)) setTab("Team strategy");
-    else notify(label);
-  }
-  function toggleMenu(id: string) { setMenu(current => current === id ? null : id); }
-  function closeMenu() { setMenu(null); }
-  useEffect(() => {
-    const key = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") { setMenu(null); setGuide(false); setDrawer(false); }
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); searchDialog.current?.showModal(); }
-    };
-    const outside = (event: PointerEvent) => {
-      if (event.target instanceof Element && !event.target.closest(".ui-as-anchor")) setMenu(null);
-    };
-    const mq = window.matchMedia("(max-width: 900px)");
-    const resize = () => setDrawer(false);
-    mq.addEventListener("change", resize);
-    window.addEventListener("keydown", key);
-    document.addEventListener("pointerdown", outside);
-    return () => { window.removeEventListener("keydown", key); document.removeEventListener("pointerdown", outside); mq.removeEventListener("change", resize); if (toastTimer.current) clearTimeout(toastTimer.current); };
-  }, []);
+export function Crm(props: {workspace?:string;user?:{name:string;avatar?:string};onNavigate?:(label:string)=>void;className?:string}) {
+  return <MotionConfig reducedMotion="user"><Workspace {...props} /></MotionConfig>;
+}
 
-  function popover(id: string, title: string, children: ReactNode, top = false) {
-    return menu === id ? <div className="ui-as-popover ui-as-menu" data-side={top ? "top" : undefined} role="menu" onKeyDown={event => {
-      if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
-      event.preventDefault();
-      const items = [...event.currentTarget.querySelectorAll<HTMLButtonElement | HTMLAnchorElement>('button, a')];
-      const current = items.indexOf(document.activeElement as HTMLButtonElement);
-      const index = event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 : (current + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
-      items[index]?.focus();
-    }}>{title && <span className="ui-as-menu__title">{title}</span>}<div className="ui-as-menu__list">{children}</div></div> : null;
+function Workspace({workspace="Acme",user={name:"Alex Morgan"},onNavigate,className=""}:{workspace?:string;user?:{name:string;avatar?:string};onNavigate?:(label:string)=>void;className?:string}) {
+  const [workspaces,setWorkspaces]=useStoredState<{id:string;name:string;logo?:string}[]>("affectui:workspaces",[{id:"acme",name:workspace},{id:"personal",name:"Personal"}]);
+  const [workspaceId,setWorkspaceId]=useStoredState("affectui:active-workspace","acme");
+  const workspaceName=workspaces.find(item=>item.id===workspaceId)?.name || workspace;
+  const workspaceLogo=workspaces.find(item=>item.id===workspaceId)?.logo;
+  const engine=useCrmEngine(workspaceId);
+  const {section,navigate:routeTo}=useWorkspaceRoute();
+  const [profile,setProfile]=useStoredState<WorkspaceProfile>("affectui:profile",{name:user.name,email:"alex@acme.com",role:"Head of Sales",avatar:user.avatar});
+  const [preferences,setPreferences]=useStoredState<WorkspacePreferences>("affectui:preferences",{dark:false,emailNotifications:true,desktopNotifications:true});
+  const [customViews,setCustomViews]=useStoredState<CustomView[]>(`affectui:${workspaceId}:views`,[]);
+  const [tab,setTab]=useStoredState<string>(`affectui:${workspaceId}:active-tab`,"Company CRM");
+  const [view,setView]=useState("Head of Sales");
+  const [favorites,setFavorites]=useStoredState<string[]>(`affectui:${workspaceId}:favorites`,[]);
+  const [collapsed,setCollapsed]=useState(false);
+  const [drawer,setDrawer]=useState(false);
+  const [menu,setMenu]=useState<string|null>(null);
+  const [news,setNews]=useStoredState(`affectui:${workspaceId}:news`,2);
+  const [guide,setGuide]=useState(false);
+  const [guideGroup,setGuideGroup]=useState<string|null>("Set up your workspace");
+  const [completed,setCompleted]=useStoredState<string[]>(`affectui:${workspaceId}:checklist`,["Name your workspace"]);
+  const [toast,setToast]=useState<{text:string;id:number}|null>(null);
+  const [searchOpen,setSearchOpen]=useState(false);
+  const [search,setSearch]=useState("");
+  const [query,setQuery]=useState("");
+  const [tableEpoch,setTableEpoch]=useState(0);
+  const [editor,setEditor]=useState<EditorKind>("Profile");
+  const [editorOpen,setEditorOpen]=useState(false);
+  const toastTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
+  const reduce=useReducedMotion();
+  const allTabs=[...crmTabs.map(name=>({id:name,name})),...customViews.map(item=>({id:item.id,name:item.name}))];
+  const custom=customViews.find(item=>item.id===tab);
+  const activeTab=allTabs.some(item=>item.id===tab) ? tab : "Company CRM";
+  const viewTitle=custom?.name || view;
+  const favorite=favorites.includes(viewTitle);
+  const initials=profile.name.split(" ").map(part=>part[0]).slice(0,2).join("");
+  const presetOwner=view==="Account executive" ? "Jonas Weber" : view==="Partner manager" ? "Lea Braun" : "";
+  const filter=(row:Company)=>(!query || `${row.company} ${row.domain}`.toLowerCase().includes(query.toLowerCase())) && (!(custom?.owner || presetOwner) || row.owner===(custom?.owner || presetOwner));
+
+  function notify(text:string) {
+    setToast(current=>({text,id:(current?.id || 0)+1}));
+    if(toastTimer.current)clearTimeout(toastTimer.current);
+    toastTimer.current=setTimeout(()=>setToast(null),2600);
+  }
+  function navigate(label:WorkspaceSection) {
+    onNavigate?.(label);setDrawer(false);setMenu(null);setQuery("");routeTo(label);
+  }
+  function openCompany(name:string) {navigate("Companies");setView("Head of Sales");setTab("Company CRM");setQuery(name);setTableEpoch(current=>current+1);}
+  function switchTab(id:string) {navigate("Companies");setTab(id);}
+  function openEditor(kind:EditorKind) {setMenu(null);setEditor(kind);setEditorOpen(true);}
+  function openSearch() {setSearch("");setSearchOpen(true);setMenu(null);}
+  function toggleMenu(id:string) {setMenu(current=>current===id ? null : id);}
+
+  useEffect(()=>{
+    const key=(event:KeyboardEvent)=>{
+      if(event.key==="Escape"){setMenu(null);setGuide(false);setDrawer(false);}
+      if((event.ctrlKey || event.metaKey) && event.key.toLowerCase()==="k"){event.preventDefault();setSearch("");setSearchOpen(true);}
+    };
+    const outside=(event:PointerEvent)=>{if(event.target instanceof Element && !event.target.closest(".ui-as-anchor"))setMenu(null);};
+    const mq=window.matchMedia("(max-width: 900px)");const resize=()=>setDrawer(false);
+    window.addEventListener("keydown",key);document.addEventListener("pointerdown",outside);mq.addEventListener("change",resize);
+    return()=>{window.removeEventListener("keydown",key);document.removeEventListener("pointerdown",outside);mq.removeEventListener("change",resize);if(toastTimer.current)clearTimeout(toastTimer.current);};
+  },[]);
+
+  function popover(id:string,title:string,children:ReactNode,top=false) {
+    return <AnimatePresence>{menu===id && <motion.div className="ui-as-popover ui-as-menu" data-motion="" data-side={top ? "top" : undefined} role="menu" initial={{opacity:0,y:top ? 5 : -5,scale:0.98}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:top ? 3 : -3,scale:0.98}} transition={{duration:reduce ? 0 : 0.18}} onKeyDown={event=>{
+      if(!["ArrowDown","ArrowUp","Home","End"].includes(event.key))return;event.preventDefault();
+      const items=[...event.currentTarget.querySelectorAll<HTMLButtonElement|HTMLAnchorElement>('button,a')];const current=items.indexOf(document.activeElement as HTMLButtonElement);
+      items[event.key==="Home" ? 0 : event.key==="End" ? items.length-1 : (current+(event.key==="ArrowDown" ? 1 : -1)+items.length)%items.length]?.focus();
+    }}>{title && <span className="ui-as-menu__title">{title}</span>}<div className="ui-as-menu__list">{children}</div></motion.div>}</AnimatePresence>;
   }
 
-  return <div className={`crm-page ${className}`} data-theme={dark ? "dark" : "light"}>
-    <div ref={root} className="ui-as ui-as-app" data-collapsed={collapsed ? "" : undefined} data-drawer={drawer ? "" : undefined}>
-      <button type="button" className="ui-as-icon-btn ui-as-side-open" aria-label="Open sidebar" onClick={() => { if (window.matchMedia("(max-width: 900px)").matches) setDrawer(true); else setCollapsed(false); }}><CrmIcon name="Open sidebar" /></button>
-      <div className="ui-as-scrim" aria-hidden="true" onClick={() => setDrawer(false)} />
+  const searchItems=[...workspaceSections.map(label=>({id:`section:${label}`,label,kind:"section" as const})),...allTabs.map(item=>({id:item.id,label:item.name,kind:"view" as const})),...engine.rows.map(row=>({id:row.id,label:row.company || "Untitled",kind:"company" as const}))].filter(item=>item.label.toLowerCase().includes(search.toLowerCase()));
+
+  return <LayoutGroup id="sales-workspace"><div className={`crm-page ${className}`} data-theme={preferences.dark ? "dark" : "light"}>
+    <div className="ui-as ui-as-app" data-collapsed={collapsed ? "" : undefined} data-drawer={drawer ? "" : undefined}>
+      <button type="button" className="ui-as-icon-btn ui-as-side-open" aria-label="Open sidebar" onClick={()=>{if(window.matchMedia("(max-width: 900px)").matches)setDrawer(true);else setCollapsed(false);}}><CrmIcon name="Open sidebar" /></button>
+      <div className="ui-as-scrim" aria-hidden="true" onClick={()=>setDrawer(false)} />
       <aside className="ui-as-side" aria-label="Workspace sidebar" inert={collapsed && !drawer}>
-        <header className="ui-as-side__head"><span className="ui-as-anchor"><button type="button" className="ui-as-side__workspace" aria-expanded={menu === "workspace"} onClick={() => toggleMenu("workspace")}><span className="ui-as-side__logo">{workspaceName[0]}</span>{workspaceName}<ChevronDown size={13} /></button>{popover("workspace", "Workspaces", <>
-          {["Acme", "Personal"].map(name => <button type="button" role="menuitemradio" aria-checked={workspaceName === name} className="ui-as-menu__item" data-rich="" key={name} onClick={() => { setWorkspaceName(name); closeMenu(); }}><span className="ui-as-side__logo">{name[0]}</span><span className="ui-as-menu__label">{name}<small>{name === "Acme" ? "Pro · 8 members" : "Free"}</small></span>{workspaceName === name && <Check size={14} />}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={() => { closeMenu(); createDialog.current?.showModal(); }}><Plus size={14} />Create workspace</button>
-        </>)}</span><span className="ui-as-side__tools"><button type="button" className="ui-as-icon-btn" aria-label="Search" onClick={() => searchDialog.current?.showModal()}><CrmIcon name="Search" /></button><button type="button" className="ui-as-icon-btn" aria-label="Collapse sidebar" onClick={() => { setCollapsed(true); setDrawer(false); }}><CrmIcon name="Collapse sidebar" /></button></span></header>
-        <nav className="ui-as-side__nav" aria-label="Main menu"><div className="ui-as-side__group">{sideItems.map(label => <button type="button" className="ui-as-side__item" aria-current={label === "Companies" ? "page" : undefined} key={label} onClick={() => navigate(label)}><CrmIcon name={label === "Companies" ? "Companies284" : label} />{label}{label === "Companies" && <span className="ui-as-side__count">{284 + engine.rows.length - 10}</span>}</button>)}</div><div className="ui-as-side__group"><span className="ui-as-side__label">Pipelines</span>{pipelines.map(label => <button type="button" className="ui-as-side__item" key={label} onClick={() => navigate(label)}><CrmIcon name={label} />{label}</button>)}</div></nav>
+        <header className="ui-as-side__head"><span className="ui-as-anchor"><button type="button" className="ui-as-side__workspace" aria-expanded={menu==="workspace"} onClick={()=>toggleMenu("workspace")}><span className="ui-as-side__logo">{workspaceName[0]}</span>{workspaceName}<ChevronDown size={13} /></button>{popover("workspace","Workspaces",<>
+          {workspaces.map(item=><button type="button" role="menuitemradio" aria-checked={workspaceId===item.id} className="ui-as-menu__item" data-rich="" key={item.id} onClick={()=>{setWorkspaceId(item.id);setMenu(null);setQuery("");setView("Head of Sales");}}><span className="ui-as-side__logo">{item.name[0]}</span><span className="ui-as-menu__label">{item.name}<small>{item.id==="acme" ? "Pro · 8 members" : "Free"}</small></span>{workspaceId===item.id && <Check size={14} />}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Create workspace")}>Create workspace</button>
+        </>)}</span><span className="ui-as-side__tools"><button type="button" className="ui-as-icon-btn" aria-label="Search" onClick={openSearch}><CrmIcon name="Search" /></button><button type="button" className="ui-as-icon-btn" aria-label="Collapse sidebar" onClick={()=>{setCollapsed(true);setDrawer(false);}}><CrmIcon name="Collapse sidebar" /></button></span></header>
+        <nav className="ui-as-side__nav" aria-label="Main menu">{[sideItems,pipelines].map((items,index)=><div className="ui-as-side__group" key={index}>{index===1 && <span className="ui-as-side__label">Pipelines</span>}{items.map(label=><button type="button" className="ui-as-side__item" aria-current={section===label ? "page" : undefined} key={label} onClick={()=>navigate(label)}>{section===label && <motion.span className="workspace-nav-pill" layoutId="active-navigation" transition={{type:"spring",stiffness:450,damping:38}} />}<CrmIcon name={label==="Companies" ? "Companies284" : label} /><span className="workspace-nav-label">{label}</span>{label==="Companies" && <span className="ui-as-side__count">{workspaceId==="acme" ? 284+engine.rows.length-10 : engine.rows.length}</span>}</button>)}</div>)}</nav>
         <div className="ui-as-side__foot">
-          {news > 0 && <div className="ui-as-news" data-count={news}><div className="ui-as-news__card ui-as-news__card--back"><span className="ui-as-news__kicker">New in {workspaceName}</span><X size={12} /></div><div className="ui-as-news__card"><div className="ui-as-news__top"><span className="ui-as-news__kicker">New in {workspaceName}</span><button type="button" className="ui-as-news__close" aria-label="Dismiss" onClick={() => setNews(news - 1)}><X size={12} /></button></div><strong className="ui-as-news__title">{news === 2 ? "Shared folders" : "A better way to work"}</strong><button type="button" className="ui-as-news__more" onClick={() => notify("You're all caught up with the latest updates.")}>Full changelog<ChevronRight size={12} /></button></div></div>}
-          <div className="ui-as-guide-slot"><div className="ui-as-guide" data-open={guide ? "" : undefined}>
-            {!guide ? <button type="button" className="ui-as-steps ui-as-guide__content" aria-expanded="false" onClick={() => setGuide(true)}><span className="ui-as-steps__title">Getting started<ChevronRight size={12} /></span><span className="ui-as-steps__sub">{Math.round(completed.length / 8 * 100)}% done · <span className="ui-as-steps__cheer">Great start!</span></span><span className="ui-as-steps__bar"><i style={{width:`${completed.length / 8 * 100}%`}} /></span></button> : <div className="crm-guide ui-as-guide__content"><div className="crm-guide__title">Getting started<button type="button" aria-label="Close getting started" onClick={() => setGuide(false)}><X size={14} /></button></div><span className="ui-as-steps__bar"><i style={{width:`${completed.length / 8 * 100}%`}} /></span>{setupGroups.map(group => <section key={group.title} data-expanded={guideGroup === group.title ? "" : undefined}><h3><button type="button" aria-expanded={guideGroup === group.title} onClick={() => setGuideGroup(guideGroup === group.title ? null : group.title)}>{group.title}<ChevronDown size={12} /></button></h3>{guideGroup === group.title && group.items.map(item => <button type="button" role="checkbox" aria-checked={completed.includes(item)} className="crm-guide__step" key={item} disabled={item === "Connect your first app" && !completed.includes("Invite your teammates")} onClick={() => setCompleted(completed.includes(item) ? completed.filter(value=>value!==item) : [...completed,item])}><span className="crm-guide__check">{completed.includes(item) && <Check size={10} />}</span>{item}</button>)}</section>)}</div>}
-          </div></div>
-          <span className="ui-as-anchor ui-as-user-menu"><button type="button" className="ui-as-user" aria-expanded={menu === "user"} onClick={() => toggleMenu("user")}>{user.avatar ? <img src={user.avatar} alt="" /> : <span className="ui-as-user__initials">{initials}</span>}{user.name}<ChevronDown size={12} /></button>{popover("user", "", <>
-            {["Profile", "Settings", "Help & feedback"].map(label => <button type="button" role="menuitem" className="ui-as-menu__item" key={label} onClick={() => { closeMenu(); notify(label); }}>{label}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={() => setDark(!dark)}>{dark ? <Sun size={14} /> : <Moon size={14} />}{dark ? "Light mode" : "Dark mode"}</button><Link href="/" role="menuitem" className="ui-as-menu__item"><ArrowLeft size={14} />Back to Stripe</Link>
-          </>, true)}</span>
+          <AnimatePresence>{news>0 && <motion.div className="ui-as-news" data-count={news} initial={false} exit={{opacity:0,height:0,marginBottom:-8}} transition={{duration:reduce ? 0 : 0.22}}><div className="ui-as-news__card ui-as-news__card--back"><span className="ui-as-news__kicker">New in {workspaceName}</span><button type="button" className="ui-as-news__close" aria-label="Dismiss earlier update" onClick={()=>setNews(Math.max(0,news-1))}><X size={12} /></button></div><div className="ui-as-news__card"><div className="ui-as-news__top"><span className="ui-as-news__kicker">New in {workspaceName}</span><button type="button" className="ui-as-news__close" aria-label="Dismiss" onClick={()=>setNews(Math.max(0,news-1))}><X size={12} /></button></div><strong className="ui-as-news__title">{news===2 ? "Shared folders" : "A better way to work"}</strong><button type="button" className="ui-as-news__more" onClick={()=>openEditor("Full changelog")}>Full changelog<ChevronRight size={12} /></button></div></motion.div>}</AnimatePresence>
+          <div className="ui-as-guide-slot"><motion.div layout className="ui-as-guide" data-open={guide ? "" : undefined} transition={{layout:{type:"spring",stiffness:350,damping:34}}}>
+            {!guide ? <button type="button" className="ui-as-steps ui-as-guide__content" aria-expanded="false" onClick={()=>setGuide(true)}><span className="ui-as-steps__title">Getting started<ChevronRight size={12} /></span><span className="ui-as-steps__sub">{Math.round(completed.length/8*100)}% done · <span className="ui-as-steps__cheer">{completed.length===8 ? "All done!" : "Great start!"}</span></span><span className="ui-as-steps__bar"><i style={{width:`${completed.length/8*100}%`}} /></span></button> : <div className="crm-guide ui-as-guide__content"><div className="crm-guide__title">Getting started<button type="button" aria-label="Close getting started" onClick={()=>setGuide(false)}><X size={14} /></button></div><span className="ui-as-steps__bar"><i style={{width:`${completed.length/8*100}%`}} /></span>{setupGroups.map(group=><section key={group.title} data-expanded={guideGroup===group.title ? "" : undefined}><h3><button type="button" aria-expanded={guideGroup===group.title} onClick={()=>setGuideGroup(guideGroup===group.title ? null : group.title)}>{group.title}<ChevronDown size={12} /></button></h3><AnimatePresence initial={false}>{guideGroup===group.title && <motion.div initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}} transition={{duration:reduce ? 0 : 0.24}} className="workspace-guide-group">{group.items.map(item=><button type="button" role="checkbox" aria-checked={completed.includes(item)} className="crm-guide__step" key={item} disabled={item==="Connect your first app" && !completed.includes("Invite your teammates")} onClick={()=>setCompleted(completed.includes(item) ? completed.filter(value=>value!==item) : [...completed,item])}><span className="crm-guide__check">{completed.includes(item) && <Check size={10} />}</span>{item}</button>)}</motion.div>}</AnimatePresence></section>)}</div>}
+          </motion.div></div>
+          <span className="ui-as-anchor ui-as-user-menu"><button type="button" className="ui-as-user" aria-expanded={menu==="user"} onClick={()=>toggleMenu("user")}>{profile.avatar ? <img src={profile.avatar} alt="" /> : <span className="ui-as-user__initials">{initials}</span>}{profile.name}<ChevronDown size={12} /></button>{popover("user","",<>
+            {(["Profile","Settings","Help & feedback"] as const).map(label=><button type="button" role="menuitem" className="ui-as-menu__item" key={label} onClick={()=>openEditor(label)}>{label}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>setPreferences({...preferences,dark:!preferences.dark})}>{preferences.dark ? <Sun size={14} /> : <Moon size={14} />}{preferences.dark ? "Light mode" : "Dark mode"}</button><Link href="/" role="menuitem" className="ui-as-menu__item"><ArrowLeft size={14} />Back to Stripe</Link>
+          </>,true)}</span>
         </div>
       </aside>
-      <main className="ui-as-main"><div className="ui-as-crm">
-        <div className="ui-as-crm__top"><div className="ui-as-crm__path"><Folder size={16} /><span>Sales</span><i>/</i></div><span className="ui-as-anchor"><button type="button" className="ui-as-crm__view" aria-expanded={menu === "view"} onClick={() => toggleMenu("view")}>{view}<ChevronDown size={12} /></button>{popover("view", "Views", ["Head of Sales", "Account executive", "Partner manager"].map(label => <button type="button" className="ui-as-menu__item" role="menuitemradio" aria-checked={view === label} key={label} onClick={() => { setView(label); closeMenu(); }}>{label}{view === label && <Check size={13} />}</button>))}</span><button type="button" className="ui-as-icon-btn ui-as-crm__star" aria-label={favorite ? "Remove from favorites" : "Add to favorites"} aria-pressed={favorite} onClick={() => setFavorite(!favorite)}><CrmIcon name="Add to favorites" size={15} /></button></div>
-        <nav className="ui-as-crm__tabs" aria-label="Open views"><button type="button" className="ui-as-icon-btn" aria-label="New view" onClick={() => { setMenu("new-view"); }}><CrmIcon name="New view" /></button><span className="ui-as-anchor"><button type="button" className="ui-as-icon-btn" aria-label="All views" aria-expanded={menu === "all-views" || menu === "new-view"} onClick={() => toggleMenu("all-views")}><CrmIcon name="All views" /></button>{(menu === "new-view" || menu === "all-views") && popover(menu, menu === "new-view" ? "Open a view" : "All views", crmTabs.map(label => <button type="button" className="ui-as-menu__item" role="menuitem" key={label} onClick={() => { setTab(label); closeMenu(); }}><CrmIcon name={label} size={18} />{label}</button>))}</span><span className="ui-as-crm__sep" />{crmTabs.map(label => <button type="button" className="ui-as-crm__tab" aria-current={tab === label ? "page" : undefined} key={label} onClick={() => setTab(label)}><span className="ui-as-crm__tab-logo" data-tab={label}><CrmIcon name={label} size={11} /></span>{label}</button>)}</nav>
-        <div className="ui-as-crm__table" key={tab}>{tab === "Company CRM" ? <CrmTable engine={engine} /> : tab === "Team strategy" ? <PipelineBoard engine={engine} /> : tab === "Pixel integration" ? <PixelIntegration /> : <SalesDocuments />}</div>
-      </div></main>
-      {toast && <div className="ui-as-toast" role="status" key={toast.id}><Check size={14} />{toast.text}</div>}
-      <dialog ref={searchDialog} className="crm-dialog crm-search" onClick={event => { if(event.target === event.currentTarget) searchDialog.current?.close(); }}><div className="crm-dialog__head"><Search size={18} /><input autoFocus aria-label="Search workspace" placeholder="Search companies and views…" value={search} onChange={event => setSearch(event.target.value)} /><button type="button" aria-label="Close search" onClick={() => searchDialog.current?.close()}><X size={16} /></button></div><div className="crm-search__results">{[...crmTabs, ...engine.rows.map(row=>row.company)].filter(label=>label.toLowerCase().includes(search.toLowerCase())).map(label=><button type="button" key={label} onClick={()=>{ if(crmTabs.includes(label as CrmTab)) setTab(label as CrmTab); else {setTab("Company CRM");notify(label);} searchDialog.current?.close(); }}><CrmIcon name={label} />{label}<ChevronRight size={12} /></button>)}</div></dialog>
-      <dialog ref={createDialog} className="crm-dialog"><form onSubmit={event => { event.preventDefault(); const data = new FormData(event.currentTarget); setWorkspaceName(String(data.get("name"))); createDialog.current?.close(); }}><div className="crm-dialog__head"><h2>Create workspace</h2><button type="button" aria-label="Cancel create workspace" onClick={()=>createDialog.current?.close()}><X size={16} /></button></div><label className="crm-field">Workspace name<input name="name" required autoFocus placeholder="Workspace name" /></label><button type="submit" className="ui-as-tool">Create workspace</button></form></dialog>
+      <main className="ui-as-main"><AnimatePresence mode="wait" initial={false}><motion.div key={section} className="workspace-surface" initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-4}} transition={{duration:reduce ? 0 : 0.18,ease:[0.22,1,0.36,1]}}>
+        {section==="Reports" ? <Analytics workspaceId={workspaceId} notify={notify} /> : section==="Home" ? <WorkspaceHome engine={engine} name={profile.name} navigate={navigate} openCompany={openCompany} /> : section==="Contacts" ? <ContactsPage engine={engine} workspaceId={workspaceId} notify={notify} /> : section!=="Companies" ? <DealsPage engine={engine} section={section} openCompany={openCompany} /> : <div className="ui-as-crm">
+          <div className="ui-as-crm__top"><div className="ui-as-crm__path"><Folder size={16} /><span>Sales</span><i>/</i></div><span className="ui-as-anchor"><button type="button" className="ui-as-crm__view" aria-expanded={menu==="view"} onClick={()=>toggleMenu("view")}>{viewTitle}<ChevronDown size={12} /></button>{popover("view","Views",["Head of Sales","Account executive","Partner manager"].map(label=><button type="button" className="ui-as-menu__item" role="menuitemradio" aria-checked={view===label && !custom} key={label} onClick={()=>{setView(label);setTab("Company CRM");setQuery("");setMenu(null);}}>{label}{view===label && !custom && <Check size={13} />}</button>))}</span><button type="button" className="ui-as-icon-btn ui-as-crm__star" aria-label={favorite ? "Remove from favorites" : "Add to favorites"} aria-pressed={favorite} onClick={()=>setFavorites(favorite ? favorites.filter(value=>value!==viewTitle) : [...favorites,viewTitle])}><CrmIcon name="Add to favorites" size={15} /></button></div>
+          <nav className="ui-as-crm__tabs" aria-label="Open views"><button type="button" className="ui-as-icon-btn" aria-label="New view" onClick={()=>openEditor("New view")}><CrmIcon name="New view" /></button><span className="ui-as-anchor"><button type="button" className="ui-as-icon-btn" aria-label="All views" aria-expanded={menu==="all-views"} onClick={()=>toggleMenu("all-views")}><CrmIcon name="All views" /></button>{popover("all-views","All views",allTabs.map(item=><button type="button" className="ui-as-menu__item" role="menuitem" key={item.id} onClick={()=>{switchTab(item.id);setMenu(null);}}><CrmIcon name={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"} size={18} />{item.name}{favorites.includes(item.name) && <Star size={12} />}</button>))}</span><span className="ui-as-crm__sep" />{allTabs.map(item=><div className="workspace-tab-wrap" key={item.id}><button type="button" className="ui-as-crm__tab" aria-current={activeTab===item.id ? "page" : undefined} onClick={()=>switchTab(item.id)}>{activeTab===item.id && <motion.span className="workspace-tab-pill" layoutId="active-crm-tab" transition={{type:"spring",stiffness:450,damping:38}} />}<span className="ui-as-crm__tab-logo" data-tab={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"}><CrmIcon name={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"} size={11} /></span><span>{item.name}</span></button>{customViews.some(value=>value.id===item.id) && <button type="button" className="workspace-tab-close" aria-label={`Close ${item.name} view`} onClick={()=>{setCustomViews(customViews.filter(value=>value.id!==item.id));if(tab===item.id)setTab("Company CRM");}}><X size={11} /></button>}</div>)}</nav>
+          {query && <div className="workspace-filter-chip">Showing companies matching “{query}”<button type="button" aria-label="Clear company search" onClick={()=>setQuery("")}><X size={12} /></button></div>}
+          <AnimatePresence mode="wait" initial={false}><motion.div className="ui-as-crm__table" key={`${activeTab}:${workspaceId}:${viewTitle}:${tableEpoch}`} initial={{opacity:0,y:7}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-4}} transition={{duration:reduce ? 0 : 0.18}}>{activeTab==="Company CRM" || custom?.layout==="table" ? <CrmTable engine={engine} filter={filter} defaultOwner={custom?.owner || presetOwner} onAddRow={()=>setQuery("")} /> : activeTab==="Team strategy" || custom?.layout==="board" ? <PipelineBoard engine={engine} filter={filter} onOpenCompany={openCompany} /> : activeTab==="Pixel integration" ? <PixelIntegration workspaceId={workspaceId} /> : <SalesDocuments engine={engine} workspaceId={workspaceId} />}</motion.div></AnimatePresence>
+        </div>}
+      </motion.div></AnimatePresence></main>
+      <AnimatePresence>{toast && <motion.div className="ui-as-toast" role="status" key={toast.id} initial={{opacity:0,y:8,scale:0.97}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:5,scale:0.98}} transition={{duration:reduce ? 0 : 0.2}}><Check size={14} />{toast.text}</motion.div>}</AnimatePresence>
+      <WorkspaceDialog open={searchOpen} title="Search workspace" onClose={()=>setSearchOpen(false)}><label className="workspace-search workspace-search--dialog"><Search size={17} /><input autoFocus aria-label="Search workspace" placeholder="Search companies and views…" value={search} onChange={event=>setSearch(event.target.value)} /></label><div className="crm-search__results"><AnimatePresence initial={false}>{searchItems.map(item=><motion.button type="button" layout initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} key={item.id} onClick={()=>{if(item.kind==="section")navigate(item.label as WorkspaceSection);else if(item.kind==="view")switchTab(item.id);else openCompany(item.label);setSearchOpen(false);}}><CrmIcon name={item.label} /><span>{item.label}</span><small>{item.kind}</small><ChevronRight size={12} /></motion.button>)}</AnimatePresence>{!searchItems.length && <p className="workspace-muted">No companies or views found.</p>}</div></WorkspaceDialog>
+      <WorkspaceEditors kind={editor} open={editorOpen} onClose={()=>setEditorOpen(false)} profile={profile} setProfile={setProfile} preferences={preferences} setPreferences={setPreferences} owners={[...new Set(engine.rows.map(row=>row.owner))].filter(Boolean)} notify={notify} createWorkspace={name=>{const id=crypto.randomUUID();setWorkspaces([...workspaces,{id,name}]);setWorkspaceId(id);navigate("Companies");notify("Workspace created");}} createView={newView=>{setCustomViews([...customViews,newView]);navigate("Companies");setTab(newView.id);notify("View created");}} />
     </div>
-  </div>;
+  </div></LayoutGroup>;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type KeyboardEvent, type ClipboardEvent } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowDown, Check, Copy, Plus, Trash2 } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
 import { columns, emptyCompany, numberFormat, setCell, tones, type Company, type CrmEngine } from "./crm-engine";
@@ -8,7 +9,7 @@ import { columns, emptyCompany, numberFormat, setCell, tones, type Company, type
 type Cell = { id: string; col: number };
 type Picker = { cell: Cell; left: number; top: number; width: number };
 
-export function CrmTable({ engine }: { engine: CrmEngine }) {
+export function CrmTable({ engine, filter, defaultOwner = "", onAddRow }: { engine: CrmEngine; filter?: (row: Company) => boolean; defaultOwner?: string; onAddRow?: () => void }) {
   const { rows, change, undo, redo, canUndo, canRedo } = engine;
   const [sort, setSort] = useState<{ col: number; direction: 1 | -1 } | null>(null);
   const [selected, setSelected] = useState<string[]>([]);
@@ -20,11 +21,13 @@ export function CrmTable({ engine }: { engine: CrmEngine }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const cancelBlur = useRef(false);
-  const visible = sort ? [...rows].sort((a, b) => {
+  const reduce = useReducedMotion();
+  const filtered = filter ? rows.filter(filter) : rows;
+  const visible = sort ? [...filtered].sort((a, b) => {
     const key = columns[sort.col].key;
     const av = a[key], bv = b[key];
     return (typeof av === "number" && typeof bv === "number" ? av - bv : String(av).localeCompare(String(bv))) * sort.direction;
-  }) : rows;
+  }) : filtered;
   const activeIndex = visible.findIndex(r => r.id === active?.id);
   const endIndex = visible.findIndex(r => r.id === (end || active)?.id);
   const minRow = Math.min(activeIndex, endIndex), maxRow = Math.max(activeIndex, endIndex);
@@ -108,15 +111,16 @@ export function CrmTable({ engine }: { engine: CrmEngine }) {
     matrix.forEach((line, offset) => {
       const targetIndex = activeIndex + offset;
       let row = visible[targetIndex];
-      if (!row) { row = emptyCompany(); next.push(row); }
+      if (!row) { row = { ...emptyCompany(), owner: defaultOwner }; next.push(row); }
       const index = next.findIndex(r => r.id === row.id);
       line.slice(0, 7 - active.col).forEach((value, col) => { next[index] = setCell(next[index], columns[active.col + col].key, value); });
     });
+    onAddRow?.();
     change(next);
   }
   function checkbox(id: string | null) {
-    const checked = id ? selected.includes(id) : !!rows.length && rows.every(row => selected.includes(row.id));
-    return <button type="button" className="ui-dt__check" role="checkbox" aria-checked={id || !selected.length || checked ? checked : "mixed"} aria-label={id ? `Select ${rows.find(row => row.id === id)?.company || "new company"}` : "Select all rows"} onClick={() => setSelected(id ? checked ? selected.filter(value => value !== id) : [...selected, id] : checked ? [] : rows.map(row => row.id))}><Check size={12} /></button>;
+    const checked = id ? selected.includes(id) : !!visible.length && visible.every(row => selected.includes(row.id));
+    return <button type="button" className="ui-dt__check" role="checkbox" aria-checked={id || !selected.length || checked ? checked : "mixed"} aria-label={id ? `Select ${rows.find(row => row.id === id)?.company || "new company"}` : "Select all rows"} onClick={() => setSelected(id ? checked ? selected.filter(value => value !== id) : [...selected, id] : checked ? [] : visible.map(row => row.id))}><Check size={12} /></button>;
   }
   const pickedCount = rows.filter(row => selected.includes(row.id)).length;
   const pickerColumn = picker ? columns[picker.cell.col].key : null;
@@ -127,7 +131,7 @@ export function CrmTable({ engine }: { engine: CrmEngine }) {
     <div className="ui-dt__card"><div className="ui-dt__morph"><div className="ui-dt__scroll" tabIndex={0} ref={scrollRef} aria-label="Company CRM spreadsheet" onKeyDown={keyDown} onCopy={copy} onPaste={paste} onScroll={() => setPicker(null)}>
       <table className="ui-dt__table"><colgroup><col className="crm-col-select" /><col className="crm-col-company" /><col className="crm-col-wide" /><col className="crm-col-wide" /><col className="crm-col-normal" /><col className="crm-col-normal" /><col className="crm-col-normal" /><col /></colgroup>
         <thead><tr><th className="ui-dt__select" scope="col">{checkbox(null)}</th>{columns.map((col, index) => <th key={col.key} scope="col" aria-sort={sort?.col === index ? sort.direction === 1 ? "ascending" : "descending" : "none"}><button type="button" className="ui-dt__th" onClick={() => { setSort(sort?.col === index ? sort.direction === 1 ? { col: index, direction: -1 } : null : { col: index, direction: 1 }); setActive(null); setEnd(null); }}><span className="ui-dt__col-icon"><CrmIcon name={col.label} size={14} /></span><span className="ui-dt__th-label">{col.label}</span><span className="ui-dt__sort" data-dir={sort?.col === index ? sort.direction === 1 ? "asc" : "desc" : undefined}><ArrowDown size={12} /></span></button></th>)}</tr></thead>
-        <tbody>{visible.map((row, rowIndex) => <tr key={row.id} data-selected={selected.includes(row.id) ? "" : undefined}><td className="ui-dt__select">{checkbox(row.id)}</td>{columns.map((col, colIndex) => {
+        <tbody><AnimatePresence initial={false}>{visible.map((row, rowIndex) => <motion.tr layout="position" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:reduce ? 0 : 0.18,layout:{duration:reduce ? 0 : 0.3,ease:[0.22,1,0.36,1]}}} key={row.id} data-selected={selected.includes(row.id) ? "" : undefined}><td className="ui-dt__select">{checkbox(row.id)}</td>{columns.map((col, colIndex) => {
           const cell = { id: row.id, col: colIndex };
           const isActive = active?.id === row.id && active.col === colIndex;
           const isEditing = editing?.id === row.id && editing.col === colIndex;
@@ -142,10 +146,10 @@ export function CrmTable({ engine }: { engine: CrmEngine }) {
               if (event.key === "Enter" || event.key === "Tab") { event.preventDefault(); cancelBlur.current = true; update(cell, draft); setEditing(null); if (event.key === "Tab") move(0, event.shiftKey ? -1 : 1); else move(event.shiftKey ? -1 : 1, 0); }
             }} /> : col.key === "company" ? <span className="ui-dt__name"><span className="ui-dt__logo"><CrmIcon name={row.company} size={18} /></span><span className="ui-dt__name-text" data-empty={!value ? "" : undefined}>{value || "Untitled"}</span></span> : col.type === "tag" ? <span className="ui-dt__tag" data-tone={tones[String(value)] || "gray"}>{value}</span> : col.type === "url" && value ? <a className="ui-dt__link" href={`https://${String(value).replace(/^https?:\/\//, "")}`} target="_blank" rel="noreferrer">{value}</a> : <span className="ui-dt__text">{col.type === "number" ? numberFormat.format(Number(value)) : value}</span>}
           </td>;
-        })}</tr>)}</tbody>
-      </table>{!rows.length && <p className="ui-dt__empty">No rows yet. Add your first company.</p>}
+        })}</motion.tr>)}</AnimatePresence></tbody>
+      </table>{!visible.length && <p className="ui-dt__empty">{rows.length ? "No companies match this view." : "No rows yet. Add your first company."}</p>}
     </div></div></div>
-    <div className="ui-dt__foot">{pickedCount ? <div className="ui-dt__bulk"><span>{pickedCount} selected</span><button type="button" className="ui-dt__add" onClick={() => { change([...rows, ...rows.filter(r => selected.includes(r.id)).map(r => ({ ...r, id: crypto.randomUUID() }))]); setSelected([]); }}><Copy size={14} />Duplicate</button><button type="button" className="ui-dt__add ui-dt__add--danger" onClick={() => { change(rows.filter(r => !selected.includes(r.id))); setSelected([]); setActive(null); setEnd(null); }}><Trash2 size={14} />Delete</button></div> : <button type="button" className="ui-dt__add" onClick={() => { const row = emptyCompany(); change([...rows, row]); setActive({id:row.id,col:0}); setEditing({id:row.id,col:0}); setDraft(""); }}><Plus size={14} />Add row</button>}<span className="ui-dt__summary">{active && activeIndex >= 0 ? `${String.fromCharCode(65 + active.col)}${activeIndex + 1}${end ? `:${String.fromCharCode(65 + end.col)}${endIndex + 1}` : ""}` : "Double-click a cell to edit"}</span></div>
+    <div className="ui-dt__foot">{pickedCount ? <div className="ui-dt__bulk"><span>{pickedCount} selected</span><button type="button" className="ui-dt__add" onClick={() => { change([...rows, ...rows.filter(r => selected.includes(r.id)).map(r => ({ ...r, id: crypto.randomUUID() }))]); setSelected([]); }}><Copy size={14} />Duplicate</button><button type="button" className="ui-dt__add ui-dt__add--danger" onClick={() => { change(rows.filter(r => !selected.includes(r.id))); setSelected([]); setActive(null); setEnd(null); }}><Trash2 size={14} />Delete</button></div> : <button type="button" className="ui-dt__add" onClick={() => { const row = { ...emptyCompany(), owner: defaultOwner }; cancelBlur.current = false; onAddRow?.(); change([...rows, row]); setActive({id:row.id,col:0}); setEditing({id:row.id,col:0}); setDraft(""); }}><Plus size={14} />Add row</button>}<span className="ui-dt__summary">{active && activeIndex >= 0 ? `${String.fromCharCode(65 + active.col)}${activeIndex + 1}${end ? `:${String.fromCharCode(65 + end.col)}${endIndex + 1}` : ""}` : "Double-click a cell to edit"}</span></div>
     {picker && <div className="ui-dt__picker" role="listbox" aria-label={`Choose ${columns[picker.cell.col].label}`} style={{left:picker.left,top:picker.top,width:picker.width}} onKeyDown={event => {
       if (event.key === "Escape") { event.preventDefault(); setPicker(null); scrollRef.current?.focus(); }
       if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); const buttons = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button')]; const index = buttons.indexOf(document.activeElement as HTMLButtonElement); buttons[(index + (event.key === "ArrowDown" ? 1 : -1) + buttons.length) % buttons.length]?.focus(); }

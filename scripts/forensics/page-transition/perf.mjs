@@ -50,6 +50,10 @@ await ctx.addInitScript(() => {
     const vt = e.viewTransition;
     if (!vt) return;
     m.ran = true;
+    // the runtime's own pagereveal listener runs after this one: read what it set up a task later
+    setTimeout(() => {
+      m.filters = Array.from(document.querySelectorAll("svg filter")).map((f) => `${f.id}:${f.getAttribute("width")}x${f.getAttribute("height")}`);
+    }, 0);
     let done = false;
     const loop = (t) => {
       m.frames.push(t);
@@ -109,6 +113,7 @@ for (let run = 0; run < +runs; run++) {
     };
     all.push(r);
     console.log(JSON.stringify(r));
+    if (process.env.PT_FILTERS) console.log("   filters", (m.filters || []).join(" "));
     if (process.env.PT_GAPS) console.log("   gaps>20", gaps.map((g, i) => [Math.round(m.frames[i + 1] - m.revealAt), Math.round(g)]).filter(([, g]) => g > 20).map(([t, g]) => `${g}@${t}`).join(" "));
     if (process.env.PT_LOAF) for (const e of loaf.filter((e) => e.dur > 40)) console.log("   loaf", Math.round(e.start - m.revealAt), Math.round(e.dur), "render", Math.round(e.render), "style+layout", Math.round(e.style), e.scripts.join(" | "));
   }

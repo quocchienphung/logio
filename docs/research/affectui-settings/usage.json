@@ -1,0 +1,155 @@
+{
+  "html": "<section class=\"ui-um\" aria-labelledby=\"_r_0_-title\" data-state=\"ok\"><div class=\"ui-um__card\" style=\"height: 226px;\"><div class=\"ui-um__inner\"><header class=\"ui-um__head\"><div class=\"ui-um__heading\"><h3 id=\"_r_0_-title\" class=\"ui-um__title\">Usage this period</h3><p class=\"ui-um__sub\">Pro plan<span class=\"ui-um__sep\">·</span><time datetime=\"2026-11-11T17:00:00.000Z\" title=\"Resets on Nov 12\">Resets in 24&nbsp;days</time></p></div></header><div class=\"ui-um__figure\"><p class=\"ui-um__amount\"><span class=\"ui-um__big\">34,000</span><span class=\"ui-um__of\">of 50,000&nbsp;credits</span></p><span class=\"ui-um__pct\" data-state=\"ok\">68%</span></div><div class=\"ui-um__bar\" tabindex=\"0\" role=\"group\" aria-label=\"34,000 of 50,000 credits used – arrow keys read each category\"><div class=\"ui-um__track\" role=\"meter\" aria-valuemin=\"0\" aria-valuemax=\"50000\" aria-valuenow=\"34000\" aria-valuetext=\"34,000 of 50,000 credits\"><span class=\"ui-um__seg\" style=\"width: 36.8%; background: var(--ui-um-c1);\"></span><span class=\"ui-um__seg\" style=\"width: 18.4%; background: var(--ui-um-c2);\"></span><span class=\"ui-um__seg\" style=\"width: 8.2%; background: var(--ui-um-c3);\"></span><span class=\"ui-um__seg\" style=\"width: 4.6%; background: var(--ui-um-c4);\"></span></div><div class=\"ui-um__tip\" aria-live=\"polite\" style=\"left: 50%; --ui-um-tip-x: -50%;\"></div></div><ul class=\"ui-um__legend\" aria-label=\"By category\"><li class=\"ui-um__row\"><div class=\"ui-um__item\"><span class=\"ui-um__swatch\" style=\"background: var(--ui-um-c1);\"></span><span class=\"ui-um__label\">Chat</span><span class=\"ui-um__value\">18,400</span><span class=\"ui-um__share\">54%</span></div></li><li class=\"ui-um__row\"><div class=\"ui-um__item\"><span class=\"ui-um__swatch\" style=\"background: var(--ui-um-c2);\"></span><span class=\"ui-um__label\">Agents</span><span class=\"ui-um__value\">9,200</span><span class=\"ui-um__share\">27%</span></div></li><li class=\"ui-um__row\"><div class=\"ui-um__item\"><span class=\"ui-um__swatch\" style=\"background: var(--ui-um-c3);\"></span><span class=\"ui-um__label\">API</span><span class=\"ui-um__value\">4,100</span><span class=\"ui-um__share\">12%</span></div></li><li class=\"ui-um__row\"><div class=\"ui-um__item\"><span class=\"ui-um__swatch\" style=\"background: var(--ui-um-c4);\"></span><span class=\"ui-um__label\">Images</span><span class=\"ui-um__value\">2,300</span><span class=\"ui-um__share\">7%</span></div></li></ul><div class=\"ui-um__daily\"><div class=\"ui-um__daily-head\"><span>Per day</span><span class=\"ui-um__daily-read\">Avg <b>1,481</b> / day</span></div><div class=\"ui-um__spark\" tabindex=\"0\" role=\"img\" aria-label=\"Usage this period per day, 1,481 credits on average – arrow keys read each day\"><span class=\"ui-um__day\" style=\"--i: 0;\"><span style=\"height: 50.3074%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 1;\"><span style=\"height: 87.5349%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 2;\"><span style=\"height: 73.5048%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 3;\"><span style=\"height: 82.0011%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 4;\"><span style=\"height: 91.3359%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 5;\"><span style=\"height: 69.3125%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 6;\"><span style=\"height: 100%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 7;\"><span style=\"height: 77.5293%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 8;\"><span style=\"height: 98.2672%;\"></span></span><span class=\"ui-um__day\" style=\"--i: 9;\"><span style=\"height: 98.0995%;\"></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 10;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 11;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 12;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 13;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 14;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 15;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 16;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 17;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 18;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 19;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 20;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 21;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 22;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 23;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 24;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 25;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 26;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 27;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 28;\"><span></span></span><span class=\"ui-um__day\" data-future=\"true\" style=\"--i: 29;\"><span></span></span></div></div><ul class=\"ui-um__limits\" aria-label=\"Plan limits\" style=\"--n: 2;\"><li class=\"ui-um__limit\" data-state=\"warn\"><span class=\"ui-um__limit-label\">Seats<span class=\"ui-um__dot\" aria-label=\"Close to the limit\"></span></span><span class=\"ui-um__limit-value\">8<span class=\"ui-um__muted\"> of 10</span></span><span class=\"ui-um__thin\" role=\"meter\" aria-label=\"Seats\" aria-valuemin=\"0\" aria-valuemax=\"10\" aria-valuenow=\"8\" aria-valuetext=\"8 of 10\"><span style=\"width: 80%;\"></span></span></li><li class=\"ui-um__limit\" data-state=\"ok\"><span class=\"ui-um__limit-label\">Storage</span><span class=\"ui-um__limit-value\">42.6<span class=\"ui-um__muted\"> of 100&nbsp;GB</span></span><span class=\"ui-um__thin\" role=\"meter\" aria-label=\"Storage\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"42.6\" aria-valuetext=\"42.6 of 100&nbsp;GB\"><span style=\"width: 42.6%;\"></span></span></li></ul></div></div><div class=\"ui-um__foot\"><span class=\"ui-um__status\"><span>16,000&nbsp;credits left</span></span><button type=\"button\" class=\"ui-um__action\" style=\"width: 82px;\"><span class=\"ui-um__action-inner\"><span class=\"ui-um__action-text\">Upgrade</span></span></button></div><span class=\"ui-um__live\" aria-live=\"polite\"></span></section>",
+  "bars": [
+    {
+      "label": null,
+      "height": "50.3074%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "87.5349%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "73.5048%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "82.0011%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "91.3359%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "69.3125%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "100%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "77.5293%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "98.2672%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "98.0995%",
+      "future": false
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    },
+    {
+      "label": null,
+      "height": "",
+      "future": true
+    }
+  ]
+}

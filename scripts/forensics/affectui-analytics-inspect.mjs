@@ -37,11 +37,28 @@ await page.getByRole('button',{name:'Export',exact:true}).click();
 await save('export');
 await page.getByRole('button',{name:'Save as report',exact:true}).click();
 await save('save-report');
+const dates={};
+const readDates=async days=>{
+  await page.locator('.ui-kpi__plot').first().focus();
+  await page.keyboard.press('Home');
+  await page.waitForTimeout(100);
+  const observed=[];
+  for(let index=0;index<9;index++){
+    observed.push(await page.locator('.ui-kpi').first().locator('.ui-kpi__date').innerText());
+    await page.keyboard.press('ArrowRight');
+    await page.waitForTimeout(100);
+  }
+  const dateKey=text=>new Date(`${text.replace(/^\w{3},\s*/, '')}, ${text.includes('Dec') ? 2024 : 2025}`).getTime();
+  dates[days]=[...new Set(observed)].sort((a,b)=>dateKey(a)-dateKey(b));
+};
+await readDates(7);
 for(const period of ['Last 30 days','Last 90 days']){
   await page.locator('.ui-as-rev__period').click();
   await page.locator('.ui-as-menu').getByText(period,{exact:true}).click();
   await save(period.replaceAll(' ','-').toLowerCase());
+  await readDates(period.includes('30') ? 30 : 90);
 }
+await fs.writeFile(`${out}/period-dates.json`,JSON.stringify(dates,null,2));
 await page.locator('.ui-as-rev__period').click();
 await page.locator('.ui-as-menu').getByText('Last 7 days',{exact:true}).click();
 await page.setViewportSize({width:390,height:844});
