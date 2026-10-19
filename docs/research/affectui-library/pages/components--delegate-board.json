@@ -1,0 +1,93 @@
+{
+  "title": "Delegate Board",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nDelegate Board\nDelegate Board\n\nHand work to your agents by dragging it onto them – each agent previews its new “busy until” time, or switch to Auto and every new task goes to whoever is free first.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nDelegate\nDrag a task onto an agent\nAuto\nUnassigned\n5\nWrite release notes\n~12 min\nFix flaky checkout test\n~20 min\nSummarize churn calls\n~15 min\nUpdate pricing page\n~10 min\nClean up CRM duplicates\n~18 min\nAgents\n$1.80 in queues\nResearcher\nOpus 5.5$0.08/min\nBusy until 09:20\nCompetitor scan\nWriter\nSonnet 5.5$0.03/min\nFree\nCoder\nGPT-6 Sol$0.06/min\nBusy until 09:36\nRefactor auth\nUpgrade Stripe SDK\nOps\nGemini 3.8 Flash$0.01/min\nFree\nDrag onto an agent, or press Enter, choose with the arrow keys and press Enter again. Number keys hand it over at once.\nWhen to use\nPeople hand tasks to a team of agents and want to see who is free and how long each one is busy\nRe-balancing work between agents: move a queued task to someone with more room\nShowing an automatic routing suggestion before it happens (suggestion prop)\nWeighing time against money: a fast, pricey model or a slower, cheaper one (rate on each agent)\nWhen not to use\nWatching what agents are doing right now over time – use Agent Lanes\nApproving single results – use Approval Card or Agent Inbox\nAssigning people in a project tool – this one is about agents, their models and queues\nInstallation\n\nDelegate Board is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nSuggest a hand-off\nThis example is part of Pro\nGet Pro\nUncontrolled\nThis example is part of Pro\nGet Pro\nAPI reference\nDelegateBoard\nProp\tType\tDefault\tDescription\nagents\tDelegateAgent[]\t–\t{ id, name, model?, avatar?, current?, rate? } – current: minutes left on the task it runs now, for the Busy until time; rate: cost per minute of work, shown after the model, as the price of a hand-off and as the total in the queues\nformatCost\t(amount: number) => string\tdollars, e.g. \"$0.60\"\tFormats every cost – swap in your currency or credits\ntasks\tDelegateTask[]\t–\t{ id, title, estimate (minutes), tools?, agentId? }. In each queue the first task is the running one; past three, a +N chip lists the rest in a tooltip on hover or focus\nonAssign\t(taskId: string, agentId: string | null) => void\t–\tA drop, a keyboard pick or Auto. null means back to Unassigned. Without it the board moves tasks itself\nmode / defaultMode\t\"auto\" | \"manual\"\t\"manual\"\tAuto hands every unassigned task to the least busy agent, about one a second; Manual waits for a drag. The Auto switch sits in the bar\nonModeChange\t(mode: DelegateMode) => void\t–\tThe Auto switch was turned on or off\nsuggestion\t{ taskId, agentId } | null\t–\tA proposed hand-off: the agent lights up and previews its new time, the task is marked\nnow\tnumber\tDate.now()\tThe clock for the Busy until times\ntitle\tstring\t\"Delegate\"\tHeading in the bar\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nEnter\tPicks up the focused task; Enter again hands it to the highlighted agent\n↑ or ↓\tChooses the agent while a task is picked up\n1–9\tHands the focused task to that agent at once (the numbers show next to the names)\nEsc\tPuts a picked-up task back\nAccessibility\nUnassigned and Agents are labelled sections; every queue is a list named after its agent\nTasks are buttons described by how to move them; every hand-off is announced politely (\"Write release notes → Writer\")\nDragging is never the only way: keyboard pick-up, number keys and Auto do the same; Auto is a switch (role switch) labelled by its word\nMotion\nThe dragged card lifts, tilts a little and follows the pointer; the agent under it lights up with its new time\nOn drop the card glides and shrinks into the agent's queue; queued chips glide when they move between agents\nIn Auto the next task goes out about every second, so each hand-off can be followed\nWith prefers-reduced-motion everything moves at once, without glides\nResponsive behavior\nFills its container up to 720px; below 560px the pile sits above the agents\nWorks with touch: cards and chips can be dragged with a finger\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nNotes for AI\n\nGive your coding assistant this summary instead of screenshots.\n\nestimate is in minutes; Busy until adds the agent's current (or its first task's estimate) and every queued task's estimate to now\nTo route automatically, set suggestion first so people see it, then call your own assign\nRelated\nAgent Lanes\nAgents\nWhere every agent is right now – a live timeline with a lane per agent, tasks growing into “now”, hand-offs drawn between agents and approvals right on the block\nAgent Inbox\nAgents\nAll your background agent tasks in one calm list – live clocks and status tags, filter tabs with rolling counts, rows that unfold to the last steps with Approve, Reject, Retry or Open, and glide to their new place\nAgent Steering\nAgents\nSteer an agent while it works – queue a note for the next step and watch it glide into the plan when the agent picks it up, or interrupt right away\nAutonomy Dial\nAgents\nHow much an agent may do on its own – a three-stop dial, and its real actions gliding between “Runs on its own” and “Asks you first”, with a lock for what always asks\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-dbc",
+    "ui-dbc__card",
+    "ui-dbc__bar",
+    "ui-dbc__spark",
+    "ui-dbc__title",
+    "ui-dbc__hint",
+    "ui-dbc__auto",
+    "ui-dbc__auto-label",
+    "ui-dbc__switch",
+    "ui-dbc__body",
+    "ui-dbc__pile",
+    "ui-dbc__head",
+    "ui-dbc__count",
+    "ui-dbc__tasks",
+    "ui-dbc__task-slot",
+    "ui-dbc__task",
+    "ui-dbc__grip",
+    "ui-dbc__task-main",
+    "ui-dbc__task-title",
+    "ui-dbc__task-meta",
+    "ui-dbc__tools",
+    "ui-dbc__tool",
+    "ui-dbc__agents",
+    "ui-dbc__spend",
+    "ui-dbc__roster",
+    "ui-dbc__agent",
+    "ui-dbc__avatar",
+    "ui-dbc__who",
+    "ui-dbc__name-line",
+    "ui-dbc__name",
+    "ui-dbc__key",
+    "ui-dbc__model",
+    "ui-dbc__rate",
+    "ui-dbc__load",
+    "ui-dbc__tag",
+    "ui-dbc__queue",
+    "ui-dbc__chip-slot",
+    "ui-dbc__chip",
+    "ui-dbc__chip-title",
+    "ui-dbc__sr"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Auto",
+      "label": null
+    },
+    {
+      "text": "Write release notes~12 min",
+      "label": null
+    },
+    {
+      "text": "Fix flaky checkout test~20 min",
+      "label": null
+    },
+    {
+      "text": "Summarize churn calls~15 min",
+      "label": null
+    },
+    {
+      "text": "Update pricing page~10 min",
+      "label": null
+    },
+    {
+      "text": "Clean up CRM duplicates~18 min",
+      "label": null
+    },
+    {
+      "text": "Competitor scan",
+      "label": null
+    },
+    {
+      "text": "Refactor auth",
+      "label": null
+    },
+    {
+      "text": "Upgrade Stripe SDK",
+      "label": null
+    }
+  ],
+  "route": "/components/delegate-board",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "9ed91d2401f6"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Billing Schedule",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nBilling Schedule\nBilling Schedule\n\nBuild a billing phase – start date, duration, products with repeats and timing, discount, minimum and live totals.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\n\nCreate a billing schedule\n\n·\n1 Jan 2026\nMilestone\nStart date\nDuration\nMilestone\nNAME\nREPEATS\nPRICE\nSet-up fee\nOnce\nMonthly\nQuarterly\nYearly\n$\n/ once\nBilled in advance\nBilled in arrears\nAdd product\nAdd discount\nAdd minimum\nFirst invoice\n$4,999.00\nPhase total\n$4,999.00\nWhen to use\nQuoting and contract tools where a phase of billing is put together – set-up fees, licences, support\nAdmin screens for subscriptions with one-off and recurring charges, discounts and minimum commitments\nWhen not to use\nA simple plan picker – use the Pricing Plans block\nUsage-based pricing with tiers per unit – this works with fixed prices per line\nInstallation\n\nBilling Schedule is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nAPI reference\nBillingSchedule\nProp\tType\tDefault\tDescription\ntitle\tstring\t\"Create a billing schedule\"\tHeading at the top of the card\nphase\tstring\t\"Build-out phase\"\tStarting phase name – editable in the summary\ncurrency\tstring\t\"$\"\tCurrency symbol for prices and totals\ncatalog\tCatalogItem[]\t–\tProducts under Add product – { name, repeat, price }\ndefaultLines\tScheduleLine[]\t–\tLines to start with – products, a discount or a minimum\ndefaultStart\tstring\t\"2026-01-01\"\tStart date as yyyy-mm-dd\nonChange\t(schedule) => void\t–\tCalled with { phase, start, duration, lines } after every change\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nTab\tMoves through the phase name, the fields, every line and the buttons\nEnter\tConfirms a price; Esc closes an open menu\nAccessibility\nThe lines are a table with column headers; every input and select has a label naming its line\nDuration and Add product are buttons that open listboxes; totals are announced politely\nMotion\nNew lines slide in and the table glides to its new height; the duration menu and catalog scale in\nThe end date in the summary fades when it changes\nWith prefers-reduced-motion changes happen instantly\nResponsive behavior\nFills its container up to 560px; on narrow screens the fields stack and the Repeats column hides\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-bsc",
+    "ui-bsc__head",
+    "ui-bsc__title",
+    "ui-bsc__summary",
+    "ui-bsc__phase",
+    "ui-bsc__dot",
+    "ui-bsc__date",
+    "ui-bsc__end",
+    "ui-bsc__fields",
+    "ui-bsc__field",
+    "ui-bsc__label",
+    "ui-bsc__input",
+    "ui-bsc__dd",
+    "ui-bsc__select",
+    "ui-bsc__select-label",
+    "ui-bsc__table",
+    "ui-bsc__row ui-bsc__row--head",
+    "ui-bsc__right",
+    "ui-bsc__rows-outer",
+    "ui-bsc__row",
+    "ui-bsc__name",
+    "ui-bsc__name-text",
+    "ui-bsc__repeat",
+    "ui-bsc__price",
+    "ui-bsc__price-main",
+    "ui-bsc__num",
+    "ui-bsc__muted",
+    "ui-bsc__remove",
+    "ui-bsc__timing",
+    "ui-bsc__actions",
+    "ui-bsc__btn",
+    "ui-bsc__spacer",
+    "ui-bsc__totals",
+    "ui-bsc__total",
+    "ui-bsc__total-label",
+    "ui-bsc__total ui-bsc__total--phase"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Milestone",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Remove Set-up fee"
+    },
+    {
+      "text": "Add product",
+      "label": null
+    },
+    {
+      "text": "Add discount",
+      "label": null
+    },
+    {
+      "text": "Add minimum",
+      "label": null
+    }
+  ],
+  "route": "/components/billing-schedule",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "94cfe54e524d"
+  ]
+}

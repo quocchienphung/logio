@@ -1,0 +1,26 @@
+{
+  "title": "Ghosted Chat",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nIllustrations\nGhosted Chat\nGhosted Chat\n\nUnanswered chat messages marked as read, with a thumbs-down reply on hover.\n\n$ pnpm dlx shadcn@latest add https://www.affectui.com/r/ghosted-chat.json\nPreview\nCode\nCopy prompt\nMCP\nCopy\nNo new messages\nHi team!\nAre you by any chance looking for a recruiter?\nHello?\nRead\n👎\nWhen to use\nA problem card about cold outreach that gets ignored or messages left on read\nBento grids and feature cards that need a small illustration above the text\nWhen not to use\nA real chat UI – the bubbles are a fixed, decorative scene\nVery small sizes below ~220px wide, where the bubble text gets hard to read\nInstallation\n\nAdd Ghosted Chat with the shadcn CLI – your project needs a components.json, see Installation in the docs – or copy the file by hand.\n\nRequires React 19.\n\nCLI\nManual\npnpm\nnpm\nyarn\nbun\nCopy\npnpm dlx shadcn@latest add https://www.affectui.com/r/ghosted-chat.json\nUsage\nexample.tsx\nCopy\nimport { GhostedChat } from \"@/components/ui/ghosted-chat\";\n\nexport function FeatureCard() {\n  return (\n    <article style={{ maxWidth: 360 }}>\n      <GhostedChat />\n      <h3>Card title</h3>\n      <p>Short description of the problem or step.</p>\n    </article>\n  );\n}\nAPI reference\nGhostedChat\nProp\tType\tDefault\tDescription\nlabel\tstring\t\"A chat with three unanswered messages…\"\tAccessible description of the illustration\nclassName\tstring\t–\tExtra class on the root, e.g. for width or margins\nAccessibility\nExposed as one image with a descriptive label; the messages inside are hidden from screen readers\nThe hover reply is purely decorative, nothing needs to be reached with the keyboard\nMotion\nA red shine sweeps through the last message every few seconds; the last bubble has a soft colored glow\nOn hover the status texts fade out, the messages move up and a blue thumbs-down reply pops in with a small bounce\nWith prefers-reduced-motion the shine stops and hover changes happen instantly\nResponsive behavior\nTransparent background, so it sits on any light or dark surface\nLaid out on a fixed 360 × 240 artboard and scaled to the width of its container with a ResizeObserver, so the bubbles never reflow\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-gc",
+    "ui-gc-stage",
+    "ui-gc-content",
+    "ui-gc-status",
+    "ui-gc-bubbles",
+    "ui-gc-bubble",
+    "ui-gc-bubble ui-gc-bubble-last",
+    "ui-gc-alert",
+    "ui-gc-read",
+    "ui-gc-bubble ui-gc-reply"
+  ],
+  "assets": [],
+  "controls": [],
+  "route": "/illustrations/ghosted-chat",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "d4da45167739"
+  ]
+}

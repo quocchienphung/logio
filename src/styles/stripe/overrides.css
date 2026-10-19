@@ -116,6 +116,14 @@
   );
 }
 
+/* Keep the Guide me icon beside its label in the mobile callout. */
+.navigation__personalize-callout--mobile .hds-link[href="/personalize"] {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+}
+
 /* Desktop navigation popup: a compositor-only pop (transform + opacity) instead of the reference's
    clip-path/max-height wipe, which repaints the popup (and the blurred overlay behind it) every frame.
    The popup drops 8px and grows from 97% under the hovered item with a soft overshoot; switching

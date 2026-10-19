@@ -76,3 +76,10 @@ This checkout already holds a stripe.com reconstruction. Read `docs/stripe-hando
 - Assets: `public/stripe/` and `public/sites/`; frozen reference captures: `docs/research/`.
 - Visual/QA tooling (Playwright + pixelmatch): `scripts/forensics/`.
 - The Sessions slot is an iPhone Duo (three.js + CSS3D) showing the affectUI usage meter as live DOM: `src/components/stripe/Sessions/iphoneDuo/`, `src/components/sites/affectui-usage-meter/`; assets via `scripts/iphone-duo/README.md`.
+
+## affectUI CRM / Guide me
+- Read `docs/affectui-handoff.md` before extending affectUI. The public library inventory and shared UI namespace map are in `docs/research/affectui-library/README.md` and `engine-map.json` (109 documented items).
+- Guide me links to `/personalize`, implemented by `src/components/sites/affectui-crm/`. The source reference is `https://www.affectui.com/screens/crm/full`.
+- `reference.css`, `icons.json` and `seed.json` in that folder are generated from observed public preview evidence; put CSS fixes in `crm-overrides.css`.
+- QA: `node scripts/qa/affectui-crm.mjs`; visual comparisons: `node scripts/forensics/affectui-compare.mjs`. Evidence lives in `docs/research/affectui-crm/`.
+- The library inventory covers public docs and initial Clean previews. Only CRM is locally rebuilt here; gated Pro source and unobserved states are not part of the capture.

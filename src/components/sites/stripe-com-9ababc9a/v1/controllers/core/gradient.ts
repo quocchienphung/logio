@@ -6,6 +6,7 @@
 // fallback (`.Gradient:after`) stays underneath until then, and stays alone when WebGL is unavailable.
 import type { Controller } from "../types";
 import { debounce, disableAmbientAnimations, isSoftwareRenderer, scrollObserver } from "./util";
+import { pageSettled } from "@/lib/pageSettled";
 
 // ---- constants (all from source) ------------------------------------------------------------
 const START_TIME = 1253106;
@@ -167,21 +168,38 @@ class MeshGradientRenderer {
   width = 1;
   height = 1;
 
-  constructor(readonly canvas: HTMLCanvasElement, gl: WebGLRenderingContext) {
-    this.gl = gl;
+  /**
+   * Compiles and links the program, off the main thread where KHR_parallel_shader_compile is available:
+   * its status is only read once the driver reports completion, since reading it earlier blocks until the
+   * link is done (40–60 ms, in the first frames of a page arriving through the page transition).
+   */
+  static async create(canvas: HTMLCanvasElement, gl: WebGLRenderingContext): Promise<MeshGradientRenderer> {
+    const shaders: WebGLShader[] = [];
     const compile = (type: number, src: string) => {
       const s = gl.createShader(type)!;
       gl.shaderSource(s, src);
       gl.compileShader(s);
-      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s) || "shader");
-      this.shaders.push(s);
+      shaders.push(s);
       return s;
     };
     const p = gl.createProgram()!;
     gl.attachShader(p, compile(gl.VERTEX_SHADER, VERTEX));
     gl.attachShader(p, compile(gl.FRAGMENT_SHADER, FRAGMENT));
     gl.linkProgram(p);
-    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p) || "link");
+    const ext = gl.getExtension("KHR_parallel_shader_compile");
+    if (ext) while (!gl.isContextLost() && !gl.getProgramParameter(p, ext.COMPLETION_STATUS_KHR)) await new Promise((r) => requestAnimationFrame(r));
+    if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+      const log = shaders.map((s) => gl.getShaderInfoLog(s)).join("\n") + (gl.getProgramInfoLog(p) || "");
+      shaders.forEach((s) => gl.deleteShader(s));
+      gl.deleteProgram(p);
+      throw new Error(log || "link");
+    }
+    return new MeshGradientRenderer(canvas, gl, p, shaders);
+  }
+
+  private constructor(readonly canvas: HTMLCanvasElement, gl: WebGLRenderingContext, p: WebGLProgram, shaders: WebGLShader[]) {
+    this.gl = gl;
+    this.shaders = shaders;
     this.program = p;
     gl.useProgram(p);
     this.buffers = { x: gl.createBuffer()!, uv: gl.createBuffer()!, uvNorm: gl.createBuffer()!, index: gl.createBuffer()! };
@@ -285,6 +303,21 @@ function parseHexColor(value: string): RGB | null {
 // ---- controller -------------------------------------------------------------------------------
 export const Gradient: Controller = (el) => {
   if (!(el instanceof HTMLCanvasElement)) return;
+  // Creating the context and querying extensions are synchronous round trips to the GPU process, which
+  // stall for 300+ ms while it draws the page transition: start once that has settled. The CSS fallback
+  // gradient shows until then, and the canvas fades in over it (.isLoaded) as on a first load.
+  let cancelled = false;
+  let stop: void | (() => void);
+  void pageSettled().then(() => {
+    if (!cancelled) stop = mountGradient(el);
+  });
+  return () => {
+    cancelled = true;
+    stop?.();
+  };
+};
+
+const mountGradient = (el: HTMLCanvasElement): void | (() => void) => {
   // Reference: no canvas at all on software GPUs; the CSS fallback gradient stays.
   if (isSoftwareRenderer()) return;
   const gl = el.getContext("webgl", { antialias: true });
@@ -376,13 +409,17 @@ export const Gradient: Controller = (el) => {
     parentTimer = window.setTimeout(() => el.parentElement?.classList.add("isLoaded"), PARENT_LOADED_DELAY);
   };
 
-  const init = (colors: RGB[]) => {
-    let r: MeshGradientRenderer;
-    try {
-      r = new MeshGradientRenderer(el, gl);
-    } catch {
-      return; // shader/program failure: the CSS fallback gradient stays
-    }
+  const init = (colors: RGB[], loaded: boolean) => {
+    MeshGradientRenderer.create(el, gl)
+      .then((r) => {
+        if (state.disposed) return r.dispose();
+        setup(r, colors);
+        if (loaded) addIsLoadedClass();
+      })
+      .catch(() => {}); // shader/program failure: the CSS fallback gradient stays
+  };
+
+  const setup = (r: MeshGradientRenderer, colors: RGB[]) => {
     renderer = r;
     // uniforms (reference initMaterial)
     r.set1("u_time", 0);
@@ -427,13 +464,12 @@ export const Gradient: Controller = (el) => {
     const cs = getComputedStyle(el);
     if (cs.getPropertyValue("--gradientColorOne").includes("#")) {
       const colors = COLOR_VARS.map((v) => parseHexColor(cs.getPropertyValue(v))).filter((c): c is RGB => c !== null);
-      init(colors);
-      addIsLoadedClass();
+      init(colors, true);
       return;
     }
     cssVarRetries += 1;
     if (cssVarRetries > MAX_CSS_VAR_RETRIES) {
-      init(FALLBACK_COLORS);
+      init(FALLBACK_COLORS, false);
       return;
     }
     cssVarRaf = requestAnimationFrame(waitForCssVars);

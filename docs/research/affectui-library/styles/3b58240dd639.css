@@ -1,0 +1,265 @@
+
+/* Colors and motion as variables – override them on .ui-cbxc */
+.ui-cbxc {
+  --ui-cbxc-card: #ffffff;
+  --ui-cbxc-ink: rgba(0, 0, 0, 0.88);
+  --ui-cbxc-strong: #000000;
+  --ui-cbxc-text: rgba(0, 0, 0, 0.61);
+  --ui-cbxc-muted: rgba(0, 0, 0, 0.45);
+  --ui-cbxc-faint: rgba(0, 0, 0, 0.27);
+  --ui-cbxc-icon: rgba(0, 0, 0, 0.447);
+  --ui-cbxc-line: rgba(0, 0, 0, 0.06);
+  --ui-cbxc-fill: rgba(0, 0, 0, 0.06);
+  --ui-cbxc-fill-strong: rgba(0, 0, 0, 0.1);
+  --ui-cbxc-wash: rgba(0, 0, 0, 0.03);
+  --ui-cbxc-flash: rgba(0, 0, 0, 0.14);
+  --ui-cbxc-avatar: rgba(0, 0, 0, 0.06);
+  --ui-cbxc-mark: rgba(0, 96, 226, 0.12);
+  --ui-cbxc-accent: rgba(0, 96, 226, 0.765);
+  --ui-cbxc-focus: rgba(0, 96, 226, 0.35);
+  /* Strokes are shadows: a 0.5px hairline plus a soft lift */
+  --ui-cbxc-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.06), 0 1px 1px -1px rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ui-cbxc-shadow-hover: 0 0 0 0.5px rgba(0, 0, 0, 0.12), 0 1px 1px -1px rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ui-cbxc-shadow-pop: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 12px 28px -10px rgba(0, 0, 0, 0.16), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ui-cbxc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ui-cbxc-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  container-type: inline-size;
+  font-family: "Inter", "InterVariable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--ui-cbxc-ink);
+  -webkit-font-smoothing: antialiased;
+}
+.ui-cbxc *, .ui-cbxc *::before, .ui-cbxc *::after { box-sizing: border-box; }
+:where(.ui-cbxc) button { margin: 0; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
+:where(.ui-cbxc) svg { display: block; flex: none; }
+/* 16px icons with thin ~1.1px lines */
+.ui-cbxc__glyph { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.ui-cbxc__label { display: block; margin: 0 0 6px 2px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ui-cbxc-text); }
+
+/* The field: white with the hairline shadow; its height glides when chips wrap */
+.ui-cbxc__field {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--ui-cbxc-card);
+  box-shadow: var(--ui-cbxc-shadow);
+  cursor: text;
+  transition: height 300ms var(--ui-cbxc-ease), box-shadow 160ms ease;
+}
+.ui-cbxc__field:hover { box-shadow: var(--ui-cbxc-shadow-hover); }
+.ui-cbxc__field:focus-within { outline: 2px solid var(--ui-cbxc-focus); outline-offset: 1px; }
+/* Always one line: chips that don't fit go into "+N" */
+.ui-cbxc__field-inner { position: relative; display: flex; flex-wrap: nowrap; align-items: center; min-height: 32px; padding: 4px 32px 4px 4px; overflow: hidden; }
+.ui-cbxc__measure { position: absolute; top: 0; left: 0; display: flex; width: max-content; margin: 0; padding: 0; list-style: none; visibility: hidden; pointer-events: none; white-space: nowrap; }
+.ui-cbxc__chips > .ui-cbxc__chip { flex: none; }
+.ui-cbxc__measure > .ui-cbxc__chip { flex: none; max-width: none; }
+.ui-cbxc__chips { display: contents; margin: 0; padding: 0; list-style: none; }
+
+/* Chips: the gray tab-chip look – the outer grid folds the width, the body flashes and pops */
+.ui-cbxc__chip {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  margin-right: 4px;
+  transition: grid-template-columns 260ms var(--ui-cbxc-ease) 160ms, margin-right 260ms var(--ui-cbxc-ease) 160ms, opacity 200ms ease 140ms;
+}
+.ui-cbxc__chip[data-leaving] { grid-template-columns: 0fr; margin-right: 0; opacity: 0; pointer-events: none; }
+.ui-cbxc__chip-body {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  height: 24px;
+  overflow: hidden;
+  padding: 0 2px 0 4px;
+  border-radius: 6px;
+  background: var(--ui-cbxc-fill);
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--ui-cbxc-ink);
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+.ui-cbxc__chip[data-plain] .ui-cbxc__chip-body { padding-left: 8px; }
+.ui-cbxc__chip[data-armed] .ui-cbxc__chip-body { background: var(--ui-cbxc-fill-strong); box-shadow: inset 0 0 0 0.5px var(--ui-cbxc-faint); }
+.ui-cbxc__chip[data-leaving] .ui-cbxc__chip-body { animation: ui-cbxc-flash 300ms ease-out both; }
+.ui-cbxc__chip-label { min-width: 0; max-width: 168px; overflow: hidden; text-overflow: ellipsis; }
+.ui-cbxc__chip-x { display: grid; place-items: center; flex: none; width: 18px; height: 18px; border-radius: 4px; color: var(--ui-cbxc-icon); transition: background-color 140ms ease, color 140ms ease; }
+.ui-cbxc__chip-x:hover { background: var(--ui-cbxc-fill); color: var(--ui-cbxc-ink); }
+.ui-cbxc__chip-x .ui-cbxc__glyph { width: 12px; height: 12px; stroke-width: 1.9; }
+.ui-cbxc__chip .ui-cbxc__avatar { width: 16px; height: 16px; font-size: 7px; background: var(--ui-cbxc-card); box-shadow: 0 0 0 0.5px var(--ui-cbxc-line); }
+.ui-cbxc__chip .ui-cbxc__dot { margin: 0 1px 0 2px; }
+.ui-cbxc__chip .ui-cbxc__icon { width: 16px; height: 16px; }
+
+/* "+3": folds open and closed like a chip, the number rolls */
+.ui-cbxc__more .ui-cbxc__chip-body { padding: 0 8px; gap: 0; color: var(--ui-cbxc-text); font-variant-numeric: tabular-nums; }
+.ui-cbxc__more { transition-delay: 0ms; }
+.ui-cbxc__more[data-hidden] { grid-template-columns: 0fr; margin-right: 0; opacity: 0; }
+.ui-cbxc__roll { display: inline-grid; overflow: hidden; }
+.ui-cbxc__roll > span { animation: ui-cbxc-roll-up 300ms var(--ui-cbxc-ease) both; }
+.ui-cbxc__roll > span[data-dir="down"] { animation-name: ui-cbxc-roll-down; }
+
+.ui-cbxc__input {
+  flex: 1 0 72px;
+  min-width: 72px;
+  height: 24px;
+  margin: 0;
+  padding: 0 4px 0 6px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: var(--ui-cbxc-ink);
+  outline: none;
+}
+.ui-cbxc__input::placeholder { color: var(--ui-cbxc-faint); }
+/* The chevron: a small ghost button */
+.ui-cbxc__toggle { position: absolute; top: 4px; right: 4px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; color: var(--ui-cbxc-icon); transition: background-color 140ms ease, color 140ms ease; }
+.ui-cbxc__toggle:hover { background: var(--ui-cbxc-wash); color: var(--ui-cbxc-ink); }
+.ui-cbxc__toggle .ui-cbxc__glyph { transition: transform 260ms var(--ui-cbxc-ease); }
+.ui-cbxc[data-open] .ui-cbxc__toggle .ui-cbxc__glyph { transform: rotate(180deg); }
+
+/* Avatars, dots, icons */
+.ui-cbxc__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--ui-cbxc-avatar);
+  color: var(--ui-cbxc-text);
+  font-size: 8px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.ui-cbxc__dot { flex: none; width: 8px; height: 8px; margin: 0 4px; border-radius: 50%; }
+.ui-cbxc__icon { display: grid; place-items: center; flex: none; width: 20px; height: 20px; color: var(--ui-cbxc-icon); }
+.ui-cbxc__icon svg { width: 16px; height: 16px; }
+
+/* The list: one white popover with the count and keys as its last row */
+.ui-cbxc__pop {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--ui-cbxc-card);
+  box-shadow: var(--ui-cbxc-shadow-pop);
+  transform-origin: top center;
+  animation: ui-cbxc-open 240ms var(--ui-cbxc-ease) both;
+}
+.ui-cbxc__list { position: relative; max-height: 300px; padding: 4px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; transition: height 300ms var(--ui-cbxc-ease); }
+.ui-cbxc__pill {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  border-radius: 6px;
+  background: var(--ui-cbxc-fill);
+  opacity: 0;
+  pointer-events: none;
+  /* A short, crisp move between rows – no long glide; it fades out when the pointer leaves the list */
+  transition: transform 90ms ease-out, height 90ms ease-out, opacity 140ms ease;
+}
+.ui-cbxc__group-label { padding: 8px 8px 4px; font-size: 10px; line-height: 16px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ui-cbxc-muted); }
+.ui-cbxc__group:first-child .ui-cbxc__group-label { padding-top: 4px; }
+.ui-cbxc__option { position: relative; display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px; border-radius: 6px; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+.ui-cbxc__text { display: flex; flex: 1; align-items: baseline; gap: 8px; min-width: 0; }
+/* The name wins over the hint when space runs out */
+.ui-cbxc__name { flex: 0 0 auto; max-width: 100%; min-width: 0; overflow: hidden; color: var(--ui-cbxc-ink); white-space: nowrap; text-overflow: ellipsis; }
+.ui-cbxc__hint { flex: 0 100 auto; min-width: 0; overflow: hidden; font-size: 12px; line-height: 16px; color: var(--ui-cbxc-muted); white-space: nowrap; text-overflow: ellipsis; }
+.ui-cbxc mark { border-radius: 3px; background: var(--ui-cbxc-mark); color: inherit; }
+/* The blue check pops in with a small spring and fades out quickly */
+.ui-cbxc__check { width: 16px; height: 16px; margin-left: auto; color: var(--ui-cbxc-accent); stroke-width: 1.8; opacity: 0; transform: scale(0.4); transition: opacity 120ms ease, transform 160ms ease; }
+.ui-cbxc__option[aria-selected="true"] .ui-cbxc__check { opacity: 1; transform: none; transition: opacity 160ms ease, transform 380ms var(--ui-cbxc-spring); }
+.ui-cbxc__empty { padding: 12px 8px 10px; text-align: center; color: var(--ui-cbxc-muted); animation: ui-cbxc-in 240ms var(--ui-cbxc-ease) both; }
+.ui-cbxc__create { animation: ui-cbxc-in 240ms var(--ui-cbxc-ease) both; }
+.ui-cbxc__plus { display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 6px; color: var(--ui-cbxc-icon); box-shadow: inset 0 0 0 0.5px var(--ui-cbxc-fill-strong); }
+.ui-cbxc__plus .ui-cbxc__glyph { width: 12px; height: 12px; stroke-width: 1.9; }
+
+/* The last row of the popover, under a hairline */
+.ui-cbxc__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 32px; padding: 0 12px; border-top: 0.5px solid var(--ui-cbxc-line); font-size: 12px; line-height: 16px; color: var(--ui-cbxc-muted); }
+.ui-cbxc__count { display: inline-flex; font-variant-numeric: tabular-nums; }
+.ui-cbxc__keys { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
+.ui-cbxc kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--ui-cbxc-card);
+  box-shadow: var(--ui-cbxc-shadow);
+  font-family: inherit;
+  font-size: 10px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--ui-cbxc-text);
+}
+.ui-cbxc__keys > span { margin: 0 6px 0 2px; }
+.ui-cbxc__keys > span:last-child { margin-right: 0; }
+.ui-cbxc__live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@keyframes ui-cbxc-open { from { opacity: 0; transform: translateY(-4px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes ui-cbxc-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes ui-cbxc-flash { 0% { background-color: var(--ui-cbxc-fill); } 35% { background-color: var(--ui-cbxc-flash); } 100% { background-color: var(--ui-cbxc-flash); transform: scale(0.92); } }
+@keyframes ui-cbxc-roll-up { from { opacity: 0; transform: translateY(70%); } to { opacity: 1; transform: none; } }
+@keyframes ui-cbxc-roll-down { from { opacity: 0; transform: translateY(-70%); } to { opacity: 1; transform: none; } }
+
+/* Narrow (phones): no key hints, chips may use the full width */
+@container (max-width: 380px) {
+  .ui-cbxc__keys { display: none; }
+  .ui-cbxc__chip-label { max-width: 132px; }
+  /* The text field fits next to a chip instead of taking a line of its own */
+  .ui-cbxc__input { flex-basis: 44px; min-width: 44px; }
+}
+/* Touch screens: bigger rows, chips and buttons; 16px text so iOS doesn't zoom in */
+@media (hover: none) and (pointer: coarse) {
+  .ui-cbxc__field-inner { min-height: 40px; padding: 4px 40px 4px 4px; }
+  .ui-cbxc__chip-body { height: 32px; }
+  .ui-cbxc__chip-x { width: 26px; height: 26px; }
+  .ui-cbxc__input { height: 32px; font-size: 16px; }
+  .ui-cbxc__toggle { width: 32px; height: 32px; }
+  .ui-cbxc__option { height: 44px; }
+  .ui-cbxc__list { max-height: 340px; }
+  .ui-cbxc__keys { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-cbxc *, .ui-cbxc *::before, .ui-cbxc *::after { animation: none !important; transition: none !important; }
+}
+
+/* Dark mode: follows a .dark class or data-theme="dark" on any ancestor, e.g. <html> */
+:where(.dark, [data-theme="dark"]) .ui-cbxc {
+  --ui-cbxc-card: #1c1c1e;
+  --ui-cbxc-ink: rgba(255, 255, 255, 0.9);
+  --ui-cbxc-strong: #ffffff;
+  --ui-cbxc-text: rgba(255, 255, 255, 0.62);
+  --ui-cbxc-muted: rgba(255, 255, 255, 0.46);
+  --ui-cbxc-faint: rgba(255, 255, 255, 0.3);
+  --ui-cbxc-icon: rgba(255, 255, 255, 0.5);
+  --ui-cbxc-line: rgba(255, 255, 255, 0.08);
+  --ui-cbxc-fill: rgba(255, 255, 255, 0.08);
+  --ui-cbxc-fill-strong: rgba(255, 255, 255, 0.13);
+  --ui-cbxc-wash: rgba(255, 255, 255, 0.04);
+  --ui-cbxc-flash: rgba(255, 255, 255, 0.18);
+  --ui-cbxc-avatar: rgba(255, 255, 255, 0.08);
+  --ui-cbxc-mark: rgba(77, 141, 255, 0.24);
+  --ui-cbxc-accent: #4d8dff;
+  --ui-cbxc-focus: rgba(77, 141, 255, 0.5);
+  --ui-cbxc-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --ui-cbxc-shadow-hover: 0 0 0 0.5px rgba(255, 255, 255, 0.16), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --ui-cbxc-shadow-pop: 0 0 0 0.5px rgba(255, 255, 255, 0.12), 0 12px 28px -10px rgba(0, 0, 0, 0.6);
+}

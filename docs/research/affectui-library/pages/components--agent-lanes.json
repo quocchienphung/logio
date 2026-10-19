@@ -1,0 +1,72 @@
+{
+  "title": "Agent Lanes",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nAgent Lanes\nAgent Lanes\n\nWhere every agent is right now – a live timeline with a lane per agent, tasks growing into “now”, hand-offs drawn between agents and approvals right on the block.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nAgents\n2 running\n1 need you\nLast 30m\nResearcher\nIdle\nOpus 5.5\nWriter\nIdle\nSonnet 5.5\nReviewer\nIdle\nGPT-6 Sol\nOps\nNeeds you\nGemini 3.8 Flash\n−25m\n−20m\n−15m\n−10m\n−5m\nCompetitor pricing\nCustomer interviews\nDraft pricing page\nPR #482 billing\nSync CRM\nRotate API keys\nNeeds you\nnow\n1 task need you\nWhen to use\nA team of agents works in parallel and people want to see at a glance who is doing what, and since when\nMulti-agent pipelines where work moves from one agent to the next (research → writing → review)\nA control room for agents: spot the one that waits for a decision, or failed, without opening each run\nWhen not to use\nA list of background tasks grouped by state – use Agent Inbox\nThe steps of one single run – use Agent Plan or Agent Steering\nScheduling future work on a calendar – the lanes show the last half hour, not the week ahead\nInstallation\n\nAgent Lanes is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nA hand-off between agents\nThis example is part of Pro\nGet Pro\nA longer window\nThis example is part of Pro\nGet Pro\nAPI reference\nAgentLanes\nProp\tType\tDefault\tDescription\nagents\tLaneAgent[]\t–\tOne lane each: { id, name, model?, avatar? }. A logo as avatar sits on a white tile; without one the initials show. Free agents get an Idle tag, waiting ones Needs you\ntasks\tLaneTask[]\t–\t{ id, agentId, title, status: \"done\" | \"running\" | \"waiting\" | \"failed\", start, end?, handoffTo?, ask?, summary?, tools? }. No end: the block reaches \"now\"\nspan\tnumber\t30 minutes\tHow much time the lanes show, in ms\nnow\tnumber\t–\tA clock you control, e.g. a faster one for a demo. Without it the lanes follow real time, every second\nonApprove / onReject\t(task: LaneTask) => void\t–\tApprove or Reject on a waiting task. Without handlers the lanes change the status themselves\nonOpen\t(task: LaneTask) => void\t–\tShows an Open link in the tooltip of a block that doesn't wait\ntitle\tstring\t\"Agents\"\tHeading in the bar\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nTab\tMoves from block to block, lane by lane\nEnter\tOpens a block's tooltip (what got done), or the decision on a waiting one\nEsc\tCloses the decision and returns to its block\nAccessibility\nEvery lane is a list labelled with the agent's name; every block is a button that names the agent, task, state and time\nA waiting block controls its decision popover (aria-expanded), which is a labelled dialog with Approve focused\nHow many tasks need someone is announced politely when it changes\nMotion\nThe window slides with the clock: blocks and hand-off curves are drawn from the same time, so they move together; at the left edge blocks slide out and fade\nRunning blocks shimmer, a live hand-off curve flows towards the next agent, waiting flags pulse\nWith prefers-reduced-motion everything stays still and only updates\nResponsive behavior\nFills its container up to 760px\nBelow 520px the names column shrinks to the avatars\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nNotes for AI\n\nGive your coding assistant this summary instead of screenshots.\n\nThe component draws what it gets – update tasks from your agent events (status, end) and the lanes follow\nGive a waiting task an ask (one sentence on what needs deciding); it shows above Approve / Reject\nGive any task a summary – two or three short points on what got done – for the dark tooltip a click opens\ntools takes up to three small logos (React nodes) of the apps a task works in; they sit on white tiles before the title\nUse handoffTo on the task that hands over, pointing at the id of the next agent's task\nRelated\nAgent Inbox\nAgents\nAll your background agent tasks in one calm list – live clocks and status tags, filter tabs with rolling counts, rows that unfold to the last steps with Approve, Reject, Retry or Open, and glide to their new place\nAgent Plan\nAgents\nAn agent's step-by-step plan to review before it runs – rename, drag to reorder, remove or add steps, then watch each one run with live timers and retry from a failed step\nAgent Steering\nAgents\nSteer an agent while it works – queue a note for the next step and watch it glide into the plan when the agent picks it up, or interrupt right away\nApproval Card\nAgents\nAn agent asks before it acts – risk badge, preview, Approve and Deny with shortcuts, a pausing countdown, and a smooth morph into a resolved row\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-alc",
+    "ui-alc__card",
+    "ui-alc__bar",
+    "ui-alc__spark",
+    "ui-alc__title",
+    "ui-alc__summary",
+    "ui-alc__window",
+    "ui-alc__body",
+    "ui-alc__agents",
+    "ui-alc__agent",
+    "ui-alc__avatar",
+    "ui-alc__who",
+    "ui-alc__name-line",
+    "ui-alc__name",
+    "ui-alc__state",
+    "ui-alc__model",
+    "ui-alc__model-name",
+    "ui-alc__track",
+    "ui-alc__grid",
+    "ui-alc__tick",
+    "ui-alc__clip",
+    "ui-alc__layer",
+    "ui-alc__lane",
+    "ui-alc__slot",
+    "ui-alc__block",
+    "ui-alc__tools",
+    "ui-alc__tool",
+    "ui-alc__label",
+    "ui-alc__flag",
+    "ui-alc__now",
+    "ui-alc__sr"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Competitor pricing",
+      "label": "Researcher: Competitor pricing – Done, took 11m"
+    },
+    {
+      "text": "Customer interviews",
+      "label": "Researcher: Customer interviews – Running, 9m"
+    },
+    {
+      "text": "Draft pricing page",
+      "label": "Writer: Draft pricing page – Running, 15m"
+    },
+    {
+      "text": "PR #482 billing",
+      "label": "Reviewer: PR #482 billing – Done, took 10m"
+    },
+    {
+      "text": "Sync CRM",
+      "label": "Ops: Sync CRM – Failed, 7m"
+    },
+    {
+      "text": "Rotate API keys",
+      "label": "Ops: Rotate API keys – Needs you, 12m"
+    }
+  ],
+  "route": "/components/agent-lanes",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "ae4f4bd9614c"
+  ]
+}

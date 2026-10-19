@@ -1,0 +1,59 @@
+
+/* A single folder – breadcrumb, back link, header with actions and the empty drop area */
+
+.ui-as-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+/* Room for the sidebar icon while the sidebar is collapsed */
+.ui-as-app[data-collapsed] .ui-as-crumbs { padding-left: 50px; }
+.ui-as-crumbs { transition: padding-left 420ms var(--ease); }
+.ui-as-crumbs button { color: inherit; text-decoration: none; }
+.ui-as-crumbs button:hover { color: var(--ink); }
+.ui-as-crumbs i { font-style: normal; color: var(--faint); }
+.ui-as-crumbs [aria-current] { font-weight: 500; color: var(--ink); }
+
+.ui-as-page.ui-as-page--folder { padding-top: 12px; }
+.ui-as-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.ui-as-back:hover { color: var(--ink); }
+
+.ui-as-folder-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+.ui-as-folder-head__actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.ui-as-page--folder .ui-as-empty { margin-top: 20px; padding: 48px 24px 56px; }
+
+/* The folder's files as cards */
+/* Same cards and spacing as the templates on the Files page */
+.ui-as-folder-files { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+
+/* Narrow: the sidebar icon always sits in the corner; the actions move under the title */
+@container ui-as (max-width: 900px) {
+  .ui-as-crumbs { padding-left: 50px; }
+  .ui-as-page.ui-as-page--folder { padding-top: 8px; }
+  .ui-as-folder-head { flex-wrap: wrap; row-gap: 14px; }
+}
+@container ui-as (max-width: 600px) {
+  .ui-as-crumbs { padding-right: 12px; }
+  .ui-as-crumbs [aria-current] { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .ui-as-folder-head { margin-top: 18px; }
+  .ui-as-folder-head__actions { width: 100%; margin-left: 0; }
+  /* Share and Upload first, the "more" menu at the far end */
+  .ui-as-folder-head__actions > .ui-as-anchor { order: 3; margin-left: auto; }
+  .ui-as-page--folder .ui-as-empty { padding: 36px 18px 40px; }
+}

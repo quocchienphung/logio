@@ -1,0 +1,118 @@
+{
+  "title": "Comments Panel",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nComments Panel\nComments Panel\n\nComment feed with filters, runnable /edit commands, resolve and a composer.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nComments\nAll\nQuestions\nEdits\n2\nMara Lindqvist\n2min ago\n\n/Edit Rename every “customers” to “members” on the pricing page.\n\nRun edit\nJonas Weber\n5min ago\n\nShould we mention the launch discount in the hero too?\n\nLena Hart\n11min ago\n\nThe new illustrations look great on mobile.\n\nTheo Brandt\n18min ago\n\n/Edit Shorten every FAQ answer to two sentences.\n\nRun edit\nSofia Marin\n26min ago\n\nCan we ship this before Friday?\n\nWhen to use\nA comments sidebar next to a document, design or record\nCollaboration with an assistant that can apply edits people suggest with /edit\nWhen not to use\nLong discussions with nested replies – use the Comment Thread for one conversation\nInstallation\n\nComments Panel is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nAPI reference\nCommentsPanel\nProp\tType\tDefault\tDescription\ncomments\tPanelComment[]\t–\tid, author ({ name, avatar }), createdAt and text – text starting with /edit becomes a runnable edit\ncurrentUser\tCommentAuthor\t–\tAuthor of new comments\nonRunEdit\t(comment) => Promise<void> | void\t–\tRuns an edit; the button shows Running… until the promise settles\nonAdd\t(comment) => void\t–\tCalled with every new comment\nonClose\t() => void\t–\tShows a close button\ntitle\tstring\t\"Comments\"\tHeading in the first row of the card\nKeyboard interactions\nTab\tMove through tabs, sort, comments and the composer\nEnter\tSend the comment in the composer\nAccessibility\nFilters are tabs, sorting is a menu of radio items, resolve is a toggle button\nTimes are real time elements; the list announces new comments politely\nMotion\nNew comments fade in, edits show a spinner, the sort menu drops in – reduced motion turns this off\nResponsive behavior\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nRelated\nComment Thread\nChat\nOne comment with replies – an assistant reports what it did, folds open details and answers @mentions\nSmart Recommendation\nCards\nSuggestion card with a confidence signal, alternatives to switch to and accept with undo\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-cpc",
+    "ui-cpc__head",
+    "ui-cpc__title",
+    "ui-cpc__icon-btn",
+    "ui-cpc__bar",
+    "ui-cpc__tabs",
+    "ui-cpc__tab",
+    "ui-cpc__count",
+    "ui-cpc__sort",
+    "ui-cpc__morph",
+    "ui-cpc__list",
+    "ui-cpc__item",
+    "ui-cpc__meta",
+    "ui-cpc__avatar",
+    "ui-cpc__name",
+    "ui-cpc__time",
+    "ui-cpc__resolve",
+    "ui-cpc__text",
+    "ui-cpc__command",
+    "ui-cpc__actions",
+    "ui-cpc__btn",
+    "ui-cpc__composer",
+    "ui-cpc__input",
+    "ui-cpc__send"
+  ],
+  "assets": [
+    {
+      "src": "https://www.affectui.com/avatars/mara.jpg",
+      "alt": ""
+    },
+    {
+      "src": "https://www.affectui.com/avatars/jonas.jpg",
+      "alt": ""
+    },
+    {
+      "src": "https://www.affectui.com/avatars/lena.jpg",
+      "alt": ""
+    },
+    {
+      "src": "https://www.affectui.com/avatars/theo.jpg",
+      "alt": ""
+    },
+    {
+      "src": "https://www.affectui.com/avatars/sofia.jpg",
+      "alt": ""
+    },
+    {
+      "src": "https://www.affectui.com/avatars/noah.jpg",
+      "alt": ""
+    }
+  ],
+  "controls": [
+    {
+      "text": "",
+      "label": "Close comments"
+    },
+    {
+      "text": "All",
+      "label": null
+    },
+    {
+      "text": "Questions",
+      "label": null
+    },
+    {
+      "text": "Edits2",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Sort comments"
+    },
+    {
+      "text": "",
+      "label": "Resolve comment"
+    },
+    {
+      "text": "Run edit",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Resolve comment"
+    },
+    {
+      "text": "",
+      "label": "Resolve comment"
+    },
+    {
+      "text": "",
+      "label": "Resolve comment"
+    },
+    {
+      "text": "Run edit",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Resolve comment"
+    },
+    {
+      "text": "",
+      "label": "Send comment"
+    }
+  ],
+  "route": "/components/comments-panel",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "8cbb84107ed3"
+  ]
+}

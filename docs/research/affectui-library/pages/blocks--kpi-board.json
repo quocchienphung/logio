@@ -1,0 +1,58 @@
+{
+  "title": "KPI Board",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nBlocks\nKPI Board\nKPI Board\n\nThe top of a dashboard – three trend cards, an overview chart that compares this period with the last, and a focus card; hover shows any day's value and every number rolls when the range changes.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nDashboard\nLast 30 days\n$4,588.17\nTotal revenue\n$1,030.00\nvs. last period\n13 Sep\nToday\n38,445\nEmails sent\n4,586\nvs. last period\n13 Sep\nToday\n81\nRefunds\n37\nvs. last period\n13 Sep\nToday\nSales overview\n$3,930.34\n+44.9%\nvs. last period\nAll items\n13 Sep\nToday\nPro license\nOne-time\nSet up\nLicenses sold\n668 licenses\n12%\nvs. last period\nLast period\n595\nThis period\n668\nSee full analytics\nWhen to use\nThe top of a dashboard: a few headline numbers with their trend, one chart that compares this period with the last, and one product or plan in focus\nSales, growth and usage overviews of a SaaS or AI product, above a table or a list\nWhen the charts belong together – same range, same filter – and should react as one\nWhen not to use\nOne metric in depth – use KPI Chart or Breakdown Chart\nParts of a whole (shares, funnels, rankings) – the board only draws trends over time\nReports that are printed or exported – this is built for pointing and switching\nInstallation\n\nKPI Board is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nThe shape of one range\nThis example is part of Pro\nGet Pro\nWith a second filter and an action\nThis example is part of Pro\nGet Pro\nAPI reference\nKPIBoard\nProp\tType\tDefault\tDescription\ndata\tRecord<string, KpiBoardData>\t–\tOne data set per range id: { stats, overview, focus }\nranges\t{ id: string; label: string }[]\t–\tOptions of the date range picker\nrange\tstring\t–\tControlled range id\ndefaultRange\tstring\tfirst range\tStarting range when uncontrolled\nonRangeChange\t(id: string) => void\t–\tCalled with the new range\nsegments\t{ id: string; label: string }[]\t–\tA filter inside the overview card, e.g. All items / Pro / Team – it only switches that card's lines; no filter when left out\nsegment\tstring\t–\tControlled segment id\ndefaultSegment\tstring\tfirst segment\tStarting segment when uncontrolled\nonSegmentChange\t(id: string) => void\t–\tCalled with the new segment\ncompareLabel\tstring\t\"vs. last period\"\tWords after every change\ncurrentLabel\tstring\t\"This period\"\tName of the main line in the tooltip and the focus card\npreviousLabel\tstring\t\"Last period\"\tName of the comparison line\nformatMoney\t(value: number) => string\t$1,234.00\tFormats money values\nicon\tReactNode\t–\tIcon in the focus card\ntitle\tstring\t–\tHeading on the left of the bar above the cards\nsetup\t{ label: string; onClick: () => void }\t–\tThe small button at the top right of the focus card, e.g. Set up\naction\t{ label: string; onClick: () => void }\t–\tThe button at the bottom of the focus card\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nTab\tThrough the pickers and the action\nEnter or Space or ↓\tOn a picker: opens its menu\n↑ or ↓ or Home or End\tIn an open menu: moves through the choices\nEnter\tPicks the highlighted choice\nEsc\tCloses the menu without changing anything\nAccessibility\nEvery card is a labelled region with its numbers as text; the charts themselves are decorative\nThe pickers are comboboxes with a listbox: the open state, the highlighted and the chosen option are announced\nChanges carry an arrow or a sign next to the color, and the color follows whether the change is good news (lowerIsBetter)\nMotion\nOn first view the cards rise in one after another and every line draws itself in from the left\nSwitching the range rolls every number in one shared tween while every line is drawn in again from the left\nThe filter inside the overview does the same for that card only – the other cards stay still\nHovering a small card marks the day under the pointer with a dot, its value in a tag and the date on the axis\nHovering the overview shows a dark tooltip that compares this period with the last at that day\nWith prefers-reduced-motion everything switches without movement\nResponsive behavior\nThe date range sits above the cards on the right. Three small cards over a wide overview and the focus card; below 820px of container width the two lower cards take a full row each, below 600px everything stacks\nIt follows its container, not the window\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nNotes for AI\n\nGive your coding assistant this summary instead of screenshots.\n\nSeries may have different numbers of points per range (7 days, 30 days, 13 weeks) – each range is drawn in fresh\nA stat's value is the sum of its series; `previous` is the total of the period before and drives the change on the right\nThe date range sits in the bar above the cards because it changes all of them; the picker inside the overview is the segment and only switches the overview's own lines (overview.segments)\nRelated\nMetrics Dashboard\nAnalytics\nSales overview – KPI cards pick the metric, one chart switches between dotted line and bars, with top products and channels\nKPI Chart\nData display\nMetric card with a multi-line chart and a tooltip that follows the pointer\nUsage Meter\nData display\nPlan usage and AI credits – a stacked credits meter by category, daily sparkline, limits and a button that speaks up near the limit\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-kb",
+    "ui-kb__bar",
+    "ui-kb__heading",
+    "ui-kb__pick",
+    "ui-kb__pick-button",
+    "ui-kb__card ui-kb__stat",
+    "ui-kb__row",
+    "ui-kb__pair",
+    "ui-kb__pair ui-kb__pair--end",
+    "ui-kb__change",
+    "ui-kb__plot ui-kb__plot--small",
+    "ui-kb__axis",
+    "ui-kb__card ui-kb__overview",
+    "ui-kb__row ui-kb__row--top",
+    "ui-kb__label",
+    "ui-kb__figure",
+    "ui-kb__vs",
+    "ui-kb__plot ui-kb__plot--large",
+    "ui-kb__card ui-kb__focus",
+    "ui-kb__product",
+    "ui-kb__icon",
+    "ui-kb__setup",
+    "ui-kb__figure ui-kb__figure--small",
+    "ui-kb__legend",
+    "ui-kb__action"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Last 30 days",
+      "label": "Date range"
+    },
+    {
+      "text": "All items",
+      "label": "Segment"
+    },
+    {
+      "text": "Set up",
+      "label": null
+    },
+    {
+      "text": "See full analytics",
+      "label": null
+    }
+  ],
+  "route": "/blocks/kpi-board",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "f51186b5b081"
+  ]
+}

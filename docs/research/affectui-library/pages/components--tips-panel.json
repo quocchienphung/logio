@@ -1,0 +1,70 @@
+{
+  "title": "Tips Panel",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nTips Panel\nTips Panel\n\nGrid of short tips with one action each – taken tips turn into a done state.\n\n$ pnpm dlx shadcn@latest add https://www.affectui.com/r/tips-panel-clean.json\nPreview\nCode\nCopy prompt\nMCP\nCopy\nTips\n0/9 done\n\nInvite your team\n\nWork on projects together and keep feedback in one place.\n\nInvite\n\nQuick search\n\nPress ⌘K to jump to any page, project or setting.\n\nTry it\n\nWeekly digest\n\nGet a short summary of what changed every Monday morning.\n\nTurn on\n\nConnect Slack\n\nPost an update to a channel when something needs your attention.\n\nConnect\n\nMobile app\n\nCheck activity and approve requests while you're on the go.\n\nGet the app\n\nReady for Pro?\n\nUnlimited projects, priority support and advanced analytics.\n\nSee plans\n\nDark mode\n\nSwitch the theme or follow your system setting automatically.\n\nSwitch\n\nAPI keys\n\nAutomate your workflow and pull data into your own tools.\n\nCreate key\n\nExport data\n\nDownload every project as CSV whenever you need a copy.\n\nExport\nClose\nWhen to use\nPointing new users to features they haven't tried yet\nA “What's new” or getting-started panel in a dashboard or a dialog\nWhen not to use\nSteps that build on each other – use the Setup Guide\nA single announcement – a banner or toast is lighter\nInstallation\n\nAdd Tips Panel with the shadcn CLI – your project needs a components.json, see Installation in the docs – or copy the file by hand.\n\nRequires React 19.\n\nCLI\nManual\npnpm\nnpm\nyarn\nbun\nCopy\npnpm dlx shadcn@latest add https://www.affectui.com/r/tips-panel-clean.json\nUsage\nexample.tsx\nCopy\nimport { Kbd, TipsPanel } from \"@/components/ui/tips-panel-clean\";\n\nconst tips = [\n  { id: \"search\", title: \"Quick search\", description: <>Press <Kbd>⌘K</Kbd> to jump anywhere.</>, action: \"Try it\" },\n  { id: \"pro\", title: \"Ready for Pro?\", description: \"Unlimited projects and priority support.\", action: \"See plans\", primary: true },\n];\n\nexport function Tips() {\n  return <TipsPanel tips={tips} onClose={() => setOpen(false)} />;\n}\nAPI reference\nTipsPanel\nProp\tType\tDefault\tDescription\ntips\tTip[]\t–\tid, title, description, action, doneLabel, primary and onAction\ntitle\tstring\t\"Tips\"\tHeading at the top of the card\nonClose\t() => void\t–\tShows a Close button in the last row of the card\ncloseLabel\tstring\t\"Close\"\tText of the Close button\nclassName\tstring\t–\tExtra class on the card\nKeyboard interactions\nTab\tMove between the tip actions and Close\nEnter or Space\tTake the focused action\nAccessibility\nEach tip is a list item with a real button; the done state is announced as a status\nThe counter in the heading is a polite live region\nMotion\nTips fade in one after another; a taken tip pops into its done state\nReduced motion turns both off\nResponsive behavior\nSet --ui-tpc-max-height on the panel to change how tall the list grows before it scrolls (420px by default)\nThree columns, two below 560px panel width, one below 380px – based on the panel's own width\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nRelated\nSetup Guide\nFeedback\nOnboarding panel with a progress bar and collapsible task groups that strike through when done\nDecision Inbox\nFeedback\nOpen decisions with two quick answers each – answered ones confirm and fold away\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-tpc",
+    "ui-tpc__head",
+    "ui-tpc__title",
+    "ui-tpc__count",
+    "ui-tpc__body",
+    "ui-tpc__grid",
+    "ui-tpc__tip",
+    "ui-tpc__tip-title",
+    "ui-tpc__tip-text",
+    "ui-tpc__btn",
+    "ui-tpc__kbd",
+    "ui-tpc__btn ui-tpc__btn--primary",
+    "ui-tpc__foot"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Invite",
+      "label": null
+    },
+    {
+      "text": "Try it",
+      "label": null
+    },
+    {
+      "text": "Turn on",
+      "label": null
+    },
+    {
+      "text": "Connect",
+      "label": null
+    },
+    {
+      "text": "Get the app",
+      "label": null
+    },
+    {
+      "text": "See plans",
+      "label": null
+    },
+    {
+      "text": "Switch",
+      "label": null
+    },
+    {
+      "text": "Create key",
+      "label": null
+    },
+    {
+      "text": "Export",
+      "label": null
+    },
+    {
+      "text": "Close",
+      "label": null
+    }
+  ],
+  "route": "/components/tips-panel",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "31c63f494822"
+  ]
+}

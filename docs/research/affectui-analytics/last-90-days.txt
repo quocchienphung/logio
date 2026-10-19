@@ -1,0 +1,125 @@
+A
+Acme
+Home
+Revenue
+Invoices
+12
+Payouts
+Customers
+Channels
+Online store
+Marketplace
+Wholesale
+Subscriptions
+New in Acme
+New in Acme
+Shared folders
+Full changelog
+Getting started
+13% done · Great start!
+AM
+Alex Morgan
+Revenue
+Last 90 days
+Export
+Save as report
+Gross revenue
+$1,243,715
++12.5%
+Active customers
+10,225
++8.2%
+Conversion
+3.38%
++0.4%
+Refund rate
+1.9%
+-0.3%
+Revenue by channel
+
+$1243.6k
++$101.9k
+
+$80k
+$40k
+$0
+
+Dec 10
+
+Organic
+$54.2k
+Paid ads
+$50k
+Referral
+$25.1k
+Email
+$15.7k
+Dec 10
+Jan 24
+Mar 9
+
+Top 4 channels
+
+Revenue breakdown
+Gross sales
+$1,344,309
+Discounts
+−$53,922
+Refunds
+−$22,369
+Shipping
+$37,926
+Taxes
+$107,276
+Net revenue
+$1,243,715
+Top products
+Annual plan
+$495,360
+Team seats
+$311,535
+Monthly plan
+$244,068
+Add-ons
+$124,356
+Sessions over time
+
+211.6k
++30k
+
+40k
+20k
+0
+
+Dec 10
+
+This week
+23k
+Last week
+23k
+Dec 10
+Jan 24
+Mar 9
+
+This period vs. the one before
+
+Average order value
+
+$141
++$17
+
+$160
+$80
+$0
+
+Dec 10
+
+This week
+$118
+Last week
+$112
+Dec 10
+Jan 24
+Mar 9
+
+This period vs. the one before

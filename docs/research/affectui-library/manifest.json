@@ -1,0 +1,1130 @@
+[
+  {
+    "route": "/blocks/agent-gallery",
+    "title": "Agent Gallery",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "989f446119d7"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/ai-workspace",
+    "title": "AI Workspace",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "d8f8a2ab27d9",
+      "74df688b6da5"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/app-directory",
+    "title": "App Directory",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "d347af5e4f60"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/client-context",
+    "title": "Client Context",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "f3f89f4232d0"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/invoice-credit",
+    "title": "Invoice & Credit Note",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "6acf24c01388"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/kpi-board",
+    "title": "KPI Board",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "f51186b5b081"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/logo-marquee",
+    "title": "Logo Marquee",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "05e5206db5b1"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/blocks/metrics-dashboard",
+    "title": "Metrics Dashboard",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "1ed824d366b6"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/pricing-plans",
+    "title": "Pricing Plans",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "2f2f0d837744"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/task-board",
+    "title": "Task Board",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "577f244e009b"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/blocks/testimonial-wall",
+    "title": "Testimonial Wall",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "817fe4c52f61"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/agent-inbox",
+    "title": "Agent Inbox",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "0826c98b48b8"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/agent-lanes",
+    "title": "Agent Lanes",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "ae4f4bd9614c"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/agent-plan",
+    "title": "Agent Plan",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "7167fe233b7e"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/agent-steering",
+    "title": "Agent Steering",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "19cf69202b2f"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/agent-tree",
+    "title": "Agent Tree",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "172ae21ec517"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/ai-answer",
+    "title": "AI Answer",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "4d794cee6246"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/approval-card",
+    "title": "Approval Card",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "25231a28d007"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/autonomy-dial",
+    "title": "Autonomy Dial",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "ca7e9c4ed0a9"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/billing-schedule",
+    "title": "Billing Schedule",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "94cfe54e524d"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/breakdown-chart",
+    "title": "Breakdown Chart",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "c8d3e0886606"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/button",
+    "title": "Button",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "67863d52a120"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/change-summary",
+    "title": "Change Summary",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "fed8c44bd794"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/chat-composer",
+    "title": "Chat Composer",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "49481fe236e7"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/cited-answer",
+    "title": "Cited Answer",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "c8a51e4c812e"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/combobox",
+    "title": "Combobox",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "3b58240dd639"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/command-menu",
+    "title": "Command Menu",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "2edcc6bd57ce"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/comment-thread",
+    "title": "Comment Thread",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "9d1534ffd1dd"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/comments-panel",
+    "title": "Comments Panel",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "8cbb84107ed3"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/compact-breakdown",
+    "title": "Compact Breakdown",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "4dd62b954b2e"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/context-window",
+    "title": "Context Window",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "09c9dedd94ab"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/data-table",
+    "title": "Data Table",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "d1417a86dff0"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/date-range-picker",
+    "title": "Date Range Picker",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "f929de205a45"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/decision-inbox",
+    "title": "Decision Inbox",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "00611f93b21e"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/delegate-board",
+    "title": "Delegate Board",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "9ed91d2401f6"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/dropzone",
+    "title": "Dropzone",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "81c7ccebf67c"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/email-draft",
+    "title": "Email Draft",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "aab2940aa1b0"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/experiment-card",
+    "title": "Experiment Card",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "4ab637c07880"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/filter-menu",
+    "title": "Filter Menu",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "0a8de6cfb5a0"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/inline-diff",
+    "title": "Inline Diff",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "62a0475ff1ba"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/integration-picker",
+    "title": "Integration Picker",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "0add03f0fcd5"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/integration-settings",
+    "title": "Integration Settings",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "a4483625eb54"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/kpi-chart",
+    "title": "KPI Chart",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "924309e96741"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/memory-panel",
+    "title": "Memory Panel",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "5c90a62afbda"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/message-actions",
+    "title": "Message Actions",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e921a69c414d"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/model-picker",
+    "title": "Model Picker",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "6394a9054369"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/notification-stack",
+    "title": "Notification Stack",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "039c60562785"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/otp-input",
+    "title": "OTP Input",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "046aa9b6840c"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/permission-request",
+    "title": "Permission Request",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "d5e395953960"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/profile-menu",
+    "title": "Profile Menu",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e3ba4ffdc108"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/progress-tracker",
+    "title": "Progress Tracker",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "1bf2c7b0fb1f"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/project-card",
+    "title": "Project Card",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "dc6e37e37149"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/prompt-library",
+    "title": "Prompt Library",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "fc959a9dc534"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/reaction-bar",
+    "title": "Reaction Bar",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "f021408ee5ce"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/segmented-control",
+    "title": "Segmented Control",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "6062aa6819e9"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/setup-guide",
+    "title": "Setup Guide",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "1212e756502b"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/smart-recommendation",
+    "title": "Smart Recommendation",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "69fc72b0d26f"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/stepper-form",
+    "title": "Stepper Form",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "fadab204fcc1"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/thinking-loader",
+    "title": "Thinking Loader",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e487272fa573"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/thinking-state",
+    "title": "Thinking State",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "716bd433dcbc"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/tips-panel",
+    "title": "Tips Panel",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "31c63f494822"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/toaster",
+    "title": "Toaster",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e400e313c4d7"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/tool-call-card",
+    "title": "Tool Call Card",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "c1e88c6e144c"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/components/usage-meter",
+    "title": "Usage Meter",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "5ca2b6ca7985"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/components/writing-assistant",
+    "title": "Writing Assistant",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "f48a98a634dc"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/illustrations/agent-team",
+    "title": "Agent Team",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "934b7277e905"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/cover-flow",
+    "title": "Cover Flow",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "39af021f81f2"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/empty-calendar",
+    "title": "Empty Calendar",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "9b639800dd1a"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/enrichment-orbit",
+    "title": "Enrichment Orbit",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e2324110c907"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/frost-cloud",
+    "title": "Frost Cloud",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "eebd4c184f0e"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/ghosted-chat",
+    "title": "Ghosted Chat",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "d4da45167739"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/glass-folder",
+    "title": "Glass Folder",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "5cca34febce2"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/illustrations/glow-cloud",
+    "title": "Glow Cloud",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "8ad5326e438f"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/glow-keyboard",
+    "title": "Glow Keyboard",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "3c2201818456"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/illustrations/integration-beam",
+    "title": "Integration Beam",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "7271eb54b4d6"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/integration-flow",
+    "title": "Integration Flow",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "b27b42de9e1a"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/illustrations/integration-grid",
+    "title": "Integration Grid",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "dc8073498583"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/layer-stack",
+    "title": "Layer Stack",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "939853f0c0f5"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/lead-sourcing",
+    "title": "Lead Sourcing",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "0db4509d6ee1"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/logo-cluster",
+    "title": "Logo Cluster",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "f6cfb5590973"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/model-wheel",
+    "title": "Model Wheel",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "7a963ea6e1a5"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/outreach-branches",
+    "title": "Outreach Branches",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "3ea6315f4341"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/illustrations/project-flow",
+    "title": "Project Flow",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "41884e04fc0d"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/illustrations/region-dach",
+    "title": "DACH Region",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "92236b304ccf"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/side-folder",
+    "title": "Side Folder",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "47dea45b764e"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/tab-overload",
+    "title": "Tab Overload",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "b070c2217d14"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/team-invite",
+    "title": "Team Invite",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "61576a0e74fb"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/illustrations/voice-orb",
+    "title": "Voice Orb",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e8ea01482059"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/illustrations/world-map",
+    "title": "World Map Continental",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "045a6fb0adcb"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/motion/blur-crossfade",
+    "title": "Blur Crossfade",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "29ef857ef23a"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/motion/gradient-floor",
+    "title": "Gradient Floor",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e891f5d19c55"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/motion/gradient-text",
+    "title": "Gradient Text",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "e3c8205f1e7d"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/motion/grid-background",
+    "title": "Grid Background",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118eafab2b1e"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/motion/number-ticker",
+    "title": "Number Ticker",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "baf31933418c"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/motion/shimmer-loader",
+    "title": "Shimmer Loader",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "7f8913d63e35"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/motion/text-reveal",
+    "title": "Text Reveal",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "97a4f155472d"
+    ],
+    "status": "captured",
+    "pro": false
+  },
+  {
+    "route": "/motion/tilt-card",
+    "title": "Tilt Card",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "539e87d71fdf"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/agent-chat",
+    "title": "Agent Chat",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "2915f459b88a",
+      "b4ddea68c30b",
+      "29bdbc64574f",
+      "5cca34febce2",
+      "f082d3f7954f"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/agent-run",
+    "title": "Agent Run",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "6326f11749ee",
+      "f082d3f7954f",
+      "224a195d0caf",
+      "0e525d9d2fbd",
+      "c6791317a164"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/analytics",
+    "title": "Analytics",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "a838222d9470",
+      "f082d3f7954f",
+      "8dd1260ffd63"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/app-shell",
+    "title": "App Shell",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/assistant-home",
+    "title": "Assistant Home",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "738282ccfc56",
+      "29bdbc64574f",
+      "5cca34febce2"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/crm",
+    "title": "CRM",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "3758355579b5",
+      "42e78154ac11"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/evals",
+    "title": "Evals",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "5f7305f8f35f",
+      "f082d3f7954f",
+      "8dd1260ffd63",
+      "c6791317a164",
+      "4ef6915e98a9"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/files",
+    "title": "Folders",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "2b31afde027d",
+      "f082d3f7954f",
+      "5cca34febce2"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/folder",
+    "title": "Folder",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "b78b914b9656",
+      "5cca34febce2",
+      "f082d3f7954f"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/integrations",
+    "title": "Integrations",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "b29c77b07d9c",
+      "f082d3f7954f"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/onboarding",
+    "title": "Onboarding",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "11ee2508949d",
+      "f082d3f7954f"
+    ],
+    "status": "captured",
+    "pro": true
+  },
+  {
+    "route": "/screens/settings-billing",
+    "title": "Settings & Billing",
+    "styleHashes": [
+      "bdc9f7e471d2",
+      "118a7eb73e3d",
+      "45449a2a8a76",
+      "6f151baf91eb",
+      "f082d3f7954f",
+      "4ef6915e98a9"
+    ],
+    "status": "captured",
+    "pro": true
+  }
+]

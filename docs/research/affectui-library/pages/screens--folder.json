@@ -1,0 +1,183 @@
+{
+  "title": "Folder",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nScreens\nFolder\nFolder\n\nInside one folder: breadcrumbs, file cards with previews, and an empty state.\n\nGet Pro to install\nPreview\nCode\nOpen full screen\nCopy prompt\nMCP\nCopy\nA\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n/\nQ3 Campaign\nFiles\nQ3 Campaign\nShare\nUpload files\nDOC\nCampaign-Brief\nDocument · 2 hours ago\nPDF\nLaunch-Plan\nPDF · Yesterday\nXLS\nMedia-Budget\nSpreadsheet · Yesterday\nDOC\nAd-Copy\nDocument · 3 days ago\nXLS\nResults-Q2\nSpreadsheet · Last week\nWhen to use\nDetail view of a project, folder or collection\nPairs with the Folders screen\nWhen not to use\nNested trees deeper than one level\nInstallation\n\nFolder is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nAPI reference\nFolder\nProp\tType\tDefault\tDescription\nfolder\tstring\t\"Q3 Campaign\"\tFolder that is open – the title, crumbs and files follow it\nonNavigate\t(label: string) => void\t–\tCalled with the label of a sidebar item or project\nworkspace\tstring\t\"Acme\"\tWorkspace name in the sidebar\nuser\t{ name: string; avatar?: string }\t{ name: \"Alex Morgan\" }\tAccount at the bottom of the sidebar\nclassName\tstring\t–\tExtra class on the root\nAccessibility\nSidebar items, projects and the collapse toggle are real buttons with labels\nIcons are decorative and hidden from screen readers\nResponsive behavior\nFills its container – give it the full viewport height in your app\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"; colors are CSS variables on .ui-as\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-as ui-as-app",
+    "ui-as-icon-btn ui-as-side-open",
+    "ui-as-scrim",
+    "ui-as-side",
+    "ui-as-side__head",
+    "ui-as-anchor",
+    "ui-as-side__workspace",
+    "ui-as-side__logo",
+    "ui-as-side__tools",
+    "ui-as-icon-btn",
+    "ui-as-side__nav",
+    "ui-as-side__group",
+    "ui-as-side__item",
+    "ui-as-side__label",
+    "ui-as-side__foot",
+    "ui-as-news",
+    "ui-as-news__card ui-as-news__card--back",
+    "ui-as-news__kicker",
+    "ui-as-news__card",
+    "ui-as-news__top",
+    "ui-as-news__close",
+    "ui-as-news__title",
+    "ui-as-news__more",
+    "ui-as-guide-slot",
+    "ui-as-guide",
+    "ui-as-guide__inner",
+    "ui-as-steps ui-as-guide__content",
+    "ui-as-steps__title",
+    "ui-as-steps__sub",
+    "ui-as-steps__cheer",
+    "ui-as-steps__bar",
+    "ui-as-anchor ui-as-user-menu",
+    "ui-as-user",
+    "ui-as-user__initials",
+    "ui-as-main",
+    "ui-as-crumbs",
+    "ui-as-page ui-as-page--folder",
+    "ui-as-back",
+    "ui-as-folder-head",
+    "ui-as-folder-head__icon",
+    "ui-fd",
+    "ui-fd-icon",
+    "ui-fd-front",
+    "ui-as-page-title",
+    "ui-as-folder-head__actions",
+    "ui-button",
+    "ui-button__icon",
+    "ui-button__label",
+    "ui-as-folder-files ui-as-file-grid",
+    "ui-as-rise",
+    "ui-as-template",
+    "ui-as-template__preview",
+    "ui-as-doc",
+    "ui-as-doc__art",
+    "ui-as-doc__back",
+    "ui-as-doc__page",
+    "ui-as-doc__title",
+    "ui-as-doc__line",
+    "ui-as-doc__type",
+    "ui-as-template__name",
+    "ui-as-meta",
+    "ui-as-doc__image",
+    "ui-as-sheet"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "",
+      "label": "Open sidebar"
+    },
+    {
+      "text": "AAcme",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Search"
+    },
+    {
+      "text": "",
+      "label": "Collapse sidebar"
+    },
+    {
+      "text": "New chat",
+      "label": null
+    },
+    {
+      "text": "Folders",
+      "label": null
+    },
+    {
+      "text": "Integrations",
+      "label": null
+    },
+    {
+      "text": "Q3 Campaign",
+      "label": null
+    },
+    {
+      "text": "Brand assets",
+      "label": null
+    },
+    {
+      "text": "Hiring",
+      "label": null
+    },
+    {
+      "text": "Research",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Dismiss"
+    },
+    {
+      "text": "Full changelog",
+      "label": null
+    },
+    {
+      "text": "Getting started13% done · Great start!",
+      "label": null
+    },
+    {
+      "text": "AMAlex Morgan",
+      "label": null
+    },
+    {
+      "text": "Files",
+      "label": null
+    },
+    {
+      "text": "Files",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "More"
+    },
+    {
+      "text": "Share",
+      "label": null
+    },
+    {
+      "text": "Upload files",
+      "label": null
+    },
+    {
+      "text": "DOCCampaign-BriefDocument · 2 hours ago",
+      "label": null
+    },
+    {
+      "text": "PDFLaunch-PlanPDF · Yesterday",
+      "label": null
+    },
+    {
+      "text": "XLSMedia-BudgetSpreadsheet · Yesterday",
+      "label": null
+    },
+    {
+      "text": "DOCAd-CopyDocument · 3 days ago",
+      "label": null
+    },
+    {
+      "text": "XLSResults-Q2Spreadsheet · Last week",
+      "label": null
+    }
+  ],
+  "route": "/screens/folder",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "118a7eb73e3d",
+    "b78b914b9656",
+    "5cca34febce2",
+    "f082d3f7954f"
+  ]
+}

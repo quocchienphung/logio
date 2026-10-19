@@ -14,6 +14,7 @@
 import * as THREE from "three";
 import { POST_FRAG, POST_VERT, WAVE_LIGHT_FRAG, WAVE_VERT } from "@/components/stripe/Hero/wave/shaders";
 import { debounce, Disposer, observeIntersection, onReducedMotionChange, onVisibilityChange, reducedMotion, type Cleanup } from "../revenue-shared/env";
+import { pageSettled } from "@/lib/pageSettled";
 
 const PALETTE = "/sites/stripe-com-9ababc9a/revenue/billing-hero-palette-mono.png";
 
@@ -236,6 +237,15 @@ class BillingWave {
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
     if (!isCoarseTouch()) this.initPost();
+    // upload the palette and link both programs ahead of the first draw (KHR_parallel_shader_compile),
+    // which would otherwise do it synchronously in one long frame, mid page-transition on arrival; the
+    // wave is compiled against the post target so its program matches the one the first draw looks up
+    this.renderer.initTexture(tex);
+    this.renderer.setRenderTarget(this.target);
+    const compiled = this.renderer.compileAsync(this.scene, this.camera);
+    this.renderer.setRenderTarget(null);
+    await Promise.all([compiled, this.postScene && this.renderer.compileAsync(this.postScene, this.postCamera)]);
+    if (this.disposed) return;
     this.ro = new ResizeObserver(() => this.onResize());
     this.ro.observe(this.canvas);
     this.raf = requestAnimationFrame(this.loop);
@@ -418,7 +428,24 @@ function webglAvailable(): boolean {
   }
 }
 
+/**
+ * The capability probe and the renderer's context are synchronous round trips to the GPU process, which
+ * stall while it draws the page transition: the wave starts once that has settled (the static wave shows
+ * until its first frame, as on a first load).
+ */
 export function mountBillingHeroWave(root: HTMLElement): Cleanup {
+  let cancelled = false;
+  let stop: Cleanup | undefined;
+  void pageSettled().then(() => {
+    if (!cancelled) stop = mountWave(root);
+  });
+  return () => {
+    cancelled = true;
+    stop?.();
+  };
+}
+
+function mountWave(root: HTMLElement): Cleanup {
   const d = new Disposer();
   const wave = root.querySelector<HTMLElement>(".billing-hero__wave");
   const contents = wave?.querySelector<HTMLElement>(".hero-wave-animation__contents");

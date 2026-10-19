@@ -1,0 +1,146 @@
+{
+  "title": "App Directory",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nBlocks\nApp Directory\nApp Directory\n\nBrowse, search and connect integrations – categories, filters and app cards with a connect flow.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nApps\n1 connected\nIntegrations\n\nConnect the tools your team already works in. Learn more\n\nFilter\nEssentials\n8\nAll apps\n22\nAnalytics\n2\nAutomation\n2\nBilling\n2\nCommunication\n4\nCRM\n2\nDesign\n1\nDevelopment\n2\nDocs\n2\nProduct\n3\nScheduling\n3\nStorage\n3\nEssentials\n8\nSlack\nBy Slack\n\nGet alerts in your channels and act on them without leaving the conversation.\n\nConnected\nNotion\nBy Notion\n\nTurn records into pages and keep project docs in sync both ways.\n\nConnect\nLinear\nBy Linear\n\nCreate issues from customer feedback and track them to release.\n\nConnect\nFigma\nBy Figma\n\nPreview designs inline and link frames to the work they belong to.\n\nConnect\nGitHub\nBy GitHub\n\nLink pull requests and see deploy status next to every task.\n\nConnect\nStripe\nBy Stripe\n\nSync customers, invoices and subscriptions in real time.\n\nConnect\nZapier\nBy Zapier\n\nConnect 6,000 apps with no-code workflows and triggers.\n\nConnect\nHubSpot\nBy HubSpot\n\nKeep contacts, companies and deals matched across both tools.\n\nConnect\nDiscover more\n+14 apps\nView all\nWhen to use\nAn integrations or marketplace page in a SaaS product\nSettings screens where people connect and disconnect third-party tools\nWhen not to use\nTwo or three integrations – a short list in settings is enough\nHundreds of apps – add server-side search and paging\nInstallation\n\nApp Directory is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nAPI reference\nAppDirectory\nProp\tType\tDefault\tDescription\napps\tApp[]\t–\tid, name, vendor, description, categories, logo, tile color, essential and connected\ncategories\tAppCategory[]\t–\tSidebar entries with id, label and icon – essentials and all are built in\ntitle\tstring\t\"Integrations\"\tHeading inside the card\nsubtitle\tstring\t–\tLine under the heading\nonToggle\t(app: App, connected: boolean) => void\t–\tCalled after an app was connected or disconnected\nclassName\tstring\t–\tExtra class on the block\nKeyboard interactions\nTab\tMove through search, filter, categories and the connect buttons\nEscape\tClose the filter menu\nAccessibility\nSearch has a label, the filter is a menu of radio items, the current category is marked\nConnect buttons say which app they connect; the result heading is a live region\nMotion\nCards fade in, connecting shows a spinner, the filter menu drops in – reduced motion turns this off\nResponsive behavior\nThree columns with a sidebar on wide containers; below 820px the categories become a row of chips and the grid two columns; below 560px one column\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-ad",
+    "ui-ad__bar",
+    "ui-ad__bar-title",
+    "ui-ad__bar-meta",
+    "ui-ad__card",
+    "ui-ad__intro",
+    "ui-ad__title",
+    "ui-ad__subtitle",
+    "ui-ad__link",
+    "ui-ad__tools",
+    "ui-ad__search",
+    "ui-ad__filter",
+    "ui-ad__btn",
+    "ui-ad__layout",
+    "ui-ad__nav",
+    "ui-ad__nav-item",
+    "ui-ad__nav-icon",
+    "ui-ad__nav-label",
+    "ui-ad__nav-count",
+    "ui-ad__morph",
+    "ui-ad__main",
+    "ui-ad__heading",
+    "ui-ad__grid",
+    "ui-ad__app",
+    "ui-ad__app-head",
+    "ui-ad__tile",
+    "ui-ad__app-name",
+    "ui-ad__name",
+    "ui-ad__vendor",
+    "ui-ad__desc",
+    "ui-ad__connect",
+    "ui-ad__connect-label",
+    "ui-ad__on-label",
+    "ui-ad__off-label",
+    "ui-ad__app ui-ad__discover",
+    "ui-ad__discover-head",
+    "ui-ad__stack"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Filter",
+      "label": null
+    },
+    {
+      "text": "Essentials8",
+      "label": null
+    },
+    {
+      "text": "All apps22",
+      "label": null
+    },
+    {
+      "text": "Analytics2",
+      "label": null
+    },
+    {
+      "text": "Automation2",
+      "label": null
+    },
+    {
+      "text": "Billing2",
+      "label": null
+    },
+    {
+      "text": "Communication4",
+      "label": null
+    },
+    {
+      "text": "CRM2",
+      "label": null
+    },
+    {
+      "text": "Design1",
+      "label": null
+    },
+    {
+      "text": "Development2",
+      "label": null
+    },
+    {
+      "text": "Docs2",
+      "label": null
+    },
+    {
+      "text": "Product3",
+      "label": null
+    },
+    {
+      "text": "Scheduling3",
+      "label": null
+    },
+    {
+      "text": "Storage3",
+      "label": null
+    },
+    {
+      "text": " ConnectedDisconnect",
+      "label": "Disconnect Slack"
+    },
+    {
+      "text": "Connect",
+      "label": "Connect Notion"
+    },
+    {
+      "text": "Connect",
+      "label": "Connect Linear"
+    },
+    {
+      "text": "Connect",
+      "label": "Connect Figma"
+    },
+    {
+      "text": "Connect",
+      "label": "Connect GitHub"
+    },
+    {
+      "text": "Connect",
+      "label": "Connect Stripe"
+    },
+    {
+      "text": "Connect",
+      "label": "Connect Zapier"
+    },
+    {
+      "text": "Connect",
+      "label": "Connect HubSpot"
+    },
+    {
+      "text": "View all",
+      "label": null
+    }
+  ],
+  "route": "/blocks/app-directory",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "d347af5e4f60"
+  ]
+}

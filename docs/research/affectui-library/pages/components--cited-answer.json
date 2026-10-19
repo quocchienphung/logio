@@ -1,0 +1,83 @@
+{
+  "title": "Cited Answer",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nCited Answer\nCited Answer\n\nAn AI answer wired to its sources – point at a citation to light up its sentence and source, click to unfold the quoted passage with the matching words marked.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nT\nL\nI\n3 sources · 12 pages read\n\nThe biggest win is prompt caching: the provider reuses the processed start of your prompt, so a long system prompt isn't recomputed on every call.1 On prompts over 10K tokens that can cut time to first token by up to 80%.1 It only works while that start stays identical, so put the system prompt, tools and long documents first and anything that changes per request last.21\n\nFor repeated questions, add a semantic cache in front of the model: close matches get a stored answer in about 40 ms,3 which covered nearly a third of FAQ-style traffic in one production setup.3 Stream the rest, so people see the first words while the answer is still being written.\n\nT\nTokenwise\n1\nL\nLatency Notes\n2\nI\nInference Weekly\n3\n5 of 6 sentences backed by a source\nFollow up\nWhen to use\nSearch, research and support answers where people need to check which sentence comes from which source before they trust it\nA finished answer from your RAG pipeline that already knows the passage behind each claim – the preview shows exactly that passage\nNext to AI Answer: use this one once the answer is done and the point is checking it, not watching it stream\nWhen not to use\nAnswers that are still streaming, with follow-ups and feedback – use AI Answer\nCasual chat without sources – a plain message is lighter\nLong reports with dozens of sources – the source row is made for a handful of chips\nInstallation\n\nCited Answer is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nFrom your model's citations\nThis example is part of Pro\nGet Pro\nStart with a source open, track what people check\nThis example is part of Pro\nGet Pro\nAPI reference\nCitedAnswer\nProp\tType\tDefault\tDescription\nsegments\tCitedSegment[]\t–\t{ text, cite?, paragraph? } – the answer in order. cite lists source ids (one marker each); paragraph starts a new paragraph. Spaces at the edges of text stay outside the highlight\nsources\tCitedSource[]\t–\t{ id, title, site, url?, date?, quote?, highlight?, icon? } – numbered in this order, one chip each\npagesRead\tnumber\t–\tPages read while searching – shown in the head as \"3 sources · 12 pages read\"\ndefaultOpen\tstring\t–\tId of the source whose preview is open at first\nonOpenSource\t(source: CitedSource) => void\t–\tCalled by Open source. With it the link doesn't navigate on its own; without it the url opens in a new tab\nonPreviewChange\t(id: string | null) => void\t–\tCalled when a preview opens, switches or closes\naction\t{ label: string; onClick: () => void }\t–\tA button in the last row of the card, e.g. Follow up\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nTab\tThrough the citation markers in reading order, the source chips and \"+N\", the preview's buttons and the action\nEnter or Space\tOpens or closes the preview of a marker or chip\n← or → or Home or End\tMove between the source chips and \"+N\"\nEsc\tCloses the preview and puts focus on its chip\nAccessibility\nMarkers and chips are buttons named \"Source 2: Latency Notes – title\", with aria-expanded and aria-controls pointing at the preview\nFocusing a marker or chip lights up the same sentences and chip as hovering does\nThe preview is a named region; while closed it is inert\nThe last row of the card is announced politely – what you point at, and \"Quote copied\"\nMotion\nHovering a marker gives its sentence a soft tint and lights up its chip; hovering a chip tints every sentence that cites it and fades the rest of the answer\nThe preview unfolds below the source chips and folds away again; switching to another source crossfades its content in place\nThe line in the last row crossfades: the old line fades out underneath while the new one fades in\nWith prefers-reduced-motion everything switches without movement\nResponsive behavior\nFills its container up to 460px and works from 300px. The source chips stay on one line – whatever doesn't fit goes into \"+N\", which shows them all. Below 400px the card gets tighter, below 360px the preview drops its number tag, below 280px Copy quote keeps only its icon\nTouch screens: larger hit areas around the markers and taller chips and buttons\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nNotes for AI\n\nGive your coding assistant this summary instead of screenshots.\n\nNumbers come from the order of sources, not from the text – cite by id, and reorder sources to renumber\nThe last word of a cited sentence stays on the line with its markers, so a marker never starts a line on its own\nIds in cite that aren't in sources are skipped, so a hallucinated citation never shows a broken marker\nWithout highlight, words of five letters or more (and numbers) that the quote shares with its citing sentences are marked – pass highlight for exact phrases\nThe component doesn't fetch pages – quote should be the passage your retrieval step actually used\nRelated\nAI Answer\nChat\nStreamed answer with source cards, citation chips that preview their source, copy, regenerate, feedback and follow-ups\nTool Call Card\nAgents\nAn agent's tool call in one line – live timer, status and summary, folds open to highlighted arguments and result with copy, retry on errors and a group that sums them up\nThinking State\nChat\nAI working panel with a live timer, searched sources and thinking steps that appear one by one\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-cac",
+    "ui-cac__body",
+    "ui-cac__head",
+    "ui-cac__stack",
+    "ui-cac__glyph",
+    "ui-cac__meta",
+    "ui-cac__dot",
+    "ui-cac__text",
+    "ui-cac__p",
+    "ui-cac__seg",
+    "ui-cac__keep",
+    "ui-cac__marker",
+    "ui-cac__chips",
+    "ui-cac__chip-item",
+    "ui-cac__chip",
+    "ui-cac__chip-name",
+    "ui-cac__chip-num",
+    "ui-cac__ruler",
+    "ui-cac__more",
+    "ui-cac__fold",
+    "ui-cac__clip",
+    "ui-cac__foot",
+    "ui-cac__caption",
+    "ui-cac__swap",
+    "ui-cac__swap-item",
+    "ui-cac__action"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "1",
+      "label": "Source 1: Tokenwise – Prompt caching, explained: what gets stored and for how long"
+    },
+    {
+      "text": "1",
+      "label": "Source 1: Tokenwise – Prompt caching, explained: what gets stored and for how long"
+    },
+    {
+      "text": "2",
+      "label": "Source 2: Latency Notes – Designing cache-friendly prompts"
+    },
+    {
+      "text": "1",
+      "label": "Source 1: Tokenwise – Prompt caching, explained: what gets stored and for how long"
+    },
+    {
+      "text": "3",
+      "label": "Source 3: Inference Weekly – Semantic caching for LLM apps in production"
+    },
+    {
+      "text": "3",
+      "label": "Source 3: Inference Weekly – Semantic caching for LLM apps in production"
+    },
+    {
+      "text": "TTokenwise1",
+      "label": "Source 1: Tokenwise – Prompt caching, explained: what gets stored and for how long"
+    },
+    {
+      "text": "LLatency Notes2",
+      "label": "Source 2: Latency Notes – Designing cache-friendly prompts"
+    },
+    {
+      "text": "IInference Weekly3",
+      "label": "Source 3: Inference Weekly – Semantic caching for LLM apps in production"
+    },
+    {
+      "text": "Follow up",
+      "label": null
+    }
+  ],
+  "route": "/components/cited-answer",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "c8a51e4c812e"
+  ]
+}

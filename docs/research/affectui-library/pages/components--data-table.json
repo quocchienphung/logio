@@ -1,0 +1,94 @@
+{
+  "title": "Data Table",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nData Table\nData Table\n\nSpreadsheet-style table: select cells and ranges, edit in place, copy and paste, undo and sort.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nDesign Stack\n\t\nTool\n\t\nCategory\n\t\nWebsite\n\t\nRenews\n\n\n\t\nFigma\n\tDesign\tfigma.com\tMar 12, 2026\n\n\t\nLinear\n\tIssue tracking\tlinear.app\tJan 4, 2026\n\n\t\nVercel\n\tHosting\tvercel.com\tAug 21, 2026\n\n\t\nFramer\n\tWebsite\tframer.com\tMay 2, 2026\n\n\t\nLoom\n\tVideo\tloom.com\tNov 18, 2026\nAdd row\nDouble-click a cell to edit\nWhen to use\nSmall databases people edit in place – tools, vendors, budgets, contacts\nData that moves to and from Excel or Google Sheets with copy and paste\nLists where people pick several rows to act on\nWhen not to use\nThousands of rows – add virtualisation, filters and server paging with a grid library\nEditing one record with many fields – a form is clearer\nInstallation\n\nData Table is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nRead only\nThis example is part of Pro\nGet Pro\nFixed tag choices and a locked column\nThis example is part of Pro\nGet Pro\nAPI reference\nDataTable\nProp\tType\tDefault\tDescription\ntitle\tstring\t–\tHeading in the title row of the card, also the grid's accessible name\nicon\tReactNode\t–\tIcon in front of the heading\ncolumns\tDataColumn[]\t–\tkey, label, icon, width, type (title, tag, link, number, text), editable and options for tags\nrows\tDataRow[]\t–\tStarting rows – an id, an optional logo and a value per column key\ntagTones\tRecord<string, TagTone>\t–\tTag color per tag text: blue, violet, pink, green, amber or gray\neditable\tboolean\ttrue\tfalse keeps selection and copy, but turns off editing, paste, delete and Add row\nonRowsChange\t(rows: DataRow[]) => void\t–\tCalled with all rows after every edit, paste, clear, delete, undo or redo\nonSelectionChange\t(ids: string[]) => void\t–\tCalled with the ids of the checked rows\nclassName\tstring\t–\tExtra class on the card\nKeyboard interactions\nArrow keys\tMove the active cell\nShift or Arrow keys\tGrow the selected range\n⌘ / Ctrl or Arrow keys\tJump to the first or last row or column\nTab\tMove to the next cell, Shift + Tab to the previous one\nEnter or F2\tEdit the active cell; Enter saves and moves down\nAny character\tStart editing with that character\nEscape\tCancel an edit or collapse the range\nDelete or Backspace\tClear the selected cells\n⌘ / Ctrl or C / X / V\tCopy, cut and paste – works with Excel and Google Sheets\n⌘ / Ctrl or Z\tUndo, add Shift to redo\n⌘ / Ctrl or A\tSelect every cell\nAccessibility\nThe table is a grid with selected cells marked, so screen readers follow the active cell and the range\nColumn headers are sort buttons and report the sort direction\nRow checkboxes have labels; the header checkbox shows a mixed state when only some rows are checked\nMotion\nTag picker drops in, sort arrows turn, checkboxes pop – reduced motion turns all of it off\nResponsive behavior\nThe table scrolls sideways inside the card on narrow screens instead of squeezing the columns\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nPerformance\nMade for up to a few hundred rows; every edit is one state update and can be undone (last 100 steps)\nRelated\nKPI Chart\nData display\nMetric card with a multi-line chart and a tooltip that follows the pointer\nChange Summary\nData display\nWhat moved since last time – one metric per row with a colored trend\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-dtc",
+    "ui-dtc__head",
+    "ui-dtc__title-icon",
+    "ui-dtc__title",
+    "ui-dtc__tools",
+    "ui-dtc__tool",
+    "ui-dtc__body",
+    "ui-dtc__morph",
+    "ui-dtc__scroll",
+    "ui-dtc__table",
+    "ui-dtc__select",
+    "ui-dtc__check",
+    "ui-dtc__th",
+    "ui-dtc__col-icon",
+    "ui-dtc__th-label",
+    "ui-dtc__sort",
+    "ui-dtc__name",
+    "ui-dtc__logo",
+    "ui-dtc__name-text",
+    "ui-dtc__tag",
+    "ui-dtc__link",
+    "ui-dtc__text",
+    "ui-dtc__foot",
+    "ui-dtc__add",
+    "ui-dtc__summary"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "",
+      "label": "Undo (Ctrl Z)"
+    },
+    {
+      "text": "",
+      "label": "Redo (Ctrl Shift Z)"
+    },
+    {
+      "text": "",
+      "label": "Select all rows"
+    },
+    {
+      "text": "Tool",
+      "label": null
+    },
+    {
+      "text": "Category",
+      "label": null
+    },
+    {
+      "text": "Website",
+      "label": null
+    },
+    {
+      "text": "Renews",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Select Figma"
+    },
+    {
+      "text": "",
+      "label": "Select Linear"
+    },
+    {
+      "text": "",
+      "label": "Select Vercel"
+    },
+    {
+      "text": "",
+      "label": "Select Framer"
+    },
+    {
+      "text": "",
+      "label": "Select Loom"
+    },
+    {
+      "text": "Add row",
+      "label": null
+    }
+  ],
+  "route": "/components/data-table",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "d1417a86dff0"
+  ]
+}

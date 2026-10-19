@@ -1,0 +1,103 @@
+{
+  "title": "Agent Inbox",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nAgent Inbox\nAgent Inbox\n\nAll your background agent tasks in one calm list – live clocks and status tags, filter tabs with rolling counts, rows that unfold to the last steps with Approve, Reject, Retry or Open, and glide to their new place.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nAgents\n/\nAgent inbox\nBoard\nList\nNEEDS YOU\n2\nMigrate users table\nSplit users into accounts and profiles on Postgres 17. The dry run on staging passed.\nWaiting for you · 6m 12s\n9\n14\nOpus 5.5\nRead schema and 14 migrations\n6m ago\nWrote migration 0042_split_users\n4m ago\nDry run on staging – no errors\n2m ago\nWants to run it on production\n1m ago\nReject\nApprove\nClean up CRM contacts\nMatched 1,312 likely duplicates, then the merge hit the API rate limit.\nFailed\n2\n6\nHaiku 5.5\nLoaded 18,240 contacts\n9m ago\nMatched 1,312 likely duplicates\n8m ago\nMerge stopped – API rate limit (429)\n7m ago\nRetry\nRUNNING\n2\nReview PR #482\nBilling webhooks: reading the diff and the test run, writing comments.\n3m 40s\n12\n21\nSonnet 5.5\nRead 12 changed files\n2m ago\nRan the test suite – 214 passed\n1m ago\nWriting review comments\nnow\nOpen\nRelease notes v2.4\nGrouping 23 merged pull requests into features and fixes.\n1m 18s\n23\n5\nSonnet 5.5\nCollected 23 merged pull requests\n1m ago\nDrafting the highlights\nnow\nOpen\nDONE\n1\nWeekly metrics digest\nPulled numbers from three dashboards and posted the summary to #metrics.\n4m 12s\n3\n8\nHaiku 5.5\nPulled numbers from 3 dashboards\n22m ago\nPosted to #metrics\n18m ago\nOpen\n2 need you, 2 running\nWhen to use\nAgent products where several tasks run in the background and people come back to see what finished, what failed and what waits for them\nA home screen or dashboard that collects approvals from many runs in one calm board, instead of one modal per agent\nJob queues in general – imports, syncs, evaluations – where each job has a short description, a short history and one next step\nWhen not to use\nOne single approval in the flow of a chat – use Approval Card\nThe plan of one run, step by step – use Agent Plan; for a single tool call use Tool Call Card\nHundreds of jobs – the board is for a few dozen at most; page or search a bigger queue in a table\nInstallation\n\nAgent Inbox is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nWired to your task queue\nThis example is part of Pro\nGet Pro\nAs a list in a side panel\nThis example is part of Pro\nGet Pro\nAPI reference\nAgentInbox\nProp\tType\tDefault\tDescription\ntasks\tAgentTask[]\t–\t{ id, title, description?, agent, status, startedAt?, elapsed?, tools?, sources?, steps? } – status is \"running\", \"waiting\", \"done\" or \"failed\"; steps are { label, time? }, oldest first\nonApprove\t(task: AgentTask) => void\t–\tApprove on a waiting task. Without it the task turns running inside the board\nonReject\t(task: AgentTask) => void\t–\tReject on a waiting task. Without it the task turns failed\nonRetry\t(task: AgentTask) => void\t–\tRetry on a failed task. Without it the task runs again and its clock starts over\nonOpen\t(task: AgentTask) => void\t–\tShows an Open button on running and done tasks\ntitle\tstring\t\"Agent inbox\"\tHeading on the left of the bar, after \"Agents /\"\nview\t\"board\" | \"list\"\t–\tControlled layout\ndefaultView\t\"board\" | \"list\"\t\"board\"\tStarting layout when uncontrolled\nonViewChange\t(view: AgentInboxView) => void\t–\tCalled when Board or List is picked\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nTab\tThrough the layout switch, the cards and the buttons inside an open card\nEnter or Space\tOpens or closes a card, presses Approve, Reject, Retry or Open\nEsc\tCloses the open card and puts focus back on it\nAccessibility\nEach column is a labeled section; each card is a button with aria-expanded, and a closed card's details are inert\nBoard / List is a radio group\nA polite live region says how many tasks need you and how many run\nMotion\nRunning tasks spin a small ring and their clock ticks every second\nWhen a status changes, the card shows its new state in place first, then glides over to its new column (FLIP)\nCards open in place to the last steps as a tiny timeline and the buttons for what you can do now\nWith prefers-reduced-motion everything switches without movement\nResponsive behavior\nThree columns from about 620px; narrower containers always get the list and hide the switch – it works down to 300px\nTouch screens: taller cards and buttons\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nNotes for AI\n\nGive your coding assistant this summary instead of screenshots.\n\nPass startedAt for running and waiting tasks so the clock ticks; pass elapsed for finished ones\nColumns: Needs you holds waiting and failed tasks, then Running and Done; inside a column the cards keep your order\nKeep the description to one or two sentences on what the task is about or where it stands – it is clamped to two lines\nWith a handler the board never changes a status by itself – update the task in your state and the card follows\nRelated\nApproval Card\nAgents\nAn agent asks before it acts – risk badge, preview, Approve and Deny with shortcuts, a pausing countdown, and a smooth morph into a resolved row\nAgent Plan\nAgents\nAn agent's step-by-step plan to review before it runs – rename, drag to reorder, remove or add steps, then watch each one run with live timers and retry from a failed step\nTool Call Card\nAgents\nAn agent's tool call in one line – live timer, status and summary, folds open to highlighted arguments and result with copy, retry on errors and a group that sums them up\nDecision Inbox\nFeedback\nOpen decisions with two quick answers each – answered ones confirm and fold away\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-aic",
+    "ui-aic__bar",
+    "ui-aic__heading",
+    "ui-aic__crumb",
+    "ui-aic__slash",
+    "ui-aic__views",
+    "ui-aic__view",
+    "ui-aic__lanes",
+    "ui-aic__lane",
+    "ui-aic__lane-head",
+    "ui-aic__lane-spark",
+    "ui-aic__lane-name",
+    "ui-aic__count",
+    "ui-aic__cards",
+    "ui-aic__card",
+    "ui-aic__card-main",
+    "ui-aic__title-row",
+    "ui-aic__spark",
+    "ui-aic__title",
+    "ui-aic__desc",
+    "ui-aic__foot",
+    "ui-aic__state",
+    "ui-aic__state-icon",
+    "ui-aic__state-word",
+    "ui-aic__meta",
+    "ui-aic__fold",
+    "ui-aic__clip",
+    "ui-aic__more",
+    "ui-aic__agent",
+    "ui-aic__steps",
+    "ui-aic__actions",
+    "ui-aic__btn",
+    "ui-aic__btn ui-aic__btn--primary",
+    "ui-aic__sr"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Board",
+      "label": null
+    },
+    {
+      "text": "List",
+      "label": null
+    },
+    {
+      "text": "Migrate users tableSplit users into accounts and profiles on Postgres 17. The dry run on staging passed.Waiting for you · 6m 12s914",
+      "label": null
+    },
+    {
+      "text": "Reject",
+      "label": null
+    },
+    {
+      "text": "Approve",
+      "label": null
+    },
+    {
+      "text": "Clean up CRM contactsMatched 1,312 likely duplicates, then the merge hit the API rate limit.Failed26",
+      "label": null
+    },
+    {
+      "text": "Retry",
+      "label": null
+    },
+    {
+      "text": "Review PR #482Billing webhooks: reading the diff and the test run, writing comments.Running · 3m 40s1221",
+      "label": null
+    },
+    {
+      "text": "Open",
+      "label": null
+    },
+    {
+      "text": "Release notes v2.4Grouping 23 merged pull requests into features and fixes.Running · 1m 18s235",
+      "label": null
+    },
+    {
+      "text": "Open",
+      "label": null
+    },
+    {
+      "text": "Weekly metrics digestPulled numbers from three dashboards and posted the summary to #metrics.Done in 4m 12s38",
+      "label": null
+    },
+    {
+      "text": "Open",
+      "label": null
+    }
+  ],
+  "route": "/components/agent-inbox",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "0826c98b48b8"
+  ]
+}

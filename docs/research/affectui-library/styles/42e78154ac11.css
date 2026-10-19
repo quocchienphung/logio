@@ -1,0 +1,418 @@
+
+.ui-dt {
+  --ui-dt-card: #ffffff;
+  --ui-dt-line: #ececec;
+  --ui-dt-grid: #f0f0f0;
+  --ui-dt-ink: #171717;
+  --ui-dt-text: #404040;
+  --ui-dt-muted: #8f8f8f;
+  --ui-dt-faint: #b5b5b5;
+  --ui-dt-hover: #fafafa;
+  --ui-dt-selected: #f5f8ff;
+  --ui-dt-accent: #2f6bff;
+  --ui-dt-range: rgba(47, 107, 255, 0.07);
+  --ui-dt-tray: #f0f0f0;
+  --ui-dt-accent-ink: #2f6bff;
+  --ui-dt-border: #e5e5e5;
+  --ui-dt-col-active: #fafbff;
+  --ui-dt-th-hover: #f6f6f6;
+  --ui-dt-active-blur: #a9c1ff;
+  --ui-dt-edit: #fff;
+  --ui-dt-pop: #fff;
+  --ui-dt-pop-ring: #e5e5e5;
+  --ui-dt-option-hover: #f5f5f5;
+  --ui-dt-check-bg: #fff;
+  --ui-dt-check-border: #d4d4d4;
+  --ui-dt-check-border-hover: #a3a3a3;
+  --ui-dt-check-mark: #fff;
+  --ui-dt-underline: #d4d4d4;
+  --ui-dt-wash: rgba(0, 0, 0, 0.05);
+  --ui-dt-wash-soft: rgba(0, 0, 0, 0.04);
+  --ui-dt-danger: #e5484d;
+  --ui-dt-danger-hover: #d13438;
+  --ui-dt-danger-wash: rgba(229, 72, 77, 0.08);
+  --ui-dt-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --ui-dt-pop-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  /* Like the Chat Composer: a gray tray with the title, the white table card sits on top of it */
+  background: var(--ui-dt-tray);
+  /* The gray tray frames the white card on every side */
+  padding: 6px;
+  border-radius: 22px;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ui-dt-ink);
+  -webkit-font-smoothing: antialiased;
+}
+.ui-dt *, .ui-dt *::before, .ui-dt *::after { box-sizing: border-box; }
+.ui-dt button { margin: 0; font: inherit; color: inherit; cursor: pointer; }
+
+.ui-dt__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px 8px 18px;
+  min-height: 46px;
+}
+.ui-dt__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+}
+.ui-dt__title-icon { display: grid; }
+.ui-dt__title-icon svg { width: 18px; height: 18px; }
+.ui-dt__tools {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+.ui-dt__tool {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ui-dt-text) !important;
+  transition: background-color 140ms ease, opacity 140ms ease;
+}
+.ui-dt__tool:hover:not(:disabled) { background: var(--ui-dt-wash); }
+.ui-dt__tool:disabled { opacity: 0.35; cursor: default; }
+.ui-dt__tool:focus-visible { outline: 2px solid var(--ui-dt-accent); outline-offset: 1px; }
+
+.ui-dt__card {
+  overflow: hidden;
+  background: var(--ui-dt-card);
+  border: 1px solid var(--ui-dt-border);
+  border-radius: 16px;
+  box-shadow: var(--ui-dt-card-shadow);
+}
+.ui-dt__scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  outline: none;
+}
+.ui-dt__scroll[data-dragging] { cursor: cell; user-select: none; }
+
+.ui-dt__table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+  line-height: 20px;
+}
+/* Every row is 44px high and the selection column 44px wide, so its cells are squares */
+.ui-dt__table th,
+.ui-dt__table td {
+  position: relative;
+  height: 44px;
+  padding: 0 14px;
+  border-top: 1px solid var(--ui-dt-grid);
+  border-left: 1px solid var(--ui-dt-grid);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ui-dt__table th:first-child,
+.ui-dt__table td:first-child { border-left: 0; }
+.ui-dt__table th {
+  padding: 0 6px;
+  font-weight: 450;
+  color: var(--ui-dt-muted);
+  border-top: 0;
+  transition: background-color 140ms ease;
+}
+.ui-dt__table th[data-col-active] { background: var(--ui-dt-col-active); }
+.ui-dt__th {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 32px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit !important;
+  text-align: left;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+.ui-dt__th:hover { background: var(--ui-dt-th-hover); color: var(--ui-dt-text) !important; }
+.ui-dt__th:focus-visible { outline: 2px solid var(--ui-dt-accent); outline-offset: -2px; }
+.ui-dt__th-label { overflow: hidden; text-overflow: ellipsis; }
+.ui-dt__col-icon { display: grid; color: var(--ui-dt-faint); }
+.ui-dt__sort {
+  display: grid;
+  margin-left: auto;
+  color: var(--ui-dt-faint);
+  opacity: 0;
+  transition: opacity 140ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ui-dt__th:hover .ui-dt__sort { opacity: 1; }
+.ui-dt__sort[data-dir] { opacity: 1; color: var(--ui-dt-accent-ink); }
+.ui-dt__sort[data-dir="asc"] { transform: rotate(180deg); }
+
+/* Selection column: one checkbox per row, centered */
+.ui-dt__table .ui-dt__select { padding: 0; text-align: center; }
+.ui-dt__select .ui-dt__check { margin: 0 auto; }
+
+.ui-dt__table tbody tr { transition: background-color 140ms ease; }
+.ui-dt__table tbody tr:hover { background: var(--ui-dt-hover); }
+.ui-dt__table tbody tr[data-selected] { background: var(--ui-dt-selected); }
+
+/* Cell selection: a blue frame on the active cell, a soft tint on the rest of the range */
+.ui-dt__table td[data-cell] { cursor: cell; }
+.ui-dt__table td[data-in-range] { background: var(--ui-dt-range); }
+.ui-dt__table td[data-active]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--ui-dt-accent);
+  border-radius: 3px;
+  pointer-events: none;
+}
+.ui-dt__scroll:not(:focus-within) td[data-active]::after { border-color: var(--ui-dt-active-blur); }
+.ui-dt__table td[data-editing] {
+  padding: 0;
+  overflow: visible;
+  background: var(--ui-dt-edit);
+}
+
+.ui-dt__input {
+  width: 100%;
+  height: 100%;
+  padding: 0 14px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  color: var(--ui-dt-ink);
+}
+.ui-dt__table td[data-type="number"] .ui-dt__input { font-variant-numeric: tabular-nums; }
+
+/* Tag picker: a fixed layer lined up with the cell, above the card and the gray footer */
+.ui-dt__picker-anchor { display: block; }
+.ui-dt__picker {
+  position: fixed;
+  z-index: 50;
+  display: grid;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--ui-dt-pop);
+  box-shadow: 0 0 0 1px var(--ui-dt-pop-ring), var(--ui-dt-pop-shadow);
+  animation: ui-dt-drop 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ui-dt__option {
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 13px !important;
+  text-align: left;
+  color: var(--ui-dt-text) !important;
+}
+.ui-dt__option:hover,
+.ui-dt__option:focus-visible { background: var(--ui-dt-option-hover); outline: none; }
+.ui-dt__option[aria-selected="true"] { color: var(--ui-dt-accent-ink) !important; font-weight: 500; }
+
+.ui-dt__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.ui-dt__name-text { overflow: hidden; text-overflow: ellipsis; color: var(--ui-dt-ink); }
+.ui-dt__name-text[data-empty] { color: var(--ui-dt-faint); }
+.ui-dt__logo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+.ui-dt__logo svg { width: 100%; height: 100%; }
+.ui-dt__logo--empty { border-radius: 5px; background: var(--ui-dt-grid); }
+
+.ui-dt__check {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid var(--ui-dt-check-border);
+  border-radius: 5px;
+  background: var(--ui-dt-check-bg);
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+.ui-dt__check:hover { border-color: var(--ui-dt-check-border-hover); }
+.ui-dt__check:focus-visible { outline: 2px solid var(--ui-dt-accent); outline-offset: 2px; }
+.ui-dt__check svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: var(--ui-dt-check-mark);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 140ms ease, transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.ui-dt__check[aria-checked="true"],
+.ui-dt__check[aria-checked="mixed"] { background: var(--ui-dt-ink); border-color: var(--ui-dt-ink); }
+.ui-dt__check[aria-checked="true"] svg,
+.ui-dt__check[aria-checked="mixed"] svg { opacity: 1; transform: none; }
+
+/* Tags: soft fill with a hairline in the same hue */
+.ui-dt__tag {
+  display: inline-block;
+  max-width: 100%;
+  padding: 2px 9px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 450;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.ui-dt__tag[data-tone="blue"] { background: #eef3ff; color: #2f6bff; box-shadow: inset 0 0 0 1px #dce6ff; }
+.ui-dt__tag[data-tone="violet"] { background: #f4f0ff; color: #7c4dff; box-shadow: inset 0 0 0 1px #e7dfff; }
+.ui-dt__tag[data-tone="pink"] { background: #fff0f6; color: #db2777; box-shadow: inset 0 0 0 1px #fde0ec; }
+.ui-dt__tag[data-tone="green"] { background: #edfaf3; color: #15803d; box-shadow: inset 0 0 0 1px #d5f2e2; }
+.ui-dt__tag[data-tone="amber"] { background: #fff6e8; color: #b45309; box-shadow: inset 0 0 0 1px #fde9c8; }
+.ui-dt__tag[data-tone="gray"] { background: #f5f5f5; color: #525252; box-shadow: inset 0 0 0 1px #ebebeb; }
+
+.ui-dt__link {
+  color: var(--ui-dt-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ui-dt-underline);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 140ms ease, color 140ms ease;
+}
+.ui-dt__link:hover { color: var(--ui-dt-ink); text-decoration-color: currentColor; }
+.ui-dt__text { color: var(--ui-dt-text); font-variant-numeric: tabular-nums; }
+.ui-dt__empty {
+  margin: 0;
+  padding: 24px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--ui-dt-muted);
+}
+
+/* Gray extension under the card: add row or bulk actions on the left, the selection summary on the right */
+.ui-dt__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 6px 16px 7px 8px;
+}
+.ui-dt__bulk {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ui-dt__bulk > span { margin-right: 6px; }
+.ui-dt__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font-size: 14px;
+  color: var(--ui-dt-muted) !important;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+.ui-dt__add:hover { background: var(--ui-dt-wash-soft); color: var(--ui-dt-ink) !important; }
+.ui-dt__add--danger { color: var(--ui-dt-danger) !important; }
+.ui-dt__add--danger:hover { background: var(--ui-dt-danger-wash); color: var(--ui-dt-danger-hover) !important; }
+.ui-dt__add:focus-visible { outline: 2px solid var(--ui-dt-accent); outline-offset: 2px; }
+.ui-dt__summary {
+  overflow: hidden;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--ui-dt-muted);
+}
+
+@keyframes ui-dt-drop {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-dt__table tbody tr, .ui-dt__check, .ui-dt__check svg, .ui-dt__sort { transition: none; }
+  .ui-dt__picker { animation: none; }
+}
+
+/* Height changes glide instead of jumping */
+.ui-dt__morph { overflow: hidden; }
+.ui-dt__morph[data-smooth] { transition: height 380ms cubic-bezier(0.22, 1, 0.36, 1); }
+@media (prefers-reduced-motion: reduce) { .ui-dt__morph[data-smooth] { transition: none; } }
+
+/* Dark mode: follows a .dark class or data-theme="dark" on any ancestor, e.g. <html>.
+   The fixed tag picker stays inside .ui-dt in the DOM, so it inherits these values too. */
+
+/* Text fields: no focus box while typing – also against global :focus-visible rules of the host page */
+.ui-dt input:not([type="checkbox"]):not([type="radio"]):focus-visible,
+.ui-dt textarea:focus-visible,
+.ui-dt [contenteditable]:focus-visible { outline: none; }
+:where(.dark, [data-theme="dark"]) .ui-dt {
+  --ui-dt-card: #232326;
+  --ui-dt-line: rgba(255, 255, 255, 0.08);
+  --ui-dt-grid: rgba(255, 255, 255, 0.07);
+  --ui-dt-ink: #ededed;
+  --ui-dt-text: #c4c4c4;
+  --ui-dt-muted: #8f8f8f;
+  --ui-dt-faint: #6b6b70;
+  --ui-dt-hover: rgba(255, 255, 255, 0.03);
+  --ui-dt-selected: rgba(47, 107, 255, 0.12);
+  --ui-dt-range: rgba(47, 107, 255, 0.16);
+  --ui-dt-tray: #161618;
+  --ui-dt-accent-ink: #6b95ff;
+  --ui-dt-border: rgba(255, 255, 255, 0.08);
+  --ui-dt-col-active: rgba(47, 107, 255, 0.08);
+  --ui-dt-th-hover: rgba(255, 255, 255, 0.06);
+  --ui-dt-active-blur: rgba(107, 149, 255, 0.55);
+  --ui-dt-edit: #2a2a2d;
+  --ui-dt-pop: #2a2a2d;
+  --ui-dt-pop-ring: rgba(255, 255, 255, 0.1);
+  --ui-dt-option-hover: #313135;
+  --ui-dt-check-bg: #2a2a2d;
+  --ui-dt-check-border: rgba(255, 255, 255, 0.2);
+  --ui-dt-check-border-hover: rgba(255, 255, 255, 0.36);
+  --ui-dt-check-mark: #121213;
+  --ui-dt-underline: rgba(255, 255, 255, 0.22);
+  --ui-dt-wash: rgba(255, 255, 255, 0.06);
+  --ui-dt-wash-soft: rgba(255, 255, 255, 0.06);
+  --ui-dt-danger: #ff6369;
+  --ui-dt-danger-hover: #ff8589;
+  --ui-dt-danger-wash: rgba(229, 72, 77, 0.14);
+  --ui-dt-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ui-dt-pop-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.55);
+}
+:where(.dark, [data-theme="dark"]) .ui-dt__tag[data-tone="blue"] { background: rgba(47, 107, 255, 0.16); color: #8aabff; box-shadow: inset 0 0 0 1px rgba(47, 107, 255, 0.28); }
+:where(.dark, [data-theme="dark"]) .ui-dt__tag[data-tone="violet"] { background: rgba(124, 77, 255, 0.18); color: #b49cff; box-shadow: inset 0 0 0 1px rgba(124, 77, 255, 0.3); }
+:where(.dark, [data-theme="dark"]) .ui-dt__tag[data-tone="pink"] { background: rgba(236, 72, 153, 0.16); color: #f472b6; box-shadow: inset 0 0 0 1px rgba(236, 72, 153, 0.28); }
+:where(.dark, [data-theme="dark"]) .ui-dt__tag[data-tone="green"] { background: rgba(34, 197, 94, 0.14); color: #4ade80; box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.26); }
+:where(.dark, [data-theme="dark"]) .ui-dt__tag[data-tone="amber"] { background: rgba(245, 158, 11, 0.14); color: #fbbf24; box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.26); }
+:where(.dark, [data-theme="dark"]) .ui-dt__tag[data-tone="gray"] { background: #2a2a2d; color: #c4c4c4; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08); }

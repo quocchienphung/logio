@@ -1,0 +1,77 @@
+{
+  "title": "Autonomy Dial",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nAutonomy Dial\nAutonomy Dial\n\nHow much an agent may do on its own – a three-stop dial, and its real actions gliding between “Runs on its own” and “Asks you first”, with a lock for what always asks.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nSales agent\nWhat it may do without asking you\nAlways ask\nIf risky\nFull auto\nSafe actions run, risky ones wait for you\nRuns on its own\n2\nRead files and docs\nDraft emails\nAsks you first\n4\nUpdate CRM records\nRisky\nSend emails\nRisky\nDelete files\nDestructive\nSpend money\nDestructive\nIf risky: 2 on its own, 4 ask first\nWhen to use\nSettings of an agent product: how much the agent may do without asking\nOnboarding of a new agent, where people decide how much to trust it before the first run\nAnywhere a permission level is abstract – the list shows what the level actually means\nWhen not to use\nOne decision before one action – use Approval Card\nTurning integrations on and off – use Integration Settings\nMany independent permissions with no levels – a plain list of switches is clearer\nInstallation\n\nAutonomy Dial is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nCheck an action at run time\nThis example is part of Pro\nGet Pro\nUncontrolled\nThis example is part of Pro\nGet Pro\nAPI reference\nAutonomyDial\nProp\tType\tDefault\tDescription\nactions\tAgentAction[]\t–\tThe agent's actions: { id, label, detail?, risk: \"safe\" | \"risky\" | \"destructive\", icon? }\nlevel\t0 | 1 | 2\t–\tControlled level: 0 Always ask, 1 If risky (safe actions run), 2 Full auto\ndefaultLevel\t0 | 1 | 2\t1\tStarting level when uncontrolled\nonLevelChange\t(level: AutonomyLevel) => void\t–\tAnother level was picked\npinned\tstring[]\t–\tControlled ids of actions that always ask, whatever the level\ndefaultPinned\tstring[]\t[]\tStarting locks when uncontrolled\nonPinnedChange\t(pinned: string[]) => void\t–\tA lock was set or removed\ntitle\tstring\t\"Agent permissions\"\tHeading, e.g. the agent's name\nsubtitle\tstring\t\"What it may do without asking you\"\tLine under the heading\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\n← or →\tPicks the previous or next level (also ↑ ↓)\nTab\tMoves from the levels to the locks of the actions\nSpace\tSets or removes the focused lock\nAccessibility\nThe levels are a radio group labelled \"Autonomy\", described by a sentence on what the chosen level means\nBoth groups are labelled sections; every lock is a toggle button with aria-pressed and a label naming its action\nEvery change is announced politely: the level and how many actions run on their own or ask first\nMotion\nActions glide to their new group when the level or a lock changes, a beat after each other\nThe card's height follows and the counts roll; the chosen level turns white with a soft lift\nWith prefers-reduced-motion everything switches instantly\nResponsive behavior\nFills its container up to 400px\nBelow 340px the detail lines are left out and the levels get tighter\nWithout hover (touch) the locks are always visible; touch screens get taller rows\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nNotes for AI\n\nGive your coding assistant this summary instead of screenshots.\n\nasksFirst(action, level, pinned) is exported – use the same rule when the agent runs, so the setting and the behaviour never drift apart\nRule: pinned always asks; level 0 asks for everything; level 1 runs only \"safe\" actions; level 2 runs everything not pinned\nOnly risky and destructive actions carry a small tag right after the name – a warning glyph and the word, on a soft orange or red – safe ones stay quiet\nThe risk and lock glyphs are Hugeicons Free (MIT) – keep the credit comment when you copy the file\nRelated\nApproval Card\nAgents\nAn agent asks before it acts – risk badge, preview, Approve and Deny with shortcuts, a pausing countdown, and a smooth morph into a resolved row\nAgent Steering\nAgents\nSteer an agent while it works – queue a note for the next step and watch it glide into the plan when the agent picks it up, or interrupt right away\nIntegration Settings\nInputs\nSettings card for a connected service – on/off switch, API key, validated site address, time zone and a save bar\nAgent Plan\nAgents\nAn agent's step-by-step plan to review before it runs – rename, drag to reorder, remove or add steps, then watch each one run with live timers and retry from a failed step\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-adc",
+    "ui-adc__card",
+    "ui-adc__head",
+    "ui-adc__spark",
+    "ui-adc__heading",
+    "ui-adc__title",
+    "ui-adc__sub",
+    "ui-adc__levels",
+    "ui-adc__segmented",
+    "ui-adc__level",
+    "ui-adc__sr",
+    "ui-adc__groups",
+    "ui-adc__group",
+    "ui-adc__group-head",
+    "ui-adc__count",
+    "ui-adc__roll",
+    "ui-adc__list",
+    "ui-adc__row",
+    "ui-adc__icon",
+    "ui-adc__name",
+    "ui-adc__line",
+    "ui-adc__label",
+    "ui-adc__pin",
+    "ui-adc__risk"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Always ask",
+      "label": null
+    },
+    {
+      "text": "If risky",
+      "label": null
+    },
+    {
+      "text": "Full auto",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Always ask before: Read files and docs"
+    },
+    {
+      "text": "",
+      "label": "Always ask before: Draft emails"
+    },
+    {
+      "text": "",
+      "label": "Always ask before: Update CRM records"
+    },
+    {
+      "text": "",
+      "label": "Always ask before: Send emails"
+    },
+    {
+      "text": "",
+      "label": "Always ask before: Delete files"
+    },
+    {
+      "text": "",
+      "label": "Spend money: always asks – unlock"
+    }
+  ],
+  "route": "/components/autonomy-dial",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "ca7e9c4ed0a9"
+  ]
+}

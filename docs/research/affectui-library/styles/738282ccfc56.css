@@ -1,0 +1,81 @@
+
+/* Assistant start screen – layout taken 1 : 1 from the reference, styled with affectUI tokens */
+
+.ui-as-invite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: var(--text);
+}
+.ui-as-invite svg { color: var(--muted); }
+.ui-as-invite:hover { background: var(--hover); color: var(--ink); }
+
+.ui-as-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(672px, calc(100% - 48px));
+  /* Fills the main area, so heading, composer and suggestions sit in its exact vertical middle */
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.ui-as-start__title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.ui-as-start__composer { width: 100%; margin-top: 30px; }
+.ui-as-start__title, .ui-as-chips { transition: opacity 180ms ease, transform 180ms ease; }
+.ui-as-start[data-phase="leaving"] .ui-as-start__title { opacity: 0; transform: translateY(-8px); }
+.ui-as-start[data-phase="leaving"] .ui-as-chips { opacity: 0; transform: translateY(8px); }
+
+/* Chat: the thread fills the area and scrolls, the composer waits at the bottom */
+.ui-as-start[data-phase="chat"] { width: 100%; height: 100%; min-height: 0; padding: 0; justify-content: flex-end; }
+.ui-as-start__thread { flex: 1; width: 100%; min-height: 0; overflow-y: auto; padding: 64px 32px 24px; }
+.ui-as-start__column { display: flex; flex-direction: column; gap: 22px; max-width: 672px; margin: 0 auto; }
+.ui-as-start[data-phase="chat"] .ui-as-start__composer { flex: none; width: min(672px, calc(100% - 64px)); margin: 0 0 24px; }
+
+/* Suggestions */
+.ui-as-chips { display: grid; gap: 7px; margin-top: 18px; }
+.ui-as-chips__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.ui-as-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 12px 0 11px;
+  border-radius: 16px;
+  background: var(--chip);
+  font-size: 12px;
+  color: var(--text);
+  transition: background-color 140ms ease, color 140ms ease;
+}
+.ui-as-chip svg { color: var(--text); }
+.ui-as-chip:hover { background: var(--chip-hover); color: var(--ink); }
+
+/* Narrow: a little less room around the column; on a phone the composer runs almost edge to edge */
+@container ui-as (max-width: 600px) {
+  .ui-as-start { width: calc(100% - 24px); padding: 56px 0 40px; }
+  .ui-as-start__title { font-size: 23px; line-height: 29px; }
+  .ui-as-start__composer { margin-top: 22px; }
+  .ui-as-chips { margin-top: 14px; }
+  .ui-as-chips__row { gap: 6px; }
+  .ui-as-start__thread { padding: 56px 16px 16px; }
+  .ui-as-start[data-phase="chat"] .ui-as-start__composer { width: calc(100% - 16px); margin-bottom: 8px; }
+}

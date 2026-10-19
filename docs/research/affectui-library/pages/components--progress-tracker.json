@@ -1,0 +1,49 @@
+{
+  "title": "Progress Tracker",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nProgress Tracker\nProgress Tracker\n\nOnboarding checklist with an animated progress bar, ticks that draw themselves and auto play.\n\n$ pnpm dlx shadcn@latest add https://www.affectui.com/r/progress-tracker-clean.json\nPreview\nCode\nCopy prompt\nMCP\nCopy\nGetting started\n1/5\nConnect your tools\nTurn on notifications\nCatch up on blockers\nSummarize priorities\nCreate a project\nWhen to use\nOnboarding checklists that guide new users through their first steps\nAny short list of tasks where progress should feel rewarding\nWhen not to use\nLong task lists – past roughly eight steps the card gets hard to scan\nLong step labels – each step stays on one line and cuts off with an ellipsis\nSteps that must happen in a fixed order – use a stepper that locks the next step\nInstallation\n\nAdd Progress Tracker with the shadcn CLI – your project needs a components.json, see Installation in the docs – or copy the file by hand.\n\nRequires React 19.\n\nCLI\nManual\npnpm\nnpm\nyarn\nbun\nCopy\npnpm dlx shadcn@latest add https://www.affectui.com/r/progress-tracker-clean.json\nUsage\nexample.tsx\nCopy\nimport { ProgressTracker } from \"@/components/ui/progress-tracker-clean\";\n\nconst steps = [\n  { id: \"tools\", label: \"Connect your imported tools\" },\n  { id: \"notify\", label: \"Turn on notifications\" },\n  { id: \"project\", label: \"Create a project\", done: true },\n];\n\nexport function Onboarding() {\n  return <ProgressTracker title=\"Getting started\" steps={steps} onChange={save} />;\n}\nExamples\nPlays by itself\nexample.tsx\nCopy\n<ProgressTracker steps={steps} autoPlay interval={2500} />\nWith app icons\nexample.tsx\nCopy\n<ProgressTracker\n  steps={[\n    { id: \"updates\", label: \"Catch up on blockers\", icon: <SlackLogo /> },\n    { id: \"notes\", label: \"Summarize priorities\", icon: <NotionLogo /> },\n  ]}\n/>\nAPI reference\nProgressTracker\nProp\tType\tDefault\tDescription\nsteps\tProgressStep[]\t–\tEach step has an id, a label, an optional done flag and icon\ntitle\tstring\t\"Getting started\"\tHeading above the bar\nautoPlay\tboolean\tfalse\tTicks the open steps one by one and starts over – stops when someone clicks or types\ninterval\tnumber\t2200\tPause between two automatic steps, in ms\nonChange\t(steps: ProgressStep[]) => void\t–\tCalled with every step and its state\nclassName\tstring\t–\tExtra class on the card\nKeyboard interactions\nTab\tMove between the steps\nSpace or Enter\tTick or untick the focused step\nAccessibility\nEach step is a checkbox with aria-checked; the bar is a progressbar with the count as text\nAny click or key press stops the automatic play, so it never fights the user\nMotion\nThe thin blue bar fills smoothly and a light band sweeps across it each time a step is done\nThe hairline ring fills blue and pops, then the tick draws itself\nA thin line strikes through the label while it fades to gray\nOn mount the card settles in and the rows fade up one after another\nSteps stay in place so nothing jumps; the counter rolls to the new number\nWith prefers-reduced-motion every change is instant\nResponsive behavior\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nRelated\nButton\nButtons\nPrimary, secondary, ghost and destructive buttons with icons, sizes and a shimmering loading state\nChat Composer\nChat\nPrompt composer with model picker, voice input, app connections and approval request\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-progressc",
+    "ui-progressc__head",
+    "ui-progressc__title",
+    "ui-progressc__count",
+    "ui-progressc__digit",
+    "ui-progressc__bar",
+    "ui-progressc__fill",
+    "ui-progressc__shine",
+    "ui-progressc__list",
+    "ui-progressc__step",
+    "ui-progressc__check",
+    "ui-progressc__label"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Connect your tools",
+      "label": null
+    },
+    {
+      "text": "Turn on notifications",
+      "label": null
+    },
+    {
+      "text": "Catch up on blockers",
+      "label": null
+    },
+    {
+      "text": "Summarize priorities",
+      "label": null
+    },
+    {
+      "text": "Create a project",
+      "label": null
+    }
+  ],
+  "route": "/components/progress-tracker",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "1bf2c7b0fb1f"
+  ]
+}

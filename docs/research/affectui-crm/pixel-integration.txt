@@ -1,0 +1,41 @@
+A
+Acme
+Home
+Companies
+284
+Contacts
+Deals
+Reports
+Pipelines
+New business
+Renewals
+Partnerships
+New in Acme
+New in Acme
+Shared folders
+Full changelog
+Getting started
+13% done · Great start!
+AM
+Alex Morgan
+Sales
+/
+Head of Sales
+Company CRM
+Team strategy
+Pixel integration
+Sales docs
+Install the tracking pixel
+
+Add this snippet to every page, right before the closing </head> tag. Visits and sign-ups then show up on each company.
+
+Copy
+<script async src="https://cdn.acme.com/pixel.js"></script>
+<script>
+  window.acme = window.acme || [];
+  acme.push(["init", "px_4f9a21"]);
+  acme.push(["track", "page_view"]);
+</script>
+Waiting for the first event
+Install the snippet, then check the connection.
+Check connection

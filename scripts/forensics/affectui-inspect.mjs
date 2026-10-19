@@ -11,9 +11,7 @@ await page.goto('https://www.affectui.com/screens/crm', { waitUntil: 'networkidl
 await page.screenshot({ path: `${out}/source-desktop.png`, fullPage: true });
 await fs.writeFile(`${out}/source-dom.html`, await page.content());
 await fs.writeFile(`${out}/source-text.txt`, await page.locator('body').innerText());
-console.log(await page.locator('body').innerText());
-console.log('FRAMES', page.frames().map(f => f.url()));
-console.log('ASSETS', [...assets]);
+console.log(`CRM reference loaded; ${assets.size} public asset URLs observed.`);
 await fs.writeFile(`${out}/assets.json`, JSON.stringify([...assets], null, 2));
 await fs.writeFile(`${out}/library-routes.json`, JSON.stringify(await page.locator('a[href]').evaluateAll(els => els.map(e => ({ label: e.textContent, href: e.getAttribute('href') })).filter(e => /^\/(components|screens|blocks|illustrations|motion)\//.test(e.href))), null, 2));
 await fs.writeFile(`${out}/observed-styles.css`, await page.locator('style').evaluateAll(els => els.map(e => e.textContent).filter(t => t.includes('.ui-as') || t.includes('.ui-dt')).join('\n')));

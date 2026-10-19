@@ -1,0 +1,250 @@
+
+.ui-kpi {
+  --ui-kpi-card: #ffffff;
+  --ui-kpi-line: #ebebeb;
+  --ui-kpi-grid: #f0f0f0;
+  --ui-kpi-ink: #171717;
+  --ui-kpi-muted: #8f8f8f;
+  --ui-kpi-up: #1f8a4c;
+  --ui-kpi-down: #e5484d;
+  --ui-kpi-guide: #d9d9d9;
+  --ui-kpi-label: #525252;
+  --ui-kpi-ring-gap: #fff;
+  --ui-kpi-ring: rgba(23, 23, 23, 0.25);
+  --ui-kpi-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 8px 24px rgba(0, 0, 0, 0.035);
+  --ui-kpi-tip-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --ui-kpi-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 460px;
+  padding: 20px 20px 18px;
+  background: var(--ui-kpi-card);
+  border: 1px solid var(--ui-kpi-line);
+  border-radius: 20px;
+  box-shadow: var(--ui-kpi-shadow);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ui-kpi-ink);
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+.ui-kpi *, .ui-kpi *::before, .ui-kpi *::after { box-sizing: border-box; }
+
+.ui-kpi__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--ui-kpi-muted);
+}
+.ui-kpi__value {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 8px 0 0;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 34px;
+  letter-spacing: -0.02em;
+}
+.ui-kpi__delta {
+  font-size: 14px;
+  font-weight: 450;
+  letter-spacing: 0;
+}
+.ui-kpi__delta[data-trend="up"] { color: var(--ui-kpi-up); }
+.ui-kpi__delta[data-trend="down"] { color: var(--ui-kpi-down); }
+
+/* Chart: y labels on the left, plot on the right, x labels below */
+.ui-kpi__chart {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 116px 20px;
+  column-gap: 12px;
+  row-gap: 8px;
+  margin-top: 24px;
+}
+.ui-kpi__yaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: -9px 0;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: right;
+  color: var(--ui-kpi-muted);
+}
+.ui-kpi__plot {
+  position: relative;
+  touch-action: pan-y;
+  outline: none;
+  cursor: crosshair;
+}
+.ui-kpi__plot:focus-visible {
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px var(--ui-kpi-ring-gap), 0 0 0 6px var(--ui-kpi-ring);
+}
+.ui-kpi__grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ui-kpi-grid);
+}
+.ui-kpi__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: ui-kpi-draw 1100ms var(--ui-kpi-ease) both;
+}
+.ui-kpi__lines polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Hover marker: thin guide and one dot per line */
+.ui-kpi__marker {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.ui-kpi__marker[data-open] { opacity: 1; }
+.ui-kpi__guide,
+.ui-kpi__dot {
+  position: absolute;
+  transition: left 220ms var(--ui-kpi-ease), top 220ms var(--ui-kpi-ease);
+}
+.ui-kpi__guide {
+  top: -4px;
+  bottom: 0;
+  width: 1px;
+  margin-left: -0.5px;
+  background: var(--ui-kpi-guide);
+}
+.ui-kpi__dot {
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--ui-kpi-card);
+}
+
+/* Tooltip: sits beside the guide, flips to the left on the right half */
+.ui-kpi__tooltip {
+  position: absolute;
+  top: -12px;
+  z-index: 2;
+  min-width: 176px;
+  padding: 10px 12px 12px;
+  background: var(--ui-kpi-card);
+  border: 1px solid var(--ui-kpi-line);
+  border-radius: 12px;
+  box-shadow: var(--ui-kpi-tip-shadow);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(var(--ui-kpi-shift)) scale(0.97);
+  transition:
+    left 220ms var(--ui-kpi-ease),
+    opacity 160ms ease,
+    transform 220ms var(--ui-kpi-ease);
+}
+.ui-kpi__tooltip[data-side="right"] { --ui-kpi-shift: 14px; transform-origin: left top; }
+.ui-kpi__tooltip[data-side="left"] { --ui-kpi-shift: calc(-100% - 14px); transform-origin: right top; }
+.ui-kpi__tooltip[data-open] {
+  opacity: 1;
+  transform: translateX(var(--ui-kpi-shift));
+}
+.ui-kpi__date {
+  margin: 0 0 6px;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--ui-kpi-muted);
+}
+.ui-kpi__tooltip ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ui-kpi__tooltip li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 20px;
+}
+.ui-kpi__swatch {
+  flex: none;
+  width: 10px;
+  height: 2px;
+  border-radius: 1px;
+}
+.ui-kpi__label {
+  flex: 1;
+  white-space: nowrap;
+  color: var(--ui-kpi-label);
+}
+.ui-kpi__num {
+  padding-left: 16px;
+  font-weight: 500;
+}
+
+.ui-kpi__xaxis {
+  position: relative;
+  grid-column: 2;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--ui-kpi-muted);
+}
+.ui-kpi__xaxis span {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+.ui-kpi__xaxis span[data-edge="start"] { transform: none; }
+.ui-kpi__xaxis span[data-edge="end"] { transform: translateX(-100%); }
+
+.ui-kpi__footer {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--ui-kpi-muted);
+}
+
+@keyframes ui-kpi-draw {
+  from { clip-path: inset(-10% 100% -10% 0); }
+  to { clip-path: inset(-10% -2% -10% 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-kpi__lines { animation: none; }
+  .ui-kpi__marker, .ui-kpi__guide, .ui-kpi__dot, .ui-kpi__tooltip { transition: none; }
+}
+
+/* Dark mode: follows a .dark class or data-theme="dark" on any ancestor, e.g. <html> */
+:where(.dark, [data-theme="dark"]) .ui-kpi {
+  --ui-kpi-card: #232326;
+  --ui-kpi-line: rgba(255, 255, 255, 0.08);
+  --ui-kpi-grid: rgba(255, 255, 255, 0.06);
+  --ui-kpi-ink: #ededed;
+  --ui-kpi-muted: #8f8f8f;
+  --ui-kpi-up: #3dd68c;
+  --ui-kpi-down: #ff6369;
+  --ui-kpi-guide: rgba(255, 255, 255, 0.2);
+  --ui-kpi-label: #c4c4c4;
+  --ui-kpi-ring-gap: #232326;
+  --ui-kpi-ring: rgba(237, 237, 237, 0.35);
+  --ui-kpi-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --ui-kpi-tip-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.35), 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+}
+:where(.dark, [data-theme="dark"]) .ui-kpi__tooltip {
+  background: #2a2a2d;
+  border-color: rgba(255, 255, 255, 0.1);
+}

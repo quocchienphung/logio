@@ -1,0 +1,78 @@
+{
+  "title": "Usage Meter",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nUsage Meter\nUsage Meter\n\nPlan usage and AI credits – a stacked credits meter by category, daily sparkline, limits and a button that speaks up near the limit.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nAcme AI\n\nPro plan·Resets in 9 days\n\nThis month\nLast month\n7 days\n\n6,556\nof 10,000 credits\n\n66%\nChat\n3,517\n54%\nSearch\n1,449\n22%\nImage\n990\n15%\nAPI\n601\n9%\nPER DAY\nAvg 337 / day\nSeats\n7 of 10\nStorage\n2.8 of 5 GB\nProjects\n11 of ∞\n2,280 credits left\nUpgrade\nWhen to use\nThe usage or billing page of a SaaS or AI product – credits, tokens, minutes or messages per billing cycle\nShowing what the usage went into (chat, search, images, API) next to plan limits like seats and storage\nNudging people to top up or upgrade right where they see they're running out\nWhen not to use\nLong-term trends over many months – a line chart like the KPI Chart reads better\nMore than about five categories – the bar gets too thin; group the small ones into \"Other\"\nInstallation\n\nUsage Meter is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nAPI reference\nUsageMeter\nProp\tType\tDefault\tDescription\ntotal\tnumber\t–\tCredits included in the plan – the bar's full width\nused\t{ label: string; value: number; color?: string }[]\t–\tWhat the credits went into in the shown period. Without colors the parts get tints of the accent blue, then a gray; each label keeps its shade\nlimits\t{ label; used; total?: number | null; unit?; decimals? }[]\t–\tThin meters below, e.g. seats and storage. Leave total out (or null) for unlimited – shown as \"of ∞\" on a striped track\nperiods\t{ id: string; label: string }[]\t–\tOptions of the period switch; no switch when left out\nperiod\tstring\t–\tControlled period id – pass the matching used, limits and daily with it\ndefaultPeriod\tstring\t–\tStarting period when uncontrolled; defaults to the first option\nonPeriodChange\t(id: string) => void\t–\tCalled when a period is picked\nresetAt\tDate | string | number\t–\tWhen the credits reset – shown as \"Resets in 9 days\", the date on hover\ndaily\t{ label: string; value: number | null }[]\t–\tUsage per day for the sparkline; null for days still to come, shown as flat stubs\nonUpgrade\t(state: \"ok\" | \"warn\" | \"limit\") => void\t–\tCalled by the button with the current state\ntitle\tstring\t\"Usage\"\tCard title, e.g. the workspace or product name\nplan\tstring\t–\tPlan name in front of the reset date\nunit\tstring\t\"credits\"\tUnit of the main meter\nwarnAt\tnumber\t0.8\tShare (0–1) from which the meter and the limits warn\nupgradeLabel\tstring\t\"Upgrade\"\tButton text while there is room left (a white button with a hairline shadow)\ntopUpLabel\tstring\t\"Add credits\"\tButton text near and at the limit (a dark button)\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nTab\tReaches the period switch, the bar, the sparkline and the button\n← or →\tSwitch: picks the previous or next period. Bar: steps through the categories. Sparkline: steps through the days\nEsc\tHides the category or day readout\nAccessibility\nA section labelled by its title; the bar and every limit are meters with their value as text (\"7,420 of 10,000 credits\")\nThe period switch is a radio group with a roving tab stop\nThe category tooltip is a polite live region, so stepping through the bar reads each part\nRunning low and reaching the limit are announced in a polite live region; amber and red are never the only signal – the text says it too\nMotion\nOn first view the bar fills from zero and every number counts up, in one frame loop so numbers and widths stay in step\nSwitching periods: the light fill glides to the new option, numbers roll to their new values and the parts glide to their new widths\nA category that drops out shrinks to nothing on the bar while its legend row folds away; the card glides to its new height\nHovering a part dims the others and highlights its legend row; the tooltip glides along the bar\nNear the limit the share tag turns amber (red at the limit), a small dot pops in and the button turns dark with a gentle nudge, its width gliding to the new label\nWith prefers-reduced-motion everything switches instantly\nResponsive behavior\nFills its container up to 460px; at 400px and below the switch gets its own row and the limits stack as rows\nWorks down to 320px wide; long labels end with an ellipsis, numbers and units never split\nTouch: tapping a part or a legend row shows its value, targets grow to 36–38px\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nRelated\nKPI Chart\nData display\nMetric card with a multi-line chart and a tooltip that follows the pointer\nBreakdown Chart\nData display\nStacked bar chart with measure, slice and segment pickers, a hover breakdown and a linked table\nBilling Schedule\nInputs\nBuild a billing phase – start date, duration, products with repeats and timing, discount, minimum and live totals\nProgress Tracker\nFeedback\nOnboarding checklist with an animated progress bar, ticks that draw themselves and auto play\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-umc",
+    "ui-umc__card",
+    "ui-umc__inner",
+    "ui-umc__head",
+    "ui-umc__heading",
+    "ui-umc__title",
+    "ui-umc__sub",
+    "ui-umc__sep",
+    "ui-umc__switch",
+    "ui-umc__pill",
+    "ui-umc__option",
+    "ui-umc__figure",
+    "ui-umc__amount",
+    "ui-umc__big",
+    "ui-umc__of",
+    "ui-umc__pct",
+    "ui-umc__bar",
+    "ui-umc__track",
+    "ui-umc__seg",
+    "ui-umc__tip",
+    "ui-umc__legend",
+    "ui-umc__row",
+    "ui-umc__item",
+    "ui-umc__swatch",
+    "ui-umc__label",
+    "ui-umc__value",
+    "ui-umc__share",
+    "ui-umc__daily",
+    "ui-umc__daily-head",
+    "ui-umc__daily-read",
+    "ui-umc__spark",
+    "ui-umc__day",
+    "ui-umc__limits",
+    "ui-umc__limit",
+    "ui-umc__limit-label",
+    "ui-umc__dot",
+    "ui-umc__limit-value",
+    "ui-umc__muted",
+    "ui-umc__thin",
+    "ui-umc__foot",
+    "ui-umc__status",
+    "ui-umc__action",
+    "ui-umc__action-inner",
+    "ui-umc__action-text",
+    "ui-umc__live"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "This month",
+      "label": null
+    },
+    {
+      "text": "Last month",
+      "label": null
+    },
+    {
+      "text": "7 days",
+      "label": null
+    },
+    {
+      "text": "Upgrade",
+      "label": null
+    }
+  ],
+  "route": "/components/usage-meter",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "5ca2b6ca7985"
+  ]
+}

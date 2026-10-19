@@ -1,0 +1,79 @@
+{
+  "title": "Model Picker",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nModel Picker\nModel Picker\n\nThe model menu of an AI chat – point at a model and its speed, quality and cost bars fill, switch on extended thinking and its effort unfolds, while the tray rolls the first-token time and price.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nAsk anything…\nS\nSonnet 5.5\nWhen to use\nThe model switch in the toolbar of a chat composer – the place people decide between fast, cheap and smart\nProducts with a few models that differ in speed, quality and price, and settings that ride along with the model: thinking, effort, web search\nWhen people should see what a choice costs them before they send – the last row of the menu shows first-token time and price\nWhen not to use\nDozens of models from many providers – use Combobox or Command Menu, where people can type to search\nA setting page that lists every parameter – this menu is for the two or three things people change between messages\nA plain two-way choice – Segmented Control says it with less\nInstallation\n\nModel Picker is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nWired to your chat settings\nThis example is part of Pro\nGet Pro\nComposer at the bottom, with a router option\nThis example is part of Pro\nGet Pro\nAPI reference\nModelPicker\nProp\tType\tDefault\tDescription\nmodels\tPickerModel[]\t–\t{ id, name, description?, icon?, speed?, quality?, cost?, latencyMs?, pricePerM? } – strengths go from 1 to 5 (cost 5 is the most expensive); leave all three out for a router like Auto and the row says \"Varies\"\nvalue\tstring\t–\tId of the chosen model (controlled)\ndefaultValue\tstring\tfirst model\tChosen model when uncontrolled\nonChange\t(id: string) => void\t–\tCalled with the picked model's id\nthinking\tboolean\t–\tExtended thinking switch (controlled)\ndefaultThinking\tboolean\tfalse\tStarting state of the thinking switch\nonThinkingChange\t(on: boolean) => void\t–\tCalled when the thinking switch flips\nwebSearch\tboolean\t–\tWeb search switch (controlled)\ndefaultWebSearch\tboolean\tfalse\tStarting state of the web search switch\nonWebSearchChange\t(on: boolean) => void\t–\tCalled when the web search switch flips\neffort\t\"low\" | \"medium\" | \"high\"\t–\tThinking effort (controlled) – the control only shows while thinking is on\ndefaultEffort\t\"low\" | \"medium\" | \"high\"\t\"medium\"\tStarting effort\nonEffortChange\t(effort) => void\t–\tCalled with the new effort\nopen\tboolean\t–\tControlled open state of the menu\ndefaultOpen\tboolean\tfalse\tStarts open when uncontrolled\nonOpenChange\t(open: boolean) => void\t–\tCalled when the menu opens or closes\nalign\t\"start\" | \"end\"\t\"start\"\tWhich edge of the trigger the menu lines up with\nside\t\"bottom\" | \"top\"\t\"bottom\"\tOpens below or above the trigger – use top for a composer at the bottom of the screen\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\nEnter or Space or ↓\tOn the trigger: opens the menu and moves into the model list\n↑ or ↓ or Home or End\tIn the list: moves between models – the last row follows\nEnter or Space\tIn the list: picks the model and closes the menu\nTab\tFrom the list to Extended thinking, Effort and Web search\n← or →\tIn Effort: Low, Medium, High\nEsc\tCloses the menu and returns to the trigger\nAccessibility\nThe trigger has aria-haspopup, aria-expanded and aria-controls; its name carries the model and whether thinking is on\nModels are a listbox with options and aria-activedescendant, so focus stays on the list while the arrows move\nThinking and web search are switches, Effort is a radio group with one tab stop\nWhile closed the menu is inert; the last row's numbers are announced politely once, not while they roll\nMotion\nThe menu opens with a short fade and a soft scale from the corner of the trigger, and closes the same way\nPointing at a model fills its bars segment by segment and steps the other rows back\nEffort unfolds under the thinking switch; its soft fill slides to the chosen level, and the lit row's bars fill in blue\nFirst-token time and price roll to their new values; the model name in the trigger crossfades and a small bulb unfolds next to it while thinking is on\nWith prefers-reduced-motion everything switches without movement\nResponsive behavior\nThe menu is 320px wide and never wider than the screen minus 32px. Below 300px the row glyphs and key hints give way and the bars move closer\nTouch screens: taller trigger, rows, switches and effort buttons; the key hints are hidden\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\nNotes for AI\n\nGive your coding assistant this summary instead of screenshots.\n\nThe menu is positioned absolutely from the trigger – keep the composer's overflow visible, or the menu gets cut\nPick side=\"top\" when the composer sits at the bottom of the viewport, and align=\"end\" when the trigger is on the right\nlatencyMs is the time without thinking; the last row multiplies it by the effort (×1.6, ×2.5, ×4) while thinking is on\nKeep descriptions to two or three words – the row has room for one short line next to the bars\nRelated\nChat Composer\nChat\nPrompt composer with model picker, voice input, app connections and approval request\nCombobox\nInputs\nPick one or many from a searchable, grouped list – chips with avatars, highlighted matches, create-on-the-fly and full keyboard support\nSegmented Control\nNavigation\nSwitch between two to six options – a raised pill or underline that glides, stretches a little and can be dragged across, with icons, counts and badges\nContext Window\nAgents\nWhat fills the model's context, as a field of cells – hover a part to light it up, remove files, and compact the conversation while its cells shimmer and clear\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-mdpc",
+    "ui-mdpc__trigger",
+    "ui-mdpc__glyph",
+    "ui-mdpc__name",
+    "ui-mdpc__swap",
+    "ui-mdpc__swap-item",
+    "ui-mdpc__flag",
+    "ui-mdpc__pop",
+    "ui-mdpc__card",
+    "ui-mdpc__head",
+    "ui-mdpc__cols",
+    "ui-mdpc__list",
+    "ui-mdpc__option",
+    "ui-mdpc__text",
+    "ui-mdpc__title",
+    "ui-mdpc__title-name",
+    "ui-mdpc__desc",
+    "ui-mdpc__bars",
+    "ui-mdpc__meter",
+    "ui-mdpc__seg",
+    "ui-mdpc__varies",
+    "ui-mdpc__settings",
+    "ui-mdpc__toggle",
+    "ui-mdpc__toggle-icon",
+    "ui-mdpc__toggle-label",
+    "ui-mdpc__switch",
+    "ui-mdpc__fold",
+    "ui-mdpc__clip",
+    "ui-mdpc__effort",
+    "ui-mdpc__effort-label",
+    "ui-mdpc__segmented",
+    "ui-mdpc__thumb",
+    "ui-mdpc__seg-btn",
+    "ui-mdpc__foot",
+    "ui-mdpc__caption",
+    "ui-mdpc__dot",
+    "ui-mdpc__keys",
+    "ui-mdpc__sr"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "SSonnet 5.5",
+      "label": "Model: Sonnet 5.5"
+    },
+    {
+      "text": "Extended thinking",
+      "label": null
+    },
+    {
+      "text": "Low",
+      "label": null
+    },
+    {
+      "text": "Medium",
+      "label": null
+    },
+    {
+      "text": "High",
+      "label": null
+    },
+    {
+      "text": "Web search",
+      "label": null
+    }
+  ],
+  "route": "/components/model-picker",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "6394a9054369"
+  ]
+}

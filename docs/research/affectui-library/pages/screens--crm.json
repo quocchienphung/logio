@@ -1,0 +1,271 @@
+{
+  "title": "CRM",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nScreens\nCRM\nCRM\n\nCompany list with pipelines, open views as tabs and an editable data table.\n\nGet Pro to install\nPreview\nCode\nOpen full screen\nCopy prompt\nMCP\nCopy\nA\nAcme\nHome\nCompanies\n284\nContacts\nDeals\nReports\nPipelines\nNew business\nRenewals\nPartnerships\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nSales\n/\nHead of Sales\nCompany CRM\nTeam strategy\nPixel integration\nSales docs\nCompany CRM\n\t\nCompany\n\t\nCategory\n\t\nDomain\n\t\nOwner\n\t\nValue\n\t\nStage\n\t\nLast contact\n\n\n\t\nNotion\n\tProductivity\tnotion.so\tMara Klein\t48,000\tNegotiation\tToday\n\n\t\nLinear\n\tPlanning\tlinear.app\tJonas Weber\t12,500\tProposal\tYesterday\n\n\t\nFigma\n\tDesign\tfigma.com\tMara Klein\t86,000\tWon\tMar 6\n\n\t\nStripe\n\tPayments\tstripe.com\tLea Braun\t124,000\tQualified\tMar 5\n\n\t\nShopify\n\tE-commerce\tshopify.com\tJonas Weber\t9,800\tNew\tMar 4\n\n\t\nVercel\n\tDeveloper Tools\tvercel.com\tLea Braun\t62,000\tProposal\tMar 3\n\n\t\nAirtable\n\tProductivity\tairtable.com\tMara Klein\t37,500\tQualified\tMar 1\n\n\t\nHubSpot\n\tCRM\thubspot.com\tTom Fischer\t21,000\tNew\tFeb 27\n\n\t\nClickUp\n\tPlanning\tclickup.com\tTom Fischer\t6,400\tLost\tFeb 25\n\n\t\nWebflow\n\tDesign\twebflow.com\tLea Braun\t18,900\tNegotiation\tFeb 24\nAdd row\nDouble-click a cell to edit\nWhen to use\nSales, customer or partner lists in an internal tool\nAny record list people edit like a spreadsheet\nWhen not to use\nRead-only reports – use a static table or the Analytics screen\nInstallation\n\nCRM is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nAPI reference\nCRM\nProp\tType\tDefault\tDescription\nonNavigate\t(label: string) => void\t–\tCalled with the label of a sidebar item\nworkspace\tstring\t\"Acme\"\tWorkspace name in the sidebar\nuser\t{ name: string; avatar?: string }\t{ name: \"Alex Morgan\" }\tAccount at the bottom of the sidebar\nclassName\tstring\t–\tExtra class on the root\nAccessibility\nSidebar items, tabs and toolbar actions are real buttons with labels\nIcons are decorative and hidden from screen readers\nResponsive behavior\nFills its container – give it the full viewport height in your app\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"; colors are CSS variables on .ui-as\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-as ui-as-app",
+    "ui-as-icon-btn ui-as-side-open",
+    "ui-as-scrim",
+    "ui-as-side",
+    "ui-as-side__head",
+    "ui-as-anchor",
+    "ui-as-side__workspace",
+    "ui-as-side__logo",
+    "ui-as-side__tools",
+    "ui-as-icon-btn",
+    "ui-as-side__nav",
+    "ui-as-side__group",
+    "ui-as-side__item",
+    "ui-as-side__count",
+    "ui-as-side__label",
+    "ui-as-side__foot",
+    "ui-as-news",
+    "ui-as-news__card ui-as-news__card--back",
+    "ui-as-news__kicker",
+    "ui-as-news__card",
+    "ui-as-news__top",
+    "ui-as-news__close",
+    "ui-as-news__title",
+    "ui-as-news__more",
+    "ui-as-guide-slot",
+    "ui-as-guide",
+    "ui-as-guide__inner",
+    "ui-as-steps ui-as-guide__content",
+    "ui-as-steps__title",
+    "ui-as-steps__sub",
+    "ui-as-steps__cheer",
+    "ui-as-steps__bar",
+    "ui-as-anchor ui-as-user-menu",
+    "ui-as-user",
+    "ui-as-user__initials",
+    "ui-as-main",
+    "ui-as-crm",
+    "ui-as-crm__top",
+    "ui-as-crm__path",
+    "ui-as-crm__view",
+    "ui-as-icon-btn ui-as-crm__star",
+    "ui-as-crm__tabs",
+    "ui-as-crm__sep",
+    "ui-as-crm__tab",
+    "ui-as-crm__tab-logo",
+    "ui-as-crm__table",
+    "ui-dt",
+    "ui-dt__head",
+    "ui-dt__title-icon",
+    "ui-dt__title",
+    "ui-dt__tools",
+    "ui-dt__tool",
+    "ui-dt__card",
+    "ui-dt__morph",
+    "ui-dt__scroll",
+    "ui-dt__table",
+    "ui-dt__select",
+    "ui-dt__check",
+    "ui-dt__th",
+    "ui-dt__col-icon",
+    "ui-dt__th-label",
+    "ui-dt__sort",
+    "ui-dt__name",
+    "ui-dt__logo",
+    "ui-as-crm__logo",
+    "ui-dt__name-text",
+    "ui-dt__tag",
+    "ui-dt__link",
+    "ui-dt__text",
+    "ui-dt__foot",
+    "ui-dt__add",
+    "ui-dt__summary"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "",
+      "label": "Open sidebar"
+    },
+    {
+      "text": "AAcme",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Search"
+    },
+    {
+      "text": "",
+      "label": "Collapse sidebar"
+    },
+    {
+      "text": "Home",
+      "label": null
+    },
+    {
+      "text": "Companies284",
+      "label": null
+    },
+    {
+      "text": "Contacts",
+      "label": null
+    },
+    {
+      "text": "Deals",
+      "label": null
+    },
+    {
+      "text": "Reports",
+      "label": null
+    },
+    {
+      "text": "New business",
+      "label": null
+    },
+    {
+      "text": "Renewals",
+      "label": null
+    },
+    {
+      "text": "Partnerships",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Dismiss"
+    },
+    {
+      "text": "Full changelog",
+      "label": null
+    },
+    {
+      "text": "Getting started13% done · Great start!",
+      "label": null
+    },
+    {
+      "text": "AMAlex Morgan",
+      "label": null
+    },
+    {
+      "text": "Head of Sales",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Add to favorites"
+    },
+    {
+      "text": "",
+      "label": "New view"
+    },
+    {
+      "text": "",
+      "label": "All views"
+    },
+    {
+      "text": "Company CRM",
+      "label": null
+    },
+    {
+      "text": "Team strategy",
+      "label": null
+    },
+    {
+      "text": "Pixel integration",
+      "label": null
+    },
+    {
+      "text": "Sales docs",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Undo (Ctrl Z)"
+    },
+    {
+      "text": "",
+      "label": "Redo (Ctrl Shift Z)"
+    },
+    {
+      "text": "",
+      "label": "Select all rows"
+    },
+    {
+      "text": "Company",
+      "label": null
+    },
+    {
+      "text": "Category",
+      "label": null
+    },
+    {
+      "text": "Domain",
+      "label": null
+    },
+    {
+      "text": "Owner",
+      "label": null
+    },
+    {
+      "text": "Value",
+      "label": null
+    },
+    {
+      "text": "Stage",
+      "label": null
+    },
+    {
+      "text": "Last contact",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Select Notion"
+    },
+    {
+      "text": "",
+      "label": "Select Linear"
+    },
+    {
+      "text": "",
+      "label": "Select Figma"
+    },
+    {
+      "text": "",
+      "label": "Select Stripe"
+    },
+    {
+      "text": "",
+      "label": "Select Shopify"
+    },
+    {
+      "text": "",
+      "label": "Select Vercel"
+    },
+    {
+      "text": "",
+      "label": "Select Airtable"
+    },
+    {
+      "text": "",
+      "label": "Select HubSpot"
+    },
+    {
+      "text": "",
+      "label": "Select ClickUp"
+    },
+    {
+      "text": "",
+      "label": "Select Webflow"
+    },
+    {
+      "text": "Add row",
+      "label": null
+    }
+  ],
+  "route": "/screens/crm",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "118a7eb73e3d",
+    "3758355579b5",
+    "42e78154ac11"
+  ]
+}

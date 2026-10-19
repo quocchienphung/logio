@@ -12,7 +12,10 @@ import type { Controller } from "../types";
 import { getApi, listen, prefersReducedMotion, target, targetList } from "../lib";
 import { clamp, disableAmbientAnimations, easeInOutCubic, exposeCore } from "./util";
 
+// Writing an attribute (even to the value it already has) invalidates style for every selector on it, and
+// these run on each scroll event: only write actual changes.
 const setFlag = (el: HTMLElement, key: string, on: boolean) => {
+  if (on === key in el.dataset) return;
   if (on) el.dataset[key] = "";
   else delete el.dataset[key];
 };
@@ -20,7 +23,11 @@ const setFlag = (el: HTMLElement, key: string, on: boolean) => {
 // ---- StickyNav ----------------------------------------------------------------------------------
 export const StickyNav: Controller = (el) => {
   const parent = el.parentElement;
-  const updateHeight = () => parent?.style.setProperty("--stickyNavHeight", `${el.getBoundingClientRect().height}px`);
+  // custom properties inherit through the whole section below: only set them when they change
+  const setVar = (target: HTMLElement | null, name: string, value: string) => {
+    if (target && target.style.getPropertyValue(name) !== value) target.style.setProperty(name, value);
+  };
+  const updateHeight = () => setVar(parent, "--stickyNavHeight", `${el.getBoundingClientRect().height}px`);
   const onScroll = () => {
     const top = Math.floor(el.getBoundingClientRect().top);
     setFlag(el, "stickyBefore", top > 0);
@@ -30,7 +37,7 @@ export const StickyNav: Controller = (el) => {
   const onResize = () => {
     onScroll();
     updateHeight();
-    el.style.setProperty("--viewportFullWidth", String(document.documentElement.clientWidth));
+    setVar(el, "--viewportFullWidth", String(document.documentElement.clientWidth));
   };
   const offScroll = listen(window, "scroll", onScroll);
   const offResize = listen(window, "resize", onResize);

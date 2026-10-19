@@ -1,0 +1,122 @@
+{
+  "title": "Filter Menu",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nFilter Menu\nFilter Menu\n\nGrouped filters with removable chips, collapsible checkbox groups, Clear all and full keyboard control.\n\n$ pnpm dlx shadcn@latest add https://www.affectui.com/r/filter-menu-clean.json\nPreview\nCode\nCopy prompt\nMCP\nCopy\nFilters\nClear all\nQualified\nDeal: $5k–20k\nDACH\nStage\n4\n1 filter\nNew lead\nQualified\nProposal sent\nNegotiation\nDeal size\n4\n1 filter\nUnder $5k\n$5k–20k\n$20k–50k\nOver $50k\nRegion\n5\n1 filter\nDACH\nNordics\nUK & Ireland\nNorth America\nAPAC\n↑\n↓\nto navigate\n↵\nto select\nWhen to use\nFiltering a list, table or board by a few groups of options – stage, owner, region and the like\nSide panels or popovers where people pick several filters and want to see them all at a glance\nWhen not to use\nA single choice from a short list – use a select or segmented control\nFree-text search or numeric ranges with a slider – this menu works with predefined options\nInstallation\n\nAdd Filter Menu with the shadcn CLI – your project needs a components.json, see Installation in the docs – or copy the file by hand.\n\nRequires React 19.\n\nCLI\nManual\npnpm\nnpm\nyarn\nbun\nCopy\npnpm dlx shadcn@latest add https://www.affectui.com/r/filter-menu-clean.json\nUsage\nexample.tsx\nCopy\nimport { FilterMenu } from \"@/components/ui/filter-menu-clean\";\n\nconst groups = [\n  { id: \"stage\", label: \"Stage\", options: [{ id: \"new\", label: \"New lead\" }, { id: \"won\", label: \"Won\" }] },\n  { id: \"size\", label: \"Deal size\", chipPrefix: \"Deal: \", options: [{ id: \"s\", label: \"Under $5k\" }, { id: \"l\", label: \"Over $50k\" }] },\n];\n\nexport function DealFilters() {\n  const [filters, setFilters] = useState({});\n  return <FilterMenu groups={groups} value={filters} onChange={setFilters} />;\n}\nAPI reference\nFilterMenu\nProp\tType\tDefault\tDescription\ngroups\tFilterGroup[]\t–\tRequired. Each { id, label, options: { id, label }[], chipPrefix? }\nvalue\tRecord<string, string[]>\t–\tPicked option ids per group – makes it controlled\ndefaultValue\tRecord<string, string[]>\t{}\tStarting filters when uncontrolled\nonChange\t(value) => void\t–\tCalled with the new filters after every change\ndefaultOpen\tstring[]\tthe first group\tGroups that start open\ntitle\tstring\t\"Filters\"\tHeading on top\nhints\tboolean\ttrue\tShows the keyboard hints as the last row of the card\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\n↑ or ↓\tMoves through group headers and the options of open groups\nEnter or Space\tPicks or unpicks an option, or opens and closes a group\n→ or ←\tOpens a group, or closes it and jumps back to its header\nHome or End\tJumps to the first or last row\nAccessibility\nGroup headers are buttons with aria-expanded; options are role=checkbox with aria-checked\nOne roving tab stop for the list, so Tab moves past it in one step\nEach chip has a remove button labelled with the filter; changes to the chips are announced politely\nMotion\nGroups open and close by animating their height; the chevron turns along\nChips pop in, and their line glides open or shut when the first filter is picked or the last one removed\nCheckboxes turn blue and their checkmark draws itself in; row hovers come in crisp and fade out\nWith prefers-reduced-motion everything switches instantly\nResponsive behavior\nFills its container up to 400px wide; chips stay on one line and the rest go into \"+N\"\nTouch screens get taller rows and buttons; the keyboard hints are hidden there\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-fmc",
+    "ui-fmc__head",
+    "ui-fmc__title",
+    "ui-fmc__clear",
+    "ui-fmc__chips-outer",
+    "ui-fmc__chips",
+    "ui-fmc__measure",
+    "ui-fmc__chip",
+    "ui-fmc__chip-label",
+    "ui-fmc__chip-x",
+    "ui-fmc__chip ui-fmc__more",
+    "ui-fmc__groups",
+    "ui-fmc__group",
+    "ui-fmc__group-head",
+    "ui-fmc__group-label",
+    "ui-fmc__group-count",
+    "ui-fmc__group-picked",
+    "ui-fmc__roll",
+    "ui-fmc__panel",
+    "ui-fmc__panel-inner",
+    "ui-fmc__option",
+    "ui-fmc__box",
+    "ui-fmc__option-label",
+    "ui-fmc__hints",
+    "ui-fmc__hint"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Clear all",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Remove Qualified"
+    },
+    {
+      "text": "",
+      "label": "Remove Deal: $5k–20k"
+    },
+    {
+      "text": "",
+      "label": "Remove DACH"
+    },
+    {
+      "text": "Stage41 filter",
+      "label": null
+    },
+    {
+      "text": "New lead",
+      "label": null
+    },
+    {
+      "text": "Qualified",
+      "label": null
+    },
+    {
+      "text": "Proposal sent",
+      "label": null
+    },
+    {
+      "text": "Negotiation",
+      "label": null
+    },
+    {
+      "text": "Deal size41 filter",
+      "label": null
+    },
+    {
+      "text": "Under $5k",
+      "label": null
+    },
+    {
+      "text": "$5k–20k",
+      "label": null
+    },
+    {
+      "text": "$20k–50k",
+      "label": null
+    },
+    {
+      "text": "Over $50k",
+      "label": null
+    },
+    {
+      "text": "Region51 filter",
+      "label": null
+    },
+    {
+      "text": "DACH",
+      "label": null
+    },
+    {
+      "text": "Nordics",
+      "label": null
+    },
+    {
+      "text": "UK & Ireland",
+      "label": null
+    },
+    {
+      "text": "North America",
+      "label": null
+    },
+    {
+      "text": "APAC",
+      "label": null
+    }
+  ],
+  "route": "/components/filter-menu",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "0a8de6cfb5a0"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "title": "Chat Composer",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nChat Composer\nChat Composer\n\nPrompt composer with model picker, voice input, app connections and approval request.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nRequest approval\nUnrestricted access\nAuto\nConnect apps\nSelect a project\n\nWhen to use\nThe main input of an AI assistant or agent that can act on connected tools\nFlows where the user has to grant extra permissions before a run\nWhen not to use\nPlain chat between people – a simple text field with a send button is enough\nVery narrow spaces below ~280px, where the toolbar labels get too small\nInstallation\n\nChat Composer is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nExamples\nYour own models\nThis example is part of Pro\nGet Pro\nYour own picker behind the plus button\nThis example is part of Pro\nGet Pro\nAPI reference\nChatComposer\nProp\tType\tDefault\tDescription\nplaceholder\tstring\t\"Start by typing...\"\tPlaceholder of the message field\nmodels\tChatModel[]\tdefaultModels\tEntries of the model picker (Auto, Claude, ChatGPT); the first is selected\nloadMs\tnumber\t1300\tDuration of the connect and approval loading states\ndictation\tstring\t\"Draft a short update…\"\tDemo transcript that appears word by word in gray while recording – replace with real speech-to-text\nonSend\t(message: string, details: { model: string }) => void\t–\tCalled on send or Enter\nonModelChange\t(model: ChatModel) => void\t–\tCalled when a model is picked\nonAttach\t() => void\t–\tCalled when the plus button is clicked – open your own picker here\nonConnectApps\t() => void\t–\tCalled when “Connect apps” is clicked\nonRequestApproval\t() => void\t–\tCalled when “Request approval” is clicked\nonSelectProject\t() => void\t–\tCalled when “Select a project” is clicked\nKeyboard interactions\nEnter\tSend the message\nShift + Enter\tNew line\n↑ or ↓\tOpen the model picker and move through it\nHome or End\tJump to the first or last model\nEnter or Space\tPick the highlighted model (in the picker)\nEsc\tClose the model picker or discard a recording\nAccessibility\nLoading and result states are announced through a polite live region\nBusy buttons expose aria-busy; the hidden row in the last line is inert and aria-hidden\nClicking anywhere on the white card focuses the message field\nThe model picker is a listbox with aria-activedescendant, so screen readers follow the highlight\nMotion\nConnecting apps runs two shimmer sweeps while the logos hop, then the last row swaps to “Select a project” with a short blur\nRequesting approval waves the hand, then morphs into the “Unrestricted access” pill\nThe model picker morphs out of the corner next to its button, opens toward the side with more room and stays inside the visible frame\nA hover fill fades in under the pointer and glides between rows\nWhile recording, the heard words appear in gray and turn dark once confirmed; a dotted audio trace scrolls next to the controls\nAll transitions collapse to instant changes with prefers-reduced-motion\nResponsive behavior\nFills its container up to 560px wide; fixed 13px type and 28px controls; below 400px the approval button keeps just its icon\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-ccc",
+    "ui-ccc__body",
+    "ui-ccc__write",
+    "ui-ccc__field",
+    "ui-ccc__message",
+    "ui-ccc__draft",
+    "ui-ccc__heard",
+    "ui-ccc__tools",
+    "ui-ccc__group",
+    "ui-ccc__icon-btn",
+    "ui-ccc__approval",
+    "ui-ccc__approval-icon",
+    "ui-ccc__approval-text",
+    "ui-ccc__request ui-ccc__shimmer",
+    "ui-ccc__granted",
+    "ui-ccc__swap",
+    "ui-ccc__group ui-ccc__group--end",
+    "ui-ccc__model",
+    "ui-ccc__model-face",
+    "ui-ccc__chevron",
+    "ui-ccc__send",
+    "ui-ccc__group ui-ccc__group--end ui-ccc__group--voice",
+    "ui-ccc__trace",
+    "ui-ccc__button",
+    "ui-ccc__foot",
+    "ui-ccc__row ui-ccc__connect",
+    "ui-ccc__logos",
+    "ui-ccc__logo",
+    "ui-ccc__shimmer",
+    "ui-ccc__row ui-ccc__project",
+    "ui-ccc__folder",
+    "ui-ccc__row-chevron",
+    "ui-ccc__menu",
+    "ui-ccc__menu-panel",
+    "ui-ccc__menu-fill",
+    "ui-ccc__option",
+    "ui-ccc__option-logo",
+    "ui-ccc__option-text",
+    "ui-ccc__option-name",
+    "ui-ccc__option-desc",
+    "ui-ccc__option-check",
+    "ui-ccc__sr-only"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "",
+      "label": "Add attachment"
+    },
+    {
+      "text": "Request approvalUnrestricted access",
+      "label": null
+    },
+    {
+      "text": "Auto",
+      "label": null
+    },
+    {
+      "text": "",
+      "label": "Voice input"
+    },
+    {
+      "text": "",
+      "label": "Send message"
+    },
+    {
+      "text": "",
+      "label": "Discard recording"
+    },
+    {
+      "text": "",
+      "label": "Use recording"
+    },
+    {
+      "text": "Connect apps",
+      "label": null
+    },
+    {
+      "text": "Select a project",
+      "label": null
+    }
+  ],
+  "route": "/components/chat-composer",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "49481fe236e7"
+  ]
+}

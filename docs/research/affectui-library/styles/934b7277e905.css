@@ -1,0 +1,249 @@
+
+.ui-at {
+  /* 1 unit of the 600 × 400 layout grid */
+  --u: calc(100cqw / 600);
+  --ui-at-surface: #ffffff;
+  --ui-at-ring: rgba(10, 10, 10, 0.06);
+  --ui-at-text: #171717;
+  --ui-at-accent: #2f6bff;
+  --ui-at-caret: #171717;
+  /* Same pink → violet as the Get Pro button */
+  --ui-at-halo-from: rgba(221, 6, 116, 0.18);
+  --ui-at-halo-to: rgba(94, 62, 224, 0.18);
+  --ui-at-dash: #e4e7ec; /* same gray as the lines in Outreach Branches */
+  --ui-at-face: #eef0f4;
+  --ui-at-online: #34c46a;
+  --ui-at-dot-ring: #e2f6e9;
+  --ui-at-dot-edge: rgba(52, 196, 106, 0.1);
+  --ui-at-tool-ring: #e5e5e5;
+  --ui-at-shadow: 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, 0.07), 0 calc(2 * var(--u)) calc(5 * var(--u)) rgba(0, 0, 0, 0.05);
+  --ui-at-ease: cubic-bezier(0.7, 0, 0.25, 1);
+  --ui-at-pop: cubic-bezier(0.34, 1.4, 0.64, 1);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  container-type: inline-size;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.ui-at *, .ui-at *::before, .ui-at *::after { box-sizing: border-box; }
+
+/* ---------- Dashed lines, revealed top to bottom ---------- */
+
+.ui-at-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ui-at-line {
+  fill: none;
+  stroke: var(--ui-at-dash);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 6 7.23;
+}
+.ui-at-reveal {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 8;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 700ms var(--ui-at-ease);
+}
+.ui-at:is([data-phase="sent"], [data-phase="team"]) .ui-at-reveal { stroke-dashoffset: 0; }
+.ui-at[data-phase="reset"] .ui-at-lines { opacity: 0; transition: opacity 500ms ease; }
+
+/* ---------- Prompt ---------- */
+
+.ui-at-halo {
+  position: absolute;
+  left: 50%;
+  top: calc(52 * var(--u));
+  width: calc(400 * var(--u));
+  height: calc(68 * var(--u));
+  transform: translateX(-50%) scale(0.9);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ui-at-halo-from), var(--ui-at-halo-to));
+  filter: blur(calc(22 * var(--u)));
+  opacity: 0;
+  transition: opacity 700ms ease, transform 900ms var(--ui-at-ease);
+}
+.ui-at:is([data-phase="sent"], [data-phase="team"]) .ui-at-halo { opacity: 1; transform: translateX(-50%) scale(1); }
+
+.ui-at-prompt {
+  position: absolute;
+  left: 50%;
+  top: calc(60 * var(--u));
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  width: calc(380 * var(--u));
+  height: calc(52 * var(--u));
+  padding: 0 calc(8 * var(--u)) 0 calc(20 * var(--u));
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--ui-at-surface);
+  box-shadow: 0 0 0 calc(1 * var(--u)) var(--ui-at-ring), var(--ui-at-shadow);
+}
+.ui-at-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: calc(15 * var(--u));
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--ui-at-text);
+}
+.ui-at-caret {
+  display: inline-block;
+  width: calc(1.6 * var(--u));
+  height: calc(17 * var(--u));
+  margin-left: calc(2 * var(--u));
+  vertical-align: calc(-3 * var(--u));
+  border-radius: 1px;
+  background: var(--ui-at-caret);
+  animation: ui-at-blink 1s steps(1) infinite;
+}
+.ui-at-send {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: calc(36 * var(--u));
+  height: calc(36 * var(--u));
+  border-radius: 50%;
+  background: var(--ui-at-accent);
+  transition: transform 200ms var(--ui-at-pop), filter 200ms ease;
+}
+.ui-at-send svg {
+  width: calc(18 * var(--u));
+  height: calc(18 * var(--u));
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ui-at[data-phase="sent"] .ui-at-send { animation: ui-at-press 380ms var(--ui-at-ease); }
+.ui-at[data-phase="reset"] .ui-at-text { opacity: 0; transition: opacity 400ms ease; }
+
+/* ---------- Agents ---------- */
+
+.ui-at-agent {
+  position: absolute;
+  top: calc(196 * var(--u));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(14 * var(--u));
+  transform: translateX(-50%);
+}
+.ui-at-node,
+.ui-at-role {
+  opacity: 0;
+  transform: translateY(calc(10 * var(--u))) scale(0.92);
+  transition: opacity 360ms ease, transform 520ms var(--ui-at-pop);
+}
+.ui-at[data-phase="team"] .ui-at-node {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i) * 160ms);
+}
+.ui-at[data-phase="team"] .ui-at-role {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i) * 160ms + 120ms);
+}
+.ui-at[data-phase="reset"] .ui-at-node,
+.ui-at[data-phase="reset"] .ui-at-role { transform: none; transition: opacity 500ms ease; }
+
+.ui-at-node {
+  position: relative;
+  width: calc(84 * var(--u));
+  height: calc(84 * var(--u));
+  padding: calc(5 * var(--u));
+  border-radius: 50%;
+  background: var(--ui-at-surface);
+  box-shadow: inset 0 0 0 calc(1 * var(--u)) var(--ui-at-ring), var(--ui-at-shadow);
+}
+.ui-at-face {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ui-at-face);
+}
+.ui-at-face img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; }
+.ui-at-dot {
+  position: absolute;
+  right: calc(1 * var(--u));
+  bottom: calc(3 * var(--u));
+  width: calc(24 * var(--u));
+  height: calc(24 * var(--u));
+  border: calc(7 * var(--u)) solid var(--ui-at-dot-ring);
+  border-radius: 50%;
+  background: var(--ui-at-online);
+  box-shadow: 0 0 0 calc(2 * var(--u)) var(--ui-at-dot-edge);
+  transform: scale(0);
+  transition: transform 420ms var(--ui-at-pop);
+}
+.ui-at[data-phase="team"] .ui-at-dot { transform: scale(1); transition-delay: calc(var(--i) * 160ms + 360ms); }
+
+/* Role pill: overlapping tool circles first, then the role */
+.ui-at-role {
+  display: flex;
+  align-items: center;
+  gap: calc(10 * var(--u));
+  height: calc(42 * var(--u));
+  padding: 0 calc(15 * var(--u)) 0 calc(7 * var(--u));
+  border-radius: 999px;
+  background: var(--ui-at-surface);
+  box-shadow: 0 0 0 calc(1 * var(--u)) var(--ui-at-ring), var(--ui-at-shadow);
+  font-size: calc(12.5 * var(--u));
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--ui-at-text);
+}
+.ui-at-role:not(:has(.ui-at-tools)) { padding-left: calc(15 * var(--u)); }
+.ui-at-tools { display: flex; }
+.ui-at-tool {
+  display: grid;
+  place-items: center;
+  width: calc(26 * var(--u));
+  height: calc(26 * var(--u));
+  border-radius: 50%;
+  background: var(--ui-at-surface);
+  box-shadow: 0 0 0 calc(1 * var(--u)) var(--ui-at-tool-ring), 0 calc(1.5 * var(--u)) calc(3 * var(--u)) rgba(0, 0, 0, 0.08);
+}
+/* The second circle sits slightly over the first */
+.ui-at-tool + .ui-at-tool { margin-left: calc(-8 * var(--u)); }
+.ui-at-tool svg { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+
+@keyframes ui-at-blink { 50% { opacity: 0; } }
+@keyframes ui-at-press {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.86); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-at *, .ui-at *::before { transition: none !important; animation: none !important; }
+}
+
+/* Dark mode: follows a .dark class or data-theme="dark" on any ancestor, e.g. <html> */
+:where(.dark, [data-theme="dark"]) .ui-at {
+  --ui-at-surface: #232326;
+  --ui-at-ring: rgba(255, 255, 255, 0.08);
+  --ui-at-text: #ededed;
+  --ui-at-accent: #2f6bff;
+  --ui-at-caret: #ededed;
+  --ui-at-halo-from: rgba(244, 114, 182, 0.16);
+  --ui-at-halo-to: rgba(167, 139, 250, 0.16);
+  --ui-at-dash: rgba(255, 255, 255, 0.14);
+  --ui-at-face: #2e2e33;
+  --ui-at-online: #3fd17a;
+  --ui-at-dot-ring: #24392c;
+  --ui-at-dot-edge: rgba(63, 209, 122, 0.12);
+  --ui-at-tool-ring: rgba(255, 255, 255, 0.12);
+  --ui-at-shadow: 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, 0.4), 0 calc(2 * var(--u)) calc(5 * var(--u)) rgba(0, 0, 0, 0.3);
+}
+:where(.dark, [data-theme="dark"]) .ui-at-tool { background: #f4f4f5; }

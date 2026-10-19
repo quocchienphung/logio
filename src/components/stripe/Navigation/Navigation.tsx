@@ -354,17 +354,17 @@ function NavigationMenu() {
           id="navigation-personalize-mobile"
         >
           <strong className="hds-text hds-text--sm hds-text--emphasized">
-            Not sure where to start?
+            Company CRM
           </strong>{" "}
-          Tell us about your business to get personalized Stripe product
-          recommendations.
+          Manage companies, explore your pipeline and organize your sales workspace.
         </span>
         <a
           className="hds-link hds-link--callout"
           href="/personalize"
           aria-describedby="navigation-personalize-mobile"
+          aria-label="Guide me"
         >
-          Find what&apos;s right for you
+          <SparkleIcon /> Guide me
           <LinkArrow />
         </a>
       </div>

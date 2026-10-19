@@ -16,12 +16,23 @@
  *  - header   the site header stays still.
  *
  * All reference timings are multiplied by TIME_SCALE (the motion is kept, only slowed down so it reads).
+ *
+ * Everything here is drawn by the main thread of the incoming document, so per-frame work is kept small:
+ * the disc radius is animated on the ::view-transition overlay (not :root, which would restyle the whole
+ * page every frame), each lens filter only covers the part of its snapshot the disc has reached, and
+ * filter attributes are written only when they change. `window.__ptSettled` resolves once the transition
+ * is over (src/lib/pageSettled.ts), so page code can hold heavy start-up work until then.
  * The function is serialised with `toString()` and inlined into <head> (it must register `pagereveal`
  * before the first render of the new document), so it must stay self-contained: no imports, no
  * references to module scope.
  */
 export function pageTransitionRuntime(): void {
-  if (!("onpagereveal" in window)) return;
+  let settle = () => {};
+  (window as Window & { __ptSettled?: Promise<void> }).__ptSettled = new Promise<void>((resolve) => (settle = resolve));
+  if (!("onpagereveal" in window)) {
+    settle();
+    return;
+  }
 
   const TIME_SCALE = 1.6;
   const DISC_SPEED = 1.858; // hd per second (reference)
@@ -158,6 +169,15 @@ export function pageTransitionRuntime(): void {
       return n;
     };
     const f = el("filter", { id, x, y, width: w, height: h, filterUnits: "userSpaceOnUse", primitiveUnits: "userSpaceOnUse", "color-interpolation-filters": "sRGB" }, svg);
+    // every attribute write invalidates the filter and repaints what uses it: skip unchanged values
+    const last = new Map<Element, Record<string, string>>();
+    const set = (node: Element, name: string, value: string) => {
+      let seen = last.get(node);
+      if (!seen) last.set(node, (seen = {}));
+      if (seen[name] === value) return;
+      seen[name] = value;
+      node.setAttribute(name, value);
+    };
     el("feFlood", { "flood-color": "rgb(128,128,128)", result: "neutral" }, f);
     const image = el("feImage", { href, x: 0, y: 0, width: 1, height: 1, preserveAspectRatio: "none", result: "mapImg" }, f);
     el("feComposite", { in: "mapImg", in2: "neutral", operator: "over", result: "map" }, f);
@@ -179,11 +199,22 @@ export function pageTransitionRuntime(): void {
     if (dark) el("feColorMatrix", { in: "sum", type: "matrix", values: INVERT }, f);
     return {
       place(ix: number, iy: number, size: number, scale: number, ca: number[]) {
-        image.setAttribute("x", ix.toFixed(1));
-        image.setAttribute("y", iy.toFixed(1));
-        image.setAttribute("width", size.toFixed(1));
-        image.setAttribute("height", size.toFixed(1));
-        passes.forEach((p, i) => p.setAttribute("scale", (scale * ca[i]).toFixed(2)));
+        set(image, "x", ix.toFixed(1));
+        set(image, "y", iy.toFixed(1));
+        set(image, "width", size.toFixed(1));
+        set(image, "height", size.toFixed(1));
+        passes.forEach((p, i) => set(p, "scale", (scale * ca[i]).toFixed(2)));
+      },
+      /** Filter region (whole px, clamped to [0, w]×[0, h]); empty where the snapshot is fully masked out. */
+      region(x0: number, y0: number, x1: number, y1: number) {
+        const l = Math.max(0, Math.floor(x0));
+        const t = Math.max(0, Math.floor(y0));
+        const r = Math.min(w, Math.ceil(x1));
+        const b = Math.min(h, Math.ceil(y1));
+        set(f, "x", String(l));
+        set(f, "y", String(t));
+        set(f, "width", String(Math.max(0, r - l)));
+        set(f, "height", String(Math.max(0, b - t)));
       },
     };
   };
@@ -279,10 +310,15 @@ export function pageTransitionRuntime(): void {
 
     const style = document.createElement("style");
     style.id = "pt-runtime-style";
-    let css = `::view-transition-new(root){mask-image:${disc(cx, cy)};mask-repeat:no-repeat}`;
-    // the lens filters live in their own sheet, dropped as soon as the lens has settled (they are the
-    // expensive part of each frame; the rest of the transition is masks and opacity)
-    let lensCss = "::view-transition-old(root){filter:url(#pt-lens-out)}::view-transition-new(root){filter:url(#pt-lens-in)}";
+    // pseudo-element rules are written as html::…: a rule without a type selector counts as universal, and
+    // adding or removing its sheet would restyle every element of the page instead of the root alone
+    let css = `html::view-transition-new(root){mask-image:${disc(cx, cy)};mask-repeat:no-repeat}`;
+    // the lens filters (the expensive part of each frame) are applied by animations on the pseudo-elements,
+    // which end as soon as the lens has settled: dropping a stylesheet instead would restyle the page
+    const lensFilters: [string, string][] = [
+      ["::view-transition-old(root)", "pt-lens-out"],
+      ["::view-transition-new(root)", "pt-lens-in"],
+    ];
 
     type Named = { name: string; box: DOMRect; filter: ReturnType<typeof makeFilter> };
     const blocks: (Named & { lines: { top: number; bottom: number }[] })[] = [];
@@ -313,8 +349,8 @@ export function pageTransitionRuntime(): void {
       const ops = lines.map(() => "add").join(", ");
       css += `${sel}{view-transition-name:${name};view-transition-class:pt-text}`;
       // disc ∩ (union of the revealed lines): the top layer intersects with everything below it
-      lensCss += `::view-transition-new(${name}){filter:url(#pt-f-${name})}`;
-      css += `::view-transition-new(${name}){${padBox};mask-repeat:no-repeat;mask-image:${discLayer(r)}, ${masks};mask-position:0 0, ${positions};mask-size:100% 100%, ${sizes};mask-composite:intersect, ${ops}}`;
+      lensFilters.push([`::view-transition-new(${name})`, `pt-f-${name}`]);
+      css += `html::view-transition-new(${name}){${padBox};mask-repeat:no-repeat;mask-image:${discLayer(r)}, ${masks};mask-position:0 0, ${positions};mask-size:100% 100%, ${sizes};mask-composite:intersect, ${ops}}`;
     }
 
     const mediaCandidates = Array.from(document.querySelectorAll("main img, main video, main canvas"))
@@ -331,8 +367,8 @@ export function pageTransitionRuntime(): void {
       media.push({ name, box: r, filter });
       taken.push(el);
       css += `${sel}{view-transition-name:${name};view-transition-class:pt-media}`;
-      lensCss += `::view-transition-new(${name}){filter:url(#pt-f-${name})}`;
-      css += `::view-transition-new(${name}){${padBox};mask-repeat:no-repeat;mask-image:${discLayer(r)}}`;
+      lensFilters.push([`::view-transition-new(${name})`, `pt-f-${name}`]);
+      css += `html::view-transition-new(${name}){${padBox};mask-repeat:no-repeat;mask-image:${discLayer(r)}}`;
     }
 
     // timeline (reference ms → scaled)
@@ -341,14 +377,13 @@ export function pageTransitionRuntime(): void {
     const textEnd = blocks.length ? Math.max(...lineStarts.map((ls) => ls[ls.length - 1])) + S(LINE_MS) : 0;
     const mediaEnd = media.length ? S(MEDIA_START + MEDIA_MS) : 0;
     const total = Math.max(discMs, S(LENS_MS), textEnd + S(120), mediaEnd) + 20;
-    css += `::view-transition-old(root){animation-duration:${discMs.toFixed(0)}ms}`;
-    css += `::view-transition-new(root),::view-transition-new(pt-header){animation-duration:${total.toFixed(0)}ms}`;
+    css += `html::view-transition-old(root){animation-duration:${discMs.toFixed(0)}ms}`;
+    css += `html::view-transition-new(root),html::view-transition-new(pt-header){animation-duration:${total.toFixed(0)}ms}`;
     style.textContent = css;
     document.head.appendChild(style);
-    const lensStyle = document.createElement("style");
-    lensStyle.textContent = lensCss;
-    document.head.appendChild(lensStyle);
     const lensEnd = Math.max(discMs, S(LENS_MS));
+    const EDGE_OUT = EDGE[EDGE.length - 1][0] * hd + 4;
+    const named = [...blocks, ...media];
     document.body.appendChild(svg);
     const root = document.documentElement;
 
@@ -356,32 +391,56 @@ export function pageTransitionRuntime(): void {
     // filter parameters follow the transition's own clock (an animation on :root), so they stay in sync
     // with the disc even when animations are slowed down or throttled
     let clock: Animation | null = null;
-    const tick = () => {
-      const t = clock ? Number(clock.currentTime) || 0 : 0;
-      if (t >= lensEnd) {
-        lensStyle.remove();
-        return;
-      }
+    const draw = (t: number) => {
       const r = Math.min(rEnd, speed * t);
-      // outgoing push around the edge, eased in over the first 60 ms so the disc does not pop
+      // outgoing push around the edge, eased in over the first 60 ms so the disc does not pop; once the
+      // disc covers the screen the outgoing snapshot is hidden, so it is not filtered (or drawn) at all
       const span = OUT_SPAN * r;
       outF.place(cx - span, cy - span, 2 * span, ((OUT_PUSH * r) / 0.498) * smooth(0, S(60), t), CA_OUT);
+      if (r >= rEnd) outF.region(0, 0, 0, 0);
       // incoming lens, sized to the disc (or the screen once the disc is larger than it)
       const k = t < S(LENS_MS) ? LENS_K0 * Math.pow(1 - t / S(LENS_MS), LENS_POW) : 0;
       const lr = Math.max(r, 1);
       const scale = (k * lr * LENS_MAX) / 0.498;
+      // the incoming snapshots are masked to the disc and the lens samples inward, so their filters only
+      // need to cover the disc's bounding square (with its soft edge)
+      const reach = r + EDGE_OUT;
       inF.place(cx - lr, cy - lr, 2 * lr, scale, CA_IN);
-      for (const n of [...blocks, ...media]) n.filter.place(cx - lr - n.box.left + PAD, cy - lr - n.box.top + PAD, 2 * lr, scale, CA_IN);
+      inF.region(cx - reach, cy - reach, cx + reach, cy + reach);
+      for (const n of named) {
+        const ox = cx - n.box.left + PAD;
+        const oy = cy - n.box.top + PAD;
+        n.filter.place(ox - lr, oy - lr, 2 * lr, scale, CA_IN);
+        n.filter.region(ox - reach, oy - reach, ox + reach, oy + reach);
+      }
+    };
+    draw(0);
+    const tick = () => {
+      const t = clock ? Number(clock.currentTime) || 0 : 0;
+      if (t >= lensEnd) return;
+      draw(t);
       if (clock && clock.playState !== "finished") raf = requestAnimationFrame(tick);
-      else lensStyle.remove();
     };
 
     const anims: Animation[] = [];
     vt.ready
       .then(() => {
-        clock = root.animate([{ "--pt-clock": "0" }, { "--pt-clock": "1" }] as Keyframe[], { duration: total, fill: "both" });
+        // both live on the ::view-transition overlay, not on :root: a changing inherited value on :root
+        // restyles the whole incoming document every frame, here it only restyles the pseudo-element tree
+        clock = root.animate([], { duration: total, fill: "both", pseudoElement: "::view-transition" });
         anims.push(clock);
-        anims.push(root.animate([{ "--pt-r": "0px" }, { "--pt-r": `${rEnd.toFixed(1)}px` }] as Keyframe[], { duration: discMs, easing: "linear", fill: "both" }));
+        anims.push(
+          root.animate([{ "--pt-r": "0px" }, { "--pt-r": `${rEnd.toFixed(1)}px` }] as Keyframe[], {
+            duration: discMs,
+            easing: "linear",
+            fill: "both",
+            pseudoElement: "::view-transition",
+          }),
+        );
+        for (const [pseudoElement, id] of lensFilters) {
+          const filter = `url(#${id})`;
+          anims.push(root.animate([{ filter }, { filter }], { duration: lensEnd, pseudoElement }));
+        }
         raf = requestAnimationFrame(tick);
         blocks.forEach((b, bi) => {
           const starts = lineStarts[bi];
@@ -423,14 +482,17 @@ export function pageTransitionRuntime(): void {
         anims.forEach((a) => a.cancel());
         svg.remove();
         style.remove();
-        lensStyle.remove();
       })
       .catch(() => {});
   };
 
   window.addEventListener("pagereveal", (e: PageRevealEvent) => {
     const vt = e.viewTransition;
-    if (!vt) return;
+    if (!vt) {
+      settle();
+      return;
+    }
+    vt.finished.finally(settle).catch(() => {});
     if (reduced.matches) {
       vt.skipTransition();
       return;

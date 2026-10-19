@@ -1,0 +1,156 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import { chromium } from 'playwright';
+
+const base = process.argv[2] || 'http://localhost:3000';
+const out = 'docs/research/affectui-crm/qa';
+await fs.mkdir(out,{recursive:true});
+const browser = await chromium.launch({channel:'chrome'});
+const context = await browser.newContext({viewport:{width:1440,height:1000},permissions:['clipboard-read','clipboard-write']});
+const page = await context.newPage();
+const errors = [];
+page.on('pageerror',error=>errors.push(error.message));
+const results = [];
+try {
+  await page.goto(`${base}/personalize`,{waitUntil:'networkidle'});
+  await page.addStyleTag({content:'nextjs-portal { display: none !important; }'});
+  await page.screenshot({path:`${out}/local-desktop.png`});
+  const check = async(name,fn) => { await fn(); results.push(name); console.log(`PASS ${name}`); };
+  await check('real CRM route and initial companies',async()=>assert.equal(await page.locator('tbody tr').count(),10));
+  await check('edit, commit, undo, redo and cancel',async()=>{
+    const cell = page.locator('tbody tr').first().locator('td').nth(4);
+    await cell.dblclick();
+    await page.getByRole('textbox',{name:'Edit Owner'}).fill('Updated owner');
+    await page.keyboard.press('Enter');
+    assert.equal(await cell.innerText(),'Updated owner');
+    await page.getByRole('button',{name:'Undo (Ctrl Z)',exact:true}).click();
+    assert.equal(await cell.innerText(),'Mara Klein');
+    await page.getByRole('button',{name:'Redo (Ctrl Shift Z)',exact:true}).click();
+    assert.equal(await cell.innerText(),'Updated owner');
+    await cell.dblclick();
+    await page.getByRole('textbox',{name:'Edit Owner'}).fill('Cancel me');
+    await page.keyboard.press('Escape');
+    assert.equal(await cell.innerText(),'Updated owner');
+    await cell.dblclick();
+    await page.getByRole('textbox',{name:'Edit Owner'}).fill('Mara Klein');
+    await page.locator('.ui-dt__title').click();
+    assert.equal(await cell.innerText(),'Mara Klein');
+  });
+  await check('tag picker commits stage and board uses same data',async()=>{
+    await page.locator('tbody tr').first().locator('td').nth(6).dblclick();
+    await page.getByRole('option',{name:'Won',exact:true}).click();
+    assert.match(await page.locator('tbody tr').first().innerText(),/Won/);
+    await page.getByRole('button',{name:'Team strategy',exact:true}).click();
+    assert.match(await page.getByRole('region',{name:'Won pipeline'}).innerText(),/Notion/);
+    await page.screenshot({path:`${out}/local-board.png`});
+    await page.locator('.ui-as-board__card').filter({hasText:'Notion'}).dragTo(page.getByRole('region',{name:'New pipeline'}));
+    assert.match(await page.getByRole('region',{name:'New pipeline'}).innerText(),/Notion/);
+    await page.getByLabel('Move Notion to stage').focus();
+    await page.getByLabel('Move Notion to stage').selectOption('Negotiation');
+    assert.match(await page.getByRole('region',{name:'Negotiation pipeline'}).innerText(),/Notion/);
+    await page.getByRole('button',{name:'Company CRM',exact:true}).click();
+  });
+  await check('row sorting and bulk duplicate/delete',async()=>{
+    await page.getByRole('button',{name:'Value',exact:true}).click();
+    assert.match(await page.locator('tbody tr').first().innerText(),/ClickUp/);
+    await page.getByRole('button',{name:'Value',exact:true}).click();
+    assert.match(await page.locator('tbody tr').first().innerText(),/Stripe/);
+    await page.getByRole('button',{name:'Value',exact:true}).click();
+    await page.getByRole('checkbox',{name:'Select Notion',exact:true}).click();
+    await page.getByRole('button',{name:'Duplicate',exact:true}).click();
+    assert.equal(await page.locator('tbody tr').count(),11);
+    await page.getByRole('checkbox',{name:'Select Notion',exact:true}).last().click();
+    await page.getByRole('button',{name:'Delete',exact:true}).click();
+    assert.equal(await page.locator('tbody tr').count(),10);
+  });
+  await check('clipboard rectangle paste and keyboard navigation',async()=>{
+    await page.locator('tbody tr').first().locator('td').nth(4).click();
+    await page.evaluate(()=>navigator.clipboard.writeText('Test Owner\t55500\nAnother Owner\t60000'));
+    await page.keyboard.press('Control+v');
+    await page.waitForTimeout(100);
+    assert.match(await page.locator('tbody tr').first().innerText(),/Test Owner/);
+    assert.match(await page.locator('tbody tr').nth(1).innerText(),/60,000/);
+    await page.keyboard.press('Control+z');
+    assert.match(await page.locator('tbody tr').first().innerText(),/Mara Klein/);
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await page.locator('td[data-active]').getAttribute('data-col'),'4');
+    await page.keyboard.press('Shift+ArrowDown');
+    await page.keyboard.press('Shift+ArrowRight');
+    await page.keyboard.press('Control+c');
+    const copied = await page.evaluate(()=>navigator.clipboard.readText());
+    assert.match(copied,/48000\tNegotiation\n12500\tProposal/);
+  });
+  await check('new row can be edited',async()=>{
+    await page.getByRole('button',{name:'Add row',exact:true}).click();
+    await page.getByRole('textbox',{name:'Edit Company'}).fill('New customer');
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('tbody tr').count(),11);
+    assert.match(await page.locator('tbody tr').last().innerText(),/New customer/);
+  });
+  await check('pixel tab copy and connection demo',async()=>{
+    await page.getByRole('button',{name:'Pixel integration',exact:true}).click();
+    await page.getByRole('button',{name:'Copy',exact:true}).click();
+    assert.match(await page.evaluate(()=>navigator.clipboard.readText()),/px_4f9a21/);
+    await page.getByRole('button',{name:'Check connection',exact:true}).click();
+    await page.getByText('Pixel connected',{exact:true}).waitFor();
+  });
+  await check('documents, sidebar, workspace and theme',async()=>{
+    await page.getByRole('button',{name:'Sales docs',exact:true}).click();
+    assert.equal(await page.locator('.ui-as-template').count(),4);
+    await page.locator('.ui-as-template').first().click();
+    assert.equal(await page.locator('dialog[open]').count(),1);
+    await page.keyboard.press('Escape');
+    await page.getByRole('button',{name:'Collapse sidebar',exact:true}).click();
+    await page.getByRole('button',{name:'Open sidebar',exact:true}).click();
+    await page.locator('.ui-as-side__workspace').click();
+    await page.getByRole('menuitemradio',{name:/Personal/}).click();
+    assert.match(await page.locator('.ui-as-side__workspace').innerText(),/Personal/);
+    await page.locator('.ui-as-user').click();
+    await page.getByRole('menuitem',{name:'Dark mode',exact:true}).click();
+    await page.keyboard.press('Escape');
+    await page.screenshot({path:`${out}/local-dark.png`});
+  });
+  await check('onboarding checklist and workspace search',async()=>{
+    await page.getByRole('button',{name:/Getting started/}).click();
+    await page.getByRole('checkbox',{name:'Invite your teammates',exact:true}).click();
+    assert.equal(await page.getByRole('checkbox',{name:'Invite your teammates',exact:true}).getAttribute('aria-checked'),'true');
+    await page.getByRole('button',{name:'Start working',exact:true}).click();
+    await page.getByRole('checkbox',{name:'Create a folder',exact:true}).click();
+    await page.getByRole('button',{name:'Close getting started',exact:true}).click();
+    await page.keyboard.press('Control+k');
+    await page.getByRole('textbox',{name:'Search workspace'}).fill('Figma');
+    assert.equal(await page.locator('.crm-search__results button').count(),1);
+    await page.locator('.crm-search__results button').click();
+    assert.equal(await page.locator('dialog[open]').count(),0);
+  });
+  await check('mobile drawer, scrolling table and no document overflow',async()=>{
+    await page.setViewportSize({width:390,height:844});
+    await page.getByRole('button',{name:'Company CRM',exact:true}).click();
+    await page.getByRole('button',{name:'Open sidebar',exact:true}).click();
+    await page.getByRole('button',{name:'Companies',exact:false}).click();
+    await page.screenshot({path:`${out}/local-mobile.png`});
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+    assert.equal(await page.locator('.ui-dt__scroll').evaluate(el=>el.scrollWidth>el.clientWidth),true);
+    await page.getByRole('button',{name:'Open sidebar',exact:true}).click();
+    await page.keyboard.press('Escape');
+  });
+  await check('homepage Guide me link and existing homepage',async()=>{
+    await page.setViewportSize({width:1440,height:1000});
+    await page.goto(base,{waitUntil:'domcontentloaded'});
+    const guide = page.getByRole('link',{name:'Guide me',exact:true});
+    await guide.click();
+    await page.waitForURL('**/personalize');
+    await page.locator('tbody tr').first().waitFor();
+    await page.setViewportSize({width:390,height:844});
+    await page.goto(base,{waitUntil:'domcontentloaded'});
+    await page.getByRole('button',{name:'Toggle navigation menu'}).click();
+    await page.getByRole('link',{name:'Guide me',exact:true}).click();
+    await page.waitForURL('**/personalize');
+  });
+  assert.deepEqual(errors,[]);
+  await fs.writeFile(`${out}/results.json`,JSON.stringify({base,passed:results,errors},null,2));
+} catch(error) {
+  await page.screenshot({path:`${out}/failure.png`});
+  await fs.writeFile(`${out}/results.json`,JSON.stringify({base,passed:results,errors,failure:error.message},null,2));
+  throw error;
+} finally { await browser.close(); }

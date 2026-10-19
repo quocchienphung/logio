@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { pageSettled } from "@/lib/pageSettled";
 import { WAVE_DESKTOP, WAVE_MOBILE, WAVE_TABLET } from "./wave/config";
 
 const FALLBACK = {
@@ -55,8 +56,10 @@ export function HeroWave() {
     document.addEventListener("visibilitychange", syncPaused);
     reduced.addEventListener("change", syncPaused);
 
-    import("./wave/WaveRenderer")
-      .then(async ({ WaveRenderer }) => {
+    // the WebGL context is created once the page transition has settled: its set-up is synchronous round
+    // trips to the GPU process, which stall while it draws the transition (the static wave shows until then)
+    Promise.all([import("./wave/WaveRenderer"), pageSettled()])
+      .then(async ([{ WaveRenderer }]) => {
         if (disposed) return;
         try {
           renderer = new WaveRenderer(canvas, {

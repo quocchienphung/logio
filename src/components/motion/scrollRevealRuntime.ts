@@ -61,6 +61,13 @@ export function scrollRevealRuntime(): void {
     els.forEach((el) => io.observe(el));
   };
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
-  else start();
+  // Held until the page transition that revealed this document is over (`__ptSettled`, set by the
+  // transition script that runs before this one) and the page is idle: only blocks below the fold are
+  // touched, so nothing shows the wait, and the transition's frames do not pay for the layout and the
+  // animations.
+  const settled = (window as Window & { __ptSettled?: Promise<void> }).__ptSettled;
+  const later = () => ("requestIdleCallback" in window ? requestIdleCallback(start, { timeout: 1000 }) : setTimeout(start, 50));
+  const go = () => (settled ? settled.then(later) : start());
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go, { once: true });
+  else go();
 }

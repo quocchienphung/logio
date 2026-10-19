@@ -1,0 +1,100 @@
+{
+  "title": "Command Menu",
+  "text": "Delegate Board, Agent Lanes and 67 more in Pro\n→\naffectUI\n⌘\nK\nLibrary\nDocs\nPricing\nClassic\nClean\nNew\nComponents\n54\nAI Answer\nPro\nChat Composer\nPro\nThinking State\nPro\nWriting Assistant\nPro\nThinking Loader\nCombobox\nPro\nCommand Menu\nPro\nDate Range Picker\nPro\nDropzone\nPro\nOTP Input\nSegmented Control\nStepper Form\nPro\nToaster\nPro\nUsage Meter\nPro\nAgent Inbox\nPro\nAgent Lanes\nPro\nAgent Steering\nPro\nAgent Tree\nPro\nAutonomy Dial\nPro\nCited Answer\nPro\nCompact Breakdown\nPro\nContext Window\nPro\nDelegate Board\nPro\nExperiment Card\nPro\nIntegration Picker\nPro\nIntegration Settings\nPro\nKPI Chart\nPro\nMemory Panel\nPro\nMessage Actions\nModel Picker\nPro\nPermission Request\nPro\nProfile Menu\nProject Card\nPro\nPrompt Library\nPro\nTips Panel\nTool Call Card\nApproval Card\nPro\nBreakdown Chart\nPro\nButton\nData Table\nPro\nFilter Menu\nReaction Bar\nSmart Recommendation\nAgent Plan\nPro\nBilling Schedule\nPro\nChange Summary\nComments Panel\nPro\nEmail Draft\nProgress Tracker\nComment Thread\nInline Diff\nPro\nSetup Guide\nPro\nDecision Inbox\nNotification Stack\nScreens\n12\nApp Shell\nPro\nAssistant Home\nPro\nFolders\nPro\nFolder\nPro\nIntegrations\nPro\nAgent Chat\nPro\nCRM\nPro\nAnalytics\nPro\nAgent Run\nPro\nSettings & Billing\nPro\nOnboarding\nPro\nEvals\nPro\nBlocks\n11\nClient Context\nPro\nInvoice & Credit Note\nPro\nLogo Marquee\nMetrics Dashboard\nPro\nPricing Plans\nPro\nTask Board\nPro\nTestimonial Wall\nAI Workspace\nPro\nApp Directory\nPro\nKPI Board\nPro\nAgent Gallery\nPro\nIllustrations\n24\nCover Flow\nFrost Cloud\nGlow Cloud\nGlow Keyboard\nPro\nIntegration Beam\nLogo Cluster\nModel Wheel\nProject Flow\nPro\nDACH Region\nEmpty Calendar\nIntegration Flow\nPro\nVoice Orb\nPro\nTab Overload\nWorld Map Continental\nPro\nGhosted Chat\nLead Sourcing\nEnrichment Orbit\nOutreach Branches\nPro\nGlass Folder\nPro\nSide Folder\nTeam Invite\nLayer Stack\nAgent Team\nIntegration Grid\nMotion\n8\nBlur Crossfade\nPro\nGradient Floor\nPro\nGradient Text\nPro\nGrid Background\nNumber Ticker\nShimmer Loader\nText Reveal\nTilt Card\nPro\n67\nGet Pro\nLog In\nComponents\nCommand Menu\nCommand Menu\n\nSearch and run anything from one field – tool actions with logos and ⌘1–⌘5, everyday commands with icons.\n\nGet Pro to install\nPreview\nCode\nCopy prompt\nMCP\nCopy\nSUGGESTIONS\nWrite an email\nGmail\nCtrl\n1\nAsk assistant\nSummaries, drafts, answers\nCtrl\n2\nCreate a task\nClickUp\nCtrl\n3\nAdd contact to CRM\nHubSpot\nCtrl\n4\nSchedule a meeting\nGoogle Calendar\nCtrl\n5\nSHARE\nPost an update\n#team-updates\nSave as page\nNotion · Meeting notes\nGENERAL\nNew document\nN\nInvite teammates\nI\nUpload files\nU\nSwitch to dark mode\n⇧\nD\nGO TO\nHome\nG\nH\nInbox\nG\nI\nReports\nG\nR\nSettings\nG\nS\nHelp & feedback\n?\nTab\nto jump between sections\nCtrl\nK\nto open\nWhen to use\nA ⌘K menu that runs actions across the tools your product connects to\nPower users who want to reach any page or action without the mouse\nWhen not to use\nThe only way to reach something – keep the main navigation visible as well\nFewer than five actions – buttons are easier to discover\nInstallation\n\nCommand Menu is a Pro component.\n\nInstallation is part of Pro\nGet Pro to copy the code, install it with the CLI and use it in your projects.\nUnlock with Pro\nUsage\nUsage example is part of Pro\nGet Pro\nAPI reference\nCommandMenu\nProp\tType\tDefault\tDescription\ngroups\tCommandGroup[]\tSuggestions, Share, General, Go to\tEach { id, label, commands: { id, label, hint?, logo? | icon?, keys?, keywords? }[] }; the group with id \"suggestions\" gets ⌘1–⌘5\nplaceholder\tstring\t\"Type a command or search…\"\tText in the empty field\nonRun\t(id: string, query?: string) => void\t–\tCalled when a command runs; the assistant fallback sends \"ask\" and the typed text\nonClose\t() => void\t–\tRuns on Esc in an empty field – close your dialog here\nautoFocus\tboolean\t–\tFocus the field when the menu appears\nclassName\tstring\t–\tExtra class on the root\nKeyboard interactions\n↑ or ↓\tMove row by row through all sections\n↵\tRun the highlighted command\nTab\tJump to the next section (Shift Tab goes back)\n⌘ or 1–5\tRun a suggestion straight away (Ctrl on Windows)\nEsc\tClear the field, then close\n⌘ or K\tFocus the field from anywhere\nAccessibility\nThe field is a combobox that controls the list; the highlighted command is the active option\nGroups are labelled, shortcut keys are hidden from screen readers\nWhat just ran is announced in a polite live region\nMotion\nA light gray highlight follows the active row with a short, crisp move and fades out when the pointer leaves the list\nThe row that runs gives a short press; a check and its name appear in the last row of the panel\nWith prefers-reduced-motion everything switches instantly\nResponsive behavior\nFills its container up to 600px; on phones shortcut keys and hints are left out\nDark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme=\"dark\"\naffectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects\naffectUI\n\nAgent-ready React UI for AI products – one file each, no dependencies.\n\nSite\nHome\nComponents\nScreens\nBlocks\nIllustrations\nMotion\nPricing\nDocs\nIntroduction\nInstallation\nAccessibility\nLegal & Account\nAccount\nLicense\nTerms\nPrivacy\nRefund\nImprint\nContact\n\nCreated by Flo",
+  "roots": [
+    "ui-ts",
+    "ui-ts__list",
+    "ui-ts__sr",
+    "ui-cmc",
+    "ui-cmc__card",
+    "ui-cmc__search",
+    "ui-cmc__enter",
+    "ui-cmc__list",
+    "ui-cmc__pill",
+    "ui-cmc__inner",
+    "ui-cmc__group",
+    "ui-cmc__label",
+    "ui-cmc__item",
+    "ui-cmc__logo",
+    "ui-cmc__text",
+    "ui-cmc__name",
+    "ui-cmc__hint",
+    "ui-cmc__keys",
+    "ui-cmc__icon",
+    "ui-cmc__foot",
+    "ui-cmc__tip",
+    "ui-cmc__foot-right"
+  ],
+  "assets": [],
+  "controls": [
+    {
+      "text": "Write an emailGmailCtrl1",
+      "label": null
+    },
+    {
+      "text": "Ask assistantSummaries, drafts, answersCtrl2",
+      "label": null
+    },
+    {
+      "text": "Create a taskClickUpCtrl3",
+      "label": null
+    },
+    {
+      "text": "Add contact to CRMHubSpotCtrl4",
+      "label": null
+    },
+    {
+      "text": "Schedule a meetingGoogle CalendarCtrl5",
+      "label": null
+    },
+    {
+      "text": "Post an update#team-updates",
+      "label": null
+    },
+    {
+      "text": "Save as pageNotion · Meeting notes",
+      "label": null
+    },
+    {
+      "text": "New documentN",
+      "label": null
+    },
+    {
+      "text": "Invite teammatesI",
+      "label": null
+    },
+    {
+      "text": "Upload filesU",
+      "label": null
+    },
+    {
+      "text": "Switch to dark mode⇧D",
+      "label": null
+    },
+    {
+      "text": "HomeGH",
+      "label": null
+    },
+    {
+      "text": "InboxGI",
+      "label": null
+    },
+    {
+      "text": "ReportsGR",
+      "label": null
+    },
+    {
+      "text": "SettingsGS",
+      "label": null
+    },
+    {
+      "text": "Help & feedback?",
+      "label": null
+    }
+  ],
+  "route": "/components/command-menu",
+  "styleHashes": [
+    "bdc9f7e471d2",
+    "2edcc6bd57ce"
+  ]
+}
