@@ -27,7 +27,7 @@ Entry/shell ở `../affectui-crm/Crm.tsx`, section/history ở `workspace-state.
 
 Main toolbar52px. Column plan/activity rộng tối đa680px, padding32px desktop; panel360px, hai cột scroll độc lập. Plan card423px với5 hàng ở trạng thái đầu; tray bo18px, card14px, timeline marker23px. Inter/font/icon kế thừa đúng reference.
 
-Khi main area≤1000px, panel chuyển thành lớp bên phải, có scrim; default đóng trên màn hẹp. Người dùng mở bằng Show side panel hoặc link Waiting for your approval trong activity. Mobile≤600px: padding16px, panel full main width, header rút gọn, diff không tràn viewport. Local bổ sung nút Close trên panel mobile, focus trap và trả focus về toggle; source chỉ có toggle ở phía sau panel.
+Khi main area≤1000px, panel chuyển thành lớp bên phải, có scrim; default đóng trên màn hẹp. Người dùng mở bằng Show side panel hoặc link Waiting for your approval trong activity. Mobile≤600px: padding16px, panel full main width, header rút gọn, diff không tràn viewport. Local bổ sung nút Close trên panel mobile, focus trap và trả focus về toggle; tạm ẩn floating sidebar opener phía sau modal để nó không che tiêu đề; source chỉ có toggle ở phía sau panel.
 
 Dark mode dùng token của CRM; không đổi theme Stripe. `prefers-reduced-motion` tắt chuyển động trong khi workflow vẫn hoạt động.
 
@@ -52,17 +52,17 @@ Draft giữ9 token-level suggestions của nguồn. Original: “Revenue grew 18
 
 Spinner/rays và gradient shimmer khi running; timeline entry rise, card/group grid disclosure, draw-check khi hoàn tất, pill status, loader label/width transition, approval collapse/crossfade, draft mark/color/toolbar/popover transition, panel420ms và shell sidebar420ms. Các chuyển động chạy bằng DOM/CSS/Motion; không dùng video hoặc ảnh để mô phỏng.
 
-Memo hóa Draft/tool cards; thời gian chờ chạy ở text component riêng. Settings/Reports và Stripe engine không bị thay thế. Run chỉ tải khi mở section. Phép đo production Chrome headless1440×1000 tại máy này:1 chunk **20,057 bytes encoded**,94,728 decoded;592 frames khi chạy, median6.1ms/p956.2ms,0 frame>25ms,0 long task. Sau Stop và chờ ổn định:0 DOM mutation trong2 giây. Không suy rộng thành benchmark mọi máy hay khẳng định vượt sản phẩm khác. Số liệu: `qa/performance.json`.
+Memo hóa Draft/tool cards; thời gian chờ chạy ở text component riêng. Settings/Reports và Stripe engine không bị thay thế. Run chỉ tải khi mở section. Phép đo production Chrome headless1440×1000 tại máy này:1 chunk **20,057 bytes encoded**,94,728 decoded;597 frames khi chạy, median6.1ms/p956.2ms,0 frame>25ms,0 long task. Sau Stop và chờ ổn định:0 DOM mutation trong2 giây. Không suy rộng thành benchmark mọi máy hay khẳng định vượt sản phẩm khác. Số liệu: `qa/performance.json`.
 
 ## Kiểm tra và bằng chứng
 
 - `initial/time-*/approval-email/email-approved/done/denied/stopped/mobile*.html`, `.txt`, `source-*.png`: các trạng thái nguồn.
 - `styles-settled.css`, `tool-call.css`, `approval-parts.json`, `icons*.json`: CSS/SVG/DOM có xuất xứ. Script inspect/save không được import vào app.
-- `comparison/metrics.json`: source/local/diff theo viewport/state toàn main; `comparison/draft/metrics.json`:8 so sánh desktop/mobile cho initial, hover active, accepted, rejected đều0% tại threshold0.15. `tool-arguments-comparison.json`: expanded Arguments0% khác pixel và cùng622×165.125px.
+- `comparison/metrics.json`:30 so sánh main panel tại1440/1920/1228/1024/768/390px × waiting/panel-hidden/denied/done/expanded; sai khác0.003–0.218%, không page error hoặc page overflow; `comparison/draft/metrics.json`:8 so sánh desktop/mobile cho initial, hover active, accepted, rejected đều0% tại threshold0.15. `tool-arguments-comparison.json`: expanded Arguments0% khác pixel và cùng622×165.125px.
 - Main comparison loại sidebar CRM có chủ đích; ẩn đồng thời clock text và transient toast trên cả source/local vì thời gian thao tác khác nhau. Trên panel mobile full-width, setup source dùng toggle DOM quan sát được để đóng panel vốn không có nút đóng phía trước; QA local dùng input pointer/keyboard thật.
--4 model tests kiểm tra thứ tự calls, approval gate, deny/retry, accounting thời gian chờ và plan mutations.
+- 4 model tests kiểm tra thứ tự calls, approval gate, deny/retry, accounting thời gian chờ và plan mutations.
 - `qa/results.json`:10 nhóm workflow end-to-end; `qa/draft-results.json`:7 nhóm diff/clipboard/refresh/workspace/mobile; `plan-activity-qa.json`:11 nhóm plan/payload/retry/drag. Không runtime page error ở các lượt pass.
-- `npm run check` pass, với5 warning có sẵn ở Stripe/forensics ngoài phần Run. Reports/workspace17 nhóm và Settings11 nhóm regression pass. Run main workflow cũng pass trên production.
+- `npm run check` pass, với5 warning có sẵn ở Stripe/forensics ngoài phần Run. Reports/workspace17 nhóm và Settings11 nhóm regression pass. Run main workflow cũng pass trên production. `qa/navigation-results.json` kiểm tra thêm5 luồng Run→Reports→Settings→Companies và responsive sau khi CSS Run đã tải, đều pass.
 
 Chạy lại với dev server đang mở:
 

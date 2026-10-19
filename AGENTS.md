@@ -82,7 +82,7 @@ This checkout already holds a stripe.com reconstruction. Read `docs/stripe-hando
 - Guide me links to `/personalize`, implemented by `src/components/sites/affectui-crm/`. The source reference is `https://www.affectui.com/screens/crm/full`.
 - `reference.css`, `icons.json` and `seed.json` in that folder are generated from observed public preview evidence; put CSS fixes in `crm-overrides.css`.
 - QA: `node scripts/qa/affectui-crm.mjs`; visual comparisons: `node scripts/forensics/affectui-compare.mjs`. Evidence lives in `docs/research/affectui-crm/`.
-- The library inventory covers public docs and initial Clean previews. CRM, Analytics and Settings & Billing have local implementations; gated Pro source and unobserved states are not part of the capture.
+- The library inventory covers public docs and initial Clean previews. CRM, Analytics, Settings & Billing and Agent Run have local implementations; gated Pro source and unobserved states are not part of the capture.
 - Analytics is implemented in `src/components/sites/affectui-analytics/` and opens from **Reports** at `/personalize?section=reports`; it reuses the CRM sidebar. Read `docs/research/affectui-analytics/README.md` for the source data, animation contract and comparisons.
 - Workspace interactions now include Home, Contacts CRUD, pipeline filters, custom views, editable/downloadable documents, Profile/Settings, and per-workspace browser storage. State/navigation helpers are in `workspace-state.ts`; shared dialogs/pages/editors are adjacent to `Crm.tsx`.
 - Additional QA: `node scripts/qa/affectui-workspace.mjs`; Analytics comparison: `node scripts/forensics/affectui-analytics-compare.mjs`. Put Analytics fixes in `analytics-overrides.css`, not `analytics-reference.css`.

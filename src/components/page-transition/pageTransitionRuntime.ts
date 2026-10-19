@@ -316,7 +316,11 @@ export function pageTransitionRuntime(): void {
     const outRegion = [cx - (cx + 8) / sMin, cy - (cy + 8) / sMin, (W + 16) / sMin, (H + 16) / sMin];
     makeFilter(svg, "pt-lens-out", outRegion, maps.push, cx - outSpan, cy - outSpan, 2 * outSpan)((OUT_PUSH * R0) / 0.498);
     // incoming lens over the disc; its strength decays with k (set from the main thread)
-    const lensIn = makeFilter(svg, "pt-lens-in", [0, 0, W, H], maps.lens, cx - R0, cy - R0, 2 * R0);
+    // (the mask hides everything beyond the disc and its soft tail, so the filter only covers that square)
+    const reachBox = R0 * (1 + tail / rEnd) + 4;
+    const x0 = Math.max(0, cx - reachBox);
+    const y0 = Math.max(0, cy - reachBox);
+    const lensIn = makeFilter(svg, "pt-lens-in", [x0, y0, Math.min(W, cx + reachBox) - x0, Math.min(H, cy + reachBox) - y0], maps.lens, cx - R0, cy - R0, 2 * R0);
     const lensScale = (k: number) => (k * R0 * LENS_MAX) / 0.498;
     lensIn(lensScale(LENS_K0));
 

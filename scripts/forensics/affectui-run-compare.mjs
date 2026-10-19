@@ -6,8 +6,10 @@ const out='docs/research/affectui-run/comparison';await fs.mkdir(out,{recursive:
 const base=process.argv[2]||'http://localhost:3000';
 const browser=await chromium.launch({channel:'chrome'});const results=[];
 const quick=process.argv.includes('--quick');
+const selected=process.argv.find(value=>value.startsWith('--widths='))?.split('=')[1].split(',').map(Number);
+if(selected){try{const previous=JSON.parse(await fs.readFile(`${out}/metrics.json`,'utf8'));results.push(...previous.filter(entry=>!selected.includes(entry.viewport.width)));}catch{}}
 const waitApproval=async page=>{await page.locator('.ui-ar__pill[data-phase="waiting"]').waitFor({timeout:25000});const show=page.getByRole('button',{name:'Show side panel',exact:true});if(await show.isVisible())await show.click();await page.getByRole('button',{name:'Approve',exact:true}).waitFor();};
-for(const viewport of quick ? [{width:1440,height:1000}] : [{width:1440,height:1000},{width:1920,height:1080},{width:1228,height:900},{width:1024,height:900},{width:768,height:1024},{width:390,height:844}]){
+for(const viewport of (quick ? [{width:1440,height:1000}] : [{width:1440,height:1000},{width:1920,height:1080},{width:1228,height:900},{width:1024,height:900},{width:768,height:1024},{width:390,height:844}]).filter(viewport=>!selected||selected.includes(viewport.width))){
   const pages=[];
   await Promise.all([['source','https://www.affectui.com/screens/agent-run/full'],['local',`${base}/personalize?section=run`]].map(async([label,url],index)=>{
     const page=await browser.newPage({viewport});const errors=[];page.on('pageerror',e=>errors.push(e.message));

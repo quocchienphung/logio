@@ -8,6 +8,8 @@
 .ui-ar__quiet > span > .crm-icon {width:16px;height:16px;}
 .ui-ar__details .crm-icon {width:14px;height:14px;}
 .ui-ar__panel .run-panel-close {display:none;}
+/* The shell's floating sidebar opener must not cover the modal panel title. */
+.crm-page:has(.ui-ar__panel[aria-modal="true"]) .ui-as-side-open {visibility:hidden;}
 .run-options {right:0;left:auto;min-width:185px;}
 .run-dialog {display:grid;gap:16px;padding-top:8px;}
 .run-dialog .crm-field {margin:0;}

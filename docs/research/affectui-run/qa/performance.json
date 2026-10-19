@@ -9,7 +9,7 @@
   ],
   "lazyEncodedBytes": 20057,
   "interaction": {
-    "frames": 592,
+    "frames": 597,
     "medianFrameMs": 6.1,
     "p95FrameMs": 6.2,
     "framesOver25ms": 0,
