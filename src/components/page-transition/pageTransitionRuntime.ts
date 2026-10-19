@@ -499,8 +499,13 @@ export function pageTransitionRuntime(): void {
       vt.skipTransition();
       return;
     }
-    // lets page motion that the transition already performs (hero word reveal) stand down
-    root.classList.add("pt-arrived");
+    // lets page motion that the transition already performs (hero word reveal) stand down. A stylesheet in
+    // <head> rather than a class on <html>: React hydrates after this runs and reports any attribute it did
+    // not render (a mismatch warning in development), but leaves unknown nodes in <head> alone.
+    const arrived = document.createElement("style");
+    arrived.id = "pt-arrived";
+    arrived.textContent = ".sr-word{animation:none!important}";
+    document.head.appendChild(arrived);
     run(vt);
   });
 }
