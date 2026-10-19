@@ -10,7 +10,8 @@ Ngày khảo sát: 2026-10-19. Bắt đầu bằng `AGENTS.md` và `.agents/skil
 | https://www.affectui.com/screens/crm/full | `/personalize` | Reference toàn màn hình cho đối chiếu trực tiếp |
 | https://www.affectui.com/screens/analytics/full | `/personalize?section=reports` | Analytics trong Reports, dùng sidebar CRM |
 | https://www.affectui.com/screens/settings-billing/full | `/personalize?section=settings` | Settings đầy đủ4 tab, dùng sidebar CRM |
-| 109 trang thư viện | `docs/research/affectui-library/` | Hồ sơ khảo sát; đã dựng CRM + Analytics + Settings & Billing, còn 106 item tham khảo |
+| https://www.affectui.com/screens/agent-run/full | `/personalize?section=run` | Run dưới Reports: workflow, plan/activity, approval, inline diff |
+| 109 trang thư viện | `docs/research/affectui-library/` | Hồ sơ khảo sát; đã dựng CRM + Analytics + Settings & Billing + Agent Run, còn 105 item tham khảo |
 
 Navigation desktop giữ tên và biểu tượng **Guide me**, link `/personalize`. Menu mobile có cùng link trong callout Company CRM. Trong menu tài khoản CRM có **Back to Stripe** để quay lại `/`.
 
@@ -58,6 +59,7 @@ Những quy tắc xác minh trực tiếp trên CRM:
 | `workspace-interactions.css` | Motion và các màn tương tác mở rộng, được scope trong CRM |
 | `src/components/sites/affectui-analytics/` | Reports: 3 period dataset, chart SVG tương tác, morph đường/số, CSV và saved reports |
 | `src/components/sites/affectui-settings/` | Settings lazy-loaded: General, Members, Billing, API keys; xem brief riêng |
+| `src/components/sites/affectui-run/` | Run lazy-loaded: simulation model, plan/activity, approval, draft diff; xem brief riêng |
 | `reference.css` | CSS quan sát từ public preview; được sinh lại bởi prepare script |
 | `crm-overrides.css` | Tích hợp và điều chỉnh cục bộ |
 | `CrmIcon.tsx`, `icons.json`, `seed.json` | SVG tĩnh và dữ liệu lấy từ DOM công khai; không chạy remote bundle |
@@ -107,8 +109,9 @@ Không chạy lại prepare sau khi sửa trực tiếp `reference.css`, `icons.
 - Board kéo thả và lựa chọn stage dùng chung model table; không giả định đó là toàn bộ nghiệp vụ của sản phẩm gốc.
 - Reports có tooltip chuột/bàn phím/cảm ứng, chọn 7/30/90 ngày, ẩn/hiện series, thông tin metric/product, CSV thật và báo cáo đặt tên có thể mở/xóa. Xem [Analytics brief](research/affectui-analytics/README.md) cho đối chiếu và file ownership.
 - Settings có General upload/name/region, member invite/role/remove, plan/cycle/cancel/resume, masked card/email, invoice CSV và demo API key create/copy/rename/revoke. State riêng workspace; không gửi email/thu tiền/cấp quyền API thật. Menu Settings và sidebar mở trang đầy đủ; appearance cũ giữ riêng. Xem [Settings brief](research/affectui-settings/README.md) cho kiểm tra20 viewport/state, regression và production performance.
+- Run được đặt ngay dưới Reports và dựng hoàn toàn bằng React/CSS/SVG. Có5 bước/8 tool calls, đồng hồ, stop/retry/replay, approval gate, plan editing/drag, payload disclosure/clipboard và9 diff suggestions/Undo. Run và draft lưu riêng theo workspace. Share xuất JSON thật; View in Chat mở transcript cục bộ. Không gửi email/calendar hoặc gọi LLM thật. Xem [Run brief](research/affectui-run/README.md) cho kiến trúc, motion và QA.
 - Motion chạy theo tương tác: shared selection pill, crossfade màn/tab/menu, layout animation khi sort/thêm/xóa/di chuyển card, accordion, native dialog, số và SVG path morph khi đổi period. Tôn trọng reduced motion; không có vòng lặp cập nhật dữ liệu giả khi người dùng không thao tác.
-- Classic variants, toàn bộ trạng thái của 106 item khác và backend không được inventory desktop ban đầu xác minh. Phải khảo sát thêm item đang dựng.
+- Classic variants, toàn bộ trạng thái của 105 item khác và backend không được inventory desktop ban đầu xác minh. Phải khảo sát thêm item đang dựng.
 - Kiểm tra pixel chỉ áp dụng viewport/state đã ghi trong JSON; không coi phần trăm này là bằng chứng mọi state giống tuyệt đối.
 - `npm run check` có thể in 4 warning có sẵn ở `capture-nav-menus.mjs`, `products/build_css.mjs`, `Footer.tsx`, `Stats.tsx`. Phần CRM mới phải không có lint error.
 

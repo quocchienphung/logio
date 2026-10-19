@@ -1,6 +1,6 @@
 {
   "captured": "2026-10-19",
-  "scope": "Public Clean documentation and initial previews; interactive CRM, Analytics and Settings & Billing audits are separate.",
+  "scope": "Public Clean documentation and initial previews; interactive CRM, Analytics, Settings & Billing and Agent Run audits are separate.",
   "families": [
     {
       "family": "components",
