@@ -1,0 +1,101 @@
+[
+  {
+    "after": 0,
+    "phase": "done",
+    "loaders": [
+      {
+        "text": "Book a review with MayaDone in 11s",
+        "rect": {
+          "x": 340,
+          "y": 1090.578125,
+          "width": 195,
+          "height": 28,
+          "top": 1090.578125,
+          "right": 535,
+          "bottom": 1118.578125,
+          "left": 340
+        },
+        "style": "flex"
+      }
+    ],
+    "feed": {
+      "rect": {
+        "x": 306,
+        "y": 544,
+        "width": 680,
+        "height": 567.8125,
+        "top": 544,
+        "right": 986,
+        "bottom": 1111.8125,
+        "left": 306
+      },
+      "html": "utton type=\"button\" class=\"ui-tc__copy\" aria-label=\"Copy result\" title=\"Copy result\"><svg class=\"ui-tc__copy-icon\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><rect x=\"5.25\" y=\"5.25\" width=\"8\" height=\"8\" rx=\"2\"></rect><path d=\"M10.75 5.25v-1a1.5 1.5 0 0 0-1.5-1.5h-4.5a2 2 0 0 0-2 2v4.5a1.5 1.5 0 0 0 1.5 1.5h1\"></path></svg><svg class=\"ui-tc__copy-done\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3.5 8.4 6.6 11.3 12.5 4.9\" pathLength=\"1\"></path></svg></button></div><pre class=\"ui-tc__code\"><code>{\n  <span class=\"ui-tc__t-key\">\"event\"</span>: <span class=\"ui-tc__t-str\">\"evt_31a\"</span>,\n  <span class=\"ui-tc__t-key\">\"time\"</span>: <span class=\"ui-tc__t-str\">\"2026-10-15T10:00\"</span>\n}</code></pre></div></div></div></div></div></div></div></div></div></div><span class=\"ui-tl ui-ar__loader\" data-size=\"sm\" data-variant=\"pill\" role=\"status\" aria-live=\"polite\" data-done=\"true\"><span class=\"ui-tl__icon\" aria-hidden=\"true\"><svg class=\"ui-tl__spinner\" viewBox=\"0 0 16 16\"><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(0 8 8)\" style=\"animation-delay: -800ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(45 8 8)\" style=\"animation-delay: -700ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(90 8 8)\" style=\"animation-delay: -600ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(135 8 8)\" style=\"animation-delay: -500ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(180 8 8)\" style=\"animation-delay: -400ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(225 8 8)\" style=\"animation-delay: -300ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(270 8 8)\" style=\"animation-delay: -200ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(315 8 8)\" style=\"animation-delay: -100ms;\"></line></svg><svg class=\"ui-tl__check\" viewBox=\"0 0 16 16\"><path d=\"M3.5 8.4 6.6 11.3 12.5 4.9\" pathLength=\"1\"></path></svg></span><span class=\"ui-tl__text\" style=\"width: 69px;\"><span class=\"ui-tl__label ui-tl__label--out\" aria-hidden=\"true\">Book a review with Maya</span><span class=\"ui-tl__label ui-tl__label--in\" data-text=\"Done in 11s\">Done in 11s</span></span></span>"
+    }
+  },
+  {
+    "after": 1000,
+    "phase": "done",
+    "loaders": [
+      {
+        "text": "Done in 11s",
+        "rect": {
+          "x": 340,
+          "y": 1042.578125,
+          "width": 111,
+          "height": 28,
+          "top": 1042.578125,
+          "right": 451,
+          "bottom": 1070.578125,
+          "left": 340
+        },
+        "style": "flex"
+      }
+    ],
+    "feed": {
+      "rect": {
+        "x": 306,
+        "y": 544,
+        "width": 680,
+        "height": 526.578125,
+        "top": 544,
+        "right": 986,
+        "bottom": 1070.578125,
+        "left": 306
+      },
+      "html": "s=\"ui-tc__section\"><div class=\"ui-tc__section-head\"><span class=\"ui-tc__label\">Result</span><button type=\"button\" class=\"ui-tc__copy\" aria-label=\"Copy result\" title=\"Copy result\"><svg class=\"ui-tc__copy-icon\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><rect x=\"5.25\" y=\"5.25\" width=\"8\" height=\"8\" rx=\"2\"></rect><path d=\"M10.75 5.25v-1a1.5 1.5 0 0 0-1.5-1.5h-4.5a2 2 0 0 0-2 2v4.5a1.5 1.5 0 0 0 1.5 1.5h1\"></path></svg><svg class=\"ui-tc__copy-done\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3.5 8.4 6.6 11.3 12.5 4.9\" pathLength=\"1\"></path></svg></button></div><pre class=\"ui-tc__code\"><code>{\n  <span class=\"ui-tc__t-key\">\"event\"</span>: <span class=\"ui-tc__t-str\">\"evt_31a\"</span>,\n  <span class=\"ui-tc__t-key\">\"time\"</span>: <span class=\"ui-tc__t-str\">\"2026-10-15T10:00\"</span>\n}</code></pre></div></div></div></div></div></div></div></div></div></div><span class=\"ui-tl ui-ar__loader\" data-size=\"sm\" data-variant=\"pill\" role=\"status\" aria-live=\"polite\" data-done=\"true\"><span class=\"ui-tl__icon\" aria-hidden=\"true\"><svg class=\"ui-tl__spinner\" viewBox=\"0 0 16 16\"><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(0 8 8)\" style=\"animation-delay: -800ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(45 8 8)\" style=\"animation-delay: -700ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(90 8 8)\" style=\"animation-delay: -600ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(135 8 8)\" style=\"animation-delay: -500ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(180 8 8)\" style=\"animation-delay: -400ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(225 8 8)\" style=\"animation-delay: -300ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(270 8 8)\" style=\"animation-delay: -200ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(315 8 8)\" style=\"animation-delay: -100ms;\"></line></svg><svg class=\"ui-tl__check\" viewBox=\"0 0 16 16\"><path d=\"M3.5 8.4 6.6 11.3 12.5 4.9\" pathLength=\"1\"></path></svg></span><span class=\"ui-tl__text\" style=\"width: 69px;\"><span class=\"ui-tl__label ui-tl__label--in\" data-text=\"Done in 11s\">Done in 11s</span></span></span>"
+    }
+  },
+  {
+    "after": 3000,
+    "phase": "done",
+    "loaders": [
+      {
+        "text": "Done in 11s",
+        "rect": {
+          "x": 340,
+          "y": 1042.578125,
+          "width": 111,
+          "height": 28,
+          "top": 1042.578125,
+          "right": 451,
+          "bottom": 1070.578125,
+          "left": 340
+        },
+        "style": "flex"
+      }
+    ],
+    "feed": {
+      "rect": {
+        "x": 306,
+        "y": 544,
+        "width": 680,
+        "height": 526.578125,
+        "top": 544,
+        "right": 986,
+        "bottom": 1070.578125,
+        "left": 306
+      },
+      "html": "s=\"ui-tc__section\"><div class=\"ui-tc__section-head\"><span class=\"ui-tc__label\">Result</span><button type=\"button\" class=\"ui-tc__copy\" aria-label=\"Copy result\" title=\"Copy result\"><svg class=\"ui-tc__copy-icon\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><rect x=\"5.25\" y=\"5.25\" width=\"8\" height=\"8\" rx=\"2\"></rect><path d=\"M10.75 5.25v-1a1.5 1.5 0 0 0-1.5-1.5h-4.5a2 2 0 0 0-2 2v4.5a1.5 1.5 0 0 0 1.5 1.5h1\"></path></svg><svg class=\"ui-tc__copy-done\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3.5 8.4 6.6 11.3 12.5 4.9\" pathLength=\"1\"></path></svg></button></div><pre class=\"ui-tc__code\"><code>{\n  <span class=\"ui-tc__t-key\">\"event\"</span>: <span class=\"ui-tc__t-str\">\"evt_31a\"</span>,\n  <span class=\"ui-tc__t-key\">\"time\"</span>: <span class=\"ui-tc__t-str\">\"2026-10-15T10:00\"</span>\n}</code></pre></div></div></div></div></div></div></div></div></div></div><span class=\"ui-tl ui-ar__loader\" data-size=\"sm\" data-variant=\"pill\" role=\"status\" aria-live=\"polite\" data-done=\"true\"><span class=\"ui-tl__icon\" aria-hidden=\"true\"><svg class=\"ui-tl__spinner\" viewBox=\"0 0 16 16\"><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(0 8 8)\" style=\"animation-delay: -800ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(45 8 8)\" style=\"animation-delay: -700ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(90 8 8)\" style=\"animation-delay: -600ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(135 8 8)\" style=\"animation-delay: -500ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(180 8 8)\" style=\"animation-delay: -400ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(225 8 8)\" style=\"animation-delay: -300ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(270 8 8)\" style=\"animation-delay: -200ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(315 8 8)\" style=\"animation-delay: -100ms;\"></line></svg><svg class=\"ui-tl__check\" viewBox=\"0 0 16 16\"><path d=\"M3.5 8.4 6.6 11.3 12.5 4.9\" pathLength=\"1\"></path></svg></span><span class=\"ui-tl__text\" style=\"width: 69px;\"><span class=\"ui-tl__label ui-tl__label--in\" data-text=\"Done in 11s\">Done in 11s</span></span></span>"
+    }
+  }
+]

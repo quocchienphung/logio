@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { runHeavy } from "@/lib/pageSettled";
 
 const FALLBACK = "/stripe/card-placeholder_2x-w894-e383a280-mono.webp";
 
@@ -37,21 +38,23 @@ export function IssuingCardGraphic() {
     document.addEventListener("visibilitychange", syncPaused);
 
     import("./issuing/IssuingCardRenderer")
-      .then(async ({ IssuingCardRenderer }) => {
-        if (disposed) return;
-        try {
-          renderer = new IssuingCardRenderer(
-            canvas,
-            root.closest<HTMLElement>("[data-bento-card-root]"),
-          );
-          await renderer.init();
+      .then(({ IssuingCardRenderer }) =>
+        runHeavy(async () => {
           if (disposed) return;
-          syncPaused();
-          if (renderer.paused) renderer.drawOnce();
-        } catch {
-          setWebgl(false);
-        }
-      })
+          try {
+            renderer = new IssuingCardRenderer(
+              canvas,
+              root.closest<HTMLElement>("[data-bento-card-root]"),
+            );
+            await renderer.init();
+            if (disposed) return;
+            syncPaused();
+            if (renderer.paused) renderer.drawOnce();
+          } catch {
+            setWebgl(false);
+          }
+        }),
+      )
       .catch(() => setWebgl(false));
 
     return () => {

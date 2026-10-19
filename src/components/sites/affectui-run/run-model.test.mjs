@@ -13,6 +13,11 @@ test('deny stops and retry removes previous approval before replaying the step',
   let s=tick(tick(createRun(steps),1000),700);s=runReducer(s,{type:'deny',id:'b'});assert.equal(s.phase,'stopped');assert.equal(s.states.b.status,'denied');assert.equal(s.states.c.status,'pending');
   s=runReducer(s,{type:'retry',id:'b',now:10});s=tick(s,700);assert.equal(s.phase,'waiting');assert.equal(s.approvals.b,undefined);assert.equal(s.states.a.status,'done');
 });
+test('approval waiting time is accounted once without executing a gated tool',()=>{
+  let s=runReducer(tick(createRun(steps),1000),{type:'tick',delta:700,now:2000});assert.equal(s.phase,'waiting');
+  s=runReducer(s,{type:'approve',id:'b',now:9000});assert.equal(s.states.b.waited,7000);assert.equal(s.states.b.completedCalls,0);assert.equal(s.elapsed,8700);
+  s=tick(s,100);assert.equal(s.states.b.completedCalls,0);s=tick(s,100);assert.equal(s.states.b.status,'done');assert.equal(s.states.b.waited,7000);
+});
 test('stop cancels progress; rename/move/remove preserve stable ids and support custom steps',()=>{
   let s=runReducer(tick(createRun(steps),200),{type:'stop'});assert.equal(s.states.a.status,'stopped');assert.equal(tick(s,500),s);
   s=runReducer(s,{type:'rename',id:'c',title:'Renamed'});s=runReducer(s,{type:'move',id:'c',direction:-1});assert.deepEqual(s.steps.map(v=>v.id),['a','c','b']);assert.equal(s.steps[1].title,'Renamed');

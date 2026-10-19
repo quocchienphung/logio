@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { pageSettled } from "@/lib/pageSettled";
+import { pageSettled, runHeavy } from "@/lib/pageSettled";
 import { WAVE_DESKTOP, WAVE_MOBILE, WAVE_TABLET } from "./wave/config";
 
 const FALLBACK = {
@@ -59,28 +59,30 @@ export function HeroWave() {
     // the WebGL context is created once the page transition has settled: its set-up is synchronous round
     // trips to the GPU process, which stall while it draws the transition (the static wave shows until then)
     Promise.all([import("./wave/WaveRenderer"), pageSettled()])
-      .then(async ([{ WaveRenderer }]) => {
-        if (disposed) return;
-        try {
-          renderer = new WaveRenderer(canvas, {
-            theme: "light",
-            configs: {
-              wide: WAVE_DESKTOP,
-              medium: WAVE_TABLET,
-              small: WAVE_MOBILE,
-            },
-            paletteUrl: "/stripe/palette-411be97f.webp",
-            litSelector: "h1.hero-section__title--background",
-            onFirstDraw: () => setDrawn(true),
-          });
-          await renderer.init();
+      .then(([{ WaveRenderer }]) =>
+        runHeavy(async () => {
           if (disposed) return;
-          syncPaused();
-          if (renderer.paused) renderer.drawOnce();
-        } catch {
-          setWebgl(false);
-        }
-      })
+          try {
+            renderer = new WaveRenderer(canvas, {
+              theme: "light",
+              configs: {
+                wide: WAVE_DESKTOP,
+                medium: WAVE_TABLET,
+                small: WAVE_MOBILE,
+              },
+              paletteUrl: "/stripe/palette-411be97f.webp",
+              litSelector: "h1.hero-section__title--background",
+              onFirstDraw: () => setDrawn(true),
+            });
+            await renderer.init();
+            if (disposed) return;
+            syncPaused();
+            if (renderer.paused) renderer.drawOnce();
+          } catch {
+            setWebgl(false);
+          }
+        }),
+      )
       .catch(() => setWebgl(false));
 
     return () => {

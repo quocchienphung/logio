@@ -9,7 +9,7 @@ await fs.mkdir(out,{recursive:true});
 const browser=await chromium.launch({channel:'chrome'});
 const results=[];
 try{
-  for(const width of [1440,390]){
+  for(const width of process.argv.includes('--mobile-only')?[390]:[1440,390]){
     const contexts=[];const pages=[];
     for(const url of ['https://www.affectui.com/screens/agent-run/full',`${base}/personalize?section=run`]){
       const context=await browser.newContext({viewport:{width,height:1000}});contexts.push(context);
@@ -27,7 +27,7 @@ try{
       for(let index=0;index<pages.length;index++){
         const page=pages[index],draft=page.locator('.ui-df');
         if(state==='active')await draft.locator('.ui-df__chg[data-state="pending"]').nth(1).click();
-        if(state==='accepted'){await page.keyboard.press('Escape');await page.mouse.move(0,0);await page.waitForTimeout(300);await draft.getByRole('button',{name:'Accept all',exact:true}).click();}
+        if(state==='accepted'){await draft.getByRole('button',{name:'Accept all',exact:true}).focus();await page.keyboard.press('Enter');}
         if(state==='rejected'){
           await draft.getByRole('button',{name:'Undo',exact:true}).click();
           await draft.getByRole('button',{name:'Reject all',exact:true}).click();

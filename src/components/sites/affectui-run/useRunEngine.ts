@@ -21,7 +21,7 @@ export function useRunEngine(workspaceId:string){
     let previous=performance.now();
     const timer=window.setInterval(()=>{
       const now=performance.now();
-      if(document.visibilityState==="visible")dispatch({type:"tick",delta:Math.min(250,now-previous)});
+      if(document.visibilityState==="visible")dispatch({type:"tick",delta:Math.min(250,now-previous),now:Date.now()});
       previous=now;
     },100);
     return()=>window.clearInterval(timer);

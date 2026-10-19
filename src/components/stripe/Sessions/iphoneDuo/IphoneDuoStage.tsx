@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { runHeavy } from "@/lib/pageSettled";
 import { createPortal } from "react-dom";
 import { PhoneScreen } from "./PhoneScreen";
 import { DEVICE, screenLayout } from "./geometry";
@@ -31,7 +32,7 @@ export interface IphoneDuoStageProps {
 
 /**
  * The iPhone Duo, unfolded and front-facing: the 3D device (three.js, loaded when the section is within
- * 800px of the viewport) with live DOM on its inner display through CSS3D. The device never moves; it
+ * 1600px of the viewport) with live DOM on its inner display through CSS3D. The device never moves; it
  * is redrawn only when the stage is resized. Without WebGL the same screen is shown flat in a frame.
  */
 export function IphoneDuoStage({ children, theme = "light", interactive = true, onReady }: IphoneDuoStageProps) {
@@ -71,37 +72,41 @@ export function IphoneDuoStage({ children, theme = "light", interactive = true, 
           readyRef.current?.();
           return;
         }
+        // created when the page is calm (not scrolling, transition over, one heavy start-up at a time):
+        // the context, the environment map and the first programs take well over a frame
         import("./IphoneDuoRenderer")
-          .then(({ IphoneDuoRenderer }) => {
-            if (disposed) return;
-            try {
-              renderer = new IphoneDuoRenderer(host, {
-                modelUrl: MODEL_URL,
-                screen: screenEl,
-                onReady: () => {
-                  if (disposed) return;
-                  setStatus("ready");
-                  readyRef.current?.();
-                },
-                onError: () => {
-                  if (disposed) return;
-                  renderer?.dispose();
-                  renderer = null;
-                  setScreen(null);
-                  setStatus("flat");
-                  readyRef.current?.();
-                },
-              });
-            } catch {
-              setStatus("flat");
-              return;
-            }
-            setScreen(screenEl);
-            measure();
-          })
+          .then(({ IphoneDuoRenderer }) =>
+            runHeavy(() => {
+              if (disposed) return;
+              try {
+                renderer = new IphoneDuoRenderer(host, {
+                  modelUrl: MODEL_URL,
+                  screen: screenEl,
+                  onReady: () => {
+                    if (disposed) return;
+                    setStatus("ready");
+                    readyRef.current?.();
+                  },
+                  onError: () => {
+                    if (disposed) return;
+                    renderer?.dispose();
+                    renderer = null;
+                    setScreen(null);
+                    setStatus("flat");
+                    readyRef.current?.();
+                  },
+                });
+              } catch {
+                setStatus("flat");
+                return;
+              }
+              setScreen(screenEl);
+              measure();
+            }),
+          )
           .catch(() => !disposed && setStatus("flat"));
       },
-      { rootMargin: "800px" },
+      { rootMargin: "1600px" },
     );
     lazy.observe(host);
 

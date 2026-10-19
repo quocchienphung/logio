@@ -173,7 +173,6 @@ export function AgentSteering({
     const ro = new ResizeObserver(() => measure());
     ro.observe(root);
     return () => ro.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useLayoutEffect(() => {
     const root = rootRef.current;

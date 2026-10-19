@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { runHeavy } from "@/lib/pageSettled";
 import { WAVE_DEVELOPER } from "@/components/stripe/Hero/wave/config";
 
 /** Dark line-wave behind the "Scale with confidence" stats (same renderer as the hero, dark theme). */
@@ -34,31 +35,33 @@ export function DevelopersWave() {
     document.addEventListener("visibilitychange", syncPaused);
 
     import("@/components/stripe/Hero/wave/WaveRenderer")
-      .then(async ({ WaveRenderer }) => {
-        if (disposed) return;
-        try {
-          renderer = new WaveRenderer(canvas, {
-            theme: "dark",
-            configs: {
-              wide: WAVE_DEVELOPER,
-              medium: WAVE_DEVELOPER,
-              small: WAVE_DEVELOPER,
-            },
-            paletteUrl: "/stripe/palette-a288e2dc.webp",
-            clearColor:
-              getComputedStyle(document.body)
-                .getPropertyValue("--hds-color-core-neutralDark-990")
-                .trim() || "#101010",
-            onFirstDraw: () => setDrawn(true),
-          });
-          await renderer.init();
+      .then(({ WaveRenderer }) =>
+        runHeavy(async () => {
           if (disposed) return;
-          syncPaused();
-          if (renderer.paused) renderer.drawOnce();
-        } catch {
-          /* no WebGL or a touch device: the reference renders nothing here either */
-        }
-      })
+          try {
+            renderer = new WaveRenderer(canvas, {
+              theme: "dark",
+              configs: {
+                wide: WAVE_DEVELOPER,
+                medium: WAVE_DEVELOPER,
+                small: WAVE_DEVELOPER,
+              },
+              paletteUrl: "/stripe/palette-a288e2dc.webp",
+              clearColor:
+                getComputedStyle(document.body)
+                  .getPropertyValue("--hds-color-core-neutralDark-990")
+                  .trim() || "#101010",
+              onFirstDraw: () => setDrawn(true),
+            });
+            await renderer.init();
+            if (disposed) return;
+            syncPaused();
+            if (renderer.paused) renderer.drawOnce();
+          } catch {
+            /* no WebGL or a touch device: the reference renders nothing here either */
+          }
+        }),
+      )
       .catch(() => {});
 
     return () => {

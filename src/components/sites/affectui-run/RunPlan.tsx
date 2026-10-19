@@ -3,6 +3,7 @@
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { RunPlanProps, RunStep, StepStatus } from "./run-types";
+import { RunClock } from "./RunClock";
 
 export function RunSpinner({ className = "ui-pl__spinner" }: { className?: string }) {
   return <svg className={className} viewBox="0 0 16 16" aria-hidden="true">{Array.from({ length: 8 }, (_, index) => <line key={index} x1="8" y1="1.75" x2="8" y2="4.75" transform={`rotate(${index * 45} 8 8)`} style={{ animationDelay: `${index * 100 - 800}ms` }} />)}</svg>;
@@ -13,6 +14,8 @@ function Check({ className = "ui-pl__mark" }: { className?: string }) {
 }
 
 const statusLabels: Record<StepStatus, string> = { pending: "Pending", running: "In progress", waiting: "Waiting for approval", done: "Done", denied: "Failed", stopped: "Failed" };
+const decimalSeconds = (ms: number) => `${(ms / 1000).toFixed(1)}s`;
+const wholeSeconds = (ms: number) => `${Math.round(ms / 1000)}s`;
 
 export function RunPlan({ title, snapshot, onRename, onMove, onRemove, onAdd, editing = false, onRetry }: RunPlanProps) {
   const hintId = useId();
@@ -86,14 +89,14 @@ export function RunPlan({ title, snapshot, onRename, onMove, onRemove, onAdd, ed
               <span className="ui-pl__sub"><span className="ui-pl__detail">{step.detail}</span>{step.tool && <code className="ui-pl__tool">{step.tool}</code>}</span><span className="ui-pl__sr">, {statusLabels[status]}</span>
               {failed && <span className="ui-pl__fail"><span className="ui-pl__error">{status === "denied" || snapshot.approvals[step.id] === "denied" ? "You denied this step" : "Stopped by you"}</span>{onRetry && <button type="button" className="ui-pl__retry" onClick={() => onRetry(step.id)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.6-3.7" /><path d="M13 3v2.6h-2.6" /></svg>Retry from here</button>}</span>}
             </div>
-            <span className="ui-pl__aside">{status === "done" || active ? <span className={`ui-pl__time${status === "done" ? " ui-pl__time--done" : ""}`} aria-hidden={active ? true : undefined}>{status === "done" && <span className="ui-pl__sr">took </span>}{((runtime?.elapsed ?? 0) / 1000).toFixed(1)}s</span> : null}{editing && <button className="ui-pl__remove" type="button" aria-label={`Remove ${step.title}`} onClick={() => onRemove(step.id)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 4.5 7 7m0-7-7 7" /></svg></button>}</span>
+            <span className="ui-pl__aside">{status === "done" || active ? <span className={`ui-pl__time${status === "done" ? " ui-pl__time--done" : ""}`} aria-hidden={active ? true : undefined}>{status === "done" && <span className="ui-pl__sr">took </span>}<RunClock base={(runtime?.elapsed ?? 0) + (runtime?.waited ?? 0)} waitingSince={status === "waiting" ? snapshot.waitStartedAt : undefined} format={decimalSeconds} /></span> : null}{editing && <button className="ui-pl__remove" type="button" aria-label={`Remove ${step.title}`} onClick={() => onRemove(step.id)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 4.5 7 7m0-7-7 7" /></svg></button>}</span>
             {index < snapshot.steps.length - 1 && <span className="ui-pl__rail" aria-hidden="true" />}
           </motion.li>;
         })}</AnimatePresence>
       </ol>
       <div className="ui-pl__tail" inert={!editing}><div className="ui-pl__tail-inner"><label className="ui-pl__add"><span className="ui-pl__add-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 4.5v7M4.5 8h7" /></svg></span><input placeholder="Add step" aria-label="Add a step at the end" enterKeyHint="done" value={addition} onChange={event => setAddition(event.target.value)} onKeyDown={event => { if (event.key === "Enter" && addition.trim()) { event.preventDefault(); onAdd(addition.trim()); setAddition(""); } }} /></label></div></div>
     </div>
-    <div className="ui-pl__foot" data-phase={snapshot.phase === "stopped" ? "failed" : snapshot.phase === "done" ? "done" : "running"}><span className="ui-pl__status"><span className="ui-pl__status-icon" aria-hidden="true">{snapshot.phase === "running" || snapshot.phase === "waiting" ? <RunSpinner /> : snapshot.phase === "done" ? <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" /><path d="M5.4 8.2 7.2 10l3.4-3.8" pathLength="1" className="ui-pl__draw" /></svg> : <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" /><path d="M8 4.9v3.6M8 11h.01" /></svg>}</span><span className="ui-pl__status-label">{editing ? "Edit the plan, then restart the run" : footer}</span></span>{(snapshot.phase === "running" || snapshot.phase === "waiting") && <span className="ui-pl__elapsed" aria-hidden="true">{elapsed}</span>}</div>
+    <div className="ui-pl__foot" data-phase={snapshot.phase === "stopped" ? "failed" : snapshot.phase === "done" ? "done" : "running"}><span className="ui-pl__status"><span className="ui-pl__status-icon" aria-hidden="true">{snapshot.phase === "running" || snapshot.phase === "waiting" ? <RunSpinner /> : snapshot.phase === "done" ? <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" /><path d="M5.4 8.2 7.2 10l3.4-3.8" pathLength="1" className="ui-pl__draw" /></svg> : <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" /><path d="M8 4.9v3.6M8 11h.01" /></svg>}</span><span className="ui-pl__status-label">{editing ? "Edit the plan, then restart the run" : footer}</span></span>{(snapshot.phase === "running" || snapshot.phase === "waiting") && <span className="ui-pl__elapsed" aria-hidden="true"><RunClock base={snapshot.elapsed} waitingSince={snapshot.phase === "waiting" ? snapshot.waitStartedAt : undefined} format={wholeSeconds} /></span>}</div>
     <p className="ui-pl__sr" role="status" aria-live="polite">{editing ? "Editing plan" : snapshot.phase === "done" ? "Plan completed" : completed ? `Step ${completed} done: ${snapshot.steps.filter(step => snapshot.states[step.id]?.status === "done").at(-1)?.title}` : "Running plan"}</p>
   </div>;
 }

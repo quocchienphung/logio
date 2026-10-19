@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { runHeavy } from "@/lib/pageSettled";
 
 const FALLBACK = "/stripe/money-movement-fallback_2x-w894-1283768c.webp";
 const UI_POOL_SIZE = 5;
@@ -56,23 +57,25 @@ export function CryptoGlobe() {
     hoverRoot?.addEventListener("pointerleave", onLeave);
 
     import("./globe/GlobeRenderer")
-      .then(({ GlobeRenderer }) => {
-        if (disposed) return;
-        try {
-          renderer = new GlobeRenderer(canvas, { uiPool, position: { y: -1 } });
-          const rect = root.getBoundingClientRect();
-          renderer.setSize(rect.width, rect.height);
-          renderer.paused = true;
-          renderer.initScene();
-          renderer.onLoad(() => {
-            if (disposed) return;
-            setLoaded(true);
-            syncPaused();
-          });
-        } catch {
-          setWebgl(false);
-        }
-      })
+      .then(({ GlobeRenderer }) =>
+        runHeavy(() => {
+          if (disposed) return;
+          try {
+            renderer = new GlobeRenderer(canvas, { uiPool, position: { y: -1 } });
+            const rect = root.getBoundingClientRect();
+            renderer.setSize(rect.width, rect.height);
+            renderer.paused = true;
+            renderer.initScene();
+            renderer.onLoad(() => {
+              if (disposed) return;
+              setLoaded(true);
+              syncPaused();
+            });
+          } catch {
+            setWebgl(false);
+          }
+        }),
+      )
       .catch(() => setWebgl(false));
 
     return () => {

@@ -8,11 +8,11 @@ export function createRun(steps: RunStep[], startedAt = 0): RunSnapshot {
   return {steps:structuredClone(steps),states,phase:steps.length ? "running" : "done",activeId:steps[0]?.id || null,elapsed:0,startedAt,approvals:{}};
 }
 export type RunAction =
-  | {type:"tick";delta:number}
+  | {type:"tick";delta:number;now?:number}
   | {type:"start";now:number}
-  | {type:"stop"}
-  | {type:"approve";id:string}
-  | {type:"deny";id:string}
+  | {type:"stop";now?:number}
+  | {type:"approve";id:string;now?:number}
+  | {type:"deny";id:string;now?:number}
   | {type:"retry";id:string;now:number}
   | {type:"rename";id:string;title:string}
   | {type:"move";id:string;direction:-1|1}
@@ -23,6 +23,12 @@ function nextPending(run: RunSnapshot): RunSnapshot {
   const next = run.steps.find(step=>run.states[step.id].status==="pending");
   if(!next)return {...run,activeId:null,phase:"done"};
   return {...run,activeId:next.id,phase:"running",states:{...run.states,[next.id]:{...run.states[next.id],status:"running"}}};
+}
+
+function settleWait(run: RunSnapshot,now?:number):RunSnapshot{
+  if(!run.waitStartedAt||!now||!run.activeId)return run;
+  const waited=Math.max(0,now-run.waitStartedAt),runtime=run.states[run.activeId];
+  return {...run,waitStartedAt:undefined,elapsed:run.elapsed+waited,states:{...run.states,[run.activeId]:{...runtime,waited:(runtime.waited||0)+waited}}};
 }
 
 /** Deterministic simulation. No network requests or real side effects are dispatched by this model. */
@@ -36,30 +42,36 @@ export function runReducer(run: RunSnapshot, action: RunAction): RunSnapshot {
       const before=run.states[step.id];
       const elapsed=before.elapsed+action.delta;
       if(step.approval && !run.approvals[step.id] && elapsed>=stepLeadIn){
-        return {...run,elapsed:run.elapsed+Math.max(0,stepLeadIn-before.elapsed),phase:"waiting",states:{...run.states,[step.id]:{...before,status:"waiting",elapsed:stepLeadIn}}};
+        return {...run,elapsed:run.elapsed+Math.max(0,stepLeadIn-before.elapsed),phase:"waiting",waitStartedAt:action.now,states:{...run.states,[step.id]:{...before,status:"waiting",elapsed:stepLeadIn}}};
       }
       const total=stepLeadIn+step.calls.reduce((sum,call)=>sum+call.duration,0);
       let callElapsed=Math.max(0,elapsed-stepLeadIn),completedCalls=0;
       for(const call of step.calls){if(callElapsed>=call.duration){completedCalls++;callElapsed-=call.duration;}else break;}
       const done=elapsed>=total;
-      const state:StepRuntime={status:done ? "done" : "running",elapsed:Math.min(total,elapsed),completedCalls:Math.min(step.calls.length,completedCalls),callElapsed:done ? 0 : callElapsed};
+      const state:StepRuntime={status:done ? "done" : "running",elapsed:Math.min(total,elapsed),completedCalls:Math.min(step.calls.length,completedCalls),callElapsed:done ? 0 : callElapsed,waited:before.waited};
       const advanced={...run,elapsed:run.elapsed+Math.min(action.delta,Math.max(0,total-before.elapsed)),states:{...run.states,[step.id]:state}};
       return done ? nextPending(advanced) : advanced;
     }
-    case "stop": return run.phase==="running"||run.phase==="waiting" ? {...run,phase:"stopped",states:run.activeId ? {...run.states,[run.activeId]:{...run.states[run.activeId],status:"stopped"}} : run.states} : run;
+    case "stop": {
+      if(run.phase!=="running"&&run.phase!=="waiting")return run;
+      const settled=settleWait(run,action.now);
+      return {...settled,phase:"stopped",states:settled.activeId ? {...settled.states,[settled.activeId]:{...settled.states[settled.activeId],status:"stopped"}} : settled.states};
+    }
     case "approve": {
       if(run.phase!=="waiting"||run.activeId!==action.id)return run;
-      return {...run,phase:"running",approvals:{...run.approvals,[action.id]:"approved"},states:{...run.states,[action.id]:{...run.states[action.id],status:"running"}}};
+      const settled=settleWait(run,action.now);
+      return {...settled,phase:"running",approvals:{...settled.approvals,[action.id]:"approved"},states:{...settled.states,[action.id]:{...settled.states[action.id],status:"running"}}};
     }
     case "deny": {
       if(run.phase!=="waiting"||run.activeId!==action.id)return run;
-      return {...run,phase:"stopped",approvals:{...run.approvals,[action.id]:"denied"},states:{...run.states,[action.id]:{...run.states[action.id],status:"denied"}}};
+      const settled=settleWait(run,action.now);
+      return {...settled,phase:"stopped",approvals:{...settled.approvals,[action.id]:"denied"},states:{...settled.states,[action.id]:{...settled.states[action.id],status:"denied"}}};
     }
     case "retry": {
       const index=run.steps.findIndex(step=>step.id===action.id);if(index<0)return run;
       const states={...run.states},approvals={...run.approvals};
       run.steps.slice(index).forEach(step=>{states[step.id]=emptyRuntime();delete approvals[step.id];});states[action.id].status="running";
-      return {...run,states,approvals,phase:"running",activeId:action.id,startedAt:run.startedAt || action.now};
+      return {...run,states,approvals,phase:"running",activeId:action.id,waitStartedAt:undefined,startedAt:run.startedAt || action.now};
     }
     case "rename": {
       const title=action.title.trim();return !title ? run : {...run,steps:run.steps.map(step=>step.id===action.id ? {...step,title} : step)};

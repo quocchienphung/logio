@@ -27,6 +27,7 @@ export interface StepRuntime {
   elapsed: number;
   completedCalls: number;
   callElapsed: number;
+  waited?: number;
 }
 export interface RunSnapshot {
   steps: RunStep[];
@@ -35,6 +36,7 @@ export interface RunSnapshot {
   activeId: string | null;
   elapsed: number;
   startedAt: number;
+  waitStartedAt?: number;
   approvals: Record<string, "approved" | "denied">;
 }
 export interface RunPlanProps {

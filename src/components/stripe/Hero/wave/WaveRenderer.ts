@@ -306,6 +306,14 @@ export class WaveRenderer {
 
     this.updateMonoLit();
 
+    // link the programs in parallel (KHR_parallel_shader_compile) before the first draw: three's synchronous
+    // link check would otherwise wait for the GPU inside one long frame
+    this.renderer.setRenderTarget(this.sceneTarget);
+    const compiled = this.renderer.compileAsync(this.scene, this.camera);
+    this.renderer.setRenderTarget(null);
+    await Promise.all([compiled, this.postScene && this.renderer.compileAsync(this.postScene, this.postCamera)]).catch(() => {});
+    if (this.disposed) return;
+
     this.resizeObserver = new ResizeObserver(this.scheduleResize);
     this.resizeObserver.observe(this.canvas);
     window.addEventListener("resize", this.scheduleResize);

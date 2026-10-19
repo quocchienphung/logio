@@ -121,19 +121,19 @@ function ActivityLoader({ label, done }: { label: string; done: boolean }) {
 
 export function RunActivity({ snapshot, onShowApproval, notify }: RunActivityProps) {
   const active = snapshot.steps.find(step => step.id === snapshot.activeId);
-  const finished = snapshot.phase === "done" || snapshot.phase === "stopped";
-  const loader = snapshot.phase === "waiting" ? "Waiting for your approval" : snapshot.phase === "done" ? `Done in ${Math.round(snapshot.elapsed / 1000)}s` : snapshot.phase === "stopped" ? "Run stopped" : active?.title ?? "Working on your plan";
+  const finished = snapshot.phase === "done";
+  const loader = snapshot.phase === "waiting" ? "Waiting for your approval" : snapshot.phase === "done" ? `Done in ${Math.round(snapshot.elapsed / 1000)}s` : active?.title ?? "Working on your plan";
   return <div className="ui-ar__feed"><span className="ui-ar__label">Activity</span><AnimatePresence initial={false}>{snapshot.steps.map((step, index) => {
     const runtime = snapshot.states[step.id];
     if (!runtime || runtime.status === "pending" || (runtime.status === "running" && runtime.elapsed < 700 && !runtime.completedCalls)) return null;
     const decision = snapshot.approvals[step.id];
-    const waiting = runtime.status === "waiting";
+    // The source retains the last approval event when a run is manually stopped.
+    const waiting = runtime.status === "waiting" || (runtime.status === "stopped" && !!step.approval && !decision && runtime.elapsed >= 700);
     const hasCalls = runtime.completedCalls > 0 || (runtime.status === "running" && runtime.callElapsed > 0);
     return <motion.div key={step.id} className="ui-ar__entry ui-as-rise" exit={{ opacity: 0, height: 0 }} transition={{ duration: .25 }}>
       <span className="ui-ar__entry-head"><span className="ui-ar__num" data-done={runtime.status === "done" ? "true" : undefined}>{index + 1}</span>{step.title}</span>
       {(waiting || decision) && <span className="ui-ar__note" data-state={waiting ? "pending" : decision}><ApprovalIcon />{waiting ? <button type="button" className="run-approval-link" onClick={onShowApproval}>Waiting for your approval</button> : decision === "approved" ? "You approved this step" : "You denied this step"}</span>}
       {hasCalls && <ToolGroup step={step} runtime={runtime} notify={notify} />}
-      {runtime.status === "stopped" && <span className="ui-ar__note">Stopped by you</span>}
     </motion.div>;
-  })}</AnimatePresence><ActivityLoader label={loader} done={finished} /></div>;
+  })}</AnimatePresence>{snapshot.phase !== "stopped" && <ActivityLoader label={loader} done={finished} />}</div>;
 }

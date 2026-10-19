@@ -13,13 +13,13 @@
     "geometry": [
       {
         "x": 1092,
-        "y": 282.578125,
+        "y": 402.53125,
         "width": 319,
         "height": 244.8125
       },
       {
         "x": 1092,
-        "y": 282.578125,
+        "y": 402.53125,
         "width": 319,
         "height": 244.8125
       }
@@ -41,13 +41,13 @@
     "geometry": [
       {
         "x": 1092,
-        "y": 282.578125,
+        "y": 402.53125,
         "width": 319,
         "height": 244.8125
       },
       {
         "x": 1092,
-        "y": 282.578125,
+        "y": 402.53125,
         "width": 319,
         "height": 244.8125
       }
@@ -75,13 +75,13 @@
       },
       {
         "x": 1092,
-        "y": 282.578125,
+        "y": 402.53125,
         "width": 319,
         "height": 201.625
       }
     ],
-    "different": 693,
-    "percent": 1.0702
+    "different": 0,
+    "percent": 0
   },
   {
     "width": 1440,
@@ -106,6 +106,118 @@
         "y": 402.53125,
         "width": 319,
         "height": 223.21875
+      }
+    ],
+    "different": 0,
+    "percent": 0
+  },
+  {
+    "width": 390,
+    "state": "initial",
+    "sourceSize": [
+      344,
+      246
+    ],
+    "localSize": [
+      344,
+      246
+    ],
+    "geometry": [
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 244.8125
+      },
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 244.8125
+      }
+    ],
+    "different": 0,
+    "percent": 0
+  },
+  {
+    "width": 390,
+    "state": "active",
+    "sourceSize": [
+      344,
+      246
+    ],
+    "localSize": [
+      344,
+      246
+    ],
+    "geometry": [
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 244.8125
+      },
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 244.8125
+      }
+    ],
+    "different": 0,
+    "percent": 0
+  },
+  {
+    "width": 390,
+    "state": "accepted",
+    "sourceSize": [
+      344,
+      203
+    ],
+    "localSize": [
+      344,
+      203
+    ],
+    "geometry": [
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 201.625
+      },
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 201.625
+      }
+    ],
+    "different": 0,
+    "percent": 0
+  },
+  {
+    "width": 390,
+    "state": "rejected",
+    "sourceSize": [
+      344,
+      203
+    ],
+    "localSize": [
+      344,
+      203
+    ],
+    "geometry": [
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 201.625
+      },
+      {
+        "x": 23,
+        "y": 388.53125,
+        "width": 344,
+        "height": 201.625
       }
     ],
     "different": 0,

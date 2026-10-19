@@ -27,6 +27,38 @@ profile.samples.forEach((id, i) => {
   const key = `${cf.functionName || "(anon)"} ${(cf.url || "").split("/").slice(-2).join("/").slice(0, 70)}:${cf.lineNumber + 1}`;
   self.set(key, (self.get(key) || 0) + (dt[i] || 0) / 1000);
 });
+if (process.env.PT_FN) {
+  // when the named function ran: runs of consecutive samples, in ms from the profile start
+  let t = 0;
+  let run = null;
+  const runs = [];
+  profile.samples.forEach((id, i) => {
+    t += dt[i] || 0;
+    const hit = (byId.get(id).callFrame.functionName || "") === process.env.PT_FN;
+    if (hit) {
+      if (!run) runs.push((run = { at: t / 1000, ms: 0 }));
+      run.ms += (dt[i] || 0) / 1000;
+    } else if (run && (dt[i] || 0) > 2000) run = null;
+  });
+  console.log(process.env.PT_FN, "runs:", runs.filter((r) => r.ms > 5).map((r) => `${Math.round(r.ms)}ms@${Math.round(r.at)}`).join(" "));
+}
+if (process.env.PT_STACK) {
+  // call stacks (leaf → root) of the named function, weighted by sampled time
+  const parent = new Map();
+  for (const n of profile.nodes) for (const c of n.children || []) parent.set(c, n.id);
+  const stacks = new Map();
+  profile.samples.forEach((id, i) => {
+    if ((byId.get(id).callFrame.functionName || "") !== process.env.PT_STACK) return;
+    const chain = [];
+    for (let cur = parent.get(id), d = 0; cur && d < 16; cur = parent.get(cur), d++) {
+      const cf = byId.get(cur).callFrame;
+      chain.push(`${cf.functionName || "(anon)"}@${(cf.url || "").split("/").pop().slice(0, 40)}:${cf.lineNumber + 1}`);
+    }
+    const k = chain.join(" < ");
+    stacks.set(k, (stacks.get(k) || 0) + (dt[i] || 0) / 1000);
+  });
+  for (const [k, v] of [...stacks.entries()].sort((a, c) => c[1] - a[1]).slice(0, 5)) console.log(Math.round(v) + "ms", k);
+}
 const total = [...self.values()].reduce((a, c) => a + c, 0);
 console.log("total sampled ms", Math.round(total));
 for (const [k, v] of [...self.entries()].sort((a, c) => c[1] - a[1]).slice(0, 28)) console.log(String(Math.round(v)).padStart(6), k);

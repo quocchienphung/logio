@@ -41,3 +41,41 @@ export async function runSliced(jobs: (() => void)[], alive: () => boolean, { bu
     job();
   }
 }
+
+let lastInput = 0;
+let tracking = false;
+const markInput = () => {
+  lastInput = performance.now();
+};
+
+/**
+ * Resolves once the page transition is over and the visitor has not scrolled or touched the page for
+ * `quiet` ms, and the browser is idle (or after `maxWait` ms regardless): the moment to start work that
+ * blocks the main thread for tens of milliseconds, such as creating a WebGL context and compiling shaders.
+ */
+export async function calm(quiet = 160, maxWait = 3000): Promise<void> {
+  if (!tracking) {
+    tracking = true;
+    for (const type of ["scroll", "wheel", "touchmove", "keydown"]) window.addEventListener(type, markInput, { passive: true, capture: true });
+  }
+  await pageSettled();
+  const until = performance.now() + maxWait;
+  for (;;) {
+    await idle(500);
+    const wait = lastInput + quiet - performance.now();
+    if (wait <= 0 || performance.now() >= until) return;
+    await new Promise((resolve) => setTimeout(resolve, Math.min(wait, until - performance.now())));
+  }
+}
+
+let heavyChain: Promise<unknown> = Promise.resolve();
+
+/**
+ * Runs `task` when the page is calm, one heavy task at a time: the section renderers each create their own
+ * GL context and compile their programs, and all of them used to do so together right after hydration.
+ */
+export function runHeavy<T>(task: () => T | Promise<T>): Promise<T> {
+  const run = heavyChain.then(() => calm()).then(task);
+  heavyChain = run.catch(() => {});
+  return run;
+}
