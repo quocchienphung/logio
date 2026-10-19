@@ -31,6 +31,10 @@
  * `window.__ptSettled` resolves once the transition is over (src/lib/pageSettled.ts), so page code can hold
  * heavy start-up work until then.
  *
+ * Below 940px (the site's phone and tablet layouts) the lens and the colour fringes are left out: the SVG
+ * displacement chain is ~10 full-screen passes a frame, which a phone GPU at 3× pixel density cannot keep up
+ * with. The disc reveal, the line-by-line text and the lean stay, and they cost next to nothing.
+ *
  * The function is serialised with `toString()` and inlined into <head> (it must register `pagereveal`
  * before the first render of the new document), so it must stay self-contained: no imports, no
  * references to module scope.
@@ -69,6 +73,7 @@ export function pageTransitionRuntime(): void {
   const S = (ms: number) => ms * TIME_SCALE;
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const compact = window.matchMedia("(max-width: 939px)");
   const root = document.documentElement;
 
   // the outgoing page is captured as pt-out (page-transition.css), apart from the incoming root
@@ -304,6 +309,7 @@ export function pageTransitionRuntime(): void {
     }
     const discAnim = (name: string) => `animation:${name} ${discMs.toFixed(0)}ms linear both`;
 
+    const LITE = compact.matches;
     const svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttribute("aria-hidden", "true");
     svg.setAttribute("width", "0");
@@ -314,15 +320,18 @@ export function pageTransitionRuntime(): void {
     // covers the whole snapshot, which is drawn up to 1/sMin times the box size around the centre
     const outSpan = OUT_SPAN * R0;
     const outRegion = [cx - (cx + 8) / sMin, cy - (cy + 8) / sMin, (W + 16) / sMin, (H + 16) / sMin];
-    makeFilter(svg, "pt-lens-out", outRegion, maps.push, cx - outSpan, cy - outSpan, 2 * outSpan)((OUT_PUSH * R0) / 0.498);
     // incoming lens over the disc; its strength decays with k (set from the main thread)
     // (the mask hides everything beyond the disc and its soft tail, so the filter only covers that square)
     const reachBox = R0 * (1 + tail / rEnd) + 4;
     const x0 = Math.max(0, cx - reachBox);
     const y0 = Math.max(0, cy - reachBox);
-    const lensIn = makeFilter(svg, "pt-lens-in", [x0, y0, Math.min(W, cx + reachBox) - x0, Math.min(H, cy + reachBox) - y0], maps.lens, cx - R0, cy - R0, 2 * R0);
     const lensScale = (k: number) => (k * R0 * LENS_MAX) / 0.498;
-    lensIn(lensScale(LENS_K0));
+    let lensIn: (scale: number) => void = () => {};
+    if (!LITE) {
+      makeFilter(svg, "pt-lens-out", outRegion, maps.push, cx - outSpan, cy - outSpan, 2 * outSpan)((OUT_PUSH * R0) / 0.498);
+      lensIn = makeFilter(svg, "pt-lens-in", [x0, y0, Math.min(W, cx + reachBox) - x0, Math.min(H, cy + reachBox) - y0], maps.lens, cx - R0, cy - R0, 2 * R0);
+      lensIn(lensScale(LENS_K0));
+    }
 
     const style = document.createElement("style");
     style.id = "pt-runtime-style";
@@ -379,7 +388,7 @@ export function pageTransitionRuntime(): void {
         const settle = 1 - outEase(clamp01((t - starts[0]) / (end - starts[0])));
         // where the lens shows the block: content at q (lens radii from the centre) appears at ρ with
         // ρ − k·ρ·(1 − ρ²) = q, magnified ρ/q across and 1 / (1 − k·(1 − 3ρ²)) along the radius
-        const k = t < S(LENS_MS) ? LENS_K0 * Math.pow(1 - t / S(LENS_MS), LENS_POW) : 0;
+        const k = !LITE && t < S(LENS_MS) ? LENS_K0 * Math.pow(1 - t / S(LENS_MS), LENS_POW) : 0;
         const R = Math.max(1, speed * t);
         const q = dist / R;
         let rho = q;
@@ -394,18 +403,20 @@ export function pageTransitionRuntime(): void {
         const at = ((100 * i) / steps).toFixed(2);
         wipe.push(`${at}%{transform:translateY(-${d}px)}`);
         lean.push(`${at}%{transform:translateY(${d}px) translate(${tx}px, ${ty}px) scale(${size.toFixed(4)}) skewX(${(-LEAN * settle).toFixed(2)}deg)}`);
-        const f = 0.12 * (rho - q) * R;
-        const fx = (f * bx) / dist;
-        const fy = (f * by) / dist;
-        const a = (0.6 * Math.min(1, f / 1.5)).toFixed(3);
-        const shadow = (x: number, y: number, rgb: string) => `drop-shadow(${x.toFixed(2)}px ${y.toFixed(2)}px rgb(${rgb} / ${a}))`;
-        fringe.push(`${at}%{filter:${shadow(fx, fy, "255 190 0")} ${shadow(-fx, -fy, "0 120 255")}}`);
+        if (!LITE) {
+          const f = 0.12 * (rho - q) * R;
+          const fx = (f * bx) / dist;
+          const fy = (f * by) / dist;
+          const a = (0.6 * Math.min(1, f / 1.5)).toFixed(3);
+          const shadow = (x: number, y: number, rgb: string) => `drop-shadow(${x.toFixed(2)}px ${y.toFixed(2)}px rgb(${rgb} / ${a}))`;
+          fringe.push(`${at}%{filter:${shadow(fx, fy, "255 190 0")} ${shadow(-fx, -fy, "0 120 255")}}`);
+        }
       }
       const dur = `${end.toFixed(0)}ms linear both`;
       css += `${sel}{view-transition-name:${name};view-transition-class:pt-text}`;
       css += namedDisc(name, r.left - PAD, r.top - PAD, r.width + 2 * PAD, r.height + 2 * PAD, `mask-image:linear-gradient(#000,#000);mask-repeat:no-repeat;${discAnim("pt-undisc")},${name}-wipe ${dur}`);
-      css += `html::view-transition-new(${name}){inset:auto;left:${PAD}px;top:${PAD}px;width:${r.width.toFixed(1)}px;height:${r.height.toFixed(1)}px;animation:${name}-lean ${dur},${name}-fringe ${dur}}`;
-      css += `@keyframes ${name}-wipe{${wipe.join("")}}@keyframes ${name}-lean{${lean.join("")}}@keyframes ${name}-fringe{${fringe.join("")}}`;
+      css += `html::view-transition-new(${name}){inset:auto;left:${PAD}px;top:${PAD}px;width:${r.width.toFixed(1)}px;height:${r.height.toFixed(1)}px;animation:${name}-lean ${dur}${LITE ? "" : `,${name}-fringe ${dur}`}}`;
+      css += `@keyframes ${name}-wipe{${wipe.join("")}}@keyframes ${name}-lean{${lean.join("")}}${LITE ? "" : `@keyframes ${name}-fringe{${fringe.join("")}}`}`;
     }
 
     const mediaCandidates = Array.from(document.querySelectorAll("main img, main video, main canvas"))
@@ -430,9 +441,11 @@ export function pageTransitionRuntime(): void {
     document.head.appendChild(style);
     // the lens filters sit in their own sheet, disabled once the lens has settled
     const lensStyle = document.createElement("style");
-    lensStyle.textContent = "html::view-transition-image-pair(root){filter:url(#pt-lens-in)}html::view-transition-image-pair(pt-out){filter:url(#pt-lens-out)}";
-    document.head.appendChild(lensStyle);
-    document.body.appendChild(svg);
+    if (!LITE) {
+      lensStyle.textContent = "html::view-transition-image-pair(root){filter:url(#pt-lens-in)}html::view-transition-image-pair(pt-out){filter:url(#pt-lens-out)}";
+      document.head.appendChild(lensStyle);
+      document.body.appendChild(svg);
+    }
 
     // lens decay, on the transition's own clock (the disc animation); after a long main-thread task it
     // eases to the current strength instead of jumping
@@ -455,6 +468,7 @@ export function pageTransitionRuntime(): void {
 
     vt.ready
       .then(() => {
+        if (LITE) return;
         clock =
           document
             .getAnimations()
