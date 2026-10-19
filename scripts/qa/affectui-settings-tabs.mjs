@@ -107,6 +107,28 @@ try {
       assert.equal(await page.locator('.ui-sb-row').count(), 0);
       assert.match(await page.locator('.workspace-empty').innerText(), /No API keys yet/);
     });
+    await check('Mobile touch menus and dialogs remain usable with reduced motion', async () => {
+      const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, reducedMotion: 'reduce', permissions: ['clipboard-read', 'clipboard-write'] });
+      const mobile = await mobileContext.newPage();
+      mobile.on('pageerror', error => errors.push(error.message));
+      try {
+        await mobile.goto(`${base}/personalize?section=settings&settings-tab=general`, { waitUntil: 'networkidle' });
+        await mobile.getByRole('button', { name: 'Europe (Frankfurt)', exact: true }).tap();
+        await mobile.getByRole('menuitemradio', { name: 'Asia Pacific (Singapore)', exact: true }).tap();
+        assert.equal(await mobile.locator('.ui-sb-form').evaluate(element => getComputedStyle(element).animationName), 'none');
+        await mobile.getByRole('button', { name: 'Save changes', exact: true }).tap();
+        await mobile.getByRole('tab', { name: 'Members', exact: true }).tap();
+        await mobile.getByRole('button', { name: 'Invite', exact: true }).tap();
+        await mobile.locator('dialog[open]').getByLabel('Email address').fill('touch@acme.com');
+        await mobile.locator('dialog[open]').getByRole('button', { name: 'Cancel', exact: true }).tap();
+        await mobile.getByRole('tab', { name: 'API keys', exact: true }).tap();
+        await mobile.getByRole('button', { name: 'Create key', exact: true }).tap();
+        await mobile.locator('dialog[open]').getByRole('button', { name: 'Copy demo key', exact: true }).tap();
+        assert.match(await mobile.evaluate(() => navigator.clipboard.readText()), /^sk-demo-local-/);
+        await mobile.locator('dialog[open]').getByRole('button', { name: 'Done', exact: true }).tap();
+        assert.equal(await mobile.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      } finally { await mobileContext.close(); }
+    });
   }
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
     for (const name of ['General', 'Members', 'API keys']) {

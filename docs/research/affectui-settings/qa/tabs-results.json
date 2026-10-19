@@ -7,7 +7,8 @@
     "Member removal requires confirmation and frees seat",
     "Seed copy gives clearly synthetic demo key and create uses crypto value",
     "Key rename and revocation persist",
-    "New workspace state has no borrowed API keys"
+    "New workspace state has no borrowed API keys",
+    "Mobile touch menus and dialogs remain usable with reduced motion"
   ],
   "errors": [],
   "comparisons": [

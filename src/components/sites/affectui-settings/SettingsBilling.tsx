@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useRef, useState, useSyncExternalStore } from "react";
+import { memo, useCallback, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { Check, CreditCard, Download, Mail } from "lucide-react";
 import { UsageMeter } from "../affectui-usage-meter/UsageMeter";
@@ -58,7 +58,7 @@ export function SettingsBilling({ workspaceId, workspaceName, onRename, onLogoCh
     if (next === "Billing") url.searchParams.delete("settings-tab"); else url.searchParams.set("settings-tab", next.toLowerCase().replaceAll(" ", "-"));
     if (url.href !== window.location.href) { window.history.pushState({}, "", url); window.dispatchEvent(new PopStateEvent("popstate")); }
   }
-  function showPlans() { plansRef.current?.scrollIntoView({ behavior: reduce ? "instant" : "smooth", block: "start" }); plansRef.current?.focus({ preventScroll: true }); }
+  const showPlans = useCallback(() => { plansRef.current?.scrollIntoView({ behavior: reduce ? "instant" : "smooth", block: "start" }); plansRef.current?.focus({ preventScroll: true }); }, [reduce]);
   function exportInvoices(id?: string) {
     const rows = invoices.filter(item => !id || item.id === id);
     downloadFile(`${id || "acme-invoices"}.csv`, toCsv([["Workspace", workspaceName], ["Billing email", billing.email], ["Date", "Invoice", "Amount USD", "Status"], ...rows.map(item => [item.date, item.id, item.amount.toFixed(2), item.status])]), "text/csv;charset=utf-8");
