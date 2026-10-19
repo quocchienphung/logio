@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { runHeavy } from "@/lib/pageSettled";
+import { onTransitionSettled, runHeavy, transitionPlaying } from "@/lib/pageSettled";
 import { WAVE_DEVELOPER } from "@/components/stripe/Hero/wave/config";
 
 /** Dark line-wave behind the "Scale with confidence" stats (same renderer as the hero, dark theme). */
@@ -22,7 +22,7 @@ export function DevelopersWave() {
     let intersecting = false;
     const syncPaused = () => {
       if (renderer)
-        renderer.paused = !intersecting || document.hidden || reduced.matches;
+        renderer.paused = !intersecting || document.hidden || reduced.matches || transitionPlaying();
     };
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -33,6 +33,7 @@ export function DevelopersWave() {
     );
     io.observe(root);
     document.addEventListener("visibilitychange", syncPaused);
+    const offSettled = onTransitionSettled(syncPaused);
 
     import("@/components/stripe/Hero/wave/WaveRenderer")
       .then(({ WaveRenderer }) =>
@@ -68,6 +69,7 @@ export function DevelopersWave() {
       disposed = true;
       io.disconnect();
       document.removeEventListener("visibilitychange", syncPaused);
+      offSettled();
       renderer?.dispose();
     };
   }, []);

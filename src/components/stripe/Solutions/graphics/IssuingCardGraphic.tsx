@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { runHeavy } from "@/lib/pageSettled";
+import { onTransitionSettled, runHeavy, transitionPlaying } from "@/lib/pageSettled";
 
 const FALLBACK = "/stripe/card-placeholder_2x-w894-e383a280-mono.webp";
 
@@ -25,7 +25,7 @@ export function IssuingCardGraphic() {
     let intersecting = false;
     const syncPaused = () => {
       if (renderer)
-        renderer.paused = !intersecting || document.hidden || reduced.matches;
+        renderer.paused = !intersecting || document.hidden || reduced.matches || transitionPlaying();
     };
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -36,6 +36,7 @@ export function IssuingCardGraphic() {
     );
     io.observe(root);
     document.addEventListener("visibilitychange", syncPaused);
+    const offSettled = onTransitionSettled(syncPaused);
 
     import("./issuing/IssuingCardRenderer")
       .then(({ IssuingCardRenderer }) =>
@@ -61,6 +62,7 @@ export function IssuingCardGraphic() {
       disposed = true;
       io.disconnect();
       document.removeEventListener("visibilitychange", syncPaused);
+      offSettled();
       renderer?.dispose();
     };
   }, []);

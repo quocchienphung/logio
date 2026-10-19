@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { pageSettled, runHeavy } from "@/lib/pageSettled";
+import { onTransitionSettled, pageSettled, runHeavy, transitionPlaying } from "@/lib/pageSettled";
 import { WAVE_DESKTOP, WAVE_MOBILE, WAVE_TABLET } from "./wave/config";
 
 const FALLBACK = {
@@ -42,7 +42,7 @@ export function HeroWave() {
     let intersecting = false;
     const syncPaused = () => {
       if (!renderer) return;
-      const shouldPause = !intersecting || document.hidden || reduced.matches;
+      const shouldPause = !intersecting || document.hidden || reduced.matches || transitionPlaying();
       renderer.paused = shouldPause;
     };
     const io = new IntersectionObserver(
@@ -54,6 +54,7 @@ export function HeroWave() {
     );
     io.observe(root);
     document.addEventListener("visibilitychange", syncPaused);
+    const offSettled = onTransitionSettled(syncPaused);
     reduced.addEventListener("change", syncPaused);
 
     // the WebGL context is created once the page transition has settled: its set-up is synchronous round
@@ -89,6 +90,7 @@ export function HeroWave() {
       disposed = true;
       io.disconnect();
       document.removeEventListener("visibilitychange", syncPaused);
+      offSettled();
       reduced.removeEventListener("change", syncPaused);
       renderer?.dispose();
     };

@@ -4,12 +4,29 @@
  * reveals are drawn on the main thread of the incoming document.
  */
 
-type SettledWindow = Window & { __ptSettled?: Promise<void> };
+type SettledWindow = Window & { __ptSettled?: Promise<void>; __ptPlaying?: boolean };
 type Yielding = { scheduler?: { yield?: () => Promise<void> } };
 
-/** Resolves once the transition that revealed this document has finished, at once when there was none. */
+/**
+ * Resolves once the transition that revealed this document has finished, at once when there was none.
+ * After a restore from the back/forward cache it is the restore's transition.
+ */
 export function pageSettled(): Promise<void> {
   return (typeof window !== "undefined" && (window as SettledWindow).__ptSettled) || Promise.resolve();
+}
+
+/**
+ * True while a page transition reveals this document, including one that restores it from the back/forward
+ * cache: renderers resumed by that restore stay paused until it is over, so the GPU draws the transition alone.
+ */
+export function transitionPlaying(): boolean {
+  return typeof window !== "undefined" && (window as SettledWindow).__ptPlaying === true;
+}
+
+/** Calls `cb` each time a page transition finishes; returns the unsubscribe. */
+export function onTransitionSettled(cb: () => void): () => void {
+  window.addEventListener("pt-settled", cb);
+  return () => window.removeEventListener("pt-settled", cb);
 }
 
 /** Gives the browser a chance to render a frame before the caller continues. */

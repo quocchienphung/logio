@@ -40,8 +40,28 @@
  * references to module scope.
  */
 export function pageTransitionRuntime(): void {
+  // `__ptPlaying` is true and `__ptSettled` pending while a transition reveals this document; `pt-settled`
+  // fires when it is over (src/lib/pageSettled.ts). Re-armed when the page goes into the back/forward cache,
+  // so renderers resumed by its restore wait for that transition too.
+  const w = window as Window & { __ptSettled?: Promise<void>; __ptPlaying?: boolean };
   let settle = () => {};
-  (window as Window & { __ptSettled?: Promise<void> }).__ptSettled = new Promise<void>((resolve) => (settle = resolve));
+  const arm = () => {
+    let open = true;
+    const settled: Promise<void> = new Promise<void>((resolve) => {
+      settle = () => {
+        if (!open) return;
+        open = false;
+        resolve();
+        // a transition that ends after the page was cached again does not end the restore's one
+        if (w.__ptSettled !== settled) return;
+        w.__ptPlaying = false;
+        window.dispatchEvent(new Event("pt-settled"));
+      };
+    });
+    w.__ptSettled = settled;
+    w.__ptPlaying = true;
+  };
+  arm();
   if (!("onpagereveal" in window)) {
     settle();
     return;
@@ -81,6 +101,9 @@ export function pageTransitionRuntime(): void {
     if (e.viewTransition) root.classList.add("pt-leaving");
   });
   window.addEventListener("pageshow", () => root.classList.remove("pt-leaving"));
+  window.addEventListener("pagehide", (e: PageTransitionEvent) => {
+    if (e.persisted) arm();
+  });
 
   // Next.js <Link> navigations are client-side and would skip the cross-document transition:
   // let same-origin page links fall through to a normal (prerendered) navigation instead.
@@ -494,7 +517,8 @@ export function pageTransitionRuntime(): void {
       settle();
       return;
     }
-    vt.finished.finally(settle).catch(() => {});
+    const done = settle;
+    vt.finished.finally(done).catch(() => {});
     if (reduced.matches) {
       vt.skipTransition();
       return;
