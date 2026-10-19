@@ -157,3 +157,43 @@
     transition-duration: 180ms;
   }
 }
+
+/* "Book of the week" cover: reserve its box before it loads. The reference renders a placeholder while the cover
+   arrives; here the lazy <img> was `width:auto; height:auto`, i.e. 0px tall until loaded, and the section then
+   grew by 310–440px under the reader, pushing the call to action and the footer down (CLS 0.24 on a phone with
+   slow images). The sizes below are exactly what the loaded cover resolves to (592:880, capped by the
+   max-height / max-width the reference sets), so nothing moves when it arrives. */
+.book-of-the-week__image {
+  aspect-ratio: 592 / 880;
+}
+@media (max-width: 639px) {
+  .book-of-the-week__image {
+    height: 310px;
+  }
+}
+@media (min-width: 640px) and (max-width: 939px) {
+  .book-of-the-week__image {
+    height: 365px;
+  }
+}
+@media (min-width: 940px) {
+  .book-of-the-week__image {
+    width: 100%;
+  }
+}
+
+/* Phone menu, first level: let the list scroll. The reference only makes the second-level panels scroll
+   (`overflow: auto` plus a spacer the height of the fixed "Start now / Contact sales" bar), so on a short screen,
+   a phone held sideways, Pricing, Sign in and the callout sat under that bar and could not be reached. */
+@media (max-width: 939px) {
+  .hds-navigation-menu__viewport > .hds-navigation-menu__content:first-child {
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .hds-navigation-menu__viewport > .hds-navigation-menu__content:first-child::after {
+    content: "";
+    display: block;
+    height: calc(var(--navigation-menu-footer-height) + var(--hds-space-core-400));
+  }
+}
