@@ -6,6 +6,7 @@
 .ui-sb .settings-cycle-pill {position:absolute;inset:0;z-index:0;border-radius:7px;background:var(--ui-seg-pill);box-shadow:var(--ui-seg-pill-shadow);pointer-events:none;}
 .ui-sb .ui-seg__content {position:relative;z-index:1;}
 .ui-sb .ui-seg__opt {overflow:visible;}
+.ui-sb .ui-sb-tier__price strong > span {font:inherit;color:inherit;}
 .ui-sb .ui-um {width:100%;}
 .ui-sb .ui-sb-section:focus {outline:none;}
 .ui-sb .ui-sb-section:focus-visible {outline:2px solid var(--line-strong);outline-offset:6px;border-radius:14px;}

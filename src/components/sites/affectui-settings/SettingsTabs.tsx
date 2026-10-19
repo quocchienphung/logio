@@ -34,7 +34,7 @@ function SettingsMenu({ label, ariaLabel, icon, end = false, children }: { label
   const anchor = useRef<HTMLSpanElement>(null);
   const menu = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
-  function close() { setOpen(false); trigger.current?.focus(); }
+  function close() { setOpen(false); }
   useEffect(() => {
     if (!open) return;
     menu.current?.querySelector<HTMLButtonElement>("button")?.focus();
@@ -43,7 +43,7 @@ function SettingsMenu({ label, ariaLabel, icon, end = false, children }: { label
     return () => document.removeEventListener("pointerdown", outside);
   }, [open]);
   return <span ref={anchor} className="ui-as-anchor" onKeyDown={event => {
-    if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); close(); }
+    if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); close(); trigger.current?.focus(); }
     if (!open && event.key === "ArrowDown") { event.preventDefault(); setOpen(true); return; }
     if (!open || !["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
     const items = Array.from(menu.current?.querySelectorAll<HTMLButtonElement>("button") || []);
@@ -52,7 +52,7 @@ function SettingsMenu({ label, ariaLabel, icon, end = false, children }: { label
     event.preventDefault(); items[next]?.focus();
   }}>
     <button ref={trigger} type="button" className={`ui-as-tool${label ? " ui-as-tool--label" : ""}`} aria-label={ariaLabel} aria-expanded={open} aria-haspopup="menu" onClick={() => setOpen(!open)}>{icon && <SettingsIcon name={icon} />}{label}{label && <SettingsIcon name="down" size={13} />}</button>
-    {open && <div ref={menu} className="ui-as-popover ui-as-menu" data-align={end ? "end" : undefined} role="menu" aria-label={ariaLabel || label}>{children(close)}</div>}
+    {open && <div ref={menu} className="ui-as-popover ui-as-menu" data-align={end ? "end" : undefined} role="menu" aria-label={ariaLabel || label} onClick={() => trigger.current?.focus()}>{children(close)}</div>}
   </span>;
 }
 

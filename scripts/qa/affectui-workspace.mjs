@@ -117,7 +117,7 @@ try{
   });
   await check('Profile, settings, feedback and changelog are working screens',async()=>{
     await userMenu('Profile');await page.getByLabel('Name',{exact:true}).fill('Alex River');await page.getByRole('button',{name:'Save profile',exact:true}).click();assert.match(await page.locator('.ui-as-user').innerText(),/Alex River/);
-    await userMenu('Settings');await page.getByLabel('Appearance').selectOption('dark');await page.getByRole('button',{name:'Save settings',exact:true}).click();assert.equal(await page.locator('.crm-page').getAttribute('data-theme'),'dark');
+    await userMenu('Appearance & notifications');await page.getByLabel('Appearance').selectOption('dark');await page.getByRole('button',{name:'Save settings',exact:true}).click();assert.equal(await page.locator('.crm-page').getAttribute('data-theme'),'dark');
     await userMenu('Help & feedback');await page.getByLabel('Feedback',{exact:true}).fill('The reports are useful.');await page.getByRole('button',{name:'Save feedback',exact:true}).click();assert.match(await page.locator('dialog[open]').innerText(),/Saved on this device/);await page.keyboard.press('Escape');
     await page.getByRole('button',{name:'Full changelog',exact:true}).click();assert.match(await page.locator('dialog[open]').innerText(),/Reports, with a clearer picture/);await page.keyboard.press('Escape');
   });
