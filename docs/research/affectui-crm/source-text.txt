@@ -1,0 +1,355 @@
+Delegate Board, Agent Lanes and 67 more in Pro
+→
+affectUI
+⌘
+K
+Library
+Docs
+Pricing
+Classic
+Clean
+New
+Components
+54
+AI Answer
+Pro
+Chat Composer
+Pro
+Thinking State
+Pro
+Writing Assistant
+Pro
+Thinking Loader
+Combobox
+Pro
+Command Menu
+Pro
+Date Range Picker
+Pro
+Dropzone
+Pro
+OTP Input
+Segmented Control
+Stepper Form
+Pro
+Toaster
+Pro
+Usage Meter
+Pro
+Agent Inbox
+Pro
+Agent Lanes
+Pro
+Agent Steering
+Pro
+Agent Tree
+Pro
+Autonomy Dial
+Pro
+Cited Answer
+Pro
+Compact Breakdown
+Pro
+Context Window
+Pro
+Delegate Board
+Pro
+Experiment Card
+Pro
+Integration Picker
+Pro
+Integration Settings
+Pro
+KPI Chart
+Pro
+Memory Panel
+Pro
+Message Actions
+Model Picker
+Pro
+Permission Request
+Pro
+Profile Menu
+Project Card
+Pro
+Prompt Library
+Pro
+Tips Panel
+Tool Call Card
+Approval Card
+Pro
+Breakdown Chart
+Pro
+Button
+Data Table
+Pro
+Filter Menu
+Reaction Bar
+Smart Recommendation
+Agent Plan
+Pro
+Billing Schedule
+Pro
+Change Summary
+Comments Panel
+Pro
+Email Draft
+Progress Tracker
+Comment Thread
+Inline Diff
+Pro
+Setup Guide
+Pro
+Decision Inbox
+Notification Stack
+Screens
+12
+App Shell
+Pro
+Assistant Home
+Pro
+Folders
+Pro
+Folder
+Pro
+Integrations
+Pro
+Agent Chat
+Pro
+CRM
+Pro
+Analytics
+Pro
+Agent Run
+Pro
+Settings & Billing
+Pro
+Onboarding
+Pro
+Evals
+Pro
+Blocks
+11
+Client Context
+Pro
+Invoice & Credit Note
+Pro
+Logo Marquee
+Metrics Dashboard
+Pro
+Pricing Plans
+Pro
+Task Board
+Pro
+Testimonial Wall
+AI Workspace
+Pro
+App Directory
+Pro
+KPI Board
+Pro
+Agent Gallery
+Pro
+Illustrations
+24
+Cover Flow
+Frost Cloud
+Glow Cloud
+Glow Keyboard
+Pro
+Integration Beam
+Logo Cluster
+Model Wheel
+Project Flow
+Pro
+DACH Region
+Empty Calendar
+Integration Flow
+Pro
+Voice Orb
+Pro
+Tab Overload
+World Map Continental
+Pro
+Ghosted Chat
+Lead Sourcing
+Enrichment Orbit
+Outreach Branches
+Pro
+Glass Folder
+Pro
+Side Folder
+Team Invite
+Layer Stack
+Agent Team
+Integration Grid
+Motion
+8
+Blur Crossfade
+Pro
+Gradient Floor
+Pro
+Gradient Text
+Pro
+Grid Background
+Number Ticker
+Shimmer Loader
+Text Reveal
+Tilt Card
+Pro
+67
+Get Pro
+Log In
+Screens
+CRM
+CRM
+
+Company list with pipelines, open views as tabs and an editable data table.
+
+Get Pro to install
+Preview
+Code
+Open full screen
+Copy prompt
+MCP
+Copy
+A
+Acme
+Home
+Companies
+284
+Contacts
+Deals
+Reports
+Pipelines
+New business
+Renewals
+Partnerships
+New in Acme
+New in Acme
+Shared folders
+Full changelog
+Getting started
+13% done · Great start!
+AM
+Alex Morgan
+Sales
+/
+Head of Sales
+Company CRM
+Team strategy
+Pixel integration
+Sales docs
+Company CRM
+	
+Company
+	
+Category
+	
+Domain
+	
+Owner
+	
+Value
+	
+Stage
+	
+Last contact
+
+
+	
+Notion
+	Productivity	notion.so	Mara Klein	48,000	Negotiation	Today
+
+	
+Linear
+	Planning	linear.app	Jonas Weber	12,500	Proposal	Yesterday
+
+	
+Figma
+	Design	figma.com	Mara Klein	86,000	Won	Mar 6
+
+	
+Stripe
+	Payments	stripe.com	Lea Braun	124,000	Qualified	Mar 5
+
+	
+Shopify
+	E-commerce	shopify.com	Jonas Weber	9,800	New	Mar 4
+
+	
+Vercel
+	Developer Tools	vercel.com	Lea Braun	62,000	Proposal	Mar 3
+
+	
+Airtable
+	Productivity	airtable.com	Mara Klein	37,500	Qualified	Mar 1
+
+	
+HubSpot
+	CRM	hubspot.com	Tom Fischer	21,000	New	Feb 27
+
+	
+ClickUp
+	Planning	clickup.com	Tom Fischer	6,400	Lost	Feb 25
+
+	
+Webflow
+	Design	webflow.com	Lea Braun	18,900	Negotiation	Feb 24
+Add row
+Double-click a cell to edit
+When to use
+Sales, customer or partner lists in an internal tool
+Any record list people edit like a spreadsheet
+When not to use
+Read-only reports – use a static table or the Analytics screen
+Installation
+
+CRM is a Pro component.
+
+Installation is part of Pro
+Get Pro to copy the code, install it with the CLI and use it in your projects.
+Unlock with Pro
+Usage
+Usage example is part of Pro
+Get Pro
+API reference
+CRM
+Prop	Type	Default	Description
+onNavigate	(label: string) => void	–	Called with the label of a sidebar item
+workspace	string	"Acme"	Workspace name in the sidebar
+user	{ name: string; avatar?: string }	{ name: "Alex Morgan" }	Account at the bottom of the sidebar
+className	string	–	Extra class on the root
+Accessibility
+Sidebar items, tabs and toolbar actions are real buttons with labels
+Icons are decorative and hidden from screen readers
+Responsive behavior
+Fills its container – give it the full viewport height in your app
+Dark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme="dark"; colors are CSS variables on .ui-as
+affectUI · 54 components · 12 screens · 11 blocks · 24 illustrations · 8 motion effects
+affectUI
+
+Agent-ready React UI for AI products – one file each, no dependencies.
+
+Site
+Home
+Components
+Screens
+Blocks
+Illustrations
+Motion
+Pricing
+Docs
+Introduction
+Installation
+Accessibility
+Legal & Account
+Account
+License
+Terms
+Privacy
+Refund
+Imprint
+Contact
+
+Created by Flo

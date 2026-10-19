@@ -1,0 +1,272 @@
+[
+  {
+    "class": "ui-as-icon-btn ui-as-side-open",
+    "text": "",
+    "label": "Open sidebar",
+    "title": null
+  },
+  {
+    "class": "ui-as-side__workspace",
+    "text": "AAcme",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-icon-btn",
+    "text": "",
+    "label": "Search",
+    "title": null
+  },
+  {
+    "class": "ui-as-icon-btn",
+    "text": "",
+    "label": "Collapse sidebar",
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "Home",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "Companies284",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "Contacts",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "Deals",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "Reports",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "New business",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "Renewals",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-side__item",
+    "text": "Partnerships",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-news__close",
+    "text": "",
+    "label": "Dismiss",
+    "title": null
+  },
+  {
+    "class": "ui-as-news__more",
+    "text": "Full changelog",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-steps ui-as-guide__content",
+    "text": "Getting started13% done · Great start!",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-user",
+    "text": "AMAlex Morgan",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-crm__view",
+    "text": "Head of Sales",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-icon-btn ui-as-crm__star",
+    "text": "",
+    "label": "Add to favorites",
+    "title": null
+  },
+  {
+    "class": "ui-as-icon-btn",
+    "text": "",
+    "label": "New view",
+    "title": null
+  },
+  {
+    "class": "ui-as-icon-btn",
+    "text": "",
+    "label": "All views",
+    "title": null
+  },
+  {
+    "class": "ui-as-crm__tab",
+    "text": "Company CRM",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-crm__tab",
+    "text": "Team strategy",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-crm__tab",
+    "text": "Pixel integration",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-as-crm__tab",
+    "text": "Sales docs",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__tool",
+    "text": "",
+    "label": "Undo (Ctrl Z)",
+    "title": "Undo · Ctrl Z"
+  },
+  {
+    "class": "ui-dt__tool",
+    "text": "",
+    "label": "Redo (Ctrl Shift Z)",
+    "title": "Redo · Ctrl ⇧ Z"
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select all rows",
+    "title": null
+  },
+  {
+    "class": "ui-dt__th",
+    "text": "Company",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__th",
+    "text": "Category",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__th",
+    "text": "Domain",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__th",
+    "text": "Owner",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__th",
+    "text": "Value",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__th",
+    "text": "Stage",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__th",
+    "text": "Last contact",
+    "label": null,
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Notion",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Linear",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Figma",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Stripe",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Shopify",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Vercel",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Airtable",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select HubSpot",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select ClickUp",
+    "title": null
+  },
+  {
+    "class": "ui-dt__check",
+    "text": "",
+    "label": "Select Webflow",
+    "title": null
+  },
+  {
+    "class": "ui-dt__add",
+    "text": "Add row",
+    "label": null,
+    "title": null
+  }
+]

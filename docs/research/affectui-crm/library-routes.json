@@ -1,0 +1,442 @@
+[
+  {
+    "label": "AI AnswerPro",
+    "href": "/components/ai-answer"
+  },
+  {
+    "label": "Chat ComposerPro",
+    "href": "/components/chat-composer"
+  },
+  {
+    "label": "Thinking StatePro",
+    "href": "/components/thinking-state"
+  },
+  {
+    "label": "Writing AssistantPro",
+    "href": "/components/writing-assistant"
+  },
+  {
+    "label": "Thinking Loader",
+    "href": "/components/thinking-loader"
+  },
+  {
+    "label": "ComboboxPro",
+    "href": "/components/combobox"
+  },
+  {
+    "label": "Command MenuPro",
+    "href": "/components/command-menu"
+  },
+  {
+    "label": "Date Range PickerPro",
+    "href": "/components/date-range-picker"
+  },
+  {
+    "label": "DropzonePro",
+    "href": "/components/dropzone"
+  },
+  {
+    "label": "OTP Input",
+    "href": "/components/otp-input"
+  },
+  {
+    "label": "Segmented Control",
+    "href": "/components/segmented-control"
+  },
+  {
+    "label": "Stepper FormPro",
+    "href": "/components/stepper-form"
+  },
+  {
+    "label": "ToasterPro",
+    "href": "/components/toaster"
+  },
+  {
+    "label": "Usage MeterPro",
+    "href": "/components/usage-meter"
+  },
+  {
+    "label": "Agent InboxPro",
+    "href": "/components/agent-inbox"
+  },
+  {
+    "label": "Agent LanesPro",
+    "href": "/components/agent-lanes"
+  },
+  {
+    "label": "Agent SteeringPro",
+    "href": "/components/agent-steering"
+  },
+  {
+    "label": "Agent TreePro",
+    "href": "/components/agent-tree"
+  },
+  {
+    "label": "Autonomy DialPro",
+    "href": "/components/autonomy-dial"
+  },
+  {
+    "label": "Cited AnswerPro",
+    "href": "/components/cited-answer"
+  },
+  {
+    "label": "Compact BreakdownPro",
+    "href": "/components/compact-breakdown"
+  },
+  {
+    "label": "Context WindowPro",
+    "href": "/components/context-window"
+  },
+  {
+    "label": "Delegate BoardPro",
+    "href": "/components/delegate-board"
+  },
+  {
+    "label": "Experiment CardPro",
+    "href": "/components/experiment-card"
+  },
+  {
+    "label": "Integration PickerPro",
+    "href": "/components/integration-picker"
+  },
+  {
+    "label": "Integration SettingsPro",
+    "href": "/components/integration-settings"
+  },
+  {
+    "label": "KPI ChartPro",
+    "href": "/components/kpi-chart"
+  },
+  {
+    "label": "Memory PanelPro",
+    "href": "/components/memory-panel"
+  },
+  {
+    "label": "Message Actions",
+    "href": "/components/message-actions"
+  },
+  {
+    "label": "Model PickerPro",
+    "href": "/components/model-picker"
+  },
+  {
+    "label": "Permission RequestPro",
+    "href": "/components/permission-request"
+  },
+  {
+    "label": "Profile Menu",
+    "href": "/components/profile-menu"
+  },
+  {
+    "label": "Project CardPro",
+    "href": "/components/project-card"
+  },
+  {
+    "label": "Prompt LibraryPro",
+    "href": "/components/prompt-library"
+  },
+  {
+    "label": "Tips Panel",
+    "href": "/components/tips-panel"
+  },
+  {
+    "label": "Tool Call Card",
+    "href": "/components/tool-call-card"
+  },
+  {
+    "label": "Approval CardPro",
+    "href": "/components/approval-card"
+  },
+  {
+    "label": "Breakdown ChartPro",
+    "href": "/components/breakdown-chart"
+  },
+  {
+    "label": "Button",
+    "href": "/components/button"
+  },
+  {
+    "label": "Data TablePro",
+    "href": "/components/data-table"
+  },
+  {
+    "label": "Filter Menu",
+    "href": "/components/filter-menu"
+  },
+  {
+    "label": "Reaction Bar",
+    "href": "/components/reaction-bar"
+  },
+  {
+    "label": "Smart Recommendation",
+    "href": "/components/smart-recommendation"
+  },
+  {
+    "label": "Agent PlanPro",
+    "href": "/components/agent-plan"
+  },
+  {
+    "label": "Billing SchedulePro",
+    "href": "/components/billing-schedule"
+  },
+  {
+    "label": "Change Summary",
+    "href": "/components/change-summary"
+  },
+  {
+    "label": "Comments PanelPro",
+    "href": "/components/comments-panel"
+  },
+  {
+    "label": "Email Draft",
+    "href": "/components/email-draft"
+  },
+  {
+    "label": "Progress Tracker",
+    "href": "/components/progress-tracker"
+  },
+  {
+    "label": "Comment Thread",
+    "href": "/components/comment-thread"
+  },
+  {
+    "label": "Inline DiffPro",
+    "href": "/components/inline-diff"
+  },
+  {
+    "label": "Setup GuidePro",
+    "href": "/components/setup-guide"
+  },
+  {
+    "label": "Decision Inbox",
+    "href": "/components/decision-inbox"
+  },
+  {
+    "label": "Notification Stack",
+    "href": "/components/notification-stack"
+  },
+  {
+    "label": "App ShellPro",
+    "href": "/screens/app-shell"
+  },
+  {
+    "label": "Assistant HomePro",
+    "href": "/screens/assistant-home"
+  },
+  {
+    "label": "FoldersPro",
+    "href": "/screens/files"
+  },
+  {
+    "label": "FolderPro",
+    "href": "/screens/folder"
+  },
+  {
+    "label": "IntegrationsPro",
+    "href": "/screens/integrations"
+  },
+  {
+    "label": "Agent ChatPro",
+    "href": "/screens/agent-chat"
+  },
+  {
+    "label": "CRMPro",
+    "href": "/screens/crm"
+  },
+  {
+    "label": "AnalyticsPro",
+    "href": "/screens/analytics"
+  },
+  {
+    "label": "Agent RunPro",
+    "href": "/screens/agent-run"
+  },
+  {
+    "label": "Settings & BillingPro",
+    "href": "/screens/settings-billing"
+  },
+  {
+    "label": "OnboardingPro",
+    "href": "/screens/onboarding"
+  },
+  {
+    "label": "EvalsPro",
+    "href": "/screens/evals"
+  },
+  {
+    "label": "Client ContextPro",
+    "href": "/blocks/client-context"
+  },
+  {
+    "label": "Invoice & Credit NotePro",
+    "href": "/blocks/invoice-credit"
+  },
+  {
+    "label": "Logo Marquee",
+    "href": "/blocks/logo-marquee"
+  },
+  {
+    "label": "Metrics DashboardPro",
+    "href": "/blocks/metrics-dashboard"
+  },
+  {
+    "label": "Pricing PlansPro",
+    "href": "/blocks/pricing-plans"
+  },
+  {
+    "label": "Task BoardPro",
+    "href": "/blocks/task-board"
+  },
+  {
+    "label": "Testimonial Wall",
+    "href": "/blocks/testimonial-wall"
+  },
+  {
+    "label": "AI WorkspacePro",
+    "href": "/blocks/ai-workspace"
+  },
+  {
+    "label": "App DirectoryPro",
+    "href": "/blocks/app-directory"
+  },
+  {
+    "label": "KPI BoardPro",
+    "href": "/blocks/kpi-board"
+  },
+  {
+    "label": "Agent GalleryPro",
+    "href": "/blocks/agent-gallery"
+  },
+  {
+    "label": "Cover Flow",
+    "href": "/illustrations/cover-flow"
+  },
+  {
+    "label": "Frost Cloud",
+    "href": "/illustrations/frost-cloud"
+  },
+  {
+    "label": "Glow Cloud",
+    "href": "/illustrations/glow-cloud"
+  },
+  {
+    "label": "Glow KeyboardPro",
+    "href": "/illustrations/glow-keyboard"
+  },
+  {
+    "label": "Integration Beam",
+    "href": "/illustrations/integration-beam"
+  },
+  {
+    "label": "Logo Cluster",
+    "href": "/illustrations/logo-cluster"
+  },
+  {
+    "label": "Model Wheel",
+    "href": "/illustrations/model-wheel"
+  },
+  {
+    "label": "Project FlowPro",
+    "href": "/illustrations/project-flow"
+  },
+  {
+    "label": "DACH Region",
+    "href": "/illustrations/region-dach"
+  },
+  {
+    "label": "Empty Calendar",
+    "href": "/illustrations/empty-calendar"
+  },
+  {
+    "label": "Integration FlowPro",
+    "href": "/illustrations/integration-flow"
+  },
+  {
+    "label": "Voice OrbPro",
+    "href": "/illustrations/voice-orb"
+  },
+  {
+    "label": "Tab Overload",
+    "href": "/illustrations/tab-overload"
+  },
+  {
+    "label": "World Map ContinentalPro",
+    "href": "/illustrations/world-map"
+  },
+  {
+    "label": "Ghosted Chat",
+    "href": "/illustrations/ghosted-chat"
+  },
+  {
+    "label": "Lead Sourcing",
+    "href": "/illustrations/lead-sourcing"
+  },
+  {
+    "label": "Enrichment Orbit",
+    "href": "/illustrations/enrichment-orbit"
+  },
+  {
+    "label": "Outreach BranchesPro",
+    "href": "/illustrations/outreach-branches"
+  },
+  {
+    "label": "Glass FolderPro",
+    "href": "/illustrations/glass-folder"
+  },
+  {
+    "label": "Side Folder",
+    "href": "/illustrations/side-folder"
+  },
+  {
+    "label": "Team Invite",
+    "href": "/illustrations/team-invite"
+  },
+  {
+    "label": "Layer Stack",
+    "href": "/illustrations/layer-stack"
+  },
+  {
+    "label": "Agent Team",
+    "href": "/illustrations/agent-team"
+  },
+  {
+    "label": "Integration Grid",
+    "href": "/illustrations/integration-grid"
+  },
+  {
+    "label": "Blur CrossfadePro",
+    "href": "/motion/blur-crossfade"
+  },
+  {
+    "label": "Gradient FloorPro",
+    "href": "/motion/gradient-floor"
+  },
+  {
+    "label": "Gradient TextPro",
+    "href": "/motion/gradient-text"
+  },
+  {
+    "label": "Grid Background",
+    "href": "/motion/grid-background"
+  },
+  {
+    "label": "Number Ticker",
+    "href": "/motion/number-ticker"
+  },
+  {
+    "label": "Shimmer Loader",
+    "href": "/motion/shimmer-loader"
+  },
+  {
+    "label": "Text Reveal",
+    "href": "/motion/text-reveal"
+  },
+  {
+    "label": "Tilt CardPro",
+    "href": "/motion/tilt-card"
+  },
+  {
+    "label": "Open full screen",
+    "href": "/screens/crm/full"
+  }
+]
