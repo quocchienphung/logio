@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MotionScript } from "@/components/motion/MotionScript";
 import { PageTransitionScript } from "@/components/page-transition/PageTransitionScript";
+import { StripeNavigationScript } from "@/components/navigation/StripeNavigationScript";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en-US">
       <head>
+        <StripeNavigationScript />
         <PageTransitionScript />
         <MotionScript />
       </head>

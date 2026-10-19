@@ -56,7 +56,7 @@ export function S10Pricing() {
                               <div className="TerminalPricingRefresh__deviceGridItemPrice">
                                 {" $299 "}
                               </div>
-                              <a className="Link TerminalPricingRefresh__deviceGridItemLink" href="https://stripe.com/terminal/s700" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__stripe_reader_s700__learn_more">
+                              <a className="Link TerminalPricingRefresh__deviceGridItemLink" href="/unavailable/stripe/stripe.com/terminal/s700" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__stripe_reader_s700__learn_more">
                                 {"Learn more"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -80,7 +80,7 @@ export function S10Pricing() {
                               <div className="TerminalPricingRefresh__deviceGridItemPrice">
                                 {" $299 "}
                               </div>
-                              <a className="Link TerminalPricingRefresh__deviceGridItemLink" href="https://stripe.com/terminal/s710" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__stripe_reader_s710__learn_more">
+                              <a className="Link TerminalPricingRefresh__deviceGridItemLink" href="/unavailable/stripe/stripe.com/terminal/s710" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__stripe_reader_s710__learn_more">
                                 {"Learn more"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -104,7 +104,7 @@ export function S10Pricing() {
                               <div className="TerminalPricingRefresh__deviceGridItemPrice">
                                 {" $59 "}
                               </div>
-                              <a className="Link TerminalPricingRefresh__deviceGridItemLink" href="https://stripe.com/terminal/m2" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__stripe_reader_m2__learn_more">
+                              <a className="Link TerminalPricingRefresh__deviceGridItemLink" href="/unavailable/stripe/stripe.com/terminal/m2" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__stripe_reader_m2__learn_more">
                                 {"Learn more"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -144,7 +144,7 @@ export function S10Pricing() {
                               </div>
                               <div className="TerminalPricingRefresh__paymentsSubprice">
                                 {"+10¢ per authorization for "}
-                                <a className="Link" href="https://stripe.com/terminal/tap-to-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__payments__tap_to_pay">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/terminal/tap-to-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__payments__tap_to_pay">
                                   {"Tap to Pay"}
                                 </a>
                                 {" "}
@@ -161,7 +161,7 @@ export function S10Pricing() {
                               </div>
                               <div className="TerminalPricingRefresh__paymentsSubprice">
                                 {"+5¢ per authorization for optional "}
-                                <a className="Link" href="https://support.stripe.com/questions/stripe-terminal-encryption-e2ee-vs-p2pe" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__payments__point_to_point">
+                                <a className="Link" href="/unavailable/stripe/support.stripe.com/questions/stripe-terminal-encryption-e2ee-vs-p2pe" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__payments__point_to_point">
                                   {"point-to-point-encryption"}
                                 </a>
                                 {" "}
@@ -218,7 +218,7 @@ export function S10Pricing() {
                           </div>
                         </div>
                         <div className="TerminalPricingRefresh__customPricingCta">
-                          <a className="Link TerminalPricingRefresh_customPricingLink" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__custom_pricing__contact_sales">
+                          <a className="Link TerminalPricingRefresh_customPricingLink" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="simple_transparent_pricing__custom_pricing__contact_sales">
                             {"Contact sales"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

@@ -48,7 +48,7 @@ const STATS = [
     id: "historical-uptime",
     value: "99.999%",
     description: "historical uptime for Stripe services",
-    link: { href: "https://status.stripe.com", text: "historical uptime" },
+    link: { href: "/unavailable/stripe/status.stripe.com/", text: "historical uptime" },
     rest: " for Stripe services",
   },
   {

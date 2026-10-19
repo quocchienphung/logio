@@ -68,7 +68,7 @@ export function S07FrequentlyAskedQuestions() {
                   <div className="hds-details-content">
                     <p className="hds-text hds-text--md hds-text--soft">
                       {"Metronome is a Stripe product purpose-built for the most sophisticated usage-based billing scenarios. It provides capabilities like multidimensional pricing, centralized rate cards, enterprise contract management, cloud marketplace integrations, and real-time revenue reporting at the account, contract, and product level. Metronome is available as an add-on to Stripe Billing. See "}
-                      <a className="hds-link hds-link--secondary" href="https://stripe.com/billing/pricing" data-analytics-label="frequently_asked_questions__what_is_metronome__pricing">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/billing/pricing" data-analytics-label="frequently_asked_questions__what_is_metronome__pricing">
                         {"pricing"}
                       </a>
                       {" for more details."}
@@ -157,7 +157,7 @@ export function S07FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":Rrgur6l6H1:">
                             {"Our survey of 2,000+ business leaders reveals how top companies stay competitive with pricing. Get the strategies to stay ahead."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":Rrgur6l6H1:" aria-labelledby=":Rrgur6l6:" href="https://stripe.com/lp/pricing-trends" data-analytics-label="more_resources__five_pricing_trends">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":Rrgur6l6H1:" aria-labelledby=":Rrgur6l6:" href="/unavailable/stripe/stripe.com/lp/pricing-trends" data-analytics-label="more_resources__five_pricing_trends">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">
@@ -204,7 +204,7 @@ export function S07FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":R1bgur6l6H1:">
                             {"Go behind the scenes with ElevenLabs, Runway, and Leonardo AI to learn how they built the financial infrastructure to monetize demand and scale globally."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1bgur6l6H1:" aria-labelledby=":R1bgur6l6:" href="https://stripe.com/lp/ai-scaling-playbook" data-analytics-label="more_resources__firsthand_lesson_from">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1bgur6l6H1:" aria-labelledby=":R1bgur6l6:" href="/unavailable/stripe/stripe.com/lp/ai-scaling-playbook" data-analytics-label="more_resources__firsthand_lesson_from">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">
@@ -251,7 +251,7 @@ export function S07FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":R1rgur6l6H1:">
                             {"Monetizing AI products is uniquely challenging. Learn how top AI companies approach pricing to balance adoption, predictability, and margin."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1rgur6l6H1:" aria-labelledby=":R1rgur6l6:" href="https://stripe.com/blog/a-framework-for-pricing-ai-products" data-analytics-label="more_resources__a_framework_for">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1rgur6l6H1:" aria-labelledby=":R1rgur6l6:" href="/unavailable/stripe/stripe.com/blog/a-framework-for-pricing-ai-products" data-analytics-label="more_resources__a_framework_for">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">

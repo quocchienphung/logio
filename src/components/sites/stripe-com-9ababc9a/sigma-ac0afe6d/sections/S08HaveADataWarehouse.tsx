@@ -35,7 +35,7 @@ export function S08HaveADataWarehouse() {
                   </div>
                   <footer className="Copy__footer">
                     <div className="CtaGroup CtaGroup--inline">
-                      <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/data-management" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="have_a_data_warehouse__try_for_free">
+                      <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/dashboard.stripe.com/data-management" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="have_a_data_warehouse__try_for_free">
                         {"Try for free"}
                         <span className="nobr">
                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

@@ -38,7 +38,7 @@ export function S09Step2() {
                   </div>
                   <footer className="Copy__footer">
                     <div className="CtaGroup CtaGroup--inline">
-                      <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/tax/use-stripe-to-register" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="primary_cta">
+                      <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/tax/use-stripe-to-register" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="primary_cta">
                         {"Register today"}
                         <span className="nobr">
                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

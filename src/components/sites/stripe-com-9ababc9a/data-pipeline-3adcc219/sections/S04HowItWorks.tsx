@@ -68,7 +68,7 @@ export function S04HowItWorks() {
                         <div className="CopyBody CopyBody--variantDetail" style={{ "--bodyPaddingRight": "var(--columnPaddingXLarge)" }}>
                           <p>
                             {"Provide the account information associated with your data storage destination. Stripe shares your data using industry-leading "}
-                            <a className="Link" href="https://docs.stripe.com/security" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/security" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                               {"security practices"}
                             </a>
                             {"."}
@@ -94,7 +94,7 @@ export function S04HowItWorks() {
                           <p>
                             {"Your historical data takes up to six hours to load, and new data will be regularly refreshed every three hours. Start querying your Stripe data and reports in your own data warehouse, or use the structured files exported to your cloud storage destination."}
                           </p>
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/stripe-data/available-data" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_data_freshness">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/stripe-data/available-data" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_data_freshness">
                             {"Learn more about data freshness"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

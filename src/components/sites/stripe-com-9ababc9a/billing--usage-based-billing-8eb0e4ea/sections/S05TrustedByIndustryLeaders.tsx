@@ -32,7 +32,7 @@ export function S05TrustedByIndustryLeaders() {
             <ul role="list" className="carousel__scroller case-study-carousel__scroller">
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "0" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/lovable" data-analytics-label="customer_story__lovable">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/lovable" data-analytics-label="customer_story__lovable">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Lovable-abbc8a6abf.webp 1x, /sites/stripe-com-9ababc9a/products/Lovable-fa711d8996.webp 2x" />

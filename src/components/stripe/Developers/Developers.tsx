@@ -48,7 +48,7 @@ export function Developers() {
             <div className="hds-button-group">
               <a
                 className="hds-button hds-button--primary"
-                href="https://docs.stripe.com/development"
+                href="/unavailable/stripe/docs.stripe.com/development"
                 data-analytics-label="view_developer_docs"
               >
                 {"View developer docs"}
@@ -738,7 +738,7 @@ export function Developers() {
                       <div className="developer-systems-animation__grid-row-layout--middle">
                         <a
                           className="hds-button hds-button-primary developer-systems-animation__button"
-                          href="https://marketplace.stripe.com/"
+                          href="/unavailable/stripe/marketplace.stripe.com/"
                           data-analytics-label="connect_to_existing__app_marketplace"
                         >
                           {"App Marketplace"}
@@ -1153,7 +1153,7 @@ export function Developers() {
                                   <a
                                     className="hds-link"
                                     tabIndex={-1}
-                                    href="https://buy.stripe.com/test_eVa3do41l4Ye6KkcMN"
+                                    href="/unavailable/stripe/buy.stripe.com/test_eVa3do41l4Ye6KkcMN"
                                   >
                                     {"https://buy.stripe.com/test_eVa3do41l..."}
                                   </a>
@@ -1225,7 +1225,7 @@ export function Developers() {
                   <div className="feature-detail__footer">
                     <a
                       className="hds-link hds-link--callout"
-                      href="https://docs.stripe.com/no-code"
+                      href="/unavailable/stripe/docs.stripe.com/no-code"
                       data-analytics-label="dont_code__explore_no_code"
                     >
                       {"Explore no-code"}
@@ -1711,7 +1711,7 @@ export function Developers() {
                   <div className="feature-detail__footer">
                     <a
                       className="hds-link hds-link--callout"
-                      href="https://marketplace.stripe.com/"
+                      href="/unavailable/stripe/marketplace.stripe.com/"
                       data-analytics-label="use_a_pre_integrated__see_directory"
                     >
                       {"See directory"}
@@ -1870,7 +1870,7 @@ export function Developers() {
                   <div className="feature-detail__footer">
                     <a
                       className="hds-link hds-link--callout"
-                      href="https://docs.stripe.com/development"
+                      href="/unavailable/stripe/docs.stripe.com/development"
                       data-analytics-label="build_your_own__get_started"
                     >
                       {"Get started"}

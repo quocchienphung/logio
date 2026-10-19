@@ -48,11 +48,11 @@ export function S04UseCases() {
                       <div className="Copy__body">
                         <p>
                           {"Power secure and reliable "}
-                          <a className="Link" href="https://stripe.com/payments/ach-direct-debit" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/payments/ach-direct-debit" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"ACH Direct Debit"}
                           </a>
                           {" payments, "}
-                          <a className="Link" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"payouts"}
                           </a>
                           {", and other types of money movement by instantly verifying bank accounts. Check account balances before initiating debits to avoid payment failures and insufficient funds errors."}
@@ -76,7 +76,7 @@ export function S04UseCases() {
                       <div className="Copy__body">
                         <p>
                           {"Reduce fraud by confirming bank account ownership before initiating payouts or accepting payments. Use Financial Connections with "}
-                          <a className="Link" href="https://stripe.com/identity" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/identity" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Stripe Identity"}
                           </a>
                           {" to both verify a user’s identity and confirm they’re the owner of a bank account. "}

@@ -55,7 +55,7 @@ export function S10Security() {
                     </header>
                     <div className="Copy__body">
                       {" Checkout uses AI to help you distinguish fraudulent actors from customers. Apply extra authentication to high-risk payments, or let us take on fraudulent disputes entirely with "}
-                      <a className="Link" href="https://stripe.com/radar/chargeback-protection" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__powerful_fraud_protection__chargeback_protection">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/radar/chargeback-protection" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__powerful_fraud_protection__chargeback_protection">
                         {"chargeback protection"}
                       </a>
                       {". "}
@@ -90,7 +90,7 @@ export function S10Security() {
                     </header>
                     <div className="Copy__body">
                       {" Qualify for the simplest method of "}
-                      <a className="Link" href="https://docs.stripe.com/security" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__compliance_made_easy__pci_validation">
+                      <a className="Link" href="/unavailable/stripe/docs.stripe.com/security" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__compliance_made_easy__pci_validation">
                         {"PCI validation"}
                       </a>
                       {" with a pre-filled SAQ A, and easily meet new regulatory requirements like Europe’s Strong Customer Authentication. "}
@@ -121,7 +121,7 @@ export function S10Security() {
                                   {", Founder and CEO "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/groupgreeting" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__groupgreeting__read_the_full">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/groupgreeting" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__groupgreeting__read_the_full">
                                 {"Read the full story"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -161,7 +161,7 @@ export function S10Security() {
                                   {", Customer Success Lead "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/tiller" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__tiller__read_the_full">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/tiller" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="built_in_fraud__tiller__read_the_full">
                                 {"Read the full story"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

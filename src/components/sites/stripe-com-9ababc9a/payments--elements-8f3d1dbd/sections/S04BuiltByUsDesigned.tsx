@@ -41,22 +41,22 @@ export function S04BuiltByUsDesigned() {
                   <div className="Copy__body">
                     <p>
                       {"Our versatile APIs and libraries let you combine the simplicity of prebuilt components with the freedom of custom UIs. Use React or JavaScript to build your ideal web integration or our "}
-                      <a className="Link" href="https://stripe.com/docs/payments/accept-a-payment?platform=ios" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/accept-a-payment" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"iOS"}
                       </a>
                       {", "}
-                      <a className="Link" href="https://stripe.com/docs/payments/accept-a-payment?platform=android" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/accept-a-payment" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"Android"}
                       </a>
                       {", or "}
-                      <a className="Link" href="https://stripe.com/docs/payments/accept-a-payment?platform=react-native" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/accept-a-payment" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"React Native"}
                       </a>
                       {" SDKs to design a streamlined mobile flow."}
                     </p>
                   </div>
                   <footer className="Copy__footer">
-                    <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/payments/payment-element" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="control_every_facet__explore_docs">
+                    <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/payment-element" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="control_every_facet__explore_docs">
                       {"Explore the docs"}
                       <span className="nobr">
                         <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -693,7 +693,7 @@ export function S04BuiltByUsDesigned() {
                     </header>
                     <div className="Copy__body">
                       {" Use "}
-                      <a className="Link" href="https://docs.stripe.com/elements/appearance-api" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="control_every_facet__full_customization__css_properties">
+                      <a className="Link" href="/unavailable/stripe/docs.stripe.com/elements/appearance-api" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="control_every_facet__full_customization__css_properties">
                         {"CSS properties"}
                       </a>
                       {" to customize font, color, spacing, and more. "}

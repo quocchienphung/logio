@@ -449,7 +449,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -514,7 +514,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -579,7 +579,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -644,7 +644,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -709,7 +709,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -774,7 +774,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -839,7 +839,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -904,7 +904,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -969,7 +969,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -1034,7 +1034,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -1099,7 +1099,7 @@ export function S03UseCases() {
                         </div>
                       </div>
                       <div className="SigmaModal__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="https://docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow SigmaModal__docsCta" href="/unavailable/stripe/docs.stripe.com/stripe-data/how-sigma-works" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Modal Docs CTA">
                           {"Docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

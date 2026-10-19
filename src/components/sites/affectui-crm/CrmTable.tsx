@@ -1,5 +1,6 @@
 "use client";
 
+import { normalizeStripeNavigation } from "@/lib/stripe-navigation";
 import { useEffect, useRef, useState, type KeyboardEvent, type ClipboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowDown, Check, Copy, Plus, Trash2 } from "lucide-react";
@@ -144,7 +145,7 @@ export function CrmTable({ engine, filter, defaultOwner = "", onAddRow }: { engi
             {isEditing ? <input autoFocus className="ui-dt__input" aria-label={`Edit ${col.label}`} value={draft} onFocus={event => event.currentTarget.select()} onChange={event => setDraft(event.target.value)} onBlur={() => { if (!cancelBlur.current) update(cell, draft); cancelBlur.current = false; setEditing(null); }} onKeyDown={event => {
               if (event.key === "Escape") { event.preventDefault(); cancelBlur.current = true; setEditing(null); scrollRef.current?.focus(); }
               if (event.key === "Enter" || event.key === "Tab") { event.preventDefault(); cancelBlur.current = true; update(cell, draft); setEditing(null); if (event.key === "Tab") move(0, event.shiftKey ? -1 : 1); else move(event.shiftKey ? -1 : 1, 0); }
-            }} /> : col.key === "company" ? <span className="ui-dt__name"><span className="ui-dt__logo"><CrmIcon name={row.company} size={18} /></span><span className="ui-dt__name-text" data-empty={!value ? "" : undefined}>{value || "Untitled"}</span></span> : col.type === "tag" ? <span className="ui-dt__tag" data-tone={tones[String(value)] || "gray"}>{value}</span> : col.type === "url" && value ? <a className="ui-dt__link" href={`https://${String(value).replace(/^https?:\/\//, "")}`} target="_blank" rel="noreferrer">{value}</a> : <span className="ui-dt__text">{col.type === "number" ? numberFormat.format(Number(value)) : value}</span>}
+            }} /> : col.key === "company" ? <span className="ui-dt__name"><span className="ui-dt__logo"><CrmIcon name={row.company} size={18} /></span><span className="ui-dt__name-text" data-empty={!value ? "" : undefined}>{value || "Untitled"}</span></span> : col.type === "tag" ? <span className="ui-dt__tag" data-tone={tones[String(value)] || "gray"}>{value}</span> : col.type === "url" && value ? <a className="ui-dt__link" href={normalizeStripeNavigation(`https://${String(value).replace(/^https?:\/\//, "")}`)} target="_blank" rel="noreferrer">{value}</a> : <span className="ui-dt__text">{col.type === "number" ? numberFormat.format(Number(value)) : value}</span>}
           </td>;
         })}</motion.tr>)}</AnimatePresence></tbody>
       </table>{!visible.length && <p className="ui-dt__empty">{rows.length ? "No companies match this view." : "No rows yet. Add your first company."}</p>}

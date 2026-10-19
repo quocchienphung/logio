@@ -235,7 +235,7 @@ export function S03HowItWorks() {
                             </li>
                           </ul>
                         </section>
-                        <div className="InvoicingDemoButton" data-js-controller="BillingInvoicingDemoButton" data-submission-url="https://stripe-invoice-generator-34905.stripedemos.com/invoice/create">
+                        <div className="InvoicingDemoButton" data-js-controller="BillingInvoicingDemoButton" data-submission-url="/unavailable/stripe/stripe-invoice-generator-34905.stripedemos.com/invoice/create">
                           <button className="FormButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="invoicing__try_it_out" data-js-target="BillingInvoicingDemoButton.button">
                             <span className="FormButton__default">
                               {" Try it out"}
@@ -1047,7 +1047,7 @@ export function S03HowItWorks() {
                       <div className="Copy__body">
                         <p>
                           {"Email your customer a unique link to a Stripe-hosted invoice page from a "}
-                          <a className="Link" href="https://stripe.com/docs/email-domain" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/email-domain" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"custom email domain"}
                           </a>
                           {" or stripe.com. Customers can also download a PDF invoice online. Each invoice is optimized for mobile, tablet, and desktop with a responsive design that offers Apple Pay and Google Pay. "}
@@ -1456,7 +1456,7 @@ export function S03HowItWorks() {
                       <div className="Copy__body">
                         <p>
                           {"Invoicing supports 25+ languages, "}
-                          <a className="Link" href="https://stripe.com/docs/currencies" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/currencies" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"135+ currencies"}
                           </a>
                           {", "}
@@ -2267,11 +2267,11 @@ export function S03HowItWorks() {
                   <div className="Copy__body">
                     <p>
                       {"Manage invoices and view detailed reports directly from the Dashboard. It’s easy to update, void, duplicate, refund, or mark invoices as paid outside of Stripe. Automate accounts receivable processes and reduce time spent tracking and collecting invoice payments. Enable your customers to self-manage their invoices and subscriptions from a secure, prebuilt "}
-                      <a className="Link" href="https://stripe.com/docs/billing/subscriptions/integrating-customer-portal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/docs/billing/subscriptions/integrating-customer-portal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"customer portal"}
                       </a>
                       {". You can also streamline related revenue and reconciliation workflows with our "}
-                      <a className="Link" href="https://stripe.com/use-cases/finance-automation" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/use-cases/finance-automation" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"Revenue suite"}
                       </a>
                       {"."}

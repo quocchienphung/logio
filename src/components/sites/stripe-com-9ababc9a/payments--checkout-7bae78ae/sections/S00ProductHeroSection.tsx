@@ -39,7 +39,7 @@ export function S00ProductHeroSection() {
                         </div>
                         <footer className="Copy__footer">
                           <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                            <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register/checkout" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="hero__start_now">
+                            <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="hero__start_now">
                               {"Start now"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

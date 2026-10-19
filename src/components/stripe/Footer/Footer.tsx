@@ -433,42 +433,42 @@ export function Footer() {
                 </span>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://docs.stripe.com/"
+                  href="/unavailable/stripe/docs.stripe.com/"
                   data-analytics-label="global_footer__documentation"
                 >
                   {"Documentation"}
                 </a>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://docs.stripe.com/api"
+                  href="/unavailable/stripe/docs.stripe.com/api"
                   data-analytics-label="global_footer__api_reference"
                 >
                   {"API reference"}
                 </a>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://status.stripe.com/"
+                  href="/unavailable/stripe/status.stripe.com/"
                   data-analytics-label="global_footer__api_status"
                 >
                   {"API status"}
                 </a>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://docs.stripe.com/changelog"
+                  href="/unavailable/stripe/docs.stripe.com/changelog"
                   data-analytics-label="global_footer__api_changelog"
                 >
                   {"API changelog"}
                 </a>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://docs.stripe.com/development"
+                  href="/unavailable/stripe/docs.stripe.com/development"
                   data-analytics-label="global_footer__libraries_and_sdks"
                 >
                   {"Libraries and SDKs"}
                 </a>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://docs.stripe.com/projects"
+                  href="/unavailable/stripe/docs.stripe.com/projects"
                   data-analytics-label="global_footer__stripe_projects"
                 >
                   {"Stripe Projects"}
@@ -496,7 +496,7 @@ export function Footer() {
                 </span>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://marketplace.stripe.com/"
+                  href="/unavailable/stripe/marketplace.stripe.com/"
                   data-analytics-label="global_footer__stripe_app_marketplace"
                 >
                   {"Stripe App Marketplace"}
@@ -599,7 +599,7 @@ export function Footer() {
                 </a>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://privacy.stripe.com/"
+                  href="/unavailable/stripe/privacy.stripe.com/"
                   data-analytics-label="global_footer__your_privacy_choices"
                 >
                   {"Your privacy choices"}
@@ -648,7 +648,7 @@ export function Footer() {
                 </a>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://press.stripe.com/"
+                  href="/unavailable/stripe/press.stripe.com/"
                   data-analytics-label="global_footer__stripe_press"
                 >
                   {"Stripe Press"}
@@ -667,7 +667,7 @@ export function Footer() {
                 </span>
                 <a
                   className="hds-link footer-links-block__item"
-                  href="https://support.stripe.com/"
+                  href="/unavailable/stripe/support.stripe.com/"
                   data-analytics-label="global_footer__get_support"
                 >
                   {"Get support"}
@@ -686,7 +686,7 @@ export function Footer() {
               <div className="footer-links-block">
                 <a
                   className="hds-link hds-link--callout"
-                  href="https://dashboard.stripe.com/login"
+                  href="/login"
                   data-analytics-label="global_footer__sign_in"
                 >
                   {"Sign in"}

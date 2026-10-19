@@ -342,7 +342,7 @@ function NavigationMenu() {
         <li className="hds-navigation-menu__item navigation-item navigation-item__sign-in--mobile">
           <a
             className="hds-button hds-navigation-menu__trigger hds-button--transparent"
-            href="https://dashboard.stripe.com/login"
+            href="/login"
           >
             Sign in
           </a>
@@ -380,7 +380,7 @@ function NavigationMenu() {
         <div className="hds-button-group">
           <a
             className="hds-button hds-button--primary"
-            href="https://dashboard.stripe.com/register"
+            href="/signup"
           >
             Start now
             <ButtonArrow />
@@ -482,7 +482,7 @@ function NavigationMenu() {
             <li className="hds-navigation-menu__item navigation-item">
               <a
                 className="hds-button navigation-cta-button navigation-item__sign-in hds-button--secondary-on-quiet hds-button--compact"
-                href="https://dashboard.stripe.com/login"
+                href="/login"
                 aria-label="Sign in"
                 onMouseEnter={scheduleClose}
               >

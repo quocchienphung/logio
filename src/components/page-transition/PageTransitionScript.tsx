@@ -9,6 +9,10 @@ const SPECULATION_RULES = JSON.stringify({
         and: [
           { href_matches: "/*" },
           { not: { href_matches: "/_next/*" } },
+          { not: { href_matches: "/unavailable/*" } },
+          { not: { href_matches: "/login*" } },
+          { not: { href_matches: "/signup*" } },
+          { not: { href_matches: "/forgot-password*" } },
           { not: { selector_matches: "[target=_blank], [download], [rel~=nofollow]" } },
         ],
       },

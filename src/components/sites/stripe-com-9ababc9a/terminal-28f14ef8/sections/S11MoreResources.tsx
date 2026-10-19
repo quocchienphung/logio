@@ -43,7 +43,7 @@ export function S11MoreResources() {
                     </div>
                   </a>
                   {" "}
-                  <a className="Link ContentRecommendationCard__link" href="https://stripe.com/customers/urbn" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_urbn_consolidates">
+                  <a className="Link ContentRecommendationCard__link" href="/unavailable/stripe/stripe.com/customers/urbn" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_urbn_consolidates">
                     <div className="Card Card--shadowSmall ContentRecommendationCard">
                       <span className="Badge Badge--accented ContentRecommendationCard__badge">
                         {" Customer story "}
@@ -56,7 +56,7 @@ export function S11MoreResources() {
                     </div>
                   </a>
                   {" "}
-                  <a className="Link ContentRecommendationCard__link" href="https://stripe.com/guides/unified-commerce-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_guide_to_unified">
+                  <a className="Link ContentRecommendationCard__link" href="/unavailable/stripe/stripe.com/guides/unified-commerce-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_guide_to_unified">
                     <div className="Card Card--shadowSmall ContentRecommendationCard">
                       <span className="Badge Badge--accented ContentRecommendationCard__badge">
                         {" Guide "}

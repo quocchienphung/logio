@@ -38,7 +38,7 @@ export function S11HowItWorks() {
                   </div>
                   <footer className="Copy__footer">
                     <div className="CtaGroup CtaGroup--inline">
-                      <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/payments/features" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_features">
+                      <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/payments/features" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_features">
                         {"See all features"}
                         <span className="nobr">
                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -50,7 +50,7 @@ export function S11HowItWorks() {
                         </span>
                       </a>
                       {" "}
-                      <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/guides" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="guides">
+                      <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/guides" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="guides">
                         {"See guides"}
                         <span className="nobr">
                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

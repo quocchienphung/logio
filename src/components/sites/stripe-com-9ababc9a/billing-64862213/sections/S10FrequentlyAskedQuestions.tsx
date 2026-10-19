@@ -56,7 +56,7 @@ export function S10FrequentlyAskedQuestions() {
                     <span className="section-row section-row-gap" style={{ "--section-row-gap-mb": "var(--hds-space-core-200)" }}>
                       <span className="hds-text hds-text--md hds-text--soft">
                         {"Stripe Billing lets you set up your recurring payments using no-code tools. Use "}
-                        <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/recurring-payments">
+                        <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/recurring-payments">
                           {"Stripe Docs"}
                         </a>
                         {" to easily create products, define pricing, designate subscription periods, and manage details around invoicing and payments—all directly from the Stripe Dashboard."}
@@ -80,7 +80,7 @@ export function S10FrequentlyAskedQuestions() {
                     <span className="section-row section-row-gap" style={{ "--section-row-gap-mb": "var(--hds-space-core-200)" }}>
                       <span className="hds-text hds-text--md hds-text--soft">
                         {"Stripe Billing can be purchased as an annual subscription paid monthly, or on a pay-as-you-go plan. For usage-based billing, you can get started with Metronome, a Stripe product, which also offers pay as you go, with custom pricing available for larger needs. Check out our "}
-                        <a className="hds-link hds-link--secondary" href="https://stripe.com/billing/pricing">
+                        <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/billing/pricing">
                           {"pricing page"}
                         </a>
                         {" for a detailed breakdown."}
@@ -136,7 +136,7 @@ export function S10FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":Rrour6l6H1:">
                             {"Learn how to manage subscriptions, how a billing solution works, and how to save time and recover more revenue."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":Rrour6l6H1:" aria-labelledby=":Rrour6l6:" href="https://stripe.com/guides/introduction-to-recurring-billing" data-analytics-label="more_resources__what_is_recurring">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":Rrour6l6H1:" aria-labelledby=":Rrour6l6:" href="/unavailable/stripe/stripe.com/guides/introduction-to-recurring-billing" data-analytics-label="more_resources__what_is_recurring">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">
@@ -183,7 +183,7 @@ export function S10FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":R1bour6l6H1:">
                             {"Our recent survey of 2,000+ global business leaders reveals how billing systems are blocking growth. Get strategies to help you boost your revenue at global scale."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1bour6l6H1:" aria-labelledby=":R1bour6l6:" href="https://stripe.com/lp/trends-insights-subscription-leaders" data-analytics-label="more_resources__is_your_billing">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1bour6l6H1:" aria-labelledby=":R1bour6l6:" href="/unavailable/stripe/stripe.com/lp/trends-insights-subscription-leaders" data-analytics-label="more_resources__is_your_billing">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">
@@ -232,7 +232,7 @@ export function S10FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":R1rour6l6H1:">
                             {"Learn how top companies evaluate billing providers and which criteria you should include in your RFP."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1rour6l6H1:" aria-labelledby=":R1rour6l6:" href="https://stripe.com/guides/how-to-evaluate-billing-software" data-analytics-label="more_resources__how_to_evaluate">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1rour6l6H1:" aria-labelledby=":R1rour6l6:" href="/unavailable/stripe/stripe.com/guides/how-to-evaluate-billing-software" data-analytics-label="more_resources__how_to_evaluate">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">

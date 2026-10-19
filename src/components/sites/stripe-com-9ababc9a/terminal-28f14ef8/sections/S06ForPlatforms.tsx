@@ -38,14 +38,14 @@ export function S06ForPlatforms() {
                         {"Payments"}
                       </a>
                       {" and "}
-                      <a className="Link" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"Connect"}
                       </a>
                       {", with a single onboarding flow to help your users get started quickly."}
                     </p>
                   </div>
                   <footer className="Copy__footer">
-                    <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/docs/terminal/features/connect" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="grow_your_platform__learn_how_terminal">
+                    <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/docs/terminal/features/connect" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="grow_your_platform__learn_how_terminal">
                       {"Learn how Terminal works with Connect"}
                       <span className="nobr">
                         <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -98,7 +98,7 @@ export function S06ForPlatforms() {
                     </section>
                   </div>
                   <div className="RowLayout SideBySide__rightRowLayout" style={{ "--rowLayoutGap": "var(--rowLayoutGapMedium)" }}>
-                    <a className="CustomersCaseStudyCard theme--Dark variant--Normal CustomersCaseStudyCard--isStandalone" href="https://stripe.com/us/customers/eatme" style={{ "--customerBrandColor": "#9f9f9f" }} data-js-controller="AnalyticsButton" data-js-brand-color="#ec7424" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_EatMe">
+                    <a className="CustomersCaseStudyCard theme--Dark variant--Normal CustomersCaseStudyCard--isStandalone" href="/unavailable/stripe/stripe.com/us/customers/eatme" style={{ "--customerBrandColor": "#9f9f9f" }} data-js-controller="AnalyticsButton" data-js-brand-color="#ec7424" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_EatMe">
                       <div className="CustomersCaseStudyCard__content">
                         <div className="CustomersCaseStudyCardBackground" data-js-target-list="CustomersCaseStudyCarousel.backgrounds">
                           <div className="CustomersCaseStudyCardBackground__imageContainer">

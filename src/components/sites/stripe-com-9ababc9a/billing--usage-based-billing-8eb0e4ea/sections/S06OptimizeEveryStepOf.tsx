@@ -353,7 +353,7 @@ export function S06OptimizeEveryStepOf() {
                         </p>
                       </div>
                       <div className="feature-card__footer">
-                        <a className="hds-link hds-link--callout" href="https://docs.stripe.com/payments/online-payments" data-analytics-label="optimize_every_step__checkout">
+                        <a className="hds-link hds-link--callout" href="/unavailable/stripe/docs.stripe.com/payments/online-payments" data-analytics-label="optimize_every_step__checkout">
                           {"Optimize your checkout"}
                           <span className="hds-nowrap-svg">
                             <span className="hds-nowrap-svg">
@@ -466,7 +466,7 @@ export function S06OptimizeEveryStepOf() {
                         </p>
                       </div>
                       <div className="feature-card__footer">
-                        <a className="hds-link hds-link--callout" href="https://stripe.com/radar" data-analytics-label="optimize_every_step__radar">
+                        <a className="hds-link hds-link--callout" href="/unavailable/stripe/stripe.com/radar" data-analytics-label="optimize_every_step__radar">
                           {"Explore Radar"}
                           <span className="hds-nowrap-svg">
                             <span className="hds-nowrap-svg">

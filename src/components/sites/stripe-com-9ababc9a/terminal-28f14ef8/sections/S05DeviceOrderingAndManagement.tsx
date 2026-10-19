@@ -52,7 +52,7 @@ export function S05DeviceOrderingAndManagement() {
                           </div>
                           <footer className="Copy__footer">
                             <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                              <a className="CtaButton variant--Link CtaButton--arrow TerminalDeviceManagementLayout__copyCta" href="https://docs.stripe.com/terminal/fleet/order-and-return-readers#use-the-hardware-orders-api" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="simplify_your_hardware__device_ordering__learn_how_to">
+                              <a className="CtaButton variant--Link CtaButton--arrow TerminalDeviceManagementLayout__copyCta" href="/unavailable/stripe/docs.stripe.com/terminal/fleet/order-and-return-readers" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="simplify_your_hardware__device_ordering__learn_how_to">
                                 {"Learn how to place orders"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -77,7 +77,7 @@ export function S05DeviceOrderingAndManagement() {
                           </div>
                           <footer className="Copy__footer">
                             <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                              <a className="CtaButton variant--Link CtaButton--arrow TerminalDeviceManagementLayout__copyCta" href="https://docs.stripe.com/terminal/fleet/locations" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="simplify_your_hardware__device_management__view_management_capabilities">
+                              <a className="CtaButton variant--Link CtaButton--arrow TerminalDeviceManagementLayout__copyCta" href="/unavailable/stripe/docs.stripe.com/terminal/fleet/locations" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="simplify_your_hardware__device_management__view_management_capabilities">
                                 {"View management capabilities"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

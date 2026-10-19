@@ -30,7 +30,7 @@ export function S07MoreResources() {
                   </header>
                 </section>
                 <div className="GridLayout" style={{ "--columnGap": "var(--columnPaddingNormal)", "--gridPadding": "var(--columnPaddingNormal)" }} data-columns="1,1,1">
-                  <a className="Link ContentRecommendationCard__link" href="https://stripe.com/customers/slack" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_slack_on_automating">
+                  <a className="Link ContentRecommendationCard__link" href="/unavailable/stripe/stripe.com/customers/slack" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_slack_on_automating">
                     <div className="Card Card--shadowSmall ContentRecommendationCard">
                       <span className="Badge Badge--accented ContentRecommendationCard__badge">
                         {" Customer story "}
@@ -43,7 +43,7 @@ export function S07MoreResources() {
                     </div>
                   </a>
                   {" "}
-                  <a className="Link ContentRecommendationCard__link" href="https://stripe.com/customers/figma" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources__how_figma_finance">
+                  <a className="Link ContentRecommendationCard__link" href="/unavailable/stripe/stripe.com/customers/figma" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources__how_figma_finance">
                     <div className="Card Card--shadowSmall ContentRecommendationCard">
                       <span className="Badge Badge--accented ContentRecommendationCard__badge">
                         {" Customer story "}
@@ -56,7 +56,7 @@ export function S07MoreResources() {
                     </div>
                   </a>
                   {" "}
-                  <a className="Link ContentRecommendationCard__link" href="https://stripe.com/customers/loom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources__loom_scales_personalized">
+                  <a className="Link ContentRecommendationCard__link" href="/unavailable/stripe/stripe.com/customers/loom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources__loom_scales_personalized">
                     <div className="Card Card--shadowSmall ContentRecommendationCard">
                       <span className="Badge Badge--accented ContentRecommendationCard__badge">
                         {" Customer story "}

@@ -59,7 +59,7 @@ export function S06FullyIntegrated() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow" href="https://dashboard.stripe.com/settings/link" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="paymentmethod_link_fully_integrated_checkout_cta">
+                        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/dashboard.stripe.com/settings/link" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="paymentmethod_link_fully_integrated_checkout_cta">
                           {"Visit the dashboard"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -97,18 +97,18 @@ export function S06FullyIntegrated() {
                             {"Payment Element"}
                           </a>
                           {". Link is also available for the "}
-                          <a className="Link" href="https://docs.stripe.com/elements/express-checkout-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/elements/express-checkout-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Express Checkout Element"}
                           </a>
                           {" and the "}
-                          <a className="Link" href="https://stripe.com/docs/payments/link-card-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/link-card-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Card Element"}
                           </a>
                           {"."}
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/link#link-elements" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="paymentmethod_link_fully_integrated_elements_cta">
+                        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/link" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="paymentmethod_link_fully_integrated_elements_cta">
                           {"Explore the docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

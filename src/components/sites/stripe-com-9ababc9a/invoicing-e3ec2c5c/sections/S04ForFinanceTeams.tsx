@@ -44,7 +44,7 @@ export function S04ForFinanceTeams() {
                     </p>
                   </div>
                   <footer className="Copy__footer">
-                    <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register/invoicing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="a_toolkit_for__create_account">
+                    <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="a_toolkit_for__create_account">
                       {"Create an account"}
                       <span className="nobr">
                         <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -69,7 +69,7 @@ export function S04ForFinanceTeams() {
                     </p>
                     <p>
                       {"Collect invoices via secure and reliable "}
-                      <a className="Link" href="https://stripe.com/payments/ach-direct-debit" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/payments/ach-direct-debit" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"ACH Direct Debit"}
                       </a>
                       {" payments. Get paid faster and minimize transaction failures by enabling customers to instantly link their bank accounts through "}
@@ -222,7 +222,7 @@ export function S04ForFinanceTeams() {
                   <div className="Copy__body">
                     <p>
                       {"Improve your cash flow and get paid faster. Automatically send email reminders when invoices are due or past due, and use "}
-                      <a className="Link" href="https://stripe.com/docs/billing/automatic-collection#smart-retries" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/docs/billing/automatic-collection" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"Smart Retries"}
                       </a>
                       {", Stripe’s AI-powered dunning software, to retry failed payments at optimized times—recovering 38% of failed payments on average."}
@@ -267,7 +267,7 @@ export function S04ForFinanceTeams() {
                             {"recognize and defer"}
                           </a>
                           {" invoicing revenue within Stripe. Sync your data in real time to NetSuite, Xero, QuickBooks, and other accounting and ERP systems and streamline e-invoicing compliance with apps from the "}
-                          <a className="Link" href="https://marketplace.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/marketplace.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"App Marketplace"}
                           </a>
                           {"."}

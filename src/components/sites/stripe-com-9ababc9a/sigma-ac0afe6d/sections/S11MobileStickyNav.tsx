@@ -5,7 +5,7 @@ export function S11MobileStickyNav() {
   return (
     <div className="MobileStickyNav" data-js-controller="MobileStickyNav">
       <div className="MobileStickyNav__container" data-js-target="MobileStickyNav.container">
-        <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/sigma/queries" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma_hero_button">
+        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/dashboard.stripe.com/sigma/queries" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma_hero_button">
           {"Try for free"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -17,7 +17,7 @@ export function S11MobileStickyNav() {
           </span>
         </a>
         {" "}
-        <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sigma_hero_link">
+        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sigma_hero_link">
           {"Contact sales"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

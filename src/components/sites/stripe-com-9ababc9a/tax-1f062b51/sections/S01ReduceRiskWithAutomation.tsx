@@ -54,7 +54,7 @@ export function S01ReduceRiskWithAutomation() {
                         <div className="Copy__body">
                           <p>
                             {"Stripe Tax monitors thresholds, tracks rate changes, and calculates tax in real time with "}
-                            <a className="Link" href="https://status.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                            <a className="Link" href="/unavailable/stripe/status.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                               {"99.999% historical uptime"}
                             </a>
                             {". Collect accurately and file on time to help avoid manual corrections and penalties."}
@@ -84,11 +84,11 @@ export function S01ReduceRiskWithAutomation() {
                         <div className="Copy__body">
                           <p>
                             {"Calculate tax across "}
-                            <a className="Link" href="https://docs.stripe.com/tax/supported-countries" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/tax/supported-countries" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                               {"100+ countries"}
                             </a>
                             {" and "}
-                            <a className="Link" href="https://docs.stripe.com/tax/tax-codes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/tax/tax-codes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                               {"600+ product categories"}
                             </a>
                             {". Stripe Tax works for B2B, B2C, subscriptions, and marketplaces, so you can scale without rebuilding your tax logic."}
@@ -209,7 +209,7 @@ export function S01ReduceRiskWithAutomation() {
                         <div className="Copy__body">
                           <p>
                             {"From obligation monitoring to filing, manage sales tax, VAT, and GST in the same platform you use for payments and billing. Connect your "}
-                            <a className="Link" href="https://docs.stripe.com/use-stripe-apps#tax" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/use-stripe-apps" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                               {"ecommerce, accounting, or tax tools"}
                             </a>
                             {" to sync data across channels."}
@@ -222,7 +222,7 @@ export function S01ReduceRiskWithAutomation() {
                     <div className="Copy__body">
                       <p>
                         {"See why "}
-                        <a className="Link" href="https://stripe.com/lp/idc-tax-marketscape-smb-2024" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                        <a className="Link" href="/unavailable/stripe/stripe.com/lp/idc-tax-marketscape-smb-2024" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                           {"Stripe was named a Leader"}
                         </a>
                         {" in the “IDC MarketScape: Worldwide SaaS and Cloud-Enabled SaaS Sales and Use Tax Automation Software for Small and Midmarket 2024 Vendor Assessment.”"}

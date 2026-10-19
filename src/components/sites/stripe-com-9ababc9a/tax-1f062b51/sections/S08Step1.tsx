@@ -42,7 +42,7 @@ export function S08Step1() {
                           </div>
                           <footer className="Copy__footer">
                             <div className="CtaGroup CtaGroup--inline">
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/tax" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="primary_cta">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/tax" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="primary_cta">
                                 {"Explore the docs"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -107,7 +107,7 @@ export function S08Step1() {
                                 </g>
                               </svg>
                               {" "}
-                              <a className="Link ListItem__label" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="integrate_stripe_tax__connect">
+                              <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="integrate_stripe_tax__connect">
                                 {"Connect"}
                               </a>
                             </li>
@@ -276,11 +276,11 @@ export function S08Step1() {
                         <section className="Copy variant--Detail">
                           <div className="Copy__body">
                             {" Create a Price and Product with the "}
-                            <a className="Link" href="https://docs.stripe.com/api/prices" target="_blank" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/api/prices" target="_blank" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="">
                               {"API"}
                             </a>
                             {" or through the "}
-                            <a className="Link" href="https://dashboard.stripe.com/test/products" target="_blank" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="">
+                            <a className="Link" href="/unavailable/stripe/dashboard.stripe.com/test/products" target="_blank" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="">
                               {"Dashboard"}
                             </a>
                             {" before making this request. "}
@@ -313,7 +313,7 @@ export function S08Step1() {
                   <div className="Copy__body">
                     <p>
                       {"Calculate and report tax on all payments—even ones that are processed outside of Stripe. With the "}
-                      <a className="Link" href="https://docs.stripe.com/tax/custom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/docs.stripe.com/tax/custom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"Stripe Tax API"}
                       </a>
                       {", you get the flexibility to use multiple payment processors without added tax complexity."}

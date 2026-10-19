@@ -34,7 +34,7 @@ export function S10Step3() {
                   <div className="Copy__body">
                     <p>
                       {"Always calculate and collect the correct amount of tax, no matter what or where you sell. Stripe Tax supports tax collection on "}
-                      <a className="Link" href="https://stripe.com/docs/tax/tax-codes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/docs/tax/tax-codes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"hundreds of products and services"}
                       </a>
                       {" and keeps tax rules and rates up to date—so you don’t have to."}

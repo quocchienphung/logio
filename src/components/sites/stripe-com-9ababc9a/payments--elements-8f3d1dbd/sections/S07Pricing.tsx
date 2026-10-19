@@ -42,7 +42,7 @@ export function S07Pricing() {
                           </div>
                           <div className="PricingGridHeader__body"></div>
                           <div className="PricingGridHeader__ctaContainer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__pay_as_you_go__pricing_details">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__pay_as_you_go__pricing_details">
                               {"Pricing details"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -62,7 +62,7 @@ export function S07Pricing() {
                             <div className="PricingGridRow__body">
                               <p>
                                 {"Stripe Elements are included in Stripe’s "}
-                                <a className="Link" href="https://stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"integrated pricing"}
                                 </a>
                                 {" and let you accept credit cards, debit cards, mobile wallets and more."}

@@ -771,7 +771,7 @@ export function S15CountryCoverage() {
                     </p>
                   </div>
                   <footer className="Copy__footer">
-                    <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/docs/tax/country-support" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="stripe_tax_supports__learn_more">
+                    <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/docs/tax/country-support" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="stripe_tax_supports__learn_more">
                       {"Learn more"}
                       <span className="nobr">
                         <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

@@ -38,7 +38,7 @@ export function S06AGuideToPayment() {
                             </p>
                           </div>
                           <footer className="Copy__footer">
-                            <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_methods_hub_guide_cta">
+                            <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_methods_hub_guide_cta">
                               {"Read the guide"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -55,7 +55,7 @@ export function S06AGuideToPayment() {
                     </div>
                   </div>
                   <div className="MediaCallout__graphic MediaCallout__graphic--alignBottom">
-                    <a className="Link" href="https://stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payment_methods_hub_guide_graphic_link">
+                    <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payment_methods_hub_guide_graphic_link">
                       <div className="GuideGraphic">
                         <div className="GuideGraphic__page GuideGraphic__page--back">
                           <figure className="DomGraphic" aria-hidden="true" data-js-controller="DomGraphic" data-js-source-width="270" data-js-source-height="366">

@@ -37,7 +37,7 @@ export function S10ReadyToGetStarted() {
                       </div>
                       <footer className="Copy__footer">
                         <div className="CtaGroup CtaGroup--inline">
-                          <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/sigma/queries" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Ready Try for free button">
+                          <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/dashboard.stripe.com/sigma/queries" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Ready Try for free button">
                             {"Try for free"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -49,7 +49,7 @@ export function S10ReadyToGetStarted() {
                             </span>
                           </a>
                           {" "}
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Ready Contact Sales">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Ready Contact Sales">
                             {"Contact sales"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -93,7 +93,7 @@ export function S10ReadyToGetStarted() {
                             </p>
                           </div>
                           <footer className="Copy__footer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/sigma" target="_blank" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Footer Documentation Link">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/sigma" target="_blank" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Sigma Footer Documentation Link">
                               {"Documentation"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

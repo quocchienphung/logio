@@ -75,19 +75,19 @@ export function S00ProductHeroSection() {
                                 </a>
                               </li>
                               <li className="ProductNavItem ProductNavItem--inDropdown">
-                                <a className="Link" href="https://stripe.com/billing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="billing_pricing_link">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/billing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="billing_pricing_link">
                                   {"Subscriptions"}
                                 </a>
                               </li>
                               <li className="ProductNavItem ProductNavItem--inDropdown">
-                                <a className="Link" href="https://stripe.com/invoicing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="invoicing_pricing_link">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/invoicing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="invoicing_pricing_link">
                                   {"Invoicing"}
                                 </a>
                               </li>
                             </ul>
                           </li>
                           <li className="ProductNavItem" data-js-target-list="ProductNav.items">
-                            <a className="Link" href="https://docs.stripe.com/invoicing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="invoicing_nav_docs">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/invoicing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="invoicing_nav_docs">
                               {"Docs"}
                             </a>
                           </li>
@@ -112,7 +112,7 @@ export function S00ProductHeroSection() {
                         </div>
                         <footer className="Copy__footer">
                           <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                            <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register/invoicing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="hero__create_and_send">
+                            <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="hero__create_and_send">
                               {"Create and send invoices"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -124,7 +124,7 @@ export function S00ProductHeroSection() {
                               </span>
                             </a>
                             {" "}
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="hero__contact_sales">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="hero__contact_sales">
                               {"Contact sales"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

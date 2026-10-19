@@ -1,0 +1,20 @@
+Sign in to your account
+Email
+email input
+Password
+Forgot your password?
+password input
+Remember me on this device
+Sign in
+Or sign in with
+Google
+Passkey
+SSO
+New to Stripe?
+Create account
+© Stripe
+ 
+Privacy & terms
+We use cookies to improve your experience and for marketing. Read our cookie policy or manage cookies.
+Accept all
+Reject all

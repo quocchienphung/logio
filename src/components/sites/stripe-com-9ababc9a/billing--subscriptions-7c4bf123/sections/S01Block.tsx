@@ -9,7 +9,7 @@ export function S01Block() {
           <div className="logo-carousel__marquee-container logo-carousel__marquee-container--centered">
             <ul className="logo-carousel__marquee">
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/figma" data-analytics-label="hero__carousel__figma" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/figma" data-analytics-label="hero__carousel__figma" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Figma">
                       <g transform="translate(-1.00, -0.70)">
@@ -20,7 +20,7 @@ export function S01Block() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/intercom" data-analytics-label="hero__carousel__intercom" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/intercom" data-analytics-label="hero__carousel__intercom" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Intercom">
                       <g>
@@ -31,7 +31,7 @@ export function S01Block() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/fox-sports-mexico" data-analytics-label="hero__carousel__foxsports" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/fox-sports-mexico" data-analytics-label="hero__carousel__foxsports" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="FoxSports">
                       <defs>
@@ -131,7 +131,7 @@ export function S01Block() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/ana-x" data-analytics-label="hero__carousel__ana" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/ana-x" data-analytics-label="hero__carousel__ana" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="ANA">
                       <g transform="translate(0, -2)">
@@ -143,7 +143,7 @@ export function S01Block() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/lovable" data-analytics-label="hero__carousel__lovable" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/lovable" data-analytics-label="hero__carousel__lovable" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Lovable">
                       <g transform="translate(0, -1.2)">
