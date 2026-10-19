@@ -1,12 +1,14 @@
-// Presented-frame cadence of the whole transition, from the compositor (viz DrawAndSwap), which is what the
-// eye sees: unlike rAF gaps it keeps counting when the page's main thread is busy.
+// Visual cadence of the whole transition as the user sees it: the browser's screencast emits a frame each time
+// the page visibly changes, so the gaps between frames are the stalls (unlike rAF gaps in the new document, this
+// keeps counting while its main thread is busy, which is what the compositor-run transition is built for).
 // node scripts/forensics/page-transition/frames.mjs [base] [from] [menuLabel] [runs]
 import { chromium } from "playwright";
 const [base = "http://localhost:3000", from = "/billing", label = "Payments", runs = "3"] = process.argv.slice(2);
 const b = await chromium.launch({ channel: "chrome", headless: true });
 const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
 const p = await ctx.newPage();
-const all = [];
+const cdp = await ctx.newCDPSession(p);
+const sum = [];
 for (let run = 0; run < +runs; run++) {
   await p.goto(base + from, { waitUntil: "load" });
   await p.waitForTimeout(1500);
@@ -16,25 +18,26 @@ for (let run = 0; run < +runs; run++) {
   await p.waitForSelector(".navigation__content--products a", { state: "visible" });
   const link = p.locator(".navigation__content--products a", { hasText: label }).first();
   await link.hover();
-  await p.waitForTimeout(1200);
-  const path = `${process.env.TEMP || "/tmp"}/pt-frames-${run}.json`;
-  await b.startTracing(p, { path, categories: ["viz", "gpu", "benchmark", "cc", "disabled-by-default-viz.quads"].slice(0, 4) });
+  await p.waitForTimeout(1500);
+  const frames = [];
+  cdp.removeAllListeners("Page.screencastFrame");
+  cdp.on("Page.screencastFrame", (e) => {
+    frames.push(e.metadata.timestamp * 1000);
+    cdp.send("Page.screencastFrameAck", { sessionId: e.sessionId }).catch(() => {});
+  });
+  await cdp.send("Page.startScreencast", { format: "jpeg", quality: 20, maxWidth: 480, maxHeight: 300, everyNthFrame: 1 });
+  await p.waitForTimeout(300);
+  const t0 = Date.now();
   await link.click({ noWaitAfter: true });
-  await p.waitForTimeout(3200);
-  await b.stopTracing();
-  const fs = await import("node:fs");
-  const d = JSON.parse(fs.readFileSync(path, "utf8"));
-  const ev = d.traceEvents || d;
-  const swaps = ev.filter((e) => e.name === "Display::DrawAndSwap" || e.name === "Graphics.Pipeline.DrawAndSwap").map((e) => e.ts / 1000).sort((x, y) => x - y);
-  const uniq = swaps.filter((v, i) => i === 0 || v - swaps[i - 1] > 1);
-  // window: first frame after a 400 ms quiet gap … that is the click; take 2.2 s from the first swap after click
-  const gaps = uniq.slice(1).map((v, i) => v - uniq[i]);
-  const start = uniq.findIndex((v, i) => i > 0 && v - uniq[i - 1] > 0) ;
-  const w = uniq.filter((v) => v >= uniq[0]);
-  const n = w.length;
-  const span = w[n - 1] - w[0];
-  const r = { run, swaps: n, spanMs: Math.round(span), over25: gaps.filter((g) => g > 25 && g < 1500).length, over50: gaps.filter((g) => g > 50 && g < 1500).length, maxGap: Math.round(Math.max(0, ...gaps.filter((g) => g < 1500))) };
-  all.push(r);
+  await p.waitForTimeout(2600);
+  await cdp.send("Page.stopScreencast");
+  // only the transition: from the first frame after the click until the visuals go quiet
+  const moving = frames.filter((f) => f >= frames[0] + 300);
+  let first = moving[0];
+  let end = moving[moving.length - 1];
+  const gaps = moving.slice(1).map((f, i) => f - moving[i]).filter((g) => g < 1500);
+  const r = { run, frames: moving.length, spanMs: Math.round(end - first), maxGap: Math.round(Math.max(0, ...gaps)), over50: gaps.filter((g) => g > 50).length, over100: gaps.filter((g) => g > 100).length, over200: gaps.filter((g) => g > 200).length };
+  sum.push(r);
   console.log(JSON.stringify(r));
 }
 await b.close();
