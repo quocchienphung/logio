@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import {
   estimateMs, formatEstimate, formatStepTime, progressOf, type PlanStep,
@@ -31,7 +31,18 @@ export type AgentPlanProps = {
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const coarsePointer = () => window.matchMedia("(pointer: coarse)").matches;
+
+/** FLIP: every step glides from where it was to where it is now; steps released from a drag get their transitions back. */
+function glide(before: Map<string, number>, els: Map<string, HTMLLIElement>, settle: Set<HTMLElement>) {
+  const animate = !reducedMotion();
+  els.forEach((el, id) => {
+    const from = before.get(id);
+    if (from === undefined || !animate) return;
+    const delta = from - el.getBoundingClientRect().top;
+    if (Math.abs(delta) > 0.5) el.animate([{ transform: `translateY(${delta}px)` }, { transform: "none" }], { duration: 420, easing: EASE });
+  });
+  requestAnimationFrame(() => { settle.forEach(el => { el.style.transition = ""; }); settle.clear(); });
+}
 
 const Spinner = () => <svg className="ap__spinner" viewBox="0 0 16 16" aria-hidden="true">
   {Array.from({ length: 8 }, (_, i) => <line key={i} x1="8" y1="1.75" x2="8" y2="4.75" transform={`rotate(${i * 45} 8 8)`} style={{ animationDelay: `${-800 + i * 100}ms` }} />)}
@@ -64,7 +75,6 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
   const [adding, setAdding] = useState("");
   const [entering, setEntering] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState("");
-  const previous = useRef<{ phase: string; states: Map<string, string> } | null>(null);
 
   const total = plan.steps.length;
 
@@ -74,16 +84,7 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
     stepEls.current.forEach((el, id) => tops.set(id, el.getBoundingClientRect().top));
     flip.current = tops;
   };
-  const playFlip = useCallback((before: Map<string, number>) => {
-    const animate = !reducedMotion();
-    stepEls.current.forEach((el, id) => {
-      const from = before.get(id);
-      if (from === undefined || !animate) return;
-      const delta = from - el.getBoundingClientRect().top;
-      if (Math.abs(delta) > 0.5) el.animate([{ transform: `translateY(${delta}px)` }, { transform: "none" }], { duration: 420, easing: EASE });
-    });
-    requestAnimationFrame(() => { settling.current.forEach(el => { el.style.transition = ""; }); settling.current.clear(); });
-  }, []);
+  const playFlip = (before: Map<string, number>) => glide(before, stepEls.current, settling.current);
 
   useLayoutEffect(() => {
     const before = flip.current;
@@ -92,7 +93,7 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
     const id = focusAfter.current;
     focusAfter.current = null;
     if (id) stepEls.current.get(id)?.focus({ preventScroll: true });
-  }, [plan.steps, playFlip]);
+  }, [plan.steps]);
 
   // Keep the step being worked on in view when the list scrolls.
   const activeId = plan.steps.find(step => step.state === "active")?.id;
@@ -102,20 +103,6 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
     if (!el || !box) return;
     box.scrollTo({ top: el.offsetTop - (box.clientHeight - el.offsetHeight) / 2, behavior: reducedMotion() ? "auto" : "smooth" });
   }, [activeId]);
-
-  // Announce what the engine does; edits announce themselves.
-  useEffect(() => {
-    const states = new Map(plan.steps.map(step => [step.id, step.state]));
-    const before = previous.current;
-    previous.current = { phase: plan.phase, states };
-    if (!before) return;
-    plan.steps.forEach((step, index) => {
-      const was = before.states.get(step.id);
-      if (was !== step.state && step.state === "done") setAnnouncement(`Step ${index + 1} done: ${step.title}`);
-      if (was !== step.state && step.state === "failed") setAnnouncement(`Step ${index + 1} failed: ${step.title}. ${step.error ?? ""}`);
-    });
-    if (before.phase !== "done" && plan.phase === "done") setAnnouncement(`Plan done in ${elapsedLabel}`);
-  }, [plan.steps, plan.phase, elapsedLabel]);
 
   const moveStep = (id: string, delta: number) => {
     const from = plan.steps.findIndex(step => step.id === id);
@@ -239,6 +226,12 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
     } else playFlip(before);
   }
 
+  // What the engine does is announced from its state; edits announce themselves from their handlers.
+  const lastDone = plan.steps.map(step => step.state).lastIndexOf("done");
+  const engineText = plan.phase === "done" ? `Plan done in ${elapsedLabel}`
+    : plan.phase === "failed" ? `Step ${plan.steps.findIndex(step => step.state === "failed") + 1} failed: ${plan.steps.find(step => step.state === "failed")?.title}. ${plan.steps.find(step => step.state === "failed")?.error ?? ""}`
+    : plan.phase === "running" && lastDone >= 0 ? `Step ${lastDone + 1} done: ${plan.steps[lastDone].title}` : "";
+  const liveText = plan.phase === "draft" ? announcement : engineText;
   const status = plan.phase === "failed" ? "running" : plan.phase;
   const { position } = progressOf(plan);
   const failedIndex = plan.steps.findIndex(step => step.state === "failed");
@@ -359,7 +352,7 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
           <span className="ap__hint" aria-hidden="true">Drag to reorder · double-click to rename</span>
           <span className="ap__actions">
             <button type="button" className="ap__btn ap__btn--secondary" onClick={() => { dispatch({ type: "cancel" }); setAnnouncement("Changes discarded"); }}>Cancel</button>
-            <button type="button" className="ap__btn ap__btn--primary" disabled={total === 0} onClick={() => { if (!coarsePointer()) (document.activeElement as HTMLElement | null)?.blur?.(); run(); }}>
+            <button type="button" className="ap__btn ap__btn--primary" disabled={total === 0} onClick={run}>
               Run plan
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.8v8.4L12 8z" /></svg>
             </button>
@@ -389,7 +382,7 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
           </span>
         </>}
       </div>
-      <p className="ap__sr" role="status" aria-live="polite">{announcement}</p>
+      <p className="ap__sr" role="status" aria-live="polite">{liveText}</p>
     </section>
   </div>;
 }

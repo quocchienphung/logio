@@ -43,8 +43,8 @@
    readable scale rather than enlarging everything to fill a short image slot. */
 .guide-preview__frame[data-live] { background: #fff; }
 .guide-live { position: absolute; inset: 0; }
-.guide-live .wra { border-radius: 0; box-shadow: none; }
-.guide-preview__frame[inert] .wra * { animation-play-state: paused; }
+.guide-live .wra, .guide-live .ap { border-radius: 0; box-shadow: none; }
+.guide-preview__frame[inert] .wra *, .guide-preview__frame[inert] .ap * { animation-play-state: paused; }
 .guide-loading { display: grid; place-items: center; height: 100dvh; color: #777; background: #fdfdfc; font: 13px Inter, sans-serif; }
 .crm-page .workspace-sidebar-header { padding: 0 2px; }
 .crm-page .workspace-explore { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); font-size: 13px; font-weight: 500; text-decoration: none; transition: background-color 140ms ease, border-color 140ms ease; }

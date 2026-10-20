@@ -8,6 +8,7 @@ import { defaultGuideIndex, guideGroups, liveFrameOf, navigateWorkspaceHref, sub
 import { WorkspaceLink } from "./WorkspaceLink";
 import { WorkspaceBackendProvider } from "@/lib/workspace-backend/react";
 import { GradientFloor } from "../affectui-gradient-floor/GradientFloor";
+import { InvoicePlan } from "../affectui-agent-plan/AgentPlan";
 import { WritingAssistant } from "../affectui-writing-assistant/WritingAssistant";
 import "../affectui-fonts.css";
 import "./guide-navigation.css";
@@ -156,6 +157,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
               >
                 {group.image && <Image src={group.image} alt="" fill sizes="224px" unoptimized priority={index === active} />}
                 {live === "writing-assistant" && <div className="guide-live"><WritingAssistant speech="simulate" /></div>}
+                {live === "agent-plan" && <div className="guide-live"><InvoicePlan /></div>}
               </div>;
             })}
           </div>
