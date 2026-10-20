@@ -17,7 +17,8 @@ const watch = page => {
 };
 watch(page);
 const open = async (p = page) => {
-  await p.goto(`${base}/personalize?browse=1&group=crm`, { waitUntil: 'networkidle' });
+  // `lanes=base`: the reference's four lanes. The two extra lanes (Hermes, Ollama) are covered by agent-lanes-extra.mjs.
+  await p.goto(`${base}/personalize?browse=1&group=crm&lanes=base`, { waitUntil: 'networkidle' });
   await p.locator('.agl__block').first().waitFor();
   await p.addStyleTag({ content: 'nextjs-portal{display:none!important}' });
 };

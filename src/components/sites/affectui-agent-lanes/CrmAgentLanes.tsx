@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { AgentLanes, type LaneAgent, type LaneTask } from "./AgentLanes";
+import type { LaneAgent, LaneTask } from "./AgentLanes";
+import { FittedLanes } from "./extra-lanes";
 import { minute } from "./lanes-model";
 import icons from "./icons.json";
 
@@ -60,5 +61,5 @@ export function CrmAgentLanes({ active }: { active: boolean }) {
     return task;
   });
   if (elapsed >= 4 * minute) tasks.push({ id: "v2", agentId: "reviewer", title: "Review pricing copy", status: "running", start: 4 * minute, tools: tools("figma") });
-  return <div className="crm-lanes"><AgentLanes agents={agents} tasks={tasks} now={elapsed} active={active} /></div>;
+  return <div className="crm-lanes"><FittedLanes agents={agents} tasks={tasks} now={elapsed} active={active} /></div>;
 }

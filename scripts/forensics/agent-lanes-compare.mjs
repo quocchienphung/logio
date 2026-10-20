@@ -18,7 +18,7 @@ try {
     await source.clock.pauseAt(new Date(Date.now() + 1000));
     await source.addStyleTag({ content: `.lanes-demo{width:${width}px!important}.ui-alc{zoom:1!important}` });
     await source.getByRole('button', { name: 'Reset preview', exact: true }).click();
-    await local.goto(`${base}/personalize?browse=1&group=crm`, { waitUntil: 'networkidle' });
+    await local.goto(`${base}/personalize?browse=1&group=crm&lanes=base`, { waitUntil: 'networkidle' });
     await local.addStyleTag({ content: `.guide-preview{width:${width}px!important}nextjs-portal{display:none!important}` });
     for (const [page, selector, name] of [[source, '.ui-alc', 'source'], [local, '.agl', 'local']]) {
       await page.evaluate(() => document.fonts.ready);
