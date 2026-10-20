@@ -6,17 +6,19 @@ import { ArrowUpRight, Download, Mail, Plus, Search, Trash2 } from "lucide-react
 import { CrmIcon } from "./CrmIcon";
 import { Combobox } from "../affectui-combobox/Combobox";
 import { WorkspaceDialog } from "./WorkspaceDialog";
-import { downloadFile, toCsv, useStoredState, type WorkspaceSection } from "./workspace-state";
+import { downloadFile, toCsv, type WorkspaceSection } from "./workspace-state";
 import { numberFormat, type CrmEngine } from "./crm-engine";
 import { AnimatedNumber } from "../affectui-analytics/AnimatedNumber";
 import { PipelineBoard } from "./CrmViews";
+import { useResource } from "@/lib/workspace-backend/react";
+import { resources } from "../workspace-resources";
 
 export interface Contact { id: string; name: string; email: string; role: string }
 const initialContacts: Contact[] = [
-  { id: "mara", name: "Mara Klein", email: "mara@acme.com", role: "Account manager" },
-  { id: "jonas", name: "Jonas Weber", email: "jonas@acme.com", role: "Account executive" },
-  { id: "lea", name: "Lea Braun", email: "lea@acme.com", role: "Partner manager" },
-  { id: "tom", name: "Tom Fischer", email: "tom@acme.com", role: "Sales representative" },
+  { id: "mara", name: "Mara Klein", email: "mara@logio.com", role: "Account manager" },
+  { id: "jonas", name: "Jonas Weber", email: "jonas@logio.com", role: "Account executive" },
+  { id: "lea", name: "Lea Braun", email: "lea@logio.com", role: "Partner manager" },
+  { id: "tom", name: "Tom Fischer", email: "tom@logio.com", role: "Sales representative" },
 ];
 
 export function WorkspaceHome({ engine, name, navigate, openCompany }: { engine: CrmEngine; name: string; navigate: (section: WorkspaceSection) => void; openCompany: (name: string) => void }) {
@@ -29,7 +31,7 @@ export function WorkspaceHome({ engine, name, navigate, openCompany }: { engine:
 }
 
 export function ContactsPage({ engine, workspaceId, notify }: { engine: CrmEngine; workspaceId: string; notify: (text: string) => void }) {
-  const [contacts,setContacts]=useStoredState<Contact[]>(`affectui:${workspaceId}:contacts`,workspaceId === "acme" ? initialContacts : []);
+  const [contacts,setContacts]=useResource(resources.contacts, workspaceId, workspaceId === "acme" ? initialContacts : []);
   const [query,setQuery]=useState("");
   const [sort,setSort]=useState<"name"|"companies">("name");
   const [editing,setEditing]=useState<Contact|null>(null);

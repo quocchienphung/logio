@@ -1,0 +1,228 @@
+{
+  ".ui-as-page": [
+    {
+      "x": 249,
+      "y": 9,
+      "width": 1182,
+      "height": 668,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "46px 32px 56px",
+      "gap": "normal",
+      "margin": "0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-page-title": [
+    {
+      "x": 281,
+      "y": 55,
+      "width": 1118,
+      "height": 28,
+      "font": "600 22px / 28px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "normal",
+      "margin": "0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-page-sub": [
+    {
+      "x": 281,
+      "y": 89,
+      "width": 1118,
+      "height": 20,
+      "font": "13.5px / 20px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "normal",
+      "margin": "6px 0px 0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-section-head": [
+    {
+      "x": 281,
+      "y": 147,
+      "width": 1118,
+      "height": 70,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "normal",
+      "margin": "38px 0px 0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    },
+    {
+      "x": 281,
+      "y": 330,
+      "width": 1118,
+      "height": 70,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "normal",
+      "margin": "38px 0px 0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-toolbar": [
+    {
+      "x": 281,
+      "y": 185,
+      "width": 1118,
+      "height": 32,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "16px",
+      "margin": "16px 0px 0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    },
+    {
+      "x": 281,
+      "y": 368,
+      "width": 1118,
+      "height": 32,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "16px",
+      "margin": "16px 0px 0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-folders": [
+    {
+      "x": 281,
+      "y": 233,
+      "width": 1118,
+      "height": 59,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "11px",
+      "margin": "16px 0px 0px",
+      "borderRadius": "0px",
+      "columns": "271.25px 271.25px 271.25px 271.25px"
+    }
+  ],
+  ".ui-as-folder-card": [
+    {
+      "x": 281,
+      "y": 233,
+      "width": 271.25,
+      "height": 59,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px 14px 0px 12px",
+      "gap": "12px",
+      "margin": "0px",
+      "borderRadius": "12px",
+      "columns": "none"
+    },
+    {
+      "x": 563.25,
+      "y": 233,
+      "width": 271.25,
+      "height": 59,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px 14px 0px 12px",
+      "gap": "12px",
+      "margin": "0px",
+      "borderRadius": "12px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-templates": [
+    {
+      "x": 281,
+      "y": 416,
+      "width": 1118,
+      "height": 205,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "12px",
+      "margin": "16px 0px 0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-template__preview": [
+    {
+      "x": 281,
+      "y": 416,
+      "width": 239,
+      "height": 158,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "7px",
+      "gap": "normal",
+      "margin": "0px",
+      "borderRadius": "14px",
+      "columns": "none"
+    },
+    {
+      "x": 532,
+      "y": 416,
+      "width": 239,
+      "height": 158,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "7px",
+      "gap": "normal",
+      "margin": "0px",
+      "borderRadius": "14px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-meta": [
+    {
+      "x": 335,
+      "y": 264,
+      "width": 104.34375,
+      "height": 17,
+      "font": "12.5px / 17px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "4px",
+      "margin": "0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    },
+    {
+      "x": 617.25,
+      "y": 264,
+      "width": 103.890625,
+      "height": 17,
+      "font": "12.5px / 17px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "4px",
+      "margin": "0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ],
+  ".ui-as-doc__art": [
+    {
+      "x": 364.5,
+      "y": 449,
+      "width": 72,
+      "height": 92,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "normal",
+      "margin": "0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    },
+    {
+      "x": 615.5,
+      "y": 449,
+      "width": 72,
+      "height": 92,
+      "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+      "padding": "0px",
+      "gap": "normal",
+      "margin": "0px",
+      "borderRadius": "0px",
+      "columns": "none"
+    }
+  ]
+}

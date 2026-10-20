@@ -4,14 +4,14 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion, useReducedMotion } from "motion/react";
-import { ArrowLeft, ArrowUpRight, Check, ChevronDown, ChevronRight, CirclePlay, FileText, Folder, Map, Moon, Search, Settings, Sparkles, Star, Sun, X } from "lucide-react";
+import { ArrowLeft, Check, ChevronDown, ChevronRight, CirclePlay, FileText, Folder, Map, MessageSquarePlus, Moon, Search, Settings, Star, Sun, X } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
 import { CrmTable } from "./CrmTable";
 import { crmTabs, PipelineBoard, PixelIntegration, SalesDocuments } from "./CrmViews";
 import { useCrmEngine, type Company } from "./crm-engine";
-import { useStoredState, useWorkspaceRoute, workspaceSections, type WorkspaceSection } from "./workspace-state";
+import { useWorkspaceRoute, workspaceSections, type WorkspaceSection } from "./workspace-state";
 import { WorkspaceDialog } from "./WorkspaceDialog";
-import { WorkspaceEditors, type CustomView, type EditorKind, type WorkspacePreferences, type WorkspaceProfile } from "./WorkspaceEditors";
+import { WorkspaceEditors, type EditorKind } from "./WorkspaceEditors";
 import { ContactsPage, DealsPage, WorkspaceHome } from "./WorkspacePages";
 import { Analytics } from "../affectui-analytics/Analytics";
 import { groupOfSection } from "../guide-navigation/navigation-model";
@@ -19,11 +19,16 @@ import { WorkspaceLink } from "../guide-navigation/WorkspaceLink";
 import "./reference.css";
 import "./crm-overrides.css";
 import "./workspace-interactions.css";
+import { useResource } from "@/lib/workspace-backend/react";
+import { SyncStatus } from "@/lib/workspace-backend/SyncStatus";
+import { resources } from "../workspace-resources";
 
 const SettingsBilling=dynamic(()=>import("../affectui-settings/SettingsBilling").then(module=>module.SettingsBilling),{loading:()=> <div className="ui-sb" role="status">Loading settings…</div>});
 const AgentRun=dynamic(()=>import("../affectui-run/AgentRun").then(module=>module.AgentRun),{loading:()=> <div className="workspace-page" role="status">Loading run…</div>});
-const Mapping=dynamic(()=>import("../mapping/Mapping").then(module=>module.Mapping),{loading:()=> <div className="workspace-page" role="status">Loading mapping…</div>});
-const Invoice=dynamic(()=>import("../invoice/Invoice").then(module=>module.Invoice),{loading:()=> <div className="workspace-page" role="status">Loading invoice…</div>});
+const Mapping=dynamic(()=>import("../mapping/BackendMapping").then(module=>module.BackendMapping),{loading:()=> <div className="workspace-page" role="status">Loading mapping…</div>});
+const Invoice=dynamic(()=>import("../invoice/BackendInvoice").then(module=>module.BackendInvoice),{loading:()=> <div className="workspace-page" role="status">Loading invoice…</div>});
+const AssistantHome=dynamic(()=>import("../affectui-assistant/AssistantHome").then(module=>module.AssistantHome),{loading:()=> <div className="workspace-page" role="status">Loading chat…</div>});
+const Files=dynamic(()=>import("../affectui-files/Files").then(module=>module.Files),{loading:()=> <div className="workspace-page" role="status">Loading files…</div>});
 const setupGroups=[
   {title:"Set up your workspace",items:["Name your workspace","Invite your teammates","Connect your first app"]},
   {title:"Start working",items:["Create a folder","Start your first chat","Upload a file"]},
@@ -34,31 +39,31 @@ export function Crm(props: {workspace?:string;user?:{name:string;avatar?:string}
   return <MotionConfig reducedMotion="user"><Workspace {...props} /></MotionConfig>;
 }
 
-function Workspace({workspace="Acme",user={name:"Alex Morgan"},onNavigate,className=""}:{workspace?:string;user?:{name:string;avatar?:string};onNavigate?:(label:string)=>void;className?:string}) {
-  const [workspaces,setWorkspaces]=useStoredState<{id:string;name:string;logo?:string}[]>("affectui:workspaces",[{id:"acme",name:workspace},{id:"personal",name:"Personal"}]);
-  const [workspaceId,setWorkspaceId]=useStoredState("affectui:active-workspace","acme");
+function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,className=""}:{workspace?:string;user?:{name:string;avatar?:string};onNavigate?:(label:string)=>void;className?:string}) {
+  const [workspaces,setWorkspaces]=useResource(resources.workspaces, undefined, [{id:"acme",name:workspace},{id:"personal",name:"Personal"}]);
+  const [workspaceId,setWorkspaceId]=useResource(resources.activeWorkspace, undefined, "acme");
   const workspaceName=workspaces.find(item=>item.id===workspaceId)?.name || workspace;
-  const workspaceLogo=workspaces.find(item=>item.id===workspaceId)?.logo;
   const engine=useCrmEngine(workspaceId);
   const {section,crmView,navigate:routeTo}=useWorkspaceRoute();
-  const [profile,setProfile]=useStoredState<WorkspaceProfile>("affectui:profile",{name:user.name,email:"alex@acme.com",role:"Head of Sales",avatar:user.avatar});
-  const [preferences,setPreferences]=useStoredState<WorkspacePreferences>("affectui:preferences",{dark:false,emailNotifications:true,desktopNotifications:true});
-  const [customViews,setCustomViews]=useStoredState<CustomView[]>(`affectui:${workspaceId}:views`,[]);
-  const [tab,setTab]=useStoredState<string>(`affectui:${workspaceId}:active-tab`,"Company CRM");
+  const [profile,setProfile]=useResource(resources.profile, undefined, {name:user.name,email:"alex@logio.com",role:"Head of Sales",avatar:user.avatar});
+  const [preferences,setPreferences]=useResource(resources.preferences, undefined, {dark:false,emailNotifications:true,desktopNotifications:true});
+  const [customViews,setCustomViews]=useResource(resources.views, workspaceId, []);
+  const [tab,setTab]=useResource(resources.activeTab, workspaceId, "Company CRM");
   const [view,setView]=useState("Head of Sales");
-  const [favorites,setFavorites]=useStoredState<string[]>(`affectui:${workspaceId}:favorites`,[]);
+  const [favorites,setFavorites]=useResource(resources.favorites, workspaceId, []);
   const [collapsed,setCollapsed]=useState(false);
   const [drawer,setDrawer]=useState(false);
   const [menu,setMenu]=useState<string|null>(null);
-  const [news,setNews]=useStoredState(`affectui:${workspaceId}:news`,2);
+  const [news,setNews]=useResource(resources.news, workspaceId, 2);
   const [guide,setGuide]=useState(false);
   const [guideGroup,setGuideGroup]=useState<string|null>("Set up your workspace");
-  const [completed,setCompleted]=useStoredState<string[]>(`affectui:${workspaceId}:checklist`,["Name your workspace"]);
+  const [completed,setCompleted]=useResource(resources.checklist, workspaceId, ["Name your workspace"]);
   const [toast,setToast]=useState<{text:string;id:number}|null>(null);
   const [searchOpen,setSearchOpen]=useState(false);
   const [search,setSearch]=useState("");
   const [query,setQuery]=useState("");
   const [tableEpoch,setTableEpoch]=useState(0);
+  const [chatEpoch,setChatEpoch]=useState(0);
   const [editor,setEditor]=useState<EditorKind>("Profile");
   const [editorOpen,setEditorOpen]=useState(false);
   const toastTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
@@ -82,7 +87,13 @@ function Workspace({workspace="Acme",user={name:"Alex Morgan"},onNavigate,classN
     toastTimer.current=setTimeout(()=>setToast(null),2600);
   }
   function navigate(label:WorkspaceSection) {
+    if(label==="New chat")setChatEpoch(current=>current+1);
     onNavigate?.(label);setDrawer(false);setMenu(null);setQuery("");routeTo(label);
+  }
+  function inviteToWorkspace() {
+    navigate("Settings");
+    const url=new URL(window.location.href);url.searchParams.set("settings-tab","members");
+    window.history.replaceState({},"",url);window.dispatchEvent(new PopStateEvent("popstate"));
   }
   function openCompany(name:string) {navigate("Companies");setView("Head of Sales");setTab("Company CRM");setQuery(name);setTableEpoch(current=>current+1);}
   function switchTab(id:string) {onNavigate?.("Companies");setDrawer(false);setMenu(null);setQuery("");setTab(id);routeTo("Companies",id);}
@@ -116,23 +127,29 @@ function Workspace({workspace="Acme",user={name:"Alex Morgan"},onNavigate,classN
       <button type="button" className="ui-as-icon-btn ui-as-side-open" aria-label="Open sidebar" onClick={()=>{if(window.matchMedia("(max-width: 900px)").matches)setDrawer(true);else setCollapsed(false);}}><CrmIcon name="Open sidebar" /></button>
       <div className="ui-as-scrim" aria-hidden="true" onClick={()=>setDrawer(false)} />
       <aside className="ui-as-side" aria-label="Workspace sidebar" inert={collapsed && !drawer}>
-        <header className="ui-as-side__head"><span className="ui-as-anchor"><button type="button" className="ui-as-side__workspace" aria-expanded={menu==="workspace"} onClick={()=>toggleMenu("workspace")}><span className="ui-as-side__logo">{workspaceLogo ? <img className="settings-sidebar-logo" src={workspaceLogo} alt="" /> : workspaceName[0]}</span>{workspaceName}<ChevronDown size={13} /></button>{popover("workspace","Workspaces",<>
-          {workspaces.map(item=><button type="button" role="menuitemradio" aria-checked={workspaceId===item.id} className="ui-as-menu__item" data-rich="" key={item.id} onClick={()=>{setWorkspaceId(item.id);setMenu(null);setQuery("");setView("Head of Sales");}}><span className="ui-as-side__logo">{item.name[0]}</span><span className="ui-as-menu__label">{item.name}<small>{item.id==="acme" ? "Pro · 8 members" : "Free"}</small></span>{workspaceId===item.id && <Check size={14} />}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Create workspace")}>Create workspace</button>
-        </>)}</span><span className="ui-as-side__tools"><button type="button" className="ui-as-icon-btn" aria-label="Search" onClick={openSearch}><CrmIcon name="Search" /></button><button type="button" className="ui-as-icon-btn" aria-label="Collapse sidebar" onClick={()=>{setCollapsed(true);setDrawer(false);}}><CrmIcon name="Collapse sidebar" /></button></span></header>
-        <WorkspaceLink className="workspace-explore" href={`/personalize?browse=1&group=${activeGroup.id}`}><Sparkles size={13} />Explore pages<ArrowUpRight size={13} /></WorkspaceLink>
-        <nav className="ui-as-side__nav" aria-label="Main menu">{sidebarGroups.map(group=><div className="ui-as-side__group" key={group.title || "main"}>{group.title && <span className="ui-as-side__label">{group.title}</span>}{group.items.map(label=><button type="button" className="ui-as-side__item" aria-current={section===label ? "page" : undefined} key={label} onClick={()=>navigate(label)}>{section===label && <motion.span className="workspace-nav-pill" layoutId="active-navigation" transition={{type:"spring",stiffness:450,damping:38}} />}{label==="Mapping" ? <Map size={16} strokeWidth={1.7} /> : label==="Invoice" ? <FileText size={16} strokeWidth={1.7} /> : label==="Run" ? <CirclePlay size={16} strokeWidth={1.7} /> : label==="Settings" ? <Settings size={16} strokeWidth={1.7} /> : <CrmIcon name={label==="Companies" ? "Companies284" : label} />}<span className="workspace-nav-label">{label}</span>{label==="Companies" && <span className="ui-as-side__count">{workspaceId==="acme" ? 284+engine.rows.length-10 : engine.rows.length}</span>}</button>)}</div>)}</nav>
+        <header className="workspace-sidebar-header">
+          <WorkspaceLink className="workspace-explore" href={`/personalize?browse=1&group=${activeGroup.id}`}>Explore pages<ChevronRight size={15} aria-hidden="true" /></WorkspaceLink>
+        </header>
+        <nav className="ui-as-side__nav" aria-label="Main menu">{sidebarGroups.map(group=><div className="ui-as-side__group" key={group.title || "main"}>{group.title && <span className="ui-as-side__label">{group.title}</span>}{group.items.map(label=><button type="button" className="ui-as-side__item" aria-current={section===label ? "page" : undefined} key={label} onClick={()=>navigate(label)}>{section===label && <motion.span className="workspace-nav-pill" layoutId="active-navigation" transition={{type:"spring",stiffness:450,damping:38}} />}{label==="Files" ? <Folder size={16} strokeWidth={1.7} /> : label==="New chat" ? <MessageSquarePlus size={16} strokeWidth={1.7} /> : label==="Mapping" ? <Map size={16} strokeWidth={1.7} /> : label==="Invoice" ? <FileText size={16} strokeWidth={1.7} /> : label==="Run" ? <CirclePlay size={16} strokeWidth={1.7} /> : label==="Settings" ? <Settings size={16} strokeWidth={1.7} /> : <CrmIcon name={label==="Companies" ? "Companies284" : label} />}<span className="workspace-nav-label">{label}</span>{label==="Companies" && <span className="ui-as-side__count">{workspaceId==="acme" ? 284+engine.rows.length-10 : engine.rows.length}</span>}</button>)}</div>)}</nav>
+        <SyncStatus />
         <div className="ui-as-side__foot">
           <AnimatePresence>{news>0 && <motion.div className="ui-as-news" data-count={news} initial={false} exit={{opacity:0,height:0,marginBottom:-8}} transition={{duration:reduce ? 0 : 0.22}}><div className="ui-as-news__card ui-as-news__card--back"><span className="ui-as-news__kicker">New in {workspaceName}</span><button type="button" className="ui-as-news__close" aria-label="Dismiss earlier update" onClick={()=>setNews(Math.max(0,news-1))}><X size={12} /></button></div><div className="ui-as-news__card"><div className="ui-as-news__top"><span className="ui-as-news__kicker">New in {workspaceName}</span><button type="button" className="ui-as-news__close" aria-label="Dismiss" onClick={()=>setNews(Math.max(0,news-1))}><X size={12} /></button></div><strong className="ui-as-news__title">{news===2 ? "Shared folders" : "A better way to work"}</strong><button type="button" className="ui-as-news__more" onClick={()=>openEditor("Full changelog")}>Full changelog<ChevronRight size={12} /></button></div></motion.div>}</AnimatePresence>
           <div className="ui-as-guide-slot"><motion.div layout className="ui-as-guide" data-open={guide ? "" : undefined} transition={{layout:{type:"spring",stiffness:350,damping:34}}}>
             {!guide ? <button type="button" className="ui-as-steps ui-as-guide__content" aria-expanded="false" onClick={()=>setGuide(true)}><span className="ui-as-steps__title">Getting started<ChevronRight size={12} /></span><span className="ui-as-steps__sub">{Math.round(completed.length/8*100)}% done · <span className="ui-as-steps__cheer">{completed.length===8 ? "All done!" : "Great start!"}</span></span><span className="ui-as-steps__bar"><i style={{width:`${completed.length/8*100}%`}} /></span></button> : <div className="crm-guide ui-as-guide__content"><div className="crm-guide__title">Getting started<button type="button" aria-label="Close getting started" onClick={()=>setGuide(false)}><X size={14} /></button></div><span className="ui-as-steps__bar"><i style={{width:`${completed.length/8*100}%`}} /></span>{setupGroups.map(group=><section key={group.title} data-expanded={guideGroup===group.title ? "" : undefined}><h3><button type="button" aria-expanded={guideGroup===group.title} onClick={()=>setGuideGroup(guideGroup===group.title ? null : group.title)}>{group.title}<ChevronDown size={12} /></button></h3><AnimatePresence initial={false}>{guideGroup===group.title && <motion.div initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}} transition={{duration:reduce ? 0 : 0.24}} className="workspace-guide-group">{group.items.map(item=><button type="button" role="checkbox" aria-checked={completed.includes(item)} className="crm-guide__step" key={item} disabled={item==="Connect your first app" && !completed.includes("Invite your teammates")} onClick={()=>setCompleted(completed.includes(item) ? completed.filter(value=>value!==item) : [...completed,item])}><span className="crm-guide__check">{completed.includes(item) && <Check size={10} />}</span>{item}</button>)}</motion.div>}</AnimatePresence></section>)}</div>}
           </motion.div></div>
           <span className="ui-as-anchor ui-as-user-menu"><button type="button" className="ui-as-user" aria-expanded={menu==="user"} onClick={()=>toggleMenu("user")}>{profile.avatar ? <img src={profile.avatar} alt="" /> : <span className="ui-as-user__initials">{initials}</span>}{profile.name}<ChevronDown size={12} /></button>{popover("user","",<>
+            <div className="workspace-account-heading">Workspaces</div>
+            {workspaces.map(item=><button type="button" role="menuitemradio" aria-checked={workspaceId===item.id} className="ui-as-menu__item" key={item.id} onClick={()=>{setWorkspaceId(item.id);setMenu(null);setQuery("");setView("Head of Sales");}}><span className="ui-as-side__logo">{item.logo ? <img className="settings-sidebar-logo" src={item.logo} alt="" /> : item.name[0]}</span><span className="ui-as-menu__label">{item.name}</span>{workspaceId===item.id && <Check size={14} />}</button>)}
+            <button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Create workspace")}>Create workspace</button>
+            <div className="workspace-account-divider" />
+            <button type="button" role="menuitem" className="ui-as-menu__item" aria-label="Search" onClick={openSearch}><Search size={14} />Search</button>
+            <button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>{setCollapsed(true);setDrawer(false);setMenu(null);}}><CrmIcon name="Collapse sidebar" size={14} />Collapse sidebar</button>
             {(["Profile","Settings","Help & feedback"] as const).map(label=><button type="button" role="menuitem" className="ui-as-menu__item" key={label} onClick={()=>label==="Settings" ? navigate("Settings") : openEditor(label)}>{label}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>setPreferences({...preferences,dark:!preferences.dark})}>{preferences.dark ? <Sun size={14} /> : <Moon size={14} />}{preferences.dark ? "Light mode" : "Dark mode"}</button><button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Settings")}>Appearance &amp; notifications</button><Link href="/" role="menuitem" className="ui-as-menu__item"><ArrowLeft size={14} />Back to Stripe</Link>
           </>,true)}</span>
         </div>
       </aside>
       <main className="ui-as-main"><AnimatePresence mode="wait" initial={false}><motion.div key={section} className="workspace-surface" initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-4}} transition={{duration:reduce ? 0 : 0.18,ease:[0.22,1,0.36,1]}}>
-        {section==="Invoice" ? <Invoice key={workspaceId} workspaceId={workspaceId} /> : section==="Mapping" ? <Mapping key={workspaceId} workspaceId={workspaceId} /> : section==="Run" ? <AgentRun key={workspaceId} workspaceId={workspaceId} userName={profile.name} notify={notify} /> : section==="Settings" ? <SettingsBilling key={workspaceId} workspaceId={workspaceId} workspaceName={workspaceName} notify={notify} onRename={name=>setWorkspaces(workspaces.map(item=>item.id===workspaceId ? {...item,name} : item))} onLogoChange={logo=>setWorkspaces(current=>current.map(item=>item.id===workspaceId ? {...item,logo} : item))} /> : section==="Reports" ? <Analytics workspaceId={workspaceId} notify={notify} /> : section==="Home" ? <WorkspaceHome engine={engine} name={profile.name} navigate={navigate} openCompany={openCompany} /> : section==="Contacts" ? <ContactsPage engine={engine} workspaceId={workspaceId} notify={notify} /> : section!=="Companies" ? <DealsPage engine={engine} section={section} openCompany={openCompany} /> : <div className="ui-as-crm">
+        {section==="Files" ? <Files key={workspaceId} workspaceId={workspaceId} userName={profile.name} notify={notify} /> : section==="New chat" ? <AssistantHome key={`${workspaceId}:${chatEpoch}`} workspaceId={workspaceId} userName={profile.name} onInvite={inviteToWorkspace} notify={notify} startFresh={chatEpoch>0} /> : section==="Invoice" ? <Invoice key={workspaceId} workspaceId={workspaceId} /> : section==="Mapping" ? <Mapping key={workspaceId} workspaceId={workspaceId} /> : section==="Run" ? <AgentRun key={workspaceId} workspaceId={workspaceId} userName={profile.name} notify={notify} /> : section==="Settings" ? <SettingsBilling key={workspaceId} workspaceId={workspaceId} workspaceName={workspaceName} notify={notify} onRename={name=>setWorkspaces(workspaces.map(item=>item.id===workspaceId ? {...item,name} : item))} onLogoChange={logo=>setWorkspaces(current=>current.map(item=>item.id===workspaceId ? {...item,logo} : item))} /> : section==="Reports" ? <Analytics workspaceId={workspaceId} notify={notify} /> : section==="Home" ? <WorkspaceHome engine={engine} name={profile.name} navigate={navigate} openCompany={openCompany} /> : section==="Contacts" ? <ContactsPage engine={engine} workspaceId={workspaceId} notify={notify} /> : section!=="Companies" ? <DealsPage engine={engine} section={section} openCompany={openCompany} /> : <div className="ui-as-crm">
           <div className="ui-as-crm__top"><div className="ui-as-crm__path"><Folder size={16} /><span>Sales</span><i>/</i></div><span className="ui-as-anchor"><button type="button" className="ui-as-crm__view" aria-expanded={menu==="view"} onClick={()=>toggleMenu("view")}>{viewTitle}<ChevronDown size={12} /></button>{popover("view","Views",["Head of Sales","Account executive","Partner manager"].map(label=><button type="button" className="ui-as-menu__item" role="menuitemradio" aria-checked={view===label && !custom} key={label} onClick={()=>{setView(label);switchTab("Company CRM");}}>{label}{view===label && !custom && <Check size={13} />}</button>))}</span><button type="button" className="ui-as-icon-btn ui-as-crm__star" aria-label={favorite ? "Remove from favorites" : "Add to favorites"} aria-pressed={favorite} onClick={()=>setFavorites(favorite ? favorites.filter(value=>value!==viewTitle) : [...favorites,viewTitle])}><CrmIcon name="Add to favorites" size={15} /></button></div>
           <nav className="ui-as-crm__tabs" aria-label="Open views"><button type="button" className="ui-as-icon-btn" aria-label="New view" onClick={()=>openEditor("New view")}><CrmIcon name="New view" /></button><span className="ui-as-anchor"><button type="button" className="ui-as-icon-btn" aria-label="All views" aria-expanded={menu==="all-views"} onClick={()=>toggleMenu("all-views")}><CrmIcon name="All views" /></button>{popover("all-views","All views",allTabs.map(item=><button type="button" className="ui-as-menu__item" role="menuitem" key={item.id} onClick={()=>{switchTab(item.id);setMenu(null);}}><CrmIcon name={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"} size={18} />{item.name}{favorites.includes(item.name) && <Star size={12} />}</button>))}</span><span className="ui-as-crm__sep" />{allTabs.map(item=><div className="workspace-tab-wrap" key={item.id}><button type="button" className="ui-as-crm__tab" aria-current={activeTab===item.id ? "page" : undefined} onClick={()=>switchTab(item.id)}>{activeTab===item.id && <motion.span className="workspace-tab-pill" layoutId="active-crm-tab" transition={{type:"spring",stiffness:450,damping:38}} />}<span className="ui-as-crm__tab-logo" data-tab={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"}><CrmIcon name={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"} size={11} /></span><span>{item.name}</span></button>{customViews.some(value=>value.id===item.id) && <button type="button" className="workspace-tab-close" aria-label={`Close ${item.name} view`} onClick={()=>{setCustomViews(customViews.filter(value=>value.id!==item.id));if(tab===item.id)setTab("Company CRM");}}><X size={11} /></button>}</div>)}</nav>
           {query && <div className="workspace-filter-chip">Showing companies matching “{query}”<button type="button" aria-label="Clear company search" onClick={()=>setQuery("")}><X size={12} /></button></div>}

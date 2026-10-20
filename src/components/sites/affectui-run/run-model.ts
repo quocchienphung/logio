@@ -89,3 +89,12 @@ export function runReducer(run: RunSnapshot, action: RunAction): RunSnapshot {
     case "add": return {...run,steps:[...run.steps,action.step],states:{...run.states,[action.step.id]:emptyRuntime()}};
   }
 }
+
+/** True for a well-formed run snapshot. Used for anything that did not come from this reducer (storage, a backend). */
+export function isRunSnapshot(value: unknown): value is RunSnapshot {
+  if (!value || typeof value !== "object") return false;
+  const run = value as Partial<RunSnapshot>;
+  return Array.isArray(run.steps) && run.steps.every(step => step && typeof step.id === "string" && Array.isArray(step.calls))
+    && !!run.states && typeof run.states === "object" && ["running", "waiting", "done", "stopped"].includes(run.phase as string)
+    && typeof run.elapsed === "number" && !!run.approvals && typeof run.approvals === "object";
+}

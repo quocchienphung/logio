@@ -1,0 +1,525 @@
+[
+  {
+    "url": "/__files-api/account/workspaces",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/companies",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/profile",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/preferences",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/views",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/favorites",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/checklist",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/folders",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/file-library",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/uploads/document",
+    "method": "POST",
+    "headers": {
+      "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryY9wgW3DeZfP6KpaF",
+      "origin": "http://localhost:3000",
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/uploads/document",
+    "method": "POST",
+    "headers": {
+      "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryAzmV3BB5vRvxV6iz",
+      "origin": "http://localhost:3000",
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/file-library",
+    "method": "PUT",
+    "headers": {
+      "origin": "http://localhost:3000",
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "if-match": "v1",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/workspaces",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/companies",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/profile",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/preferences",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/views",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/favorites",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/checklist",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/folders",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/file-library",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/uploads/document",
+    "method": "POST",
+    "headers": {
+      "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryWmX2rBjlkB6r4nQo",
+      "origin": "http://localhost:3000",
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/personal/folders",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/personal/file-library",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/personal/companies",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/personal/views",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/personal/favorites",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/personal/checklist",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Server+folder",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/workspaces",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/companies",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/profile",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/account/preferences",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/views",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/favorites",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/checklist",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/folders",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  },
+  {
+    "url": "/__files-api/workspaces/acme/file-library",
+    "method": "GET",
+    "headers": {
+      "referer": "http://localhost:3000/personalize?section=files&folder=Missing",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "accept": "application/json",
+      "authorization": "Bearer files-qa",
+      "content-type": "application/json",
+      "sec-ch-ua": "\"Google Chrome\";v=\"155\", \"Chromium\";v=\"155\", \"Not(A:Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\""
+    }
+  }
+]

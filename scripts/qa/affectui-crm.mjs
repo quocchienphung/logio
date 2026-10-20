@@ -1,3 +1,4 @@
+import { openWorkspaceMenu, currentWorkspaceName } from "./lib/nav.mjs";
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -102,13 +103,14 @@ try {
     await page.locator('.ui-as-template').first().click();
     assert.equal(await page.locator('dialog[open]').count(),1);
     await page.keyboard.press('Escape');
-    await page.getByRole('button',{name:'Collapse sidebar',exact:true}).click();
+    await openWorkspaceMenu(page);
+    await page.getByRole('menuitem',{name:'Collapse sidebar',exact:true}).click();
     await page.getByRole('button',{name:'Open sidebar',exact:true}).click();
-    await page.locator('.ui-as-side__workspace').click();
+    await openWorkspaceMenu(page);
     await page.getByRole('menuitemradio',{name:/Personal/}).click();
-    assert.match(await page.locator('.ui-as-side__workspace').innerText(),/Personal/);
-    await page.locator('.ui-as-side__workspace').click();
-    await page.getByRole('menuitemradio',{name:/Acme/}).click();
+    assert.match(await currentWorkspaceName(page),/Personal/);
+    await openWorkspaceMenu(page);
+    await page.getByRole('menuitemradio',{name:/Logio/}).click();
     await page.locator('.ui-as-user').click();
     await page.getByRole('menuitem',{name:'Dark mode',exact:true}).click();
     await page.keyboard.press('Escape');

@@ -32,7 +32,11 @@
 .guide-preview__frame[data-empty] { background: linear-gradient(180deg, #dcdad5, #cfcdc7); }
 .guide-preview__frame img { object-fit: cover; }
 .guide-loading { display: grid; place-items: center; height: 100dvh; color: #777; background: #fdfdfc; font: 13px Inter, sans-serif; }
-.crm-page .workspace-explore { display: flex; align-items: center; gap: 8px; margin: 0 10px 8px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); font-size: 11px; text-decoration: none; }
-.crm-page .workspace-explore:hover { background: var(--hover); }
-.crm-page .workspace-explore svg:last-child { margin-left: auto; color: var(--muted); }
+.crm-page .workspace-sidebar-header { padding: 0 2px; }
+.crm-page .workspace-explore { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); font-size: 13px; font-weight: 500; text-decoration: none; transition: background-color 140ms ease, border-color 140ms ease; }
+.crm-page .workspace-explore:hover { background: var(--hover); border-color: var(--line-strong); }
+.crm-page .workspace-explore:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.crm-page .workspace-explore svg { flex: none; color: var(--muted); }
+.crm-page .workspace-account-heading { padding: 5px 9px; color: var(--muted); font-size: 11px; font-weight: 500; }
+.crm-page .workspace-account-divider { height: 1px; margin: 5px 0; background: var(--line); }
 @media (prefers-reduced-motion: reduce) { .guide-page *, .guide-page *::before, .guide-page *::after { transition-duration: 1ms !important; } }

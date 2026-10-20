@@ -3,9 +3,12 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
-import { useStoredState } from "../affectui-crm/workspace-state";
+
 import { Combobox } from "../affectui-combobox/Combobox";
 import "./settings-tabs.css";
+import { BackendError, conforms, storeFile } from "@/lib/workspace-backend";
+import { useResource, useWorkspaceBackend } from "@/lib/workspace-backend/react";
+import { resources } from "../workspace-resources";
 
 type Notify = (text: string) => void;
 type IconName = "down" | "globe" | "upload" | "invite" | "more" | "plus" | "key" | "copy" | "trash" | "check";
@@ -58,15 +61,17 @@ function SettingsMenu({ label, ariaLabel, icon, end = false, children }: { label
 }
 
 const regions = ["Europe (Frankfurt)", "United States (Virginia)", "Asia Pacific (Singapore)"];
-type GeneralValue = { region: string; logo: string };
+export type GeneralValue = { region: string; logo: string };
 
 export function GeneralSettings({ workspaceId, workspaceName, onRename, onLogoChange, notify }: { workspaceId: string; workspaceName: string; onRename: (name: string) => void; onLogoChange?: (logo: string) => void; notify: Notify }) {
-  const [saved, setSaved] = useStoredState<GeneralValue>(`affectui:${workspaceId}:settings-general`, { region: regions[0], logo: "" });
+  const [saved, setSaved] = useResource(resources.settingsGeneral, workspaceId,  { region: regions[0], logo: "" });
   const [draft, setDraft] = useState<(GeneralValue & { name: string }) | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const backend = useWorkspaceBackend();
+  const [uploading, setUploading] = useState(false);
   const current = draft || { ...saved, name: workspaceName };
   const dirty = current.name !== workspaceName || current.region !== saved.region || current.logo !== saved.logo;
-  function edit(change: Partial<typeof current>) { setDraft({ ...current, ...change }); }
+  function edit(change: Partial<typeof current>) { setDraft(previous => ({ ...(previous || { ...saved, name: workspaceName }), ...change })); }
   return <form className="ui-sb-tray ui-sb-form ui-as-rise" onSubmit={event => {
     event.preventDefault(); const name = current.name.trim(); if (!name || !dirty) return;
     setSaved({ region: current.region, logo: current.logo }); onRename(name); onLogoChange?.(current.logo); setDraft(null); notify("Workspace settings saved");
@@ -74,11 +79,12 @@ export function GeneralSettings({ workspaceId, workspaceName, onRename, onLogoCh
     <div className="ui-sb-card ui-sb-form__fields">
       <div className="ui-sb-field"><span className="ui-sb-field__label"><b>Logo</b><span>Shown in the sidebar and on invites. Square, at least 128 px.</span></span><div className="ui-sb-logo-row">
         <span className="ui-sb-logo">{current.logo ? <img src={current.logo} alt={`${current.name} workspace logo`} /> : current.name.charAt(0).toUpperCase()}</span>
-        <SettingsButton variant="secondary" icon="upload" onClick={() => fileInput.current?.click()}>Upload</SettingsButton>
+        <SettingsButton variant="secondary" icon="upload" disabled={uploading} onClick={() => fileInput.current?.click()}>{uploading ? "Uploading…" : "Upload"}</SettingsButton>
         <input ref={fileInput} hidden type="file" accept="image/png,image/jpeg,image/webp,image/gif" aria-label="Upload workspace logo" onChange={event => {
           const file = event.target.files?.[0]; event.currentTarget.value = ""; if (!file) return;
           if (!/^image\/(png|jpeg|webp|gif)$/.test(file.type) || file.size > 2 * 1024 * 1024) { notify("Choose a PNG, JPEG, WebP or GIF up to 2 MB"); return; }
-          const reader = new FileReader(); reader.onload = () => { if (typeof reader.result === "string") edit({ logo: reader.result }); }; reader.onerror = () => notify("This image could not be opened"); reader.readAsDataURL(file);
+          setUploading(true);
+          storeFile(backend, workspaceId, "logo", file).then(url => edit({ logo: url })).catch(error => notify(error instanceof BackendError ? error.message : "This image could not be opened")).finally(() => setUploading(false));
         }} />
       </div></div>
       <label className="ui-sb-field"><span className="ui-sb-field__label"><b>Workspace name</b><span>Your team sees this name everywhere.</span></span><input className="ui-sb-input" value={current.name} maxLength={40} required onChange={event => edit({ name: event.target.value })} /></label>
@@ -90,17 +96,17 @@ export function GeneralSettings({ workspaceId, workspaceName, onRename, onLogoCh
 
 export type SettingsMember = { id: string; name: string; email: string; role: "Owner" | "Admin" | "Member" | "Viewer"; pending?: boolean };
 export const initialMembers: SettingsMember[] = [
-  { id: "alex", name: "Alex Morgan", email: "alex@acme.com", role: "Owner" },
-  { id: "priya", name: "Priya Shah", email: "priya@acme.com", role: "Admin" },
-  { id: "jonas", name: "Jonas Weber", email: "jonas@acme.com", role: "Member" },
-  { id: "mia", name: "Mia Chen", email: "mia@acme.com", role: "Member" },
-  { id: "leo", name: "Leo Martins", email: "leo@acme.com", role: "Viewer" },
+  { id: "alex", name: "Alex Morgan", email: "alex@logio.com", role: "Owner" },
+  { id: "priya", name: "Priya Shah", email: "priya@logio.com", role: "Admin" },
+  { id: "jonas", name: "Jonas Weber", email: "jonas@logio.com", role: "Member" },
+  { id: "mia", name: "Mia Chen", email: "mia@logio.com", role: "Member" },
+  { id: "leo", name: "Leo Martins", email: "leo@logio.com", role: "Viewer" },
 ];
 const roles = ["Admin", "Member", "Viewer"] as const;
 const rowMotion = { opacity: 1, y: 0 };
 
 export function MembersSettings({ workspaceId, notify, seatLimit, onMembersChange }: { workspaceId: string; notify: Notify; seatLimit: number; onMembersChange?: (count: number) => void }) {
-  const [members, setMembers] = useStoredState<SettingsMember[]>(`affectui:${workspaceId}:settings-members`, workspaceId === "acme" ? initialMembers : initialMembers.slice(0, 1));
+  const [members, setMembers] = useResource(resources.settingsMembers, workspaceId,  workspaceId === "acme" ? initialMembers : initialMembers.slice(0, 1));
   const [invite, setInvite] = useState(false);
   const [remove, setRemove] = useState<SettingsMember | null>(null);
   const [error, setError] = useState("");
@@ -123,7 +129,11 @@ export function MembersSettings({ workspaceId, notify, seatLimit, onMembersChang
   </section>;
 }
 
-type DemoApiKey = { id: string; name: string; prefix: string; suffix: string; created: string; lastUsed: string; value: string };
+/** `value` is the full secret. It exists only for keys made in this browser, or in the moment a backend creates one: backends never send it back. */
+export type DemoApiKey = { id: string; name: string; prefix: string; suffix: string; created: string; lastUsed: string; value?: string };
+/** What the backend's "api-key.create" command answers: the new key's details and its secret, shown once. */
+interface CreatedApiKey { key: Omit<DemoApiKey, "value">; secret: string }
+const isCreatedKey = (raw: unknown): raw is CreatedApiKey => conforms({ key: { id: "", name: "", prefix: "", suffix: "", created: "", lastUsed: "" }, secret: "" }, raw);
 const initialKeys: DemoApiKey[] = [
   { id: "production", name: "Production", prefix: "sk-live-", suffix: "8F2q", created: "Mar 4, 2026", lastUsed: "2 minutes ago", value: "sk-demo-local-production-8F2q" },
   { id: "staging", name: "Staging", prefix: "sk-test-", suffix: "Lm7x", created: "May 18, 2026", lastUsed: "Yesterday", value: "sk-demo-local-staging-Lm7x" },
@@ -131,23 +141,37 @@ const initialKeys: DemoApiKey[] = [
 ];
 
 export function ApiKeysSettings({ workspaceId, notify }: { workspaceId: string; notify: Notify }) {
-  const [keys, setKeys] = useStoredState<DemoApiKey[]>(`affectui:${workspaceId}:settings-api-keys`, workspaceId === "acme" ? initialKeys : []);
+  const [keys, setKeys, sync] = useResource(resources.settingsApiKeys, workspaceId,  workspaceId === "acme" ? initialKeys : []);
+  const backend = useWorkspaceBackend();
+  const [creating, setCreating] = useState(false);
   const [revoke, setRevoke] = useState<DemoApiKey | null>(null);
   const [created, setCreated] = useState<DemoApiKey | null>(null);
   const [copied, setCopied] = useState("");
   const [rename, setRename] = useState<DemoApiKey | null>(null);
   const reduced = useReducedMotion();
-  async function copy(key: DemoApiKey) { try { await navigator.clipboard.writeText(key.value); setCopied(key.id); notify("Local demo key copied · it cannot access a real API"); } catch { setCreated(key); notify("Copy is unavailable. Select the demo key in this dialog."); } }
-  function create() { const random = Array.from(crypto.getRandomValues(new Uint8Array(20)), value => value.toString(16).padStart(2, "0")).join(""); const key: DemoApiKey = { id: crypto.randomUUID(), name: `New key ${keys.length + 1}`, prefix: "sk-demo-", suffix: random.slice(-4), created: "Just now", lastUsed: "Never", value: `sk-demo-local-${random}` }; setKeys(previous => [key, ...previous]); setCreated(key); setCopied(""); }
+  async function copy(key: DemoApiKey) { if (!key.value) return; try { await navigator.clipboard.writeText(key.value); setCopied(key.id); notify(backend.remote ? "API key copied" : "Local demo key copied · it cannot access a real API"); } catch { setCreated(key); notify("Copy is unavailable. Select the demo key in this dialog."); } }
+  function createLocal() { const random = Array.from(crypto.getRandomValues(new Uint8Array(20)), value => value.toString(16).padStart(2, "0")).join(""); const key: DemoApiKey = { id: crypto.randomUUID(), name: `New key ${keys.length + 1}`, prefix: "sk-demo-", suffix: random.slice(-4), created: "Just now", lastUsed: "Never", value: `sk-demo-local-${random}` }; setKeys(previous => [key, ...previous]); setCreated(key); setCopied(""); }
+  // With a backend that can make keys, the secret is made there and shown once; the list then comes from the server.
+  async function createOnServer(command: NonNullable<typeof backend.command>) {
+    setCreating(true);
+    try {
+      await sync.flush();
+      const answer = await command.call(backend, "api-key.create", workspaceId, { name: `New key ${keys.length + 1}` });
+      if (!isCreatedKey(answer)) throw new BackendError("invalid", "The server did not return the new key.");
+      setCreated({ ...answer.key, value: answer.secret }); setCopied(""); sync.reload();
+    } catch (error) { notify(error instanceof BackendError ? error.message : "The key could not be created."); }
+    finally { setCreating(false); }
+  }
+  function create() { if (backend.command && backend.remote) void createOnServer(backend.command); else createLocal(); }
   return <section className="ui-sb-section ui-sb-section--first">
-    <div className="ui-sb-section__head"><div><h2 className="ui-sb-h2">API keys</h2><p className="ui-sb-muted">Keys give full access to this workspace – keep them secret.</p></div><SettingsButton icon="plus" onClick={create}>Create key</SettingsButton></div>
+    <div className="ui-sb-section__head"><div><h2 className="ui-sb-h2">API keys</h2><p className="ui-sb-muted">Keys give full access to this workspace – keep them secret.</p></div><SettingsButton icon="plus" disabled={creating} onClick={create}>Create key</SettingsButton></div>
     <div className="ui-sb-tray"><div className="ui-sb-tray__head" aria-hidden="true"><span>Name</span><span className="ui-sb-tray__end ui-sb-tray__end--key">Key</span></div><div className="ui-sb-card ui-sb-list"><AnimatePresence initial={false}>
       {keys.map((key, index) => <motion.div key={key.id} layout="position" className="ui-sb-row ui-as-rise" style={{ "--i": index } as CSSProperties} initial={reduced ? false : { opacity: 0, y: 8 }} animate={rowMotion} exit={reduced ? { opacity: 0 } : { opacity: 0, height: 0, minHeight: 0 }} transition={{ duration: reduced ? 0 : .22 }}>
-        <span className="ui-sb-tile"><SettingsIcon name="key" /></span><span className="ui-sb-row__text"><b><button type="button" className="settings-key-name" title="Rename key" onClick={() => setRename(key)}>{key.name}</button></b><span>Created {key.created} · last used {key.lastUsed}</span></span><code className="ui-sb-key">{key.prefix}••••••••••••{key.suffix}</code><button type="button" className="ui-as-tool" aria-label={`Copy ${key.name} key`} title={`Copy ${key.name} key`} onClick={() => void copy(key)}><SettingsIcon name={copied === key.id ? "check" : "copy"} /></button><button type="button" className="ui-as-tool ui-sb-danger" aria-label={`Revoke ${key.name} key`} title="Revoke" onClick={() => setRevoke(key)}><SettingsIcon name="trash" /></button>
+        <span className="ui-sb-tile"><SettingsIcon name="key" /></span><span className="ui-sb-row__text"><b><button type="button" className="settings-key-name" title="Rename key" onClick={() => setRename(key)}>{key.name}</button></b><span>Created {key.created} · last used {key.lastUsed}</span></span><code className="ui-sb-key">{key.prefix}••••••••••••{key.suffix}</code>{key.value ? <button type="button" className="ui-as-tool" aria-label={`Copy ${key.name} key`} title={`Copy ${key.name} key`} onClick={() => void copy(key)}><SettingsIcon name={copied === key.id ? "check" : "copy"} /></button> : <span className="ui-as-tool" aria-hidden="true" title="A key is shown only once, when it is created" style={{ visibility: "hidden" }}><SettingsIcon name="copy" /></span>}<button type="button" className="ui-as-tool ui-sb-danger" aria-label={`Revoke ${key.name} key`} title="Revoke" onClick={() => setRevoke(key)}><SettingsIcon name="trash" /></button>
       </motion.div>)}
     </AnimatePresence>{keys.length === 0 && <div className="workspace-empty"><SettingsIcon name="key" size={24} /><p>No API keys yet. Create a local demo key to get started.</p></div>}</div></div>
-    <WorkspaceDialog open={!!created} title="Local demo API key" onClose={() => setCreated(null)}><p className="ui-sb-muted settings-dialog-intro">This demo key is saved in this browser and has no access to a real API.</p><label className="crm-field">{created?.name}<input className="settings-demo-key" readOnly value={created?.value || ""} onFocus={event => event.currentTarget.select()} /></label><div className="workspace-form-actions"><SettingsButton variant="ghost" onClick={() => setCreated(null)}>Done</SettingsButton><SettingsButton icon={copied === created?.id ? "check" : "copy"} onClick={() => created && void copy(created)}>{copied === created?.id ? "Copied" : "Copy demo key"}</SettingsButton></div></WorkspaceDialog>
+    <WorkspaceDialog open={!!created} title={backend.remote ? "New API key" : "Local demo API key"} onClose={() => setCreated(null)}><p className="ui-sb-muted settings-dialog-intro">{backend.remote ? "Copy this key now. For your security it is shown only once and cannot be read again." : "This demo key is saved in this browser and has no access to a real API."}</p><label className="crm-field">{created?.name}<input className="settings-demo-key" readOnly value={created?.value || ""} onFocus={event => event.currentTarget.select()} /></label><div className="workspace-form-actions"><SettingsButton variant="ghost" onClick={() => setCreated(null)}>Done</SettingsButton><SettingsButton icon={copied === created?.id ? "check" : "copy"} onClick={() => created && void copy(created)}>{copied === created?.id ? "Copied" : backend.remote ? "Copy key" : "Copy demo key"}</SettingsButton></div></WorkspaceDialog>
     <WorkspaceDialog open={!!rename} title="Rename key" onClose={() => setRename(null)}>{rename && <form key={rename.id} onSubmit={event => { event.preventDefault(); const name = String(new FormData(event.currentTarget).get("name")).trim(); if (!name) return; setKeys(previous => previous.map(key => key.id === rename.id ? { ...key, name } : key)); setRename(null); notify("API key renamed"); }}><label className="crm-field">Key name<input name="name" defaultValue={rename.name} required maxLength={50} autoFocus /></label><div className="workspace-form-actions"><SettingsButton variant="ghost" onClick={() => setRename(null)}>Cancel</SettingsButton><SettingsButton type="submit">Save name</SettingsButton></div></form>}</WorkspaceDialog>
-    <WorkspaceDialog open={!!revoke} title="Revoke API key" onClose={() => setRevoke(null)}><p className="ui-sb-muted settings-dialog-intro">Revoke “{revoke?.name}”? This removes its local demo value from this workspace.</p><div className="workspace-form-actions"><SettingsButton variant="ghost" onClick={() => setRevoke(null)}>Keep key</SettingsButton><SettingsButton onClick={() => { if (!revoke) return; setKeys(previous => previous.filter(key => key.id !== revoke.id)); if (created?.id === revoke.id) setCreated(null); setRevoke(null); notify("Local API key revoked"); }}>Revoke key</SettingsButton></div></WorkspaceDialog>
+    <WorkspaceDialog open={!!revoke} title="Revoke API key" onClose={() => setRevoke(null)}><p className="ui-sb-muted settings-dialog-intro">Revoke “{revoke?.name}”? {backend.remote ? "Anything using this key will stop working." : "This removes its local demo value from this workspace."}</p><div className="workspace-form-actions"><SettingsButton variant="ghost" onClick={() => setRevoke(null)}>Keep key</SettingsButton><SettingsButton onClick={() => { if (!revoke) return; setKeys(previous => previous.filter(key => key.id !== revoke.id)); if (created?.id === revoke.id) setCreated(null); setRevoke(null); notify(backend.remote ? "API key revoked" : "Local API key revoked"); }}>Revoke key</SettingsButton></div></WorkspaceDialog>
   </section>;
 }

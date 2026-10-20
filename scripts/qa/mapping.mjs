@@ -1,3 +1,4 @@
+import { openWorkspaceMenu } from "./lib/nav.mjs";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { PNG } from "pngjs";
@@ -87,9 +88,9 @@ try {
   await run("edit tab changes names, text, health, dates, status and checklist; the map follows", async () => {
     await tab("Edit");
     assert.match(await panelBody.innerText(), /Workspace name/);
-    await field("Workspace name", "Acme studio");
+    await field("Workspace name", "Logio studio");
     await page.waitForTimeout(300);
-    assert.match(await crumbs.innerText(), /Acme studio/);
+    assert.match(await crumbs.innerText(), /Logio studio/);
     await keys("ArrowRight", "Enter");
     assert.equal(await panelBody.getByLabel("Name", { exact: true }).inputValue(), "Team 1");
     await field("Name", "Platform"); await field("Mission", "Keep every request fast");
@@ -105,7 +106,7 @@ try {
     await panelBody.locator('input[aria-label="Step name"]').last().fill("Verify totals");
     await page.waitForTimeout(700);
     const saved = await stored(), task = saved.teams[0].projects[0].tasks[0];
-    assert.deepEqual([saved.name, saved.teams[0].name, saved.teams[0].mission, saved.teams[0].projects[0].health, saved.teams[0].projects[0].due], ["Acme studio", "Platform", "Keep every request fast", "off-track", "2027-05-01"]);
+    assert.deepEqual([saved.name, saved.teams[0].name, saved.teams[0].mission, saved.teams[0].projects[0].health, saved.teams[0].projects[0].due], ["Logio studio", "Platform", "Keep every request fast", "off-track", "2027-05-01"]);
     assert.deepEqual([task.title, task.description, task.points, task.assigneeId], ["Backfill invoices", "Move every invoice across.", 8, "person-3"]);
     assert.equal(task.checklist.at(-1).label, "Verify totals");
     assert.match(await crumbs.innerText(), /Backfill invoices/);
@@ -189,7 +190,7 @@ try {
     const [download] = await Promise.all([page.waitForEvent("download"), panelBody.getByRole("button", { name: "Export JSON", exact: true }).click()]);
     const file = `${out}/export.json`; await download.saveAs(file);
     const exported = JSON.parse(await fs.readFile(file, "utf8"));
-    assert.equal(exported.version, 1); assert.equal(exported.teams.length, 5); assert.equal(exported.name, "Acme studio");
+    assert.equal(exported.version, 1); assert.equal(exported.teams.length, 5); assert.equal(exported.name, "Logio studio");
     exported.name = "Imported"; exported.teams.length = 2;
     await fs.writeFile(`${out}/import.json`, JSON.stringify(exported));
     await page.getByLabel('Import map JSON file').setInputFiles(`${out}/import.json`); await settle(2000);
@@ -214,10 +215,10 @@ try {
     await other.waitForTimeout(500);
     assert.match(await other.locator(".mapping-crumbs").innerText(), /Shared name/);
     await other.close();
-    await tab("Overview"); await page.getByRole("button", { name: "A Acme", exact: true }).click(); await page.getByRole("menuitemradio").filter({ hasText: "Personal" }).click(); await settle(2200);
+    await tab("Overview"); await openWorkspaceMenu(page); await page.getByRole("menuitemradio").filter({ hasText: "Personal" }).click(); await settle(2200);
     assert.doesNotMatch(await crumbs.innerText(), /Shared name/);
     assert.match(await crumbs.innerText(), /My workspace/);
-    await page.getByRole("button", { name: /P Personal/ }).click(); await page.getByRole("menuitemradio").filter({ hasText: "Acme" }).click(); await settle(2200);
+    await openWorkspaceMenu(page); await page.getByRole("menuitemradio").filter({ hasText: "Logio" }).click(); await settle(2200);
     assert.match(await crumbs.innerText(), /Shared name/);
   });
   await run("existing Reports, Run, Settings and Companies navigation", async () => {

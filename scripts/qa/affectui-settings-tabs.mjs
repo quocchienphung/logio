@@ -1,3 +1,4 @@
+import { currentWorkspaceName } from "./lib/nav.mjs";
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -27,11 +28,11 @@ try {
       await page.keyboard.press('ArrowDown'); await page.keyboard.press('End'); await page.keyboard.press('Enter');
       assert.equal(await page.getByRole('button', { name: 'Asia Pacific (Singapore)', exact: true }).count(), 1);
       await page.getByRole('button', { name: 'Discard', exact: true }).click();
-      assert.equal(await name.inputValue(), 'Acme');
+      assert.equal(await name.inputValue(), 'Logio');
       assert.equal(await page.getByRole('button', { name: 'Save changes', exact: true }).isDisabled(), true);
     });
     await check('General name, logo upload and region persist and sidebar updates', async () => {
-      await page.getByRole('textbox', { name: /Workspace name/ }).fill('Acme Studio');
+      await page.getByRole('textbox', { name: /Workspace name/ }).fill('Logio Studio');
       const image = new PNG({ width: 128, height: 128 }); image.data.fill(120);
       await page.getByLabel('Upload workspace logo').setInputFiles({ name: 'logo.png', mimeType: 'image/png', buffer: PNG.sync.write(image) });
       await page.locator('.ui-sb-logo img').waitFor();
@@ -39,10 +40,10 @@ try {
       await page.getByRole('menuitemradio', { name: 'United States (Virginia)', exact: true }).click();
       await page.getByRole('button', { name: 'Save changes', exact: true }).click();
       await page.reload({ waitUntil: 'networkidle' });
-      assert.equal(await page.getByRole('textbox', { name: /Workspace name/ }).inputValue(), 'Acme Studio');
+      assert.equal(await page.getByRole('textbox', { name: /Workspace name/ }).inputValue(), 'Logio Studio');
       assert.equal(await page.locator('.ui-sb-logo img').count(), 1);
       assert.equal(await page.getByRole('button', { name: 'United States (Virginia)', exact: true }).count(), 1);
-      assert.match(await page.locator('.ui-as-side__workspace').innerText(), /Acme Studio/);
+      assert.match(await currentWorkspaceName(page), /Logio Studio/);
     });
     await tab('Members');
     await check('Member roles support keyboard and outside dismissal', async () => {
@@ -57,16 +58,16 @@ try {
     });
     await check('Local invitation validates duplicates and persists pending member', async () => {
       await page.getByRole('button', { name: 'Invite', exact: true }).click();
-      await dialog().getByLabel('Email address').fill('priya@acme.com');
+      await dialog().getByLabel('Email address').fill('priya@logio.com');
       await dialog().getByRole('button', { name: 'Save invitation', exact: true }).click();
       assert.match(await dialog().getByRole('alert').innerText(), /already/);
-      await dialog().getByLabel('Email address').fill('new.person@acme.com');
+      await dialog().getByLabel('Email address').fill('new.person@logio.com');
       await dialog().getByRole('button', { name: 'Save invitation', exact: true }).click();
       await page.waitForTimeout(300);
       assert.match(await page.locator('.ui-sb-section__head').innerText(), /6 of 10/);
-      assert.match(await page.locator('.ui-sb-row').filter({ hasText: 'new.person@acme.com' }).innerText(), /Pending/);
+      assert.match(await page.locator('.ui-sb-row').filter({ hasText: 'new.person@logio.com' }).innerText(), /Pending/);
       await page.reload({ waitUntil: 'networkidle' });
-      assert.equal(await page.locator('.ui-sb-row').filter({ hasText: 'new.person@acme.com' }).count(), 1);
+      assert.equal(await page.locator('.ui-sb-row').filter({ hasText: 'new.person@logio.com' }).count(), 1);
     });
     await check('Member removal requires confirmation and frees seat', async () => {
       await page.getByRole('button', { name: 'More for new person', exact: true }).click();
@@ -119,7 +120,7 @@ try {
         await mobile.getByRole('button', { name: 'Save changes', exact: true }).tap();
         await mobile.getByRole('tab', { name: 'Members', exact: true }).tap();
         await mobile.getByRole('button', { name: 'Invite', exact: true }).tap();
-        await mobile.locator('dialog[open]').getByLabel('Email address').fill('touch@acme.com');
+        await mobile.locator('dialog[open]').getByLabel('Email address').fill('touch@logio.com');
         await mobile.locator('dialog[open]').getByRole('button', { name: 'Cancel', exact: true }).tap();
         await mobile.getByRole('tab', { name: 'API keys', exact: true }).tap();
         await mobile.getByRole('button', { name: 'Create key', exact: true }).tap();

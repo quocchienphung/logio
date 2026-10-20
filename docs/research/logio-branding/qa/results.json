@@ -1,0 +1,10 @@
+{
+  "passed": [
+    "Every Guide me section has only Explore pages in its sidebar header and no Acme copy",
+    "All Settings tabs, account profile, Contacts and CRM views use Logio",
+    "Legacy saved workspace, profile, contacts, members and billing display Logio without changing IDs",
+    "Workspace switching, search, collapse and Explore pages still work",
+    "Mobile drawer and Explore pages stay usable without horizontal overflow"
+  ],
+  "errors": []
+}

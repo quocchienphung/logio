@@ -1,0 +1,1286 @@
+{
+  "390": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "Files\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·  Shared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·  Shared\nDOC\nDesign-Book\nDocument · Alex Morgan ·  Private\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·  Private",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "768": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "Files\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·  Shared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·  Shared\nDOC\nDesign-Book\nDocument · Alex Morgan ·  Private\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·  Private",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "1920": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "desktop": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "create-folder": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nUntitled folder\nPrivate · 0 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Untitled folderPrivate · 0 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "add-template": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nDOC\nUntitled\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCUntitledDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "type-filter": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nType\nClear all\nType\n3\nDocument\nPDF\nSpreadsheet\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Clear all",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type3",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Document",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDF",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Spreadsheet",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "list": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "folder": {
+    "url": "https://www.affectui.com/screens/folder/full?folder=Brand%20assets",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n/\nBrand assets\nFiles\nBrand assets\nShare\nUpload files\nPDF\nBrand-Guidelines\nPDF · 4 days ago\nDOC\nTone-of-Voice\nDocument · Last week\nPDF\nLogo-Usage\nPDF · 2 weeks ago",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "Files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "More",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Share",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Upload files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · 4 days ago",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCTone-of-VoiceDocument · Last week",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFLogo-UsagePDF · 2 weeks ago",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  },
+  "template": {
+    "url": "https://www.affectui.com/screens/files/full",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "controls": [
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Grid",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "List",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Create folder",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Brand assetsShared · 3 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "HiringPrivate · 4 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Q3 CampaignShared · 5 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "ResearchPrivate · 2 files",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "All",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Mine",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Shared with me",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Type",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "aria": "Sorted A to Z – sort Z to A",
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Add template",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "PDFBrand-GuidelinesPDF · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSCampaign-BudgetSpreadsheet · Jonas Weber ·  Shared",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "DOCDesign-BookDocument · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      },
+      {
+        "tag": "BUTTON",
+        "text": "XLSWeekly-ReportSpreadsheet · Alex Morgan ·  Private",
+        "aria": null,
+        "placeholder": null
+      }
+    ]
+  }
+}

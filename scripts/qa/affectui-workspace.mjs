@@ -1,3 +1,4 @@
+import { openWorkspaceMenu, currentWorkspaceName } from "./lib/nav.mjs";
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
@@ -132,11 +133,11 @@ try{
     await page.getByRole('textbox',{name:'Document content',exact:true}).waitFor();assert.match(await page.getByRole('textbox',{name:'Document content',exact:true}).inputValue(),/Works on this device/);await page.keyboard.press('Escape');
   });
   await check('new workspaces isolate records and survive a reload',async()=>{
-    await page.locator('.ui-as-side__workspace').click();await page.getByRole('menuitem',{name:'Create workspace',exact:true}).click();await page.getByLabel('Workspace name').fill('QA workspace');await page.getByRole('button',{name:'Create workspace',exact:true}).click();
-    await page.locator('.ui-dt__empty').waitFor();assert.match(await page.locator('.ui-as-side__workspace').innerText(),/QA workspace/);
+    await openWorkspaceMenu(page);await page.getByRole('menuitem',{name:'Create workspace',exact:true}).click();await page.getByLabel('Workspace name').fill('QA workspace');await page.getByRole('button',{name:'Create workspace',exact:true}).click();
+    await page.locator('.ui-dt__empty').waitFor();assert.match(await currentWorkspaceName(page),/QA workspace/);
     await page.getByRole('button',{name:'Add row',exact:true}).click();await page.getByRole('textbox',{name:'Edit Company'}).fill('Fresh company');await page.keyboard.press('Enter');
     await page.reload({waitUntil:'networkidle'});await page.locator('tbody tr').first().waitFor();assert.equal(await page.locator('tbody tr').count(),1);assert.match(await page.locator('tbody').innerText(),/Fresh company/);
-    await page.locator('.ui-as-side__workspace').click();await page.getByRole('menuitemradio',{name:/Acme/}).click();await page.getByRole('button',{name:'Company CRM',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('tbody tr').length===10);
+    await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Logio/}).click();await page.getByRole('button',{name:'Company CRM',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('tbody tr').length===10);
   });
   await check('mobile Reports, touch tooltips and local scroll',async()=>{
     await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Open sidebar',exact:true}).click();await nav('Reports');

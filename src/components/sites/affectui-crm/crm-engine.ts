@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useReducer, useState } from "react";
+import { useState } from "react";
+import { useResource } from "@/lib/workspace-backend/react";
+import { resources } from "../workspace-resources";
 import seed from "./seed.json";
 
 export interface Company {
@@ -43,54 +45,25 @@ export function setCell(row: Company, key: ColumnKey, value: string): Company {
   return { ...row, [key]: value };
 }
 
-interface History { rows: Company[]; past: Company[][]; future: Company[][] }
-type Action = { type: "change" | "hydrate"; rows: Company[] } | { type: "undo" | "redo" };
-function reducer(state: History, action: Action): History {
-  if (action.type === "hydrate") return { rows: action.rows, past: [], future: [] };
-  if (action.type === "change") {
-    if (JSON.stringify(state.rows) === JSON.stringify(action.rows)) return state;
-    return { rows: action.rows, past: [...state.past.slice(-99), state.rows], future: [] };
-  }
-  if (action.type === "undo" && state.past.length) {
-    return { rows: state.past.at(-1)!, past: state.past.slice(0, -1), future: [state.rows, ...state.future] };
-  }
-  if (action.type === "redo" && state.future.length) {
-    return { rows: state.future[0], past: [...state.past, state.rows], future: state.future.slice(1) };
-  }
-  return state;
-}
+/** Undo and redo walk back through earlier lists of rows. The rows themselves live in the backend. */
+interface History { workspaceId: string; past: Company[][]; future: Company[][] }
 export function useCrmEngine(workspaceId = "acme") {
-  const [state, dispatch] = useReducer(reducer, { rows: initialCompanies, past: [], future: [] });
-  const [ready, setReady] = useState<string | null>(null);
-  useEffect(() => {
-    let disposed = false;
-    queueMicrotask(() => {
-      if (disposed) return;
-      let rows = workspaceId === "acme" ? initialCompanies : [];
-      try {
-        const saved: unknown = JSON.parse(localStorage.getItem(`affectui:${workspaceId}:companies`) || "null");
-        if (Array.isArray(saved) && saved.every((row: unknown) => {
-          if (!row || typeof row !== "object") return false;
-          const candidate = row as Record<string, unknown>;
-          return typeof candidate.id === "string" && typeof candidate.value === "number" && ["company", "category", "domain", "owner", "stage", "lastContact"].every(key => typeof candidate[key] === "string");
-        })) rows = saved as Company[];
-      } catch { /* Use the original demo when storage is unavailable. */ }
-      dispatch({ type: "hydrate", rows });
-      setReady(workspaceId);
-    });
-    return () => { disposed = true; };
-  }, [workspaceId]);
-  useEffect(() => {
-    if (ready !== workspaceId) return;
-    try { localStorage.setItem(`affectui:${workspaceId}:companies`, JSON.stringify(state.rows)); } catch { /* Session editing still works. */ }
-  }, [ready, state.rows, workspaceId]);
+  const [rows, setRows, sync] = useResource(resources.companies, workspaceId, workspaceId === "acme" ? initialCompanies : []);
+  const [stored, setHistory] = useState<History>({ workspaceId, past: [], future: [] });
+  // History belongs to one workspace; switching workspace starts it afresh.
+  const history = stored.workspaceId === workspaceId ? stored : { workspaceId, past: [], future: [] };
   return {
-    rows: state.rows,
-    change: (rows: Company[]) => dispatch({ type: "change", rows }),
-    undo: () => dispatch({ type: "undo" }),
-    redo: () => dispatch({ type: "redo" }),
-    canUndo: state.past.length > 0,
-    canRedo: state.future.length > 0,
+    rows,
+    change: (next: Company[]) => {
+      if (JSON.stringify(rows) === JSON.stringify(next)) return;
+      setHistory({ workspaceId, past: [...history.past.slice(-99), rows], future: [] });
+      setRows(next);
+    },
+    undo: () => { if (!history.past.length) return; setHistory({ workspaceId, past: history.past.slice(0, -1), future: [rows, ...history.future] }); setRows(history.past.at(-1)!); },
+    redo: () => { if (!history.future.length) return; setHistory({ workspaceId, past: [...history.past, rows], future: history.future.slice(1) }); setRows(history.future[0]); },
+    canUndo: history.past.length > 0,
+    canRedo: history.future.length > 0,
+    sync,
   };
 }
 export type CrmEngine = ReturnType<typeof useCrmEngine>;

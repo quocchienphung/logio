@@ -1,0 +1,12 @@
+{
+  "base": "http://localhost:3100",
+  "passed": [
+    "Reports route, sidebar selection and source data",
+    "chart pointer tooltips, keyboard and boundaries",
+    "period numbers and paths animate to 30/90-day source data",
+    "period menu supports keyboard selection and outside dismissal",
+    "legend toggles series and preserves at least one visible line"
+  ],
+  "errors": [],
+  "failure": "page.waitForEvent: Timeout 12000ms exceeded while waiting for event \"download\"\n=========================== logs ===========================\nwaiting for event \"download\"\n============================================================"
+}

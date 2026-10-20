@@ -8,11 +8,23 @@ import icons from "./icons.json";
 import { AnalyticsChart } from "./AnalyticsChart";
 import { AnimatedNumber } from "./AnimatedNumber";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
-import { downloadFile, toCsv, useStoredState } from "../affectui-crm/workspace-state";
+import { downloadFile, toCsv } from "../affectui-crm/workspace-state";
 import "./analytics-reference.css";
 import "./analytics-overrides.css";
+import { conforms } from "@/lib/workspace-backend";
+import { useQuery, useResource } from "@/lib/workspace-backend/react";
+import { QueryNotice } from "@/lib/workspace-backend/SyncStatus";
+import { resources } from "../workspace-resources";
 
-interface SavedReport { id: string; name: string; days: number; savedAt: string }
+export type AnalyticsPeriod = (typeof seed)[number];
+/** What the backend's "analytics" answer must look like: the bundled sample's shape, with charts that can be drawn. */
+const parsePeriod = (raw: unknown): AnalyticsPeriod | undefined => {
+  if (!conforms(seed[0], raw)) return undefined;
+  const period = raw as AnalyticsPeriod;
+  const drawable = period.charts.length > 0 && period.charts.every(chart => chart.series.length > 0 && chart.series.every(line => line.values.length > 0 && line.values.length === chart.dates.length) && chart.xLabels.length >= 3);
+  return drawable ? period : undefined;
+};
+export interface SavedReport { id: string; name: string; days: number; savedAt: string }
 function AnalyticsIcon({ name }: { name: string }) {
   const svg = (icons as Record<string, string>)[name];
   return svg ? <span className="crm-icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: svg }} /> : null;
@@ -27,8 +39,8 @@ const statInfo: Record<string, string> = {
 };
 
 export function Analytics({ workspaceId, notify }: { workspaceId: string; notify: (message: string) => void }) {
-  const [days, setDays] = useStoredState(`affectui:${workspaceId}:report-period`, 7);
-  const [saved, setSaved] = useStoredState<SavedReport[]>(`affectui:${workspaceId}:reports`, []);
+  const [days, setDays] = useResource(resources.reportPeriod, workspaceId,  7);
+  const [saved, setSaved] = useResource(resources.reports, workspaceId,  []);
   const [periodMenu, setPeriodMenu] = useState(false);
   const [savedMenu, setSavedMenu] = useState(false);
   const [saveOpen, setSaveOpen] = useState(false);
@@ -43,7 +55,9 @@ export function Analytics({ workspaceId, notify }: { workspaceId: string; notify
     document.addEventListener("pointerdown", outside);
     return () => document.removeEventListener("pointerdown", outside);
   }, [periodMenu]);
-  const data = seed.find(period => period.days === days) || seed[0];
+  // The backend computes the report for the chosen period; the bundled sample is used when it has none.
+  const report = useQuery("analytics", workspaceId, { days }, seed.find(period => period.days === days) || seed[0], parsePeriod);
+  const data = report.data;
   const cap = (label: string) => <button type="button" className="ui-as-rev__cap" onClick={() => setInfo(info === label ? null : label)} aria-label={`About ${label.toLowerCase()}`}>{label}</button>;
 
   function exportReport() {
@@ -74,11 +88,14 @@ export function Analytics({ workspaceId, notify }: { workspaceId: string; notify
       <button type="button" className="ui-button" data-variant="primary" data-size="sm" onClick={() => setSaveOpen(true)}><span className="ui-button__label">Save as report</span></button>
     </div></header>
     <div className="ui-as-rev__content">
+      <QueryNotice query={report} what="revenue report" />
+      {report.phase === "ready" && <>
       <div className="ui-as-rev__stats">{data.stats.map((stat, index) => <motion.section className="ui-as-rev__card ui-as-rev__stat" key={stat.label} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduce ? 0 : 0.38, delay: reduce ? 0 : index * 0.035 }}>
         {cap(stat.label)}<div className="ui-as-rev__stat-row"><strong><AnimatedNumber value={stat.value} format={value => index === 0 ? `$${Math.round(value).toLocaleString("en-US")}` : index === 1 ? Math.round(value).toLocaleString("en-US") : `${value.toFixed(index === 2 ? 2 : 1)}%`} /><em>{stat.delta}</em></strong><span className="ui-as-rev__minibars" aria-hidden="true">{stat.bars.map((height, bar) => <motion.i key={bar} animate={{ height }} transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : bar * 0.025 }} />)}</span></div>
       </motion.section>)}</div>
       <div className="ui-as-rev__row ui-as-rev__row--main"><AnalyticsChart data={data.charts[0]} days={days} tall /><section className="ui-as-rev__card ui-as-rev__breakdown">{cap("Revenue breakdown")}<ul>{data.breakdown.map(item => <li key={item.label}><span>{item.label}</span><b><AnimatedNumber value={item.value} format={value => `${value < 0 ? "−" : ""}$${Math.round(Math.abs(value)).toLocaleString("en-US")}`} /></b><svg className="ui-as-rev__spark" data-tone={item.tone} viewBox="0 0 40 14" aria-hidden="true"><polyline points={item.points} /></svg></li>)}</ul></section></div>
       <div className="ui-as-rev__row ui-as-rev__row--3"><section className="ui-as-rev__card ui-as-rev__products">{cap("Top products")}{data.products.map(item => <button type="button" className="ui-as-rev__product" key={item.name} onClick={() => setProduct(item.name)}><span>{item.name}<b><AnimatedNumber value={item.value} format={value => `$${Math.round(value).toLocaleString("en-US")}`} /></b></span><motion.i animate={{ width: item.width }} transition={{ duration: reduce ? 0 : 0.7 }} /></button>)}</section><AnalyticsChart data={data.charts[1]} days={days} /><AnalyticsChart data={data.charts[2]} days={days} /></div>
+      </>}
     </div>
     <WorkspaceDialog open={saveOpen} title="Save report" onClose={() => setSaveOpen(false)}><form onSubmit={event => { event.preventDefault(); const name = String(new FormData(event.currentTarget).get("name")).trim(); if (!name) return; setSaved(current => [...current, { id: crypto.randomUUID(), name, days, savedAt: new Date().toISOString() }]); setSaveOpen(false); notify("Saved to Reports"); }}><label className="crm-field">Report name<input key={days} name="name" defaultValue={`Revenue · Last ${days} days`} required autoFocus maxLength={100} /></label><p>Includes the selected reporting period and all revenue charts.</p><div className="workspace-form-actions"><button type="button" className="ui-as-tool ui-as-tool--label" onClick={() => setSaveOpen(false)}>Cancel</button><button type="submit" className="ui-button" data-variant="primary" data-size="sm">Save report</button></div></form></WorkspaceDialog>
     <WorkspaceDialog open={info !== null} title={info || "Metric information"} onClose={() => setInfo(null)}><p>{info ? statInfo[info] : ""}</p><p>Reporting period: last {days} days.</p></WorkspaceDialog>

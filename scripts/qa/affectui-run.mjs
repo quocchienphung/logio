@@ -1,3 +1,4 @@
+import { openWorkspaceMenu } from "./lib/nav.mjs";
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium} from 'playwright';
@@ -34,15 +35,15 @@ try{
   });
   await check('Share downloads real run JSON; conversation displays actual workflow data',async()=>{
     await options('Share');const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Download snapshot',exact:true}).click();const download=await pending,chunks=[];for await(const chunk of await download.createReadStream())chunks.push(chunk);const data=JSON.parse(Buffer.concat(chunks).toString('utf8'));assert.equal(data.phase,'done');assert.equal(data.simulation,true);assert.equal(data.states.review.completedCalls,1);assert.match(data.draft,/Revenue grew 18/);await page.keyboard.press('Escape');
-    await options('View in Chat');assert.match(await page.locator('dialog[open]').innerText(),/Sent to maya@acme.com/);assert.match(await page.locator('dialog[open]').innerText(),/Rewrote the revenue paragraph/);await page.keyboard.press('Escape');
+    await options('View in Chat');assert.match(await page.locator('dialog[open]').innerText(),/Sent to maya@logio.com/);assert.match(await page.locator('dialog[open]').innerText(),/Rewrote the revenue paragraph/);await page.keyboard.press('Escape');
   });
   await check('Refresh preserves completed workflow and rerun resets reviewed draft',async()=>{
     await page.getByRole('button',{name:'Accept all',exact:true}).click();await page.reload({waitUntil:'networkidle'});await page.locator('.ui-ar').waitFor();assert.equal(await page.locator('.ui-ar').getAttribute('data-phase'),'done');assert.match(await page.locator('.ui-df').innerText(),/All changes reviewed/);
     await page.getByRole('button',{name:'Run again',exact:true}).click();await page.waitForTimeout(650);assert.equal(await page.locator('.ui-df__chg').count(),9);assert.equal(await page.locator('.ui-ar').getAttribute('data-phase'),'running');await page.getByRole('button',{name:'Stop run',exact:true}).click();
   });
   await check('Workspace progress and draft remain isolated',async()=>{
-    await page.locator('.ui-as-side__workspace').click();await page.getByRole('menuitemradio',{name:/Personal Free/}).click();await page.waitForTimeout(350);assert.equal(await page.locator('.ui-ar').getAttribute('data-phase'),'running');await page.getByRole('button',{name:'Stop run',exact:true}).click();
-    await page.locator('.ui-as-side__workspace').click();await page.getByRole('menuitemradio',{name:/Acme Pro/}).click();await page.waitForTimeout(350);assert.equal(await page.locator('.ui-ar').getAttribute('data-phase'),'stopped');assert.match(await page.locator('.ui-pl').innerText(),/Stopped by you/);
+    await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Personal/}).click();await page.waitForTimeout(350);assert.equal(await page.locator('.ui-ar').getAttribute('data-phase'),'running');await page.getByRole('button',{name:'Stop run',exact:true}).click();
+    await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Logio/}).click();await page.waitForTimeout(350);assert.equal(await page.locator('.ui-ar').getAttribute('data-phase'),'stopped');assert.match(await page.locator('.ui-pl').innerText(),/Stopped by you/);
   });
   await check('Mobile overlay has working close, focus trap and no page overflow',async()=>{
     await page.setViewportSize({width:390,height:844});await page.waitForTimeout(450);if(await page.getByRole('button',{name:'Close side panel',exact:true}).isVisible())await page.getByRole('button',{name:'Close side panel',exact:true}).click();await page.getByRole('button',{name:'Show side panel',exact:true}).tap();await page.waitForTimeout(450);

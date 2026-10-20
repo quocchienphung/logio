@@ -15,9 +15,9 @@ export const defaultRunSteps: RunStep[] = [
     {name:"docs.write",summary:"Added the churn chart",icon:"document",duration:600,args:{doc:"Board memo – Q3 2026",insert:"chart",data:"churn_rate"},result:{ok:true}},
   ]},
   {id:"send", title:"Send the draft to Maya", detail:"Needs your approval first", tool:"gmail.send", calls:[
-    {name:"gmail.send",summary:"Sent to maya@acme.com",icon:"mail",duration:600,args:{to:"maya@acme.com",subject:"Q3 board update – draft",attach:"Board memo – Q3 2026"},result:{id:"msg_8f2c",status:"sent"}},
+    {name:"gmail.send",summary:"Sent to maya@logio.com",icon:"mail",duration:600,args:{to:"maya@logio.com",subject:"Q3 board update – draft",attach:"Board memo – Q3 2026"},result:{id:"msg_8f2c",status:"sent"}},
   ],approval:{title:"Send the draft to Maya",description:"Emails the Q3 board memo draft for review before Friday.",risk:"medium",details:[{label:"To",value:"Maya Chen (CFO)"},{label:"Subject",value:"Q3 board update – draft"},{label:"Attachment",value:"Board memo – Q3 2026"}]}},
   {id:"review", title:"Book a review with Maya", detail:"30 minutes before the board meeting", tool:"calendar.create", calls:[
-    {name:"calendar.create",summary:"Thu, Oct 15 · 10:00",icon:"calendar",duration:700,args:{title:"Q3 board memo review",with:["maya@acme.com"],duration:30},result:{event:"evt_31a",time:"2026-10-15T10:00"}},
+    {name:"calendar.create",summary:"Thu, Oct 15 · 10:00",icon:"calendar",duration:700,args:{title:"Q3 board memo review",with:["maya@logio.com"],duration:30},result:{event:"evt_31a",time:"2026-10-15T10:00"}},
   ]},
 ];

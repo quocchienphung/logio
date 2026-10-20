@@ -1,5 +1,32 @@
 # affectUI → Guide me: bàn giao cho Claude Code
 
+## Assistant Home / Agent Chat — 2026-10-20
+
+**Agent Chat** mở `/personalize?section=new-chat`, dựng theo `https://www.affectui.com/screens/assistant-home/full`; sidebar gồm **New chat, Run, Settings**. Giữ Logio và đầu sidebar chỉ có Explore pages. UI/đối chiếu, file ownership, kiểm thử và giới hạn live nằm ở [Assistant brief](research/affectui-assistant/README.md); [API contract](research/affectui-assistant/api-contract.md) tái dùng cấu hình/xác thực backend workspace của Claude Code. Adapter chat có gửi tin, retry idempotent, hủy, history, upload, xóa và kết nối app. Chưa có backend chat live được cấu hình; khi chưa nối backend, giữ tin nháp và hiển thị lỗi đúng thay vì tạo câu trả lời giả.
+
+
+## Backend API cho mọi section Guide me — 2026-10-20
+
+Mọi dữ liệu của Guide me (Home, Companies, Contacts, Deals, Reports, Run, Settings, Mapping, Invoice, pipelines, shell) đi qua một lớp duy nhất: `src/lib/workspace-backend/`. Màn hình **không** gọi `localStorage` hay `fetch` trực tiếp; chúng đọc/ghi các *resource* được khai báo ở `src/components/sites/workspace-resources.ts` bằng `useResource` / `useQuery` (`react.tsx`).
+
+- **Mặc định (không cấu hình gì): backend local.** Dữ liệu ở `localStorage` đúng các key cũ, đồng bộ giữa các tab, không có request nào ra ngoài. Toàn bộ QA cũ vẫn chạy trên chế độ này.
+- **REST:** đặt `NEXT_PUBLIC_WORKSPACE_API_URL` hoặc `window.__workspaceBackendConfig = { baseUrl, headers, … }`. Hợp đồng route/JSON/status/phiên bản (If-Match), `changes` (create/update/delete theo id), `commands` (Mapping), query (`analytics`, `usage`, `invoices`, `plans`), command (`api-key.create`), upload (logo, avatar, document) và Run do server điều khiển (`serverRun: true`) nằm ở **`docs/backend-api.md`**. Hợp đồng này do phía FE định nghĩa, chưa có server nào; dùng `resolveUrl` nếu API thật khác route.
+- **Backend khác:** hiện thực interface `WorkspaceBackend` (`types.ts`) và truyền vào `<WorkspaceBackendProvider backend>` (đặt trong `PersonalizeApp`).
+- Hành vi chung: sửa hiện ngay, lưu sau ~400 ms (một request tại một thời điểm, luôn gửi giá trị mới nhất), tự thử lại khi mất mạng/5xx (3 lần), xung đột thì tải lại bản đã lưu, thanh trạng thái `SyncStatus` ở sidebar báo đang tải/đang lưu/lỗi + nút Retry. Dữ liệu server trả về được kiểm tra hình dạng trước khi vào UI; dữ liệu sai bị bỏ qua và báo lỗi, không làm hỏng màn hình. **Secret (giá trị API key) không bao giờ được gửi lên hoặc đọc lại**; server tạo key qua command và secret chỉ hiện một lần.
+- Màn hình tính toán (Reports, usage/plans/invoices trong Settings) đọc qua `useQuery`: server không có dữ liệu (204/404) thì dùng dữ liệu mẫu kèm sẵn; server lỗi thì hiện dữ liệu mẫu **cùng thông báo lỗi và nút Retry**.
+- Mapping và Invoice vẫn là component độc lập chỉ biết interface `dataSource` của riêng chúng; `BackendMapping.tsx` / `BackendInvoice.tsx` nối chúng với backend chung qua `createSnapshotSource`.
+- Run: mặc định trình duyệt mô phỏng; khi `serverRun: true` server chạy agent, UI chỉ gửi hành động (`approve`, `deny`, `stop`, …) và hiển thị snapshot server trả về (poll), không chạy đồng hồ cục bộ.
+- Kiểm thử: `npm test` (26 unit test cho route, version, retry, conflict, secret, query, upload, run), `node scripts/qa/backend.mjs [base-url]` (UI thật chạy với REST giả lập bằng Playwright). Bằng chứng ảnh nằm ở `docs/research/backend/`.
+- Lưu ý: `useBrandedStoredState.ts` đã bị xóa vì `useResource` thay thế `useStoredState`; việc đổi Acme → Logio giờ chạy qua hook `normalize` của resource (`logioContent`).
+
+## Model Picker trong New chat — 2026-10-20
+
+Dropdown chọn model trong composer của **New chat** (Agent Chat) đã được thay bằng **Model Picker** dựng lại từ preview công khai `https://www.affectui.com/components/model-picker` (chỉ quan sát giao diện; phần code Pro không được đọc hay dùng, không gọi service nào của site đó). Tài liệu đầy đủ, bằng chứng đo và so sánh: `docs/research/model-picker/README.md`.
+
+- Component độc lập: `src/components/sites/affectui-model-picker/` (`ModelPicker.tsx`, `model-picker-logic.ts`, `model-picker.css`). Menu là popover native (top layer nên không bị cắt), tự mở lên trên khi composer nằm dưới đáy (chế độ chat), danh sách cuộn có mờ viền khi cửa sổ thấp. Hover hàng thì thanh Speed/Quality/Cost đổ màu lần lượt, footer cuộn số first-token và giá; bật Extended thinking thì hàng Effort bung ra, bóng đèn sáng ở trigger, thời gian nhân ×1.6/×2.5/×4; Web search dùng chung trạng thái với plugin Web search. Bàn phím, aria, dark mode, touch, reduced motion đều có.
+- Danh sách model ở `src/components/sites/affectui-assistant/assistant-models.ts` (Claude: Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5; ChatGPT: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Luna; Gemini; Auto). **Lưu ý:** các thanh 1-5 là đánh giá của mình theo yêu cầu, không phải benchmark; thời gian first-token và giá/1M token là số tham khảo từ các trang tổng hợp của bên thứ ba, tên/id/giá của OpenAI là chưa kiểm chứng (các nguồn mâu thuẫn). Sửa file này cho khớp gói và backend của bạn; `id` của model chính là giá trị gửi lên API.
+- API chat: `model` giờ là id cụ thể (id cũ `claude`/`chatgpt` đã lưu trong trình duyệt được tự chuyển sang `claude-sonnet-5-5`/`gpt-6-1-sol`), thêm `thinking` và `effort` (chỉ gửi khi bật thinking). Xem `docs/research/affectui-assistant/api-contract.md`.
+- QA: `node scripts/qa/model-picker.mjs`, so sánh style với bản gốc `node scripts/forensics/affectui-model-picker-compare.mjs`; `scripts/qa/affectui-assistant.mjs` đã được cập nhật theo picker mới.
 
 ## Mapping — 2026-10-20
 
@@ -139,3 +166,6 @@ Kết quả bản mở rộng: 11 nhóm workflow CRM và 17 nhóm workspace/Anal
 ## Prompt tiếp nối cho Claude Code
 
 > Đọc AGENTS.md, docs/affectui-handoff.md và skill clone-website. Mở docs/research/affectui-library/README.md và tìm item cần dựng trong manifest/engine-map. Đọc JSON, ảnh và CSS hash của item đó; khảo sát thêm public preview để ghi rõ trigger/state/responsive. Tái dùng shell/tokens/fonts và cơ chế state phù hợp của affectui-crm, viết React/TypeScript có thể sửa, không import bundle production. Giữ nguyên các route Stripe. Chạy workflow thật bằng Playwright, so ảnh cùng viewport/state, sau đó npm run check. Báo rõ phần chưa quan sát hoặc đang mô phỏng.
+# Files / Agent Chat — 2026-10-20
+
+**Files** mở `/personalize?section=files`, sau **New chat** trong Agent Chat; thư mục con dùng `&folder=...`. Dựng React/CSS riêng dựa trên public preview `https://www.affectui.com/screens/files/full`, không dùng API/bundle của affectUI. Có filter/search/sort, grid/list, tạo/sửa/chia sẻ/xóa thư mục, tạo/sửa/di chuyển/tải/xóa file mẫu, upload file thật với retry/cancel và drag/drop. Thư mục dùng chung với composer của chat. Binaries local lưu IndexedDB; dữ liệu đi qua `useResource`, REST và multipart upload dùng backend chung. Đọc [brief, bằng chứng, file ownership và QA](research/affectui-files/README.md), [API contract cho BE](research/affectui-files/api-contract.md). Chưa có BE live được cấu hình; mock REST đã kiểm tra auth, multipart, revision, retry và 401. Rename/delete thư mục cần hai resource saves; atomic transaction và blob GC thuộc BE. UI ở `src/components/sites/affectui-files/`, CSS tự viết trong `files.css`.

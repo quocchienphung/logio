@@ -1,0 +1,422 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "contentDiffPercent": 0,
+    "source": {
+      "content": {
+        "width": 672,
+        "height": 982
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 72.78125,
+          "y": 346.5,
+          "width": 526.4375,
+          "height": 34,
+          "font": "500 28px / 34px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "-0.7px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 410.5,
+          "width": 672,
+          "height": 136,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 428.5,
+          "width": 640,
+          "height": 20,
+          "font": "14px / 20px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 34.453125,
+          "y": 564.5,
+          "width": 603.078125,
+          "height": 71,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 34.453125,
+          "y": 564.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "12px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    },
+    "local": {
+      "content": {
+        "width": 672,
+        "height": 982
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 72.78125,
+          "y": 346.5,
+          "width": 526.421875,
+          "height": 34,
+          "font": "",
+          "letterSpacing": "-0.7px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 410.5,
+          "width": 672,
+          "height": 136,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 428.5,
+          "width": 640,
+          "height": 20,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 34.453125,
+          "y": 564.5,
+          "width": 603.078125,
+          "height": 71,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 34.453125,
+          "y": 564.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    }
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "contentDiffPercent": 0,
+    "source": {
+      "content": {
+        "width": 352,
+        "height": 830
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 0,
+          "y": 234.5,
+          "width": 352,
+          "height": 58,
+          "font": "500 23px / 29px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "-0.575px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 314.5,
+          "width": 352,
+          "height": 136,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 332.5,
+          "width": 320,
+          "height": 20,
+          "font": "14px / 20px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 0,
+          "y": 464.5,
+          "width": 352,
+          "height": 147,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 19.03125,
+          "y": 464.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "12px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    },
+    "local": {
+      "content": {
+        "width": 352,
+        "height": 830
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 0,
+          "y": 234.5,
+          "width": 352,
+          "height": 58,
+          "font": "",
+          "letterSpacing": "-0.575px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 314.5,
+          "width": 352,
+          "height": 136,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 332.5,
+          "width": 320,
+          "height": 20,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 0,
+          "y": 464.5,
+          "width": 352,
+          "height": 147,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 19.03125,
+          "y": 464.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    }
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "contentDiffPercent": 0,
+    "source": {
+      "content": {
+        "width": 672,
+        "height": 1006
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 72.78125,
+          "y": 358.5,
+          "width": 526.4375,
+          "height": 34,
+          "font": "500 28px / 34px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "-0.7px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 422.5,
+          "width": 672,
+          "height": 136,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 440.5,
+          "width": 640,
+          "height": 20,
+          "font": "14px / 20px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 34.453125,
+          "y": 576.5,
+          "width": 603.078125,
+          "height": 71,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 34.453125,
+          "y": 576.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "12px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    },
+    "local": {
+      "content": {
+        "width": 672,
+        "height": 1006
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 72.78125,
+          "y": 358.5,
+          "width": 526.421875,
+          "height": 34,
+          "font": "",
+          "letterSpacing": "-0.7px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 422.5,
+          "width": 672,
+          "height": 136,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 440.5,
+          "width": 640,
+          "height": 20,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 34.453125,
+          "y": 576.5,
+          "width": 603.078125,
+          "height": 71,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 34.453125,
+          "y": 576.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    }
+  },
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "contentDiffPercent": 0,
+    "source": {
+      "content": {
+        "width": 672,
+        "height": 1062
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 72.78125,
+          "y": 386.5,
+          "width": 526.4375,
+          "height": 34,
+          "font": "500 28px / 34px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "-0.7px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 450.5,
+          "width": 672,
+          "height": 136,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 468.5,
+          "width": 640,
+          "height": 20,
+          "font": "14px / 20px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 34.453125,
+          "y": 604.5,
+          "width": 603.078125,
+          "height": 71,
+          "font": "13px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 34.453125,
+          "y": 604.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "12px / 18.571px Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    },
+    "local": {
+      "content": {
+        "width": 672,
+        "height": 1062
+      },
+      "fields": {
+        ".ui-as-start__title": {
+          "x": 72.78125,
+          "y": 386.5,
+          "width": 526.421875,
+          "height": 34,
+          "font": "",
+          "letterSpacing": "-0.7px"
+        },
+        ".ui-as-composer": {
+          "x": 0,
+          "y": 450.5,
+          "width": 672,
+          "height": 136,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-composer__field": {
+          "x": 18,
+          "y": 468.5,
+          "width": 640,
+          "height": 20,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chips": {
+          "x": 34.453125,
+          "y": 604.5,
+          "width": 603.078125,
+          "height": 71,
+          "font": "",
+          "letterSpacing": "normal"
+        },
+        ".ui-as-chip": {
+          "x": 34.453125,
+          "y": 604.5,
+          "width": 164.796875,
+          "height": 32,
+          "font": "",
+          "letterSpacing": "normal"
+        }
+      },
+      "overflow": false
+    }
+  }
+]

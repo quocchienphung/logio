@@ -96,7 +96,7 @@ function UsageDemo({ look, today }: { look: UsageMeterLook; today: Date }) {
     <div className="usage-demo" onPointerDown={() => (touched.current = true)} onKeyDown={() => (touched.current = true)}>
       <UsageMeter
         look={look}
-        title="Acme AI"
+        title="Logio AI"
         plan="Pro plan"
         total={10000}
         used={used}

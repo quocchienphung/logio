@@ -4,7 +4,10 @@ import { useState } from "react";
 import { Check, ChevronDown, ImagePlus, Plus } from "lucide-react";
 import { WorkspaceDialog } from "./WorkspaceDialog";
 import { Combobox } from "../affectui-combobox/Combobox";
-import { useStoredState } from "./workspace-state";
+import { BackendError, storeFile } from "@/lib/workspace-backend";
+import { useResource, useWorkspaceBackend } from "@/lib/workspace-backend/react";
+import { resources } from "../workspace-resources";
+
 
 export interface WorkspaceProfile { name: string; email: string; role: string; avatar?: string }
 export interface WorkspacePreferences { dark: boolean; emailNotifications: boolean; desktopNotifications: boolean }
@@ -39,11 +42,12 @@ export function WorkspaceEditors({ kind, open, onClose, profile, setProfile, pre
 function ProfileForm({ profile, onSave }: { profile: WorkspaceProfile; onSave: (profile: WorkspaceProfile) => void }) {
   const [avatar,setAvatar]=useState(profile.avatar || "");
   const [error,setError]=useState("");
+  const backend=useWorkspaceBackend();
   return <form onSubmit={event=>{event.preventDefault();const data=new FormData(event.currentTarget);const name=String(data.get("name")).trim();if(!name)return;onSave({name,email:String(data.get("email")),role:String(data.get("role")),avatar});}}>
     <label className="workspace-avatar-upload">{avatar ? <img src={avatar} alt="Profile picture preview" /> : <span>{profile.name.split(" ").map(word=>word[0]).slice(0,2).join("")}</span>}<span><ImagePlus size={15} />Choose profile picture</span><input aria-label="Choose profile picture" type="file" accept="image/png,image/jpeg,image/webp" onChange={event=>{
       const file=event.target.files?.[0];if(!file)return;
       if(file.size>2*1024*1024){setError("Choose an image smaller than 2 MB.");return;}
-      const reader=new FileReader();reader.onload=()=>{setAvatar(String(reader.result));setError("");};reader.readAsDataURL(file);
+      storeFile(backend,undefined,"avatar",file).then(url=>{setAvatar(url);setError("");}).catch(failure=>setError(failure instanceof BackendError ? failure.message : "This image could not be opened."));
     }} /></label>{error && <p className="workspace-form-error" role="alert">{error}</p>}
     <label className="crm-field">Name<input name="name" defaultValue={profile.name} required maxLength={60} /></label><label className="crm-field">Email<input name="email" type="email" defaultValue={profile.email} required /></label><label className="crm-field">Role<input name="role" defaultValue={profile.role} /></label><div className="workspace-form-actions"><button type="submit" className="ui-button" data-variant="primary" data-size="sm">Save profile</button></div>
   </form>;
@@ -51,7 +55,7 @@ function ProfileForm({ profile, onSave }: { profile: WorkspaceProfile; onSave: (
 
 function HelpPanel({ notify }: { notify: (message: string) => void }) {
   const [expanded,setExpanded]=useState<string|null>("How do I edit company data?");
-  const [feedback,setFeedback]=useStoredState<{id:string;text:string}[]>("affectui:feedback",[]);
+  const [feedback,setFeedback]=useResource(resources.feedback, undefined, []);
   const [saved,setSaved]=useState(false);
   const faqs=[
     {question:"How do I edit company data?",answer:"Double-click a cell or press Enter. Use Tab to move, Shift + arrow keys to select a range, and Ctrl/Cmd + C or V to copy and paste. Ctrl/Cmd + Z undoes a change."},

@@ -1,3 +1,4 @@
+import { openWorkspaceMenu } from "./lib/nav.mjs";
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
@@ -66,8 +67,8 @@ try {
     await page.reload({waitUntil:'networkidle'});await page.getByRole('button',{name:'Create key',exact:true}).waitFor();assert.match(page.url(),/settings-tab=api-keys/);
   });
   await check('Workspace data remains isolated; Settings user menu routes correctly',async()=>{
-    await tab('Billing');await page.locator('.ui-as-side__workspace').click();await page.getByRole('menuitemradio',{name:/Personal Free/}).click();await page.locator('.ui-sb-plan').waitFor();assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Pro/);assert.match(await page.locator('.ui-sb-pay').innerText(),/4242/);
-    await page.locator('.ui-as-side__workspace').click();await page.getByRole('menuitemradio',{name:/Acme Pro/}).click();await page.waitForTimeout(350);assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Team/);
+    await tab('Billing');await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Personal/}).click();await page.locator('.ui-sb-plan').waitFor();assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Pro/);assert.match(await page.locator('.ui-sb-pay').innerText(),/4242/);
+    await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Logio/}).click();await page.waitForTimeout(350);assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Team/);
     await nav('Reports');await page.locator('.ui-as-rev').waitFor();await page.locator('.ui-as-user').click();await page.getByRole('menuitem',{name:'Settings',exact:true}).click();await page.locator('.ui-sb').waitFor();
     await nav('Companies');await page.getByRole('button',{name:'Company CRM',exact:true}).click();assert.equal(await page.locator('.ui-dt tbody tr').count(),10);await nav('Settings');
   });

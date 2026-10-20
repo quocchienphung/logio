@@ -81,7 +81,7 @@ try {
   });
   await check('Each group opens its workspace entry and Explore pages returns to that group', async () => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    const entry = { Sales: ['Invoice', ['Invoice']], 'Agent Chat': ['Run', ['Run', 'Settings']], CRM: ['Home', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships']], 'Project Management': ['Mapping', ['Mapping']] };
+    const entry = { Sales: ['Invoice', ['Invoice']], 'Agent Chat': ['New chat', ['New chat', 'Files', 'Run', 'Settings']], CRM: ['Home', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships']], 'Project Management': ['Mapping', ['Mapping']] };
     for (const [name, [label, pages]] of Object.entries(entry)) {
       await open();
       await item(name).click();
@@ -100,7 +100,7 @@ try {
     await page.locator('.guide-preview').click();
     await page.locator('.crm-page').waitFor();
     assert.deepEqual(await page.locator('.ui-as-side__nav .workspace-nav-label').allInnerTexts(), ['Invoice']);
-    for (const [label, pages, pipelines] of [['Deals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true], ['Run', ['Run', 'Settings'], false], ['Mapping', ['Mapping'], false], ['Settings', ['Run', 'Settings'], false], ['Renewals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true]]) {
+    for (const [label, pages, pipelines] of [['Deals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true], ['Run', ['New chat', 'Files', 'Run', 'Settings'], false], ['Mapping', ['Mapping'], false], ['Settings', ['New chat', 'Files', 'Run', 'Settings'], false], ['Renewals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true]]) {
       await goToSection(page, label);
       await page.locator('.ui-as-side__item[aria-current="page"]').filter({ hasText: new RegExp(`^${label}$`) }).waitFor();
       assert.deepEqual(await page.locator('.ui-as-side__nav .workspace-nav-label').allInnerTexts(), pages, `${label} sidebar`);

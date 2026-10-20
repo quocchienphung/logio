@@ -1,0 +1,261 @@
+{
+  "writingHtml": "<div class=\"ui-wac__messages\" aria-live=\"polite\"><p class=\"ui-wac__msg ui-wac__msg--user\">Please shorten this paragraph</p><p class=\"ui-wac__msg ui-wac__msg--assistant ui-wac__typing\" aria-label=\"Writing\"><span class=\"ui-wac__shimmer\" data-text=\"Writing…\" aria-hidden=\"true\">Writing…</span></p></div>",
+  "during": {
+    "micDisabled": true,
+    "sendExists": 0,
+    "taDisabled": false,
+    "taReadonly": false,
+    "active": "TEXTAREA.",
+    "busy": null
+  },
+  "t0": 3054,
+  "rec": [
+    {
+      "t": 90,
+      "words": 1,
+      "text": "Writing…",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 792,
+      "words": 20,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 134
+    },
+    {
+      "t": 832,
+      "words": 1,
+      "text": "Here's",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 869,
+      "words": 2,
+      "text": "Here's a",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 906,
+      "words": 3,
+      "text": "Here's a tighter",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 948,
+      "words": 4,
+      "text": "Here's a tighter version:",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 985,
+      "words": 5,
+      "text": "Here's a tighter version: “Thanks",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 1021,
+      "words": 6,
+      "text": "Here's a tighter version: “Thanks for",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 1059,
+      "words": 7,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 1100,
+      "words": 8,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 94
+    },
+    {
+      "t": 1136,
+      "words": 9,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1172,
+      "words": 10,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1214,
+      "words": 11,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1251,
+      "words": 12,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1287,
+      "words": 13,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1324,
+      "words": 14,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1366,
+      "words": 15,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1400,
+      "words": 16,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1439,
+      "words": 17,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 114
+    },
+    {
+      "t": 1475,
+      "words": 18,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 134
+    },
+    {
+      "t": 1518,
+      "words": 19,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 134
+    },
+    {
+      "t": 1554,
+      "words": 20,
+      "text": "Here's a tighter version: “Thanks for th",
+      "st": 0,
+      "sh": 134
+    }
+  ],
+  "activeAfter": "TEXTAREA.",
+  "taValueAfter": "",
+  "multi": {
+    "st": 302,
+    "sh": 598,
+    "ch": 296,
+    "n": 10
+  },
+  "afterShiftEnter": {
+    "v": "\n",
+    "h": 48
+  },
+  "grown": {
+    "h": 88,
+    "sh": 188
+  },
+  "sendWhenBlank": 1,
+  "micWithText": {
+    "value": "Write a friendly",
+    "ph": "Listening…",
+    "pressed": "true"
+  },
+  "afterMicWithText": "Write a friendly reminder that the report is due on Friday\n\nHi team, just a friendly nudge: the report is",
+  "stopEarly": {
+    "value": "Write a friendly reminder that the report is",
+    "messages": "Write a friendly reminder that the report is due on Friday\n\nWriting…",
+    "chat": true
+  },
+  "glowBlobs": [
+    {
+      "w": 216.75372314453125,
+      "h": 133.7557373046875
+    },
+    {
+      "w": 174.84234619140625,
+      "h": 121.67864990234375
+    },
+    {
+      "w": 270.89752197265625,
+      "h": 156.37957763671875
+    }
+  ],
+  "layout": {
+    "card": null,
+    "head": {
+      "x": 0,
+      "y": 0,
+      "w": 380,
+      "h": 61
+    },
+    "body": {
+      "x": 0,
+      "y": 61,
+      "w": 380,
+      "h": 340
+    },
+    "welcome": {
+      "x": 0,
+      "y": 227,
+      "w": 380,
+      "h": 130
+    },
+    "greeting": {
+      "x": 16,
+      "y": 243,
+      "w": 348,
+      "h": 24
+    },
+    "chips": {
+      "x": 16,
+      "y": 279,
+      "w": 348,
+      "h": 62
+    },
+    "row": {
+      "x": 0,
+      "y": 357,
+      "w": 380,
+      "h": 44
+    },
+    "field": {
+      "x": 16,
+      "y": 363,
+      "w": 318,
+      "h": 28
+    },
+    "mic": {
+      "x": 342,
+      "y": 363,
+      "w": 28,
+      "h": 28
+    }
+  }
+}

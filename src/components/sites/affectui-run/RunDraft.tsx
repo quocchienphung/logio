@@ -1,11 +1,13 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { useStoredState } from "../affectui-crm/workspace-state";
+
 import "./run-draft.css";
+import { useResource } from "@/lib/workspace-backend/react";
+import { resources } from "../workspace-resources";
 
 type Decision = "pending" | "accepted" | "rejected";
-type DraftState = { decisions: Decision[]; history: Decision[][] };
+export type DraftState = { decisions: Decision[]; history: Decision[][] };
 type Suggestion = { before: string; after: string; following: string };
 
 const suggestions: Suggestion[] = [
@@ -32,7 +34,7 @@ export function RunDraft({ workspaceId, resetKey = 0, notify, onTextChange }: {
   notify: (message: string) => void;
   onTextChange?: (text: string) => void;
 }) {
-  const [stored, setStored] = useStoredState<DraftState>(`affectui:${workspaceId}:run-draft`, initialState);
+  const [stored, setStored] = useResource(resources.runDraft, workspaceId,  initialState);
   const state = stored?.decisions?.length === suggestions.length && Array.isArray(stored.history) ? stored : initialState;
   const [active, setActive] = useState<number | null>(null);
   const [position, setPosition] = useState({ left: 8, top: 8 });

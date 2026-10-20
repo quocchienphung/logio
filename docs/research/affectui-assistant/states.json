@@ -1,0 +1,52 @@
+[
+  {
+    "name": "plugins",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\nGood afternoon! What's next on your list?\nPlugins\nPlugins\nWeb search\nLook things up while answering\nCanvas\nWrite and edit side by side\nImage generation\nCreate images from a prompt\nAuto\nWork in a folder\nConnect apps\nCompany knowledge\nCreate document\nCreate presentation\nCreate table\nGenerate image\nDeep research\nVisualize data",
+    "field": ""
+  },
+  {
+    "name": "auto",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\nGood afternoon! What's next on your list?\nPlugins\nAuto\nModel\nAuto\nPicks the best model for each task\nClaude\nThoughtful writing and code\nChatGPT\nQuick answers for everyday tasks\nGemini\nLong documents and research\nWork in a folder\nConnect apps\nCompany knowledge\nCreate document\nCreate presentation\nCreate table\nGenerate image\nDeep research\nVisualize data",
+    "field": ""
+  },
+  {
+    "name": "work-in-a-folder",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\nGood afternoon! What's next on your list?\nPlugins\nAuto\nWork in a folder\nWork in a folder\nQ3 Campaign\nBrand assets\nHiring\nResearch\nConnect apps\nCompany knowledge\nCreate document\nCreate presentation\nCreate table\nGenerate image\nDeep research\nVisualize data",
+    "field": ""
+  },
+  {
+    "name": "connect-apps",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\nGood afternoon! What's next on your list?\nPlugins\nAuto\nWork in a folder\nConnect apps\nApps\nGmail\nConnected\nSlack\nNot connected\nClickUp\nNot connected\nCompany knowledge\nCreate document\nCreate presentation\nCreate table\nGenerate image\nDeep research\nVisualize data",
+    "field": ""
+  },
+  {
+    "name": "invite-people",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\nGood afternoon! What's next on your list?\nPlugins\nAuto\nWork in a folder\nConnect apps\nCompany knowledge\nCreate document\nCreate presentation\nCreate table\nGenerate image\nDeep research\nVisualize data",
+    "field": ""
+  },
+  {
+    "name": "company-knowledge",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\n\nCompany knowledge\n\nAssistant\nThinking\n0s\nPlugins\nAuto\nWork in a folder\nConnect apps",
+    "field": ""
+  },
+  {
+    "name": "create-document",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\n\nCreate document\n\nAssistant\nThinking\n0s\nPlugins\nAuto\nWork in a folder\nConnect apps",
+    "field": ""
+  },
+  {
+    "name": "folders",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nFiles\n\nSee files you recently used in chats and manage files saved in folders. Learn more\n\nFolders\nAll\nShared\nPrivate\nCreate folder\nBrand assets\nShared · 3 files\nHiring\nPrivate · 4 files\nQ3 Campaign\nShared · 5 files\nResearch\nPrivate · 2 files\nFile templates\nAll\nMine\nShared with me\nType\nAdd template\nPDF\nBrand-Guidelines\nPDF · Jonas Weber ·\nShared\nXLS\nCampaign-Budget\nSpreadsheet · Jonas Weber ·\nShared\nDOC\nDesign-Book\nDocument · Alex Morgan ·\nPrivate\nXLS\nWeekly-Report\nSpreadsheet · Alex Morgan ·\nPrivate",
+    "field": null
+  },
+  {
+    "name": "integrations",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nIntegrations\n\nConnect the tools your team already uses and work with them right in the chat.\n\nAll\nConnected\nAvailable\nRequest\nPopular\nSlack\nGet alerts in your channels and act on them without leaving the conversation.\nNotion\nTurn records into pages and keep project docs in sync both ways.\nLinear\nCreate issues from customer feedback and track them to release.\nFigma\nPreview designs inline and link frames to the work they belong to.\nGitHub\nLink pull requests and see deploy status next to every task.\nHubSpot\nKeep contacts, companies and deals matched across both tools.\nStripe, Zapier and 2 more\nGoogle\nGoogle Drive\nPick files from Drive and preview them without downloading.\nGoogle Calendar\nSee upcoming meetings with every contact in one timeline.\nGoogle Analytics\nAttribute signups to the campaigns and pages that brought them.\nCommunication\nZoom\nStart meetings from any record and save the recording link.\nDiscord\nPost updates to community channels when something ships.\nIntercom\nSee conversations next to the customer and reply from one place.\nCalendly\nLog booked meetings and the answers people gave when booking.\nTypeform\nCreate records from form answers the moment they come in.\nDropbox\nAttach files from Dropbox and keep shared folders linked.\nMixpanel, Make and 1 more",
+    "field": null
+  },
+  {
+    "name": "send",
+    "text": "A\nAcme\nNew chat\nFolders\nIntegrations\nProjects\nQ3 Campaign\nBrand assets\nHiring\nResearch\nNew in Acme\nNew in Acme\nShared folders\nFull changelog\nGetting started\n13% done · Great start!\nAM\nAlex Morgan\nInvite people\n\nHelp me plan our launch\n\nAssistant\nThinking\n0s\nPlugins\nAuto\nWork in a folder\nConnect apps",
+    "field": ""
+  }
+]

@@ -6,10 +6,12 @@ import { Check, Copy, LoaderCircle } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
 import { Combobox, type ComboboxOption } from "../affectui-combobox/Combobox";
 import { numberFormat, stages, tones, type Company, type CrmEngine } from "./crm-engine";
-import { useStoredState } from "./workspace-state";
+
 
 const stageOptions: ComboboxOption[] = [...stages, "Lost"].map(value => ({ value, label: value }));
 import { AnimatedNumber } from "../affectui-analytics/AnimatedNumber";
+import { useResource } from "@/lib/workspace-backend/react";
+import { resources } from "../workspace-resources";
 export { SalesDocuments } from "./WorkspaceDocuments";
 
 export const crmTabs = ["Company CRM", "Team strategy", "Pixel integration", "Sales docs"] as const;
@@ -33,16 +35,16 @@ export function PipelineBoard({ engine, filter, onOpenCompany, includeLost = fal
   })}</div></LayoutGroup>;
 }
 
-const snippet=`<script async src="https://cdn.acme.com/pixel.js"></script>
+const snippet=`<script async src="https://cdn.logio.com/pixel.js"></script>
 <script>
-  window.acme = window.acme || [];
-  acme.push(["init", "px_4f9a21"]);
-  acme.push(["track", "page_view"]);
+  window.logio = window.logio || [];
+  logio.push(["init", "px_4f9a21"]);
+  logio.push(["track", "page_view"]);
 </script>`;
 
 export function PixelIntegration({ workspaceId="acme" }: { workspaceId?:string }) {
   const [copied,setCopied]=useState(false);
-  const [connected,setConnected]=useStoredState(`affectui:${workspaceId}:pixel-connected`,false);
+  const [connected,setConnected]=useResource(resources.pixelConnected, workspaceId, false);
   const [busy,setBusy]=useState(false);
   const [error,setError]=useState("");
   const timer=useRef<ReturnType<typeof setTimeout>|null>(null);

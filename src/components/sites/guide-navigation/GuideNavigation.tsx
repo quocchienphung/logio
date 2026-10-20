@@ -4,8 +4,10 @@ import { useCallback, useLayoutEffect, useRef, useState, useSyncExternalStore } 
 import type { CSSProperties, KeyboardEvent, MouseEvent, PointerEvent } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { defaultGuideIndex, guideGroups, navigateWorkspaceHref, subscribeLocation } from "./navigation-model";
+import { defaultGuideIndex, guideGroups, liveFrameOf, navigateWorkspaceHref, subscribeLocation } from "./navigation-model";
 import { WorkspaceLink } from "./WorkspaceLink";
+import { WorkspaceBackendProvider } from "@/lib/workspace-backend/react";
+import { WritingAssistant } from "../affectui-writing-assistant/WritingAssistant";
 import "../affectui-fonts.css";
 import "./guide-navigation.css";
 
@@ -20,9 +22,9 @@ export function PersonalizeApp({ initialBrowse = false, initialGroup }: { initia
     return initialGroup ? `?browse=1&group=${encodeURIComponent(initialGroup)}` : "?browse=1";
   });
   const params = new URLSearchParams(search);
-  return params.get("browse") === "1"
+  return <WorkspaceBackendProvider>{params.get("browse") === "1"
     ? <GuideNavigation key={params.get("group") || "default"} initialGroup={params.get("group")} />
-    : <Workspace />;
+    : <Workspace />}</WorkspaceBackendProvider>;
 }
 
 function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
@@ -37,6 +39,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   const list = useRef<HTMLUListElement>(null);
   // A touch tap on an inactive row only selects it, as hover would; the next tap opens it.
   const press = useRef({ type: "", wasActive: false });
+  const preview = useRef<HTMLDivElement>(null);
 
   const measure = useCallback(() => {
     const row = rows.current[active];
@@ -69,8 +72,11 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     return true;
   }
 
-  function select(index: number) {
-    if (index === activeRef.current) return;
+  // While someone is working in a live frame, passing the pointer over a row must not pull the frame away.
+  const workingInPreview = () => !!preview.current?.contains(document.activeElement) && document.activeElement !== preview.current;
+
+  function select(index: number, fromPointer = false) {
+    if (index === activeRef.current || (fromPointer && workingInPreview())) return;
     activeRef.current = index;
     setActive(index);
     clearTimeout(urlTimer.current);
@@ -117,7 +123,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
                 className="guide-item"
                 aria-current={index === active ? "true" : undefined}
                 ref={element => { rows.current[index] = element; }}
-                onPointerEnter={event => { if (event.pointerType !== "touch") select(index); }}
+                onPointerEnter={event => { if (event.pointerType !== "touch") select(index, true); }}
                 onPointerDown={event => onPointerDown(event, index)}
                 onFocus={() => select(index)}
                 onClick={event => onClick(event, index)}
@@ -128,13 +134,24 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
             </li>)}
           </ul>
         </nav>
-        <WorkspaceLink href={guideGroups[active].href} className="guide-preview" tabIndex={-1} aria-label={`Open ${guideGroups[active].name}`}>
-          <span className="guide-preview__strip" style={{ "--guide-index": active, "--guide-count": guideGroups.length } as CSSProperties}>
-            {guideGroups.map((group, index) => <span className="guide-preview__frame" key={group.id} data-empty={group.image ? undefined : ""}>
-              {group.image && <Image src={group.image} alt="" fill sizes="224px" unoptimized priority={index === active} />}
-            </span>)}
-          </span>
-        </WorkspaceLink>
+        <div className="guide-preview" ref={preview}>
+          <div className="guide-preview__strip" style={{ "--guide-index": active, "--guide-count": guideGroups.length } as CSSProperties}>
+            {guideGroups.map((group, index) => {
+              const live = liveFrameOf(group);
+              return <div
+                className="guide-preview__frame"
+                key={group.id}
+                data-empty={group.image || live ? undefined : ""}
+                data-live={live ? "" : undefined}
+                inert={live && index !== active ? true : undefined}
+              >
+                {group.image && <Image src={group.image} alt="" fill sizes="224px" unoptimized priority={index === active} />}
+                {live === "writing-assistant" && <div className="guide-live"><WritingAssistant speech="simulate" /></div>}
+              </div>;
+            })}
+          </div>
+          {!liveFrameOf(guideGroups[active]) && <WorkspaceLink href={guideGroups[active].href} className="guide-preview__link" tabIndex={-1} aria-label={`Open ${guideGroups[active].name}`} />}
+        </div>
       </div>
     </div>
   </main>;
