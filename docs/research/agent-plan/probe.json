@@ -1,0 +1,919 @@
+{
+ "initialRunning": "<div class=\"ui-plc\" data-status=\"draft\"><div class=\"ui-plc__card\"><div class=\"ui-plc__head\"><div class=\"ui-plc__meta\"><span class=\"ui-plc__state\"><span class=\"ui-plc__state-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\"><path d=\"M6.5 4.5h7M6.5 8h7M6.5 11.5h7\"></path><circle cx=\"3.25\" cy=\"4.5\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"8\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"11.5\" r=\".6\"></circle></svg></span><span class=\"ui-plc__state-label\">Plan · 5 steps</span></span><span class=\"ui-plc__estimate\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"6\"></circle><path d=\"M8 5v3.2l2 1.3\"></path></svg><span><span class=\"ui-plc__sr\">Estimated time </span>~2 min</span></span></div><h3 class=\"ui-plc__title\">Prepare the Q3 board update</h3></div><p id=\"_r_1_\" class=\"ui-plc__sr\">Press Enter to rename, Alt plus arrow keys to move, Delete to remove.</p><ol class=\"ui-plc__list\" aria-label=\"Plan: Prepare the Q3 board update\"><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_1_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">1</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Pull Q3 revenue and ARR</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Monthly revenue, ARR and net retention</span><code class=\"ui-plc__tool\">stripe.query</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 1: Pull Q3 revenue and ARR\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_1_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">2</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Summarize product launches</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Shipped projects and adoption</span><code class=\"ui-plc__tool\">linear.search</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 2: Summarize product launches\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_1_\" style=\"\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">3</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Draft the board memo</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">One page, wins, risks and asks</span><code class=\"ui-plc__tool\">docs.write</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 3: Draft the board memo\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_1_\" style=\"\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">4</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Build the KPI slides</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Six charts in the board template</span><code class=\"ui-plc__tool\">slides.create</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 4: Build the KPI slides\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_1_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">5</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Send the draft to Maya for review</span><span class=\"ui-plc__sub\"><code class=\"ui-plc__tool\">gmail.draft</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 5: Send the draft to Maya for review\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span></li></ol><div class=\"ui-plc__tail\"><div class=\"ui-plc__tail-inner\"><label class=\"ui-plc__add\"><span class=\"ui-plc__add-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\"><path d=\"M8 4.5v7M4.5 8h7\"></path></svg></span><input placeholder=\"Add step\" aria-label=\"Add a step at the end\" enterkeyhint=\"done\" value=\"\"></label></div></div><div class=\"ui-plc__foot\" data-phase=\"draft\"><span class=\"ui-plc__hint\" aria-hidden=\"true\">Drag to reorder · double-click to rename</span><span class=\"ui-plc__actions\"><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--secondary\">Cancel</button><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--primary ui-plc__run\">Run plan<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5.5 3.8v8.4L12 8z\"></path></svg></button></span></div></div><p class=\"ui-plc__sr\" role=\"status\" aria-live=\"polite\"></p></div>",
+ "draft": {
+  "status": "draft",
+  "html": "<div class=\"ui-plc\" data-status=\"draft\"><div class=\"ui-plc__card\"><div class=\"ui-plc__head\"><div class=\"ui-plc__meta\"><span class=\"ui-plc__state\"><span class=\"ui-plc__state-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\"><path d=\"M6.5 4.5h7M6.5 8h7M6.5 11.5h7\"></path><circle cx=\"3.25\" cy=\"4.5\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"8\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"11.5\" r=\".6\"></circle></svg></span><span class=\"ui-plc__state-label\">Plan · 5 steps</span></span><span class=\"ui-plc__estimate\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"6\"></circle><path d=\"M8 5v3.2l2 1.3\"></path></svg><span><span class=\"ui-plc__sr\">Estimated time </span>~2 min</span></span></div><h3 class=\"ui-plc__title\">Prepare the Q3 board update</h3></div><p id=\"_r_2_\" class=\"ui-plc__sr\">Press Enter to rename, Alt plus arrow keys to move, Delete to remove.</p><ol class=\"ui-plc__list\" aria-label=\"Plan: Prepare the Q3 board update\"><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_2_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">1</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Pull Q3 revenue and ARR</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Monthly revenue, ARR and net retention</span><code class=\"ui-plc__tool\">stripe.query</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 1: Pull Q3 revenue and ARR\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_2_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">2</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Summarize product launches</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Shipped projects and adoption</span><code class=\"ui-plc__tool\">linear.search</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 2: Summarize product launches\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_2_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">3</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Build the KPI slides</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Six charts in the board template</span><code class=\"ui-plc__tool\">slides.create</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 3: Build the KPI slides\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_2_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">4</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Draft the board memo</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">One page, wins, risks and asks</span><code class=\"ui-plc__tool\">docs.write</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 4: Draft the board memo\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" tabindex=\"0\" aria-describedby=\"_r_2_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">5</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Send the draft to Maya for review</span><span class=\"ui-plc__sub\"><code class=\"ui-plc__tool\">gmail.draft</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 5: Send the draft to Maya for review\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span></li></ol><div class=\"ui-plc__tail\"><div class=\"ui-plc__tail-inner\"><label class=\"ui-plc__add\"><span class=\"ui-plc__add-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\"><path d=\"M8 4.5v7M4.5 8h7\"></path></svg></span><input placeholder=\"Add step\" aria-label=\"Add a step at the end\" enterkeyhint=\"done\" value=\"\" style=\"\"></label></div></div><div class=\"ui-plc__foot\" data-phase=\"draft\"><span class=\"ui-plc__hint\" aria-hidden=\"true\">Drag to reorder · double-click to rename</span><span class=\"ui-plc__actions\"><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--secondary\">Cancel</button><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--primary ui-plc__run\">Run plan<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5.5 3.8v8.4L12 8z\"></path></svg></button></span></div></div><p class=\"ui-plc__sr\" role=\"status\" aria-live=\"polite\"></p></div>",
+  "box": {
+   "x": 624,
+   "y": 450,
+   "width": 440,
+   "height": 430,
+   "top": 450,
+   "right": 1064,
+   "bottom": 880,
+   "left": 624
+  }
+ },
+ "geometry": {
+  "card": [
+   0,
+   0,
+   440,
+   430
+  ],
+  "head": [
+   0,
+   0,
+   440,
+   70
+  ],
+  "list": [
+   0,
+   70,
+   440,
+   276
+  ],
+  "step": [
+   6,
+   70,
+   428,
+   54
+  ],
+  "marker": [
+   36,
+   78,
+   20,
+   20
+  ],
+  "add": [
+   6,
+   342,
+   428,
+   32
+  ],
+  "foot": [
+   0,
+   382,
+   440,
+   48
+  ],
+  "btn": [
+   336,
+   392.5,
+   94,
+   28
+  ]
+ },
+ "renameHtml": "<li class=\"ui-plc__step\" aria-describedby=\"_r_2_\"><span class=\"ui-plc__grip\" aria-hidden=\"true\" title=\"Drag to reorder\"><svg viewBox=\"0 0 16 16\"><circle cx=\"6\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"4\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"8\" r=\"1.1\"></circle><circle cx=\"6\" cy=\"12\" r=\"1.1\"></circle><circle cx=\"10\" cy=\"12\" r=\"1.1\"></circle></svg></span><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">2</span></span><div class=\"ui-plc__main\"><input class=\"ui-plc__edit\" aria-label=\"Rename step 2\" value=\"Summarize product launches\" style=\"\"><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Shipped projects and adoption</span><code class=\"ui-plc__tool\">linear.search</code></span></div><span class=\"ui-plc__aside\"><button type=\"button\" class=\"ui-plc__remove\" aria-label=\"Remove step 2: Summarize product launches\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M4.5 4.5l7 7M11.5 4.5l-7 7\"></path></svg></button></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li>",
+ "afterRename": [
+  "Pull Q3 revenue and ARR",
+  "(edited)",
+  "Draft the board memo",
+  "Build the KPI slides",
+  "Send the draft to Maya for review"
+ ],
+ "afterMove": [
+  "Pull Q3 revenue and ARR",
+  "Draft the board memo",
+  "(edited)",
+  "Build the KPI slides",
+  "Send the draft to Maya for review"
+ ],
+ "live": [
+  "Moved “(edited)” to position 3 of 5"
+ ],
+ "afterDelete": [
+  "Pull Q3 revenue and ARR",
+  "Draft the board memo",
+  "(edited)",
+  "Build the KPI slides"
+ ],
+ "liveAfterDelete": [
+  "Removed “Send the draft to Maya for review”"
+ ],
+ "afterAdd": [
+  "Pull Q3 revenue and ARR",
+  "Draft the board memo",
+  "(edited)",
+  "Build the KPI slides",
+  "Archive the deck"
+ ],
+ "addFocused": "INPUT:Add step",
+ "footDraft": "<div class=\"ui-plc__foot\" data-phase=\"draft\"><span class=\"ui-plc__hint\" aria-hidden=\"true\">Drag to reorder · double-click to rename</span><span class=\"ui-plc__actions\"><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--secondary\">Cancel</button><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--primary ui-plc__run\">Run plan<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5.5 3.8v8.4L12 8z\"></path></svg></button></span></div>",
+ "runHtml": "<div class=\"ui-plc\" data-status=\"running\"><div class=\"ui-plc__card\"><div class=\"ui-plc__head\"><div class=\"ui-plc__meta\"><span class=\"ui-plc__state\"><span class=\"ui-plc__state-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\"><path d=\"M6.5 4.5h7M6.5 8h7M6.5 11.5h7\"></path><circle cx=\"3.25\" cy=\"4.5\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"8\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"11.5\" r=\".6\"></circle></svg></span><span class=\"ui-plc__state-label\">Plan · 5 steps</span></span></div><h3 class=\"ui-plc__title\">Prepare the Q3 board update</h3></div><p id=\"_r_2_\" class=\"ui-plc__sr\">Press Enter to rename, Alt plus arrow keys to move, Delete to remove.</p><ol class=\"ui-plc__list\" aria-label=\"Plan: Prepare the Q3 board update\"><li class=\"ui-plc__step\" data-step=\"active\" aria-current=\"step\"><span class=\"ui-plc__marker\" aria-hidden=\"true\"><svg class=\"ui-plc__spinner\" viewBox=\"0 0 16 16\"><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(0 8 8)\" style=\"animation-delay: -800ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(45 8 8)\" style=\"animation-delay: -700ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(90 8 8)\" style=\"animation-delay: -600ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(135 8 8)\" style=\"animation-delay: -500ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(180 8 8)\" style=\"animation-delay: -400ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(225 8 8)\" style=\"animation-delay: -300ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(270 8 8)\" style=\"animation-delay: -200ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(315 8 8)\" style=\"animation-delay: -100ms;\"></line></svg></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Pull Q3 revenue and ARR</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Monthly revenue, ARR and net retention</span><code class=\"ui-plc__tool\">stripe.query</code></span><span class=\"ui-plc__sr\">, In progress</span></div><span class=\"ui-plc__aside\"><span class=\"ui-plc__time\" aria-hidden=\"true\">0.4s</span></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" style=\"\" data-step=\"pending\"><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">2</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Draft the board memo</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">One page, wins, risks and asks</span><code class=\"ui-plc__tool\">docs.write</code></span><span class=\"ui-plc__sr\">, Pending</span></div><span class=\"ui-plc__aside\"></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" style=\"\" data-step=\"pending\"><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">3</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">(edited)</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Shipped projects and adoption</span><code class=\"ui-plc__tool\">linear.search</code></span><span class=\"ui-plc__sr\">, Pending</span></div><span class=\"ui-plc__aside\"></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" style=\"\" data-step=\"pending\"><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">4</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Build the KPI slides</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Six charts in the board template</span><code class=\"ui-plc__tool\">slides.create</code></span><span class=\"ui-plc__sr\">, Pending</span></div><span class=\"ui-plc__aside\"></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li><li class=\"ui-plc__step\" data-step=\"pending\"><span class=\"ui-plc__marker\" aria-hidden=\"true\"><span class=\"ui-plc__num\">5</span></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Archive the deck</span><span class=\"ui-plc__sr\">, Pending</span></div><span class=\"ui-plc__aside\"></span></li></ol><div class=\"ui-plc__tail\" inert=\"\"><div class=\"ui-plc__tail-inner\"><label class=\"ui-plc__add\"><span class=\"ui-plc__add-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\"><path d=\"M8 4.5v7M4.5 8h7\"></path></svg></span><input placeholder=\"Add step\" aria-label=\"Add a step at the end\" enterkeyhint=\"done\" value=\"\" style=\"\"></label></div></div><div class=\"ui-plc__foot\" data-phase=\"running\"><span class=\"ui-plc__status\"><span class=\"ui-plc__status-icon\" aria-hidden=\"true\"><svg class=\"ui-plc__spinner\" viewBox=\"0 0 16 16\"><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(0 8 8)\" style=\"animation-delay: -800ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(45 8 8)\" style=\"animation-delay: -700ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(90 8 8)\" style=\"animation-delay: -600ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(135 8 8)\" style=\"animation-delay: -500ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(180 8 8)\" style=\"animation-delay: -400ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(225 8 8)\" style=\"animation-delay: -300ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(270 8 8)\" style=\"animation-delay: -200ms;\"></line><line x1=\"8\" y1=\"1.75\" x2=\"8\" y2=\"4.75\" transform=\"rotate(315 8 8)\" style=\"animation-delay: -100ms;\"></line></svg></span><span class=\"ui-plc__status-label ui-plc__shimmer\" data-text=\"Running · 1 of 5\">Running · 1 of 5</span></span><span class=\"ui-plc__elapsed\" aria-hidden=\"true\">1s</span></div></div><p class=\"ui-plc__sr\" role=\"status\" aria-live=\"polite\">Running plan</p></div>",
+ "timeline": [
+  {
+   "t": 0,
+   "status": "draft",
+   "steps": [
+    "undefined:",
+    "undefined:",
+    "undefined:",
+    "undefined:",
+    "undefined:"
+   ],
+   "foot": "Drag to reorder · double-click to rename | Cancel | Run plan",
+   "phase": "draft",
+   "meta": "Plan · 5 steps | Estimated time | ~2 min"
+  },
+  {
+   "t": 48,
+   "status": "running",
+   "steps": [
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 404,
+   "status": "running",
+   "steps": [
+    "active:0.0s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 549,
+   "status": "running",
+   "steps": [
+    "active:0.1s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 652,
+   "status": "running",
+   "steps": [
+    "active:0.2s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 749,
+   "status": "running",
+   "steps": [
+    "active:0.3s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 853,
+   "status": "running",
+   "steps": [
+    "active:0.4s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 949,
+   "status": "running",
+   "steps": [
+    "active:0.5s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1052,
+   "status": "running",
+   "steps": [
+    "active:0.6s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1155,
+   "status": "running",
+   "steps": [
+    "active:0.7s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1253,
+   "status": "running",
+   "steps": [
+    "active:0.8s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1350,
+   "status": "running",
+   "steps": [
+    "active:0.9s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1453,
+   "status": "running",
+   "steps": [
+    "active:1.0s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 1s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1550,
+   "status": "running",
+   "steps": [
+    "active:1.1s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1653,
+   "status": "running",
+   "steps": [
+    "active:1.2s",
+    "pending:",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 1 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1704,
+   "status": "running",
+   "steps": [
+    "done:",
+    "active:0.0s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1716,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.0s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1848,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.1s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1951,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.2s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2054,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.3s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2151,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.4s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2254,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.5s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2351,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.6s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2454,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.7s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 2s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2552,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.8s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2655,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:0.9s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2752,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:1.0s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2855,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "active:1.1s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 2 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2957,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:",
+    "active:0.0s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2966,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.0s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3049,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.1s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3153,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.2s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3249,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.3s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3353,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.4s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3450,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.5s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 3s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3553,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.6s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3650,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.7s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3753,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.8s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3850,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:0.9s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3953,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:1.0s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4050,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "active:1.1s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4057,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:",
+    "active:0.0s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4065,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.0s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4154,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.1s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4251,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.2s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4349,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.3s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4451,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.4s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 4s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4549,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.5s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4651,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.6s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4754,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.7s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4852,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.8s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 4949,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.9s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 5052,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:1.0s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 5155,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:1.1s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 5252,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:1.2s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 5351,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:1.3s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 5453,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:1.4s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 5460,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "failed:",
+    "pending:"
+   ],
+   "foot": "Stopped · step 4 failed",
+   "phase": "failed",
+   "meta": "Plan · 5 steps"
+  }
+ ],
+ "doneHtml": "<div class=\"ui-plc__foot\" data-phase=\"failed\"><span class=\"ui-plc__status\"><span class=\"ui-plc__status-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\" class=\"ui-plc__badge\"><circle cx=\"8\" cy=\"8\" r=\"7\"></circle><path d=\"M8 4.8v3.8M8 11.2h.01\"></path></svg></span><span class=\"ui-plc__status-label\" data-text=\"Stopped · step 4 failed\">Stopped · step 4 failed</span></span></div>"
+}

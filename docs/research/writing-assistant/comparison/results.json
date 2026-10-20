@@ -1,0 +1,20 @@
+{
+  "welcome": {
+    "reference": "600x512",
+    "local": "602x512",
+    "differentPixels": 1524,
+    "percent": 0.5
+  },
+  "typed": {
+    "reference": "600x512",
+    "local": "602x512",
+    "differentPixels": 1938,
+    "percent": 0.63
+  },
+  "reply": {
+    "reference": "600x512",
+    "local": "602x512",
+    "differentPixels": 3582,
+    "percent": 1.17
+  }
+}

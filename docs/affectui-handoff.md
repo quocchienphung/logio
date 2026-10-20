@@ -1,9 +1,20 @@
 # affectUI → Guide me: bàn giao cho Claude Code
 
+## Tỷ lệ preview Guide me — 2026-10-20
+
+Theo ảnh người dùng, cả bốn khung Sales / Agent Chat / CRM / Project Management nay dùng tỷ lệ **380:401** của Writing Assistant public preview. Card cao hơn; chữ dùng mốc 380 px và giới hạn 1–1.25×, không phóng chữ theo khung ảnh 300 px cũ. Desktop là 384 × 405 CSS px; ở DPR 1.25 là khoảng 480 × 506 device px. Nội dung/chuyển mục giữ nguyên. Màn hình hẹp xếp dọc, màn ngang thấp cho cuộn thay vì thu nhỏ nút/chữ. Chỉ quan sát preview công khai và ảnh người dùng, không dùng CLI/registry/code Pro/prompt của affectUI. Chi tiết hiện hành: [Writing Assistant brief](research/writing-assistant/README.md), ảnh và so sánh trong `docs/research/writing-assistant/resize/`. QA Writing Assistant (15 nhóm), Guide navigation (11 nhóm) và production build đã qua. Các mô tả tỷ lệ 223:190 bên dưới là trạng thái compact cũ.
+
 ## Assistant Home / Agent Chat — 2026-10-20
 
 **Agent Chat** mở `/personalize?section=new-chat`, dựng theo `https://www.affectui.com/screens/assistant-home/full`; sidebar gồm **New chat, Run, Settings**. Giữ Logio và đầu sidebar chỉ có Explore pages. UI/đối chiếu, file ownership, kiểm thử và giới hạn live nằm ở [Assistant brief](research/affectui-assistant/README.md); [API contract](research/affectui-assistant/api-contract.md) tái dùng cấu hình/xác thực backend workspace của Claude Code. Adapter chat có gửi tin, retry idempotent, hủy, history, upload, xóa và kết nối app. Chưa có backend chat live được cấu hình; khi chưa nối backend, giữ tin nháp và hiển thị lỗi đúng thay vì tạo câu trả lời giả.
 
+## Gradient Floor + khung Agent Chat lớn hơn — 2026-10-20
+
+Nền cả trang `/personalize?browse=1` là hiệu ứng **Gradient Floor** dựng lại từ `https://www.affectui.com/motion/gradient-floor` (chỉ quan sát preview công khai): hai lớp SVG làm mờ dâng lên từ mép dưới, năm điểm dao động hình sin chu kỳ 3 s, trôi ngang 2,5 s, dừng khi ra khỏi màn hình, reduced-motion giữ một tư thế tĩnh. Khung preview của bộ chọn rộng 256u thay vì 223u (cùng tỉ lệ 223:190), card chat lấp đầy khung, không còn viền xám (~384px trên laptop, rộng hơn card gốc 380px). Code `src/components/sites/affectui-gradient-floor/`; số đo, so hình (0,01% pixel lệch ở tư thế tĩnh), quyết định và giới hạn: [research/gradient-floor/README.md](research/gradient-floor/README.md). QA: `node scripts/qa/gradient-floor.mjs`, `node scripts/forensics/gradient-floor-compare.mjs`.
+
+## Writing Assistant trong bộ chọn Guide me — 2026-10-20
+
+Khung ảnh của hàng **Agent Chat** ở `/personalize?browse=1` nay là card chat chạy thật, dựng lại từ preview công khai `https://www.affectui.com/components/writing-assistant` (chỉ quan sát giao diện; không đọc/gọi code Pro). Card tự co theo khung với tỉ lệ cố định 223:190: màn dọc (≤ 899px) xếp danh sách trên – khung dưới, màn ngang giữ hai cột (màn ngang thấp tự co theo chiều cao). Gõ/chip/mic/New chat hoạt động ngay trong khung, không chuyển trang; bấm hàng Agent Chat (hoặc chạm lần hai) vẫn mở trang. Mic mặc định mô phỏng (không xin quyền, không gửi âm thanh); `speech="auto"` dùng `SpeechRecognition` của trình duyệt. Backend: prop `respond(message, { signal })`. Code: `src/components/sites/affectui-writing-assistant/`; chi tiết, số đo, phần tự quyết và giới hạn: [research/writing-assistant/README.md](research/writing-assistant/README.md). QA: `node scripts/qa/writing-assistant.mjs`, `node scripts/qa/guide-navigation.mjs`; so hình: `node scripts/forensics/writing-assistant-compare.mjs`.
 
 ## Backend API cho mọi section Guide me — 2026-10-20
 

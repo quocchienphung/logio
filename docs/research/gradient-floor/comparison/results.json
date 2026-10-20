@@ -1,0 +1,16 @@
+{
+  "light": {
+    "reference": "804x360",
+    "local": "804x360",
+    "box": {
+      "x": 0,
+      "y": 0,
+      "width": 804,
+      "height": 360
+    },
+    "differentPixels": 31,
+    "percent": 0.01,
+    "meanChannelDiff": 0.22,
+    "maxChannelDiff": 83
+  }
+}

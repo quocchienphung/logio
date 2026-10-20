@@ -1,0 +1,122 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "orientation": "landscape",
+    "layout": "side-by-side",
+    "frame": "384x405",
+    "textPx": 13.1
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "orientation": "landscape",
+    "layout": "side-by-side",
+    "frame": "384x405",
+    "textPx": 13.1
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "orientation": "landscape",
+    "layout": "side-by-side",
+    "frame": "384x405",
+    "textPx": 13.1
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "orientation": "landscape",
+    "layout": "side-by-side",
+    "frame": "366x386",
+    "textPx": 13
+  },
+  {
+    "width": 768,
+    "height": 1024,
+    "orientation": "portrait",
+    "layout": "stacked",
+    "frame": "418x441",
+    "textPx": 14.3
+  },
+  {
+    "width": 1024,
+    "height": 1366,
+    "orientation": "portrait",
+    "layout": "side-by-side",
+    "frame": "366x386",
+    "textPx": 13
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "orientation": "landscape",
+    "layout": "side-by-side",
+    "frame": "320x338",
+    "textPx": 13
+  },
+  {
+    "width": 667,
+    "height": 375,
+    "orientation": "landscape",
+    "layout": "side-by-side",
+    "frame": "320x338",
+    "textPx": 13
+  },
+  {
+    "width": 568,
+    "height": 320,
+    "orientation": "landscape",
+    "layout": "stacked",
+    "frame": "390x412",
+    "textPx": 13.3
+  },
+  {
+    "width": 932,
+    "height": 430,
+    "orientation": "landscape",
+    "layout": "side-by-side",
+    "frame": "320x338",
+    "textPx": 13
+  },
+  {
+    "width": 430,
+    "height": 932,
+    "orientation": "portrait",
+    "layout": "stacked",
+    "frame": "388x410",
+    "textPx": 13.3
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "orientation": "portrait",
+    "layout": "stacked",
+    "frame": "349x368",
+    "textPx": 13
+  },
+  {
+    "width": 360,
+    "height": 740,
+    "orientation": "portrait",
+    "layout": "stacked",
+    "frame": "320x337",
+    "textPx": 13
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "orientation": "portrait",
+    "layout": "stacked",
+    "frame": "281x296",
+    "textPx": 13
+  },
+  {
+    "width": 320,
+    "height": 480,
+    "orientation": "portrait",
+    "layout": "stacked",
+    "frame": "281x296",
+    "textPx": 13
+  }
+]

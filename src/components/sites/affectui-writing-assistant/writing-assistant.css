@@ -1,12 +1,11 @@
 /*
  * Writing Assistant chat card. Measured on the public preview (docs/research/writing-assistant/observed-rules.css),
- * written from scratch. The card is designed 300px wide and everything is sized from `--k`, one design pixel:
- * the frame is a width container, so the card keeps its proportions in any box it fills (never distorted, never
- * cropped) while text stays real text. Colors, radii and timings are the measured ones.
+ * written from scratch. The public card is 380px wide. Keep its typography at a
+ * readable 1–1.25× scale while the surrounding frame supplies the available height.
  */
 .wra-frame { position: relative; width: 100%; height: 100%; container-type: inline-size; }
 .wra {
-  --k: calc(100cqw / 300);
+  --k: clamp(1px, calc(100cqw / 380), 1.25px);
   --wra-card: #fff; --wra-strong: #000; --wra-ink: rgba(0, 0, 0, .88); --wra-text: rgba(0, 0, 0, .61);
   --wra-muted: rgba(0, 0, 0, .45); --wra-faint: rgba(0, 0, 0, .27); --wra-icon: rgba(0, 0, 0, .447);
   --wra-line: rgba(0, 0, 0, .06); --wra-fill: rgba(0, 0, 0, .06); --wra-wash: rgba(0, 0, 0, .03);
@@ -23,12 +22,12 @@
   touch-action: manipulation;
 }
 .wra *, .wra *::before, .wra *::after { box-sizing: border-box; }
-.wra button { appearance: none; margin: 0; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+:where(.wra) button { appearance: none; margin: 0; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .wra button:disabled { cursor: default; }
-.wra svg { display: block; flex: none; }
+:where(.wra) svg { display: block; flex: none; }
 .wra button:focus-visible { outline: calc(2 * var(--k)) solid var(--wra-focus); outline-offset: calc(1 * var(--k)); }
 
-.wra__head { display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--k)); padding: calc(12 * var(--k)) calc(12 * var(--k)) calc(12 * var(--k)) calc(12 * var(--k)); border-bottom: calc(.5 * var(--k)) solid var(--wra-line); flex: none; }
+.wra__head { display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--k)); padding: calc(12 * var(--k)) calc(12 * var(--k)) calc(12 * var(--k)) calc(16 * var(--k)); border-bottom: calc(.5 * var(--k)) solid var(--wra-line); flex: none; }
 .wra__id { min-width: 0; }
 .wra__name { display: flex; align-items: center; gap: calc(6 * var(--k)); margin: 0; font-size: calc(13 * var(--k)); font-weight: 500; line-height: calc(20 * var(--k)); color: var(--wra-strong); }
 .wra__mark { width: calc(16 * var(--k)); height: calc(16 * var(--k)); }
@@ -47,14 +46,14 @@
 .wra__blob--violet { right: -16%; top: 46%; width: 54%; height: 42%; background: var(--wra-violet); animation-name: wra-drift-b; animation-duration: 7s; }
 .wra__blob--blue { left: 22%; bottom: -22%; width: 62%; height: 40%; background: var(--wra-blue); animation-name: wra-drift-c; animation-duration: 5.5s; }
 
-.wra__welcome { position: relative; display: grid; gap: calc(12 * var(--k)); padding: calc(16 * var(--k)) calc(12 * var(--k)); animation: wra-in 380ms var(--wra-ease) both; }
+.wra__welcome { position: relative; display: grid; gap: calc(12 * var(--k)); padding: calc(16 * var(--k)); animation: wra-in 380ms var(--wra-ease) both; }
 .wra__greeting { margin: 0; font-size: calc(15 * var(--k)); font-weight: 500; line-height: calc(24 * var(--k)); color: var(--wra-strong); }
 .wra__chips { display: flex; flex-wrap: wrap; gap: calc(6 * var(--k)); }
 .wra__chip { padding: calc(4 * var(--k)) calc(10 * var(--k)); border-radius: calc(6 * var(--k)); background: color-mix(in srgb, var(--wra-card) 70%, transparent); box-shadow: inset 0 0 0 calc(.5 * var(--k)) var(--wra-line); font-size: calc(13 * var(--k)); font-weight: 500; line-height: calc(20 * var(--k)); white-space: nowrap; color: var(--wra-text); transition: background-color 160ms ease, color 160ms ease, transform 160ms var(--wra-ease); }
 .wra__chip:hover { background: linear-gradient(var(--wra-wash), var(--wra-wash)), color-mix(in srgb, var(--wra-card) 70%, transparent); color: var(--wra-ink); }
 .wra__chip:active { transform: scale(.97); }
 
-.wra__messages { position: relative; display: flex; flex-direction: column; gap: calc(12 * var(--k)); min-height: 0; padding: calc(16 * var(--k)) calc(12 * var(--k)) calc(14 * var(--k)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; -webkit-mask-image: linear-gradient(transparent, #000 calc(16 * var(--k)), #000 calc(100% - 12 * var(--k)), transparent); mask-image: linear-gradient(transparent, #000 calc(16 * var(--k)), #000 calc(100% - 12 * var(--k)), transparent); }
+.wra__messages { position: relative; display: flex; flex-direction: column; gap: calc(12 * var(--k)); min-height: 0; padding: calc(16 * var(--k)) calc(16 * var(--k)) calc(14 * var(--k)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; -webkit-mask-image: linear-gradient(transparent, #000 calc(16 * var(--k)), #000 calc(100% - 12 * var(--k)), transparent); mask-image: linear-gradient(transparent, #000 calc(16 * var(--k)), #000 calc(100% - 12 * var(--k)), transparent); }
 .wra__messages::-webkit-scrollbar { display: none; }
 .wra__msg { max-width: 86%; margin: 0; font-size: calc(13 * var(--k)); line-height: calc(20 * var(--k)); white-space: pre-wrap; overflow-wrap: break-word; color: var(--wra-ink); animation: wra-in 320ms var(--wra-ease) both; }
 .wra__msg--user { align-self: flex-end; padding: calc(6 * var(--k)) calc(10 * var(--k)); border-radius: calc(10 * var(--k)); background: var(--wra-fill); }
@@ -63,7 +62,7 @@
 .wra__shimmer { position: relative; display: inline-block; }
 .wra__shimmer::after { content: attr(data-text); content: attr(data-text) / ""; position: absolute; inset: 0; white-space: nowrap; color: transparent; background: linear-gradient(90deg, transparent 38%, var(--wra-shine) 50%, transparent 62%) 100% 0 / 300% 100% no-repeat; -webkit-background-clip: text; background-clip: text; animation: wra-sweep 1.3s linear infinite; pointer-events: none; }
 
-.wra__row { position: relative; flex: none; display: flex; align-items: flex-end; gap: calc(4 * var(--k)); margin: 0; padding: calc(6 * var(--k)) calc(10 * var(--k)) calc(10 * var(--k)) calc(12 * var(--k)); }
+.wra__row { position: relative; flex: none; display: flex; align-items: flex-end; gap: calc(4 * var(--k)); margin: 0; padding: calc(6 * var(--k)) calc(10 * var(--k)) calc(10 * var(--k)) calc(16 * var(--k)); }
 .wra__field { flex: 1; min-width: 0; display: flex; margin-right: calc(4 * var(--k)); }
 .wra__field textarea { display: block; flex: 1; min-width: 0; height: calc(28 * var(--k)); min-height: calc(28 * var(--k)); max-height: calc(88 * var(--k)); margin: 0; padding: calc(4 * var(--k)) 0; border: 0; border-radius: 0; background: none; outline: none; resize: none; font: inherit; font-size: calc(13 * var(--k)); line-height: calc(20 * var(--k)); color: var(--wra-strong); caret-color: var(--wra-accent); overflow-y: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(transparent, #000 calc(4 * var(--k))); mask-image: linear-gradient(transparent, #000 calc(4 * var(--k))); }
 .wra__field textarea::-webkit-scrollbar { display: none; }
@@ -105,6 +104,7 @@
 @media (prefers-reduced-motion: reduce) {
   .wra__blob, .wra__welcome, .wra__msg, .wra__send, .wra__mic[data-listening] .wra__pulse, .wra__wave i, .wra__shimmer::after { animation: none; }
   .wra__wave i { transform: scaleY(.7); }
+  .wra__new, .wra__glow, .wra__chip, .wra__send, .wra__mic { transition-duration: 1ms; }
 }
 :where(.dark, [data-theme="dark"]) .wra {
   --wra-card: #1c1c1e; --wra-strong: #fff; --wra-ink: rgba(255, 255, 255, .9); --wra-text: rgba(255, 255, 255, .62);

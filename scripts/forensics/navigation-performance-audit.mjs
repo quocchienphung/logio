@@ -3,7 +3,7 @@ import { chromium } from 'playwright';
 
 /**
  * Measures page-to-page navigations (cross-document view transition + the incoming page's start-up).
- * Usage: node scripts/forensics/navigation-performance-audit.mjs [base-url] [--reduced | --lite] [--out file]
+ * Usage: node scripts/forensics/navigation-performance-audit.mjs [base-url] [--reduced | --lite | --no-filters] [--out file]
  * --reduced skips the transition (prefers-reduced-motion); --lite forces its phone variant (no SVG lens filters).
  * Per navigation it records, in the incoming document: long tasks, long animation frames (with script
  * attribution), rAF intervals, when the transition finished and whether back/forward used the bfcache.
@@ -12,6 +12,7 @@ const args = process.argv.slice(2);
 const base = args.find(a => a.startsWith('http')) || 'http://localhost:3100';
 const reduced = args.includes('--reduced');
 const lite = args.includes('--lite');
+const noFilters = args.includes('--no-filters');
 const outIndex = args.indexOf('--out');
 const out = outIndex >= 0 ? args[outIndex + 1] : null;
 const WINDOW_MS = 5000;
@@ -123,6 +124,17 @@ const browser = await chromium.launch({ channel: 'chrome', headless: true, ignor
 const results = [];
 try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: reduced ? 'reduce' : 'no-preference' });
+  if (noFilters) {
+    await context.addInitScript(() => {
+      const add = () => {
+        const style = document.createElement('style');
+        style.textContent = 'html::view-transition-image-pair(*),html::view-transition-new(*){filter:none!important}';
+        document.head.appendChild(style);
+      };
+      if (document.head) add();
+      else document.addEventListener('readystatechange', add, { once: true });
+    });
+  }
   if (lite) {
     await context.addInitScript(() => {
       const native = window.matchMedia.bind(window);
@@ -165,6 +177,6 @@ try {
 }
 
 if (out) {
-  await fs.writeFile(out, JSON.stringify({ base, reduced, lite, environment: 'Chrome headless, 1440x1000, no CPU throttling', results }, null, 2));
+  await fs.writeFile(out, JSON.stringify({ base, reduced, lite, noFilters, environment: 'Chrome headless, 1440x1000, no CPU throttling; rAF intervals are not presented-frame FPS', results }, null, 2));
   console.log('written', out);
 }

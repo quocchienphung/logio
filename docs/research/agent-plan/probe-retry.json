@@ -1,0 +1,232 @@
+{
+ "dragState": {
+  "dragging": true,
+  "steps": [
+   [
+    "Pull Q3 revenue and ARR",
+    true,
+    "transform: translateY(50px);"
+   ],
+   [
+    "Summarize product launches",
+    false,
+    ""
+   ],
+   [
+    "Build the KPI slides",
+    false,
+    ""
+   ],
+   [
+    "Draft the board memo",
+    false,
+    ""
+   ],
+   [
+    "Send the draft to Maya for review",
+    false,
+    ""
+   ]
+  ]
+ },
+ "afterDrag": [
+  "Summarize product launches",
+  "Build the KPI slides",
+  "Pull Q3 revenue and ARR",
+  "Draft the board memo",
+  "Send the draft to Maya for review"
+ ],
+ "failed": {
+  "foot": "<div class=\"ui-plc__foot\" data-phase=\"failed\"><span class=\"ui-plc__status\"><span class=\"ui-plc__status-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\" class=\"ui-plc__badge\"><circle cx=\"8\" cy=\"8\" r=\"7\"></circle><path d=\"M8 4.8v3.8M8 11.2h.01\"></path></svg></span><span class=\"ui-plc__status-label\" data-text=\"Stopped · step 3 failed\">Stopped · step 3 failed</span></span></div>",
+  "step": "<li class=\"ui-plc__step\" data-step=\"failed\"><span class=\"ui-plc__marker\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\" class=\"ui-plc__mark\"><path d=\"M8 4.2v4.4M8 11.6h.01\"></path></svg></span><div class=\"ui-plc__main\"><span class=\"ui-plc__name\">Build the KPI slides</span><span class=\"ui-plc__sub\"><span class=\"ui-plc__detail\">Six charts in the board template</span><code class=\"ui-plc__tool\">slides.create</code></span><span class=\"ui-plc__sr\">, Failed</span><span class=\"ui-plc__fail\"><span class=\"ui-plc__error\">Slides API timed out after 30s</span><button type=\"button\" class=\"ui-plc__retry\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M13 8a5 5 0 1 1-1.6-3.7\"></path><path d=\"M13 3v2.6h-2.6\"></path></svg>Retry from here</button></span></div><span class=\"ui-plc__aside\"></span><span class=\"ui-plc__rail\" aria-hidden=\"true\"></span></li>",
+  "meta": "<div class=\"ui-plc__meta\"><span class=\"ui-plc__state\"><span class=\"ui-plc__state-icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 16 16\"><path d=\"M6.5 4.5h7M6.5 8h7M6.5 11.5h7\"></path><circle cx=\"3.25\" cy=\"4.5\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"8\" r=\".6\"></circle><circle cx=\"3.25\" cy=\"11.5\" r=\".6\"></circle></svg></span><span class=\"ui-plc__state-label\">Plan · 5 steps</span></span></div>"
+ },
+ "rec": [
+  {
+   "t": 0,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "failed:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Stopped · step 3 failed",
+   "phase": "failed",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 42,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "pending:",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 294,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.0s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 5s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 585,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:0.3s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 6s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1586,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "active:1.3s",
+    "pending:",
+    "pending:"
+   ],
+   "foot": "Running · 3 of 5 | 7s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1697,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "done:",
+    "active:0.0s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 7s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 1708,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "done:took 1.4s",
+    "active:0.0s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 7s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2582,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "done:took 1.4s",
+    "active:0.9s",
+    "pending:"
+   ],
+   "foot": "Running · 4 of 5 | 8s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 2947,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "done:took 1.4s",
+    "done:took 1.2s",
+    "active:0.0s"
+   ],
+   "foot": "Running · 5 of 5 | 8s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3583,
+   "status": "running",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "done:took 1.4s",
+    "done:took 1.2s",
+    "active:0.6s"
+   ],
+   "foot": "Running · 5 of 5 | 9s",
+   "phase": "running",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 3851,
+   "status": "done",
+   "steps": [
+    "done:took 1.3s",
+    "done:took 1.1s",
+    "done:took 1.4s",
+    "done:took 1.2s",
+    "done:took 0.9s"
+   ],
+   "foot": "Done in 9s | Run again",
+   "phase": "done",
+   "meta": "Plan · 5 steps"
+  },
+  {
+   "t": 7058,
+   "status": "draft",
+   "steps": [
+    "undefined:",
+    "undefined:",
+    "undefined:",
+    "undefined:",
+    "undefined:"
+   ],
+   "foot": "Drag to reorder · double-click to rename | Cancel | Run plan",
+   "phase": "draft",
+   "meta": "Plan · 5 steps | Estimated time | ~2 min"
+  }
+ ],
+ "done": {
+  "foot": "<div class=\"ui-plc__foot\" data-phase=\"draft\"><span class=\"ui-plc__hint\" aria-hidden=\"true\">Drag to reorder · double-click to rename</span><span class=\"ui-plc__actions\"><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--secondary\">Cancel</button><button type=\"button\" class=\"ui-plc__btn ui-plc__btn--primary ui-plc__run\">Run plan<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5.5 3.8v8.4L12 8z\"></path></svg></button></span></div>",
+  "live": [
+   "Plan done in 9s"
+  ],
+  "steps": [
+   1034,
+   1032,
+   1023,
+   1018,
+   926
+  ]
+ },
+ "again": [
+  "draft",
+  "Drag to reorder · double-click to rename | Cancel | Run plan",
+  ",,,,"
+ ]
+}

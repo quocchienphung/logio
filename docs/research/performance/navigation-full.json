@@ -1,0 +1,961 @@
+{
+  "base": "http://localhost:3100",
+  "reduced": false,
+  "lite": false,
+  "environment": "Chrome headless, 1440x1000, no CPU throttling",
+  "results": [
+    {
+      "label": "initial load /",
+      "url": "/",
+      "navType": "navigate",
+      "bfcache": false,
+      "notRestoredReasons": null,
+      "clickToResponseStartMs": null,
+      "restoredAt": null,
+      "clickToRevealMs": null,
+      "domContentLoadedMs": 61,
+      "revealAt": {
+        "at": 144,
+        "transition": false
+      },
+      "transitionSettledAt": 144,
+      "framesDuringTransition": 0,
+      "framesOver33msDuringTransition": 0,
+      "worstFrameDuringTransitionMs": 0,
+      "p95FrameMs": 49,
+      "framesOver33ms": 26,
+      "longTasksTotalMs": 1729,
+      "longTasks": [
+        {
+          "at": 54,
+          "ms": 89
+        },
+        {
+          "at": 187,
+          "ms": 59
+        },
+        {
+          "at": 777,
+          "ms": 94
+        },
+        {
+          "at": 1069,
+          "ms": 68
+        },
+        {
+          "at": 1560,
+          "ms": 126
+        },
+        {
+          "at": 1699,
+          "ms": 67
+        },
+        {
+          "at": 2004,
+          "ms": 76
+        },
+        {
+          "at": 2260,
+          "ms": 270
+        },
+        {
+          "at": 2545,
+          "ms": 76
+        },
+        {
+          "at": 2633,
+          "ms": 188
+        },
+        {
+          "at": 2835,
+          "ms": 75
+        },
+        {
+          "at": 2977,
+          "ms": 149
+        },
+        {
+          "at": 3136,
+          "ms": 252
+        },
+        {
+          "at": 3445,
+          "ms": 140
+        }
+      ],
+      "loafs": [
+        {
+          "at": 2260,
+          "ms": 272,
+          "blockingMs": 222,
+          "renderMs": 1,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 271,
+              "invoker": "TimerHandler:setTimeout",
+              "src": "/_next/static/chunks/1r__86-k3xlqz.js n",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 3126,
+          "ms": 265,
+          "blockingMs": 205,
+          "renderMs": 2,
+          "styleLayoutMs": 1,
+          "scripts": []
+        },
+        {
+          "at": 2631,
+          "ms": 193,
+          "blockingMs": 141,
+          "renderMs": 3,
+          "styleLayoutMs": 2,
+          "scripts": [
+            {
+              "ms": 188,
+              "invoker": "IMG[src=\"/stripe/map_dots-96ddc62d.png\"].onload",
+              "src": "/_next/static/chunks/1tvb3c10_acqx.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 2942,
+          "ms": 182,
+          "blockingMs": 127,
+          "renderMs": 148,
+          "styleLayoutMs": 0,
+          "scripts": [
+            {
+              "ms": 29,
+              "invoker": "TimerHandler:setTimeout",
+              "src": "/_next/static/chunks/1r__86-k3xlqz.js n",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 147,
+              "invoker": "FrameRequestCallback",
+              "src": "/_next/static/chunks/2g8z4kugsholg.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 3445,
+          "ms": 147,
+          "blockingMs": 92,
+          "renderMs": 1,
+          "styleLayoutMs": 0,
+          "scripts": []
+        },
+        {
+          "at": 1560,
+          "ms": 129,
+          "blockingMs": 79,
+          "renderMs": 3,
+          "styleLayoutMs": 2,
+          "scripts": [
+            {
+              "ms": 126,
+              "invoker": "IdleRequestCallback",
+              "src": "/_next/static/chunks/2xdikpnt5xuaq.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 777,
+          "ms": 96,
+          "blockingMs": 46,
+          "renderMs": 1,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 95,
+              "invoker": "IMG[src=\"/stripe/palette-411be97f.webp\"].onload",
+              "src": "/_next/static/chunks/1r__86-k3xlqz.js o",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 27,
+          "ms": 122,
+          "blockingMs": 45,
+          "renderMs": 6,
+          "styleLayoutMs": 5,
+          "scripts": [
+            {
+              "ms": 8,
+              "invoker": "MutationCallback",
+              "src": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5,
+              "invoker": "http://localhost:3100/_next/static/chunks/3dxl47xsg4heg.js",
+              "src": "/_next/static/chunks/3dxl47xsg4heg.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "/ -> /payments (link)",
+      "url": "/payments",
+      "navType": "navigate",
+      "bfcache": false,
+      "notRestoredReasons": null,
+      "clickToResponseStartMs": 27,
+      "restoredAt": null,
+      "clickToRevealMs": 254,
+      "domContentLoadedMs": 779,
+      "revealAt": {
+        "at": 251,
+        "transition": true
+      },
+      "transitionSettledAt": 1431,
+      "framesDuringTransition": 10,
+      "framesOver33msDuringTransition": 5,
+      "worstFrameDuringTransitionMs": 315,
+      "p95FrameMs": 18,
+      "framesOver33ms": 18,
+      "longTasksTotalMs": 2082,
+      "longTasks": [
+        {
+          "at": 315,
+          "ms": 122
+        },
+        {
+          "at": 456,
+          "ms": 112
+        },
+        {
+          "at": 599,
+          "ms": 162
+        },
+        {
+          "at": 774,
+          "ms": 76
+        },
+        {
+          "at": 1022,
+          "ms": 144
+        },
+        {
+          "at": 1167,
+          "ms": 110
+        },
+        {
+          "at": 1283,
+          "ms": 146
+        },
+        {
+          "at": 1431,
+          "ms": 153
+        },
+        {
+          "at": 1585,
+          "ms": 133
+        },
+        {
+          "at": 1758,
+          "ms": 71
+        },
+        {
+          "at": 1910,
+          "ms": 103
+        },
+        {
+          "at": 2045,
+          "ms": 72
+        },
+        {
+          "at": 2117,
+          "ms": 68
+        },
+        {
+          "at": 2202,
+          "ms": 61
+        },
+        {
+          "at": 2287,
+          "ms": 63
+        },
+        {
+          "at": 2384,
+          "ms": 70
+        },
+        {
+          "at": 2566,
+          "ms": 70
+        },
+        {
+          "at": 2736,
+          "ms": 59
+        },
+        {
+          "at": 2796,
+          "ms": 60
+        },
+        {
+          "at": 2912,
+          "ms": 66
+        },
+        {
+          "at": 4953,
+          "ms": 98
+        },
+        {
+          "at": 5214,
+          "ms": 63
+        }
+      ],
+      "loafs": [
+        {
+          "at": 1429,
+          "ms": 279,
+          "blockingMs": 227,
+          "renderMs": 124,
+          "styleLayoutMs": 7,
+          "scripts": [
+            {
+              "ms": 154,
+              "invoker": "Promise.resolve",
+              "src": "/payments",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 116,
+              "invoker": "FrameRequestCallback",
+              "src": "/_next/static/chunks/331c3yc-ty0ou.js P",
+              "forcedLayoutMs": 115
+            }
+          ]
+        },
+        {
+          "at": 438,
+          "ms": 285,
+          "blockingMs": 187,
+          "renderMs": 124,
+          "styleLayoutMs": 36,
+          "scripts": [
+            {
+              "ms": 7,
+              "invoker": "MutationCallback",
+              "src": "/payments",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 7,
+              "invoker": "MutationCallback",
+              "src": "/payments",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 6,
+              "invoker": "http://localhost:3100/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "src": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 6,
+              "invoker": "http://localhost:3100/payments",
+              "src": "/payments",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 87,
+              "invoker": "FrameRequestCallback",
+              "src": "/payments aa",
+              "forcedLayoutMs": 87
+            }
+          ]
+        },
+        {
+          "at": 1020,
+          "ms": 232,
+          "blockingMs": 180,
+          "renderMs": 86,
+          "styleLayoutMs": 23,
+          "scripts": [
+            {
+              "ms": 144,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 139
+            },
+            {
+              "ms": 62,
+              "invoker": "FrameRequestCallback",
+              "src": "/payments aa",
+              "forcedLayoutMs": 62
+            }
+          ]
+        },
+        {
+          "at": 2044,
+          "ms": 139,
+          "blockingMs": 88,
+          "renderMs": 66,
+          "styleLayoutMs": 65,
+          "scripts": [
+            {
+              "ms": 72,
+              "invoker": "IdleRequestCallback",
+              "src": "/_next/static/chunks/3ows52kr4bhhu.js",
+              "forcedLayoutMs": 69
+            }
+          ]
+        },
+        {
+          "at": 287,
+          "ms": 143,
+          "blockingMs": 86,
+          "renderMs": 115,
+          "styleLayoutMs": 72,
+          "scripts": [
+            {
+              "ms": 10,
+              "invoker": "MutationCallback",
+              "src": "/payments",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 44,
+              "invoker": "FrameRequestCallback",
+              "src": "/payments aa",
+              "forcedLayoutMs": 43
+            }
+          ]
+        },
+        {
+          "at": 1277,
+          "ms": 138,
+          "blockingMs": 84,
+          "renderMs": 131,
+          "styleLayoutMs": 15,
+          "scripts": [
+            {
+              "ms": 112,
+              "invoker": "FrameRequestCallback",
+              "src": "/payments aa",
+              "forcedLayoutMs": 112
+            }
+          ]
+        },
+        {
+          "at": 2736,
+          "ms": 115,
+          "blockingMs": 65,
+          "renderMs": 55,
+          "styleLayoutMs": 55,
+          "scripts": [
+            {
+              "ms": 60,
+              "invoker": "IdleRequestCallback",
+              "src": "/_next/static/chunks/3ows52kr4bhhu.js",
+              "forcedLayoutMs": 57
+            }
+          ]
+        },
+        {
+          "at": 1910,
+          "ms": 100,
+          "blockingMs": 50,
+          "renderMs": 100,
+          "styleLayoutMs": 63,
+          "scripts": [
+            {
+              "ms": 36,
+              "invoker": "FrameRequestCallback",
+              "src": "",
+              "forcedLayoutMs": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "/payments -> / (link)",
+      "url": "/",
+      "navType": "navigate",
+      "bfcache": false,
+      "notRestoredReasons": null,
+      "clickToResponseStartMs": 22,
+      "restoredAt": null,
+      "clickToRevealMs": 249,
+      "domContentLoadedMs": 469,
+      "revealAt": {
+        "at": 248,
+        "transition": true
+      },
+      "transitionSettledAt": 2399,
+      "framesDuringTransition": 12,
+      "framesOver33msDuringTransition": 11,
+      "worstFrameDuringTransitionMs": 401,
+      "p95FrameMs": 109,
+      "framesOver33ms": 23,
+      "longTasksTotalMs": 1716,
+      "longTasks": [
+        {
+          "at": 248,
+          "ms": 101
+        },
+        {
+          "at": 370,
+          "ms": 71
+        },
+        {
+          "at": 462,
+          "ms": 70
+        },
+        {
+          "at": 565,
+          "ms": 120
+        },
+        {
+          "at": 749,
+          "ms": 79
+        },
+        {
+          "at": 1412,
+          "ms": 57
+        },
+        {
+          "at": 2400,
+          "ms": 74
+        },
+        {
+          "at": 2484,
+          "ms": 279
+        },
+        {
+          "at": 2772,
+          "ms": 75
+        },
+        {
+          "at": 3166,
+          "ms": 66
+        },
+        {
+          "at": 3417,
+          "ms": 294
+        },
+        {
+          "at": 3726,
+          "ms": 66
+        },
+        {
+          "at": 3799,
+          "ms": 115
+        },
+        {
+          "at": 3992,
+          "ms": 130
+        },
+        {
+          "at": 4130,
+          "ms": 67
+        },
+        {
+          "at": 4228,
+          "ms": 52
+        }
+      ],
+      "loafs": [
+        {
+          "at": 3417,
+          "ms": 295,
+          "blockingMs": 245,
+          "renderMs": 1,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 294,
+              "invoker": "TimerHandler:setTimeout",
+              "src": "/_next/static/chunks/1r__86-k3xlqz.js n",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 2482,
+          "ms": 284,
+          "blockingMs": 233,
+          "renderMs": 3,
+          "styleLayoutMs": 3,
+          "scripts": [
+            {
+              "ms": 280,
+              "invoker": "IdleRequestCallback",
+              "src": "/_next/static/chunks/2xdikpnt5xuaq.js",
+              "forcedLayoutMs": 2
+            }
+          ]
+        },
+        {
+          "at": 441,
+          "ms": 362,
+          "blockingMs": 146,
+          "renderMs": 55,
+          "styleLayoutMs": 9,
+          "scripts": [
+            {
+              "ms": 8,
+              "invoker": "MutationCallback",
+              "src": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 121,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 95
+            },
+            {
+              "ms": 12,
+              "invoker": "http://localhost:3100/_next/static/chunks/1r__86-k3xlqz.js",
+              "src": "/_next/static/chunks/1r__86-k3xlqz.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 9,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 43,
+              "invoker": "FrameRequestCallback",
+              "src": "/ aa",
+              "forcedLayoutMs": 43
+            }
+          ]
+        },
+        {
+          "at": 3970,
+          "ms": 150,
+          "blockingMs": 98,
+          "renderMs": 128,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 20,
+              "invoker": "IdleRequestCallback",
+              "src": "/_next/static/chunks/2xdikpnt5xuaq.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 128,
+              "invoker": "FrameRequestCallback",
+              "src": "/_next/static/chunks/2g8z4kugsholg.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 3799,
+          "ms": 117,
+          "blockingMs": 66,
+          "renderMs": 1,
+          "styleLayoutMs": 0,
+          "scripts": [
+            {
+              "ms": 116,
+              "invoker": "IMG[src=\"/stripe/map_dots-96ddc62d.png\"].onload",
+              "src": "/_next/static/chunks/1tvb3c10_acqx.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 213,
+          "ms": 127,
+          "blockingMs": 62,
+          "renderMs": 91,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 6,
+              "invoker": "http://localhost:3100/",
+              "src": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 10,
+              "invoker": "MutationCallback",
+              "src": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 58,
+              "invoker": "DOMWindow.onpagereveal",
+              "src": "/",
+              "forcedLayoutMs": 45
+            }
+          ]
+        },
+        {
+          "at": 350,
+          "ms": 83,
+          "blockingMs": 29,
+          "renderMs": 62,
+          "styleLayoutMs": 4,
+          "scripts": [
+            {
+              "ms": 6,
+              "invoker": "MutationCallback",
+              "src": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 58,
+              "invoker": "FrameRequestCallback",
+              "src": "/ aa",
+              "forcedLayoutMs": 58
+            }
+          ]
+        },
+        {
+          "at": 2771,
+          "ms": 80,
+          "blockingMs": 28,
+          "renderMs": 3,
+          "styleLayoutMs": 2,
+          "scripts": [
+            {
+              "ms": 76,
+              "invoker": "IMG[src=\"/stripe/palette-a288e2dc.webp\"].onload",
+              "src": "/_next/static/chunks/1r__86-k3xlqz.js o",
+              "forcedLayoutMs": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "/ -> /personalize (link)",
+      "url": "/personalize",
+      "navType": "navigate",
+      "bfcache": false,
+      "notRestoredReasons": null,
+      "clickToResponseStartMs": 59,
+      "restoredAt": null,
+      "clickToRevealMs": 260,
+      "domContentLoadedMs": 251,
+      "revealAt": {
+        "at": 259,
+        "transition": true
+      },
+      "transitionSettledAt": 1338,
+      "framesDuringTransition": 52,
+      "framesOver33msDuringTransition": 6,
+      "worstFrameDuringTransitionMs": 182,
+      "p95FrameMs": 12,
+      "framesOver33ms": 6,
+      "longTasksTotalMs": 94,
+      "longTasks": [
+        {
+          "at": 258,
+          "ms": 94
+        }
+      ],
+      "loafs": [
+        {
+          "at": 203,
+          "ms": 141,
+          "blockingMs": 53,
+          "renderMs": 85,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 8,
+              "invoker": "MutationCallback",
+              "src": "/personalize",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5,
+              "invoker": "http://localhost:3100/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "src": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 6,
+              "invoker": "DOMWindow.onpagereveal",
+              "src": "/personalize",
+              "forcedLayoutMs": 1
+            }
+          ]
+        },
+        {
+          "at": 434,
+          "ms": 133,
+          "blockingMs": 0,
+          "renderMs": 2,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 5,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 7,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 23,
+              "invoker": "MessagePort.onmessage",
+              "src": "/_next/static/chunks/3fcuou0n2x1yt.js O",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1175,
+          "ms": 96,
+          "blockingMs": 0,
+          "renderMs": 2,
+          "styleLayoutMs": 0,
+          "scripts": []
+        }
+      ]
+    },
+    {
+      "label": "/personalize -> / (browser back)",
+      "url": "/",
+      "navType": "navigate",
+      "bfcache": true,
+      "notRestoredReasons": null,
+      "clickToResponseStartMs": -10801,
+      "restoredAt": 11040,
+      "clickToRevealMs": 230,
+      "domContentLoadedMs": 469,
+      "revealAt": {
+        "at": 11052,
+        "transition": true
+      },
+      "transitionSettledAt": 13161,
+      "framesDuringTransition": 65,
+      "framesOver33msDuringTransition": 8,
+      "worstFrameDuringTransitionMs": 5481,
+      "p95FrameMs": 12,
+      "framesOver33ms": 11,
+      "longTasksTotalMs": 329,
+      "longTasks": [
+        {
+          "at": 5669,
+          "ms": 86
+        },
+        {
+          "at": 11052,
+          "ms": 100
+        },
+        {
+          "at": 11157,
+          "ms": 67
+        },
+        {
+          "at": 13161,
+          "ms": 76
+        }
+      ],
+      "loafs": [
+        {
+          "at": 11052,
+          "ms": 86,
+          "blockingMs": 36,
+          "renderMs": 86,
+          "styleLayoutMs": 1,
+          "scripts": [
+            {
+              "ms": 38,
+              "invoker": "DOMWindow.onpagereveal",
+              "src": "/",
+              "forcedLayoutMs": 31
+            }
+          ]
+        },
+        {
+          "at": 11224,
+          "ms": 232,
+          "blockingMs": 0,
+          "renderMs": 5,
+          "styleLayoutMs": 1,
+          "scripts": []
+        },
+        {
+          "at": 11489,
+          "ms": 302,
+          "blockingMs": 0,
+          "renderMs": 6,
+          "styleLayoutMs": 1,
+          "scripts": []
+        },
+        {
+          "at": 11800,
+          "ms": 367,
+          "blockingMs": 0,
+          "renderMs": 11,
+          "styleLayoutMs": 6,
+          "scripts": []
+        },
+        {
+          "at": 12175,
+          "ms": 304,
+          "blockingMs": 0,
+          "renderMs": 3,
+          "styleLayoutMs": 2,
+          "scripts": []
+        },
+        {
+          "at": 12610,
+          "ms": 117,
+          "blockingMs": 0,
+          "renderMs": 3,
+          "styleLayoutMs": 3,
+          "scripts": []
+        }
+      ]
+    }
+  ]
+}

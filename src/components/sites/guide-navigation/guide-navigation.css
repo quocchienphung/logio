@@ -1,17 +1,19 @@
-/* Guide me selector. Geometry measured from the 716 × 574 reference clip; `--u` is 1px at that width. */
+/* Guide me selector. The shared preview follows the public Writing Assistant's
+   380 × 401 card, including its taller conversation area. `--su` is the stage width in units. */
 .guide-page {
-  --u: max(min(1px, calc((100vw - 32px) / 400)), min(1.5px, calc(100vw / 716)));
+  --su: 433;
+  --u: max(min(1px, calc((100vw - 32px) / var(--su))), min(1.5px, calc(100vw / 716)));
   --guide-ease: cubic-bezier(.22, 1, .36, 1);
   --guide-time: .775s;
   --guide-gap: calc(var(--u) * 12);
-  min-height: 100dvh; display: grid; place-items: center; background: #fdfdfd; color: #0a0a0a;
+  position: relative; isolation: isolate; min-height: 100dvh; display: grid; place-items: center; background: #fdfdfd; color: #0a0a0a;
   font-family: Inter, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip;
 }
 .guide-page *, .guide-page *::before, .guide-page *::after { box-sizing: border-box; }
-.guide-stage { width: calc(var(--u) * 400); padding: 0 calc(var(--u) * 9) 0 var(--u); }
+.guide-stage { position: relative; z-index: 1; width: calc(var(--u) * var(--su)); padding: 0 calc(var(--u) * 9) 0 var(--u); }
 .guide-heading { position: relative; display: inline-block; margin: 0 0 calc(var(--u) * 23.6) calc(var(--u) * 8); font-size: calc(var(--u) * 25); line-height: calc(var(--u) * 28); font-weight: 600; letter-spacing: -.062em; top: calc(var(--u) * -1); white-space: nowrap; }
 .guide-heading sup { position: absolute; left: calc(100% + var(--u) * 5); top: calc(var(--u) * 1.5); font-size: calc(var(--u) * 6); line-height: calc(var(--u) * 6); font-weight: 600; letter-spacing: 0; }
-.guide-grid { position: relative; top: calc(var(--u) * -1); display: grid; grid-template-columns: calc(var(--u) * 167) calc(var(--u) * 223); align-items: center; }
+.guide-grid { position: relative; top: calc(var(--u) * -1); display: grid; grid-template-columns: calc(var(--u) * 167) calc(var(--u) * 256); align-items: center; }
 .guide-list { position: relative; display: flex; flex-direction: column; gap: var(--guide-gap); margin: 0; padding: 0; list-style: none; }
 .guide-list li:not(.guide-bar) { display: block; }
 .guide-bar { position: absolute; left: 0; top: 0; width: calc(var(--u) * 2); background: #111; pointer-events: none; }
@@ -24,13 +26,25 @@
 .guide-item__number { flex: none; font-size: calc(var(--u) * 7); line-height: calc(var(--u) * 8); font-weight: 500; letter-spacing: -.02em; color: inherit; opacity: .6; position: relative; top: calc(var(--u) * -1); }
 .guide-item__name { font-size: calc(var(--u) * 16); line-height: calc(var(--u) * 17); font-weight: 600; letter-spacing: -.033em; min-width: 0; overflow-wrap: anywhere; }
 .guide-item:focus-visible { outline: 1.5px solid #111; outline-offset: 2px; }
-.guide-preview { position: relative; display: block; width: calc(var(--u) * 223); height: calc(var(--u) * 190); border-radius: calc(var(--u) * 8); overflow: hidden; isolation: isolate; background: #d6d6d2; -webkit-tap-highlight-color: transparent; }
-.guide-preview:focus-visible { outline: 1.5px solid #111; outline-offset: 2px; }
+.guide-floor { position: absolute; inset: 0; z-index: 0; pointer-events: none; --gf-bg: #fdfdfd; }
+.guide-preview { position: relative; display: block; width: calc(var(--u) * 256); aspect-ratio: 380 / 401; border-radius: calc(var(--u) * 8); overflow: hidden; isolation: isolate; -webkit-tap-highlight-color: transparent; transition: box-shadow var(--guide-time) var(--guide-ease); }
+/* The live card has no backdrop of its own, so a hairline and a soft shadow keep its edge on the floor. */
+.guide-preview:has(.guide-preview__frame[data-live][data-active]) { box-shadow: 0 0 0 .5px rgba(0, 0, 0, .08), 0 calc(var(--u) * 1) calc(var(--u) * 2) 0 rgba(0, 0, 0, .05), 0 calc(var(--u) * 14) calc(var(--u) * 32) calc(var(--u) * -14) rgba(0, 0, 0, .16); }
+.guide-preview__link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; -webkit-tap-highlight-color: transparent; }
+.guide-preview__link:focus-visible { outline: 1.5px solid #111; outline-offset: 2px; }
 .guide-preview__strip { position: absolute; left: 0; top: 0; width: 100%; height: calc(var(--guide-count) * 100%); display: block; transform: translateY(calc(var(--guide-index) * -100% / var(--guide-count))); transition: transform var(--guide-time) var(--guide-ease); will-change: transform; }
-.guide-preview__frame { position: relative; display: block; width: 100%; height: calc(100% / var(--guide-count)); overflow: hidden; }
+.guide-preview__frame { background: #d6d6d2; position: relative; display: block; width: 100%; height: calc(100% / var(--guide-count)); overflow: hidden; container-type: inline-size; }
+/* At rest only the active frame is painted: a fractional strip offset (stacked layout, zoomed screens) can never show a sliver of its neighbour. */
+.guide-preview[data-settled] .guide-preview__frame:not([data-active]) { visibility: hidden; }
 /* Until a picture is supplied the frame is a quiet warm gray, in the family of the photos' backdrops. */
 .guide-preview__frame[data-empty] { background: linear-gradient(180deg, #dcdad5, #cfcdc7); }
 .guide-preview__frame img { object-fit: cover; }
+/* Each group fills the same taller frame. Live card typography has its own
+   readable scale rather than enlarging everything to fill a short image slot. */
+.guide-preview__frame[data-live] { background: #fff; }
+.guide-live { position: absolute; inset: 0; }
+.guide-live .wra { border-radius: 0; box-shadow: none; }
+.guide-preview__frame[inert] .wra * { animation-play-state: paused; }
 .guide-loading { display: grid; place-items: center; height: 100dvh; color: #777; background: #fdfdfc; font: 13px Inter, sans-serif; }
 .crm-page .workspace-sidebar-header { padding: 0 2px; }
 .crm-page .workspace-explore { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); font-size: 13px; font-weight: 500; text-decoration: none; transition: background-color 140ms ease, border-color 140ms ease; }
@@ -39,4 +53,15 @@
 .crm-page .workspace-explore svg { flex: none; color: var(--muted); }
 .crm-page .workspace-account-heading { padding: 5px 9px; color: var(--muted); font-size: 11px; font-weight: 500; }
 .crm-page .workspace-account-divider { height: 1px; margin: 5px 0; background: var(--line); }
+/* Portrait screens (phones, small tablets): list above, frame below at full width, so the live card stays readable. */
+@media (orientation: portrait) and (max-width: 899px), (max-width: 639px) {
+  .guide-page { --su: 400; align-content: center; padding: calc(var(--u) * 24) 0; }
+  .guide-grid { grid-template-columns: minmax(0, 1fr); row-gap: calc(var(--u) * 20); align-items: stretch; }
+  .guide-preview { width: 100%; }
+}
+/* Short landscape screens may scroll vertically instead of shrinking the card
+   until the greeting and composer overlap. */
+@media (orientation: landscape) and (min-width: 640px) and (max-height: 560px) {
+  .guide-page { --u: clamp(.85px, calc((100vw - 48px) / var(--su)), 1.25px); align-content: start; padding: 24px 0; }
+}
 @media (prefers-reduced-motion: reduce) { .guide-page *, .guide-page *::before, .guide-page *::after { transition-duration: 1ms !important; } }

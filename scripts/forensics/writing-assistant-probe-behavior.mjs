@@ -88,7 +88,7 @@ await page.waitForTimeout(600);
 await card.locator(".ui-wac__chip").first().hover();
 await page.waitForTimeout(300);
 await card.screenshot({ path: `${out}/source-chip-hover.png` });
-log.glowBlobs = await card.locator(".ui-wac__blob").evaluateAll(els => els.map(e => { const r = e.getBoundingClientRect(); const c = e.parentElement.parentElement.getBoundingClientRect(); return { w: r.width, h: r.height }; }));
+log.glowBlobs = await card.locator(".ui-wac__blob").evaluateAll(els => els.map(e => { const r = e.getBoundingClientRect(); return { w: r.width, h: r.height }; }));
 log.layout = await card.evaluate(el => {
   const q = s => { const n = el.querySelector(s); if (!n) return null; const r = n.getBoundingClientRect(), p = el.getBoundingClientRect(); return { x: +(r.x - p.x).toFixed(1), y: +(r.y - p.y).toFixed(1), w: +r.width.toFixed(1), h: +r.height.toFixed(1) }; };
   return { card: q(":scope"), head: q(".ui-wac__head"), body: q(".ui-wac__body"), welcome: q(".ui-wac__welcome"), greeting: q(".ui-wac__greeting"), chips: q(".ui-wac__chips"), row: q(".ui-wac__row"), field: q(".ui-wac__field"), mic: q(".ui-wac__mic") };

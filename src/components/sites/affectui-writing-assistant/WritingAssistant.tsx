@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef } from "react";
 import type { KeyboardEvent } from "react";
 import { defaultContent, sampleWriter, visibleText, type Respond, type WritingAssistantContent } from "./writing-assistant-model";
 import { useWritingAssistant, type SpeechMode } from "./useWritingAssistant";
@@ -20,7 +20,7 @@ const coarsePointer = () => window.matchMedia("(pointer: coarse)").matches;
 
 /**
  * Chat card with a soft gradient glow, suggestions, streaming replies and live voice dictation. It fills its parent
- * and scales as one piece (a 300px-wide design), so the same card reads right in a small frame or a full column.
+ * with a 380px-wide reference and bounded text scaling, so taller frames add conversation space.
  */
 export function WritingAssistant({
   name = defaultContent.name,
@@ -39,13 +39,23 @@ export function WritingAssistant({
   const messages = useRef<HTMLDivElement>(null);
   const inChat = chat.messages.length > 0;
 
-  // The field grows with its text; the stylesheet caps it at four lines and scrolls beyond that.
-  useLayoutEffect(() => {
+  // The field grows with its text; the stylesheet caps it at four lines and scrolls beyond that. Its height is set in
+  // pixels, so it is measured again whenever the card is resized (rotation, window size).
+  const frame = useRef<HTMLDivElement>(null);
+  const fit = useCallback(() => {
     const element = field.current;
     if (!element) return;
     element.style.height = "auto";
     element.style.height = `${element.scrollHeight}px`;
-  }, [draft, listening, inChat]);
+  }, []);
+  useLayoutEffect(fit, [fit, draft, listening, inChat]);
+  useEffect(() => {
+    const element = frame.current;
+    if (!element) return;
+    const observer = new ResizeObserver(fit);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [fit]);
 
   useLayoutEffect(() => {
     const list = messages.current;
@@ -69,7 +79,7 @@ export function WritingAssistant({
     : last.status === "done" ? visibleText(last) : "";
   const canSend = draft.trim().length > 0 && !busy;
 
-  return <div className={className ? `wra-frame ${className}` : "wra-frame"}>
+  return <div ref={frame} className={className ? `wra-frame ${className}` : "wra-frame"}>
     <section className="wra" role="group" aria-label={name} data-chat={inChat ? "" : undefined}>
       <header className="wra__head">
         <div className="wra__id">

@@ -10,7 +10,6 @@ import { idle, pageSettled } from "@/lib/pageSettled";
  * their own renderers (and GL contexts) when they come near the viewport; `import()` then resolves at once.
  */
 const CHUNKS: (() => Promise<unknown>)[] = [
-  () => import("@/components/stripe/Sessions/iphoneDuo/IphoneDuoRenderer"),
   () => import("@/components/stripe/Solutions/graphics/globe/GlobeRenderer"),
   () => import("@/components/stripe/Solutions/graphics/agentic/AgenticParticlesRenderer"),
   () => import("@/components/stripe/Solutions/graphics/issuing/IssuingCardRenderer"),

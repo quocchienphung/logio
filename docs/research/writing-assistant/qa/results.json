@@ -1,0 +1,21 @@
+{
+  "passed": [
+    "Agent Chat frame shows the live card (no photo), with the measured welcome copy and four suggestions",
+    "A suggestion sends itself: user bubble, shimmering Writing…, then the reply streams word by word without leaving the page",
+    "New chat returns to the welcome view; every suggestion gets its measured reply",
+    "Typing: Send appears with text, Enter sends, Shift+Enter adds a line, the field grows to four lines then scrolls",
+    "Many turns keep the list scrolled to the newest message",
+    "Dictation: Dictate shows the listening tile, words appear live, the sentence is sent, the reply streams",
+    "Stopping dictation early sends what was heard; New chat mid-reply cancels cleanly",
+    "Working in the card is not interrupted by the pointer crossing the list; other rows still select by keyboard and the card keeps its conversation",
+    "Clicking the card never navigates; the Agent Chat row and Enter still open the page",
+    "Nothing leaves localhost",
+    "The taller reference proportions and readable text survive landscape and portrait at every size",
+    "Rotating the same page between portrait and landscape re-lays it out without losing the conversation",
+    "Touch: tap a suggestion without raising the keyboard; the field is at least 16px so iOS does not zoom; targets are touch-sized",
+    "Reduced motion: glow and shimmer stand still and replies appear at once",
+    "Keyboard: tab order inside the card and visible focus; list navigation unaffected"
+  ],
+  "errors": [],
+  "external": []
+}

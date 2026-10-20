@@ -34,19 +34,20 @@ try {
     assert.equal(await page.locator('.guide-item').count(), 4);
     assert.match(await selected(), /Agent Chat/);
     assert.deepEqual(await page.locator('.guide-item__name').allInnerTexts(), ['Sales', 'Agent Chat', 'CRM', 'Project Management']);
-    assert.equal(await page.locator('.guide-page p, .guide-page header, .guide-page footer').count(), 0);
+    assert.equal(await page.locator('.guide-page p:not(.wra *), .guide-page header:not(.wra *), .guide-page footer').count(), 0);
     await page.setViewportSize({ width: 716, height: 574 });
   });
   await check('Hover slides the strip up for later items and down for earlier ones, then settles', async () => {
     await open();
     const start = await stripY();
+    const frameHeight = await page.locator('.guide-preview').evaluate(el => el.getBoundingClientRect().height);
     await item('CRM').hover();
     await page.waitForTimeout(120);
     const mid = await stripY();
-    assert(mid < start && mid > start - 190, 'strip moves up mid-flight');
+    assert(mid < start && mid > start - frameHeight, 'strip moves up mid-flight');
     await page.waitForTimeout(1000);
     const crm = await stripY();
-    assert(Math.abs(crm - (start - 190)) < 1.5, 'one frame height up');
+    assert(Math.abs(crm - (start - frameHeight)) < 1.5, 'one frame height up');
     await item('Agent Chat').hover();
     await page.waitForTimeout(120);
     assert(await stripY() > crm, 'strip moves back down');
@@ -58,9 +59,9 @@ try {
   await check('Rapid hover settles on the last item, with no queued animations or extra layers', async () => {
     for (const name of ['Sales', 'Project Management', 'CRM', 'Sales', 'Project Management', 'Agent Chat', 'Sales']) await item(name).hover();
     await page.waitForTimeout(1100);
-    assert.equal(await page.evaluate(() => document.getAnimations().length), 0);
+    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf')).length), 0);
     assert.match(await selected(), /Sales/);
-    assert.equal(await page.locator('.guide-preview img').count(), 3, 'three photos and a neutral frame');
+    assert.equal(await page.locator('.guide-preview img').count(), 2, 'two photos, the live Agent Chat card and a neutral frame');
     const frame = await page.locator('.guide-preview').evaluate(el => el.getBoundingClientRect().top);
     assert(Math.abs(await stripY() - frame) < 1.5, 'Sales frame fills the preview');
   });
@@ -162,7 +163,7 @@ try {
     await open();
     await item('CRM').hover();
     await page.waitForTimeout(80);
-    assert.equal(await page.evaluate(() => document.getAnimations().length), 0);
+    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf')).length), 0);
     assert.match(await selected(), /CRM/);
     await item('CRM').click();
     await page.locator('.crm-page').waitFor();

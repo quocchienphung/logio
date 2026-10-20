@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import {
-  chatReducer, dictatedText, dictationWordCount, emptyChat, isBusy, sampleWriter, timing, tokenize, wordInterval,
+  chatReducer, dictatedText, dictationWordCount, emptyChat, isBusy, timing, tokenize, wordInterval,
   type ChatState, type Respond,
 } from "./writing-assistant-model";
 

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { defaultGuideIndex, guideGroups, liveFrameOf, navigateWorkspaceHref, subscribeLocation } from "./navigation-model";
 import { WorkspaceLink } from "./WorkspaceLink";
 import { WorkspaceBackendProvider } from "@/lib/workspace-backend/react";
+import { GradientFloor } from "../affectui-gradient-floor/GradientFloor";
 import { WritingAssistant } from "../affectui-writing-assistant/WritingAssistant";
 import "../affectui-fonts.css";
 import "./guide-navigation.css";
@@ -34,6 +35,9 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   });
   const [bar, setBar] = useState<{ top: number; height: number } | null>(null);
   const [ready, setReady] = useState(false);
+  // False while the strip slides, so every frame in between is visible; true at rest.
+  const [settled, setSettled] = useState(true);
+  const settleTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const activeRef = useRef(active);
   const rows = useRef<(HTMLAnchorElement | null)[]>([]);
   const list = useRef<HTMLUListElement>(null);
@@ -60,7 +64,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   }, []);
 
   const urlTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  useLayoutEffect(() => () => clearTimeout(urlTimer.current), []);
+  useLayoutEffect(() => () => { clearTimeout(urlTimer.current); clearTimeout(settleTimer.current); }, []);
 
   // Keep the selected group in the URL for refresh and Back. Replace rather than push, so hovering never
   // fills the history, and debounce it: Next.js applies history writes to its router asynchronously.
@@ -79,6 +83,9 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     if (index === activeRef.current || (fromPointer && workingInPreview())) return;
     activeRef.current = index;
     setActive(index);
+    setSettled(false);
+    clearTimeout(settleTimer.current);
+    settleTimer.current = setTimeout(() => setSettled(true), 1200);
     clearTimeout(urlTimer.current);
     urlTimer.current = setTimeout(() => writeGroupUrl(index), 150);
   }
@@ -111,6 +118,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   }
 
   return <main className="guide-page">
+    <GradientFloor className="guide-floor" />
     <div className="guide-stage">
       <h1 className="guide-heading"><span>How I can help you</span><sup>(SERVICES)</sup></h1>
       <div className="guide-grid">
@@ -134,8 +142,8 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
             </li>)}
           </ul>
         </nav>
-        <div className="guide-preview" ref={preview}>
-          <div className="guide-preview__strip" style={{ "--guide-index": active, "--guide-count": guideGroups.length } as CSSProperties}>
+        <div className="guide-preview" ref={preview} data-settled={settled ? "" : undefined}>
+          <div className="guide-preview__strip" style={{ "--guide-index": active, "--guide-count": guideGroups.length } as CSSProperties} onTransitionEnd={event => { if (event.target === event.currentTarget && event.propertyName === "transform") { clearTimeout(settleTimer.current); setSettled(true); } }}>
             {guideGroups.map((group, index) => {
               const live = liveFrameOf(group);
               return <div
@@ -144,6 +152,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
                 data-empty={group.image || live ? undefined : ""}
                 data-live={live ? "" : undefined}
                 inert={live && index !== active ? true : undefined}
+                data-active={index === active ? "" : undefined}
               >
                 {group.image && <Image src={group.image} alt="" fill sizes="224px" unoptimized priority={index === active} />}
                 {live === "writing-assistant" && <div className="guide-live"><WritingAssistant speech="simulate" /></div>}
