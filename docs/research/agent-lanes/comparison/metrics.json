@@ -1,0 +1,41 @@
+[
+  {
+    "width": 384,
+    "source": [
+      384,
+      279
+    ],
+    "local": [
+      384,
+      279
+    ],
+    "pixelDiffPercent": 1.255413679808841,
+    "intentionalDifferences": "Local provider avatars 28/18px instead of 24/14px; outer card shadow/radius supplied by Guide me."
+  },
+  {
+    "width": 349,
+    "source": [
+      349,
+      279
+    ],
+    "local": [
+      349,
+      279
+    ],
+    "pixelDiffPercent": 2.8509515153382425,
+    "intentionalDifferences": "Local provider avatars 28/18px instead of 24/14px; outer card shadow/radius supplied by Guide me."
+  },
+  {
+    "width": 281,
+    "source": [
+      281,
+      279
+    ],
+    "local": [
+      281,
+      279
+    ],
+    "pixelDiffPercent": 2.0574242018393094,
+    "intentionalDifferences": "Local provider avatars 28/18px instead of 24/14px; outer card shadow/radius supplied by Guide me."
+  }
+]

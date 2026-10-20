@@ -1,5 +1,13 @@
 # affectUI → Guide me: bàn giao cho Claude Code
 
+## Delegate Board trong khung Project Management — 2026-10-20
+
+Hàng **Project Management** của `/personalize?browse=1` không còn khung xám: nó chạy **Delegate Board** dựng lại từ preview công khai `https://www.affectui.com/components/delegate-board` (chỉ quan sát giao diện/docs/số đo; không dùng CLI, registry, MCP hay mã Pro). Kéo task sang một thành viên: thành viên đó hiện trước giờ "Busy until" mới; thả vào Unassigned để trả về; công tắc **Auto** giao mỗi giây cho người rảnh sớm nhất; bàn phím Enter/↑↓/Esc/1–9/0; kéo bằng cảm ứng thật. Agent → thành viên nhóm (không có giá/phút nên tổng cộng thời gian). Code: `src/components/sites/affectui-delegate-board/` (luật thuần `delegate-model.ts` có test, `DelegateBoard.tsx`, `delegate-board.css`, dữ liệu khung ở `ProjectDelegateBoard.tsx`). Phân tích, phần tự quyết, giới hạn: [research/delegate-board/README.md](research/delegate-board/README.md). QA: `node scripts/qa/delegate-board.mjs`.
+
+## Cảm ứng Guide me — 2026-10-20
+
+Bộ chọn `/personalize?browse=1` hỗ trợ kéo dọc qua các hàng để đổi preview, vuốt ngang để chuyển nhóm và chạm lần hai vào nhóm đang chọn để mở trang. Chạm chọn có phản hồi ngay; click phát sinh sau kéo bị chặn theo gesture, không dùng cửa sổ 400ms. Vùng ngoài danh sách vẫn cuộn dọc, pinch zoom và tương tác card giữ được. Top-level route dùng `useSearchParams`, bỏ key theo group để tránh mất gesture/draft và lỗi WebKit URL đã đổi nhưng UI đứng nguyên. Nguyên nhân, giới hạn kiểm thử Safari và QA: [Guide navigation](research/guide-navigation/README.md). Test mới: `node scripts/qa/guide-touch.mjs`.
+
 ## Tỷ lệ preview Guide me — 2026-10-20
 
 Theo ảnh người dùng, cả bốn khung Sales / Agent Chat / CRM / Project Management nay dùng tỷ lệ **380:401** của Writing Assistant public preview. Card cao hơn; chữ dùng mốc 380 px và giới hạn 1–1.25×, không phóng chữ theo khung ảnh 300 px cũ. Desktop là 384 × 405 CSS px; ở DPR 1.25 là khoảng 480 × 506 device px. Nội dung/chuyển mục giữ nguyên. Màn hình hẹp xếp dọc, màn ngang thấp cho cuộn thay vì thu nhỏ nút/chữ. Chỉ quan sát preview công khai và ảnh người dùng, không dùng CLI/registry/code Pro/prompt của affectUI. Chi tiết hiện hành: [Writing Assistant brief](research/writing-assistant/README.md), ảnh và so sánh trong `docs/research/writing-assistant/resize/`. QA Writing Assistant (15 nhóm), Guide navigation (11 nhóm) và production build đã qua. Các mô tả tỷ lệ 223:190 bên dưới là trạng thái compact cũ.

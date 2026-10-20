@@ -9,7 +9,7 @@
   position: relative; isolation: isolate; min-height: 100dvh; display: grid; place-items: center; background: #fdfdfd; color: #0a0a0a;
   font-family: Inter, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip;
   /* Vertical pans scroll the page; horizontal swipes are read by the selector. */
-  touch-action: pan-y;
+  touch-action: pan-y pinch-zoom;
 }
 .guide-page *, .guide-page *::before, .guide-page *::after { box-sizing: border-box; }
 .guide-stage { position: relative; z-index: 1; width: calc(var(--u) * var(--su)); padding: 0 calc(var(--u) * 9) 0 var(--u); }
@@ -17,6 +17,9 @@
 .guide-heading sup { position: absolute; left: calc(100% + var(--u) * 5); top: calc(var(--u) * 1.5); font-size: calc(var(--u) * 6); line-height: calc(var(--u) * 6); font-weight: 600; letter-spacing: 0; }
 .guide-grid { position: relative; top: calc(var(--u) * -1); display: grid; grid-template-columns: calc(var(--u) * 167) calc(var(--u) * 256); align-items: center; }
 .guide-list { position: relative; display: flex; flex-direction: column; gap: var(--guide-gap); margin: 0; padding: 0; list-style: none; }
+/* Reserve one-finger list drags for selection before Safari/Chrome can cancel the pointer to scroll.
+   Pinch zoom and vertical page scrolling outside this small control remain available. */
+.guide-list { touch-action: pinch-zoom; user-select: none; -webkit-user-select: none; }
 .guide-list li:not(.guide-bar) { display: block; }
 .guide-bar { position: absolute; left: 0; top: 0; width: calc(var(--u) * 2); background: #111; pointer-events: none; }
 .guide-list[data-ready] .guide-bar { transition: transform var(--guide-time) var(--guide-ease), height var(--guide-time) var(--guide-ease); }
@@ -45,8 +48,8 @@
    readable scale rather than enlarging everything to fill a short image slot. */
 .guide-preview__frame[data-live] { background: #fff; }
 .guide-live { position: absolute; inset: 0; }
-.guide-live .wra, .guide-live .ap { border-radius: 0; box-shadow: none; }
-.guide-preview__frame[inert] .wra *, .guide-preview__frame[inert] .ap * { animation-play-state: paused; }
+.guide-live .wra, .guide-live .ap, .guide-live .dgb { border-radius: 0; box-shadow: none; }
+.guide-preview__frame[inert] .wra *, .guide-preview__frame[inert] .ap *, .guide-preview__frame[inert] .dgb * { animation-play-state: paused; }
 .guide-loading { display: grid; place-items: center; height: 100dvh; color: #777; background: #fdfdfc; font: 13px Inter, sans-serif; }
 .crm-page .workspace-sidebar-header { padding: 0 2px; }
 .crm-page .workspace-explore { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); font-size: 13px; font-weight: 500; text-decoration: none; transition: background-color 140ms ease, border-color 140ms ease; }

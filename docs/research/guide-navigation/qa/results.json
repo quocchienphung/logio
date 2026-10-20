@@ -5,7 +5,7 @@
     "Rapid hover settles on the last item, with no queued animations or extra layers",
     "Keyboard arrows select, wrap, Home/End work and Enter opens the group",
     "Each group opens its workspace entry and Explore pages returns to that group",
-    "Preview click opens the active group; pages of other groups follow their group and its sidebar",
+    "CRM preview is interactive; its row opens the workspace and pages follow their group",
     "Back/Forward and refresh keep the selection; hover adds no history entries",
     "Legacy CRM route and URL-addressable tabs keep working",
     "Small, tablet and wide viewports have no horizontal overflow",

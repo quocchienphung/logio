@@ -6,13 +6,13 @@ import type { WorkspaceSection } from "../affectui-crm/workspace-state";
  * `image` is the frame shown in the selector; null draws a neutral frame until a picture is supplied. `live` swaps the
  * picture for a working component that stays interactive in the frame (the frame is then not a link; the row opens the page).
  */
-export type LiveFrame = "writing-assistant" | "agent-plan";
+export type LiveFrame = "writing-assistant" | "agent-plan" | "delegate-board" | "agent-lanes";
 
 export const guideGroups = [
   { id: "sales", name: "Sales", number: "01", href: "/personalize?section=invoice", image: null, live: "agent-plan", sections: ["Invoice"], pipelines: [] },
   { id: "agent-chat", name: "Agent Chat", number: "02", href: "/personalize?section=new-chat", image: null, live: "writing-assistant", sections: ["New chat", "Files", "Run", "Settings"], pipelines: [] },
-  { id: "crm", name: "CRM", number: "03", href: "/personalize?section=home", image: "/sites/guide-navigation/crm.jpg", sections: ["Home", "Companies", "Contacts", "Deals", "Reports"], pipelines: ["New business", "Renewals", "Partnerships"] },
-  { id: "project-management", name: "Project Management", number: "04", href: "/personalize?section=mapping", image: null, sections: ["Mapping"], pipelines: [] },
+  { id: "crm", name: "CRM", number: "03", href: "/personalize?section=home", image: null, live: "agent-lanes", sections: ["Home", "Companies", "Contacts", "Deals", "Reports"], pipelines: ["New business", "Renewals", "Partnerships"] },
+  { id: "project-management", name: "Project Management", number: "04", href: "/personalize?section=mapping", image: null, live: "delegate-board", sections: ["Mapping"], pipelines: [] },
 ] as const satisfies readonly { id: string; name: string; number: string; href: string; image: string | null; live?: LiveFrame; sections: readonly WorkspaceSection[]; pipelines: readonly WorkspaceSection[] }[];
 
 export type GuideGroup = (typeof guideGroups)[number];

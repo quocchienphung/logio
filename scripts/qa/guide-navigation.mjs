@@ -34,7 +34,7 @@ try {
     assert.equal(await page.locator('.guide-item').count(), 4);
     assert.match(await selected(), /Agent Chat/);
     assert.deepEqual(await page.locator('.guide-item__name').allInnerTexts(), ['Sales', 'Agent Chat', 'CRM', 'Project Management']);
-    assert.equal(await page.locator('.guide-page p:not(.wra *):not(.ap *), .guide-page header:not(.wra *):not(.ap *), .guide-page footer').count(), 0);
+    assert.equal(await page.locator('.guide-page :is(p, header, footer):not(.guide-live *)').count(), 0);
     await page.setViewportSize({ width: 716, height: 574 });
   });
   await check('Hover slides the strip up for later items and down for earlier ones, then settles', async () => {
@@ -59,9 +59,9 @@ try {
   await check('Rapid hover settles on the last item, with no queued animations or extra layers', async () => {
     for (const name of ['Sales', 'Project Management', 'CRM', 'Sales', 'Project Management', 'Agent Chat', 'Sales']) await item(name).hover();
     await page.waitForTimeout(1100);
-    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf, .ap') && Number(animation.effect.getTiming().duration) > 1).length), 0);
+    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.guide-live, .gf') && Number(animation.effect.getTiming().duration) > 1).length), 0);
     assert.match(await selected(), /Sales/);
-    assert.equal(await page.locator('.guide-preview img').count(), 1, 'one photo (CRM), two live frames (Sales, Agent Chat) and a neutral frame');
+    assert.equal(await page.locator('.guide-preview img').count(), 0, 'all four groups use live previews');
     const frame = await page.locator('.guide-preview').evaluate(el => el.getBoundingClientRect().top);
     assert(Math.abs(await stripY() - frame) < 1.5, 'Sales frame fills the preview');
   });
@@ -95,10 +95,13 @@ try {
       assert.match(await selected(), new RegExp(name));
     }
   });
-  await check('Preview click opens the active group; pages of other groups follow their group and its sidebar', async () => {
+  await check('CRM preview is interactive; its row opens the workspace and pages follow their group', async () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await open('crm');
-    await page.locator('.guide-preview').click();
+    await page.locator('.agl__block').first().click();
+    await page.locator('.agl__tip').waitFor();
+    assert.equal(await page.locator('.guide-page').count(), 1);
+    await item('CRM').click();
     await page.locator('.crm-page').waitFor();
     assert.deepEqual(await page.locator('.ui-as-side__nav .workspace-nav-label').allInnerTexts(), ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships']);
     for (const [label, pages, pipelines] of [['Deals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true], ['Run', ['New chat', 'Files', 'Run', 'Settings'], false], ['Mapping', ['Mapping'], false], ['Settings', ['New chat', 'Files', 'Run', 'Settings'], false], ['Renewals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true]]) {
@@ -163,7 +166,7 @@ try {
     await open();
     await item('CRM').hover();
     await page.waitForTimeout(80);
-    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf, .ap') && Number(animation.effect.getTiming().duration) > 1).length), 0);
+    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.guide-live, .gf') && Number(animation.effect.getTiming().duration) > 1).length), 0);
     assert.match(await selected(), /CRM/);
     await item('CRM').click();
     await page.locator('.crm-page').waitFor();

@@ -1,40 +1,38 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, MouseEvent, PointerEvent } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { defaultGuideIndex, guideGroups, liveFrameOf, navigateWorkspaceHref, subscribeLocation } from "./navigation-model";
+import { useSearchParams } from "next/navigation";
+import { defaultGuideIndex, guideGroups, liveFrameOf, navigateWorkspaceHref } from "./navigation-model";
 import { WorkspaceLink } from "./WorkspaceLink";
 import { WorkspaceBackendProvider } from "@/lib/workspace-backend/react";
 import { GradientFloor } from "../affectui-gradient-floor/GradientFloor";
 import { InvoicePlan } from "../affectui-agent-plan/AgentPlan";
 import { WritingAssistant } from "../affectui-writing-assistant/WritingAssistant";
+import { ProjectDelegateBoard } from "../affectui-delegate-board/ProjectDelegateBoard";
+import { CrmAgentLanes } from "../affectui-agent-lanes/CrmAgentLanes";
 import "../affectui-fonts.css";
 import "./guide-navigation.css";
 
 const Workspace = dynamic(() => import("../affectui-crm/Crm").then(module => module.Crm), {
   loading: () => <div className="guide-loading" role="status">Opening your workspace…</div>,
 });
-const locationSnapshot = () => window.location.search;
 const swipeDistance = 40;
 
 export function PersonalizeApp({ initialBrowse = false, initialGroup }: { initialBrowse?: boolean; initialGroup?: string }) {
-  const search = useSyncExternalStore(subscribeLocation, locationSnapshot, () => {
-    if (!initialBrowse) return "";
-    return initialGroup ? `?browse=1&group=${encodeURIComponent(initialGroup)}` : "?browse=1";
-  });
-  const params = new URLSearchParams(search);
+  // Read Next's history state directly. Listening only for a manually dispatched popstate can miss
+  // navigation during a router update on WebKit, leaving the URL and the visible app out of sync.
+  const params = useSearchParams() ?? new URLSearchParams(initialBrowse ? `browse=1&group=${encodeURIComponent(initialGroup ?? "")}` : "");
   return <WorkspaceBackendProvider>{params.get("browse") === "1"
-    ? <GuideNavigation key={params.get("group") || "default"} initialGroup={params.get("group")} />
+    ? <GuideNavigation initialGroup={params.get("group")} />
     : <Workspace />}</WorkspaceBackendProvider>;
 }
 
 function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
-  const [active, setActive] = useState(() => {
-    const index = guideGroups.findIndex(group => group.id === initialGroup);
-    return index < 0 ? defaultGuideIndex : index;
-  });
+  const groupIndex = guideGroups.findIndex(group => group.id === initialGroup);
+  const [active, setActive] = useState(groupIndex < 0 ? defaultGuideIndex : groupIndex);
   const [bar, setBar] = useState<{ top: number; height: number } | null>(null);
   const [ready, setReady] = useState(false);
   // False while the strip slides, so every frame in between is visible; true at rest.
@@ -44,7 +42,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   const rows = useRef<(HTMLAnchorElement | null)[]>([]);
   const list = useRef<HTMLUListElement>(null);
   // A touch tap on an inactive row only selects it, as hover would; the next tap opens it.
-  const press = useRef({ type: "", wasActive: false });
+  const press = useRef({ type: "", wasActive: false, index: -1 });
   const preview = useRef<HTMLDivElement>(null);
 
   const measure = useCallback(() => {
@@ -53,11 +51,12 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   }, [active]);
 
   useLayoutEffect(() => {
+    activeRef.current = active;
     measure();
     const observer = new ResizeObserver(measure);
     if (list.current) observer.observe(list.current);
     return () => observer.disconnect();
-  }, [measure]);
+  }, [active, measure]);
 
   // The first position is applied without a transition; later changes animate.
   useLayoutEffect(() => {
@@ -67,6 +66,22 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
 
   const urlTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   useLayoutEffect(() => () => { clearTimeout(urlTimer.current); clearTimeout(settleTimer.current); }, []);
+  useLayoutEffect(() => {
+    // Restore actual history navigation. Debounced replaceState acknowledgments from our own selection
+    // must not restore an older group while the finger is already moving back across the list.
+    const restoreGroup = () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("browse") !== "1") return;
+      const index = guideGroups.findIndex(group => group.id === params.get("group"));
+      clearTimeout(urlTimer.current);
+      clearTimeout(settleTimer.current);
+      activeRef.current = index < 0 ? defaultGuideIndex : index;
+      setActive(activeRef.current);
+      setSettled(true);
+    };
+    window.addEventListener("popstate", restoreGroup);
+    return () => window.removeEventListener("popstate", restoreGroup);
+  }, []);
 
   // Keep the selected group in the URL for refresh and Back. Replace rather than push, so hovering never
   // fills the history, and debounce it: Next.js applies history writes to its router asynchronously.
@@ -93,15 +108,18 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   }
 
   function onPointerDown(event: PointerEvent, index: number) {
-    press.current = { type: event.pointerType, wasActive: index === activeRef.current };
+    if (!event.isPrimary || event.button !== 0) return;
+    press.current = { type: event.pointerType, wasActive: index === activeRef.current, index };
+    // Touch has no hover. Show the preview on contact, while remembering whether this press may open it.
+    if (event.pointerType === "touch") select(index);
   }
 
   function onClick(event: MouseEvent, index: number) {
-    const { type, wasActive } = press.current;
-    press.current = { type: "", wasActive: false };
+    const { type, wasActive, index: pressedIndex } = press.current;
+    press.current = { type: "", wasActive: false, index: -1 };
     // Select here rather than rely on focus: iOS Safari never focuses a tapped link, and a row that already
     // holds focus (after a swipe moved the selection away) gets no new focus event either.
-    if (type === "touch" && !wasActive) { event.preventDefault(); select(index); return; }
+    if (event.detail !== 0 && type === "touch" && pressedIndex === index && !wasActive) { event.preventDefault(); select(index); return; }
     if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     clearTimeout(urlTimer.current);
     if (writeGroupUrl(index)) {
@@ -111,14 +129,23 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     }
   }
 
-  // A horizontal finger swipe anywhere on the page steps through the groups, as hover does with a mouse.
-  // Vertical movement stays with the browser (page scroll), and so do text fields and the plan's drag grips.
-  const swipe = useRef({ id: -1, x: 0, y: 0, at: -Infinity });
+  // On the list, drag vertically over rows like a mouse hover. Elsewhere, vertical pans still scroll;
+  // horizontal swipes step once per gesture. Touch pointers implicitly capture the starting element,
+  // so pointerenter/target cannot tell us which row is now underneath the finger.
+  const swipe = useRef({ id: -1, x: 0, y: 0, onList: false, mode: "pending" as "pending" | "list" | "horizontal" });
+  const suppressClick = useRef(false);
 
   function onSwipeStart(event: PointerEvent) {
-    if (event.pointerType !== "touch" || !event.isPrimary) return;
-    const ignored = (event.target as Element).closest("input, textarea, select, [contenteditable], .ap__grip");
-    swipe.current = { ...swipe.current, id: ignored ? -1 : event.pointerId, x: event.clientX, y: event.clientY };
+    if (event.isPrimary) suppressClick.current = false;
+    if (event.pointerType !== "touch") return;
+    if (!event.isPrimary) {
+      swipe.current.id = -1;
+      suppressClick.current = true;
+      return;
+    }
+    const target = event.target as Element;
+    const ignored = target.closest("input, textarea, select, [contenteditable]:not([contenteditable=false]), button, [role=button], .ap__grip");
+    swipe.current = { id: ignored ? -1 : event.pointerId, x: event.clientX, y: event.clientY, onList: !!target.closest(".guide-list"), mode: "pending" };
   }
 
   function onSwipeMove(event: PointerEvent) {
@@ -126,10 +153,19 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     if (event.pointerId !== gesture.id) return;
     const dx = event.clientX - gesture.x;
     const dy = event.clientY - gesture.y;
-    if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { gesture.id = -1; return; }
+    if (gesture.onList && gesture.mode === "pending" && Math.abs(dy) > 8 && Math.abs(dy) > Math.abs(dx)) gesture.mode = "list";
+    if (gesture.mode === "list") {
+      suppressClick.current = true;
+      const row = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLAnchorElement>(".guide-item");
+      const index = row ? rows.current.indexOf(row) : -1;
+      if (index >= 0) select(index);
+      return;
+    }
+    if (gesture.mode === "horizontal") return;
+    if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { gesture.id = -1; suppressClick.current = true; return; }
     if (Math.abs(dx) < swipeDistance || Math.abs(dx) < Math.abs(dy) * 1.6) return;
-    gesture.id = -1;
-    gesture.at = event.timeStamp;
+    gesture.mode = "horizontal";
+    suppressClick.current = true;
     const next = Math.min(guideGroups.length - 1, Math.max(0, activeRef.current + (dx < 0 ? 1 : -1)));
     select(next);
   }
@@ -138,9 +174,17 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     if (event.pointerId === swipe.current.id) swipe.current.id = -1;
   }
 
-  // The tap that ends a swipe must not open the page under the finger.
+  function onSwipeCancel(event: PointerEvent) {
+    if (event.pointerId !== swipe.current.id) return;
+    swipe.current.id = -1;
+    suppressClick.current = true;
+    press.current = { type: "", wasActive: false, index: -1 };
+  }
+
+  // Suppress the click belonging to a drag even if the finger rests before lifting. A new contact
+  // resets the flag immediately, so a deliberate tap after a swipe is never swallowed by a timer.
   function onClickCapture(event: MouseEvent) {
-    if (event.timeStamp - swipe.current.at > 400) return;
+    if (!suppressClick.current || event.detail === 0) return;
     event.preventDefault();
     event.stopPropagation();
   }
@@ -152,10 +196,11 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
       : event.key === "ArrowUp" || event.key === "ArrowLeft" ? (active + last) % guideGroups.length : -1;
     if (next < 0) return;
     event.preventDefault();
+    select(next);
     rows.current[next]?.focus();
   }
 
-  return <main className="guide-page" onPointerDown={onSwipeStart} onPointerMove={onSwipeMove} onPointerUp={onSwipeEnd} onPointerCancel={onSwipeEnd} onClickCapture={onClickCapture}>
+  return <main className="guide-page" onPointerDown={onSwipeStart} onPointerMove={onSwipeMove} onPointerUp={onSwipeEnd} onPointerCancel={onSwipeCancel} onClickCapture={onClickCapture}>
     <GradientFloor className="guide-floor" />
     <div className="guide-stage">
       <h1 className="guide-heading"><span>How I can help you</span><sup>(SERVICES)</sup></h1>
@@ -168,6 +213,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
                 href={group.href}
                 className="guide-item"
                 aria-current={index === active ? "true" : undefined}
+                tabIndex={index === active ? 0 : -1}
                 ref={element => { rows.current[index] = element; }}
                 onPointerEnter={event => { if (event.pointerType !== "touch") select(index, true); }}
                 onPointerDown={event => onPointerDown(event, index)}
@@ -195,6 +241,8 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
                 {group.image && <Image src={group.image} alt="" fill sizes="224px" unoptimized priority={index === active} />}
                 {live === "writing-assistant" && <div className="guide-live"><WritingAssistant speech="simulate" /></div>}
                 {live === "agent-plan" && <div className="guide-live"><InvoicePlan /></div>}
+                {live === "delegate-board" && <div className="guide-live"><ProjectDelegateBoard /></div>}
+                {live === "agent-lanes" && <div className="guide-live"><CrmAgentLanes active={index === active} /></div>}
               </div>;
             })}
           </div>

@@ -1,0 +1,181 @@
+{
+  "rejected": "Ops: Rotate API keys – Failed, 12m",
+  "sequence": [
+    {
+      "elapsed": 0,
+      "tasks": [
+        {
+          "text": "Competitor pricing",
+          "label": "Researcher: Competitor pricing – Done, took 11m",
+          "status": "done",
+          "position": "left: 10%; width: 36.6667%;"
+        },
+        {
+          "text": "Customer interviews",
+          "label": "Researcher: Customer interviews – Running, 9m",
+          "status": "running",
+          "position": "left: 70%; width: 30.005%;"
+        },
+        {
+          "text": "Draft pricing page",
+          "label": "Writer: Draft pricing page – Running, 15m",
+          "status": "running",
+          "position": "left: 50%; width: 50.005%;"
+        },
+        {
+          "text": "PR #482 billing",
+          "label": "Reviewer: PR #482 billing – Done, took 10m",
+          "status": "done",
+          "position": "left: 3.33333%; width: 33.3333%;"
+        },
+        {
+          "text": "Sync CRM",
+          "label": "Ops: Sync CRM – Failed, 7m",
+          "status": "failed",
+          "position": "left: 10%; width: 21.6667%;"
+        },
+        {
+          "text": "Rotate API keys",
+          "label": "Ops: Rotate API keys – Needs you, 12m",
+          "status": "waiting",
+          "position": "left: 60%; width: 40.005%;"
+        }
+      ]
+    },
+    {
+      "elapsed": 4000,
+      "tasks": [
+        {
+          "text": "Competitor pricing",
+          "label": "Researcher: Competitor pricing – Done, took 11m",
+          "status": "done",
+          "position": "left: 10%; width: 36.6667%;"
+        },
+        {
+          "text": "Customer interviews",
+          "label": "Researcher: Customer interviews – Running, 11m",
+          "status": "running",
+          "position": "left: 70%; width: 36.6733%;"
+        },
+        {
+          "text": "Draft pricing page",
+          "label": "Writer: Draft pricing page – Running, 17m",
+          "status": "running",
+          "position": "left: 50%; width: 56.6733%;"
+        },
+        {
+          "text": "PR #482 billing",
+          "label": "Reviewer: PR #482 billing – Done, took 10m",
+          "status": "done",
+          "position": "left: 3.33333%; width: 33.3333%;"
+        },
+        {
+          "text": "Sync CRM",
+          "label": "Ops: Sync CRM – Failed, 7m",
+          "status": "failed",
+          "position": "left: 10%; width: 21.6667%;"
+        },
+        {
+          "text": "Rotate API keys",
+          "label": "Ops: Rotate API keys – Needs you, 14m",
+          "status": "waiting",
+          "position": "left: 60%; width: 46.6733%;"
+        }
+      ]
+    },
+    {
+      "elapsed": 8000,
+      "tasks": [
+        {
+          "text": "Competitor pricing",
+          "label": "Researcher: Competitor pricing – Done, took 11m",
+          "status": "done",
+          "position": "left: 10%; width: 36.6667%;"
+        },
+        {
+          "text": "Customer interviews",
+          "label": "Researcher: Customer interviews – Running, 13m",
+          "status": "running",
+          "position": "left: 70%; width: 43.3717%;"
+        },
+        {
+          "text": "Draft pricing page",
+          "label": "Writer: Draft pricing page – Done, took 19m",
+          "status": "done",
+          "position": "left: 50%; width: 63.3333%;"
+        },
+        {
+          "text": "PR #482 billing",
+          "label": "Reviewer: PR #482 billing – Done, took 10m",
+          "status": "done",
+          "position": "left: 3.33333%; width: 33.3333%;"
+        },
+        {
+          "text": "Review pricing copy",
+          "label": "Reviewer: Review pricing copy – Running, 0m",
+          "status": "running",
+          "position": "left: 113.333%; width: 0.0383333%;"
+        },
+        {
+          "text": "Sync CRM",
+          "label": "Ops: Sync CRM – Failed, 7m",
+          "status": "failed",
+          "position": "left: 10%; width: 21.6667%;"
+        },
+        {
+          "text": "Rotate API keys",
+          "label": "Ops: Rotate API keys – Needs you, 16m",
+          "status": "waiting",
+          "position": "left: 60%; width: 53.3717%;"
+        }
+      ]
+    },
+    {
+      "elapsed": 16000,
+      "tasks": [
+        {
+          "text": "Competitor pricing",
+          "label": "Researcher: Competitor pricing – Done, took 11m",
+          "status": "done",
+          "position": "left: 10%; width: 36.6667%;"
+        },
+        {
+          "text": "Customer interviews",
+          "label": "Researcher: Customer interviews – Running, 17m",
+          "status": "running",
+          "position": "left: 70%; width: 56.7283%;"
+        },
+        {
+          "text": "Draft pricing page",
+          "label": "Writer: Draft pricing page – Done, took 19m",
+          "status": "done",
+          "position": "left: 50%; width: 63.3333%;"
+        },
+        {
+          "text": "PR #482 billing",
+          "label": "Reviewer: PR #482 billing – Done, took 10m",
+          "status": "done",
+          "position": "left: 3.33333%; width: 33.3333%;"
+        },
+        {
+          "text": "Review pricing copy",
+          "label": "Reviewer: Review pricing copy – Running, 4m",
+          "status": "running",
+          "position": "left: 113.333%; width: 13.395%;"
+        },
+        {
+          "text": "Sync CRM",
+          "label": "Ops: Sync CRM – Failed, 7m",
+          "status": "failed",
+          "position": "left: 10%; width: 21.6667%;"
+        },
+        {
+          "text": "Rotate API keys",
+          "label": "Ops: Rotate API keys – Needs you, 20m",
+          "status": "waiting",
+          "position": "left: 60%; width: 66.7283%;"
+        }
+      ]
+    }
+  ]
+}
