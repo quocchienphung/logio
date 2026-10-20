@@ -23,8 +23,8 @@
 .crm-page .ui-as-crm__table { scrollbar-width: thin; }
 .crm-page .ui-as-board__logo .crm-icon { width: 20px; height: 20px; }
 .crm-board-move { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.ui-as-board__card:focus-within .crm-board-move { position: static; width: auto; height: auto; overflow: visible; clip-path: none; display: grid; gap: 4px; font-size: 12px; }
-.crm-board-move select { padding: 4px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--text); }
+.ui-as-board__card:has(:focus-visible) .crm-board-move { position: static; width: auto; height: auto; overflow: visible; clip-path: none; display: grid; gap: 4px; font-size: 12px; }
+.crm-board-move .cbx__label { margin-left: 0; }
 .crm-guide { padding: 12px 4px 4px; }
 .crm-guide__title { display: flex; justify-content: space-between; color: var(--ink); font-weight: 600; margin: 0 6px 12px; }
 .crm-guide > .ui-as-steps__bar { display: block; margin: 0 6px 6px; }

@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Copy, Download, Link2, MessageSquare, Pencil, Share2, X } from "lucide-react";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
@@ -13,6 +13,7 @@ import { RunIcon } from "./RunIcon";
 import { RunClock } from "./RunClock";
 import { useRunEngine } from "./useRunEngine";
 import { runTitle } from "./run-seed";
+import { subscribeLocation } from "../guide-navigation/navigation-model";
 import "./run-reference.css";
 import "./run-plan-activity.css";
 import "./run-overrides.css";
@@ -20,6 +21,7 @@ import "./run-overrides.css";
 const MemoDraft=memo(RunDraft);
 const MemoApproval=memo(RunApproval);
 const clock=(ms:number)=>`${Math.floor(ms/60000)}:${String(Math.floor(ms/1000)%60).padStart(2,"0")}`;
+const chatSnapshot=()=>new URLSearchParams(window.location.search).get("panel")==="chat";
 
 export function AgentRun({workspaceId,userName,notify}:{workspaceId:string;userName:string;notify:(message:string)=>void}){
   const {snapshot,dispatch,restart,replay}=useRunEngine(workspaceId);
@@ -28,6 +30,7 @@ export function AgentRun({workspaceId,userName,notify}:{workspaceId:string;userN
   const [options,setOptions]=useState(false);
   const [editing,setEditing]=useState(false);
   const [dialog,setDialog]=useState<"share"|"chat"|null>(null);
+  const chatRoute=useSyncExternalStore(subscribeLocation,chatSnapshot,()=>false);
   const [draft,setDraft]=useState("");
   const root=useRef<HTMLDivElement>(null),panel=useRef<HTMLElement>(null),menu=useRef<HTMLSpanElement>(null),panelToggle=useRef<HTMLButtonElement>(null);
   const reduce=useReducedMotion();
@@ -37,6 +40,12 @@ export function AgentRun({workspaceId,userName,notify}:{workspaceId:string;userN
   const pending=phase==="waiting" && !!approvalStep;
   const status={running:"Running",waiting:"Needs input",done:"Done",stopped:"Stopped"}[phase];
   const totalCalls=snapshot.steps.reduce((sum,step)=>sum+step.calls.length,0);
+
+  useEffect(()=>{
+    let disposed=false;
+    queueMicrotask(()=>{if(!disposed)setDialog(chatRoute ? "chat" : null);});
+    return()=>{disposed=true;};
+  },[chatRoute]);
 
   const showPanel=useCallback(()=>setPanelOpen(true),[]);
   const approve=useCallback(()=>{if(snapshot.activeId){dispatch({type:"approve",id:snapshot.activeId,now:Date.now()});notify("Approval recorded for this simulated run");}},[dispatch,notify,snapshot.activeId]);

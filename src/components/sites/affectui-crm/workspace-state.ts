@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore, type Dispatch, type SetStateAction } from "react";
 
-export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "Run", "Settings", "New business", "Renewals", "Partnerships"] as const;
+export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "Run", "Mapping", "Invoice", "Settings", "New business", "Renewals", "Partnerships"] as const;
 export type WorkspaceSection = (typeof workspaceSections)[number];
 
 /** Hydrates after SSR and only writes after the matching key has been read. */
@@ -36,10 +36,16 @@ function routeSnapshot(): WorkspaceSection {
   const section = new URLSearchParams(window.location.search).get("section");
   return workspaceSections.find(value => value.toLowerCase().replaceAll(" ", "-") === section) || "Companies";
 }
+function viewSnapshot() { return new URLSearchParams(window.location.search).get("crm-view"); }
 export function useWorkspaceRoute() {
   const section = useSyncExternalStore(subscribeRoute, routeSnapshot, () => "Companies" as WorkspaceSection);
-  function navigate(next: WorkspaceSection) {
+  const crmView = useSyncExternalStore(subscribeRoute, viewSnapshot, () => null);
+  function navigate(next: WorkspaceSection, view?: string) {
     const url = new URL(window.location.href);
+    url.searchParams.delete("panel");
+    url.searchParams.delete("settings-tab");
+    if (view) url.searchParams.set("crm-view", view);
+    else url.searchParams.delete("crm-view");
     if (next === "Companies") url.searchParams.delete("section");
     else url.searchParams.set("section", next.toLowerCase().replaceAll(" ", "-"));
     if (url.href !== window.location.href) {
@@ -47,7 +53,7 @@ export function useWorkspaceRoute() {
       window.dispatchEvent(new PopStateEvent("popstate"));
     }
   }
-  return { section, navigate };
+  return { section, crmView, navigate };
 }
 
 export function downloadFile(name: string, content: string, mime = "text/plain;charset=utf-8") {

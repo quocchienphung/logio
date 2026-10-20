@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
+import { goToSection } from './lib/nav.mjs';
 
 const base=process.argv[2] || 'http://localhost:3000';
 const out='docs/research/affectui-analytics/qa';
@@ -13,7 +14,7 @@ const errors=[],passed=[];
 page.on('pageerror',error=>errors.push(error.message));
 page.on('console',message=>{if(message.type()==='error' && /Encountered two children|Cannot update|hydration|Invalid DOM|unique.*key/i.test(message.text()))errors.push(message.text());});
 const check=async(name,fn)=>{await fn();passed.push(name);console.log(`PASS ${name}`);};
-const nav=async name=>{await page.locator('.ui-as-side__nav .workspace-nav-label').getByText(name,{exact:true}).click();await page.waitForTimeout(450);};
+const nav=name=>goToSection(page,name,450);
 const period=async days=>{await page.locator('.ui-as-rev__period').click();await page.getByRole('menuitemradio',{name:`Last ${days} days`,exact:true}).click();};
 const userMenu=async name=>{await page.locator('.ui-as-user').click();await page.getByRole('menuitem',{name,exact:true}).click();};
 const readDownload=async download=>{const stream=await download.createReadStream();const chunks=[];for await(const chunk of stream)chunks.push(chunk);return Buffer.concat(chunks).toString('utf8');};
@@ -93,7 +94,7 @@ try{
     await page.locator('.ui-as-crm__view').click();await page.getByRole('menuitemradio',{name:'Head of Sales',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('tbody tr').length===10);
   });
   await check('create and remove an owner-filtered custom view',async()=>{
-    await page.getByRole('button',{name:'New view',exact:true}).click();await page.getByLabel('View name').fill('Lea accounts');await page.getByLabel('View owner',{exact:true}).selectOption('Lea Braun');
+    await page.getByRole('button',{name:'New view',exact:true}).click();await page.getByLabel('View name').fill('Lea accounts');await page.getByRole('combobox',{name:'Owner',exact:true}).click();await page.getByRole('option',{name:'Lea Braun',exact:true}).click();
     await page.getByRole('button',{name:'Create view',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('tbody tr').length===3);
     assert.match(await page.locator('tbody').innerText(),/Lea Braun/);
     await page.getByRole('button',{name:'Add row',exact:true}).click();await page.getByRole('textbox',{name:'Edit Company'}).fill('Lea pilot');await page.keyboard.press('Enter');
@@ -111,13 +112,13 @@ try{
   await check('Home and pipelines navigate to real company records',async()=>{
     await nav('Home');assert.equal(await page.locator('.workspace-home-stats button').count(),3);
     await page.locator('.workspace-recent-list button').first().click();await page.locator('.workspace-filter-chip').waitFor();assert.match(await page.locator('tbody').innerText(),/Notion/);
-    await nav('Deals');await page.getByLabel('Filter deals by owner').selectOption('Lea Braun');assert.equal(await page.locator('.ui-as-board__card').count(),3);
-    await page.getByLabel('Filter deals by owner').selectOption('');await page.getByRole('button',{name:'Open Notion',exact:true}).click();await page.locator('.workspace-filter-chip').waitFor();
+    await nav('Deals');await page.getByRole('combobox',{name:'Filter deals by owner',exact:true}).click();await page.getByRole('option',{name:'Lea Braun',exact:true}).click();assert.equal(await page.locator('.ui-as-board__card').count(),3);
+    await page.getByRole('combobox',{name:'Filter deals by owner',exact:true}).click();await page.getByRole('option',{name:'All owners',exact:true}).click();await page.getByRole('button',{name:'Open Notion',exact:true}).click();await page.locator('.workspace-filter-chip').waitFor();
     await nav('Renewals');assert.match(await page.locator('.workspace-page-head h1').innerText(),/Renewals/);await nav('Partnerships');assert.equal(await page.locator('.ui-as-board__card').count(),3);
   });
   await check('Profile, settings, feedback and changelog are working screens',async()=>{
     await userMenu('Profile');await page.getByLabel('Name',{exact:true}).fill('Alex River');await page.getByRole('button',{name:'Save profile',exact:true}).click();assert.match(await page.locator('.ui-as-user').innerText(),/Alex River/);
-    await userMenu('Appearance & notifications');await page.getByLabel('Appearance').selectOption('dark');await page.getByRole('button',{name:'Save settings',exact:true}).click();assert.equal(await page.locator('.crm-page').getAttribute('data-theme'),'dark');
+    await userMenu('Appearance & notifications');await page.getByRole('combobox',{name:'Appearance',exact:true}).click();await page.getByRole('option',{name:'Dark',exact:true}).click();await page.getByRole('button',{name:'Save settings',exact:true}).click();assert.equal(await page.locator('.crm-page').getAttribute('data-theme'),'dark');
     await userMenu('Help & feedback');await page.getByLabel('Feedback',{exact:true}).fill('The reports are useful.');await page.getByRole('button',{name:'Save feedback',exact:true}).click();assert.match(await page.locator('dialog[open]').innerText(),/Saved on this device/);await page.keyboard.press('Escape');
     await page.getByRole('button',{name:'Full changelog',exact:true}).click();assert.match(await page.locator('dialog[open]').innerText(),/Reports, with a clearer picture/);await page.keyboard.press('Escape');
   });

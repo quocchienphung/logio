@@ -46,7 +46,7 @@ try {
     await page.locator('.ui-as-board__card').filter({hasText:'Notion'}).dragTo(page.getByRole('region',{name:'New pipeline'}));
     assert.match(await page.getByRole('region',{name:'New pipeline'}).innerText(),/Notion/);
     await page.getByLabel('Move Notion to stage').focus();
-    await page.getByLabel('Move Notion to stage').selectOption('Negotiation');
+    await page.getByRole('combobox',{name:'Move Notion to stage',exact:true}).click();await page.getByRole('option',{name:'Negotiation',exact:true}).click();
     assert.match(await page.getByRole('region',{name:'Negotiation pipeline'}).innerText(),/Notion/);
     await page.getByRole('button',{name:'Company CRM',exact:true}).click();
   });
@@ -144,13 +144,14 @@ try {
     await page.goto(base,{waitUntil:'domcontentloaded'});
     const guide = page.getByRole('link',{name:'Guide me',exact:true});
     await guide.click();
-    await page.waitForURL('**/personalize');
-    await page.locator('tbody tr').first().waitFor();
+    await page.waitForURL('**/personalize?browse=1');
+    await page.locator('.guide-page').waitFor();
     await page.setViewportSize({width:390,height:844});
     await page.goto(base,{waitUntil:'domcontentloaded'});
     await page.getByRole('button',{name:'Toggle navigation menu'}).click();
     await page.getByRole('link',{name:'Guide me',exact:true}).click();
-    await page.waitForURL('**/personalize');
+    await page.waitForURL('**/personalize?browse=1');
+    await page.locator('.guide-page').waitFor();
   });
   assert.deepEqual(errors,[]);
   await fs.writeFile(`${out}/results.json`,JSON.stringify({base,passed:results,errors},null,2));

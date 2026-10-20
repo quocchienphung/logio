@@ -4,8 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { LayoutGroup, motion, useReducedMotion } from "motion/react";
 import { Check, Copy, LoaderCircle } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
+import { Combobox, type ComboboxOption } from "../affectui-combobox/Combobox";
 import { numberFormat, stages, tones, type Company, type CrmEngine } from "./crm-engine";
 import { useStoredState } from "./workspace-state";
+
+const stageOptions: ComboboxOption[] = [...stages, "Lost"].map(value => ({ value, label: value }));
 import { AnimatedNumber } from "../affectui-analytics/AnimatedNumber";
 export { SalesDocuments } from "./WorkspaceDocuments";
 
@@ -25,7 +28,7 @@ export function PipelineBoard({ engine, filter, onOpenCompany, includeLost = fal
       engine.change(engine.rows.map(row=>row.id===id ? {...row,stage} : row));setOver(null);
     }}>
       <header><span className="ui-as-board__dot" data-tone={tones[stage]} />{stage}<span className="ui-as-board__count">{rows.length}</span><span className="ui-as-board__sum">$<AnimatedNumber value={rows.reduce((sum,row)=>sum+row.value,0)} format={value=>numberFormat.format(Math.round(value))} /></span></header>
-      {rows.map(row=><motion.article layout layoutId={`deal-${row.id}`} className="ui-as-board__card" key={row.id} draggable onDragStartCapture={event=>event.dataTransfer.setData("text/plain",row.id)} onDragEnd={()=>setOver(null)} whileHover={reduce ? undefined : {y:-1}} transition={{layout:{type:"spring",stiffness:420,damping:35},duration:reduce ? 0 : 0.2}}><button type="button" className="workspace-board-card-open" onClick={()=>onOpenCompany?.(row.company)} aria-label={`Open ${row.company || "untitled company"}`}><span className="ui-as-board__name"><span className="ui-as-board__logo"><CrmIcon name={row.company} size={20} /></span>{row.company || "Untitled"}</span><b>${numberFormat.format(row.value)}</b><span className="ui-as-board__meta">{row.owner} · {row.lastContact}</span></button><label className="crm-board-move">Move to<select aria-label={`Move ${row.company} to stage`} value={row.stage} onChange={event=>engine.change(engine.rows.map(item=>item.id===row.id ? {...item,stage:event.target.value} : item))}>{[...stages,"Lost"].map(value=><option key={value}>{value}</option>)}</select></label></motion.article>)}
+      {rows.map(row=><motion.article layout layoutId={`deal-${row.id}`} className="ui-as-board__card" key={row.id} draggable onDragStartCapture={event=>event.dataTransfer.setData("text/plain",row.id)} onDragEnd={()=>setOver(null)} whileHover={reduce ? undefined : {y:-1}} transition={{layout:{type:"spring",stiffness:420,damping:35},duration:reduce ? 0 : 0.2}}><button type="button" className="workspace-board-card-open" onClick={()=>onOpenCompany?.(row.company)} aria-label={`Open ${row.company || "untitled company"}`}><span className="ui-as-board__name"><span className="ui-as-board__logo"><CrmIcon name={row.company} size={20} /></span>{row.company || "Untitled"}</span><b>${numberFormat.format(row.value)}</b><span className="ui-as-board__meta">{row.owner} · {row.lastContact}</span></button><div className="crm-board-move"><Combobox size="sm" label="Move to" aria-label={`Move ${row.company} to stage`} value={row.stage} options={stageOptions} onChange={stage=>engine.change(engine.rows.map(item=>item.id===row.id ? {...item,stage} : item))} /></div></motion.article>)}
     </section>;
   })}</div></LayoutGroup>;
 }

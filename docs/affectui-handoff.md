@@ -1,6 +1,25 @@
 # affectUI → Guide me: bàn giao cho Claude Code
 
+
+## Mapping — 2026-10-20
+
+Guide me workspace có **Mapping** (sau Run, trước Settings) tại `/personalize?section=mapping`: bản đồ zoom Canvas 2D gồm team, project, task và người, lấp đầy khung workspace (không có container/tiêu đề riêng). Đây là bản dựng độc lập: chỉ lấy ý tưởng layout, lưới, camera fly-in, semantic zoom, tour và tương tác; không có API, terminal hay dữ liệu nào từ ARC. Dữ liệu mặc định là mẫu tên chung (User 1…21, Team 1…5, Project 1…21, Task 1…151) và **mọi thứ đều sửa được**: thêm/sửa/xóa team, project, task, checklist, người; kéo thả team/project; xuất/nhập JSON. Gắn backend qua `MappingDataSource` (xem [phân tách, mô hình dữ liệu, adapter và QA](research/mapping/README.md)). Code: `src/components/sites/mapping/`. QA: `node scripts/qa/mapping.mjs`; model/store: `node --experimental-strip-types --test src/components/sites/mapping/mapping-model.test.mjs`.
+
+## Invoice — 2026-10-20
+
+Section **Invoice** (`/personalize?section=invoice`, giữa Mapping và Settings): hóa đơn chỉnh sửa được với dòng thêm/xóa, tổng tiền cuộn trực tiếp và luồng "Save draft". Dựng độc lập theo UI kit quan sát được ở preview công khai (không dùng mã, API hay dữ liệu của nguồn); mọi trường sửa được, dữ liệu mặc định có tên chung, lưu qua `InvoiceDataSource` (mặc định `localStorage`). Đọc [số đo, hành vi, đối chiếu hình và giới hạn](research/invoice/README.md). QA: `node scripts/qa/invoice.mjs`; so hình: `node scripts/forensics/invoice-compare.mjs`.
+
+Mapping: khi thu nhỏ, ô task đã hoàn thành (tick xanh) nay là **xanh lá**, task bị chặn đỏ, task chưa bắt đầu xám nhạt (đang làm là xám đậm, đang review xám vừa như cũ).
+
+## Combobox — 2026-10-20
+
+Mọi `<select>` trong workspace (CRM, Settings, Mapping) đã được thay bằng `src/components/sites/affectui-combobox/` (tự viết theo ý tưởng combobox affectUI, danh sách ở top layer nên hiện trên cả hộp thoại modal). Stripe clone, menu radio của affectUI và input date/month được giữ nguyên có chủ đích. Đọc [số đo, quét hiện trạng, phần tự quyết và QA](research/combobox/README.md). QA: `node scripts/qa/combobox.mjs`.
+
 Ngày khảo sát: 2026-10-19. Bắt đầu bằng `AGENTS.md` và `.agents/skills/clone-website/SKILL.md`.
+
+## Cập nhật 2026-10-20: bộ chọn Guide me (dựng lại từ video) và chia trang theo nhóm
+
+Guide me desktop/mobile mở `/personalize?browse=1`: bộ chọn **Sales, Agent Chat, CRM, Project Management** dựng sát video người dùng (heading, nhãn đánh số, thanh active, khung ảnh với dải ảnh trượt dọc; mặc định mục thứ hai). Click/Enter mở trang vào của nhóm. **Mỗi trang thuộc đúng một nhóm và sidebar chỉ liệt kê trang của nhóm đó:** CRM = Home, Companies, Contacts, Deals, Reports + Pipelines (New business, Renewals, Partnerships); Agent Chat = Run, Settings; Sales = Invoice; Project Management = Mapping. Nhóm suy ra từ `?section=`, nên mọi link trực tiếp vẫn chạy; sang nhóm khác bằng **Explore pages** hoặc tìm kiếm workspace (Ctrl/Cmd+K). Hàng thứ tư chưa có ảnh nên dùng khung xám trung tính. Đọc [cách chia, số đo, motion và QA](research/guide-navigation/README.md). Implementation: `src/components/sites/guide-navigation/` (dữ liệu nhóm ở `navigation-model.ts`); QA: `node scripts/qa/guide-navigation.mjs`; QA khác chuyển nhóm qua `scripts/qa/lib/nav.mjs`.
 
 ## Kết quả và route
 
@@ -13,7 +32,7 @@ Ngày khảo sát: 2026-10-19. Bắt đầu bằng `AGENTS.md` và `.agents/skil
 | https://www.affectui.com/screens/agent-run/full | `/personalize?section=run` | Run dưới Reports: workflow, plan/activity, approval, inline diff |
 | 109 trang thư viện | `docs/research/affectui-library/` | Hồ sơ khảo sát; đã dựng CRM + Analytics + Settings & Billing + Agent Run, còn 105 item tham khảo |
 
-Navigation desktop giữ tên và biểu tượng **Guide me**, link `/personalize`. Menu mobile có cùng link trong callout Company CRM. Trong menu tài khoản CRM có **Back to Stripe** để quay lại `/`.
+Navigation desktop giữ tên và biểu tượng **Guide me**, link `/personalize?browse=1`. Menu mobile có cùng link trong callout Company CRM. Trong menu tài khoản CRM và màn chọn có **Back to Stripe** để quay lại `/`.
 
 Đây là bản dựng độc lập từ giao diện và hành vi preview công khai. Không có quyền truy cập mã nguồn Pro, API cài đặt có xác thực hoặc toàn bộ engine nội bộ của affectUI. Những phần đó chưa được lấy và không cần thiết để chạy CRM cục bộ.
 

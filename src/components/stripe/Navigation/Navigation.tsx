@@ -332,7 +332,7 @@ function NavigationMenu() {
         <li className="hds-navigation-menu__item navigation-item navigation-item--desktop-only navigation-item--guide-me">
           <a
             className="hds-button hds-navigation-menu__trigger hds-button--transparent"
-            href="/personalize"
+            href="/personalize?browse=1"
             onMouseEnter={scheduleClose}
           >
             <SparkleIcon />
@@ -360,7 +360,7 @@ function NavigationMenu() {
         </span>
         <a
           className="hds-link hds-link--callout"
-          href="/personalize"
+          href="/personalize?browse=1"
           aria-describedby="navigation-personalize-mobile"
           aria-label="Guide me"
         >

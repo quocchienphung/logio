@@ -1,18 +1,19 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium} from 'playwright';
+import { goToSection } from './lib/nav.mjs';
 const base=process.argv[2]||'http://localhost:3000';
 const out='docs/research/affectui-run/qa';await fs.mkdir(out,{recursive:true});
 const browser=await chromium.launch({channel:'chrome'}),context=await browser.newContext({viewport:{width:1440,height:1000},hasTouch:true,permissions:['clipboard-read','clipboard-write']}),page=await context.newPage();page.setDefaultTimeout(15000);
 const errors=[],passed=[];page.on('pageerror',e=>errors.push(e.message));
 const check=async(name,fn)=>{await fn();passed.push(name);console.log(`PASS ${name}`);};
-const nav=async name=>{await page.locator('.workspace-nav-label').getByText(name,{exact:true}).click();await page.waitForTimeout(450);};
+const nav=name=>goToSection(page,name,450);
 const options=async name=>{await page.getByRole('button',{name:'Run options',exact:true}).click();await page.getByRole('menuitem',{name,exact:true}).click();};
 const readRun=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('affectui:acme:agent-run')));
 try{
   await page.goto(`${base}/personalize?section=run`,{waitUntil:'networkidle'});await page.locator('.ui-ar').waitFor();await page.addStyleTag({content:'nextjs-portal{display:none!important}'});
   await check('Run follows Reports and renders actual interactive DOM',async()=>{
-    const labels=await page.locator('.workspace-nav-label').allTextContents();assert.equal(labels[labels.indexOf('Reports')+1],'Run');assert.equal(await page.locator('.ui-pl__step').count(),5);assert.equal(await page.locator('.ui-ar iframe,.ui-ar img,canvas').count(),0);assert.equal(await page.locator('.ui-df__chg').count(),9);
+    const labels=await page.locator('.workspace-nav-label').allTextContents();assert.deepEqual(labels,['Run','Settings']);assert.equal(await page.locator('.ui-pl__step').count(),5);assert.equal(await page.locator('.ui-ar iframe,.ui-ar img,canvas').count(),0);assert.equal(await page.locator('.ui-df__chg').count(),9);
   });
   await check('Simulation advances sequentially and gates email/calendar on approval',async()=>{
     await page.getByRole('button',{name:'Approve',exact:true}).waitFor();const run=await readRun();assert.equal(run.phase,'waiting');assert.equal(run.states.draft.status,'done');assert.equal(run.states.send.completedCalls,0);assert.equal(run.states.review.status,'pending');assert.equal(await page.locator('.ui-tc-group').count(),3);

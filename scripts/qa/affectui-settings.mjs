@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
+import { goToSection } from './lib/nav.mjs';
 const base=process.argv[2] || 'http://localhost:3000';
 const out='docs/research/affectui-settings/qa';
 await fs.mkdir(out,{recursive:true});
@@ -10,7 +11,7 @@ const page=await context.newPage();page.setDefaultTimeout(12000);
 const errors=[],passed=[];page.on('pageerror',e=>errors.push(e.message));
 const check=async(name,fn)=>{await fn();passed.push(name);console.log(`PASS ${name}`);};
 const tab=async name=>{await page.getByRole('tab',{name,exact:true}).click();await page.waitForTimeout(450);};
-const nav=async name=>{await page.locator('.ui-as-side__nav .workspace-nav-label').getByText(name,{exact:true}).click();await page.waitForTimeout(450);};
+const nav=name=>goToSection(page,name,450);
 const readDownload=async download=>{const chunks=[];for await(const chunk of await download.createReadStream())chunks.push(chunk);return Buffer.concat(chunks).toString('utf8');};
 try {
   await page.goto(`${base}/personalize?section=settings`,{waitUntil:'networkidle'});await page.locator('.ui-sb').waitFor();await page.waitForTimeout(1400);

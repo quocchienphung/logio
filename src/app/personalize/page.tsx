@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Crm } from "@/components/sites/affectui-crm/Crm";
+import { PersonalizeApp } from "@/components/sites/guide-navigation/GuideNavigation";
 
 export const metadata: Metadata = {
-  title: "Guide me · Company CRM",
-  description: "Company CRM with an editable spreadsheet, sales pipelines, integrations and documents.",
+  title: "Guide me · Your workspace",
+  description: "How I can help you: Sales, Agent Chat and CRM.",
 };
 
-export default function PersonalizePage() {
-  return <Crm />;
+export default async function PersonalizePage({ searchParams }: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  return <PersonalizeApp initialBrowse={params.browse === "1"} initialGroup={typeof params.group === "string" ? params.group : undefined} />;
 }
