@@ -55,7 +55,7 @@ type Drag = {
 
 /**
  * An agent's step-by-step plan to review before it runs: rename, drag to reorder, remove or add steps, then watch each
- * step run with live timers and retry from a failed step. The card fills its parent and scales as a unit (a 400px-wide
+ * step run with live timers and retry from a failed step. The card fills its parent and scales as a unit (a 360px-wide
  * design), so it keeps its proportions in a small frame or a full column.
  */
 export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone, badge, estimate, className }: AgentPlanProps) {

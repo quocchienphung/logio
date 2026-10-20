@@ -1,11 +1,11 @@
 /*
  * Agent Plan card. Measured on the public preview (docs/research/agent-plan/observed-rules.css), written from scratch.
- * The card is designed 400px wide and everything is sized from `--k`, one design pixel (frame width / 400), so it keeps
+ * The card is designed 360px wide (the preview hides its footer hint below 400px, so the hint is not drawn) and everything is sized from `--k`, one design pixel (frame width / 360), so it keeps
  * its proportions in any box it fills while text stays real text. Colors, radii, easing and timings are the measured ones.
  */
 .ap-frame { position: relative; width: 100%; height: 100%; container-type: inline-size; }
 .ap {
-  --k: calc(100cqw / 400);
+  --k: calc(100cqw / 360);
   --ap-card: #fff; --ap-ink: rgba(0, 0, 0, .88); --ap-strong: #000; --ap-text: rgba(0, 0, 0, .61); --ap-muted: rgba(0, 0, 0, .45);
   --ap-faint: rgba(0, 0, 0, .27); --ap-icon: rgba(0, 0, 0, .447); --ap-line: rgba(0, 0, 0, .06); --ap-ring: rgba(0, 0, 0, .1);
   --ap-rail: rgba(0, 0, 0, .08); --ap-fill: rgba(0, 0, 0, .06); --ap-wash: rgba(0, 0, 0, .03); --ap-chip: rgba(0, 0, 0, .045);
@@ -110,7 +110,7 @@
 
 .ap__foot { flex: none; display: flex; align-items: center; gap: calc(12 * var(--k)); min-height: calc(48 * var(--k)); padding: 0 calc(10 * var(--k)) 0 calc(16 * var(--k)); border-top: calc(.5 * var(--k)) solid var(--ap-line); color: var(--ap-muted); font-size: calc(12 * var(--k)); line-height: calc(16 * var(--k)); }
 .ap__foot > * { animation: ap-fade 320ms var(--ap-ease) both; }
-.ap__hint { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ap__hint { display: none; }
 .ap__actions { display: flex; flex: none; gap: calc(8 * var(--k)); margin-left: auto; }
 .ap__btn--primary { padding: 0 calc(8 * var(--k)) 0 calc(10 * var(--k)); background: var(--ap-primary); color: var(--ap-on-primary); }
 .ap__btn--primary:hover { background: var(--ap-primary-hover); }

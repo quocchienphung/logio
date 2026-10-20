@@ -34,7 +34,7 @@ try {
     assert.equal(await page.locator('.guide-item').count(), 4);
     assert.match(await selected(), /Agent Chat/);
     assert.deepEqual(await page.locator('.guide-item__name').allInnerTexts(), ['Sales', 'Agent Chat', 'CRM', 'Project Management']);
-    assert.equal(await page.locator('.guide-page p:not(.wra *), .guide-page header:not(.wra *), .guide-page footer').count(), 0);
+    assert.equal(await page.locator('.guide-page p:not(.wra *):not(.ap *), .guide-page header:not(.wra *):not(.ap *), .guide-page footer').count(), 0);
     await page.setViewportSize({ width: 716, height: 574 });
   });
   await check('Hover slides the strip up for later items and down for earlier ones, then settles', async () => {
@@ -59,7 +59,7 @@ try {
   await check('Rapid hover settles on the last item, with no queued animations or extra layers', async () => {
     for (const name of ['Sales', 'Project Management', 'CRM', 'Sales', 'Project Management', 'Agent Chat', 'Sales']) await item(name).hover();
     await page.waitForTimeout(1100);
-    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf')).length), 0);
+    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf, .ap') && Number(animation.effect.getTiming().duration) > 1).length), 0);
     assert.match(await selected(), /Sales/);
     assert.equal(await page.locator('.guide-preview img').count(), 1, 'one photo (CRM), two live frames (Sales, Agent Chat) and a neutral frame');
     const frame = await page.locator('.guide-preview').evaluate(el => el.getBoundingClientRect().top);
@@ -163,7 +163,7 @@ try {
     await open();
     await item('CRM').hover();
     await page.waitForTimeout(80);
-    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf')).length), 0);
+    assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf, .ap') && Number(animation.effect.getTiming().duration) > 1).length), 0);
     assert.match(await selected(), /CRM/);
     await item('CRM').click();
     await page.locator('.crm-page').waitFor();

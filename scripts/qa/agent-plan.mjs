@@ -45,7 +45,8 @@ try {
     assert.match(await page.locator('.ap__estimate').innerText(), /~7 s/);
     assert.deepEqual(await page.locator('.ap__tool').allInnerTexts(), ['invoice.draft', 'invoice.review', 'invoice.send', 'payment.watch', 'invoice.settle']);
     assert.deepEqual(await page.locator('.ap__num').allInnerTexts(), ['1', '2', '3', '4', '5']);
-    assert.equal(await foot(page), 'Drag to reorder · double-click to rename Cancel Run plan');
+    assert.equal(await foot(page), 'Cancel Run plan', 'the footer hint is hidden in narrow cards, as on the preview');
+    assert.equal(await page.locator('.ap__hint').evaluate(el => getComputedStyle(el).display), 'none');
     assert.equal(await page.locator('.ap__step[tabindex="0"]').count(), 5);
     assert.equal(await page.locator('.ap').getAttribute('data-status'), 'draft');
     assert.equal(await page.locator('.ap__list').getAttribute('aria-label'), 'Plan: Invoice from draft to paid');
@@ -152,9 +153,10 @@ try {
     await step(page, 0).hover();
     const grip = await step(page, 0).locator('.ap__grip').boundingBox();
     const gx = grip.x + grip.width / 2, gy = grip.y + grip.height / 2;
+    const rowH = (await step(page, 0).boundingBox()).height;
     await page.mouse.move(gx, gy);
     await page.mouse.down();
-    await page.mouse.move(gx, gy + 60, { steps: 6 });
+    await page.mouse.move(gx, gy + rowH * 1.2, { steps: 6 });
     await page.waitForTimeout(500);
     assert.equal(await page.locator('.ap').getAttribute('data-dragging'), '');
     assert.equal(await step(page, 0).getAttribute('data-dragging'), '');
@@ -163,7 +165,7 @@ try {
     assert.match(moved[1], /translateY\(-/, 'the step it passes slides up');
     assert.equal(await step(page, 0).evaluate(el => getComputedStyle(el).boxShadow !== 'none'), true, 'lifted shadow');
     await page.screenshot({ path: `${out}/drag.png` });
-    await page.mouse.move(gx, gy + 190, { steps: 10 });
+    await page.mouse.move(gx, gy + rowH * 3.3, { steps: 10 });
     await page.mouse.up();
     await page.waitForTimeout(700);
     assert.deepEqual(await names(page), ['Review totals and tax', 'Send it to the client', 'Wait for payment', 'Draft the invoice', 'Record the payment']);
@@ -299,7 +301,7 @@ try {
         const run = document.querySelector('.ap__btn--primary').getBoundingClientRect();
         return { ratio: frame.width / frame.height, l: card.left - frame.left, t: card.top - frame.top, r: frame.right - card.right, b: frame.bottom - card.bottom, runInside: run.right <= card.right && run.bottom <= card.bottom + 0.5, footInside: foot.bottom <= card.bottom + 0.5, font: parseFloat(getComputedStyle(document.querySelector('.ap__name')).fontSize), scrolls: list.scrollHeight > list.clientHeight, overflowX: document.documentElement.scrollWidth > innerWidth, cardW: card.width, cardH: card.height };
       });
-      assert(Math.abs(m.ratio - 223 / 190) < 0.01, `${width}x${height} ratio ${m.ratio}`);
+      assert(Math.abs(m.ratio - 380 / 401) < 0.01, `${width}x${height} ratio ${m.ratio}`);
       assert(Math.abs(m.l) < 1 && Math.abs(m.t) < 1 && Math.abs(m.r) < 1 && Math.abs(m.b) < 1.5, `${width}x${height} fills the frame ${JSON.stringify(m)}`);
       assert(m.runInside && m.footInside, `${width}x${height} controls inside`);
       assert(!m.overflowX, `${width}x${height} no horizontal overflow`);
@@ -327,7 +329,7 @@ try {
 
   await check('Touch: tap Run plan, grip and remove are always visible, controls are touch-sized, fields do not zoom iOS; tapping inside never opens the page', async () => {
     const { page, context } = await open({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 3 });
-    const m = await page.evaluate(() => ({ grip: getComputedStyle(document.querySelector('.ap__grip')).opacity, remove: getComputedStyle(document.querySelector('.ap__remove')).opacity, btn: document.querySelector('.ap__btn--primary').getBoundingClientRect().height, input: parseFloat(getComputedStyle(document.querySelector('.ap__add input')).fontSize), k: document.querySelector('.ap').getBoundingClientRect().width / 400 }));
+    const m = await page.evaluate(() => ({ grip: getComputedStyle(document.querySelector('.ap__grip')).opacity, remove: getComputedStyle(document.querySelector('.ap__remove')).opacity, btn: document.querySelector('.ap__btn--primary').getBoundingClientRect().height, input: parseFloat(getComputedStyle(document.querySelector('.ap__add input')).fontSize), k: document.querySelector('.ap').getBoundingClientRect().width / 360 }));
     assert.equal(m.grip, '1'); assert.equal(m.remove, '1');
     assert(m.btn >= 36 * m.k - 0.5, `button ${m.btn}`);
     assert(m.input >= 16, `input font ${m.input}`);

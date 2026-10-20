@@ -1,0 +1,362 @@
+{
+  "reference": {
+    "card": {
+      "w": 360,
+      "h": 510,
+      "radius": "0px"
+    },
+    "head": {
+      "x": 0,
+      "y": 0,
+      "w": 360,
+      "h": 70,
+      "font": "13px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.88)",
+      "radius": "0px"
+    },
+    "meta": {
+      "x": 16,
+      "y": 16,
+      "w": 328,
+      "h": 16,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "0px"
+    },
+    "title": {
+      "x": 16,
+      "y": 36,
+      "w": 328,
+      "h": 24,
+      "font": "15px",
+      "weight": "500",
+      "color": "rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "marker1": {
+      "x": 36,
+      "y": 78,
+      "w": 20,
+      "h": 20,
+      "font": "11px",
+      "weight": "500",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "50%"
+    },
+    "name1": {
+      "x": 66,
+      "y": 78,
+      "w": 246,
+      "h": 20,
+      "font": "13px",
+      "weight": "500",
+      "color": "rgba(0, 0, 0, 0.88)",
+      "radius": "0px"
+    },
+    "detail1": {
+      "x": 66,
+      "y": 100,
+      "w": 225.2,
+      "h": 16,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "0px"
+    },
+    "tool1": {
+      "x": 66,
+      "y": 120,
+      "w": 82.6,
+      "h": 16,
+      "font": "11px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.61)",
+      "radius": "5px"
+    },
+    "grip1": {
+      "x": 12,
+      "y": 78,
+      "w": 18,
+      "h": 20,
+      "font": "13px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.27)",
+      "radius": "5px"
+    },
+    "remove1": {
+      "x": 322,
+      "y": 74,
+      "w": 28,
+      "h": 28,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.447)",
+      "radius": "6px"
+    },
+    "add": {
+      "x": 6,
+      "y": 422,
+      "w": 348,
+      "h": 32,
+      "font": "13px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.88)",
+      "radius": "6px"
+    },
+    "foot": {
+      "x": 0,
+      "y": 462,
+      "w": 360,
+      "h": 48,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "0px"
+    },
+    "cancel": {
+      "x": 184.8,
+      "y": 472.5,
+      "w": 63.2,
+      "h": 28,
+      "font": "13px",
+      "weight": "500",
+      "color": "rgb(0, 0, 0)",
+      "radius": "6px"
+    },
+    "run": {
+      "x": 256,
+      "y": 472.5,
+      "w": 94,
+      "h": 28,
+      "font": "13px",
+      "weight": "500",
+      "color": "rgb(252, 252, 252)",
+      "radius": "6px"
+    }
+  },
+  "local": {
+    "card": {
+      "w": 360,
+      "h": 379.9,
+      "radius": "0px"
+    },
+    "head": {
+      "x": 0,
+      "y": 0,
+      "w": 360,
+      "h": 70,
+      "font": "13px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.88)",
+      "radius": "0px"
+    },
+    "meta": {
+      "x": 16,
+      "y": 16,
+      "w": 328,
+      "h": 16,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "0px"
+    },
+    "title": {
+      "x": 16,
+      "y": 36,
+      "w": 179.9,
+      "h": 24,
+      "font": "15px",
+      "weight": "500",
+      "color": "rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "marker1": {
+      "x": 36,
+      "y": 78,
+      "w": 20,
+      "h": 20,
+      "font": "11px",
+      "weight": "500",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "50%"
+    },
+    "name1": {
+      "x": 66,
+      "y": 78,
+      "w": 246,
+      "h": 20,
+      "font": "13px",
+      "weight": "500",
+      "color": "rgba(0, 0, 0, 0.88)",
+      "radius": "0px"
+    },
+    "detail1": {
+      "x": 66,
+      "y": 100,
+      "w": 170.9,
+      "h": 16,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "0px"
+    },
+    "tool1": {
+      "x": 66,
+      "y": 120,
+      "w": 88.6,
+      "h": 16,
+      "font": "11px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.61)",
+      "radius": "5px"
+    },
+    "grip1": {
+      "x": 12,
+      "y": 78,
+      "w": 18,
+      "h": 20,
+      "font": "13px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.27)",
+      "radius": "5px"
+    },
+    "remove1": {
+      "x": 322,
+      "y": 74,
+      "w": 28,
+      "h": 28,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.447)",
+      "radius": "6px"
+    },
+    "add": {
+      "x": 6,
+      "y": 291.9,
+      "w": 348,
+      "h": 32,
+      "font": "13px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.88)",
+      "radius": "6px"
+    },
+    "foot": {
+      "x": 0,
+      "y": 331.9,
+      "w": 360,
+      "h": 48,
+      "font": "12px",
+      "weight": "400",
+      "color": "rgba(0, 0, 0, 0.45)",
+      "radius": "0px"
+    },
+    "cancel": {
+      "x": 184.8,
+      "y": 342.4,
+      "w": 63.2,
+      "h": 28,
+      "font": "13px",
+      "weight": "500",
+      "color": "rgb(0, 0, 0)",
+      "radius": "6px"
+    },
+    "run": {
+      "x": 256,
+      "y": 342.4,
+      "w": 94,
+      "h": 28,
+      "font": "13px",
+      "weight": "500",
+      "color": "rgb(252, 252, 252)",
+      "radius": "6px"
+    }
+  },
+  "rows": [
+    {
+      "key": "card",
+      "ref": ", 360x510 /",
+      "local": ", 360x379.9 /",
+      "match": false
+    },
+    {
+      "key": "head",
+      "ref": "0,0 360x70 13px/400",
+      "local": "0,0 360x70 13px/400",
+      "match": true
+    },
+    {
+      "key": "meta",
+      "ref": "16,16 328x16 12px/400",
+      "local": "16,16 328x16 12px/400",
+      "match": true
+    },
+    {
+      "key": "title",
+      "ref": "16,36 328x24 15px/500",
+      "local": "16,36 179.9x24 15px/500",
+      "match": false
+    },
+    {
+      "key": "marker1",
+      "ref": "36,78 20x20 11px/500",
+      "local": "36,78 20x20 11px/500",
+      "match": true
+    },
+    {
+      "key": "name1",
+      "ref": "66,78 246x20 13px/500",
+      "local": "66,78 246x20 13px/500",
+      "match": true
+    },
+    {
+      "key": "detail1",
+      "ref": "66,100 225.2x16 12px/400",
+      "local": "66,100 170.9x16 12px/400",
+      "match": false
+    },
+    {
+      "key": "tool1",
+      "ref": "66,120 82.6x16 11px/400",
+      "local": "66,120 88.6x16 11px/400",
+      "match": false
+    },
+    {
+      "key": "grip1",
+      "ref": "12,78 18x20 13px/400",
+      "local": "12,78 18x20 13px/400",
+      "match": true
+    },
+    {
+      "key": "remove1",
+      "ref": "322,74 28x28 12px/400",
+      "local": "322,74 28x28 12px/400",
+      "match": true
+    },
+    {
+      "key": "add",
+      "ref": "6,422 348x32 13px/400",
+      "local": "6,291.9 348x32 13px/400",
+      "match": true
+    },
+    {
+      "key": "foot",
+      "ref": "0,462 360x48 12px/400",
+      "local": "0,331.9 360x48 12px/400",
+      "match": true
+    },
+    {
+      "key": "cancel",
+      "ref": "184.8,472.5 63.2x28 13px/500",
+      "local": "184.8,342.4 63.2x28 13px/500",
+      "match": true
+    },
+    {
+      "key": "run",
+      "ref": "256,472.5 94x28 13px/500",
+      "local": "256,342.4 94x28 13px/500",
+      "match": true
+    }
+  ]
+}
