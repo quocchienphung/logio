@@ -39,7 +39,7 @@ const serverClock = () => 0;
 const noClock = () => () => {};
 
 const Spark = () => <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.2c.4 2.9 1.9 4.4 4.8 4.8-2.9.4-4.4 1.9-4.8 4.8C6.6 7.9 5.1 6.4 2.2 6 5.1 5.6 6.6 4.1 7 1.2Z" fill="currentColor" /><circle cx="11.6" cy="11.4" r="1.1" fill="currentColor" opacity=".55" /></svg>;
-const Flag = () => <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true"><path d="M3 10V2m0 0c2-2 4 2 6 0v5c-2 2-4-2-6 0" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+const Flag = () => <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.8 10.8 10H1.2L6 1.8Z" fill="currentColor" /></svg>;
 
 export function AgentLanes({ agents, tasks, span = 30 * minute, now: suppliedNow, onApprove, onReject, onOpen, title = "Agents", className, active = true }: AgentLanesProps) {
   const wallNow = useSyncExternalStore(suppliedNow === undefined && active ? subscribeClock : noClock, readClock, serverClock);
@@ -71,15 +71,15 @@ export function AgentLanes({ agents, tasks, span = 30 * minute, now: suppliedNow
   }
 
   const measurePopover = useCallback(() => {
-      if (!taskKey) return;
-      const r = root.current?.getBoundingClientRect(), b = buttons.current.get(taskKey)?.getBoundingClientRect(), p = popover.current?.getBoundingClientRect();
-      if (!r || !b || !p) return;
-      // Keep popovers inside the fixed Guide me frame and the viewport, including after rotation.
-      const up = b.bottom + 7 + p.height > Math.min(r.bottom, window.innerHeight - 8);
-      const desired = selectedWaiting ? b.right - p.width : b.left + b.width / 2 - p.width / 2;
-      const left = Math.max(4, Math.min(r.width - p.width - 4, desired - r.left));
-      const top = up ? b.top - r.top - 7 : b.bottom - r.top + 7;
-      setPosition(current => current.left === left && current.top === top && current.up === up ? current : { left, top, up });
+    if (!taskKey) return;
+    const r = root.current?.getBoundingClientRect(), b = buttons.current.get(taskKey)?.getBoundingClientRect(), p = popover.current?.getBoundingClientRect();
+    if (!r || !b || !p) return;
+    // Keep popovers inside the fixed Guide me frame and the viewport, including after rotation.
+    const up = b.bottom + 4 + p.height > Math.min(r.bottom, window.innerHeight - 8);
+    const desired = selectedWaiting ? b.right - p.width : b.left + b.width / 2 - p.width / 2;
+    const left = Math.max(4, Math.min(r.width - p.width - 4, desired - r.left));
+    const top = up ? b.top - r.top - 4 : b.bottom - r.top + 4;
+    setPosition(current => current.left === left && current.top === top && current.up === up ? current : { left, top, up });
   }, [taskKey, selectedWaiting]);
   useLayoutEffect(() => {
     if (!taskKey) return;
@@ -93,22 +93,22 @@ export function AgentLanes({ agents, tasks, span = 30 * minute, now: suppliedNow
   useLayoutEffect(() => { if (taskKey && selectedWaiting) approve.current?.focus({ preventScroll: true }); }, [taskKey, selectedWaiting]);
 
   useEffect(() => {
-    if (!opened) return;
+    if (!taskKey) return;
     const outside = (event: PointerEvent) => {
       const target = event.target as Node;
-      if (!popover.current?.contains(target) && !buttons.current.get(opened)?.contains(target)) setOpened(null);
+      if (!popover.current?.contains(target) && !buttons.current.get(taskKey)?.contains(target)) setOpened(null);
     };
     const escape = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       event.preventDefault();
       event.stopPropagation();
-      buttons.current.get(opened)?.focus({ preventScroll: true });
+      buttons.current.get(taskKey)?.focus({ preventScroll: true });
       setOpened(null);
     };
     document.addEventListener("pointerdown", outside);
     document.addEventListener("keydown", escape, true);
     return () => { document.removeEventListener("pointerdown", outside); document.removeEventListener("keydown", escape, true); };
-  }, [opened]);
+  }, [taskKey]);
 
   function decide(approved: boolean) {
     if (!selected || selected.status !== "waiting") return;
@@ -154,7 +154,7 @@ export function AgentLanes({ agents, tasks, span = 30 * minute, now: suppliedNow
                 return <li className="agl__slot" key={task.id} style={{ left: `${geometry.left}%`, width: `${geometry.width}%` }} data-status={task.status}>
                   <button type="button" className="agl__block" ref={element => { if (element) buttons.current.set(task.id, element); else buttons.current.delete(task.id); }}
                     data-status={task.status} data-task-id={task.id} data-open={task.id === selected?.id ? "" : undefined}
-                    aria-label={label} aria-expanded={task.id === selected?.id} aria-controls={task.id === selected?.id ? popId : undefined} aria-haspopup={task.status === "waiting" ? "dialog" : undefined}
+                    aria-label={label} aria-expanded={task.id === selected?.id} aria-controls={task.id === selected?.id ? popId : undefined} aria-describedby={task.id === selected?.id && !selectedWaiting ? popId : undefined} aria-haspopup={task.status === "waiting" ? "dialog" : undefined}
                     onClick={() => setOpened(current => current === task.id ? null : task.id)}>
                     {!!task.tools?.length && <span className="agl__tools" aria-hidden="true">{task.tools.slice(0, 3).map((tool, toolIndex) => <span className="agl__tool" key={toolIndex}>{tool}</span>)}</span>}<span className="agl__label">{task.title}</span>
                   </button>

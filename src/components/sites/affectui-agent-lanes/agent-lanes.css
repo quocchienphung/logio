@@ -49,10 +49,10 @@
 .agl__tick > span { position: absolute; bottom: 100%; left: 0; margin-bottom: 6px; font-size: 11px; line-height: 14px; color: var(--agl-faint); white-space: nowrap; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
 .agl__clip { position: absolute; inset: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 40px); mask-image: linear-gradient(to right, transparent, #000 40px); }
 .agl__curves { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.agl__curves path { fill: none; stroke: var(--agl-rail); stroke-width: 1; stroke-dasharray: 3 3; }
+.agl__curves path { fill: none; stroke: var(--agl-rail); stroke-width: 1; stroke-dasharray: 3 3; transition: d 100ms linear; }
 .agl__curves path[data-live] { stroke: var(--agl-run-edge); animation: agl-flow 900ms linear infinite; }
 .agl__lane { position: absolute; left: 0; right: 0; height: 48px; }
-.agl__slot { position: absolute; top: 10px; bottom: 10px; min-width: 6px; }
+.agl__slot { position: absolute; top: 10px; bottom: 10px; min-width: 6px; transition: left 100ms linear, width 100ms linear; }
 .agl .agl__block { display: flex; align-items: center; width: 100%; height: 100%; min-width: 6px; padding: 0 8px; overflow: hidden; border-radius: 6px; background: var(--agl-done); font-size: 12px; font-weight: 500; line-height: 16px; white-space: nowrap; transition: background-color 300ms ease, color 300ms ease; }
 .agl__slot:is([data-status="running"], [data-status="waiting"]), .agl .agl__block:is([data-status="running"], [data-status="waiting"]) { min-width: 0; }
 .agl__label { min-width: 0; overflow: hidden; text-overflow: clip; }
@@ -67,7 +67,7 @@
 .agl__flag { position: absolute; top: 50%; right: 4px; display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; border-radius: 4px; background: var(--agl-card); box-shadow: var(--agl-shadow); font-size: 11px; font-weight: 500; line-height: 18px; color: var(--agl-warn-fg); white-space: nowrap; transform: translateY(-50%); pointer-events: none; animation: agl-pulse 1600ms ease-in-out infinite; }
 .agl__slot[data-status="waiting"] { z-index: 2; }
 .agl__pop { position: absolute; z-index: 5; animation: agl-in 180ms ease both; }
-.agl__pop[data-up] { translate: 0 -100%; }
+.agl__pop[data-up] { translate: 0 -100%; animation-name: agl-in-up; }
 .agl__ask { display: grid; gap: 2px; width: 280px; max-width: calc(100% - 8px); padding: 12px; border-radius: 10px; background: var(--agl-card); box-shadow: 0 0 0 .5px rgb(0 0 0 / .08), 0 12px 28px -10px rgb(0 0 0 / .18), 0 1px 2px rgb(0 0 0 / .05); }
 .agl__ask-title { font-weight: 500; color: var(--agl-strong); }
 .agl__ask-text { font-size: 12px; line-height: 16px; }
@@ -100,6 +100,7 @@
 @keyframes agl-shimmer { from { background-position: -100% 0; } to { background-position: 200% 0; } }
 @keyframes agl-flow { to { stroke-dashoffset: -6; } }
 @keyframes agl-in { from { opacity: 0; transform: translateY(-3px); } }
+@keyframes agl-in-up { from { opacity: 0; transform: translateY(3px); } }
 @media (prefers-reduced-motion: reduce) { .agl *, .agl *::before, .agl *::after { animation: none !important; transition: none !important; } }
 :where(.dark, [data-theme="dark"]) .agl {
   --agl-card: #1c1c1f; --agl-strong: #fff; --agl-ink: rgb(255 255 255 / .9); --agl-text: rgb(255 255 255 / .62);

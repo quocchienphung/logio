@@ -147,7 +147,13 @@ try {
       assert.equal(await task('o2', touch).getAttribute('data-status'), 'running');
       await touch.screenshot({ path: `${out}/touch-${name}.png` });
       await touch.locator('.guide-item').nth(2).tap();
-      await touch.locator('.crm-page').waitFor();
+      try {
+        await touch.locator('.crm-page').waitFor();
+      } catch (error) {
+        console.log(name, await touch.evaluate(() => ({ url: location.href, body: document.body.innerText.slice(0, 1200) })), errors);
+        await touch.screenshot({ path: `${out}/failure-${name}.png` });
+        throw error;
+      }
       await touchBrowser.close();
     }
   });

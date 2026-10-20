@@ -1,13 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { AgentLanes, type LaneAgent, type LaneTask } from "./AgentLanes";
 import { minute } from "./lanes-model";
 import icons from "./icons.json";
 
 /** Brand artwork observed in the public preview, bundled locally; no remote SVG or runtime. */
 function LaneIcon({ name }: { name: keyof typeof icons }) {
-  return <span className="agl__icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: icons[name] }} />;
+  const id = useId();
+  let svg = icons[name];
+  for (const match of icons[name].matchAll(/\bid="([^"]+)"/g)) {
+    const unique = `${id}-${match[1]}`;
+    svg = svg.replaceAll(`id="${match[1]}"`, `id="${unique}"`).replaceAll(`url(#${match[1]})`, `url(#${unique})`);
+  }
+  return <span className="agl__icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: svg }} />;
 }
 const agents: readonly LaneAgent[] = [
   { id: "researcher", name: "Researcher", model: "Opus 5.5", avatarLabel: "Claude", avatar: <LaneIcon name="claude" /> },

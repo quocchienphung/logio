@@ -9,7 +9,7 @@
       384,
       279
     ],
-    "pixelDiffPercent": 1.255413679808841,
+    "pixelDiffPercent": 1.233012246117085,
     "intentionalDifferences": "Local provider avatars 28/18px instead of 24/14px; outer card shadow/radius supplied by Guide me."
   },
   {
@@ -22,7 +22,7 @@
       349,
       279
     ],
-    "pixelDiffPercent": 2.8509515153382425,
+    "pixelDiffPercent": 2.8150065214488915,
     "intentionalDifferences": "Local provider avatars 28/18px instead of 24/14px; outer card shadow/radius supplied by Guide me."
   },
   {
@@ -35,7 +35,7 @@
       281,
       279
     ],
-    "pixelDiffPercent": 2.0574242018393094,
+    "pixelDiffPercent": 2.0178828811591982,
     "intentionalDifferences": "Local provider avatars 28/18px instead of 24/14px; outer card shadow/radius supplied by Guide me."
   }
 ]
