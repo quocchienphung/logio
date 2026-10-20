@@ -93,13 +93,15 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
   }
 
   function onPointerDown(event: PointerEvent, index: number) {
-    press.current = { type: event.pointerType, wasActive: index === active };
+    press.current = { type: event.pointerType, wasActive: index === activeRef.current };
   }
 
   function onClick(event: MouseEvent, index: number) {
     const { type, wasActive } = press.current;
     press.current = { type: "", wasActive: false };
-    if (type === "touch" && !wasActive) { event.preventDefault(); return; }
+    // Select here rather than rely on focus: iOS Safari never focuses a tapped link, and a row that already
+    // holds focus (after a swipe moved the selection away) gets no new focus event either.
+    if (type === "touch" && !wasActive) { event.preventDefault(); select(index); return; }
     if (event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     clearTimeout(urlTimer.current);
     if (writeGroupUrl(index)) {
