@@ -17,6 +17,7 @@ const Workspace = dynamic(() => import("../affectui-crm/Crm").then(module => mod
   loading: () => <div className="guide-loading" role="status">Opening your workspace…</div>,
 });
 const locationSnapshot = () => window.location.search;
+const swipeDistance = 40;
 
 export function PersonalizeApp({ initialBrowse = false, initialGroup }: { initialBrowse?: boolean; initialGroup?: string }) {
   const search = useSyncExternalStore(subscribeLocation, locationSnapshot, () => {
@@ -108,6 +109,40 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     }
   }
 
+  // A horizontal finger swipe anywhere on the page steps through the groups, as hover does with a mouse.
+  // Vertical movement stays with the browser (page scroll), and so do text fields and the plan's drag grips.
+  const swipe = useRef({ id: -1, x: 0, y: 0, at: -Infinity });
+
+  function onSwipeStart(event: PointerEvent) {
+    if (event.pointerType !== "touch" || !event.isPrimary) return;
+    const ignored = (event.target as Element).closest("input, textarea, select, [contenteditable], .ap__grip");
+    swipe.current = { ...swipe.current, id: ignored ? -1 : event.pointerId, x: event.clientX, y: event.clientY };
+  }
+
+  function onSwipeMove(event: PointerEvent) {
+    const gesture = swipe.current;
+    if (event.pointerId !== gesture.id) return;
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    if (Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) { gesture.id = -1; return; }
+    if (Math.abs(dx) < swipeDistance || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+    gesture.id = -1;
+    gesture.at = event.timeStamp;
+    const next = Math.min(guideGroups.length - 1, Math.max(0, activeRef.current + (dx < 0 ? 1 : -1)));
+    select(next);
+  }
+
+  function onSwipeEnd(event: PointerEvent) {
+    if (event.pointerId === swipe.current.id) swipe.current.id = -1;
+  }
+
+  // The tap that ends a swipe must not open the page under the finger.
+  function onClickCapture(event: MouseEvent) {
+    if (event.timeStamp - swipe.current.at > 400) return;
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   function onKeyDown(event: KeyboardEvent) {
     const last = guideGroups.length - 1;
     const next = event.key === "Home" ? 0 : event.key === "End" ? last
@@ -118,7 +153,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     rows.current[next]?.focus();
   }
 
-  return <main className="guide-page">
+  return <main className="guide-page" onPointerDown={onSwipeStart} onPointerMove={onSwipeMove} onPointerUp={onSwipeEnd} onPointerCancel={onSwipeEnd} onClickCapture={onClickCapture}>
     <GradientFloor className="guide-floor" />
     <div className="guide-stage">
       <h1 className="guide-heading"><span>How I can help you</span><sup>(SERVICES)</sup></h1>

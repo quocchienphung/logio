@@ -8,6 +8,8 @@
   --guide-gap: calc(var(--u) * 12);
   position: relative; isolation: isolate; min-height: 100dvh; display: grid; place-items: center; background: #fdfdfd; color: #0a0a0a;
   font-family: Inter, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip;
+  /* Vertical pans scroll the page; horizontal swipes are read by the selector. */
+  touch-action: pan-y;
 }
 .guide-page *, .guide-page *::before, .guide-page *::after { box-sizing: border-box; }
 .guide-stage { position: relative; z-index: 1; width: calc(var(--u) * var(--su)); padding: 0 calc(var(--u) * 9) 0 var(--u); }
