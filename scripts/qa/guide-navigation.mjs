@@ -61,7 +61,7 @@ try {
     await page.waitForTimeout(1100);
     assert.equal(await page.evaluate(() => document.getAnimations().filter(animation => !animation.effect?.target?.closest('.wra, .gf')).length), 0);
     assert.match(await selected(), /Sales/);
-    assert.equal(await page.locator('.guide-preview img').count(), 2, 'two photos, the live Agent Chat card and a neutral frame');
+    assert.equal(await page.locator('.guide-preview img').count(), 1, 'one photo (CRM), two live frames (Sales, Agent Chat) and a neutral frame');
     const frame = await page.locator('.guide-preview').evaluate(el => el.getBoundingClientRect().top);
     assert(Math.abs(await stripY() - frame) < 1.5, 'Sales frame fills the preview');
   });
@@ -97,10 +97,10 @@ try {
   });
   await check('Preview click opens the active group; pages of other groups follow their group and its sidebar', async () => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await open('sales');
+    await open('crm');
     await page.locator('.guide-preview').click();
     await page.locator('.crm-page').waitFor();
-    assert.deepEqual(await page.locator('.ui-as-side__nav .workspace-nav-label').allInnerTexts(), ['Invoice']);
+    assert.deepEqual(await page.locator('.ui-as-side__nav .workspace-nav-label').allInnerTexts(), ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships']);
     for (const [label, pages, pipelines] of [['Deals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true], ['Run', ['New chat', 'Files', 'Run', 'Settings'], false], ['Mapping', ['Mapping'], false], ['Settings', ['New chat', 'Files', 'Run', 'Settings'], false], ['Renewals', ['Home', 'Companies', 'Contacts', 'Deals', 'Reports', 'New business', 'Renewals', 'Partnerships'], true]]) {
       await goToSection(page, label);
       await page.locator('.ui-as-side__item[aria-current="page"]').filter({ hasText: new RegExp(`^${label}$`) }).waitFor();

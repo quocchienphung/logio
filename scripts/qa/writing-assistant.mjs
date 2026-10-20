@@ -176,18 +176,18 @@ try {
     await item('CRM').hover();
     await page.waitForTimeout(1000);
     assert.match(await page.locator('.guide-item[aria-current]').innerText(), /CRM/);
-    assert.equal(await page.locator('.guide-preview__frame[data-live]').getAttribute('inert'), '', 'card is inert while off screen');
+    assert.equal(await page.locator('.guide-preview__frame[data-live]:has(.wra)').getAttribute('inert'), '', 'card is inert while off screen');
     assert.equal(await page.locator('.guide-preview__link').count(), 1, 'photo frames keep their whole-frame link');
     await item('Agent Chat').hover();
     await page.waitForTimeout(1000);
-    assert.equal(await page.locator('.guide-preview__frame[data-live]').getAttribute('inert'), null);
+    assert.equal(await page.locator('.guide-preview__frame[data-live]:has(.wra)').getAttribute('inert'), null);
     assert.equal(await page.locator('.guide-preview__link').count(), 0, 'the live frame is not a link');
     assert.match(await lastReply(page), REPLY.tone);
   });
 
   await check('Clicking the card never navigates; the Agent Chat row and Enter still open the page', async () => {
     await card(page).locator('.wra__greeting, .wra__messages').first().click({ force: true }).catch(() => {});
-    await page.locator('.guide-preview__frame[data-live]').click({ position: { x: 4, y: 4 } });
+    await page.locator('.guide-preview__frame[data-live]:has(.wra)').click({ position: { x: 4, y: 4 } });
     assert.equal(await page.locator('.guide-page').count(), 1);
     await page.locator('.guide-item').filter({ hasText: /Agent Chat$/ }).click();
     await page.locator('.crm-page').waitFor();
