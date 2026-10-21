@@ -4,6 +4,7 @@ import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, MouseEvent, PointerEvent } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { preload } from "react-dom";
 import { useSearchParams } from "next/navigation";
 import { defaultGuideIndex, guideGroups, liveFrameOf, navigateWorkspaceHref } from "./navigation-model";
 import { WorkspaceLink } from "./WorkspaceLink";
@@ -34,6 +35,8 @@ export function PersonalizeApp({ initialBrowse = false, initialGroup, initialSec
 }
 
 function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
+  // The heading is set in this font, so it is asked for with the page rather than when the heading is first painted
+  preload("/fonts/inter-latin.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
   const groupIndex = guideGroups.findIndex(group => group.id === initialGroup);
   const [active, setActive] = useState(groupIndex < 0 ? defaultGuideIndex : groupIndex);
   const [bar, setBar] = useState<{ top: number; height: number } | null>(null);

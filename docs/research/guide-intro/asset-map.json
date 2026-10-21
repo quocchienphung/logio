@@ -14,5 +14,23 @@
     "facts": "https://www.moma.org/collection/works/79802"
   },
   "interfaceReference": "https://www.affectui.com/components/agent-cursors",
-  "captureDate": "2026-10-21"
+  "captureDate": "2026-10-21",
+  "frame": {
+    "title": "Cassetta frame",
+    "date": "ca. 1630",
+    "museum": "The Metropolitan Museum of Art",
+    "accession": "1975.1.2339",
+    "localPath": "public/sites/guide-intro/cassetta-frame-met.jpg",
+    "width": 1419,
+    "height": 1828,
+    "bytes": 698572,
+    "sha256": "1A9F275D43150C5BAF5471F38BB1920B87EF28B19BDF83155C4198E197B8E73A",
+    "source": "https://www.metmuseum.org/art/collection/search/459726",
+    "metadata": "https://collectionapi.metmuseum.org/public/collection/v1/objects/459726",
+    "download": "https://images.metmuseum.org/CRDImages/rl/original/86T_146R2M.jpg",
+    "credit": "The Metropolitan Museum of Art, Robert Lehman Collection, 1975",
+    "rights": "The Met Open Access, CC0; metadata isPublicDomain=true",
+    "treatment": "Original archival photograph retained locally. Eight inline SVG viewports preserve moulding and mitred corner photographs; live SVG component transfer adds a warm gold tone. No generated raster texture."
+  },
+  "updated": "2026-10-22"
 }

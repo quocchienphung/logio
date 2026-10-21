@@ -13,6 +13,9 @@ import { flattenNodes, linkKind } from "./process-model";
 import type { LinkCheck, ProcessLink, ProcessNode } from "./process-model";
 import { isAttemptCard, taskIdOf } from "./run-view";
 import "../affectui-agent-tree/agent-tree.css";
+import { NoticeSparks } from "./NoticeSparks";
+import type { Notice } from "../affectui-notification-stack/stack-model";
+import type { Placed } from "./notice-spark-model";
 import "./process-map.css";
 
 export interface ProcessMapProps {
@@ -46,6 +49,8 @@ export interface ProcessMapProps {
   multiIds: readonly string[];
   onToggle: (id: string) => void;
   onMoveMany: (moves: { id: string; pos: Point }[]) => void;
+  /** Run notices, grouped by block: each block that has some carries a blinking star that opens them in a card beside it. */
+  notices?: { groups: readonly Placed<Notice>[]; seen: ReadonlySet<string>; onSeen: (ids: string[]) => void; onDismiss: (id: string) => void };
   onSelect: (id: string) => void;
   /** A tap or Enter on a block (not a drag): open its settings. */
   onOpen?: (id: string) => void;
@@ -82,7 +87,7 @@ const READABLE = 0.55;
  * to. Drag a block to put it where you want (it keeps that place), drag the background to pan, zoom with Ctrl + wheel, a
  * pinch or the buttons, and use the + on a selected block to connect a new block to it. Arrow keys nudge the focused block.
  */
-export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, onSelect, onOpen, onMove, onAdd, onDelete }: ProcessMapProps) {
+export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, notices, onSelect, onOpen, onMove, onAdd, onDelete }: ProcessMapProps) {
   const [setViewport, viewport] = useSize();
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [sizes, setSizes] = useState<ReadonlyMap<string, Size>>(new Map());
@@ -190,7 +195,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   }, []);
 
   function onBackgroundDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if (event.button !== 0 || (event.target as Element).closest(".pmap__block, .pmap__controls, .pmap__pill, .pmap__editor")) return;
+    if (event.button !== 0 || (event.target as Element).closest(".pmap__block, .pmap__controls, .pmap__pill, .pmap__editor, .pmap__sparks")) return;
     if (selectedLinkId) onSelectLink(null);
     const state = gesture.current;
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -211,7 +216,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   // Every finger is tracked wherever it lands (on a block too), so two fingers pinch even when both are on blocks. The
   // second finger cancels a block drag the first one had started.
   function trackDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if ((event.target as Element).closest(".pmap__controls, .pmap__editor, button")) return;
+    if ((event.target as Element).closest(".pmap__controls, .pmap__editor, .pmap__sparks, button")) return;
     const state = gesture.current;
     state.pointers.set(event.pointerId, local(event));
     if (state.pointers.size === 2) {
@@ -410,6 +415,9 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
         {connectCheck ? connectCheck.ok ? (connectCheck.kind === "loop" ? `Loop back to ${nameOf(connect.over!)}` : `${nameOf(connect.over!)} will wait for ${nameOf(connect.from)}`) : connectCheck.reason : "Drop to add a new block here"}
       </div>}
     </div>
+    {notices && notices.groups.length > 0 && <NoticeSparks
+      groups={notices.groups} nameOf={nameOf} viewport={viewport} inset={inset} seen={notices.seen} onSeen={notices.onSeen} onDismiss={notices.onDismiss}
+      screenBox={id => { if (!ids.has(id)) return null; const box = boxFor(id), at = screenOf({ x: box.x, y: box.y }); return { x: at.x, y: at.y, w: box.w * view.scale, h: box.h * view.scale }; }} />}
     <div className="pmap__controls" role="toolbar" aria-label="Map view">
       <button type="button" className="pmap__control" aria-label="Zoom out" onClick={() => zoomBy(1 / 1.2)}><Minus size={14} /></button>
       <span className="pmap__zoom" aria-live="polite">{percent}</span>

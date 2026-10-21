@@ -11,6 +11,7 @@ import { useWidth } from "../affectui-agent-tree/use-width";
 import type { TreeAgent } from "../affectui-agent-tree/tree-model";
 import { durationLabel } from "../affectui-agent-tree/tree-model";
 import { NotificationStack } from "../affectui-notification-stack/NotificationStack";
+import { groupByBlock, outlastsReading } from "./notice-spark-model";
 import { enqueue } from "../affectui-notification-stack/stack-model";
 import type { Notice } from "../affectui-notification-stack/stack-model";
 import { useWorkspaceRoute } from "../affectui-crm/workspace-state";
@@ -272,6 +273,16 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   }
   const stackNotices: Notice[] = alerts.notices.map(item => ({ ...item, ...(item.intent && item.actionLabel ? { action: { label: item.actionLabel, onClick: () => runIntent(item.intent!) } } : {}) }));
   const dropAlert = (id: string) => setAlerts(current => ({ ...current, notices: current.notices.filter(item => item.id !== id) }));
+  // On the map each block with something to say carries a star. A star's notices stay until they are opened (a quiet "done" is gone once it
+  // has been read; a failure stays until the block runs again), so they do not expire by themselves.
+  const [seen, setSeen] = useState<readonly string[]>([]);
+  const seenSet = useMemo(() => new Set(seen), [seen]);
+  const sparkGroups = useMemo(() => groupByBlock(stackNotices.map(item => ({ ...item, expireMs: undefined })), doc.root.id, id => !!findNode(doc.root, id)), [stackNotices, doc.root]);
+  const markSeen = (ids: string[]) => {
+    if (!ids.length) return;
+    setSeen(current => [...current, ...ids]);
+    setAlerts(current => ({ ...current, notices: current.notices.filter(item => !ids.includes(item.id) || outlastsReading(item)) }));
+  };
   /** The person drew a connection: from any block to any other. A loop (back to an earlier block) opens its card to set the rounds. */
   function connectBlocks(from: string, to: string) {
     const check = checkLink(doc, from, to);
@@ -397,7 +408,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         ? <ProcessMap
           root={doc.root} tree={tree} selectedId={selected.id} now={clock} formatCost={format} showCost={unit !== "none"} locked={locked} inset={mapInset} fitKey={`${doc.id}:${tidied}`} revealId={revealId}
           links={doc.links ?? []} selectedLinkId={pickedLink} onSelectLink={setPickedLinkId} check={(from, to) => checkLink(doc, from, to)} onConnect={connectBlocks} onLinkChange={changeLink} onLinkRemove={dropLink}
-          multiIds={groupIds} onToggle={toggleMulti} onMoveMany={moveBlocks}
+          multiIds={groupIds} onToggle={toggleMulti} onMoveMany={moveBlocks} notices={{ groups: sparkGroups, seen: seenSet, onSeen: markSeen, onDismiss: dropAlert }}
           onSelect={id => { setSelectedId(id); setRevealId(null); setPickedLinkId(null); setMulti([]); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={requestDelete} />
         : <div className="proc-treewrap" style={{ paddingRight: !narrow && panel ? 372 : undefined }}>
           <AgentTree
@@ -430,9 +441,9 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
       </div>
     </div>
 
-    <div className="proc-notices" data-narrow={narrow ? "" : undefined}>
+    {view === "tree" && <div className="proc-notices" data-narrow={narrow ? "" : undefined}>
       <NotificationStack notices={stackNotices} onDismiss={item => dropAlert(item.id)} onDismissAll={() => setAlerts(current => ({ ...current, notices: [] }))} label="Run notifications" />
-    </div>
+    </div>}
 
     {groupIds.length > 1 && view === "map" && <div className="proc-multi proc-pill" role="toolbar" aria-label="Selected blocks">
       <span className="proc-multi__count" role="status">{groupIds.length} blocks selected</span>

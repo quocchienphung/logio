@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { Skeleton } from "./Shimmer";
+import { ShimmerText, Skeleton } from "./Shimmer";
 import { loadingLabel, skeletonKindOf } from "./skeleton-kind";
 import type { SkeletonKind } from "./skeleton-kind";
 import "./shimmer-loader.css";
@@ -14,7 +14,7 @@ export function SectionSkeleton({ section, immediate = false, label }: { section
   return <div className={`shm-page shm-page--${kind}${kind === "canvas" ? "" : " workspace-page"}`} data-immediate={immediate ? "" : undefined} data-kind={kind} role="status" aria-busy="true" aria-live="polite" style={kind === "canvas" ? { height: "100%", gap: 0 } : undefined}>
     <span className="shm-sr">{label ?? loadingLabel(section)}</span>
     {kind === "home" ? <Home /> : kind === "table" ? <Table /> : kind === "reports" ? <Reports /> : kind === "chat" ? <Chat /> : kind === "files" ? <Files /> : kind === "run" ? <Run />
-      : kind === "canvas" ? <Canvas /> : kind === "trace" ? <Trace /> : kind === "invoice" ? <Invoice /> : <Settings />}
+      : kind === "canvas" ? <Canvas text={label ?? loadingLabel(section)} /> : kind === "trace" ? <Trace /> : kind === "invoice" ? <Invoice /> : <Settings />}
   </div>;
 }
 
@@ -89,13 +89,14 @@ function Run() {
 }
 
 /** A map or process page: a dotted canvas with its floating controls and a few blocks, which is what arrives. */
-function Canvas() {
+function Canvas({ text }: { text: string }) {
   const block = (style: CSSProperties, key: number) => <div className="shm-block" style={style} key={key}><div className="shm-row"><Skeleton width={22} height={22} radius={6} /><div className="shm-col"><Skeleton width="60%" height={10} /><Skeleton width="38%" height={8} /></div></div><Skeleton width="92%" height={9} /><Skeleton width="64%" height={9} /></div>;
   return <div className="shm-canvas" style={{ flex: 1 }}>
     <div className="shm-float" style={{ left: 14, top: 14, width: 300 }}><Skeleton width={150} height={14} /><span style={{ flex: 1 }} /><Skeleton width={56} height={20} radius={5} /><Skeleton width={24} height={24} radius={6} /></div>
     <div className="shm-float" style={{ right: 14, top: 14 }}><Skeleton width={56} height={14} /><Skeleton width={56} height={28} radius={8} /><Skeleton width={64} height={12} /></div>
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%" style={{ position: "absolute", inset: 0, pointerEvents: "none" }} aria-hidden="true"><g fill="none" stroke="rgba(128,128,128,.28)" strokeWidth="1.5" strokeDasharray="6 6" vectorEffect="non-scaling-stroke"><path vectorEffect="non-scaling-stroke" d="M50 46 C50 34 38 30 32 28" /><path vectorEffect="non-scaling-stroke" d="M50 46 C58 40 62 36 70 34" /><path vectorEffect="non-scaling-stroke" d="M50 46 C52 58 56 64 60 70" /><path vectorEffect="non-scaling-stroke" d="M50 46 C42 56 38 62 30 68" /></g></svg>
     {[{ left: "calc(50% - 116px)", top: "38%" }, { left: "calc(22% - 40px)", top: "18%" }, { left: "calc(66% - 20px)", top: "22%" }, { left: "calc(54% - 40px)", top: "64%" }, { left: "calc(18% - 20px)", top: "58%" }].map((style, index) => block(style, index))}
+    <div style={{ position: "absolute", left: "50%", top: "calc(38% + 150px)", transform: "translateX(-50%)", fontSize: 13, whiteSpace: "nowrap" }} aria-hidden="true"><ShimmerText>{text}</ShimmerText></div>
     <div className="shm-float" style={{ left: "50%", bottom: 14, transform: "translateX(-50%)", padding: "8px 10px" }}><Skeleton width={92} height={28} radius={8} /><Skeleton width={28} height={28} radius={8} /><Skeleton width={28} height={28} radius={8} /><Skeleton width={96} height={28} radius={8} /></div>
     <div className="shm-float" style={{ left: 14, bottom: 14, padding: "6px 8px" }}><Skeleton width={28} height={22} radius={6} /><Skeleton width={36} height={12} /><Skeleton width={28} height={22} radius={6} /></div>
   </div>;

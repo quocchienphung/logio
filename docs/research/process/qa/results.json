@@ -95,8 +95,7 @@
     },
     {
       "name": "The person draws the connections: from Fixer back to Coordinator makes a loop with rounds, a label and a card; undo removes it",
-      "ok": false,
-      "error": "The input did not match the regular expression /Loop back to Coordinator/. Input: |  | 'Drop to add a new block here' | "
+      "ok": true
     },
     {
       "name": "A connection that is not allowed says why; a block can be connected to any other, and the inspector lists and removes connections",
@@ -112,8 +111,7 @@
     },
     {
       "name": "Ctrl + click chooses several blocks: they are marked, counted, and clicking one again lets it go; a plain click clears the group",
-      "ok": false,
-      "error": "locator.click: Timeout 12000ms exceeded. | Call log: | \u001b[2m  - waiting for locator('.pmap__block').filter({ has: locator('.agt__name').filter({ hasText: /^Fixer$/ }) }).locator('.agt__name')\u001b[22m | \u001b[2m    - locator resolved to <span class=\"agt__name\">Fixer</span>\u001b[22m"
+      "ok": true
     },
     {
       "name": "Ctrl + A chooses every block and Escape lets the group go",
@@ -136,31 +134,43 @@
       "ok": true
     },
     {
-      "name": "A finished block pops up a notice with its engine, cost and time, and a way to find it on the map; the stack is a labelled region",
+      "name": "Nothing keeps a corner of the map: no stack on the left, a blinking star appears beside the block that finished, at its top right corner",
       "ok": true
     },
     {
-      "name": "A failure comes to the front with its reason and a Retry; only the front card can be reached and read out",
+      "name": "Clicking the star opens the notice in a card right beside the block (not at the left of the page), with the engine, cost and time; the star stops blinking once read",
       "ok": true
     },
     {
-      "name": "The stack: cards sit 12 px lower and 5% smaller behind the front one, the count and \"Dismiss all\" are under it, and it clears the dock and the permission card",
+      "name": "The card follows its block when the map is panned or zoomed, and Escape closes it and gives the focus back to the star",
       "ok": true
     },
     {
-      "name": "Retry on the notice retries the block and retires the failure notice; the new run of the block shows on the map",
+      "name": "A quiet notice is gone once it has been read (its star disappears); an unread star keeps blinking",
       "ok": true
     },
     {
-      "name": "Dismissing slides the front card away and the next one moves up; Escape dismisses the front card; Dismiss all clears the stack",
+      "name": "A failure gives a red star that stays until the block runs again; its card shows the reason and a Retry and is announced as an alert",
       "ok": true
     },
     {
-      "name": "The permission request decides the waiting block; when the run ends one notice says so, with the cost and time, and opens the trace",
+      "name": "Retry in the card retries the block and its failure star goes away; the block runs again on the map",
       "ok": true
     },
     {
-      "name": "A quiet notice goes away by itself after a while, and not while the pointer is on it",
+      "name": "A star whose block is out of view stays at the edge of the map, inside what the page keeps for its controls, and still opens its card",
+      "ok": true
+    },
+    {
+      "name": "Several notices on one block: the star counts them and the card is the Notification Stack (12 px / 5% steps, Dismiss all)",
+      "ok": true
+    },
+    {
+      "name": "The permission request decides the waiting block; when the run ends one star on the first block says so, with the cost and time, and opens the trace",
+      "ok": true
+    },
+    {
+      "name": "The Tree view has no blocks to put a star on, so it keeps the stack under the name pill",
       "ok": true
     },
     {
@@ -173,6 +183,10 @@
     },
     {
       "name": "Phone: the run can be started and decided without leaving the page",
+      "ok": true
+    },
+    {
+      "name": "Phone: a block that finished has a star with a finger-sized target; tapping it opens the card beside or under the block, on the screen, with no sideways scroll",
       "ok": true
     },
     {

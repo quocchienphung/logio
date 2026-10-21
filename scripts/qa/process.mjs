@@ -578,6 +578,8 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.waitForTimeout(300);
     await block(page, 'Scraper').locator('.agt__name').click();
     assert.equal(await count(), 0, 'one block is just selected');
+    await page.getByRole('button', { name: 'Fit the whole map' }).click();
+    await page.waitForTimeout(400);
     await block(page, 'Analyst').locator('.agt__name').click(ctrl);
     assert.equal(await count(), 2, 'the block that was selected joins the one clicked');
     await block(page, 'Tester').locator('.agt__name').click(ctrl);
@@ -674,101 +676,177 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
   await context.close();
 }
 
-// ---------- notifications: a block finished, a block failed, the run is over ----------
+// ---------- notifications: a star beside the block that finished or failed; it opens the notices in a card next to the block ----------
 {
   const { context, page } = await open();
-  const front = () => page.locator('.nsc__card[data-depth="0"]:not([data-leaving])');
-  const cardCount = () => page.locator('.nsc__card:not([data-leaving])').count();
-  await check('A finished block pops up a notice with its engine, cost and time, and a way to find it on the map; the stack is a labelled region', async () => {
-    assert.equal(await page.locator('.nsc').count(), 0, 'nothing to show before a run');
+  const spark = (tone = '') => page.locator(`.pmap__spark${tone ? `[data-tone=${tone}]` : ''}`);
+  const card = () => page.locator('.pmap__notice');
+  const front = () => card().locator('.nsc__card[data-depth="0"]:not([data-leaving])');
+  const overlap = (a, b) => a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height;
+  await check('Nothing keeps a corner of the map: no stack on the left, a blinking star appears beside the block that finished, at its top right corner', async () => {
+    assert.equal(await page.locator('.pmap__spark, .nsc').count(), 0, 'nothing to show before a run');
     await run(page).click();
-    await page.waitForSelector('.nsc__card', { timeout: 15000 });
-    assert.equal(await page.getByRole('region', { name: 'Run notifications' }).count(), 1);
-    await page.waitForFunction(() => [...document.querySelectorAll('.nsc__card')].some(el => /finished/.test(el.querySelector('.nsc__title').textContent)));
-    const done = page.locator('.nsc__card').filter({ has: page.locator('.nsc__badge', { hasText: /^Done$/ }) }).first();
-    assert.match(await done.locator('.nsc__title').innerText(), /(\w+ finished|\d+ blocks finished)/);
-    assert.match(await done.locator('.nsc__text').innerText(), /\S/);
-    assert.equal(await done.getAttribute('data-tone'), 'success');
-    await page.screenshot({ path: `${out}/process-notice-done.png` });
+    await page.waitForSelector('.pmap__spark[data-tone=success]', { timeout: 20000 });
+    assert.equal(await page.locator('.proc-notices').count(), 0, 'the fixed stack is gone from the map view');
+    assert.equal(await page.locator('.nsc').count(), 0, 'no card is open until the star is opened');
+    const star = spark('success').first();
+    assert.equal(await star.getAttribute('data-blinking'), '', 'blinks until opened');
+    assert.equal(await star.getAttribute('aria-expanded'), 'false');
+    assert.equal(await star.evaluate(el => getComputedStyle(el.querySelector('svg')).animationName), 'spark-blink');
+    const label = await star.getAttribute('aria-label');
+    assert.match(label, /^\d+ notifications? about [^:]+: .* finished/);
+    const name = label.match(/about ([^:]+):/)[1];
+    const b = await box(block(page, name)), s = await box(star);
+    assert.ok(Math.abs(s.x + s.width / 2 - (b.x + b.width + 6)) < 4 && Math.abs(s.y + s.height / 2 - (b.y - 6)) < 4, `star on the corner of ${name}: ${JSON.stringify([s, b])}`);
+    assert.ok(s.width >= 28 && s.height >= 28);
+    await page.screenshot({ path: `${out}/process-spark-closed.png` });
   });
-  await check('A failure comes to the front with its reason and a Retry; only the front card can be reached and read out', async () => {
-    await page.waitForFunction(() => [...document.querySelectorAll('.nsc__card')].some(el => /failed/.test(el.querySelector('.nsc__title').textContent)), null, { timeout: 30000 });
+  await check('Clicking the star opens the notice in a card right beside the block (not at the left of the page), with the engine, cost and time; the star stops blinking once read', async () => {
+    const star = spark('success').first();
+    const name = (await star.getAttribute('aria-label')).match(/about ([^:]+):/)[1];
+    await star.click();
+    await page.waitForSelector('.pmap__notice .nsc__card', { timeout: 5000 });
+    assert.equal(await star.getAttribute('aria-expanded'), 'true');
+    assert.equal(await page.getByRole('dialog', { name: `Notifications for ${name}` }).count(), 1);
+    await page.waitForTimeout(500);
+    const c = await box(card()), b = await box(block(page, name)), vp = page.viewportSize();
+    assert.equal(overlap(c, b), false, 'the card does not cover its block');
+    const gap = c.x >= b.x + b.width ? c.x - (b.x + b.width) : b.x - (c.x + c.width);
+    assert.ok(gap >= 8 && gap <= 40, `next to the block, ${Math.round(gap)} px away`);
+    assert.ok(c.y >= 0 && c.y + c.height <= vp.height && c.x >= 0 && c.x + c.width <= vp.width, 'on the screen');
+    assert.ok(Math.abs(c.y - b.y) < 80 || c.y + c.height > b.y, 'level with the block');
+    assert.match(await front().locator('.nsc__badge').innerText(), /^done$/i);
+    assert.match(await front().locator('.nsc__title').innerText(), /(\w+ finished|\d+ blocks finished)/);
+    assert.match(await front().locator('.nsc__text').innerText(), /\S/);
+    assert.equal(await star.getAttribute('data-blinking'), null, 'not blinking while open');
+    await page.screenshot({ path: `${out}/process-spark-open.png` });
+  });
+  await check('The card follows its block when the map is panned or zoomed, and Escape closes it and gives the focus back to the star', async () => {
+    const star = spark('success').first();
+    const name = (await star.getAttribute('aria-label')).match(/about ([^:]+):/)[1];
+    const gapNow = async () => { const c = await box(card()), b = await box(block(page, name)); return Math.round(c.x >= b.x + b.width ? c.x - (b.x + b.width) : b.x - (c.x + c.width)); };
+    const before = await gapNow();
+    await page.locator('.pmap').hover({ position: { x: 700, y: 600 } });
+    await page.mouse.wheel(30, 12);
+    await page.waitForTimeout(300);
+    assert.ok(Math.abs(await gapNow() - before) <= 2, 'still beside the block after panning');
+    await page.keyboard.press('+');
+    await page.waitForTimeout(300);
+    assert.ok(await card().count() === 1, 'still open after zooming');
+    const after = await gapNow();
+    assert.ok(after >= 8 && after <= 40, `still beside the block after zooming (${after})`);
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => !document.querySelector('.pmap__notice'), null, { timeout: 2000 });
+    // a quiet notice's star goes once it has been read, so the focus goes to the block it was on
+    assert.equal(await block(page, name).evaluate(el => document.activeElement === el), true, 'the block has the focus again');
+    assert.equal(await page.locator('.pmap__block').count() > 0, true);
+    assert.equal(await page.locator('.nsc__card:not([data-leaving])').count(), 0);
+  });
+  await check('A quiet notice is gone once it has been read (its star disappears); an unread star keeps blinking', async () => {
+    const stars = await spark('success').count();
+    if (stars >= 1) {
+      const star = spark('success').first();
+      const name = (await star.getAttribute('aria-label')).match(/about ([^:]+):/)[1];
+      await star.click();
+      await page.waitForSelector('.pmap__notice');
+      await page.locator('.pmap__zoom').click();
+      await page.waitForFunction(() => !document.querySelector('.pmap__notice'), null, { timeout: 2000 });
+      assert.equal(await page.locator(`.pmap__spark[data-tone=success][aria-label*="about ${name}:"]`).count(), 0, `${name}'s quiet star is gone after reading`);
+    }
+  });
+  await check('A failure gives a red star that stays until the block runs again; its card shows the reason and a Retry and is announced as an alert', async () => {
+    await page.waitForSelector('.pmap__spark[data-tone=error]', { timeout: 40000 });
+    const star = spark('error').first();
+    assert.match(await star.getAttribute('aria-label'), /about Tester: Tester failed/);
+    assert.equal(await star.getAttribute('data-blinking'), '');
+    await page.screenshot({ path: `${out}/process-spark-failed.png` });
+    await star.click();
+    await page.waitForSelector('.pmap__notice .nsc__card[data-tone=error]');
     assert.match(await front().locator('.nsc__badge').innerText(), /failed/i);
-    assert.equal(await front().getAttribute('data-tone'), 'error');
     assert.match(await front().locator('.nsc__title').innerText(), /^Tester failed$/);
     assert.match(await front().locator('.nsc__text').innerText(), /Simulated failure/);
     assert.equal(await front().getByRole('button', { name: 'Retry' }).count(), 1);
-    if (await cardCount() > 1) {
-      assert.equal(await page.locator('.nsc__card:not([data-depth="0"])').first().getAttribute('inert') !== null, true, 'the cards behind cannot be focused');
-      assert.equal(await page.locator('.nsc__card:not([data-depth="0"])').first().getAttribute('aria-hidden'), 'true');
-    }
-    assert.equal(await page.locator('.nsc__sr[role="alert"]').count(), 1, 'a failure is announced as an alert');
-    await page.screenshot({ path: `${out}/process-notice-failed.png` });
+    assert.equal(await card().locator('.nsc__sr[role="alert"]').count(), 1);
+    const c = await box(card()), b = await box(block(page, 'Tester'));
+    assert.equal(overlap(c, b), false);
+    await page.screenshot({ path: `${out}/process-spark-failed-open.png` });
+    // Closing without acting keeps it: a failure is not read away
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => !document.querySelector('.pmap__notice'), null, { timeout: 2000 });
+    assert.equal(await spark('error').count(), 1, 'the failure star stays');
+    assert.equal(await spark('error').first().getAttribute('data-blinking'), null, 'but it no longer blinks');
   });
-  await check('The stack: cards sit 12 px lower and 5% smaller behind the front one, the count and "Dismiss all" are under it, and it clears the dock and the permission card', async () => {
-    const n = await cardCount();
-    if (n > 1) {
-      const transforms = await page.locator('.nsc__card:not([data-leaving])').evaluateAll(els => els.map(el => el.style.transform));
-      assert.equal(transforms[0], 'translateY(0px) scale(1)');
-      assert.equal(transforms[1], 'translateY(12px) scale(0.95)');
-      assert.match(await page.locator('.nsc__foot').innerText(), new RegExp(`${n} notices`));
-    }
-    const stack = await box(page.locator('.nsc')), dock = await box(page.locator('.proc-dock')), pill = await box(page.locator('.proc-pill--name'));
-    assert.ok(stack.y >= pill.y + pill.height, 'under the name pill');
-    assert.ok(stack.y + stack.height < dock.y, 'above the dock');
-  });
-  await check('Retry on the notice retries the block and retires the failure notice; the new run of the block shows on the map', async () => {
+  await check('Retry in the card retries the block and its failure star goes away; the block runs again on the map', async () => {
+    await spark('error').first().click();
     await front().getByRole('button', { name: 'Retry' }).click();
-    await page.waitForFunction(() => ![...document.querySelectorAll('.nsc__card:not([data-leaving])')].some(el => /Tester failed/.test(el.querySelector('.nsc__title').textContent)), null, { timeout: 5000 });
+    await page.waitForFunction(() => !document.querySelector('.pmap__spark[data-tone=error]'), null, { timeout: 5000 });
     await waitStatus(page, 'Tester', 'running', 5000);
   });
-  await check('Dismissing slides the front card away and the next one moves up; Escape dismisses the front card; Dismiss all clears the stack', async () => {
-    await page.waitForFunction(() => document.querySelectorAll('.nsc__card:not([data-leaving])').length >= 2, null, { timeout: 30000 }).catch(() => {});
-    const before = await cardCount();
-    if (before >= 2) {
-      const title = await front().locator('.nsc__title').innerText();
-      await front().getByRole('button', { name: /^Dismiss / }).click();
-      assert.equal(await page.locator('.nsc__card[data-leaving]').count(), 1, 'the card is leaving');
-      await page.waitForFunction(() => document.querySelectorAll('.nsc__card[data-leaving]').length === 0, null, { timeout: 2000 });
-      assert.equal(await cardCount(), before - 1);
-      assert.notEqual(await front().locator('.nsc__title').innerText(), title);
-    }
-    if (await cardCount() >= 1) {
-      await front().locator('.nsc__btn, .nsc__close').first().focus();
-      const left = await cardCount();
-      await page.keyboard.press('Escape');
-      await page.waitForFunction(count => document.querySelectorAll('.nsc__card:not([data-leaving])').length === count - 1, left, { timeout: 2000 });
-    }
-    if (await page.getByRole('button', { name: 'Dismiss all' }).count()) { await page.getByRole('button', { name: 'Dismiss all' }).click(); await page.waitForFunction(() => !document.querySelector('.nsc__card:not([data-leaving])'), null, { timeout: 2000 }); }
+  await check('A star whose block is out of view stays at the edge of the map, inside what the page keeps for its controls, and still opens its card', async () => {
+    await page.waitForSelector('.pmap__spark', { timeout: 30000 });
+    const star = page.locator('.pmap__spark').first();
+    const name = (await star.getAttribute('aria-label')).match(/about ([^:]+):/)[1];
+    // push the map far to the left so every block is out of view
+    await page.locator('.pmap').hover({ position: { x: 700, y: 500 } });
+    for (let step = 0; step < 6; step += 1) await page.mouse.wheel(900, 0);
+    await page.waitForTimeout(400);
+    const pinned = page.locator(`.pmap__spark[data-pinned][aria-label*="about ${name}:"]`);
+    assert.equal(await pinned.count(), 1, 'pinned to the edge');
+    const s = await box(pinned), map = await box(page.locator('.pmap')), vp = page.viewportSize();
+    assert.ok(s.x >= map.x && s.x + s.width <= map.x + map.width && s.y >= map.y && s.y + s.height <= map.y + map.height, 'inside the map');
+    const top = await box(page.locator('.proc-pill--name'));
+    assert.ok(s.y >= top.y + top.height - 4 || s.x > top.x + top.width, 'below the page pills');
+    await page.screenshot({ path: `${out}/process-spark-pinned.png` });
+    await pinned.click();
+    await page.waitForSelector('.pmap__notice');
+    const c = await box(card());
+    assert.ok(c.x >= 0 && c.x + c.width <= vp.width && c.y >= 0 && c.y + c.height <= vp.height, 'the card is on the screen');
+    await page.keyboard.press('Escape');
+    await page.getByRole('button', { name: 'Fit the whole map' }).click();
+    await page.waitForTimeout(300);
   });
-  await check('The permission request decides the waiting block; when the run ends one notice says so, with the cost and time, and opens the trace', async () => {
+  await check('Several notices on one block: the star counts them and the card is the Notification Stack (12 px / 5% steps, Dismiss all)', async () => {
+    const multi = page.locator('.pmap__spark .pmap__spark-count');
+    if (await multi.count() === 0) return;
+    const star = page.locator('.pmap__spark').filter({ has: multi }).first();
+    const count = Number(await star.locator('.pmap__spark-count').innerText());
+    assert.ok(count >= 2);
+    await star.click();
+    await page.waitForSelector('.pmap__notice .nsc__card');
+    const transforms = await card().locator('.nsc__card:not([data-leaving])').evaluateAll(els => els.map(el => el.style.transform));
+    assert.equal(transforms[0], 'translateY(0px) scale(1)');
+    assert.equal(transforms[1], 'translateY(12px) scale(0.95)');
+    assert.match(await card().locator('.nsc__foot').innerText(), new RegExp(`${count} notices`));
+    await front().getByRole('button', { name: /^Dismiss / }).click();
+    await page.waitForFunction(() => document.querySelectorAll('.pmap__notice .nsc__card[data-leaving]').length === 0, null, { timeout: 2000 });
+    await page.keyboard.press('Escape');
+  });
+  await check('The permission request decides the waiting block; when the run ends one star on the first block says so, with the cost and time, and opens the trace', async () => {
     await page.getByRole('button', { name: /Allow once/ }).click();
-    await page.waitForFunction(() => [...document.querySelectorAll('.nsc__card')].some(el => /is done/.test(el.querySelector('.nsc__title').textContent)), null, { timeout: 90000 });
-    const finished = page.locator('.nsc__card').filter({ has: page.locator('.nsc__title', { hasText: /is done$/ }) });
+    const star = page.locator('.pmap__spark[aria-label*="is done"]');
+    await star.waitFor({ timeout: 90000 });
+    assert.equal(await star.count(), 1, 'announced once');
+    await star.click();
+    const finished = card().locator('.nsc__card').filter({ has: page.locator('.nsc__title', { hasText: /is done$/ }) });
     assert.match(await finished.locator('.nsc__badge').innerText(), /^run finished$/i);
     assert.match(await finished.locator('.nsc__text').innerText(), /^\d+ blocks? · \$\d+\.\d\d · /);
-    assert.equal(await page.locator('.nsc__card:not([data-leaving])').filter({ hasText: 'Run finished' }).count(), 1, 'announced once');
-    await page.screenshot({ path: `${out}/process-notice-run.png` });
-    await page.waitForFunction(() => document.querySelector('.nsc__card[data-depth="0"] .nsc__title')?.textContent.endsWith('is done'), null, { timeout: 5000 }).catch(() => {});
-    await page.locator('.nsc__card').filter({ has: page.locator('.nsc__title', { hasText: /is done$/ }) }).getByRole('button', { name: 'Open the trace' }).click({ timeout: 8000 });
+    await page.screenshot({ path: `${out}/process-spark-run.png` });
+    await finished.getByRole('button', { name: 'Open the trace' }).click({ timeout: 8000 });
     await page.waitForSelector('.trc, .twf');
     assert.equal(await page.locator('.ui-as-side__item[aria-current=page]').innerText(), 'Tracing');
   });
-  await check('A quiet notice goes away by itself after a while, and not while the pointer is on it', async () => {
+  await check('The Tree view has no blocks to put a star on, so it keeps the stack under the name pill', async () => {
     await goto(page, 'Process');
     await page.waitForSelector('.pmap__block');
     await page.locator('.agt__extra').getByRole('button', { name: 'Clear' }).click().catch(() => {});
+    await page.getByRole('button', { name: 'Tree', exact: true }).click();
     await run(page).click();
-    await page.waitForSelector('.nsc__card[data-tone="success"]', { timeout: 20000 });
-    const quiet = page.locator('.nsc__card[data-tone="success"]').first();
-    await page.waitForFunction(() => document.querySelector('.nsc__card[data-depth="0"][data-tone="success"]'), null, { timeout: 20000 }).catch(() => {});
-    await page.locator('.nsc').hover();
-    await page.waitForTimeout(11_000);
-    assert.ok(await page.locator('.nsc__card[data-tone="success"]:not([data-leaving])').count() >= 1, 'held while hovered');
-    await page.mouse.move(700, 700);
-    await page.waitForFunction(() => !document.querySelector('.nsc__card[data-tone="success"]:not([data-leaving]):is([data-depth="0"])'), null, { timeout: 30000 });
+    await page.waitForSelector('.proc-notices .nsc__card', { timeout: 30000 });
+    assert.equal(await page.locator('.pmap__spark').count(), 0);
+    const stack = await box(page.locator('.proc-notices .nsc')), pill = await box(page.locator('.proc-pill--name'));
+    assert.ok(stack.y >= pill.y + pill.height, 'under the name pill');
+    await page.screenshot({ path: `${out}/process-notice-tree.png` });
     await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).click().catch(() => {});
-    void quiet;
   });
   await context.close();
 }
@@ -813,6 +891,21 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.locator('.proc-permissions [role=dialog]').getByRole('button', { name: 'Allow once' }).tap();
     await waitStatus(page, 'Writer', 'running', 4000);
     await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).tap();
+  });
+  await check('Phone: a block that finished has a star with a finger-sized target; tapping it opens the card beside or under the block, on the screen, with no sideways scroll', async () => {
+    await page.waitForSelector('.pmap__spark', { timeout: 20000 });
+    const star = page.locator('.pmap__spark').first();
+    const s = await box(star), vp = page.viewportSize();
+    assert.ok(s.width >= 36 && s.height >= 36, `target ${s.width}x${s.height}`);
+    await star.tap();
+    await page.waitForSelector('.pmap__notice .nsc__card');
+    await page.waitForTimeout(500);
+    const c = await box(page.locator('.pmap__notice'));
+    assert.ok(c.x >= 0 && c.x + c.width <= vp.width && c.y >= 0 && c.y + c.height <= vp.height, `card on the screen ${JSON.stringify(c)}`);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), true);
+    await page.screenshot({ path: `${out}/process-spark-phone.png` });
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => !document.querySelector('.pmap__notice'), null, { timeout: 2000 });
   });
   await context.close();
 }

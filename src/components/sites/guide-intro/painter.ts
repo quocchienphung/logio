@@ -1,4 +1,6 @@
 ﻿/** One continuous, distance-sampled brush pass. Cursor tips and paint share a path. */
+import { PAINT_END } from "./studio-timeline";
+
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
 const range = (t: number, start: number, end: number) => clamp((t - start) / (end - start));
 export interface PaintPoint { x: number; y: number }
@@ -101,7 +103,7 @@ export class StudioPainter {
 
   render(time: number): PainterFrame {
     if (time === this.last) return this.lastFrame;
-    const progress = travel(range(time, 350, 8600));
+    const progress = travel(range(time, 350, PAINT_END));
     if (time < this.last) { this.mask.context.clearRect(0, 0, this.width, this.height); this.maskProgress = 0; }
     this.last = time;
     if (progress > this.maskProgress) this.paintMask(progress);
@@ -113,18 +115,18 @@ export class StudioPainter {
     composite.globalCompositeOperation = "destination-in"; composite.drawImage(this.mask.canvas, 0, 0);
     ctx.drawImage(this.composite.canvas, 0, 0);
     // Resolve tiny antialiased edge gaps softly, without a last-frame flash.
-    if (time > 8200) {
-      ctx.globalAlpha = range(time, 8200, 8600); ctx.drawImage(this.imageLayer.canvas, 0, 0); ctx.globalAlpha = 1;
+    if (time > PAINT_END - 500) {
+      ctx.globalAlpha = range(time, PAINT_END - 500, PAINT_END); ctx.drawImage(this.imageLayer.canvas, 0, 0); ctx.globalAlpha = 1;
     }
     const points = Array.from({ length: 4 }, (_, i) => this.point(i, progress));
-    if (time > 350 && time < 8600) this.magic(points, time, progress);
+    if (time > 350 && time < PAINT_END) this.magic(points, time, progress);
     this.lastFrame = { points }; return this.lastFrame;
   }
 
   private magic(points: PaintPoint[], time: number, progress: number) {
     const ctx = this.context;
     ctx.save(); ctx.globalCompositeOperation = "screen";
-    const fade = Math.min(range(time, 350, 800), 1 - range(time, 8100, 8600));
+    const fade = Math.min(range(time, 350, 950), 1 - range(time, PAINT_END - 600, PAINT_END));
     for (const [index, point] of points.entries()) {
       // A short fading ribbon remains behind the tip, along the actual painted path.
       for (let n = 0; n < 14; n++) {
