@@ -4,7 +4,22 @@
 .crm-page .ui-as { font-family: var(--font); font-size: 13px; font-weight: 400; line-height: 18.571px; color: var(--text); -webkit-font-smoothing: antialiased; }
 .crm-page .ui-as-app { min-height: 0; height: 100%; }
 .crm-page button { text-align: inherit; }
-.crm-page .ui-as-side-open { position: absolute; }
+/* The "open sidebar" icon never sits on a page: it gets its own gutter left of the main panel (collapsed desktop, and tablet/phone where the sidebar is a drawer). */
+.crm-page .ui-as-app { --crm-gutter: 44px; }
+.crm-page .ui-as-app > .ui-as-side-open { position: absolute; top: calc(var(--frame-gap) + 9px); left: calc((var(--crm-gutter) - 28px) / 2); background: transparent; }
+.crm-page .ui-as-app > .ui-as-side-open:hover { background: var(--hover); }
+.crm-page .ui-as-app[data-collapsed] { grid-template-columns: var(--crm-gutter) minmax(0, 1fr); }
+.crm-page .ui-as-app[data-collapsed] > .ui-as-main { margin-left: 0; }
+/* Pages used to pad their own headers to dodge the icon – the gutter replaces that */
+.crm-page .ui-as-app .ui-as-rev__head, .crm-page .ui-as-app .ui-as-crm__top, .crm-page .ui-as-app .ui-ar__main > .ui-ar__bar { padding-left: 20px; }
+.crm-page .ui-as-app .ui-as-rev__head { padding-left: 24px; }
+.crm-page .ui-as-app .mapping-crumbs { left: 12px; max-width: calc(100% - 172px); }
+@container ui-as (max-width: 900px) {
+  .crm-page .ui-as-app:is([data-collapsed], :not([data-collapsed])) > .ui-as-main { margin-left: var(--crm-gutter); }
+}
+@container ui-as (max-width: 600px) {
+  .crm-page .ui-as-app > * { --crm-gutter: 40px; }
+}
 .crm-icon { display: inline-flex; flex: none; align-items: center; justify-content: center; vertical-align: middle; }
 .crm-icon > svg { width: 100%; height: 100%; flex: none; }
 .crm-page .ui-as-crm__tab-logo[data-tab="Company CRM"] { background: #ff7958; color: #fff; }

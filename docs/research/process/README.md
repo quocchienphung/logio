@@ -55,6 +55,10 @@ Enable with `serverProcess: true` next to `baseUrl` in `window.__workspaceBacken
 
 ## QA
 
+### Permission request interface
+
+The approval rule now has an interactive preview and a live, source-inspired Permission Request card shared by Map and Tree. It reviews the actual block details, handles a queue and folds into a decision receipt. The existing engine still grants approval for one run only. Read [reference observations, integration details and verification](permissions/README.md). Dedicated QA: `node --experimental-strip-types scripts/qa/process-permissions.mjs`.
+
 `node scripts/qa/process.mjs [base-url]` — 28 checks: full-bleed canvas, layout without overlap, roles and brand marks, pan/zoom, panel editing and persistence, AI block and local-model typing, tools/approval/limit, add by role and by `+`, drag + reload + tidy, keyboard delete/undo, Tree toggle, simulated run (approve, fail, retry, stop, reload mid-run, run from here, freeze), settings/export/import/engine dialog, templates, library, phone (no overflow, dock fits, tap sheet, touch pan, pinch, run), WebKit, mocked REST server (engines, versions, run actions, refused save, conflict), no page errors and no third-party requests. Unit tests: `npm test` (`process/*.test.mjs`, `affectui-agent-tree/tree-model.test.mjs`).
 
 ## Limits (honest)

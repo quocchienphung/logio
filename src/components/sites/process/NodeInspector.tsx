@@ -2,7 +2,8 @@
 
 import { useId } from "react";
 import type { ReactNode } from "react";
-import { ArrowDown, ArrowUp, Copy, Play, Plus, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, Copy, Play, Plus, ShieldCheck, Trash2 } from "lucide-react";
+import { PermissionPreview } from "./ProcessPermissions";
 import { Combobox } from "../affectui-combobox/Combobox";
 import type { ComboboxOption } from "../affectui-combobox/Combobox";
 import { Mark, markNames } from "../affectui-agent-tree/tree-marks";
@@ -33,6 +34,7 @@ export interface InspectorProps {
   onReparent: (parentId: string) => void;
   onRunBranch: () => void;
   onResolve: (action: "approve" | "reject" | "retry" | "dismiss") => void;
+  onReviewPermission: () => void;
   now: number;
 }
 
@@ -52,7 +54,7 @@ const providerOptions: ComboboxOption[] = providers.map(item => ({ value: item.i
 const roleOptions: ComboboxOption[] = roles.map(role => ({ value: role.id, label: role.label, color: role.color }));
 const toolOptions: ComboboxOption[] = toolIds.map(tool => ({ value: tool, label: markNames[tool] }));
 
-export function NodeInspector({ doc, node, engines, simulated, run, locked, onChange, onAddChild, onDuplicate, onDelete, onMove, onReparent, onRunBranch, onResolve, now }: InspectorProps) {
+export function NodeInspector({ doc, node, engines, simulated, run, locked, onChange, onAddChild, onDuplicate, onDelete, onMove, onReparent, onRunBranch, onResolve, onReviewPermission, now }: InspectorProps) {
   const id = useId();
   const isRoot = doc.root.id === node.id;
   const info = providerOf(node.ai.provider);
@@ -98,7 +100,7 @@ export function NodeInspector({ doc, node, engines, simulated, run, locked, onCh
       <div className="proc-run__line"><span className="proc-run__status" data-status={status}>{statusLabel[status]}</span>
         {unit !== "none" && <span>{format(run?.cost ?? 0)}</span>}
         {run?.started !== undefined && <span>{durationLabel(Math.max(0, (run.ended ?? now) - run.started))}</span>}</div>
-      {status === "waiting" && <><p>{run?.ask}</p><div className="proc-run__actions"><button type="button" className="proc-button" onClick={() => onResolve("reject")}>Reject</button><button type="button" className="proc-button proc-button--dark" onClick={() => onResolve("approve")}>Approve</button></div></>}
+      {status === "waiting" && <><p>{run?.ask}</p><div className="proc-run__actions"><button type="button" className="proc-button proc-button--dark" onClick={onReviewPermission}><ShieldCheck size={14} />Review request</button></div></>}
       {status === "failed" && <><p>{run?.error}</p><div className="proc-run__actions"><button type="button" className="proc-button" onClick={() => onResolve("dismiss")}>Dismiss</button><button type="button" className="proc-button proc-button--dark" onClick={() => onResolve("retry")}>Retry</button></div></>}
     </section>}
 
@@ -124,6 +126,7 @@ export function NodeInspector({ doc, node, engines, simulated, run, locked, onCh
       <h3>Rules</h3>
       <Switch checked={node.approval} label="Ask me before it runs" hint="The task waits until you approve it." onChange={value => onChange(current => ({ ...current, approval: value }))} />
       {node.approval && <Field label="Question" htmlFor={`${id}-ask`}><input id={`${id}-ask`} className="proc-input" value={node.askText} maxLength={LIMITS.askText} placeholder={`Run “${node.name}”?`} onChange={event => onChange(current => ({ ...current, askText: event.target.value }), "ask")} /></Field>}
+      {node.approval && <PermissionPreview key={node.id} node={node} doc={doc} simulated={simulated} engines={engines} />}
       {node.children.length > 0 && <Combobox label="Its sub-tasks run" options={[{ value: "parallel", label: "All at once" }, { value: "sequence", label: "One after another" }]} value={node.mode} searchable={false} onChange={value => onChange(current => ({ ...current, mode: value as Mode }))} />}
       {unit !== "none" && node.ai.provider !== "human" && <Field label={`Stop at (${unitLabel[unit].toLowerCase()})`} htmlFor={`${id}-limit`} hint="The task fails when its own cost reaches this. Empty means no limit.">
         <input id={`${id}-limit`} className="proc-input" type="number" min="0" step="any" inputMode="decimal" value={node.limit ?? ""} placeholder="No limit" onChange={event => { const value = event.target.valueAsNumber; onChange(current => { const { limit, ...rest } = current; void limit; return Number.isFinite(value) && value > 0 ? { ...rest, limit: value } : rest; }, "limit"); }} /></Field>}

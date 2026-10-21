@@ -265,9 +265,9 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await waitStatus(page, 'Writer', 'waiting', 10000);
     assert.equal(await page.locator('.proc-state').innerText(), 'Needs you');
     await page.locator('.agt__sum-btn[data-kind="waiting"]').click();
-    const dialog = page.getByRole('dialog', { name: 'Blocks that need you' });
+    const dialog = page.locator('.proc-permissions [role=dialog]');
     assert.match(await dialog.innerText(), /Formal or friendly for the plan names\?/);
-    await dialog.getByRole('button', { name: 'Approve' }).click();
+    await dialog.getByRole('button', { name: 'Allow once' }).click();
     await waitStatus(page, 'Writer', 'running', 4000);
     await waitStatus(page, 'Tester', 'failed', 15000);
     await page.locator('.agt__sum-btn[data-kind="failed"]').click();
@@ -357,7 +357,7 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await waitStatus(page, 'Approver', 'waiting', 40000);
     assert.match(await page.locator('.agt__sum-cost').innerText(), /tok$/);
     await page.locator('.agt__sum-btn[data-kind="waiting"]').click();
-    await page.getByRole('dialog').getByRole('button', { name: 'Reject' }).click();
+    await page.locator('.proc-permissions [role=dialog]').getByRole('button', { name: 'Deny' }).click();
     await page.waitForFunction(() => document.querySelector('.proc-state')?.textContent === 'Done');
     await page.screenshot({ path: `${out}/process-local.png` });
   });
@@ -419,7 +419,7 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await run(page).tap();
     await waitStatus(page, 'Writer', 'waiting', 10000);
     await page.locator('.agt__sum-btn[data-kind="waiting"]').tap();
-    await page.getByRole('dialog', { name: 'Blocks that need you' }).getByRole('button', { name: 'Approve' }).tap();
+    await page.locator('.proc-permissions [role=dialog]').getByRole('button', { name: 'Allow once' }).tap();
     await waitStatus(page, 'Writer', 'running', 4000);
     await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).tap();
   });
@@ -510,8 +510,8 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     assert.equal(runCalls[0].body.process.root.children[2].ai.model, 'ollama:llama3.2');
     assert.equal(await statusOf(restPage, 'Writer'), 'waiting');
     await restPage.locator('.agt__sum-btn[data-kind="waiting"]').click();
-    assert.match(await restPage.getByRole('dialog').innerText(), /Server asks: ship the copy\?/);
-    await restPage.getByRole('dialog').getByRole('button', { name: 'Approve' }).click();
+    assert.match(await restPage.locator('.proc-permissions [role=dialog]').innerText(), /Server asks: ship the copy\?/);
+    await restPage.locator('.proc-permissions [role=dialog]').getByRole('button', { name: 'Allow once' }).click();
     assert.deepEqual(runCalls.at(-1), { kind: 'action', body: { type: 'approve', id: 'writer' } });
     await restPage.waitForFunction(() => document.querySelector('.proc-state')?.textContent === 'Done', null, { timeout: 15000 });
     assert.equal(await restPage.locator('.agt__node[data-status="done"]').count(), 9);

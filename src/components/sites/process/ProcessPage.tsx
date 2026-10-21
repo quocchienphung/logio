@@ -14,6 +14,7 @@ import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
 import { NodeInspector } from "./NodeInspector";
 import { ConfirmDialog, ConnectDialog, LibraryDialog, NewProcessDialog, SettingsDialog } from "./ProcessDialogs";
 import { ProcessMap } from "./ProcessMap";
+import { ProcessPermissions } from "./ProcessPermissions";
 import { roles } from "./roles";
 import type { Role } from "./roles";
 import type { Point } from "./map-layout";
@@ -111,6 +112,13 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const [palette, setPalette] = useState(false);
   const [revealId, setRevealId] = useState<string | null>(null);
   const [tidied, setTidied] = useState(0);
+  const [permissionReview, setPermissionReview] = useState<{ id?: string; revision: number }>({ revision: 0 });
+  const actionPending = useRef(false);
+  const runRevision = useRef(0);
+  function reviewPermission(id?: string) {
+    setDialog(null);
+    setPermissionReview(current => ({ id, revision: current.revision + 1 }));
+  }
 
   // ----- running -----
   // The clock only ticks while a run is going: the last tick tells whether it still is.
@@ -147,15 +155,17 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     if (!engine.refresh || !active) return;
     const timer = setInterval(() => {
       const current = handleRef.current;
-      if (!current || engine.kind === "simulated") return;
-      engine.refresh!(workspaceId, current).then(next => { if (next !== current) setHandles(all => all[doc.id] === current ? { ...all, [doc.id]: next } : all); setNotice(note => note?.text.startsWith("Lost contact") ? null : note); })
-        .catch(() => setNotice({ kind: "error", text: "Lost contact with the engine. Trying again…" }));
+      if (!current || engine.kind === "simulated" || actionPending.current) return;
+      const revision = runRevision.current;
+      engine.refresh!(workspaceId, current).then(next => { if (revision !== runRevision.current) return; if (next !== current) setHandles(all => all[doc.id] === current ? { ...all, [doc.id]: next } : all); setNotice(note => note?.text.startsWith("Lost contact") ? null : note); })
+        .catch(() => { if (revision === runRevision.current) setNotice({ kind: "error", text: "Lost contact with the engine. Trying again…" }); });
     }, POLL_MS);
     return () => clearInterval(timer);
   }, [engine, workspaceId, doc.id, active]);
 
   const fail = (error: unknown, fallback: string) => setNotice({ kind: "error", text: error instanceof Error && error.message ? error.message : fallback });
   async function start(from?: string) {
+    runRevision.current += 1;
     setNotice(null);
     try {
       const next = await engine.start(workspaceId, doc, from, Date.now());
@@ -163,14 +173,21 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     } catch (error) { fail(error, "The run could not start."); }
   }
   async function act(action: RunAction) {
-    if (!handle) return;
+    if (!handle || actionPending.current) return false;
+    actionPending.current = true;
+    runRevision.current += 1;
     setNotice(null);
     try {
       const next = await engine.act(workspaceId, handle, action, Date.now());
       setHandles(current => current[doc.id] === handle ? { ...current, [doc.id]: next } : current);
-    } catch (error) { fail(error, "That did not work."); }
+      return true;
+    } catch (error) { fail(error, "That did not work."); return false; }
+    finally { actionPending.current = false; }
   }
-  const resolve = (agent: TreeAgent, action: "approve" | "reject" | "retry" | "dismiss") => void act({ type: action, id: taskIdOf(agent.id) });
+  const resolve = (agent: TreeAgent, action: "approve" | "reject" | "retry" | "dismiss") => {
+    if (action === "approve" || action === "reject") reviewPermission(taskIdOf(agent.id));
+    else void act({ type: action, id: taskIdOf(agent.id) });
+  };
   const clearRun = () => setHandles(current => { const next = { ...current }; delete next[doc.id]; return next; });
 
   // ----- editing -----
@@ -284,7 +301,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     onChange={(change, field) => editNode(selected.id, change, field)} onAddChild={() => addBlock(selected.id)} onDuplicate={() => duplicateTask(selected.id)}
     onDelete={() => setDialog({ kind: "delete-task", id: selected.id })} onMove={delta => editRoot(root => moveNode(root, selected.id, delta))}
     onReparent={parentId => editRoot(root => reparentNode(root, selected.id, parentId))} onRunBranch={() => void start(selected.id)}
-    onResolve={action => void act({ type: action, id: selected.id })} />;
+    onResolve={action => void act({ type: action, id: selected.id })} onReviewPermission={() => reviewPermission(selected.id)} />;
 
   const runControls = active
     ? <button type="button" className="proc-button proc-button--small" onClick={() => void act({ type: "stop" })}><Square size={12} />Stop</button>
@@ -328,7 +345,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         <button type="button" className="proc-icon-button" aria-label="New process" title="New process" onClick={() => setDialog("new")}><Plus size={16} /></button>
       </div>
       <div className="proc-pill proc-pill--bar agt">
-        <AgentBar root={tree} title={view === "map" ? "Blocks" : "Tasks"} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} extra={runControls} />
+        <AgentBar root={tree} title={view === "map" ? "Blocks" : "Tasks"} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} onReviewWaiting={() => reviewPermission()} extra={runControls} />
       </div>
     </div>
 
@@ -344,6 +361,12 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
       <button type="button" className="proc-icon-button proc-side__close" aria-label="Close block settings" onClick={() => setPanel(false)}><X size={15} /></button>
       {inspector}
     </aside>}
+
+    {snapshot && <ProcessPermissions key={`${snapshot.id}:${permissionReview.revision}`} doc={handle?.kind === "simulated" ? { ...doc, unit: handle.log.unit } : doc}
+      root={handle?.kind === "simulated" ? handle.log.root : doc.root} snapshot={snapshot} simulated={simulated} engines={engines}
+      preferredId={permissionReview.id} focusOnOpen={permissionReview.revision > 0}
+      onDecide={(id, decision) => act({ type: decision, id })}
+      onLocate={id => { setView("map"); setSelectedId(id); setRevealId(id); }} />}
 
     <div className="proc-dock proc-pill" role="toolbar" aria-label="Map tools">
       <div className="proc-dock__add">

@@ -1,0 +1,57 @@
+{
+  "results": [
+    {
+      "name": "The inline preview uses live block details and its Allow/Deny buttons never create a run",
+      "ok": true
+    },
+    {
+      "name": "A real waiting block opens the review automatically with labelled dialog, scope, task, tools and cost",
+      "ok": true
+    },
+    {
+      "name": "Minimize keeps the task waiting; Needs you reopens the same request and focuses the review",
+      "ok": true
+    },
+    {
+      "name": "A key outside the card never approves; reload preserves the pending request without any decision",
+      "ok": true
+    },
+    {
+      "name": "Allow once reaches the simulated engine, folds into a receipt, then queues two separate requests",
+      "ok": true
+    },
+    {
+      "name": "Escape denies only the focused request, stops its children and leaves the other request pending",
+      "ok": true
+    },
+    {
+      "name": "Enter on the focused dialog allows once; rerunning always asks again",
+      "ok": true
+    },
+    {
+      "name": "Touch 390px: request stays in the viewport, scrolls, has 44px actions and no keyboard hints",
+      "ok": true
+    },
+    {
+      "name": "Touch 320px: request stays in the viewport, scrolls, has 44px actions and no keyboard hints",
+      "ok": true
+    },
+    {
+      "name": "Dark theme and reduced motion use the existing Process tokens",
+      "ok": true
+    },
+    {
+      "name": "REST failures never show Allowed; double-click sends one action; confirmed retry shows a receipt",
+      "ok": true
+    },
+    {
+      "name": "WebKit renders the request and submits Deny",
+      "ok": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

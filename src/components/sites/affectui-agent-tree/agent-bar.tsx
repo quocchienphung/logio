@@ -18,6 +18,8 @@ export interface AgentBarProps {
   onResolve?: (agent: TreeAgent, action: ResolveAction) => void;
   /** Controls beside the title, for example a Run button. */
   extra?: ReactNode;
+  /** A host can supply a richer permission review surface instead of the compact waiting popover. */
+  onReviewWaiting?: () => void;
 }
 
 /**
@@ -25,7 +27,7 @@ export interface AgentBarProps {
  * failed, cost). "Needs you" and "failed" open a small window to deal with them: the first answer is focused, Esc closes
  * it and gives the focus back to the button.
  */
-export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], formatCost = dollars, showCost = true, onResolve, extra }: AgentBarProps) {
+export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], formatCost = dollars, showCost = true, onResolve, extra, onReviewWaiting }: AgentBarProps) {
   const [one, many] = noun;
   const ids = useId();
   const totals = totalsOf(root);
@@ -62,7 +64,7 @@ export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], f
     <span className="agt__sum">
       <span>{totals.agents} {totals.agents === 1 ? one : many}</span>
       {totals.running > 0 && <span className="agt__sum-run">{totals.running} running</span>}
-      {totals.waiting > 0 && <button type="button" className="agt__sum-btn" data-kind="waiting" aria-expanded={windowKind === "waiting"} aria-haspopup="dialog" aria-controls={windowKind === "waiting" ? `${ids}-window` : undefined} onClick={() => setOpen(windowKind === "waiting" ? null : "waiting")}>{totals.waiting} {totals.waiting === 1 ? "needs" : "need"} you<Chevron /></button>}
+      {totals.waiting > 0 && <button type="button" className="agt__sum-btn" data-kind="waiting" aria-expanded={onReviewWaiting ? undefined : windowKind === "waiting"} aria-haspopup="dialog" aria-controls={windowKind === "waiting" ? `${ids}-window` : undefined} onClick={() => { if (onReviewWaiting) { setOpen(null); onReviewWaiting(); } else setOpen(windowKind === "waiting" ? null : "waiting"); }}>{totals.waiting} {totals.waiting === 1 ? "needs" : "need"} you<Chevron /></button>}
       {totals.failed > 0 && <button type="button" className="agt__sum-btn" data-kind="failed" aria-expanded={windowKind === "failed"} aria-haspopup="dialog" aria-controls={windowKind === "failed" ? `${ids}-window` : undefined} onClick={() => setOpen(windowKind === "failed" ? null : "failed")}>{totals.failed} failed<Chevron /></button>}
       {showCost && <span className="agt__sum-cost"><span className="agt__amount" data-live={totals.live ? "" : undefined}>{formatCost(totals.cost)}</span></span>}
     </span>
