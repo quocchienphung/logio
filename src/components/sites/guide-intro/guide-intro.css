@@ -7,12 +7,17 @@
 .guide-intro__bar .artist-presence { --artist-presence-surface: #fff; }
 .guide-intro__document { position: relative; display: grid; flex: 0 1 auto; min-height: 0; grid-template-columns: minmax(0, 1fr) minmax(0, 2.7fr) minmax(0, 1fr); gap: 32px; align-items: center; overflow-y: auto; overscroll-behavior: contain; padding: 42px 40px; scrollbar-width: thin; scrollbar-color: #ddd transparent; }
 .guide-intro__artwork { position: relative; min-width: 0; aspect-ratio: 1.236619; margin: 0; background: #fff; isolation: isolate; }
-.guide-intro__paper { position: absolute; inset: 4.75% 3.8%; overflow: hidden; background: #fff; }
+.guide-intro__paper { position: absolute; inset: 4.75% 3.8%; overflow: hidden; isolation: isolate; contain: paint; background: #fff; }
 .guide-intro__canvas { display: block; width: 100%; height: 100%; }
-.frame-craft { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; filter: drop-shadow(0 2px 2px #59472228); }
+.frame-craft { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none;  }
 .guide-intro__comment-space { display: none; }
-.guide-intro [data-agent="framer"] .artist-cursor__pointer { transform: rotate(var(--wand-tilt, 0deg)); transform-origin: 0 0; }
-.guide-intro__cursors { position: absolute; inset: 0; overflow: hidden; pointer-events: none; clip-path: inset(var(--cursor-clip, 0)); }
+.guide-intro .artist-cursor__pointer { transform: rotate(var(--wand-tilt, 0deg)) scale(calc(.9 + var(--arrival, 0) * .1)); transform-origin: 0 0; }
+.guide-intro .artist-cursor__flag { animation: none; opacity: var(--arrival, 0); transform: translateY(calc((1 - var(--arrival, 0)) * -8px)); }
+.guide-intro__cursors { position: absolute; overflow: hidden; pointer-events: none; }
+.guide-intro__cursor-plane { position: absolute; width: 0; height: 0; }
+.guide-intro .artist-cursor__pointer { will-change: transform; backface-visibility: hidden; }
+/* Reserve continuous animation for the actual work; static status rings avoid eight extra repaint clocks. */
+.guide-intro .artist-presence__orbit, .guide-intro .artist-cursor__caret, .guide-intro .studio-comment__caret { animation: none; }
 .guide-intro .artist-cursor { opacity: 0; transition: none; }
 .guide-intro .artist-cursor:not([data-typing])::before { position: absolute; left: -12px; top: -12px; width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle, #fff8d7b0, #f4d89032 38%, transparent 70%); content: ""; }
 .guide-intro .artist-cursor[data-dimmed] { filter: opacity(.18); }
@@ -33,14 +38,14 @@
   .guide-intro { padding: 20px; }
   .guide-intro__sheet { width: min(620px, 100%); max-height: calc(100dvh - 40px); }
   .guide-intro__document { grid-template-columns: 1fr 1fr; gap: 24px; padding: 24px 28px; align-items: start; }
-  .guide-intro__artwork { grid-column: 1 / -1; grid-row: 1; width: min(340px, 100%); justify-self: center; }
+  .guide-intro__artwork-stage { grid-column: 1 / -1; grid-row: 1; width: min(340px, 100%); justify-self: center; }
   .guide-intro__comment-space { display: block; grid-column: 1 / -1; grid-row: 2; height: 156px; }
 }
 @media (max-width: 520px) {
   .guide-intro { padding: 12px; }
   .guide-intro__sheet { max-height: calc(100dvh - 24px); }
   .guide-intro__document { padding: 20px; gap: 18px; }
-  .guide-intro__artwork { width: min(300px, 100%); }
+  .guide-intro__artwork-stage { width: min(300px, 100%); }
   .guide-intro .artist-cursor__flag { padding: 4px 7px; font-size: 10px; line-height: 14px; }
   .guide-intro .artist-cursor__doing { display: none; }
   .guide-intro .artist-cursor__pointer { width: 16px; height: 19px; }
@@ -49,7 +54,7 @@
   .guide-intro { padding: 10px; }
   .guide-intro__sheet { max-height: calc(100dvh - 20px); }
   .guide-intro__document { padding: 12px 16px; gap: 14px; }
-  .guide-intro__artwork { width: min(210px, 100%); }
+  .guide-intro__artwork-stage { width: min(210px, 100%); }
   .guide-intro__comment-space { height: 120px; }
   .guide-intro .artwork-note__body { min-height: 105px; font-size: 10px; line-height: 1.65; }
   .guide-intro .artwork-note__detail { min-height: 48px; font-size: 9px; line-height: 1.6; margin-top: 6px; padding-top: 6px; }
@@ -57,13 +62,15 @@
 @media (max-height: 500px) and (max-width: 900px) {
   .guide-intro__sheet { width: 100%; }
   .guide-intro__document { grid-template-columns: 1fr 1.3fr 1fr; align-items: center; gap: 16px; padding: 12px 24px; }
-  .guide-intro__artwork { grid-column: auto; grid-row: auto; width: min(210px, 100%); }
+  .guide-intro__artwork-stage { grid-column: auto; grid-row: auto; width: min(210px, 100%); }
   .guide-intro__comment-space { display: none; }
   .guide-intro .artwork-note__body { min-height: 0; font-size: 9px; line-height: 1.5; }
   .guide-intro .artwork-note__detail { min-height: 0; font-size: 8px; line-height: 1.4; }
 }
 @media (max-height: 600px) and (max-width: 520px) {
-  .guide-intro__artwork { width: min(180px, 100%); }
-  .guide-intro__document { gap: 12px; }
+  .guide-intro__artwork-stage { width: min(164px, 100%); }
+  .guide-intro__document { gap: 10px; padding: 8px 16px; }
+  .guide-intro .artwork-note__body { font-size: 9.5px; line-height: 1.6; }
+  .guide-intro .artwork-note__detail { font-size: 8.5px; line-height: 1.5; }
 }
 @media (prefers-reduced-motion: reduce) { .guide-intro .artist-cursor { display: none; } .guide-intro__sheet { transition: none; } .guide-intro[data-leaving="true"] .guide-intro__sheet { opacity: 1; transform: none; } }

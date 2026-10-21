@@ -22,6 +22,14 @@ function type(text: string, time: number, start: number, end: number) {
   return text.slice(0, Math.floor(text.length * Math.max(0, Math.min(1, (time - start) / (end - start)))));
 }
 
+/** Key only changes when a rendered character, edit, caret or visibility changes. */
+export function notesLayoutKey(side: "left" | "right", elapsed: number) {
+  const t = elapsed / 1.55, copy = notes[side];
+  const start = side === "left" ? 500 : 800, edit = side === "left" ? 3400 : 4400;
+  const body = t < edit ? type(copy.before + copy.draft + copy.after, t, start, edit - 100).length : t > edit + 1700 ? "settled" : type(copy.revised, t, edit + 160, edit + 1100).length;
+  return `${side}:${t >= start}:${t > start && t < 8200}:${body}:${t >= edit}:${t > edit + 1700}:${type(copy.detail, t, edit + 1280, 8200).length}`;
+}
+
 /** Real document text: the remote pointer is measured from this flowing caret. */
 export function ArtworkNotes({ side, elapsed, complete }: {
   side: "left" | "right";

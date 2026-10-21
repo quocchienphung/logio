@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion, useReducedMotion } from "motion/react";
+import { MenuSurface } from "@/components/interaction/MenuSurface";
 import { ArrowLeft, Check, ChevronDown, ChevronRight, CirclePlay, FileText, Folder, Map, MessageSquarePlus, Moon, Search, Settings, Star, Sun, Waypoints, Workflow, X } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
 import { CrmTable } from "./CrmTable";
@@ -123,11 +124,11 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
   },[]);
 
   function popover(id:string,title:string,children:ReactNode,top=false) {
-    return <AnimatePresence>{menu===id && <motion.div className="ui-as-popover ui-as-menu" data-motion="" data-side={top ? "top" : undefined} role="menu" initial={{opacity:0,y:top ? 5 : -5,scale:0.98}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:top ? 3 : -3,scale:0.98}} transition={{duration:reduce ? 0 : 0.18}} onKeyDown={event=>{
+    return <AnimatePresence>{menu===id && <MenuSurface className="ui-as-popover ui-as-menu" data-motion="" data-side={top ? "top" : undefined} side={top ? "top" : "bottom"} role="menu" onKeyDown={event=>{
       if(!["ArrowDown","ArrowUp","Home","End"].includes(event.key))return;event.preventDefault();
-      const items=[...event.currentTarget.querySelectorAll<HTMLButtonElement|HTMLAnchorElement>('button,a')];const current=items.indexOf(document.activeElement as HTMLButtonElement);
+      const items=[...event.currentTarget.querySelectorAll<HTMLButtonElement|HTMLAnchorElement>('button:not(:disabled):not([aria-disabled="true"]),a[href]:not([aria-disabled="true"])')];const current=items.indexOf(document.activeElement as HTMLButtonElement);
       items[event.key==="Home" ? 0 : event.key==="End" ? items.length-1 : (current+(event.key==="ArrowDown" ? 1 : -1)+items.length)%items.length]?.focus();
-    }}>{title && <span className="ui-as-menu__title">{title}</span>}<div className="ui-as-menu__list">{children}</div></motion.div>}</AnimatePresence>;
+    }}>{title && <span className="ui-as-menu__title">{title}</span>}<div className="ui-as-menu__list">{children}</div></MenuSurface>}</AnimatePresence>;
   }
 
   const searchItems=[...workspaceSections.map(label=>({id:`section:${label}`,label,kind:"section" as const})),...allTabs.map(item=>({id:item.id,label:item.name,kind:"view" as const})),...engine.rows.map(row=>({id:row.id,label:row.company || "Untitled",kind:"company" as const}))].filter(item=>item.label.toLowerCase().includes(search.toLowerCase()));

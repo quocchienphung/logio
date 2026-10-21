@@ -50,3 +50,4 @@
 @container (max-width:300px){.ui-iv__bar{flex-wrap:wrap;row-gap:8px}.ui-iv__actions{margin-left:auto}.ui-iv__head{min-width:0}.ui-iv__crow{grid-template-columns:20px minmax(0,1fr) minmax(80px,.9fr);gap:8px}.ui-iv__amount{padding:0 7px}.ui-iv__crow--head{font-size:12px}.ui-iv__totals>div{gap:10px}}
 /* Leave room for the workspace's mobile sidebar toggle. */
 @media(max-width:920px){.invoice-workspace{padding-top:52px}}
+.invoice-stamp-badge{color:#c9382c;border-color:color-mix(in srgb,currentColor 35%,transparent);background:color-mix(in srgb,currentColor 7%,var(--invoice-panel))}.invoice-stamp-badge[data-ink=blue]{color:#1f5bd1}.invoice-stamp-badge[data-ink=green]{color:#1b7a49}.invoice-stamp-badge[data-ink=violet]{color:#6a49d4}.invoice-stamp-badge[data-ink=black]{color:var(--invoice-ink)}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { MenuSurface } from "@/components/interaction/MenuSurface";
 import { Bookmark, Check, ChevronDown, Download, Trash2 } from "lucide-react";
 import seed from "./analytics-seed.json";
 import icons from "./icons.json";
@@ -49,12 +50,17 @@ export function Analytics({ workspaceId, notify }: { workspaceId: string; notify
   const [product, setProduct] = useState<string | null>(null);
   const reduce = useReducedMotion();
   const periodRef = useRef<HTMLDivElement>(null);
+  const savedRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!periodMenu) return;
-    const outside = (event: PointerEvent) => { if (event.target instanceof Node && !periodRef.current?.contains(event.target)) setPeriodMenu(false); };
+    if (!periodMenu && !savedMenu) return;
+    const outside = (event: PointerEvent) => {
+      if (!(event.target instanceof Node)) return;
+      if (!periodRef.current?.contains(event.target)) setPeriodMenu(false);
+      if (!savedRef.current?.contains(event.target)) setSavedMenu(false);
+    };
     document.addEventListener("pointerdown", outside);
     return () => document.removeEventListener("pointerdown", outside);
-  }, [periodMenu]);
+  }, [periodMenu, savedMenu]);
   // The backend computes the report for the chosen period; the bundled sample is used when it has none.
   const report = useQuery("analytics", workspaceId, { days }, seed.find(period => period.days === days) || seed[0], parsePeriod);
   const data = report.data;
@@ -71,20 +77,27 @@ export function Analytics({ workspaceId, notify }: { workspaceId: string; notify
     window.setTimeout(() => { setExporting(false); notify("Revenue report exported"); }, 600);
   }
 
-  return <div className="ui-as-rev" onKeyDown={event => { if (event.key === "Escape") { setPeriodMenu(false); setSavedMenu(false); setInfo(null); } }}>
+  return <div className="ui-as-rev" onKeyDown={event => { if (event.key === "Escape") { if (periodMenu) periodRef.current?.querySelector('button')?.focus(); else if (savedMenu) savedRef.current?.querySelector('button')?.focus(); setPeriodMenu(false); setSavedMenu(false); setInfo(null); } }}>
     <header className="ui-as-rev__head"><h1><AnalyticsIcon name="Revenue" />Revenue</h1><div className="ui-as-rev__actions">
       <div className="ui-as-anchor" ref={periodRef} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPeriodMenu(false); }} onKeyDown={event=>{
         if(!["ArrowDown","ArrowUp","Home","End"].includes(event.key))return;
         event.preventDefault();
         if(!periodMenu){setPeriodMenu(true);requestAnimationFrame(()=>periodRef.current?.querySelector<HTMLButtonElement>('[role="menuitemradio"]')?.focus());return;}
-        const buttons=[...event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]')];
+        const buttons=[...event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]:not(:disabled):not([aria-disabled="true"])')];
         const index=buttons.indexOf(document.activeElement as HTMLButtonElement);
         buttons[event.key==="Home" ? 0 : event.key==="End" ? buttons.length-1 : (index+(event.key==="ArrowDown" ? 1 : -1)+buttons.length)%buttons.length]?.focus();
       }}><button type="button" className="ui-as-tool ui-as-tool--label ui-as-rev__period" aria-expanded={periodMenu} aria-haspopup="menu" onClick={() => setPeriodMenu(!periodMenu)}><AnalyticsIcon name="Last 7 days" />Last {days} days<ChevronDown size={12} /></button>
-        <AnimatePresence>{periodMenu && <motion.div role="menu" aria-label="Reporting period" className="ui-as-popover ui-as-menu" initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -3 }} transition={{ duration: reduce ? 0 : 0.16 }}>{[7, 30, 90].map(value => <button type="button" className="ui-as-menu__item" role="menuitemradio" aria-checked={days === value} key={value} onClick={() => { setDays(value); setPeriodMenu(false); periodRef.current?.querySelector('button')?.focus(); }}>Last {value} days{days === value && <Check size={13} />}</button>)}</motion.div>}</AnimatePresence>
+        <AnimatePresence>{periodMenu && <MenuSurface role="menu" aria-label="Reporting period" className="ui-as-popover ui-as-menu">{[7, 30, 90].map(value => <button type="button" className="ui-as-menu__item" role="menuitemradio" aria-checked={days === value} key={value} onClick={() => { setDays(value); setPeriodMenu(false); periodRef.current?.querySelector('button')?.focus(); }}>Last {value} days{days === value && <Check size={13} />}</button>)}</MenuSurface>}</AnimatePresence>
       </div>
       <button type="button" className="ui-button" data-variant="secondary" data-size="sm" aria-busy={exporting} disabled={exporting} onClick={exportReport}><span className="ui-button__icon"><Download size={16} /></span><span className="ui-button__label">{exporting ? "Exporting…" : "Export"}</span></button>
-      {saved.length > 0 && <div className="ui-as-anchor"><button type="button" className="ui-as-tool" aria-label="Saved reports" aria-expanded={savedMenu} onClick={() => setSavedMenu(!savedMenu)}><Bookmark size={15} /></button>{savedMenu && <div className="ui-as-popover ui-as-menu analytics-saved"><span className="ui-as-menu__title">Saved reports</span>{saved.map(report => <div className="analytics-saved-row" key={report.id}><button type="button" className="ui-as-menu__item" onClick={() => { setDays(report.days); setSavedMenu(false); notify(`Opened ${report.name}`); }}>{report.name}<small>Last {report.days} days</small></button><button type="button" className="ui-as-icon-btn" aria-label={`Delete ${report.name}`} onClick={() => setSaved(saved.filter(item => item.id !== report.id))}><Trash2 size={13} /></button></div>)}</div>}</div>}
+      {saved.length > 0 && <div className="ui-as-anchor" ref={savedRef} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setSavedMenu(false); }} onKeyDown={event => {
+        if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        if (!savedMenu) { setSavedMenu(true); requestAnimationFrame(() => savedRef.current?.querySelector<HTMLButtonElement>('[role="menuitem"]:not(:disabled):not([aria-disabled="true"])')?.focus()); return; }
+        const items = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not(:disabled):not([aria-disabled="true"])')];
+        const index = items.indexOf(document.activeElement as HTMLButtonElement);
+        items[event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 : (index + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length]?.focus();
+      }}><button type="button" className="ui-as-tool" aria-label="Saved reports" aria-expanded={savedMenu} aria-haspopup="menu" onClick={() => setSavedMenu(!savedMenu)}><Bookmark size={15} /></button><AnimatePresence>{savedMenu && <MenuSurface className="ui-as-popover ui-as-menu analytics-saved" role="menu" aria-label="Saved reports"><span className="ui-as-menu__title">Saved reports</span>{saved.map(report => <div className="analytics-saved-row" key={report.id}><button type="button" role="menuitem" className="ui-as-menu__item" onClick={() => { setDays(report.days); setSavedMenu(false); savedRef.current?.querySelector('button')?.focus(); notify(`Opened ${report.name}`); }}>{report.name}<small>Last {report.days} days</small></button><button type="button" role="menuitem" className="ui-as-icon-btn" aria-label={`Delete ${report.name}`} onClick={() => setSaved(saved.filter(item => item.id !== report.id))}><Trash2 size={13} /></button></div>)}</MenuSurface>}</AnimatePresence></div>}
       <button type="button" className="ui-button" data-variant="primary" data-size="sm" onClick={() => setSaveOpen(true)}><span className="ui-button__label">Save as report</span></button>
     </div></header>
     <div className="ui-as-rev__content">

@@ -3,6 +3,8 @@ import { Fragment, useId, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import type { CreditLine, InvoiceData, InvoiceParty } from "./invoice-model";
+import { impressionTilt } from "./invoice-stamp-model";
+import { StampMark } from "./StampMark";
 import { creditTotals, currencySymbol, formatAmount, formatDate, formatMoney, lineCents, safePaymentUrl, toCents, totals } from "./invoice-model";
 
 /** Paths observed in the public preview; no icon package substitutions in the cloned block. */
@@ -23,6 +25,22 @@ function CreditAmount({ value, max, disabled, label, currency, onChange }: { val
     setText(raw); const parsed = Number(raw.replaceAll(",", "")); onChange(Math.min(max, Math.max(0, toCents(Number.isFinite(parsed) ? parsed : 0))));
   }} onBlur={() => setText(null)} onKeyDown={e => { if (e.key === "Enter") e.currentTarget.blur(); }} /></label>;
 }
+/**
+ * The face of the invoice sheet: amount, parties, terms, lines, totals, note and (when it has one) the stamp's impression. Shared by the live
+ * preview and by the stamping scene, so the paper that is stamped is this same document, laid out by the same stylesheet.
+ */
+export function InvoiceSheetBody({ invoice, onConfigurePayment, showStamp = true }: { invoice: InvoiceData; onConfigurePayment?: () => void; showStamp?: boolean }) {
+  const sum = totals(invoice.lines), money = (value: number) => <Money cents={value} currency={invoice.currency} />, paymentUrl = safePaymentUrl(invoice.paymentUrl);
+  const brand = <span className="ui-iv__brand"><span className="ui-iv__logo" aria-hidden="true" />{invoice.seller.name || "Your company"}</span>;
+  return <>
+  <header className="ui-iv__head"><div><p className="ui-iv__big">{money(sum.total)}</p><p className="ui-iv__due">Due {formatDate(invoice.due)}{paymentUrl ? <a href={paymentUrl} target="_blank" rel="noopener noreferrer">Pay online</a> : <button type="button" className="invoice-pay" onClick={onConfigurePayment} disabled={!onConfigurePayment}>Pay online</button>}</p></div>{brand}</header>
+  <div className="ui-iv__parties"><Party title="From" party={invoice.seller} /><Party title="To" party={invoice.buyer} /></div>
+  <div className="ui-iv__terms"><p className="ui-iv__label">Terms</p><dl><div><dt>Invoice no</dt><dd><span className="ui-iv__ref">{invoice.number || "—"}</span></dd></div><div><dt>Invoice date</dt><dd>{formatDate(invoice.issued)}</dd></div><div><dt>Due date</dt><dd>{formatDate(invoice.due)}</dd></div><div><dt>Billing period</dt><dd>{invoice.period || "—"}</dd></div></dl></div>
+  <table className="ui-iv__table"><thead><tr><th scope="col">Name</th><th scope="col">Qty</th><th scope="col" className="ui-iv__num">Rate</th><th scope="col" className="ui-iv__num">Tax</th><th scope="col" className="ui-iv__num">Price</th></tr></thead><tbody>{invoice.lines.map((line, index) => <Fragment key={line.id}>{line.group && line.group !== invoice.lines[index - 1]?.group && <tr className="ui-iv__group"><td colSpan={5}>{line.group}</td></tr>}<tr data-indent={line.group ? "" : undefined}><td>{line.name || "Untitled item"}</td><td>{line.qty.toLocaleString("en-US", { maximumFractionDigits: 3 })}</td><td className="ui-iv__num">{formatMoney(toCents(line.rate), invoice.currency)}</td><td className="ui-iv__num">{line.tax}%</td><td className="ui-iv__num">{money(lineCents(line))}</td></tr></Fragment>)}</tbody></table>
+  <div className="ui-iv__totals"><div><span>Subtotal</span><span>{money(sum.subtotal)}</span></div><div><span>Tax</span><span>{money(sum.tax)}</span></div><div className="ui-iv__total"><span>Total</span><b data-testid="invoice-total">{money(sum.total)}</b></div></div>{invoice.note && <p className="invoice-paper-note">{invoice.note}</p>}
+  {showStamp && invoice.stamp && <div className="invoice-stamp-on-sheet" data-stamp={invoice.stamp.kind}><StampMark stamp={invoice.stamp} style={{ transform: `rotate(${impressionTilt(invoice.stamp)}deg)` }} /></div>}
+  </>;
+}
 interface BlockProps {
   invoice: InvoiceData;
   view: "invoice" | "credit";
@@ -36,8 +54,7 @@ interface BlockProps {
 }
 export function InvoiceBlock({ invoice, view, onView, onCredit, onIssue, onEditCredit, onPdf, onConfigurePayment, busy }: BlockProps) {
   const ids = useId(), tabs = useRef<(HTMLButtonElement | null)[]>([]);
-  const sum = totals(invoice.lines), credit = creditTotals(invoice), money = (value: number) => <Money cents={value} currency={invoice.currency} />;
-  const paymentUrl = safePaymentUrl(invoice.paymentUrl);
+  const credit = creditTotals(invoice), money = (value: number) => <Money cents={value} currency={invoice.currency} />;
   const tabKey = (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
     e.preventDefault(); const next = e.key === "Home" ? 0 : e.key === "End" ? 1 : 1 - index; onView(next === 0 ? "invoice" : "credit"); tabs.current[next]?.focus();
@@ -48,12 +65,8 @@ export function InvoiceBlock({ invoice, view, onView, onCredit, onIssue, onEditC
       <div className="ui-iv__actions"><button type="button" className="ui-iv__btn" onClick={onPdf}><BlockIcon kind="download" />PDF</button>{view === "invoice" && <button type="button" className="ui-iv__btn" onClick={() => onView("credit")}><BlockIcon kind="credit" />Credit invoice</button>}</div>
     </div>
     <div className="ui-iv__stack">
-      <article className="ui-iv__sheet" data-doc="invoice" id={`${ids}-invoice`} role="tabpanel" aria-labelledby={`${ids}-invoice-tab`} aria-hidden={view !== "invoice"} inert={view !== "invoice"}>
-        <header className="ui-iv__head"><div><p className="ui-iv__big">{money(sum.total)}</p><p className="ui-iv__due">Due {formatDate(invoice.due)}{paymentUrl ? <a href={paymentUrl} target="_blank" rel="noopener noreferrer">Pay online</a> : <button type="button" className="invoice-pay" onClick={onConfigurePayment}>Pay online</button>}</p></div>{brand}</header>
-        <div className="ui-iv__parties"><Party title="From" party={invoice.seller} /><Party title="To" party={invoice.buyer} /></div>
-        <div className="ui-iv__terms"><p className="ui-iv__label">Terms</p><dl><div><dt>Invoice no</dt><dd><span className="ui-iv__ref">{invoice.number || "—"}</span></dd></div><div><dt>Invoice date</dt><dd>{formatDate(invoice.issued)}</dd></div><div><dt>Due date</dt><dd>{formatDate(invoice.due)}</dd></div><div><dt>Billing period</dt><dd>{invoice.period || "—"}</dd></div></dl></div>
-        <table className="ui-iv__table"><thead><tr><th scope="col">Name</th><th scope="col">Qty</th><th scope="col" className="ui-iv__num">Rate</th><th scope="col" className="ui-iv__num">Tax</th><th scope="col" className="ui-iv__num">Price</th></tr></thead><tbody>{invoice.lines.map((line, index) => <Fragment key={line.id}>{line.group && line.group !== invoice.lines[index - 1]?.group && <tr className="ui-iv__group"><td colSpan={5}>{line.group}</td></tr>}<tr data-indent={line.group ? "" : undefined}><td>{line.name || "Untitled item"}</td><td>{line.qty.toLocaleString("en-US", { maximumFractionDigits: 3 })}</td><td className="ui-iv__num">{formatMoney(toCents(line.rate), invoice.currency)}</td><td className="ui-iv__num">{line.tax}%</td><td className="ui-iv__num">{money(lineCents(line))}</td></tr></Fragment>)}</tbody></table>
-        <div className="ui-iv__totals"><div><span>Subtotal</span><span>{money(sum.subtotal)}</span></div><div><span>Tax</span><span>{money(sum.tax)}</span></div><div className="ui-iv__total"><span>Total</span><b data-testid="invoice-total">{money(sum.total)}</b></div></div>{invoice.note && <p className="invoice-paper-note">{invoice.note}</p>}
+      <article className="ui-iv__sheet" data-doc="invoice" data-stamped={invoice.stamp ? "" : undefined} id={`${ids}-invoice`} role="tabpanel" aria-labelledby={`${ids}-invoice-tab`} aria-hidden={view !== "invoice"} inert={view !== "invoice"}>
+        <InvoiceSheetBody invoice={invoice} onConfigurePayment={onConfigurePayment} />
       </article>
       <article className="ui-iv__sheet" data-doc="credit" id={`${ids}-credit`} role="tabpanel" aria-labelledby={`${ids}-credit-tab`} aria-hidden={view !== "credit"} inert={view !== "credit"}>
         <header className="ui-iv__head"><div><p className="ui-iv__big">Credit note</p><p className="ui-iv__due">{formatMoney(credit.total, invoice.currency)} credited on {formatDate(invoice.credit.date)}{invoice.credit.issued && <span className="ui-iv__badge">Issued</span>}</p></div>{brand}</header>

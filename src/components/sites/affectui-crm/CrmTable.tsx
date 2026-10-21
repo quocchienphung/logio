@@ -3,6 +3,7 @@
 import { normalizeStripeNavigation } from "@/lib/stripe-navigation";
 import { useEffect, useRef, useState, type KeyboardEvent, type ClipboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { MenuSurface } from "@/components/interaction/MenuSurface";
 import { ArrowDown, Check, Copy, Plus, Trash2 } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
 import { columns, emptyCompany, numberFormat, setCell, tones, type Company, type CrmEngine } from "./crm-engine";
@@ -151,10 +152,10 @@ export function CrmTable({ engine, filter, defaultOwner = "", onAddRow }: { engi
       </table>{!visible.length && <p className="ui-dt__empty">{rows.length ? "No companies match this view." : "No rows yet. Add your first company."}</p>}
     </div></div></div>
     <div className="ui-dt__foot">{pickedCount ? <div className="ui-dt__bulk"><span>{pickedCount} selected</span><button type="button" className="ui-dt__add" onClick={() => { change([...rows, ...rows.filter(r => selected.includes(r.id)).map(r => ({ ...r, id: crypto.randomUUID() }))]); setSelected([]); }}><Copy size={14} />Duplicate</button><button type="button" className="ui-dt__add ui-dt__add--danger" onClick={() => { change(rows.filter(r => !selected.includes(r.id))); setSelected([]); setActive(null); setEnd(null); }}><Trash2 size={14} />Delete</button></div> : <button type="button" className="ui-dt__add" onClick={() => { const row = { ...emptyCompany(), owner: defaultOwner }; cancelBlur.current = false; onAddRow?.(); change([...rows, row]); setActive({id:row.id,col:0}); setEditing({id:row.id,col:0}); setDraft(""); }}><Plus size={14} />Add row</button>}<span className="ui-dt__summary">{active && activeIndex >= 0 ? `${String.fromCharCode(65 + active.col)}${activeIndex + 1}${end ? `:${String.fromCharCode(65 + end.col)}${endIndex + 1}` : ""}` : "Double-click a cell to edit"}</span></div>
-    {picker && <div className="ui-dt__picker" role="listbox" aria-label={`Choose ${columns[picker.cell.col].label}`} style={{left:picker.left,top:picker.top,width:picker.width}} onKeyDown={event => {
+    <AnimatePresence>{picker && <MenuSurface className="ui-dt__picker" role="listbox" aria-label={`Choose ${columns[picker.cell.col].label}`} style={{left:picker.left,top:picker.top,width:picker.width}} onKeyDown={event => {
       if (event.key === "Escape") { event.preventDefault(); setPicker(null); scrollRef.current?.focus(); }
-      if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); const buttons = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button')]; const index = buttons.indexOf(document.activeElement as HTMLButtonElement); buttons[(index + (event.key === "ArrowDown" ? 1 : -1) + buttons.length) % buttons.length]?.focus(); }
-    }}>{options.map((option, index) => <button type="button" key={option} role="option" autoFocus={index === 0} aria-selected={rows.find(r=>r.id===picker.cell.id)?.[columns[picker.cell.col].key] === option} className="ui-dt__option" onClick={() => { update(picker.cell, option); setPicker(null); scrollRef.current?.focus(); }}><span className="ui-dt__tag" data-tone={tones[option] || "gray"}>{option}</span></button>)}</div>}
+      if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); const buttons = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not(:disabled):not([aria-disabled="true"])')]; const index = buttons.indexOf(document.activeElement as HTMLButtonElement); buttons[(index + (event.key === "ArrowDown" ? 1 : -1) + buttons.length) % buttons.length]?.focus(); }
+    }}>{options.map((option, index) => <button type="button" key={option} role="option" autoFocus={index === 0} aria-selected={rows.find(r=>r.id===picker.cell.id)?.[columns[picker.cell.col].key] === option} className="ui-dt__option" onClick={() => { update(picker.cell, option); setPicker(null); scrollRef.current?.focus(); }}><span className="ui-dt__tag" data-tone={tones[option] || "gray"}>{option}</span></button>)}</MenuSurface>}</AnimatePresence>
   </div>;
 }
 

@@ -1,3 +1,6 @@
+import { isStamp } from "./invoice-stamp-model.ts";
+import type { InvoiceStamp } from "./invoice-stamp-model.ts";
+
 export type Currency = "USD" | "EUR" | "GBP";
 export interface InvoiceLine { id: string; name: string; qty: number; rate: number; tax: number; group: string }
 export interface InvoiceParty { name: string; address: string; email: string; taxId: string }
@@ -17,6 +20,8 @@ export interface InvoiceData {
   note: string;
   paymentUrl: string;
   credit: { date: string; issued: boolean; lines: CreditLine[] };
+  /** A stamp set down on the invoice (paid, received, approved, due). Absent until someone stamps it. */
+  stamp?: InvoiceStamp;
 }
 export interface InvoiceLibrary { version: 2; activeId: string; documents: InvoiceData[] }
 export const LIMITS = { documents: 200, lines: 200, text: 160, address: 600, note: 2000, qty: 1_000_000, rate: 100_000 };
@@ -112,7 +117,9 @@ export function normalizeInvoice(input: unknown): InvoiceData | null {
     creditIds.add(line.id); credits.push({ lineId: line.id, selected: c.selected, cents: c.cents });
   }
   if (credits.length !== lines.length) return null;
-  return { version: 2, id: raw.id, number: raw.number, creditNumber: raw.creditNumber, issued: raw.issued, due: raw.due, period: raw.period, currency: raw.currency as Currency, seller, buyer, lines, note: raw.note, paymentUrl: raw.paymentUrl, credit: { date: credit.date, issued: credit.issued, lines: credits } };
+  if (raw.stamp !== undefined && !isStamp(raw.stamp)) return null;
+  const stamp = raw.stamp === undefined ? {} : { stamp: { kind: raw.stamp.kind, date: raw.stamp.date, ink: raw.stamp.ink } };
+  return { version: 2, id: raw.id, number: raw.number, creditNumber: raw.creditNumber, issued: raw.issued, due: raw.due, period: raw.period, currency: raw.currency as Currency, seller, buyer, lines, note: raw.note, paymentUrl: raw.paymentUrl, credit: { date: credit.date, issued: credit.issued, lines: credits }, ...stamp };
 }
 function migrateLegacy(raw: Record<string, unknown>): InvoiceData | null {
   if (!Array.isArray(raw.lines) || raw.lines.length > LIMITS.lines || !isDate(raw.issued) || !isDate(raw.due) || !str(raw.number)) return null;
@@ -139,5 +146,6 @@ export function invoiceCsv(invoice: InvoiceData) {
   const rows: (string | number)[][] = [["Invoice", invoice.number], ["Seller", invoice.seller.name], ["Client", invoice.buyer.name], ["Currency", invoice.currency], ["Issued", invoice.issued], ["Due", invoice.due], ["Name", "Quantity", "Rate", "Tax %", "Net amount", "Tax amount", "Gross amount"]];
   for (const l of invoice.lines) { const net = lineCents(l), tax = taxCents(net, l.tax); rows.push([l.name, l.qty, l.rate, l.tax, (net / 100).toFixed(2), (tax / 100).toFixed(2), ((net + tax) / 100).toFixed(2)]); }
   const sum = totals(invoice.lines); rows.push(["Subtotal", sum.subtotal / 100], ["Tax", sum.tax / 100], ["Total", sum.total / 100]);
+  if (invoice.stamp) rows.push(["Stamp", invoice.stamp.kind, invoice.stamp.date]);
   return rows.map(row => row.map(value => { let text = String(value); if (typeof value === "string" && /^[\s]*[=+\-@\t\r]/.test(text)) text = `'${text}`; return `"${text.replaceAll('"', '""')}"`; }).join(",")).join("\r\n");
 }

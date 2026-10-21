@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { notesLayoutKey } from "./ArtworkNotes";
+import { frameStyle, frameAttribute } from "./frame-style";
 import { Mark } from "../affectui-agent-tree/tree-marks";
 import { artistAgents } from "./studio-timeline";
 import "./agent-comments.css";
@@ -41,40 +43,50 @@ export function AgentComments({ elapsed, reduced, onInteractionChange }: {
     const mobile = page.querySelector<HTMLElement>('[data-comment-space="mobile"]');
     const compact = Boolean(mobile?.offsetHeight);
     const painting = page.querySelector("[data-painting-frame]")?.getBoundingClientRect();
-    for (const note of comments) {
-      const item = node.querySelector<HTMLElement>(`[data-comment="${note.id}"]`);
-      const side = note.id === "moonlight" || note.id === "brushwork" ? "right" : "left";
+    if (!painting) return;
+    const geometry = (["left", "right"] as const).map(side => {
       const space = compact ? mobile : page.querySelector<HTMLElement>(`[data-comment-space="${side}"]`);
       const prose = page.querySelector(`.artwork-note--${side} .artwork-note__body`);
       const detail = page.querySelector(`.artwork-note--${side} .artwork-note__detail`);
-      if (!item || !space || !painting || !prose || !detail) continue;
-      const slot = space.getBoundingClientRect();
+      if (!space || !prose || !detail) return null;
+      const range = document.createRange(); range.selectNodeContents(prose);
+      return {slot:space.getBoundingClientRect(), prose:prose.getBoundingClientRect(), detail:detail.getBoundingClientRect(), written:range.getBoundingClientRect()};
+    });
+    // Finish every layout read before changing any card width, position or pin style.
+    const placements = comments.map(note => {
+      const item = node.querySelector<HTMLElement>(`[data-comment="${note.id}"]`);
+      const side = note.id === "moonlight" || note.id === "brushwork" ? "right" : "left";
+      const g = geometry[side === "left" ? 0 : 1];
+      if (!item || !g) return null;
+      const {slot,prose,detail,written}=g;
       const width = Math.min(compact ? 330 : 282, slot.width + (compact ? 0 : 24));
       const x = compact ? slot.left + (slot.width - width) / 2 : slot.left - (side === "left" ? 24 : 0);
-      item.style.setProperty("--comment-x", `${x - bounds.left}px`);
-      item.style.setProperty("--comment-width", `${width}px`);
       let y = slot.top + 4;
       if (!compact) {
-        // Measure actual written lines, so unused paragraph height never pushes a card away.
-        const range = document.createRange(); range.selectNodeContents(prose);
-        const written = range.getBoundingClientRect();
         const cardHeight = item.querySelector<HTMLElement>(".studio-comment__card")?.offsetHeight ?? 145;
-        const lower = Math.max(prose.getBoundingClientRect().top, written.bottom) + 12;
-        const upper = detail.getBoundingClientRect().top - cardHeight - 12;
+        const lower = Math.max(prose.top, written.bottom) + 12;
+        const upper = detail.top - cardHeight - 12;
         const desired = note.id === "framing" ? painting.top + painting.height * .5 - cardHeight / 2 : lower;
         y = Math.max(lower, Math.min(Math.max(lower, upper), desired));
       }
-      item.style.setProperty("--comment-y", `${y - bounds.top}px`);
-      const proseBounds = prose.getBoundingClientRect();
-      const pinX = note.id === "framing" ? painting.left - (compact ? 24 : 28) : note.id === "moonlight" ? painting.right + 5 : proseBounds.left - (compact ? 20 : 28);
-      const pinY = note.id === "framing" ? painting.top + painting.height * .48 : note.id === "moonlight" ? painting.top + 28 : proseBounds.top + 2;
-      item.style.setProperty("--pin-x", `${Math.max(documentBounds.left + 1, Math.min(documentBounds.right - 27, pinX)) - bounds.left}px`);
-      item.style.setProperty("--pin-y", `${pinY - bounds.top}px`);
-      item.dataset.placement = compact ? "beside-artwork" : side;
-      item.style.setProperty("--comment-origin", `${Math.max(16, Math.min(width - 16, pinX - x + 13))}px top`);
+      const pinX = note.id === "framing" ? painting.left - (compact ? 24 : 28) : note.id === "moonlight" ? painting.right + 5 : prose.left - (compact ? 20 : 28);
+      const pinY = note.id === "framing" ? painting.top + painting.height * .48 : note.id === "moonlight" ? painting.top + 28 : prose.top + 2;
+      return {item,side,width,x,y,pinX,pinY};
+    });
+    for (const p of placements) {
+      if (!p) continue;
+      const {item,side,width,x,y,pinX,pinY}=p;
+      frameStyle(item, "--comment-x", `${x - bounds.left}px`);
+      frameStyle(item, "--comment-width", `${width}px`);
+      frameStyle(item, "--comment-y", `${y - bounds.top}px`);
+      frameStyle(item, "--pin-x", `${Math.max(documentBounds.left + 1, Math.min(documentBounds.right - 27, pinX)) - bounds.left}px`);
+      frameStyle(item, "--pin-y", `${pinY - bounds.top}px`);
+      frameAttribute(item, "data-placement", compact ? "beside-artwork" : side);
+      frameStyle(item, "--comment-origin", `${Math.max(16, Math.min(width - 16, pinX - x + 13))}px top`);
     }
   }, []);
-  useLayoutEffect(place, [elapsed, selected, place]);
+  const textLayout = notesLayoutKey("left", elapsed) + notesLayoutKey("right", elapsed);
+  useLayoutEffect(place, [textLayout, selected, place]);
   useEffect(() => {
     const page = layer.current?.closest(".guide-intro");
     if (!page) return;

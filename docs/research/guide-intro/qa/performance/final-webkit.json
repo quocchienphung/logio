@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-21T20:02:06.289Z",
+  "base": "http://localhost:3012",
+  "cases": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "cpuThrottle": 1,
+      "engine": "WebKit",
+      "frames": 449,
+      "callbackMs": {
+        "p50": 0,
+        "p95": 1.0000000000002274,
+        "p99": 1.000000000001819
+      },
+      "intervalMs": {
+        "p50": 31,
+        "p95": 36,
+        "over25ms": 397
+      },
+      "phases": {
+        "painting": {
+          "p50": 0,
+          "p95": 1.0000000000004547,
+          "p99": 1.000000000001819
+        },
+        "laser": {
+          "p50": 0,
+          "p95": 1,
+          "p99": 1.000000000001819
+        }
+      },
+      "metrics": {},
+      "longTasks": []
+    },
+    {
+      "name": "phone",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 3,
+      "cpuThrottle": 1,
+      "engine": "WebKit",
+      "frames": 165,
+      "callbackMs": {
+        "p50": 0,
+        "p95": 1.0000000000002274,
+        "p99": 1.000000000001819
+      },
+      "intervalMs": {
+        "p50": 82,
+        "p95": 93,
+        "over25ms": 164
+      },
+      "phases": {
+        "painting": {
+          "p50": 1,
+          "p95": 1.0000000000004547,
+          "p99": 1.000000000001819
+        },
+        "laser": {
+          "p50": 0,
+          "p95": 1,
+          "p99": 1.000000000001819
+        }
+      },
+      "metrics": {},
+      "longTasks": []
+    }
+  ],
+  "note": "Local WebKit (no CPU throttling) measurements; not a physical iPhone or proof of 120 Hz presentation."
+}

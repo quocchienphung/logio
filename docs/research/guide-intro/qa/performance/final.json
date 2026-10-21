@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-21T20:01:05.307Z",
+  "base": "http://localhost:3012",
+  "cases": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "cpuThrottle": 1,
+      "engine": "Chromium",
+      "frames": 2220,
+      "callbackMs": {
+        "p50": 0.29999999701976776,
+        "p95": 0.5,
+        "p99": 0.7000000029802322
+      },
+      "intervalMs": {
+        "p50": 6.099999999999454,
+        "p95": 6.200000000000728,
+        "over25ms": 0
+      },
+      "phases": {
+        "painting": {
+          "p50": 0.29999999701976776,
+          "p95": 0.5,
+          "p99": 0.699999988079071
+        },
+        "laser": {
+          "p50": 0.30000001192092896,
+          "p95": 0.5999999940395355,
+          "p99": 0.7000000029802322
+        }
+      },
+      "metrics": {
+        "LayoutCount": 2370,
+        "RecalcStyleCount": 2338,
+        "LayoutDuration": 0.110377,
+        "RecalcStyleDuration": 0.468048,
+        "DevToolsCommandDuration": 0.0014670000000000013,
+        "ScriptDuration": 0.8960729999999999,
+        "V8CompileDuration": 0,
+        "TaskDuration": 2.596687,
+        "TaskOtherDuration": 1.1207219999999998
+      },
+      "longTasks": [
+        {
+          "at": 80.20000000298023,
+          "duration": 107
+        },
+        {
+          "at": 254.20000000298023,
+          "duration": 270
+        },
+        {
+          "at": 576.7999999970198,
+          "duration": 197
+        }
+      ]
+    },
+    {
+      "name": "phone-4x",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 3,
+      "cpuThrottle": 4,
+      "engine": "Chromium",
+      "frames": 2209,
+      "callbackMs": {
+        "p50": 1.2999999970197678,
+        "p95": 1.800000011920929,
+        "p99": 2.2999999970197678
+      },
+      "intervalMs": {
+        "p50": 6.099999999999454,
+        "p95": 6.199999999999818,
+        "over25ms": 0
+      },
+      "phases": {
+        "painting": {
+          "p50": 1.2999999970197678,
+          "p95": 1.899999976158142,
+          "p99": 2.2999999970197678
+        },
+        "laser": {
+          "p50": 1.3999999910593033,
+          "p95": 1.9000000059604645,
+          "p99": 2.2999999970197678
+        }
+      },
+      "metrics": {
+        "LayoutCount": 2350,
+        "RecalcStyleCount": 2301,
+        "LayoutDuration": 0.463615,
+        "RecalcStyleDuration": 1.9979519999999997,
+        "DevToolsCommandDuration": 0.008774999999999998,
+        "ScriptDuration": 3.725631,
+        "V8CompileDuration": 0,
+        "TaskDuration": 10.224982,
+        "TaskOtherDuration": 4.029008999999999
+      },
+      "longTasks": [
+        {
+          "at": 36.79999999701977,
+          "duration": 83
+        },
+        {
+          "at": 303.5,
+          "duration": 111
+        },
+        {
+          "at": 562.7000000029802,
+          "duration": 1220
+        },
+        {
+          "at": 1819.2999999970198,
+          "duration": 503
+        }
+      ]
+    }
+  ],
+  "note": "Local Chromium measurements; 4x CPU throttling is not a physical iPhone or proof of 120 Hz presentation."
+}

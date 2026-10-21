@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { MenuSurface } from "@/components/interaction/MenuSurface";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
 
 import { Combobox } from "../affectui-combobox/Combobox";
@@ -41,7 +42,7 @@ function SettingsMenu({ label, ariaLabel, icon, end = false, children }: { label
   function close() { setOpen(false); }
   useEffect(() => {
     if (!open) return;
-    menu.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    menu.current?.querySelector<HTMLButtonElement>('button:not(:disabled):not([aria-disabled="true"])')?.focus();
     function outside(event: PointerEvent) { if (!anchor.current?.contains(event.target as Node)) setOpen(false); }
     document.addEventListener("pointerdown", outside);
     return () => document.removeEventListener("pointerdown", outside);
@@ -50,13 +51,13 @@ function SettingsMenu({ label, ariaLabel, icon, end = false, children }: { label
     if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); close(); trigger.current?.focus(); }
     if (!open && event.key === "ArrowDown") { event.preventDefault(); setOpen(true); return; }
     if (!open || !["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
-    const items = Array.from(menu.current?.querySelectorAll<HTMLButtonElement>("button") || []);
+    const items = Array.from(menu.current?.querySelectorAll<HTMLButtonElement>('button:not(:disabled):not([aria-disabled="true"])') || []);
     const current = items.findIndex(item => item === document.activeElement);
     const next = event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 : (current + (event.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
     event.preventDefault(); items[next]?.focus();
   }}>
     <button ref={trigger} type="button" className={`ui-as-tool${label ? " ui-as-tool--label" : ""}`} aria-label={ariaLabel} aria-expanded={open} aria-haspopup="menu" onClick={() => setOpen(!open)}>{icon && <SettingsIcon name={icon} />}{label}{label && <SettingsIcon name="down" size={13} />}</button>
-    {open && <div ref={menu} className="ui-as-popover ui-as-menu" data-align={end ? "end" : undefined} role="menu" aria-label={ariaLabel || label} onClick={() => trigger.current?.focus()}>{children(close)}</div>}
+    <AnimatePresence>{open && <MenuSurface ref={menu} className="ui-as-popover ui-as-menu" data-align={end ? "end" : undefined} role="menu" aria-label={ariaLabel || label} onClick={() => trigger.current?.focus()}>{children(close)}</MenuSurface>}</AnimatePresence>
   </span>;
 }
 

@@ -1,0 +1,93 @@
+{
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "The invoice has a \"Mark as paid\" button; it opens a pop-up with three date wheels, kinds, inks and one button, and none of the old captions",
+      "ok": true
+    },
+    {
+      "name": "The mouse wheel, the arrow keys, Page Up/Down and Home/End turn a wheel one row (or five) at a time, and the date line follows",
+      "ok": true
+    },
+    {
+      "name": "Dragging a wheel turns it and it comes to rest on a row; tapping a neighbouring row brings it to the middle",
+      "ok": true
+    },
+    {
+      "name": "Kinds and inks: each kind has its words and ink; an ink can be chosen on its own; the arrow keys move between kinds",
+      "ok": true
+    },
+    {
+      "name": "Escape closes the picker without stamping; the invoice is untouched",
+      "ok": true
+    },
+    {
+      "name": "Pressing the button does not close the pop-up: the controls fade, the card stays and becomes the stamp, and the scene plays",
+      "ok": true
+    },
+    {
+      "name": "There is no ink until the stamp touches; after it lifts the impression is there and the toast comes up",
+      "ok": true
+    },
+    {
+      "name": "Undo plays the scene backwards to the picker (the stamp is taken off the invoice, the picker is as it was)",
+      "ok": true
+    },
+    {
+      "name": "Stamping again, then Done: the stamp leaves upward, the paper lies flat with the impression on it, and Download PDF / Next invoice come up",
+      "ok": true
+    },
+    {
+      "name": "Download PDF opens the print layout with the stamp on it (kind, date and ink)",
+      "ok": true
+    },
+    {
+      "name": "Closing leaves the invoice stamped: the impression is on the sheet, the heading says Paid, and the unsaved state shows",
+      "ok": true
+    },
+    {
+      "name": "Saved with the invoice: after Save draft and a reload the stamp is still on the invoice, and it is in the stored document",
+      "ok": true
+    },
+    {
+      "name": "Changing the stamp opens the picker on the stamp it has; Undo goes back to the earlier stamp, and Next invoice starts a clean invoice",
+      "ok": true
+    },
+    {
+      "name": "At moments of the scene: card → solid stamp as the camera tilts → hover → drop → press → lift (the clock is held still for each)",
+      "ok": true
+    },
+    {
+      "name": "The stamp is a real solid and the paper is the invoice itself: stacked 3D slices, no cached bitmap layers, and the sheet is the invoice preview markup",
+      "ok": true
+    },
+    {
+      "name": "Each moment of the scene is saved as a frame (docs/research/invoice-stamp/qa/frames) for the storyboard",
+      "ok": true
+    },
+    {
+      "name": "Keyboard: Enter stamps, Escape during the scene skips to the hovering stamp, Escape again is Done, Tab never leaves the pop-up",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion: no flight at all — the finished paper with its impression appears at once, with Undo, Download PDF and Next invoice",
+      "ok": true
+    },
+    {
+      "name": "Dark mode: the card, the controls and the table follow the theme; the paper stays paper",
+      "ok": true
+    },
+    {
+      "name": "Phone: the picker fits, the controls are finger-sized, a tap stamps, and the whole scene stays on the screen with no sideways scroll",
+      "ok": true
+    },
+    {
+      "name": "WebKit: the picker opens, the scene plays to the hovering stamp, Done settles it, and the invoice carries the stamp",
+      "ok": true
+    },
+    {
+      "name": "No script errors in any of it",
+      "ok": true
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import { chromium, webkit } from 'playwright';
 import { PNG } from 'pngjs';
 
 const base = (process.argv[2] || 'http://localhost:3000').replace(/\/$/, '');
-const output = 'docs/research/guide-intro/qa/contextual';
+const output = 'docs/research/guide-intro/qa/high-refresh';
 await fs.mkdir(output, { recursive: true });
 const results = [], errors = [], external = new Set(), evidence = {};
 const browser = await chromium.launch({ channel: 'chrome' });
@@ -29,7 +29,7 @@ async function open(options = {}, controlled = true, engine = browser, setup, wa
 }
 const elapsed = page => page.locator('.guide-intro').getAttribute('data-elapsed').then(Number);
 async function stats(page) {
-  return page.locator('canvas').evaluate(canvas => {
+  return page.locator('.guide-intro__canvas').evaluate(canvas => {
     const ctx = canvas.getContext('2d'), data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     let white = 0, color = 0, total = 0, hash = 0;
     for (let y = 6; y < canvas.height; y += 12) for (let x = 6; x < canvas.width; x += 12) {
@@ -42,7 +42,7 @@ async function stats(page) {
   });
 }
 async function finished(page) {
-  const difference = await page.locator('canvas').evaluate(async canvas => {
+  const difference = await page.locator('.guide-intro__canvas').evaluate(async canvas => {
     const art = new Image(); art.src='/sites/guide-intro/starry-night.jpg'; await art.decode();
     const expected = document.createElement('canvas'); expected.width=canvas.width; expected.height=canvas.height;
     const ctx=expected.getContext('2d'), scale=Math.min(canvas.width/art.width,canvas.height/art.height);
@@ -57,7 +57,7 @@ async function finished(page) {
 }
 async function workspace(page) {
   const geometry = await page.evaluate(() => {
-    const root = document.querySelector('.guide-intro'), canvas = root.querySelector('canvas'), r = root.getBoundingClientRect(), c = canvas.getBoundingClientRect();
+    const root = document.querySelector('.guide-intro'), canvas = root.querySelector('.guide-intro__canvas'), r = root.getBoundingClientRect(), c = canvas.getBoundingClientRect();
     const sheet = root.querySelector('.guide-intro__sheet').getBoundingClientRect();
     return { width: innerWidth, height: innerHeight, root: { x:r.x,y:r.y,w:r.width,h:r.height }, canvas: { x:c.x,y:c.y,w:c.width,h:c.height }, sheet: { x:sheet.x,y:sheet.y,w:sheet.width,h:sheet.height }, background: getComputedStyle(root).backgroundColor, scrollWidth: document.documentElement.scrollWidth, scrollHeight: document.documentElement.scrollHeight };
   });
@@ -76,10 +76,62 @@ async function workspace(page) {
 try {
   await check('White workspace frames the painting and its surrounding document without extra titles', async () => {
     const page = await open(); evidence.desktop = await workspace(page);
-    assert.equal(await page.locator('.artist-cursor').count(), 7);
+    assert.equal(await page.locator('.artist-cursor').count(), 8);
     assert.equal(await page.getByRole('heading').count(), 0);
     const blank = await stats(page); assert.ok(blank.white > .999); evidence.blank = blank;
     await page.screenshot({ path: `${output}/blank.png` });
+  });
+  await check('Painting agents dispatch decisively within 80ms, then settle on their work',async()=>{
+    const page=await open();await page.clock.runFor(300);
+    const opacity=await page.locator('[data-agent="sky"]').evaluate(n=>Number(getComputedStyle(n).opacity));
+    assert.ok(opacity>.99,'The lead painter is fully visible by 300ms');
+    await page.clock.runFor(400);
+    const landed=await page.locator('.artist-cursor[data-x]').evaluateAll(nodes=>nodes.every(n=>Number(n.style.getPropertyValue('--arrival'))===1&&Number(n.style.opacity)===1));
+    assert.equal(landed,true);evidence.dispatch={leadOpacityAt300:opacity,allLandedBy700:landed};
+    await page.screenshot({path:`${output}/dispatch.png`});
+  });
+  await check('A separate bot laser engraves the exact inscription directly into the white surface below the painting',async()=>{
+    evidence.engraving=[];
+    for(const viewport of [{width:1440,height:900},{width:390,height:844},{width:320,height:568},{width:844,height:390}]) {
+      const page=await open({viewport});await page.clock.runFor(9300);
+      const plaque=page.getByRole('img',{name:'Laser engraved: \u00a9 Remplac\u00e9 par Logio',exact:true});
+      assert.equal(await plaque.isVisible(),true);
+      assert.equal(await plaque.getAttribute('data-engraving-progress'),'0.0000');
+      assert.equal(await page.locator('[data-laser-trace]').evaluateAll(nodes=>nodes.every(n=>n.style.opacity==='0')),true);
+      const box=await plaque.boundingBox(),frame=await page.locator('[data-painting-frame]').boundingBox();
+      assert.ok(box.y>=frame.y+frame.height+3&&Math.abs(box.x+box.width/2-frame.x-frame.width/2)<1,JSON.stringify({viewport,box,frame}));
+      await page.clock.runFor(2100);
+      for(let n=0;n<8&&await plaque.getAttribute('data-laser-active')!=='true';n++)await page.clock.runFor(16);
+      assert.equal(await plaque.getAttribute('data-laser-active'),'true');
+      const progress=Number(await plaque.getAttribute('data-engraving-progress'));assert.ok(progress>.4&&progress<.6);
+      const aligned=await page.evaluate(()=>{const svg=document.querySelector('.laser-signature svg'),head=svg.querySelector('[data-laser-head]'),m=head.transform.baseVal.consolidate().matrix,s=svg.getScreenCTM();const p=new DOMPoint(-18,-28).matrixTransform(m).matrixTransform(s);const c=new DOMMatrix(getComputedStyle(document.querySelector('[data-agent="engraver"]')).transform);return Math.hypot(c.e-p.x,c.f-p.y);});
+      assert.ok(aligned<1,`Laser tool follows the real glyph outline: ${aligned}`);
+      await page.screenshot({path:`${output}/laser-active-${viewport.width}.png`});
+      await page.clock.runFor(2800);
+      assert.equal(await plaque.getAttribute('data-engraving-progress'),'1.0000');
+      assert.equal(await plaque.getAttribute('data-laser-active'),'false');
+      assert.equal(await page.locator('[data-laser-trace]').evaluateAll(nodes=>nodes.every(n=>n.style.strokeDasharray==='none')),true);
+      assert.ok(await page.locator('[data-signature-texture]').evaluate(async n=>{const image=new Image();image.src=n.getAttribute('href');await image.decode();const source=new Image();source.src=n.getAttribute('data-source');await source.decode();return image.naturalWidth===1440&&image.naturalHeight===192&&source.naturalWidth===1024&&source.naturalHeight===1024;}));
+      assert.equal(await plaque.locator('svg > rect').count(),0,'The white surface has no plate or colored backing');
+      const clear=await page.addStyleTag({content:'.guide-intro__cursors{visibility:hidden!important}'});
+      const shot=PNG.sync.read(await page.screenshot());
+      for(const [x,y]of[[box.x+3,box.y+3],[box.x+box.width-3,box.y+3],[box.x+3,box.y+box.height-3],[box.x+box.width-3,box.y+box.height-3]]) {
+        const i=(Math.round(y)*shot.width+Math.round(x))*4;
+        assert.ok(shot.data[i]>250&&shot.data[i+1]>250&&shot.data[i+2]>250,'White workspace stays bare around the engraved letters');
+      }
+      await clear.evaluate(n=>n.remove());
+      await page.screenshot({path:`${output}/laser-finished-${viewport.width}.png`});
+      evidence.engraving.push({viewport,box,frame,midpointProgress:progress,tipError:aligned});
+    }
+  });
+  await check('Pausing freezes the laser contact, sparks and etched progress; reduced motion shows the finished signature',async()=>{
+    const page=await open();await page.clock.runFor(11500);await page.keyboard.press('Space');await page.clock.runFor(50);
+    const before=await page.locator('.laser-signature').innerHTML();const t=await elapsed(page);await page.clock.runFor(700);
+    assert.equal(await page.locator('.laser-signature').innerHTML(),before);assert.equal(await elapsed(page),t);
+    await page.keyboard.press('Space');await page.clock.runFor(300);assert.ok(await elapsed(page)>t+250);
+    const reduced=await open({reducedMotion:'reduce'});await reduced.clock.runFor(50);
+    assert.equal(await reduced.locator('.laser-signature').getAttribute('data-engraving-progress'),'1.0000');
+    assert.equal(await reduced.locator('[data-laser-head]').getAttribute('opacity'),'0');
   });
   await check('One continuous color pass builds the painting over fifteen seconds', async () => {
     const page = await open(), samples = [];
@@ -98,13 +150,13 @@ try {
   await check('Paint appears along actual cursor trajectories and stays absent ahead of the wands', async () => {
     const page = await open(); await page.clock.runFor(2500);
     const sample = c => {const s=document.createElement('canvas');s.width=144;s.height=90;s.getContext('2d').drawImage(c,0,0,144,90);return Array.from(s.getContext('2d').getImageData(0,0,144,90).data);};
-    const before = await page.locator('canvas').evaluate(sample);
+    const before = await page.locator('.guide-intro__canvas').evaluate(sample);
     const history = [];
     for (let n=0;n<30;n++) {
       await page.clock.runFor(16);
       history.push(await page.locator('.artist-cursor[data-x]').evaluateAll(nodes => nodes.map(n=>({x:Number(n.dataset.x),y:Number(n.dataset.y)}))));
     }
-    const after = {width:144,height:90,pixels:await page.locator('canvas').evaluate(sample)};
+    const after = {width:144,height:90,pixels:await page.locator('.guide-intro__canvas').evaluate(sample)};
     let changed=0, near=0, farUntouched=0;
     const radius=after.height*.105;
     const trajectory=history.flat();
@@ -151,7 +203,7 @@ try {
     const page=await open(); await page.clock.runFor(1000);
     const follow=page.getByRole('button',{name:/^Follow Writer,/}); await follow.click();
     assert.equal(await page.getByRole('button',{name:/^Stop following Writer,/}).getAttribute('aria-pressed'),'true');
-    assert.equal(await page.locator('.artist-cursor[data-dimmed]').count(),6);
+    assert.equal(await page.locator('.artist-cursor[data-dimmed]').count(),7);
     await page.getByRole('button',{name:/^Stop following Writer,/}).click();
     assert.equal(await page.locator('.artist-cursor[data-dimmed]').count(),0);
   });
@@ -219,7 +271,7 @@ try {
     for(let n=0;n<60;n++) {
       await page.clock.runFor(32);
       frames.push(await page.evaluate(()=>{
-        const canvas=document.querySelector('canvas').getBoundingClientRect();
+        const canvas=document.querySelector('.guide-intro__canvas').getBoundingClientRect();
         return {at:Number(document.querySelector('.guide-intro').dataset.elapsed),points:Array.from(document.querySelectorAll('.artist-cursor[data-x]')).map(c=>({x:Number(c.dataset.x)*canvas.width,y:Number(c.dataset.y)*canvas.height}))};
       }));
     }
@@ -241,8 +293,8 @@ try {
           const c=node.getBoundingClientRect();
           const distance=r=>Math.hypot(Math.max(0,r.left-c.right,c.left-r.right),Math.max(0,r.top-c.bottom,c.top-r.bottom));
           const overlap=r=>Math.max(0,Math.min(c.right,r.right)-Math.max(c.left,r.left))*Math.max(0,Math.min(c.bottom,r.bottom)-Math.max(c.top,r.top));
-          const textRect=n=>{if(n.matches('[data-painting-frame]'))return n.getBoundingClientRect();const r=document.createRange();r.selectNodeContents(n);return r.getBoundingClientRect();};
-          const content=[...document.querySelectorAll('[data-painting-frame],.artwork-note__body,.artwork-note__detail')].map(textRect);
+          const textRect=n=>{if(n.matches('[data-painting-frame],.laser-signature'))return n.getBoundingClientRect();const r=document.createRange();r.selectNodeContents(n);return r.getBoundingClientRect();};
+          const content=[...document.querySelectorAll('[data-painting-frame],.laser-signature,.artwork-note__body,.artwork-note__detail')].map(textRect);
           const frame=document.querySelector('[data-painting-frame]').getBoundingClientRect();
           const relevant=node.closest('[data-comment]').dataset.comment;
           const target=relevant==='moonlight'||relevant==='framing'?frame:textRect(document.querySelector(`.artwork-note--${relevant==='brushwork'?'right':'left'} .artwork-note__body`));
@@ -300,7 +352,7 @@ try {
       assert.equal(await page.locator('.artist-cursor[data-agent="framer"]').count(),1);
       assert.equal(await page.locator('.guide-intro').getAttribute('data-frame-progress'),'1.0000');
       assert.equal(await page.locator('[data-frame-stroke]').evaluate(n=>n.style.strokeDasharray),'none');
-      assert.ok(await page.locator('.frame-craft image').first().evaluate(async n=>{const image=new Image();image.src=n.getAttribute('href');await image.decode();return image.naturalWidth===1419&&image.naturalHeight===1828;}));
+      assert.ok(await page.locator('.frame-craft image').first().evaluate(async n=>{const image=new Image();image.src=n.getAttribute('href');await image.decode();const source=new Image();source.src=n.getAttribute('data-source');await source.decode();return image.naturalWidth===2000&&image.naturalHeight===1600&&source.naturalWidth===1419&&source.naturalHeight===1828;}));
       const noDecorations=await page.addStyleTag({content:'.guide-intro__cursors,.studio-comments{visibility:hidden!important}'});
       const rect=await page.locator('.frame-craft').boundingBox(), finalPixels=PNG.sync.read(await page.screenshot());
       const cornerSamples=[];
@@ -392,6 +444,29 @@ try {
     safari=await webkit.launch(); const page=await open({},true,safari); await page.clock.runFor(700); const sketch=await stats(page);
     await page.clock.runFor(13300); const final=await stats(page); assert.notEqual(sketch.hash,final.hash); await finished(page); await workspace(page);
     await page.screenshot({path:`${output}/webkit-final.png`});
+  });
+  await check('A 120 Hz animation clock preserves the fifteen-second choreography and pause behavior',async()=>{
+    const page=await open({},false,browser,async p=>{
+      await p.addInitScript(()=>{
+        const callbacks=new Map();let id=0,now=1000;
+        window.requestAnimationFrame=callback=>{callbacks.set(++id,callback);return id;};
+        window.cancelAnimationFrame=id=>callbacks.delete(id);
+        window.__advanceStudio120=async frames=>{
+          for(let i=0;i<frames;i++){
+            now+=1000/120;const pending=[...callbacks.values()];callbacks.clear();
+            for(const callback of pending)callback(now);
+            if(i%12===0)await new Promise(resolve=>setTimeout(resolve,0));
+          }
+          await new Promise(resolve=>setTimeout(resolve,0));
+        };
+      });
+    });
+    await page.evaluate(()=>window.__advanceStudio120(1682));
+    const at=await elapsed(page);assert.ok(at>13980&&at<14040,`120 Hz elapsed ${at}`);await finished(page);
+    assert.equal(await page.locator('.laser-signature').getAttribute('data-engraving-progress'),'1.0000');
+    await page.keyboard.press('Space');const paused=await elapsed(page);await page.evaluate(()=>window.__advanceStudio120(120));assert.equal(await elapsed(page),paused);
+    await page.keyboard.press('Space');await page.evaluate(()=>window.__advanceStudio120(124));await page.waitForURL('**/personalize?browse=1');
+    evidence.synthetic120={elapsedAt1682Frames:at,pausedFor120Frames:true,note:'Deterministic 8.333ms callbacks; this validates engine timing, not physical display FPS.'};
   });
   await check('No runtime errors or external runtime service requests occur',async()=>{assert.deepEqual(errors,[]);assert.deepEqual([...external],[]);});
 } finally {

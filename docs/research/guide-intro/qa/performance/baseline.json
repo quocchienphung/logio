@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-21T19:31:47.489Z",
+  "base": "http://localhost:3012",
+  "cases": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "cpuThrottle": 1,
+      "frames": 2192,
+      "callbackMs": {
+        "p50": 0.9000000059604645,
+        "p95": 1.2000000029802322,
+        "p99": 1.5
+      },
+      "intervalMs": {
+        "p50": 6.099999999999454,
+        "p95": 6.200000000000728,
+        "over25ms": 3
+      },
+      "phases": {
+        "painting": {
+          "p50": 0.9000000059604645,
+          "p95": 1.2999999970197678,
+          "p99": 1.5
+        },
+        "laser": {
+          "p50": 0.9000000059604645,
+          "p95": 1.2000000029802322,
+          "p99": 1.3999999910593033
+        }
+      },
+      "metrics": {
+        "LayoutCount": 2706,
+        "RecalcStyleCount": 16509,
+        "LayoutDuration": 0.115467,
+        "RecalcStyleDuration": 1.062349,
+        "DevToolsCommandDuration": 0.0017029999999999997,
+        "ScriptDuration": 1.299385,
+        "V8CompileDuration": 0,
+        "TaskDuration": 3.8707040000000004,
+        "TaskOtherDuration": 1.3918000000000001
+      },
+      "longTasks": [
+        {
+          "at": 74.09999999403954,
+          "duration": 105
+        }
+      ]
+    },
+    {
+      "name": "phone-4x",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 3,
+      "cpuThrottle": 4,
+      "frames": 1699,
+      "callbackMs": {
+        "p50": 4.5,
+        "p95": 5.699999988079071,
+        "p99": 6.299999997019768
+      },
+      "intervalMs": {
+        "p50": 6.100000000000364,
+        "p95": 12.200000000000728,
+        "over25ms": 2
+      },
+      "phases": {
+        "painting": {
+          "p50": 4.5,
+          "p95": 5.5,
+          "p99": 6
+        },
+        "laser": {
+          "p50": 4.5999999940395355,
+          "p95": 5.899999991059303,
+          "p99": 6.700000002980232
+        }
+      },
+      "metrics": {
+        "LayoutCount": 2148,
+        "RecalcStyleCount": 10659,
+        "LayoutDuration": 0.48546199999999995,
+        "RecalcStyleDuration": 4.135166000000001,
+        "DevToolsCommandDuration": 0.007413000000000003,
+        "ScriptDuration": 4.604902,
+        "V8CompileDuration": 0,
+        "TaskDuration": 13.733922999999999,
+        "TaskOtherDuration": 4.50098
+      },
+      "longTasks": [
+        {
+          "at": 39,
+          "duration": 75
+        },
+        {
+          "at": 287.40000000596046,
+          "duration": 102
+        },
+        {
+          "at": 584.2000000029802,
+          "duration": 167
+        }
+      ]
+    }
+  ],
+  "note": "Local Chromium measurements; 4x CPU throttling is not a physical iPhone or proof of 120 Hz presentation."
+}
