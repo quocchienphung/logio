@@ -1,0 +1,15 @@
+import { chromium } from "playwright";
+const b = await chromium.launch({ channel: "chrome" });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+p.on("console", m => { if (m.type() === "error" || m.type() === "warning") console.log("console", m.type(), m.text().slice(0, 200)); });
+await p.goto("http://localhost:3000/personalize?section=invoice", { waitUntil: "networkidle" });
+await p.waitForTimeout(1500);
+const link = p.getByRole("link", { name: "Explore pages" });
+console.log("count", await link.count(), await link.getAttribute("href"));
+const box = await link.boundingBox();
+console.log(box, await p.evaluate(({ x, y }) => { const el = document.elementFromPoint(x, y); return el?.outerHTML.slice(0, 200); }, { x: box.x + box.width / 2, y: box.y + box.height / 2 }));
+await link.click();
+await p.waitForTimeout(2000);
+console.log(p.url());
+await p.screenshot({ path: "docs/research/agent-tree/qa/invoice-explore-dbg.png" });
+await b.close();

@@ -177,7 +177,7 @@ try {
     await page.waitForTimeout(1000);
     assert.match(await page.locator('.guide-item[aria-current]').innerText(), /CRM/);
     assert.equal(await page.locator('.guide-preview__frame[data-live]:has(.wra)').getAttribute('inert'), '', 'card is inert while off screen');
-    assert.equal(await page.locator('.guide-preview__link').count(), 1, 'photo frames keep their whole-frame link');
+    assert.equal(await page.locator('.guide-preview__link').count(), 0, 'every frame is a live component now, so none is a whole-frame link');
     await item('Agent Chat').hover();
     await page.waitForTimeout(1000);
     assert.equal(await page.locator('.guide-preview__frame[data-live]:has(.wra)').getAttribute('inert'), null);

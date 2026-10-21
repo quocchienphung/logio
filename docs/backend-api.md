@@ -72,7 +72,7 @@ Saving: edits appear immediately and are sent after `debounceMs` of quiet; one s
 | `settings-billing` | workspace | Settings → Billing | `BillingState` (`SettingsBilling.tsx`) |
 | `settings-api-keys` | workspace, collection, **secret `value`** | Settings → API keys | `{id, name, prefix, suffix, created, lastUsed}[]` |
 | `mapping` | workspace | Mapping | `MappingData` (`version: 1`; `mapping-types.ts`), saved after 350 ms with `commands` |
-| `invoice` | workspace | Invoice | `InvoiceData` (`version: 1`; `invoice-model.ts`) |
+| `invoice` | workspace | Invoice | `InvoiceLibrary` (`version: 2`; `invoice-model.ts`), with v1 migration; see `docs/research/invoice-credit/api-contract.md` |
 
 Answers are validated before a screen sees them (`parse` per resource, `normalizeData` / `normalizeInvoice` for the map and the invoice). An invalid answer is ignored with a console warning and the screen keeps its demo defaults; a map or invoice in an unknown format shows the retry notice.
 
@@ -123,4 +123,3 @@ By default the browser simulates the run (a clock advances the plan, the snapsho
 # Files / Agent Chat
 
 Files adds the `file-library` workspace resource and reuses `folders` and `uploads/document`. See [the Files API contract](research/affectui-files/api-contract.md) for JSON shapes, signed download URLs, upload/auth behavior and cross-resource boundaries.
-

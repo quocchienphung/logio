@@ -1,0 +1,17 @@
+/* Local integration; source measurements are preserved in context-window-reference.css. */
+.ui-cwc__field { --ui-cwc-cols: 36; --ui-cwc-cols-narrow: 24; }
+.ui-cwc button.ui-cwc__compact { display: inline-flex; align-items: center; gap: 4px; height: 24px; margin-right: -8px; padding: 0 8px 0 6px; border-radius: 6px; font-size: 12px; font-weight: 500; line-height: 16px; color: var(--ui-cwc-text); }
+.ui-cwc button.ui-cwc__compact[data-done] { color: var(--ui-cwc-ok); background: var(--ui-cwc-ok-bg); }
+.ui-cwc button.ui-cwc__compact[data-leaving] { visibility: hidden; }
+.ui-cwc button.ui-cwc__action { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 8px 0 10px; border-radius: 6px; background: var(--ui-cwc-card); box-shadow: var(--ui-cwc-shadow); font-size: 13px; font-weight: 500; line-height: 20px; color: var(--ui-cwc-strong); }
+.ui-cwc button.ui-cwc__action:hover { background: var(--ui-cwc-wash); }
+.guide-context-window { display: flex; align-items: center; justify-content: center; overflow-y: auto; overscroll-behavior: contain; padding: 12px; background: #fafafa; }
+.guide-context-window .ui-cwc { flex: none; margin: auto; }
+.guide-preview__frame[inert] .ui-cwc * { animation-play-state: paused; }
+@container (max-width: 310px) {
+  .ui-cwc button.ui-cwc__compact { padding: 0 6px; }
+}
+@media (pointer: coarse) {
+  .ui-cwc button.ui-cwc__compact { height: 30px; padding: 0 9px 0 7px; }
+  .ui-cwc button.ui-cwc__action { height: 34px; }
+}

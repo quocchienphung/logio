@@ -1,24 +1,23 @@
 "use client";
-
 import { useMemo } from "react";
-import type { ComponentProps } from "react";
 import { BackendError, createSnapshotSource } from "@/lib/workspace-backend";
 import { useWorkspaceBackend } from "@/lib/workspace-backend/react";
 import { Invoice } from "./Invoice";
-import { normalizeInvoice } from "./invoice-model";
-
-const checked = (raw: unknown) => {
-  const invoice = normalizeInvoice(raw);
-  if (!invoice) throw new BackendError("invalid", "The stored invoice is not in a format this version understands.");
-  return invoice;
-};
-
-/**
- * The invoice backed by the workspace backend (this browser by default, the REST API when one is configured).
- * The invoice itself stays independent: it only knows the `dataSource` interface in invoice-data-source.ts.
- */
-export function BackendInvoice(props: Omit<ComponentProps<typeof Invoice>, "dataSource">) {
+import { normalizeLibrary } from "./invoice-model";
+export function BackendInvoice({ workspaceId }: { workspaceId: string }) {
   const backend = useWorkspaceBackend();
-  const dataSource = useMemo(() => createSnapshotSource(backend, { name: "invoice", workspaceId: props.workspaceId }, checked), [backend, props.workspaceId]);
-  return <Invoice {...props} dataSource={dataSource} />;
+  const dataSource = useMemo(() => {
+    const ref = { name: "invoice" as const, workspaceId };
+    const snapshot = createSnapshotSource(backend, ref, raw => {
+      const library = normalizeLibrary(raw);
+      if (!library) throw new BackendError("invalid", "The saved invoice data is invalid. Your stored copy has been kept.");
+      return library;
+    });
+    return { ...snapshot, async save(...args: Parameters<typeof snapshot.save>) {
+      await snapshot.save(...args);
+      // The shared local backend tolerates full storage. Invoice must not report a successful save in that case.
+      if (!backend.remote && backend.peek && JSON.stringify(backend.peek(ref)?.value) !== JSON.stringify(args[0])) throw new BackendError("network", "Browser storage is unavailable or full. Export your edits before leaving this page.");
+    } };
+  }, [backend, workspaceId]);
+  return <Invoice workspaceId={workspaceId} dataSource={dataSource} remote={backend.remote} />;
 }

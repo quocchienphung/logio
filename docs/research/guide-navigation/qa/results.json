@@ -3,14 +3,7 @@
     "Guide me entries open the selector with the second item active, as in the first video frame",
     "Hover slides the strip up for later items and down for earlier ones, then settles",
     "Rapid hover settles on the last item, with no queued animations or extra layers",
-    "Keyboard arrows select, wrap, Home/End work and Enter opens the group",
-    "Each group opens its workspace entry and Explore pages returns to that group",
-    "CRM preview is interactive; its row opens the workspace and pages follow their group",
-    "Back/Forward and refresh keep the selection; hover adds no history entries",
-    "Legacy CRM route and URL-addressable tabs keep working",
-    "Small, tablet and wide viewports have no horizontal overflow",
-    "Touch: first tap selects, second tap opens",
-    "Reduced motion settles immediately and keeps navigation usable"
+    "Keyboard arrows select, wrap, Home/End work and Enter opens the group"
   ],
   "errors": []
 }

@@ -1,0 +1,57 @@
+{
+  "results": [
+    {
+      "name": "reference content, source total and manual save",
+      "pass": true
+    },
+    {
+      "name": "live editor calculations, zero and removed quantity, mixed taxes",
+      "pass": true
+    },
+    {
+      "name": "add/remove/reorder real line items and focus",
+      "pass": true
+    },
+    {
+      "name": "entered billing information persists across reloads",
+      "pass": true
+    },
+    {
+      "name": "credit tabs, keyboard, selection, continuous amount changes, cap and issue/edit",
+      "pass": true
+    },
+    {
+      "name": "CSV/JSON exports and import round-trip are actual files",
+      "pass": true
+    },
+    {
+      "name": "search/open saved invoices, create blank invoice, and discard guard",
+      "pass": true
+    },
+    {
+      "name": "validation, invalid payment URL and blank item keep edits unsaved",
+      "pass": true
+    },
+    {
+      "name": "dedicated PDF/print layout uses the current document",
+      "pass": true
+    },
+    {
+      "name": "save-and-continue keeps edits, duplicate/delete persist, and workspace data stays separate",
+      "pass": true
+    },
+    {
+      "name": "paper transitions have intermediate frames and credit checks animate",
+      "pass": true
+    },
+    {
+      "name": "responsive desktop/mobile/landscape and dark mode without overflow",
+      "pass": true
+    },
+    {
+      "name": "reduced motion switches instantly and hidden sheet is inert",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

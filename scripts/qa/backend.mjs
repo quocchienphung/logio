@@ -214,12 +214,14 @@ try {
 
   await check("Invoice: the draft is saved to the server and loaded from it after a reload", async () => {
     await goToSection(page, "Invoice", 700);
-    await page.locator(".inv-sheet").waitFor(); await page.waitForTimeout(700);
+    await page.locator(".ui-iv").waitFor(); await page.waitForTimeout(700);
+    await page.getByRole("button", { name: "Edit invoice", exact: true }).click();
     await page.getByLabel("Line 1 description", { exact: true }).fill("Remote work");
     await page.getByRole("button", { name: "Save draft", exact: true }).click(); await wait(700);
     const saved = puts(api, "invoice").at(-1);
-    assert.equal(saved.body.data.version, 1); assert.equal(saved.body.data.lines[0].description, "Remote work");
-    await open(page, "invoice"); await page.locator(".inv-sheet").waitFor(); await page.waitForTimeout(700);
+    assert.equal(saved.body.data.version, 2); assert.equal(saved.body.data.documents[0].lines[0].name, "Remote work");
+    await open(page, "invoice"); await page.locator(".ui-iv").waitFor(); await page.waitForTimeout(700);
+    await page.getByRole("button", { name: "Edit invoice", exact: true }).click();
     assert.equal(await page.getByLabel("Line 1 description", { exact: true }).inputValue(), "Remote work");
     assert.equal(await page.evaluate(() => localStorage.getItem("affectui:acme:invoice")), null);
   });

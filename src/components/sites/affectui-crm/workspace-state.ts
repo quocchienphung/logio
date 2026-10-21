@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 
-export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "New chat", "Files", "Run", "Mapping", "Invoice", "Settings", "New business", "Renewals", "Partnerships"] as const;
+export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "New chat", "Files", "Run", "Mapping", "Process", "Invoice", "Settings", "New business", "Renewals", "Partnerships"] as const;
 export type WorkspaceSection = (typeof workspaceSections)[number];
 
 function subscribeRoute(listener: () => void) {

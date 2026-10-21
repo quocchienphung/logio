@@ -1,61 +1,12 @@
-import test from "node:test";
-import assert from "node:assert/strict";
-import { addDays, clampQuantity, clampRate, clampTax, createDefaultInvoice, formatDate, formatMoney, lineCents, liveQuantity, liveRate, missingDescription, newLine, normalizeInvoice, totals } from "./invoice-model.ts";
-
-const base = () => createDefaultInvoice("2026-09-19");
-
-test("default invoice is generic and totals match the lines", () => {
-  const invoice = base();
-  assert.deepEqual([invoice.lines.length, invoice.taxRate, invoice.issued, invoice.due], [3, 8, "2026-09-19", "2026-10-19"]);
-  assert.doesNotMatch(JSON.stringify(invoice), /Northstar|Acme|Hudson|Discovery/);
-  assert.deepEqual(totals(invoice), { subtotal: 245000, tax: 19600, total: 264600 });
-  assert.equal(formatMoney(264600), "$2,646.00");
-  assert.equal(formatMoney(0), "$0.00");
-  assert.equal(formatMoney(100000000), "$1,000,000.00");
-});
-
-test("money is computed in cents so rounding never drifts", () => {
-  const lines = [{ id: "a", description: "x", quantity: 3, rate: 0.1 }, { id: "b", description: "y", quantity: 1, rate: 19.99 }];
-  assert.equal(lineCents(lines[0]), 30);
-  assert.deepEqual(totals({ lines, taxRate: 8 }), { subtotal: 2029, tax: 162, total: 2191 });
-  assert.equal(totals({ lines: [{ id: "a", description: "", quantity: 1, rate: 0.01 }], taxRate: 50 }).tax, 1, "half a cent rounds up");
-  assert.deepEqual(totals({ lines: [], taxRate: 8 }), { subtotal: 0, tax: 0, total: 0 });
-});
-
-test("number fields: live typing counts, blur tidies", () => {
-  assert.deepEqual(["", "abc", "5", "5000", "-3", "2.7"].map(liveQuantity), [0, 0, 5, 999, 0, 2]);
-  assert.deepEqual([0, 5000, -3, 2.7, NaN, 7].map(clampQuantity), [1, 999, 1, 2, 1, 7]);
-  assert.deepEqual(["", "1234.5", "12.3456", "-5", "99999999"].map(liveRate), [0, 1234.5, 12.35, 0, 1000000]);
-  assert.deepEqual([12.3456, -5, 99999999, NaN, 0.005].map(clampRate), [12.35, 0, 1000000, 0, 0.01]);
-  assert.deepEqual([-1, 8, 100, 250, NaN].map(clampTax), [0, 8, 100, 100, 0]);
-});
-
-test("dates read the same in every time zone", () => {
-  assert.equal(formatDate("2026-09-19"), "19 Sep 2026");
-  assert.equal(formatDate("2027-01-05"), "5 Jan 2027");
-  assert.equal(addDays("2026-09-19", 30), "2026-10-19");
-  assert.equal(addDays("2026-12-15", 30), "2027-01-14");
-});
-
-test("new lines get fresh ids and start empty; blank descriptions are found", () => {
-  let invoice = base();
-  const first = newLine(invoice); invoice = first.invoice;
-  assert.deepEqual([first.line.id, first.line.description, first.line.quantity, first.line.rate], ["line-4", "", 1, 0]);
-  assert.equal(missingDescription(invoice), 3);
-  const removed = { ...invoice, lines: invoice.lines.filter(line => line.id !== "line-2") };
-  assert.equal(newLine(removed).line.id, "line-5", "ids never come back after a removal");
-  assert.equal(missingDescription(base()), -1);
-  assert.equal(missingDescription({ lines: [{ id: "a", description: "   ", quantity: 1, rate: 0 }] }), 0);
-});
-
-test("stored or imported data is validated into a safe invoice", () => {
-  assert.equal(normalizeInvoice(null), null);
-  assert.equal(normalizeInvoice({ version: 2, lines: [] }), null);
-  assert.equal(normalizeInvoice({ version: 1, lines: [] }), null, "at least one line");
-  assert.equal(normalizeInvoice({ version: 1, lines: [{ id: "a" }, { id: "a" }] }), null, "duplicate ids");
-  const invoice = normalizeInvoice(JSON.parse(JSON.stringify(base())));
-  assert.deepEqual(invoice, base());
-  const messy = normalizeInvoice({ version: 1, number: 7, issued: "yesterday", due: "2026-02-30x", from: { name: "A".repeat(500) }, lines: [{ id: "line-9", description: "Work", quantity: 5000, rate: -4 }], taxRate: 900, seq: 1 });
-  assert.deepEqual([messy.number, messy.from.name.length, messy.lines[0].quantity, messy.lines[0].rate, messy.taxRate, messy.seq], ["0001", 120, 999, 0, 100, 9]);
-  assert.match(messy.issued, /^\d{4}-\d{2}-\d{2}$/);
-});
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createDefaultInvoice, createBlankInvoice, createLibrary, creditTotals, invoiceCsv, isDate, lineCents, normalizeInvoice, normalizeLibrary, syncCredits, taxCents, totals, validateInvoice } from './invoice-model.ts';
+const sample = createDefaultInvoice;
+test('source sample totals and per-line taxes are exact',()=>{const i=sample();assert.deepEqual(totals(i.lines),{subtotal:946640,tax:189328,total:1135968});assert.deepEqual(creditTotals(i),totals(i.lines));});
+test('fractional quantities and cent/tax ties round half-up with integer arithmetic',()=>{assert.equal(lineCents({qty:3,rate:.1}),30);assert.equal(lineCents({qty:.5,rate:.01}),1);assert.equal(taxCents(1,50),1);assert.deepEqual(totals([{qty:1,rate:19.99,tax:8},{qty:1,rate:.01,tax:50}]),{subtotal:2000,tax:161,total:2161});});
+test('continuous deletion and mixed taxes recompute without stale totals',()=>{const i=sample();i.lines.splice(1,1);i.lines[0].qty=0;i.lines[1].tax=10;assert.deepEqual(totals(i.lines),{subtotal:773640,tax:77364,total:851004});i.lines=[];assert.deepEqual(totals(i.lines),{subtotal:0,tax:0,total:0});assert.match(validateInvoice(i),/every line item/);});
+test('credit selections, caps, and tax follow the current line amounts',()=>{let i=sample();i.credit.lines[0].selected=false;i.credit.lines[1].cents=10000;assert.deepEqual(creditTotals(i),{subtotal:783640,tax:156728,total:940368});i.lines[1].rate=1;i=syncCredits(i);assert.equal(i.credit.lines[1].cents,1200);i.lines.splice(0,1);i=syncCredits(i);assert.equal(i.credit.lines.length,2);assert.equal(i.credit.issued,false);});
+test('strict storage/import parsing rejects corrupt dates, ids, credit and versions',()=>{const i=sample();assert.deepEqual(normalizeInvoice(JSON.parse(JSON.stringify(i))),i);assert.ok(normalizeLibrary(createLibrary(i)));assert.equal(normalizeLibrary({version:3,documents:[],activeId:''}),null);for(const bad of [{...i,due:'2026-02-30'},{...i,lines:[i.lines[0],i.lines[0]]},{...i,credit:{...i.credit,lines:[{lineId:'growth',selected:true,cents:9999999999}]}},{...i,lines:[{...i.lines[0],qty:Infinity}]}])assert.equal(normalizeInvoice(bad),null);assert.equal(isDate('2026-02-30'),false);assert.equal(isDate('2028-02-29'),true);});
+test('legacy v1 migration retains entered billing data',()=>{const i=normalizeInvoice({version:1,number:'0042',issued:'2026-10-20',due:'2026-11-19',from:{name:'My company',address:'A'},billTo:{name:'Customer',address:'B'},lines:[{id:'line-1',description:'Design',quantity:2,rate:650}],taxRate:8,note:'Thanks'});assert.equal(i.number,'0042');assert.equal(i.seller.name,'My company');assert.equal(i.buyer.name,'Customer');assert.equal(i.lines[0].name,'Design');assert.deepEqual(totals(i.lines),{subtotal:130000,tax:10400,total:140400});});
+test('new invoices use distinct numbers and validation keeps bad links or incomplete drafts unsaved',()=>{const i=createBlankInvoice(undefined,['INV-0001','INV-0002']);assert.equal(i.number,'INV-0003');assert.ok(validateInvoice(i));const ok=sample();assert.equal(validateInvoice(ok),null);ok.paymentUrl='javascript:alert(1)';assert.match(validateInvoice(ok),/HTTPS/);ok.paymentUrl='';ok.due='2026-09-01';assert.match(validateInvoice(ok),/due date/);});
+test('CSV quotes real content and neutralizes spreadsheet formulas',()=>{const i=sample();i.lines[0].name='=HYPERLINK("evil")';const csv=invoiceCsv(i);assert.ok(csv.includes('"\'=HYPERLINK(""evil"")"'));assert.ok(csv.includes('"Total","11359.68"'));});

@@ -13,6 +13,7 @@ import { InvoicePlan } from "../affectui-agent-plan/AgentPlan";
 import { WritingAssistant } from "../affectui-writing-assistant/WritingAssistant";
 import { ProjectDelegateBoard } from "../affectui-delegate-board/ProjectDelegateBoard";
 import { CrmAgentLanes } from "../affectui-agent-lanes/CrmAgentLanes";
+import { ContextWindow } from "../affectui-context-window/ContextWindow";
 import "../affectui-fonts.css";
 import "./guide-navigation.css";
 
@@ -243,6 +244,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
                 {live === "agent-plan" && <div className="guide-live"><InvoicePlan /></div>}
                 {live === "delegate-board" && <div className="guide-live"><ProjectDelegateBoard /></div>}
                 {live === "agent-lanes" && <div className="guide-live"><CrmAgentLanes active={index === active} /></div>}
+                {live === "context-window" && <div className="guide-live guide-context-window"><ContextWindow active={index === active} autoPlay /></div>}
               </div>;
             })}
           </div>

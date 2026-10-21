@@ -1,183 +1,126 @@
 "use client";
-
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
-import type { ChangeEvent } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import type { Variants } from "motion/react";
-import { Check, LoaderCircle, Plus, Trash2 } from "lucide-react";
-import { createLocalInvoiceSource } from "./invoice-data-source";
-import type { InvoiceDataSource } from "./invoice-data-source";
-import { clampQuantity, clampRate, clampTax, createDefaultInvoice, formatDate, formatMoney, formatRate, lineCents, liveQuantity, liveRate, LIMITS, missingDescription, newLine, totals } from "./invoice-model";
-import type { InvoiceData, InvoiceLine } from "./invoice-model";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Check, Copy, Download, FilePlus2, FolderOpen, LoaderCircle, Pencil, Plus, Search, Upload, X } from "lucide-react";
+import { BackendError } from "@/lib/workspace-backend";
+import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
+import { downloadFile } from "../affectui-crm/workspace-state";
+import { createLocalInvoiceSource, type InvoiceDataSource } from "./invoice-data-source";
+import { InvoiceBlock } from "./InvoiceBlock";
+import { InvoiceEditor } from "./InvoiceEditor";
+import { printInvoice } from "./invoice-export";
+import { createBlankInvoice, createDefaultInvoice, createLibrary, creditTotals, formatDate, formatMoney, invoiceCsv, LIMITS, normalizeInvoice, normalizeLibrary, syncCredits, totals, uid, validateInvoice } from "./invoice-model";
+import type { CreditLine, InvoiceData, InvoiceLibrary } from "./invoice-model";
+import "./invoice-reference.css";
 import "./invoice.css";
 
-const EASE = [.22, 1, .36, 1] as const;
-const MIN_SAVING_MS = 450;
-const wait = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
-
-/** A money value that rolls: the new figure slides in from below when it grows, from above when it shrinks, with a short blur. */
-function Money({ cents, className }: { cents: number; className?: string }) {
-  const reduce = useReducedMotion();
-  const [shown, setShown] = useState({ cents, dir: 1 });
-  if (shown.cents !== cents) setShown({ cents, dir: cents >= shown.cents ? 1 : -1 });
-  const variants = useMemo<Variants>(() => reduce
-    ? { enter: { opacity: 0 }, center: { opacity: 1, transition: { duration: 0 } }, exit: { opacity: 0, transition: { duration: 0 } } }
-    : {
-      enter: (dir: number) => ({ opacity: 0, y: dir * 7, filter: "blur(4px)" }),
-      center: { opacity: 1, y: 0, filter: "blur(0px)", transition: { opacity: { duration: .16 }, y: { duration: .28, ease: EASE }, filter: { duration: .28, ease: EASE } } },
-      exit: (dir: number) => ({ opacity: 0, y: -dir * 7, filter: "blur(4px)", transition: { opacity: { duration: .16 }, y: { duration: .28, ease: EASE }, filter: { duration: .28, ease: EASE } } }),
-    }, [reduce]);
-  return <span className={`inv-roll ${className ?? ""}`}><AnimatePresence initial={false} custom={shown.dir}><motion.span key={cents} custom={shown.dir} variants={variants} initial="enter" animate="center" exit="exit">{formatMoney(cents)}</motion.span></AnimatePresence></span>;
-}
-
-/**
- * A number box that counts what is typed straight away (empty is zero) and tidies the text when it loses focus.
- */
-function NumberBox({ value, live, settle, format, onValue, label, step, min, max, mode, field }: { value: number; live: (text: string) => number; settle: (value: number) => number; format: (value: number) => string; onValue: (value: number) => void; label: string; step: number; min: number; max: number; mode: "numeric" | "decimal"; field: string }) {
-  const [text, setText] = useState<string | null>(null);
-  const shown = text ?? format(value);
-  return <input className="inv-input inv-number" type="number" inputMode={mode} step={step} min={min} max={max} aria-label={label} data-field={field} value={shown}
-    onFocus={() => setText(format(value))}
-    onChange={(event: ChangeEvent<HTMLInputElement>) => { setText(event.target.value); onValue(live(event.target.value)); }}
-    onBlur={() => { const settled = settle(live(text ?? format(value))); onValue(settled); setText(null); }} />;
-}
-
-function TextBox({ value, onChange, label, placeholder, className, field, maxLength = LIMITS.text }: { value: string; onChange: (value: string) => void; label: string; placeholder?: string; className?: string; field?: string; maxLength?: number }) {
-  return <input className={`inv-input ${className ?? ""}`} value={value} aria-label={label} placeholder={placeholder} maxLength={maxLength} data-field={field} onChange={event => onChange(event.target.value)} />;
-}
-function AreaBox({ value, onChange, label, className, maxLength = LIMITS.address }: { value: string; onChange: (value: string) => void; label: string; className?: string; maxLength?: number }) {
-  return <textarea className={`inv-input inv-area ${className ?? ""}`} value={value} aria-label={label} rows={2} maxLength={maxLength} onChange={event => onChange(event.target.value)} />;
-}
-/** The date reads as plain text; a transparent date input on top opens the picker and keeps keyboard entry. */
-function DateBox({ prefix, value, onChange, label, muted }: { prefix: string; value: string; onChange: (value: string) => void; label: string; muted?: boolean }) {
-  return <label className="inv-date" data-muted={muted || undefined}><span>{prefix} {formatDate(value)}</span><input type="date" value={value} aria-label={label} onChange={event => { if (event.target.value) onChange(event.target.value); }} onClick={event => { try { event.currentTarget.showPicker?.(); } catch { /* the field still accepts typing */ } }} /></label>;
-}
-
-interface InvoiceProps {
-  /** Keys the default browser storage; also remounts the invoice when it changes. */
-  workspaceId: string;
-  /** Where the draft loads from and saves to. Defaults to this browser's local storage. See invoice-data-source.ts. */
-  dataSource?: InvoiceDataSource;
-  /** Used when the data source has no saved draft yet. */
-  initialData?: InvoiceData;
-}
-
-export function Invoice({ workspaceId, dataSource, initialData }: InvoiceProps) {
+interface InvoiceProps { workspaceId: string; dataSource?: InvoiceDataSource; remote?: boolean }
+export function Invoice({ workspaceId, dataSource, remote = false }: InvoiceProps) {
   const source = useMemo(() => dataSource ?? createLocalInvoiceSource(`affectui:${workspaceId}:invoice`), [dataSource, workspaceId]);
-  const [loaded, setLoaded] = useState<{ source: InvoiceDataSource; data: InvoiceData } | null>(null);
+  const [result, setResult] = useState<{ source: InvoiceDataSource; library?: InvoiceLibrary; persisted?: boolean; error?: string } | null>(null), [attempt, setAttempt] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
-    source.load(controller.signal)
-      .then(data => { if (!controller.signal.aborted) setLoaded({ source, data: data ?? initialData ?? createDefaultInvoice() }); })
-      .catch(() => { if (!controller.signal.aborted) setLoaded({ source, data: initialData ?? createDefaultInvoice() }); });
+    source.load(controller.signal).then(value => { if (!controller.signal.aborted) setResult({ source, library: value ?? createLibrary(createDefaultInvoice()), persisted: !!value }); }).catch(error => { if (!controller.signal.aborted) setResult({ source, error: error instanceof Error ? error.message : "Couldn’t load your invoices." }); });
     return () => controller.abort();
-  }, [source, initialData]);
-  if (!loaded || loaded.source !== source) return <div className="inv-page"><p className="inv-loading" role="status">Loading invoice…</p></div>;
-  return <InvoiceStudio key={workspaceId} source={source} initial={loaded.data} />;
+  }, [source, attempt]);
+  const reload = () => { setResult(null); setAttempt(value => value + 1); };
+  if (!result || result.source !== source) return <div className="invoice-workspace invoice-loading" role="status"><LoaderCircle className="invoice-spin" size={20} />Loading invoices…</div>;
+  if (!result.library) return <div className="invoice-workspace invoice-loading" role="alert"><p>{result.error}</p><button className="invoice-button" type="button" onClick={reload}>Retry loading</button></div>;
+  return <InvoiceStudio key={`${workspaceId}-${attempt}`} source={source} initial={result.library} persisted={!!result.persisted} remote={remote} onReload={reload} />;
 }
 
-type Phase = "idle" | "saving" | "saved" | "error";
-
-function InvoiceStudio({ source, initial }: { source: InvoiceDataSource; initial: InvoiceData }) {
-  const reduce = useReducedMotion();
-  const titleId = useId();
-  const [invoice, setInvoice] = useState(initial);
-  const [phase, setPhase] = useState<Phase>("idle"), [status, setStatus] = useState(" "), [focusLine, setFocusLine] = useState<string | null>(null);
-  const addButton = useRef<HTMLButtonElement>(null), sheet = useRef<HTMLElement>(null), edits = useRef(0), saving = useRef(false);
-  const sum = useMemo(() => totals(invoice), [invoice]);
-
-  const edit = useCallback((change: (current: InvoiceData) => InvoiceData) => {
-    edits.current += 1;
-    setInvoice(change);
-    setPhase(current => current === "saved" || current === "error" ? "idle" : current);
-    setStatus(current => current === " " ? current : " ");
+type Pending = { label: string; run: () => void };
+function InvoiceStudio({ source, initial, persisted, remote, onReload }: { source: InvoiceDataSource; initial: InvoiceLibrary; persisted: boolean; remote: boolean; onReload: () => void }) {
+  const initialSaved = JSON.stringify(persisted ? initial : { version: 2, activeId: "", documents: [] });
+  const [library, setLibrary] = useState(initial), [saved, setSaved] = useState(initialSaved);
+  const [view, setView] = useState<"invoice" | "credit">("invoice"), [editing, setEditing] = useState(false), [paymentFocus, setPaymentFocus] = useState(false);
+  const [busy, setBusy] = useState(false), [message, setMessage] = useState(""), [error, setError] = useState(""), [conflict, setConflict] = useState(false);
+  const [modal, setModal] = useState<"library" | "export" | "delete" | null>(null), [search, setSearch] = useState(""), [sort, setSort] = useState("newest"), [pending, setPending] = useState<Pending | null>(null);
+  const upload = useRef<HTMLInputElement>(null), saving = useRef(false), savedRef = useRef(initialSaved);
+  const invoice = library.documents.find(doc => doc.id === library.activeId), dirty = JSON.stringify(library.documents) !== JSON.stringify((JSON.parse(saved) as InvoiceLibrary).documents);
+  const setDoc = useCallback((change: (current: InvoiceData) => InvoiceData) => {
+    setLibrary(current => ({ ...current, documents: current.documents.map(doc => doc.id === current.activeId ? change(doc) : doc) })); setMessage(""); setError("");
   }, []);
-  const patchLine = (id: string, patch: Partial<InvoiceLine>) => edit(current => ({ ...current, lines: current.lines.map(line => line.id === id ? { ...line, ...patch } : line) }));
-
-  function addLine() {
-    const { invoice: next, line } = newLine(invoice);
-    if (invoice.lines.length >= LIMITS.lines) return;
-    edit(() => next); setFocusLine(line.id);
-  }
-  function removeLine(line: InvoiceLine, index: number) {
-    if (invoice.lines.length <= 1) return;
-    edit(current => ({ ...current, lines: current.lines.filter(item => item.id !== line.id) }));
-    addButton.current?.focus();
-    setStatus(`Removed line ${index + 1}.`);
-  }
+  const editDoc = (change: (current: InvoiceData) => InvoiceData) => setDoc(current => syncCredits(change(current)));
   useEffect(() => {
-    if (!focusLine) return;
-    sheet.current?.querySelector<HTMLInputElement>(`[data-line="${focusLine}"] [data-field="description"]`)?.focus();
-    queueMicrotask(() => setFocusLine(null));
-  }, [focusLine, invoice.lines.length]);
+    const listener = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault(); };
+    window.addEventListener("beforeunload", listener); return () => window.removeEventListener("beforeunload", listener);
+  }, [dirty]);
+  useEffect(() => {
+    const listener = (event: globalThis.KeyboardEvent) => { if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") { event.preventDefault(); document.querySelector<HTMLButtonElement>("[data-invoice-save]")?.click(); } };
+    window.addEventListener("keydown", listener); return () => window.removeEventListener("keydown", listener);
+  }, []);
+  useEffect(() => {
+    const listener = (event: MouseEvent) => {
+      if (!dirty || busy || !(event.target instanceof Element)) return;
+      const nav = event.target.closest<HTMLElement>(".ui-as-side__nav button, .workspace-explore, .ui-as-menu__item[role=menuitemradio]");
+      if (!nav || (nav.getAttribute("aria-current") === "page" || nav.getAttribute("aria-checked") === "true")) return;
+      event.preventDefault(); event.stopImmediatePropagation(); setPending({ label: "Leave this invoice", run: () => nav.click() });
+    };
+    document.addEventListener("click", listener, true); return () => document.removeEventListener("click", listener, true);
+  }, [dirty, busy]);
 
-  async function save() {
-    if (saving.current) return;
-    const missing = missingDescription(invoice);
-    if (missing >= 0) {
-      setStatus("Describe each line before saving.");
-      sheet.current?.querySelector<HTMLInputElement>(`[data-line="${invoice.lines[missing].id}"] [data-field="description"]`)?.focus();
-      return;
-    }
-    saving.current = true; setPhase("saving"); setStatus("Saving draft…");
-    const version = edits.current, started = performance.now();
+  async function persist(next = library, action = "invoice.save", targetId = next.activeId) {
+    if (saving.current || conflict) return false;
+    const active = next.documents.find(doc => doc.id === next.activeId);
+    const invalid = active && validateInvoice(active);
+    if (invalid) { setError(invalid); setEditing(true); return false; }
+    if (new Set(next.documents.map(doc => doc.number.trim().toLowerCase())).size !== next.documents.length) { setError("Invoice numbers must be unique in this workspace."); setEditing(true); return false; }
+    if (!normalizeLibrary(next)) { setError("Some invoice fields are invalid. Review the dates and amounts."); setEditing(true); return false; }
+    saving.current = true; setBusy(true); setError(""); setMessage("");
     try {
-      await source.save(invoice);
-      const left = MIN_SAVING_MS - (performance.now() - started);
-      if (left > 0) await wait(left);
-      if (edits.current === version) { setPhase("saved"); setStatus("Draft saved."); } else { setPhase("idle"); setStatus(" "); }
-    } catch { setPhase("error"); setStatus("Couldn’t save the draft. Try again."); }
-    finally { saving.current = false; }
+      await source.save(next, [{ type: action, operationId: uid(), invoiceId: targetId || undefined }]);
+      savedRef.current = JSON.stringify(next); setSaved(savedRef.current); setMessage(remote ? "Saved to workspace." : "Saved in this browser."); return true;
+    } catch (cause) {
+      if (cause instanceof BackendError && cause.code === "conflict") { setConflict(true); setError("This workspace changed elsewhere. Export your edits, then reload the saved copy before continuing."); }
+      else setError(cause instanceof Error ? cause.message : "Couldn’t save. Your edits are still here. Try again.");
+      return false;
+    } finally { saving.current = false; setBusy(false); }
   }
+  function guard(label: string, run: () => void) { if (dirty) setPending({ label, run }); else run(); }
+  function switchTo(id: string) { setLibrary(current => ({ ...current, activeId: id })); setView("invoice"); setEditing(false); setModal(null); setMessage(""); setError(""); }
+  function newInvoice() {
+    if (library.documents.length >= LIMITS.documents) { setError(`This workspace supports up to ${LIMITS.documents} invoices.`); return; }
+    guard("Create a new invoice", () => { const current = JSON.parse(savedRef.current) as InvoiceLibrary; const doc = createBlankInvoice(current.documents.find(doc => doc.id === invoice?.id), current.documents.map(doc => doc.number)); setLibrary({ ...current, activeId: doc.id, documents: [...current.documents, doc] }); setView("invoice"); setEditing(true); setModal(null); setError(""); setMessage(""); });
+  }
+  function duplicate() {
+    if (!invoice || library.documents.length >= LIMITS.documents) return;
+    guard("Duplicate this invoice", () => { const current = JSON.parse(savedRef.current) as InvoiceLibrary; const blank = createBlankInvoice(invoice, current.documents.map(doc => doc.number)); const original = current.documents.find(doc => doc.id === invoice.id) ?? initial.documents.find(doc => doc.id === invoice.id) ?? invoice; const doc = syncCredits({ ...original, id: blank.id, number: blank.number, creditNumber: blank.creditNumber, credit: { ...blank.credit, lines: [] } }); setLibrary({ ...current, activeId: doc.id, documents: [...current.documents, doc] }); setView("invoice"); setEditing(true); setModal(null); });
+  }
+  async function issue() {
+    if (!invoice || creditTotals(invoice).total <= 0) return;
+    const updated = { ...invoice, credit: { ...invoice.credit, issued: true } };
+    const next = { ...library, documents: library.documents.map(doc => doc.id === updated.id ? updated : doc) };
+    if (await persist(next, "invoice.credit.issue")) { setLibrary(next); setMessage(remote ? "Credit note saved to workspace." : "Credit note issued in this browser. No refund was sent."); }
+  }
+  function patchCredit(id: string, patch: Partial<CreditLine>) { setDoc(doc => ({ ...doc, credit: { ...doc.credit, issued: false, lines: doc.credit.lines.map(line => line.lineId === id ? { ...line, ...patch } : line) } })); }
+  async function importFile(file?: File) {
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) { setError("Choose a JSON file smaller than 2 MB."); return; }
+    try {
+      const raw: unknown = JSON.parse(await file.text()), incoming = normalizeInvoice(raw);
+      if (!incoming) throw new Error("Choose a single invoice JSON exported from this workspace.");
+      if (library.documents.length >= LIMITS.documents) throw new Error("The invoice library is full.");
+      guard("Import this invoice", () => { const current = JSON.parse(savedRef.current) as InvoiceLibrary; const duplicateNumber = current.documents.some(doc => doc.number === incoming.number); const doc = { ...incoming, id: uid(), number: duplicateNumber ? createBlankInvoice(undefined, current.documents.map(doc => doc.number)).number : incoming.number }; setLibrary({ ...current, activeId: doc.id, documents: [...current.documents, doc] }); setEditing(true); setView("invoice"); setError(""); setModal(null); setMessage("Imported for review. Save draft to keep it."); });
+    } catch (cause) { setError(cause instanceof Error ? cause.message : "Couldn’t import this file."); }
+  }
+  async function deleteInvoice() {
+    if (!invoice) return;
+    const documents = library.documents.filter(doc => doc.id !== invoice.id), next: InvoiceLibrary = { version: 2, activeId: documents[0]?.id ?? "", documents };
+    if (await persist(next, "invoice.delete", invoice.id)) { setLibrary(next); setModal(null); setEditing(false); }
+  }
+  const fileName = (invoice?.number || "invoice").replace(/[^a-zA-Z0-9_-]/g, "-");
+  const savedDocuments = (JSON.parse(saved) as InvoiceLibrary).documents;
+  const shown = savedDocuments.filter(doc => `${doc.number} ${doc.buyer.name} ${doc.seller.name}`.toLowerCase().includes(search.toLowerCase())).sort((a, b) => sort === "client" ? a.buyer.name.localeCompare(b.buyer.name) : sort === "amount" ? totals(b.lines).total - totals(a.lines).total : b.issued.localeCompare(a.issued));
+  const afterPending = (discard: boolean) => { const run = pending?.run; if (!run) return; if (discard) { setLibrary(JSON.parse(savedRef.current) as InvoiceLibrary); } setPending(null); window.setTimeout(run, 0); };
 
-  const slotTransition = reduce ? { duration: 0 } : { height: { duration: .42, ease: EASE }, opacity: { duration: .16 } };
-  const labelFade = reduce ? { duration: 0 } : { duration: .2, ease: EASE };
-  const labelMotion = reduce ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } } : { initial: { opacity: 0, filter: "blur(4px)", y: 4 }, animate: { opacity: 1, filter: "blur(0px)", y: 0 }, exit: { opacity: 0, filter: "blur(4px)", y: -4 } };
-
-  return <div className="inv-page"><div className="inv-frame"><section className="inv-sheet" ref={sheet} aria-labelledby={titleId}>
-    <header className="inv-header">
-      <div className="inv-identity"><TextBox className="inv-wordmark" label="Company name" placeholder="Company name" value={invoice.from.name} onChange={name => edit(current => ({ ...current, from: { ...current.from, name } }))} /><span className="inv-numberLine"><span>Invoice</span><TextBox className="inv-numberInput" label="Invoice number" value={invoice.number} maxLength={32} onChange={number => edit(current => ({ ...current, number }))} /></span></div>
-      <div className="inv-meta"><DateBox prefix="Issued" label="Issue date" value={invoice.issued} onChange={issued => edit(current => ({ ...current, issued }))} /><DateBox muted prefix="Due" label="Due date" value={invoice.due} onChange={due => edit(current => ({ ...current, due }))} /></div>
-    </header>
-    <div className="inv-heading">
-      <h2 id={titleId}>Invoice</h2>
-      <div className="inv-parties">
-        <div><span>From</span><TextBox className="inv-partyName" label="From name" placeholder="Company name" value={invoice.from.name} onChange={name => edit(current => ({ ...current, from: { ...current.from, name } }))} /><AreaBox label="From address" value={invoice.from.address} onChange={address => edit(current => ({ ...current, from: { ...current.from, address } }))} /></div>
-        <div><span>Bill to</span><TextBox className="inv-partyName" label="Bill to name" placeholder="Client name" value={invoice.billTo.name} onChange={name => edit(current => ({ ...current, billTo: { ...current.billTo, name } }))} /><AreaBox label="Bill to address" value={invoice.billTo.address} onChange={address => edit(current => ({ ...current, billTo: { ...current.billTo, address } }))} /></div>
-      </div>
-    </div>
-    <div className="inv-linesHeader" aria-hidden="true"><span>Work</span><span>Qty</span><span>Rate</span><span>Amount</span><span /></div>
-    <div role="group" aria-label="Invoice line items"><AnimatePresence initial={false}>{invoice.lines.map((line, index) => <motion.div key={line.id} className="inv-slot" data-line={line.id} initial={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }} animate={reduce ? { opacity: 1 } : { height: "auto", opacity: 1 }} exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0, transition: { height: { duration: .3, ease: [.4, 0, .2, 1] }, opacity: { duration: .19 } } }} transition={slotTransition}>
-      <div className="inv-line">
-        <label className="inv-cell inv-descriptionCell"><span className="inv-mobileLabel">Work</span><TextBox label={`Line ${index + 1} description`} placeholder="Describe the work" field="description" value={line.description} onChange={description => patchLine(line.id, { description })} /></label>
-        <label className="inv-cell"><span className="inv-mobileLabel">Qty</span><NumberBox label={`Line ${index + 1} quantity`} field="quantity" mode="numeric" step={1} min={LIMITS.quantity.min} max={LIMITS.quantity.max} value={line.quantity} live={liveQuantity} settle={clampQuantity} format={String} onValue={quantity => patchLine(line.id, { quantity })} /></label>
-        <label className="inv-cell"><span className="inv-mobileLabel">Rate</span><span className="inv-field"><span className="inv-prefix" aria-hidden="true">$</span><NumberBox label={`Line ${index + 1} rate in dollars`} field="rate" mode="decimal" step={.01} min={LIMITS.rate.min} max={LIMITS.rate.max} value={line.rate} live={liveRate} settle={clampRate} format={formatRate} onValue={rate => patchLine(line.id, { rate })} /></span></label>
-        <output className="inv-amount" aria-label={`Line ${index + 1} amount`}><Money cents={lineCents(line)} /></output>
-        <button type="button" className="inv-remove" aria-label={`Remove line ${index + 1}`} disabled={invoice.lines.length <= 1} onClick={() => removeLine(line, index)}><Trash2 size={16} strokeWidth={1.75} aria-hidden="true" /></button>
-      </div>
-    </motion.div>)}</AnimatePresence></div>
-    <div className="inv-addRow"><button type="button" ref={addButton} onClick={addLine}><Plus size={16} strokeWidth={1.75} aria-hidden="true" />Add line item</button></div>
-    <div className="inv-bottom">
-      <div className="inv-note"><textarea className="inv-input inv-area" aria-label="Note" rows={2} maxLength={LIMITS.note} value={invoice.note} placeholder="Add a note" onChange={event => edit(current => ({ ...current, note: event.target.value }))} /></div>
-      <div className="inv-totals">
-        <div><span>Subtotal</span><span className="inv-moneySlot"><Money cents={sum.subtotal} /></span></div>
-        <div><span className="inv-taxLabel">Tax · <input className="inv-input inv-tax" type="number" inputMode="decimal" step={.5} min={0} max={100} aria-label="Tax rate in percent" value={invoice.taxRate} onChange={event => edit(current => ({ ...current, taxRate: clampTax(Number.parseFloat(event.target.value)) }))} />%</span><span className="inv-moneySlot"><Money cents={sum.tax} /></span></div>
-        <div className="inv-totalLine"><strong>Total due</strong><output aria-live="polite" aria-atomic="true"><Money cents={sum.total} /></output></div>
-      </div>
-    </div>
-    <footer className="inv-footer">
-      <p className="inv-srOnly" role="status" aria-live="polite">{status}</p>
-      {phase === "error" && <span className="inv-error" aria-hidden="true">Couldn’t save. Try again.</span>}
-      <button type="button" className="inv-save" data-phase={phase} aria-busy={phase === "saving" || undefined} onClick={() => void save()}>
-        <AnimatePresence initial={false} mode="popLayout">
-          <motion.span key={phase === "saving" ? "saving" : phase === "saved" ? "saved" : "idle"} className="inv-saveLabel" {...labelMotion} transition={labelFade}>
-            {phase === "saving" ? <LoaderCircle className="inv-spin" size={16} strokeWidth={1.75} aria-hidden="true" /> : phase === "saved" ? <><Check size={16} strokeWidth={1.75} aria-hidden="true" />Saved</> : "Save draft"}
-          </motion.span>
-        </AnimatePresence>
-      </button>
-    </footer>
-  </section></div></div>;
+  return <div className="invoice-workspace"><header className="invoice-workspace-head"><div><div className="invoice-eyebrow">Sales / Invoicing</div><h1>Invoices <span className="invoice-draft-badge">{invoice?.credit.issued ? "Credit issued" : "Draft"}</span></h1><p>Create, review and keep your billing documents in one place.</p></div><div className="invoice-head-actions"><button type="button" className="invoice-button" aria-label="Saved invoices" onClick={() => setModal("library")} disabled={busy}><FolderOpen size={15} />Saved invoices <span className="invoice-count">{savedDocuments.length}</span></button><button type="button" className="invoice-button invoice-button-dark" onClick={newInvoice} disabled={busy}><Plus size={15} />New invoice</button></div></header>
+    <input ref={upload} type="file" accept="application/json,.json" className="invoice-sr-only" aria-label="Import invoice JSON" onChange={event => { void importFile(event.target.files?.[0]); event.currentTarget.value = ""; }} />
+    {error && <div className="invoice-feedback invoice-feedback-error" role="alert"><span>{error}</span>{conflict && <button type="button" onClick={() => guard("Reload saved invoices", onReload)}>Reload saved copy</button>}{!conflict && <button type="button" aria-label="Dismiss invoice error" onClick={() => setError("")}><X size={15} /></button>}</div>}
+    {invoice ? <><div className="invoice-toolbar"><div><span className="invoice-document-number">{invoice.number || "New invoice"}</span><span className="invoice-save-state" role="status">{busy ? "Saving…" : dirty ? "Unsaved changes" : message || (remote ? "Workspace storage" : "Browser storage")}</span></div><div className="invoice-toolbar-actions"><button type="button" className="invoice-button" aria-expanded={editing} onClick={() => { setEditing(!editing); setPaymentFocus(false); }} disabled={busy}><Pencil size={14} />{editing ? "Close editor" : "Edit invoice"}</button><button type="button" className="invoice-button" onClick={() => setModal("export")}><Download size={14} />Export</button><button type="button" className="invoice-button invoice-button-dark" data-invoice-save disabled={busy || conflict} onClick={() => void persist()}>{busy ? <LoaderCircle className="invoice-spin" size={14} /> : !dirty && message ? <Check size={14} /> : null}Save draft</button></div></div>
+      <div className={`invoice-studio${editing ? " invoice-studio--editing" : ""}`}><div className="invoice-preview"><InvoiceBlock key={invoice.id} invoice={invoice} view={view} onView={setView} onCredit={patchCredit} onIssue={() => void issue()} onEditCredit={() => setDoc(doc => ({ ...doc, credit: { ...doc.credit, issued: false } }))} onPdf={() => { try { printInvoice(invoice, view); } catch (cause) { setError(cause instanceof Error ? cause.message : "Couldn’t open print."); } }} onConfigurePayment={() => { setEditing(true); setPaymentFocus(true); setMessage("Add your provider’s HTTPS payment link in Payment & notes."); }} busy={busy || conflict} />
+      <p className="invoice-preview-caption">{view === "credit" ? "Choose the lines and amounts to credit. Taxes update automatically." : "Edit your details and line items. The preview and totals update as you type."}</p></div>{editing && <InvoiceEditor key={invoice.id} invoice={invoice} onChange={editDoc} onClose={() => setEditing(false)} busy={busy || conflict} paymentFocus={paymentFocus} />}</div>
+      <p className="invoice-storage-note">{remote ? "Documents use your configured workspace API." : "Documents are stored in this browser, separately for each workspace."} Issuing a credit note records an adjustment; it does not transfer money.</p></> : <div className="invoice-empty"><FilePlus2 size={32} /><h2>Your first invoice starts here</h2><p>Create a document or import one of your invoice JSON files.</p><button type="button" className="invoice-button invoice-button-dark" onClick={newInvoice}><Plus size={16} />Create invoice</button><button type="button" className="invoice-button" onClick={() => upload.current?.click()}><Upload size={16} />Import JSON</button></div>}
+    <WorkspaceDialog open={modal !== null} title={modal === "library" ? "Saved invoices" : modal === "export" ? "Export invoice" : "Delete invoice?"} onClose={() => setModal(null)} wide={modal === "library"}>{modal === "library" ? <div className="invoice-library"><div className="invoice-library-tools"><label><Search size={16} /><input aria-label="Search invoices" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search invoice or client…" /></label><select aria-label="Sort invoices" value={sort} onChange={e => setSort(e.target.value)}><option value="newest">Newest first</option><option value="client">Client name</option><option value="amount">Amount</option></select><button type="button" className="invoice-button" onClick={() => upload.current?.click()}><Upload size={14} />Import</button></div><div className="invoice-library-list">{shown.map(doc => <button type="button" key={doc.id} className="invoice-library-row" onClick={() => guard("Open this invoice", () => { const stored = JSON.parse(savedRef.current) as InvoiceLibrary; setLibrary(stored); switchTo(doc.id); })}><span><strong>{doc.number || "Untitled invoice"}</strong><small>{doc.buyer.name || "No client yet"} · {formatDate(doc.issued)}</small></span><span><b>{formatMoney(totals(doc.lines).total, doc.currency)}</b><small>{doc.currency}{doc.credit.issued ? " · Credit issued" : " · Draft"}</small></span></button>)}{!shown.length && <p className="invoice-library-empty">{search ? "No invoices match your search." : "No saved invoices yet."}</p>}</div><div className="invoice-modal-footer"><button type="button" className="invoice-button" onClick={newInvoice}><Plus size={15} />New invoice</button></div></div> : modal === "export" ? <div className="invoice-export-options"><button type="button" aria-label="Print / Save as PDF" onClick={() => { if (invoice) { try { printInvoice(invoice, view); } catch (cause) { setError(cause instanceof Error ? cause.message : "Couldn’t print."); } } }}><Download size={18} /><span><strong>Print / Save as PDF</strong><small>A dedicated layout for the current document.</small></span></button><button type="button" aria-label="Download CSV" onClick={() => { if (invoice) downloadFile(`${fileName}.csv`, "\uFEFF" + invoiceCsv(invoice), "text/csv;charset=utf-8"); }}><Download size={18} /><span><strong>Download CSV</strong><small>Line items, taxes and calculated totals.</small></span></button><button type="button" aria-label="Download JSON" onClick={() => { if (invoice) downloadFile(`${fileName}.json`, JSON.stringify(invoice, null, 2), "application/json"); }}><Download size={18} /><span><strong>Download JSON</strong><small>Editable document, including credit selections.</small></span></button><button type="button" aria-label="Duplicate invoice" disabled={busy || library.documents.length >= LIMITS.documents} onClick={duplicate}><Copy size={18} /><span><strong>Duplicate invoice</strong><small>Create a draft with a new invoice number.</small></span></button><button type="button" className="invoice-delete-option" disabled={busy || conflict} onClick={() => setModal("delete")}><X size={18} /><span><strong>Delete invoice</strong><small>Remove this document from the workspace.</small></span></button></div> : <div className="invoice-dialog-body"><p>Remove {invoice?.number} and its credit note from this workspace? Export a copy first if you need it.</p><div className="invoice-modal-footer"><button type="button" className="invoice-button" onClick={() => setModal("export")}>Cancel</button><button type="button" className="invoice-button invoice-button-danger" disabled={busy} onClick={() => void deleteInvoice()}>{busy ? "Deleting…" : "Delete invoice"}</button></div></div>}</WorkspaceDialog>
+    <WorkspaceDialog open={!!pending} title="Unsaved changes" onClose={() => setPending(null)}><div className="invoice-dialog-body"><p>Save your changes before continuing? Your current edits have not been saved.</p>{error && <p className="invoice-dialog-error" role="alert">{error}</p>}<div className="invoice-modal-footer"><button type="button" className="invoice-button" disabled={busy} onClick={() => setPending(null)}>Keep editing</button><button type="button" className="invoice-button" disabled={busy} onClick={() => afterPending(true)}>Discard changes</button><button type="button" className="invoice-button invoice-button-dark" disabled={busy || conflict} onClick={async () => { if (await persist()) afterPending(false); }}>{busy ? "Saving…" : "Save & continue"}</button></div></div></WorkspaceDialog>
+  </div>;
 }
-
-export type { InvoiceData, InvoiceLine } from "./invoice-model";
-export type { InvoiceDataSource } from "./invoice-data-source";
