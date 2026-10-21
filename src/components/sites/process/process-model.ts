@@ -148,6 +148,11 @@ export function removeNode(root: ProcessNode, id: string): ProcessNode {
   return same ? root : { ...root, children };
 }
 
+/** Removes several tasks at once (each with what is under it). The first block is never removed; a task that went with its parent is already gone. */
+export function removeNodes(root: ProcessNode, ids: readonly string[]): ProcessNode {
+  return ids.reduce((current, id) => id === root.id ? current : removeNode(current, id), root);
+}
+
 /** Moves a task one place among its siblings. */
 export function moveNode(root: ProcessNode, id: string, delta: -1 | 1): ProcessNode {
   const parent = parentNode(root, id);

@@ -193,3 +193,14 @@
 .proc-links .pmap__stepper button { width: 22px; height: 22px; }
 .proc-links .pmap__stepper output { min-width: 24px; font-size: 12px; }
 .proc-tag svg { display: inline; vertical-align: -1px; }
+
+/* Notifications (a block finished, a block failed, the run is over): a stack under the name pill, clear of the dock, the zoom controls and the permission card */
+.proc-notices { position: absolute; left: 14px; top: 76px; z-index: 13; width: min(344px, calc(100% - 28px)); pointer-events: none; }
+.proc-notices .nsc__card, .proc-notices .nsc__foot { pointer-events: auto; }
+.proc-notices[data-narrow] { left: 12px; right: 12px; top: 132px; width: auto; }
+.proc-notices .nsc { --nsc-card: var(--proc-panel); }
+/* The group of chosen blocks */
+.proc-multi { position: absolute; left: 50%; bottom: 66px; z-index: 12; display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 14px; transform: translateX(-50%); white-space: nowrap; animation: proc-pop 160ms ease both; }
+.proc-multi__count { font-weight: 550; margin-right: 4px; }
+@keyframes proc-pop { from { opacity: 0; transform: translate(-50%, 6px); } }
+@media (prefers-reduced-motion: reduce) { .proc-multi { animation: none; } }

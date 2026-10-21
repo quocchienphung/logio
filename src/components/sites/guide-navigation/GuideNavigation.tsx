@@ -8,6 +8,8 @@ import { useSearchParams } from "next/navigation";
 import { defaultGuideIndex, guideGroups, liveFrameOf, navigateWorkspaceHref } from "./navigation-model";
 import { WorkspaceLink } from "./WorkspaceLink";
 import { WorkspaceBackendProvider } from "@/lib/workspace-backend/react";
+import { InitialRouteProvider, sectionFromParam } from "../affectui-crm/workspace-state";
+import { WorkspaceShellSkeleton } from "../shimmer-loader/WorkspaceShellSkeleton";
 import { GradientFloor } from "../affectui-gradient-floor/GradientFloor";
 import { InvoicePlan } from "../affectui-agent-plan/AgentPlan";
 import { WritingAssistant } from "../affectui-writing-assistant/WritingAssistant";
@@ -18,17 +20,17 @@ import "../affectui-fonts.css";
 import "./guide-navigation.css";
 
 const Workspace = dynamic(() => import("../affectui-crm/Crm").then(module => module.Crm), {
-  loading: () => <div className="guide-loading" role="status">Opening your workspace…</div>,
+  loading: () => <WorkspaceShellSkeleton />,
 });
 const swipeDistance = 40;
 
-export function PersonalizeApp({ initialBrowse = false, initialGroup }: { initialBrowse?: boolean; initialGroup?: string }) {
+export function PersonalizeApp({ initialBrowse = false, initialGroup, initialSection, initialView }: { initialBrowse?: boolean; initialGroup?: string; initialSection?: string; initialView?: string }) {
   // Read Next's history state directly. Listening only for a manually dispatched popstate can miss
   // navigation during a router update on WebKit, leaving the URL and the visible app out of sync.
   const params = useSearchParams() ?? new URLSearchParams(initialBrowse ? `browse=1&group=${encodeURIComponent(initialGroup ?? "")}` : "");
   return <WorkspaceBackendProvider>{params.get("browse") === "1"
     ? <GuideNavigation initialGroup={params.get("group")} />
-    : <Workspace />}</WorkspaceBackendProvider>;
+    : <InitialRouteProvider value={{ section: sectionFromParam(initialSection), view: initialView ?? null }}><Workspace /></InitialRouteProvider>}</WorkspaceBackendProvider>;
 }
 
 function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {

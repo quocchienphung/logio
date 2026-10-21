@@ -2,13 +2,20 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { Reducer } from "react";
-import { AlertTriangle, Check, FolderOpen, Hourglass, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, Square, Undo2, X } from "lucide-react";
+import { AlertTriangle, Check, FolderOpen, Hourglass, Trash2, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, Square, Undo2, X } from "lucide-react";
 import type { SnapshotSource } from "@/lib/workspace-backend";
 import { downloadFile } from "../affectui-crm/workspace-state";
 import { AgentTree } from "../affectui-agent-tree/AgentTree";
 import { AgentBar } from "../affectui-agent-tree/agent-bar";
 import { useWidth } from "../affectui-agent-tree/use-width";
 import type { TreeAgent } from "../affectui-agent-tree/tree-model";
+import { durationLabel } from "../affectui-agent-tree/tree-model";
+import { NotificationStack } from "../affectui-notification-stack/NotificationStack";
+import { enqueue } from "../affectui-notification-stack/stack-model";
+import type { Notice } from "../affectui-notification-stack/stack-model";
+import { useWorkspaceRoute } from "../affectui-crm/workspace-state";
+import { diffRun } from "./run-notices";
+import type { NoticeIntent, ProcessNotice } from "./run-notices";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
 import { NodeInspector } from "./NodeInspector";
 import { ConfirmDialog, ConnectDialog, LibraryDialog, NewProcessDialog, SettingsDialog } from "./ProcessDialogs";
@@ -24,13 +31,14 @@ import { createHistory, historyReducer } from "./history";
 import type { History, HistoryAction } from "./history";
 import {
   addChild, addLink, checkLink, costFormatter, createBlankProcess, createLibrary, createNode, createSampleProcess, DEFAULT_ROUNDS, duplicateNode, findNode, flattenNodes, instantiate, LIMITS, loopFrom, moveNode, 
-  normalizeProcess, parentNode, pruneLinks, removeLink, removeNode, reparentNode, setPosition, clearPositions, templates, touch, uid, updateLink, updateNode, countNodes, waitsFor,
+  normalizeProcess, parentNode, pruneLinks, removeLink, removeNode, removeNodes, reparentNode, setPosition, clearPositions, templates, touch, uid, updateLink, updateNode, countNodes, waitsFor,
 } from "./process-model";
 import type { CostUnit, ProcessDoc, ProcessLibrary, ProcessNode } from "./process-model";
 import { decisionId, emptyRunStore, isActive } from "./run-model";
 import type { RunAction, RunStore } from "./run-model";
 import { buildTree, taskIdOf } from "./run-view";
 import { createLocalProcessSource, createLocalRunSource } from "./local-sources";
+import { SectionSkeleton } from "../shimmer-loader/SectionSkeleton";
 import { useAutosave } from "./use-autosave";
 import { peekTick, useTicker } from "./use-ticker";
 import "./process.css";
@@ -66,12 +74,12 @@ export function Process({ workspaceId, dataSource, runSource, engine: suppliedEn
     return () => controller.abort();
   }, [source, runs, engine, attempt]);
   const reload = () => { setResult(null); setAttempt(value => value + 1); };
-  if (!result || result.source !== source) return <div className="proc-workspace proc-loading" role="status"><LoaderCircle className="proc-spin" size={20} />Loading processes…</div>;
+  if (!result || result.source !== source) return <SectionSkeleton section="Process" label="Loading processes…" />;
   if (!result.loaded) return <div className="proc-workspace proc-loading" role="alert"><p>{result.error}</p><button className="proc-button" type="button" onClick={reload}>Retry loading</button></div>;
   return <ProcessStudio key={`${workspaceId}-${attempt}`} workspaceId={workspaceId} source={source} runs={runs} engine={engine} initial={result.loaded} remote={remote} onReload={reload} />;
 }
 
-type Dialog = "library" | "new" | "connect" | "inspector" | "settings" | { kind: "delete-task"; id: string } | { kind: "delete-process"; id: string } | null;
+type Dialog = "library" | "new" | "connect" | "inspector" | "settings" | { kind: "delete-task"; id: string } | { kind: "delete-tasks"; ids: string[] } | { kind: "delete-process"; id: string } | null;
 const POLL_MS = 2000;
 const historyOf = historyReducer as Reducer<History<ProcessLibrary>, HistoryAction<ProcessLibrary>>;
 const stateLabel = { running: "Running", waiting: "Needs you", done: "Done", failed: "Failed", stopped: "Stopped" } as const;
@@ -82,6 +90,8 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const library = history.present;
   const doc = library.processes.find(item => item.id === library.activeId) ?? library.processes[0];
   const [selectedId, setSelectedId] = useState(doc.root.id);
+  // Blocks chosen together with Ctrl / Cmd + click: they are moved and deleted as a group
+  const [multi, setMulti] = useState<string[]>([]);
   const selected = findNode(doc.root, selectedId) ?? doc.root;
   const [collapsed, setCollapsed] = useState<string[]>([]);
   const [dialog, setDialog] = useState<Dialog>(null);
@@ -119,6 +129,19 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const unit: CostUnit = doc.unit;
   const format = costFormatter(unit);
   const tree = buildTree(doc.root, { snapshot, engines });
+  const { navigate: goTo } = useWorkspaceRoute();
+
+  // Notices: a block finished, a block failed, the run is over. Worked out from how each snapshot differs from the one before.
+  const [alerts, setAlerts] = useState<{ key: string; run: string; known: Record<string, string> | null; notices: ProcessNotice[] }>({ key: "", run: "", known: null, notices: [] });
+  const alertKey = snapshot ? `${doc.id}|${snapshot.id}|${snapshot.state}|${Object.entries(snapshot.nodes).map(([id, run]) => `${id}:${run.status}:${run.round ?? 1}:${run.rounds?.length ?? 0}`).join(",")}` : "";
+  if (alertKey !== alerts.key) {
+    if (!snapshot) setAlerts({ key: alertKey, run: "", known: null, notices: [] });
+    else {
+      const run = `${doc.id}|${snapshot.id}`, same = alerts.run === run;
+      const step = diffRun(same ? alerts.known : null, snapshot, { doc, formatCost: format, showCost: unit !== "none", formatDuration: durationLabel });
+      setAlerts({ key: alertKey, run, known: step.known, notices: same ? enqueue(alerts.notices.filter(item => !step.retire.includes(item.id)), step.notices) : [] });
+    }
+  }
 
   // The simulated engine's runs are saved with the process; a server keeps its own.
   const runStore: RunStore = useMemo(() => ({ version: 1, runs: Object.fromEntries(Object.entries(handles).flatMap(([id, item]) => item.kind === "simulated" ? [[id, item.log]] : [])) }), [handles]);
@@ -215,6 +238,40 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     if (narrow) setDialog("inspector"); else setPanel(true);
   }
   const moveBlock = (id: string, pos: Point) => editRoot(root => setPosition(root, id, pos), `pos:${id}`);
+  const moveBlocks = (moves: { id: string; pos: Point }[]) => editRoot(root => moves.reduce((current, move) => setPosition(current, move.id, move.pos), root), "pos:group");
+  const group = multi.filter(id => !!findNode(doc.root, id));
+  const groupIds = group.length > 1 ? group : [];
+  /** Ctrl / Cmd (or Shift) + click adds a block to the group or takes it out; the block clicked becomes the one the settings panel shows. */
+  function toggleMulti(id: string) {
+    const base = groupIds.length ? groupIds : [selected.id];
+    const next = base.includes(id) ? base.filter(item => item !== id) : [...base, id];
+    setPickedLinkId(null); setRevealId(null);
+    if (next.length < 2) { setMulti([]); setSelectedId(next[0] ?? id); return; }
+    setMulti(next);
+    setSelectedId(next.includes(id) ? id : next[next.length - 1]);
+  }
+  const selectAll = () => { const all = flattenNodes(doc.root).map(node => node.id); setMulti(all.length > 1 ? all : []); };
+  /** Delete asks first: the whole group when the block is in one, else the block alone. */
+  function requestDelete(id: string) {
+    if (locked) { setNotice({ kind: "error", text: "Stop the run to change the structure." }); return; }
+    if (groupIds.length > 1 && groupIds.includes(id)) setDialog({ kind: "delete-tasks", ids: groupIds });
+    else setDialog({ kind: "delete-task", id });
+  }
+  function deleteTasks(ids: string[]) {
+    const removable = ids.filter(id => id !== doc.root.id);
+    setDialog(null);
+    if (!removable.length) { setNotice({ kind: "error", text: "The first block cannot be deleted." }); return; }
+    editRoot(root => removeNodes(root, removable));
+    setSelectedId(doc.root.id);
+    setMulti([]);
+  }
+  function runIntent(intent: NoticeIntent) {
+    if (intent.kind === "retry") void act({ type: "retry", id: intent.blockId });
+    else if (intent.kind === "locate") { setView("map"); setMulti([]); setSelectedId(intent.blockId); setRevealId(intent.blockId); }
+    else goTo("Tracing");
+  }
+  const stackNotices: Notice[] = alerts.notices.map(item => ({ ...item, ...(item.intent && item.actionLabel ? { action: { label: item.actionLabel, onClick: () => runIntent(item.intent!) } } : {}) }));
+  const dropAlert = (id: string) => setAlerts(current => ({ ...current, notices: current.notices.filter(item => item.id !== id) }));
   /** The person drew a connection: from any block to any other. A loop (back to an earlier block) opens its card to set the rounds. */
   function connectBlocks(from: string, to: string) {
     const check = checkLink(doc, from, to);
@@ -282,6 +339,20 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     const field = document.querySelector<HTMLInputElement>(".proc-inspector input.proc-input");
     field?.focus({ preventScroll: true }); field?.select();
   });
+  // Keys for a group of blocks: Delete asks to delete it, Escape lets it go, Ctrl / Cmd + A chooses every block
+  const keys = useRef({ group: [] as string[], view: "map" as "map" | "tree", ask: requestDelete, all: selectAll, clear: () => {} });
+  useEffect(() => { keys.current = { group: groupIds, view, ask: requestDelete, all: selectAll, clear: () => setMulti([]) }; });
+  useEffect(() => {
+    const listener = (event: KeyboardEvent) => {
+      if (isField(event.target) || document.querySelector("dialog[open]") || event.defaultPrevented) return;
+      const { group: chosen, view: shownView, ask, all, clear } = keys.current;
+      if (event.key === "Escape" && chosen.length) clear();
+      else if ((event.key === "Delete" || event.key === "Backspace") && chosen.length > 1) { event.preventDefault(); ask(chosen[0]); }
+      else if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "a" && shownView === "map") { event.preventDefault(); all(); }
+    };
+    window.addEventListener("keydown", listener);
+    return () => window.removeEventListener("keydown", listener);
+  }, []);
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
       if (!(event.ctrlKey || event.metaKey) || isField(event.target)) return;
@@ -304,7 +375,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const inspector = <NodeInspector
     doc={doc} node={selected} engines={engines} simulated={simulated} run={snapshot?.nodes[selected.id]} locked={locked} now={clock}
     onChange={(change, field) => editNode(selected.id, change, field)} onAddChild={() => addBlock(selected.id)} onDuplicate={() => duplicateTask(selected.id)}
-    onDelete={() => setDialog({ kind: "delete-task", id: selected.id })} onMove={delta => editRoot(root => moveNode(root, selected.id, delta))}
+    onDelete={() => requestDelete(selected.id)} onMove={delta => editRoot(root => moveNode(root, selected.id, delta))}
     onReparent={parentId => editRoot(root => reparentNode(root, selected.id, parentId))} onRunBranch={() => void start(selected.id)}
     onResolve={action => void act({ type: action, id: selected.id })} onReviewPermission={() => reviewPermission(selected.id)}
     onConnect={to => connectBlocks(selected.id, to)} onLinkChange={changeLink} onLinkRemove={dropLink} onAddStep={addStep} onAddNext={role => addBlock(selected.id, { role })} />;
@@ -326,11 +397,12 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         ? <ProcessMap
           root={doc.root} tree={tree} selectedId={selected.id} now={clock} formatCost={format} showCost={unit !== "none"} locked={locked} inset={mapInset} fitKey={`${doc.id}:${tidied}`} revealId={revealId}
           links={doc.links ?? []} selectedLinkId={pickedLink} onSelectLink={setPickedLinkId} check={(from, to) => checkLink(doc, from, to)} onConnect={connectBlocks} onLinkChange={changeLink} onLinkRemove={dropLink}
-          onSelect={id => { setSelectedId(id); setRevealId(null); setPickedLinkId(null); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={id => setDialog({ kind: "delete-task", id })} />
+          multiIds={groupIds} onToggle={toggleMulti} onMoveMany={moveBlocks}
+          onSelect={id => { setSelectedId(id); setRevealId(null); setPickedLinkId(null); setMulti([]); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={requestDelete} />
         : <div className="proc-treewrap" style={{ paddingRight: !narrow && panel ? 372 : undefined }}>
           <AgentTree
             root={tree} title="Tasks" noun={["task", "tasks"]} now={clock} formatCost={format} showCost={unit !== "none"} collapsed={collapsed} onCollapsedChange={setCollapsed}
-            onSelect={agent => { setSelectedId(taskIdOf(agent.id)); if (narrow) setDialog("inspector"); }} selectedId={selected.id} onResolve={resolve}
+            onSelect={agent => { setSelectedId(taskIdOf(agent.id)); setMulti([]); if (narrow) setDialog("inspector"); }} selectedId={selected.id} onResolve={resolve}
             renderCardActions={agent => {
               const node = findNode(doc.root, agent.id);
               if (!node) return null;
@@ -357,6 +429,16 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         <AgentBar root={tree} title={view === "map" ? "Blocks" : "Tasks"} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} onReviewWaiting={() => reviewPermission()} extra={runControls} />
       </div>
     </div>
+
+    <div className="proc-notices" data-narrow={narrow ? "" : undefined}>
+      <NotificationStack notices={stackNotices} onDismiss={item => dropAlert(item.id)} onDismissAll={() => setAlerts(current => ({ ...current, notices: [] }))} label="Run notifications" />
+    </div>
+
+    {groupIds.length > 1 && view === "map" && <div className="proc-multi proc-pill" role="toolbar" aria-label="Selected blocks">
+      <span className="proc-multi__count" role="status">{groupIds.length} blocks selected</span>
+      <button type="button" className="proc-button proc-button--small proc-button--danger" disabled={locked} onClick={() => requestDelete(groupIds[0])}><Trash2 size={13} />Delete</button>
+      <button type="button" className="proc-button proc-button--small" onClick={() => setMulti([])}>Clear</button>
+    </div>}
 
     <div className="proc-toasts">
       {notice && <div className="proc-notice" data-kind={notice.kind} role={notice.kind === "error" ? "alert" : "status"}><span>{notice.text}</span><button type="button" className="proc-icon-button" aria-label="Dismiss" onClick={() => setNotice(null)}><X size={14} /></button></div>}
@@ -415,6 +497,15 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
       open={isKind(dialog, "delete-task")} onClose={closeIf(current => isKind(current, "delete-task"))} title="Delete task" confirmLabel="Delete"
       message={(() => { const target = dialog && typeof dialog === "object" && dialog.kind === "delete-task" ? findNode(doc.root, dialog.id) : undefined; const count = target ? countNodes(target) - 1 : 0; return target ? `Delete “${target.name}”${count ? ` and its ${count} sub-task${count === 1 ? "" : "s"}` : ""}? You can undo this.` : "Delete this task?"; })()}
       onConfirm={() => { if (dialog && typeof dialog === "object" && dialog.kind === "delete-task") deleteTask(dialog.id); }} />
+    <ConfirmDialog
+      open={isKind(dialog, "delete-tasks")} onClose={closeIf(current => isKind(current, "delete-tasks"))} title="Delete blocks" confirmLabel="Delete"
+      message={(() => {
+        const ids = dialog && typeof dialog === "object" && dialog.kind === "delete-tasks" ? dialog.ids.filter(id => id !== doc.root.id) : [];
+        const gone = new Set(ids.flatMap(id => { const target = findNode(doc.root, id); return target ? flattenNodes(target).map(node => node.id) : []; }));
+        const named = ids.slice(0, 3).map(id => `“${findNode(doc.root, id)?.name ?? "Block"}”`).join(", ") + (ids.length > 3 ? ` and ${ids.length - 3} more` : "");
+        return ids.length ? `Delete ${ids.length} block${ids.length === 1 ? "" : "s"} (${named})${gone.size > ids.length ? ` and what hangs under ${ids.length === 1 ? "it" : "them"}, ${gone.size} blocks in all` : ""}? ${dialog && typeof dialog === "object" && dialog.kind === "delete-tasks" && dialog.ids.includes(doc.root.id) ? "The first block stays. " : ""}You can undo this.` : "Delete these blocks?";
+      })()}
+      onConfirm={() => { if (dialog && typeof dialog === "object" && dialog.kind === "delete-tasks") deleteTasks(dialog.ids); }} />
     <ConfirmDialog
       open={isKind(dialog, "delete-process")} onClose={closeIf(current => isKind(current, "delete-process"))} title="Delete process" confirmLabel="Delete process"
       message={`Delete “${(dialog && typeof dialog === "object" && dialog.kind === "delete-process" ? library.processes.find(item => item.id === dialog.id)?.name : "") ?? ""}” and its run? You can undo this.`}

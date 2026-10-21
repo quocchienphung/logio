@@ -5,6 +5,7 @@ import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactNode } from
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ChevronRight, Maximize2, Minus, Pause, Play, Plus } from "lucide-react";
 import { createLocalDataSource } from "./mapping-data-source";
+import { SectionSkeleton } from "../shimmer-loader/SectionSkeleton";
 import type { MappingDataSource } from "./mapping-data-source";
 import { MappingEngine } from "./mapping-engine";
 import { formatDue, healthLabels, MappingModel, statusLabels } from "./mapping-model";
@@ -69,7 +70,7 @@ export function Mapping({ workspaceId, dataSource, initialData }: MappingProps) 
       .catch(() => { if (!controller.signal.aborted) setLoaded({ source, data: initialData ?? createSampleData(), failed: true }); });
     return () => controller.abort();
   }, [source, initialData]);
-  if (!loaded || loaded.source !== source) return <div className="mapping-page"><div className="mapping-root"><p className="mapping-loading" role="status">Loading map…</p></div></div>;
+  if (!loaded || loaded.source !== source) return <SectionSkeleton section="Mapping" label="Loading map…" />;
   return <MappingWorkspace key={workspaceId} source={source} initial={loaded.data} loadFailed={loaded.failed} />;
 }
 

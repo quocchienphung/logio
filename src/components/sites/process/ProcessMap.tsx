@@ -42,6 +42,10 @@ export interface ProcessMapProps {
   onConnect: (from: string, to: string) => void;
   onLinkChange: (id: string, change: Partial<Pick<ProcessLink, "label" | "rounds">>) => void;
   onLinkRemove: (id: string) => void;
+  /** The blocks chosen together (Ctrl or Cmd + click): more than one when it is a group, empty otherwise. They are moved and deleted together. */
+  multiIds: readonly string[];
+  onToggle: (id: string) => void;
+  onMoveMany: (moves: { id: string; pos: Point }[]) => void;
   onSelect: (id: string) => void;
   /** A tap or Enter on a block (not a drag): open its settings. */
   onOpen?: (id: string) => void;
@@ -78,14 +82,14 @@ const READABLE = 0.55;
  * to. Drag a block to put it where you want (it keeps that place), drag the background to pan, zoom with Ctrl + wheel, a
  * pinch or the buttons, and use the + on a selected block to connect a new block to it. Arrow keys nudge the focused block.
  */
-export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, onSelect, onOpen, onMove, onAdd, onDelete }: ProcessMapProps) {
+export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, onSelect, onOpen, onMove, onAdd, onDelete }: ProcessMapProps) {
   const [setViewport, viewport] = useSize();
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [sizes, setSizes] = useState<ReadonlyMap<string, Size>>(new Map());
   const [view, setView] = useState<View>({ x: 0, y: 0, scale: 1 });
   const [fitted, setFitted] = useState("");
   const [revealed, setRevealed] = useState<string | null>(null);
-  const [drag, setDrag] = useState<{ id: string; x: number; y: number } | null>(null);
+  const [drag, setDrag] = useState<{ id: string; x: number; y: number; from: Point } | null>(null);
   const [panning, setPanning] = useState(false);
   const [connect, setConnect] = useState<{ from: string; side: Side; point: Point; over: string | null } | null>(null);
   const blocks = useRef(new Map<string, HTMLElement>());
@@ -101,7 +105,14 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   const nodes = useMemo(() => flattenNodes(root), [root]);
   const shape: Shape = viewport.w > 0 && viewport.w < 560 && viewport.h > viewport.w ? "tall" : "wide";
   const centers = layoutMap(root, sizes, shape);
-  const centerOf = (id: string): Point => (drag?.id === id ? { x: drag.x, y: drag.y } : centers.get(id) ?? { x: 0, y: 0 });
+  const grouped = new Set(multiIds);
+  // Dragging a block of a group moves the whole group by the same amount
+  const centerOf = (id: string): Point => {
+    const base = centers.get(id) ?? { x: 0, y: 0 };
+    if (!drag) return base;
+    if (drag.id === id) return { x: drag.x, y: drag.y };
+    return grouped.has(drag.id) && grouped.has(id) ? { x: base.x + drag.x - drag.from.x, y: base.y + drag.y - drag.from.y } : base;
+  };
   const sizeOf = (id: string) => sizes.get(id) ?? BLOCK;
   const boxFor = (id: string): Box => boxOf(centerOf(id), sizeOf(id));
   const allBoxes = nodes.map(node => boxFor(node.id));
@@ -228,20 +239,22 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     if (event.button !== 0 || (event.target as Element).closest("button")) return;
     event.stopPropagation();
     if (gesture.current.pointers.size > 1) return; // a second finger is a pinch, not a block
+    if (event.ctrlKey || event.metaKey || event.shiftKey) { event.preventDefault(); onToggle(id); return; }
     const start = { x: event.clientX, y: event.clientY }, origin = centerOf(id), scale = view.scale;
     let moved = false;
     const move = (e: PointerEvent) => {
       if (gesture.current.pointers.size > 1) return;
       if (!moved && Math.hypot(e.clientX - start.x, e.clientY - start.y) < SLOP) return;
       moved = true;
-      setDrag({ id, x: origin.x + (e.clientX - start.x) / scale, y: origin.y + (e.clientY - start.y) / scale });
+      setDrag({ id, x: origin.x + (e.clientX - start.x) / scale, y: origin.y + (e.clientY - start.y) / scale, from: origin });
     };
     const finish = (e: PointerEvent | null, drop: boolean) => {
       dragCancel.current = null;
       window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", cancel);
       if (e && moved && drop) {
         const x = Math.round((origin.x + (e.clientX - start.x) / scale) / GRID) * GRID, y = Math.round((origin.y + (e.clientY - start.y) / scale) / GRID) * GRID;
-        onMove(id, { x, y });
+        if (multiIds.length > 1 && multiIds.includes(id)) onMoveMany(multiIds.map(other => { const at = other === id ? origin : centers.get(other) ?? { x: 0, y: 0 }; return { id: other, pos: { x: at.x + x - origin.x, y: at.y + y - origin.y } }; }));
+        else onMove(id, { x, y });
       } else if (e && !moved && drop) { onSelect(id); onOpen?.(id); }
       setDrag(null);
     };
@@ -249,7 +262,8 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     const cancel = (e: PointerEvent) => finish(e, false);
     window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", cancel);
     dragCancel.current = () => finish(null, false);
-    onSelect(id);
+    // A block of the group keeps the group while it is dragged; a tap on it later selects it alone
+    if (!(multiIds.length > 1 && multiIds.includes(id))) onSelect(id);
   }
   function onBlockKey(event: ReactKeyboardEvent<HTMLDivElement>, id: string) {
     if (event.target !== event.currentTarget) return;
@@ -357,7 +371,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
         const failedTries = tries.get(node.id) ?? [];
         return <div
           key={node.id} ref={register(node.id)} data-block={node.id}
-          className="pmap__block agt__node" data-status={agent.status} data-selected={selected ? "" : undefined} data-target={connect?.over === node.id ? (connectCheck?.ok ? "ok" : "no") : undefined} data-dragging={drag?.id === node.id ? "" : undefined} data-root={node.id === root.id ? "" : undefined}
+          className="pmap__block agt__node" data-status={agent.status} data-selected={selected ? "" : undefined} data-multi={grouped.has(node.id) ? "" : undefined} data-target={connect?.over === node.id ? (connectCheck?.ok ? "ok" : "no") : undefined} data-dragging={drag?.id === node.id ? "" : undefined} data-root={node.id === root.id ? "" : undefined}
           role="group" aria-label={`${agent.name}, ${statusLabel[agent.status]}${agent.badge ? `, ${agent.badge.label}` : ""}`} aria-current={selected ? "true" : undefined} tabIndex={0}
           style={{ left: at.x - BLOCK.w / 2, top: at.y - size.h / 2 }}
           onPointerDown={event => onBlockDown(event, node.id)} onKeyDown={event => onBlockKey(event, node.id)}

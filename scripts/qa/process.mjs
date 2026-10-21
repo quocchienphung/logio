@@ -46,6 +46,7 @@ const saved = page => page.locator('.proc-save').filter({ hasText: /^Saved$/ }).
 const stored = (page, key) => page.evaluate(key => JSON.parse(localStorage.getItem(key) || 'null'), key);
 const storedLibrary = async page => { const key = await page.evaluate(() => Object.keys(localStorage).find(item => item.endsWith(':process'))); return stored(page, key); };
 const run = page => page.locator('.agt__extra').getByRole('button', { name: 'Run', exact: true });
+const goto = async (page, section) => page.locator('.ui-as-side__item', { hasText: section }).click();
 const undo = page => page.locator('.proc-dock [aria-label="Undo"]');
 const redo = page => page.locator('.proc-dock [aria-label="Redo"]');
 const view = page => page.evaluate(() => { const stage = document.querySelector('.pmap__stage'); const m = new DOMMatrixReadOnly(getComputedStyle(stage).transform); return { x: m.e, y: m.f, scale: m.a }; });
@@ -540,6 +541,8 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.keyboard.press('Delete');
     await page.getByRole('dialog').getByRole('button', { name: 'Delete', exact: true }).click();
     await page.waitForFunction(() => document.querySelectorAll('.pmap__pill').length === 0);
+    await page.waitForTimeout(150);
+    await saved(page);
     assert.equal((await storedLibrary(page).then(raw => raw.processes[0].links)) ?? null, null, 'no links field left');
   });
   await check('The closed-loop template: the deploy asks, and after the person approves the loop goes round and asks again; the cards say which round', async () => {
@@ -558,6 +561,209 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     assert.ok(await page.locator('.agt__round').count() >= 1, 'a block shows its round');
     await page.screenshot({ path: `${out}/process-loop.png` });
     await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).click();
+  });
+  await context.close();
+}
+
+// ---------- choosing several blocks together and deleting them ----------
+{
+  const { context, page } = await open();
+  const ctrl = { modifiers: ['Control'] };
+  const count = () => page.locator('.pmap__block[data-multi]').count();
+  await check('Ctrl + click chooses several blocks: they are marked, counted, and clicking one again lets it go; a plain click clears the group', async () => {
+    await block(page, 'Scraper').locator('.agt__name').click();
+    assert.equal(await count(), 0, 'one block is just selected');
+    await block(page, 'Analyst').locator('.agt__name').click(ctrl);
+    assert.equal(await count(), 2, 'the block that was selected joins the one clicked');
+    await block(page, 'Tester').locator('.agt__name').click(ctrl);
+    assert.equal(await count(), 3);
+    assert.match(await page.locator('.proc-multi').innerText(), /3 blocks selected/);
+    assert.equal(await page.locator('.pmap__block[data-selected] .agt__name').innerText(), 'Tester', 'the last one shows its settings');
+    await block(page, 'Analyst').locator('.agt__name').click(ctrl);
+    assert.equal(await count(), 2);
+    await block(page, 'Analyst').locator('.agt__name').click(ctrl);
+    assert.equal(await count(), 3);
+    await block(page, 'Fixer').locator('.agt__name').click({ modifiers: ['Shift'] });
+    assert.equal(await count(), 4, 'Shift works too');
+    await block(page, 'Planner').locator('.agt__name').click();
+    assert.equal(await count(), 0);
+    assert.equal(await page.locator('.proc-multi').count(), 0);
+  });
+  await check('Ctrl + A chooses every block and Escape lets the group go', async () => {
+    await page.locator('.pmap').focus();
+    await page.keyboard.press('Control+a');
+    assert.equal(await count(), 9);
+    assert.match(await page.locator('.proc-multi').innerText(), /9 blocks selected/);
+    await page.keyboard.press('Escape');
+    assert.equal(await count(), 0);
+  });
+  await check('Delete (or the button) asks once for the whole group, names it, removes every block with what hangs under it, and one undo brings them all back', async () => {
+    await block(page, 'Scraper').locator('.agt__name').click();
+    await block(page, 'Writer').locator('.agt__name').click(ctrl);
+    await block(page, 'Tester').locator('.agt__name').click(ctrl);
+    await page.keyboard.press('Delete');
+    const dialog = page.getByRole('dialog', { name: 'Delete blocks' });
+    await dialog.waitFor();
+    assert.match(await dialog.innerText(), /Delete 3 blocks \(“Scraper”, “Writer”, “Tester”\)/);
+    await dialog.getByRole('button', { name: 'Delete', exact: true }).click();
+    await page.waitForFunction(() => document.querySelectorAll('.pmap__block').length === 6);
+    assert.deepEqual((await names(page)).sort(), ['Analyst', 'Coder', 'Coordinator', 'Fixer', 'Planner', 'Researcher']);
+    assert.equal(await page.locator('.proc-multi').count(), 0);
+    await saved(page);
+    assert.equal((await storedLibrary(page)).processes[0].root.children.length, 3);
+    await undo(page).click();
+    assert.equal((await names(page)).length, 9, 'one undo restores all three');
+    await redo(page).click();
+    assert.equal((await names(page)).length, 6);
+    await undo(page).click();
+  });
+  await check('A group that holds the first block keeps it; a block\'s own sub-blocks go with it; the button works too', async () => {
+    await page.locator('.pmap').focus();
+    await page.keyboard.press('Control+a');
+    await page.locator('.proc-multi').getByRole('button', { name: 'Delete' }).click();
+    const dialog = page.getByRole('dialog', { name: 'Delete blocks' });
+    assert.match(await dialog.innerText(), /The first block stays/);
+    await dialog.getByRole('button', { name: 'Cancel' }).click();
+    assert.equal((await names(page)).length, 9, 'cancel removes nothing');
+    await page.keyboard.press('Escape');
+    await block(page, 'Researcher').locator('.agt__name').click();
+    await block(page, 'Coder').locator('.agt__name').click(ctrl);
+    await page.locator('.proc-multi').getByRole('button', { name: 'Delete' }).click();
+    assert.match(await page.getByRole('dialog', { name: 'Delete blocks' }).innerText(), /and what hangs under them, 6 blocks in all/);
+    await page.getByRole('dialog', { name: 'Delete blocks' }).getByRole('button', { name: 'Delete', exact: true }).click();
+    await page.waitForFunction(() => document.querySelectorAll('.pmap__block').length === 3);
+    assert.deepEqual((await names(page)).sort(), ['Coordinator', 'Planner', 'Writer']);
+    await undo(page).click();
+  });
+  await check('Dragging one block of a group moves the whole group by the same amount, and it is one step to undo', async () => {
+    await block(page, 'Planner').locator('.agt__name').click();
+    await block(page, 'Writer').locator('.agt__name').click(ctrl);
+    const before = { planner: await box(block(page, 'Planner')), writer: await box(block(page, 'Writer')), coder: await box(block(page, 'Coder')) };
+    await page.mouse.move(before.planner.x + 60, before.planner.y + 14);
+    await page.mouse.down(); await page.mouse.move(before.planner.x + 60, before.planner.y + 94, { steps: 8 }); await page.mouse.up();
+    const after = { planner: await box(block(page, 'Planner')), writer: await box(block(page, 'Writer')), coder: await box(block(page, 'Coder')) };
+    const planner = after.planner.y - before.planner.y, writer = after.writer.y - before.writer.y;
+    assert.ok(Math.abs(planner - 80) < 14, `planner moved ${planner}`);
+    assert.ok(Math.abs(writer - planner) < 3, `writer moved with it (${writer})`);
+    assert.ok(Math.abs(after.coder.y - before.coder.y) < 3, 'a block outside the group stayed');
+    assert.equal(await count(), 2, 'the group is still chosen');
+    await saved(page);
+    const pinned = JSON.stringify((await storedLibrary(page)).processes[0].root).match(/"pos"/g)?.length;
+    assert.equal(pinned, 2);
+    await undo(page).click();
+    const back = await box(block(page, 'Writer'));
+    assert.ok(Math.abs(back.y - before.writer.y) < 3, 'one undo puts both back');
+  });
+  await check('While a run is active the structure is frozen: Delete says so and removes nothing', async () => {
+    await run(page).click();
+    await waitStatus(page, 'Coder', 'running', 6000);
+    await block(page, 'Scraper').locator('.agt__name').click();
+    await block(page, 'Analyst').locator('.agt__name').click(ctrl);
+    await page.keyboard.press('Delete');
+    assert.equal(await page.getByRole('dialog', { name: 'Delete blocks' }).count(), 0);
+    assert.match(await page.locator('.proc-notice[data-kind=error]').innerText(), /Stop the run to change the structure/);
+    assert.equal(await page.locator('.proc-multi').getByRole('button', { name: 'Delete' }).isDisabled(), true);
+    await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).click();
+    await page.locator('.agt__extra').getByRole('button', { name: 'Clear' }).click();
+  });
+  await context.close();
+}
+
+// ---------- notifications: a block finished, a block failed, the run is over ----------
+{
+  const { context, page } = await open();
+  const front = () => page.locator('.nsc__card[data-depth="0"]:not([data-leaving])');
+  const cardCount = () => page.locator('.nsc__card:not([data-leaving])').count();
+  await check('A finished block pops up a notice with its engine, cost and time, and a way to find it on the map; the stack is a labelled region', async () => {
+    assert.equal(await page.locator('.nsc').count(), 0, 'nothing to show before a run');
+    await run(page).click();
+    await page.waitForSelector('.nsc__card', { timeout: 15000 });
+    assert.equal(await page.getByRole('region', { name: 'Run notifications' }).count(), 1);
+    await page.waitForFunction(() => [...document.querySelectorAll('.nsc__card')].some(el => /finished/.test(el.querySelector('.nsc__title').textContent)));
+    const done = page.locator('.nsc__card').filter({ has: page.locator('.nsc__badge', { hasText: /^Done$/ }) }).first();
+    assert.match(await done.locator('.nsc__title').innerText(), /(\w+ finished|\d+ blocks finished)/);
+    assert.match(await done.locator('.nsc__text').innerText(), /\S/);
+    assert.equal(await done.getAttribute('data-tone'), 'success');
+    await page.screenshot({ path: `${out}/process-notice-done.png` });
+  });
+  await check('A failure comes to the front with its reason and a Retry; only the front card can be reached and read out', async () => {
+    await page.waitForFunction(() => [...document.querySelectorAll('.nsc__card')].some(el => /failed/.test(el.querySelector('.nsc__title').textContent)), null, { timeout: 30000 });
+    assert.match(await front().locator('.nsc__badge').innerText(), /failed/i);
+    assert.equal(await front().getAttribute('data-tone'), 'error');
+    assert.match(await front().locator('.nsc__title').innerText(), /^Tester failed$/);
+    assert.match(await front().locator('.nsc__text').innerText(), /Simulated failure/);
+    assert.equal(await front().getByRole('button', { name: 'Retry' }).count(), 1);
+    if (await cardCount() > 1) {
+      assert.equal(await page.locator('.nsc__card:not([data-depth="0"])').first().getAttribute('inert') !== null, true, 'the cards behind cannot be focused');
+      assert.equal(await page.locator('.nsc__card:not([data-depth="0"])').first().getAttribute('aria-hidden'), 'true');
+    }
+    assert.equal(await page.locator('.nsc__sr[role="alert"]').count(), 1, 'a failure is announced as an alert');
+    await page.screenshot({ path: `${out}/process-notice-failed.png` });
+  });
+  await check('The stack: cards sit 12 px lower and 5% smaller behind the front one, the count and "Dismiss all" are under it, and it clears the dock and the permission card', async () => {
+    const n = await cardCount();
+    if (n > 1) {
+      const transforms = await page.locator('.nsc__card:not([data-leaving])').evaluateAll(els => els.map(el => el.style.transform));
+      assert.equal(transforms[0], 'translateY(0px) scale(1)');
+      assert.equal(transforms[1], 'translateY(12px) scale(0.95)');
+      assert.match(await page.locator('.nsc__foot').innerText(), new RegExp(`${n} notices`));
+    }
+    const stack = await box(page.locator('.nsc')), dock = await box(page.locator('.proc-dock')), pill = await box(page.locator('.proc-pill--name'));
+    assert.ok(stack.y >= pill.y + pill.height, 'under the name pill');
+    assert.ok(stack.y + stack.height < dock.y, 'above the dock');
+  });
+  await check('Retry on the notice retries the block and retires the failure notice; the new run of the block shows on the map', async () => {
+    await front().getByRole('button', { name: 'Retry' }).click();
+    await page.waitForFunction(() => ![...document.querySelectorAll('.nsc__card:not([data-leaving])')].some(el => /Tester failed/.test(el.querySelector('.nsc__title').textContent)), null, { timeout: 5000 });
+    await waitStatus(page, 'Tester', 'running', 5000);
+  });
+  await check('Dismissing slides the front card away and the next one moves up; Escape dismisses the front card; Dismiss all clears the stack', async () => {
+    await page.waitForFunction(() => document.querySelectorAll('.nsc__card:not([data-leaving])').length >= 2, null, { timeout: 30000 }).catch(() => {});
+    const before = await cardCount();
+    if (before >= 2) {
+      const title = await front().locator('.nsc__title').innerText();
+      await front().getByRole('button', { name: /^Dismiss / }).click();
+      assert.equal(await page.locator('.nsc__card[data-leaving]').count(), 1, 'the card is leaving');
+      await page.waitForFunction(() => document.querySelectorAll('.nsc__card[data-leaving]').length === 0, null, { timeout: 2000 });
+      assert.equal(await cardCount(), before - 1);
+      assert.notEqual(await front().locator('.nsc__title').innerText(), title);
+    }
+    if (await cardCount() >= 1) {
+      await front().locator('.nsc__btn, .nsc__close').first().focus();
+      const left = await cardCount();
+      await page.keyboard.press('Escape');
+      await page.waitForFunction(count => document.querySelectorAll('.nsc__card:not([data-leaving])').length === count - 1, left, { timeout: 2000 });
+    }
+    if (await page.getByRole('button', { name: 'Dismiss all' }).count()) { await page.getByRole('button', { name: 'Dismiss all' }).click(); await page.waitForFunction(() => !document.querySelector('.nsc__card:not([data-leaving])'), null, { timeout: 2000 }); }
+  });
+  await check('The permission request decides the waiting block; when the run ends one notice says so, with the cost and time, and opens the trace', async () => {
+    await page.getByRole('button', { name: /Allow once/ }).click();
+    await page.waitForFunction(() => [...document.querySelectorAll('.nsc__card')].some(el => /is done/.test(el.querySelector('.nsc__title').textContent)), null, { timeout: 90000 });
+    const finished = page.locator('.nsc__card').filter({ has: page.locator('.nsc__title', { hasText: /is done$/ }) });
+    assert.match(await finished.locator('.nsc__badge').innerText(), /^run finished$/i);
+    assert.match(await finished.locator('.nsc__text').innerText(), /^\d+ blocks? · \$\d+\.\d\d · /);
+    assert.equal(await page.locator('.nsc__card:not([data-leaving])').filter({ hasText: 'Run finished' }).count(), 1, 'announced once');
+    await page.screenshot({ path: `${out}/process-notice-run.png` });
+    await page.waitForFunction(() => document.querySelector('.nsc__card[data-depth="0"] .nsc__title')?.textContent.endsWith('is done'), null, { timeout: 5000 }).catch(() => {});
+    await page.locator('.nsc__card').filter({ has: page.locator('.nsc__title', { hasText: /is done$/ }) }).getByRole('button', { name: 'Open the trace' }).click({ timeout: 8000 });
+    await page.waitForSelector('.trc, .twf');
+    assert.equal(await page.locator('.ui-as-side__item[aria-current=page]').innerText(), 'Tracing');
+  });
+  await check('A quiet notice goes away by itself after a while, and not while the pointer is on it', async () => {
+    await goto(page, 'Process');
+    await page.waitForSelector('.pmap__block');
+    await page.locator('.agt__extra').getByRole('button', { name: 'Clear' }).click().catch(() => {});
+    await run(page).click();
+    await page.waitForSelector('.nsc__card[data-tone="success"]', { timeout: 20000 });
+    const quiet = page.locator('.nsc__card[data-tone="success"]').first();
+    await page.waitForFunction(() => document.querySelector('.nsc__card[data-depth="0"][data-tone="success"]'), null, { timeout: 20000 }).catch(() => {});
+    await page.locator('.nsc').hover();
+    await page.waitForTimeout(11_000);
+    assert.ok(await page.locator('.nsc__card[data-tone="success"]:not([data-leaving])').count() >= 1, 'held while hovered');
+    await page.mouse.move(700, 700);
+    await page.waitForFunction(() => !document.querySelector('.nsc__card[data-tone="success"]:not([data-leaving]):is([data-depth="0"])'), null, { timeout: 30000 });
+    await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).click().catch(() => {});
+    void quiet;
   });
   await context.close();
 }

@@ -1,0 +1,96 @@
+159
+Get Pro
+Log In
+Components
+Notification Stack
+Notification Stack
+
+Notice cards stacked behind each other – dismiss the front one to reveal the next.
+
+$ pnpm dlx shadcn@latest add https://www.affectui.com/r/notification-stack-clean.json
+Preview
+Code
+Copy prompt
+MCP
+Copy
+NEW
+Dark mode is here
+
+Every screen now follows your system theme – or pick one yourself in settings.
+
+Try it
+NOTICE
+Scheduled maintenance
+
+We'll be offline on Sunday from 02:00 to 03:00 UTC. Your data stays safe.
+
+View status
+INVITE
+Mara invited you to Design Ops
+
+Join the workspace to see shared projects, files and comments.
+
+Accept invite
+When to use
+A few announcements or notices in a corner of an app – releases, maintenance, invites
+Toast-style messages that stay until someone dismisses them
+When not to use
+Messages that need an answer before people continue – use a dialog
+Many notifications at once – past three or four, use an inbox or activity list
+Installation
+
+Add Notification Stack with the shadcn CLI – your project needs a components.json, see Installation in the docs – or copy the file by hand.
+
+Requires React 19.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+pnpm dlx shadcn@latest add https://www.affectui.com/r/notification-stack-clean.json
+Usage
+example.tsx
+Copy
+import { NotificationStack } from "@/components/ui/notification-stack-clean";
+
+const notices = [
+  {
+    id: "maintenance",
+    badge: "Notice",
+    title: "Scheduled maintenance",
+    text: "We'll be offline on Sunday from 02:00 to 03:00 UTC.",
+    action: { label: "View status", href: "/status", external: true },
+    pattern: "grid",
+  },
+];
+
+export function Notices() {
+  return <NotificationStack notices={notices} onDismiss={(n) => markRead(n.id)} />;
+}
+API reference
+NotificationStack
+Prop	Type	Default	Description
+notices	Notice[]	–	id, badge, title, text, action ({ label, href, onClick, external }) and pattern
+onDismiss	(notice: Notice) => void	–	Called when a notice is dismissed with its close button
+className	string	–	Extra class on the stack
+Keyboard interactions
+Tab	Move through the front card's buttons
+Enter or Space	Run the action or dismiss the notice
+Accessibility
+The stack is a labelled region; each card is an article named by its title
+Only the front card is read out and focusable; the next one takes its place after a dismiss
+Motion
+A dismissed card slides away and the next one moves up into its place; reduced motion turns this off
+Responsive behavior
+Dark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme="dark"
+Related
+Decision Inbox
+Feedback
+Open decisions with two quick answers each – answered ones confirm and fold away
+Tips Panel
+Cards
+Grid of short tips with one action each – taken tips turn into a done state
+affectUI · 56 components · 13 screens · 11 blocks · 24 illustrations · 8 motion effects

@@ -81,3 +81,6 @@
 .pmap__stepper button:disabled { opacity: .4; cursor: default; }
 .pmap__stepper output { min-width: 28px; text-align: center; font-weight: 500; color: var(--agt-ink); font-variant-numeric: tabular-nums; }
 @media (pointer: coarse) { .pmap__pill { height: 30px; padding: 0 10px 0 8px; } .pmap__stepper button { width: 34px; height: 34px; } }
+/* Blocks chosen together (Ctrl / Cmd + click) */
+.pmap__block[data-multi] { z-index: 4; box-shadow: 0 0 0 1.5px var(--agt-select), 0 2px 8px -2px rgba(0, 96, 226, .25); }
+.pmap__block[data-multi]::after { content: ""; position: absolute; inset: -4px; border-radius: 13px; border: 1.5px dashed var(--agt-select); pointer-events: none; opacity: .7; }

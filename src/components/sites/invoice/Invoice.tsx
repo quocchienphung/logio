@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Check, Copy, Download, FilePlus2, FolderOpen, LoaderCircle, Pencil, Plus, Search, Upload, X } from "lucide-react";
 import { BackendError } from "@/lib/workspace-backend";
+import { SectionSkeleton } from "../shimmer-loader/SectionSkeleton";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
 import { downloadFile } from "../affectui-crm/workspace-state";
 import { createLocalInvoiceSource, type InvoiceDataSource } from "./invoice-data-source";
@@ -23,7 +24,7 @@ export function Invoice({ workspaceId, dataSource, remote = false }: InvoiceProp
     return () => controller.abort();
   }, [source, attempt]);
   const reload = () => { setResult(null); setAttempt(value => value + 1); };
-  if (!result || result.source !== source) return <div className="invoice-workspace invoice-loading" role="status"><LoaderCircle className="invoice-spin" size={20} />Loading invoices…</div>;
+  if (!result || result.source !== source) return <SectionSkeleton section="Invoice" label="Loading invoices…" />;
   if (!result.library) return <div className="invoice-workspace invoice-loading" role="alert"><p>{result.error}</p><button className="invoice-button" type="button" onClick={reload}>Retry loading</button></div>;
   return <InvoiceStudio key={`${workspaceId}-${attempt}`} source={source} initial={result.library} persisted={!!result.persisted} remote={remote} onReload={reload} />;
 }

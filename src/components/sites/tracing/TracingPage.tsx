@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight, ChevronsDownUp, ChevronsUpDown, LoaderCircle, Plug, Workflow } from "lucide-react";
+import { ArrowUpRight, ChevronsDownUp, ChevronsUpDown, Plug, Workflow } from "lucide-react";
 import type { SnapshotSource } from "@/lib/workspace-backend";
 import { Combobox } from "../affectui-combobox/Combobox";
 import { useWorkspaceRoute } from "../affectui-crm/workspace-state";
@@ -19,6 +19,7 @@ import { buildProcessTrace } from "../process/trace-build";
 import { createLocalProcessSource, createLocalRunSource } from "../process/local-sources";
 import { performanceOf } from "./performance";
 import { useFastClock, peekClock } from "./use-fast-clock";
+import { SectionSkeleton } from "../shimmer-loader/SectionSkeleton";
 import "./tracing.css";
 
 export interface TracingProps {
@@ -69,7 +70,7 @@ export function Tracing({ workspaceId, dataSource, runSource, engine: suppliedEn
   }, [source, runs, engine, attempt]);
 
   if (error && !loaded) return <div className="workspace-page trc trc--center" role="alert"><p>{error}</p><button type="button" className="trc__button" onClick={() => { setError(null); setAttempt(value => value + 1); }}>Retry</button></div>;
-  if (!loaded) return <div className="workspace-page trc trc--center" role="status"><LoaderCircle className="trc__spin" size={20} />Loading the trace…</div>;
+  if (!loaded) return <SectionSkeleton section="Tracing" label="Loading the trace…" />;
   return <TracingView key={workspaceId} workspaceId={workspaceId} loaded={loaded} engine={engine} remote={remote} />;
 }
 

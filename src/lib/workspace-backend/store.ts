@@ -59,7 +59,8 @@ export class ResourceEntry<T> {
       this.view = { value: value === undefined ? this.seed : value, phase: "ready", save: "idle", error: null, failed: null };
     }
     // Server rendering and hydration always start from the demo defaults, so markup never differs between them.
-    this.serverView = { ...this.view, value: this.seed };
+    // The server cannot read browser storage, so it is always still loading: hydration must say the same or the markup differs.
+    this.serverView = { ...this.view, value: this.seed, phase: "loading", error: null, failed: null };
   }
 
   subscribe = (listener: () => void) => {
