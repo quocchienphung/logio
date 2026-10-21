@@ -101,9 +101,10 @@ export function Combobox(props: ComboboxProps) {
   }, [all, query, searchable, creatable]);
   const { rows, sections } = view;
 
-  const commit = useCallback((next: string[]) => {
+  // `fresh` is an option created a moment ago: it is not in `all` yet (that list updates on the next render).
+  const commit = useCallback((next: string[], fresh?: ComboboxOption) => {
     if (!controlled) setInner(next);
-    const chosen = next.map(value => all.find(option => option.value === value)).filter((option): option is ComboboxOption => !!option);
+    const chosen = next.map(value => all.find(option => option.value === value) ?? (fresh?.value === value ? fresh : undefined)).filter((option): option is ComboboxOption => !!option);
     if (multiple) (props as MultiComboboxProps).onChange?.(next, chosen);
     else if (chosen[0]) (props as SingleComboboxProps).onChange?.(next[0], chosen[0]);
   }, [controlled, all, multiple, props]);
@@ -134,11 +135,11 @@ export function Combobox(props: ComboboxProps) {
     if (!option || option.disabled) return;
     if (multiple) {
       const has = values.includes(option.value), next = has ? values.filter(value => value !== option!.value) : [...values, option.value];
-      commit(next); setTyped(null); setArmed(false);
+      commit(next, option); setTyped(null); setArmed(false);
       setAnnouncement(`${option.label} ${has ? "removed" : "added"}. ${next.length} selected.`);
       setActive(rows.findIndex(item => item.kind === "option" && item.option!.value === option!.value));
     } else {
-      commit([option.value]); setTyped(null); closeList();
+      commit([option.value], option); setTyped(null); closeList();
       setAnnouncement(`${option.label} selected.`);
     }
   }, [multiple, values, commit, rows, closeList, onCreate]);

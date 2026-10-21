@@ -13,7 +13,7 @@ export type ResourceName =
   | "report-period" | "reports"
   | "run-draft" | "agent-run"
   | "settings-general" | "settings-members" | "settings-billing" | "settings-api-keys"
-  | "mapping" | "invoice" | "file-library";
+  | "mapping" | "invoice" | "file-library" | "process" | "process-run";
 
 /** Read-only data a screen shows but never edits (the backend computes it). */
 export type QueryName = "analytics" | "usage" | "invoices" | "plans";

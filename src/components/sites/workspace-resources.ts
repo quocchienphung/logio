@@ -75,4 +75,7 @@ export const resources = {
   // Mapping and Invoice keep their own data models and normalizers; these names route them through the same backend.
   mapping: defineResource<unknown>({ name: "mapping", scope: "workspace", storage: "backend", debounceMs: 350 }),
   invoice: defineResource<unknown>({ name: "invoice", scope: "workspace", storage: "backend" }),
+  // Process keeps its own data model and normalizer (process/process-model.ts); the simulated engine saves its runs next to it.
+  process: defineResource<unknown>({ name: "process", scope: "workspace", storage: "backend", debounceMs: 500 }),
+  processRun: defineResource<unknown>({ name: "process-run", scope: "workspace", storage: "backend", debounceMs: 300 }),
 } as const;

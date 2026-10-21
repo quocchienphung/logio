@@ -1,0 +1,212 @@
+{
+  "format": "logio-process",
+  "version": 1,
+  "process": {
+    "id": "proc-launch",
+    "name": "Launch the pricing page",
+    "goal": "Ship it on Friday",
+    "unit": "tokens",
+    "createdAt": "2026-10-21T10:44:59.028Z",
+    "updatedAt": "2026-10-21T10:45:00.620Z",
+    "root": {
+      "id": "launch",
+      "name": "Coordinator",
+      "role": "coordinator",
+      "task": "Launch the new pricing page by Friday",
+      "ai": {
+        "model": "claude-opus-5-5",
+        "instructions": "You coordinate this work. Split the goal into parts, hand each part to the block that fits it, keep track of what is finished and report when all of it is done. Do not do the parts yourself.",
+        "provider": "anthropic"
+      },
+      "tools": [
+        "slack",
+        "notion",
+        "github"
+      ],
+      "approval": false,
+      "askText": "",
+      "mode": "parallel",
+      "children": [
+        {
+          "id": "planner",
+          "name": "Planner",
+          "role": "planner",
+          "task": "Break the launch into steps and say who does each one",
+          "ai": {
+            "model": "claude-sonnet-5-5",
+            "instructions": "You plan. Break the goal into small, ordered steps. For each step say what must be true when it is done and which block should do it. Do not carry the steps out.",
+            "provider": "anthropic"
+          },
+          "tools": [
+            "notion"
+          ],
+          "approval": false,
+          "askText": "",
+          "mode": "parallel",
+          "children": [],
+          "sim": {
+            "durationMs": 5000
+          }
+        },
+        {
+          "id": "research",
+          "name": "Researcher",
+          "role": "helper",
+          "task": "Compare the pricing of five competitors",
+          "ai": {
+            "model": "",
+            "instructions": "You help the other blocks. Look up what they ask for, answer briefly and say how sure you are. Do not take over their work.",
+            "provider": "kimi"
+          },
+          "tools": [
+            "notion",
+            "slack"
+          ],
+          "approval": false,
+          "askText": "",
+          "mode": "parallel",
+          "children": [
+            {
+              "id": "scraper",
+              "name": "Scraper",
+              "role": "processor",
+              "task": "Read the pricing pages of Linear, Notion and three more",
+              "ai": {
+                "model": "gemini",
+                "instructions": "You process data. Read what you are given, clean and transform it as the task says, and pass on a result in the same shape every time.",
+                "provider": "gemini"
+              },
+              "tools": [
+                "notion"
+              ],
+              "approval": false,
+              "askText": "",
+              "mode": "parallel",
+              "children": [],
+              "sim": {
+                "durationMs": 5000
+              }
+            },
+            {
+              "id": "analyst",
+              "name": "Analyst",
+              "role": "processor",
+              "task": "Summarize 120 G2 reviews that mention price",
+              "ai": {
+                "model": "",
+                "instructions": "You process data. Read what you are given, clean and transform it as the task says, and pass on a result in the same shape every time.",
+                "provider": "deepseek"
+              },
+              "tools": [
+                "hubspot",
+                "notion"
+              ],
+              "approval": false,
+              "askText": "",
+              "mode": "parallel",
+              "children": [],
+              "sim": {
+                "durationMs": 7000
+              }
+            }
+          ],
+          "sim": {
+            "durationMs": 6000
+          }
+        },
+        {
+          "id": "writer",
+          "name": "Writer",
+          "role": "instructor",
+          "task": "Write the copy for the three plans",
+          "ai": {
+            "model": "claude-sonnet-5-5",
+            "instructions": "You explain. Describe the result step by step in plain words for someone who was not here. Say what to do next and what to watch for.",
+            "provider": "anthropic"
+          },
+          "tools": [
+            "notion",
+            "figma"
+          ],
+          "approval": true,
+          "askText": "Formal or friendly for the plan names? Both drafts are in Notion.",
+          "mode": "parallel",
+          "children": [],
+          "sim": {
+            "durationMs": 8000
+          }
+        },
+        {
+          "id": "coder",
+          "name": "Coder",
+          "role": "coder",
+          "task": "Build the page and wire up checkout",
+          "ai": {
+            "model": "gpt-6-1-sol",
+            "instructions": "You write code. Make the change the step asks for, keep it small, and finish with a short note of what you changed and why.",
+            "provider": "codex"
+          },
+          "tools": [
+            "github",
+            "stripe",
+            "figma"
+          ],
+          "approval": false,
+          "askText": "",
+          "mode": "sequence",
+          "children": [
+            {
+              "id": "tester",
+              "name": "Tester",
+              "role": "helper",
+              "task": "Write and run the checkout tests",
+              "ai": {
+                "model": "gpt-6-luna",
+                "instructions": "You help the other blocks. Look up what they ask for, answer briefly and say how sure you are. Do not take over their work.",
+                "provider": "openai"
+              },
+              "tools": [
+                "github"
+              ],
+              "approval": false,
+              "askText": "",
+              "mode": "parallel",
+              "children": [],
+              "sim": {
+                "durationMs": 6000,
+                "failOnce": true
+              }
+            },
+            {
+              "id": "fixer",
+              "name": "Fixer",
+              "role": "fixer",
+              "task": "Fix whatever the tests found",
+              "ai": {
+                "model": "claude-sonnet-5-5",
+                "instructions": "You fix problems. Find out why it fails, change the smallest part that is wrong, and run the check again. Say what was wrong and what you changed.",
+                "provider": "claudecode"
+              },
+              "tools": [
+                "github"
+              ],
+              "approval": false,
+              "askText": "",
+              "mode": "parallel",
+              "children": [],
+              "sim": {
+                "durationMs": 5000
+              }
+            }
+          ],
+          "sim": {
+            "durationMs": 9000
+          }
+        }
+      ],
+      "sim": {
+        "durationMs": 7000
+      }
+    }
+  }
+}

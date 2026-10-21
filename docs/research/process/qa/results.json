@@ -1,0 +1,117 @@
+{
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "The canvas has the whole page: no title row, breadcrumb or toolbar row above it, only floating controls",
+      "ok": true
+    },
+    {
+      "name": "One block sits in the middle and the other eight branch out around it, joined by arrows, none overlapping",
+      "ok": true
+    },
+    {
+      "name": "Every AI block shows its real brand mark and its role",
+      "ok": true
+    },
+    {
+      "name": "Pan and zoom: dragging the background pans, the buttons and Ctrl+wheel zoom, Fit brings the whole map back",
+      "ok": true
+    },
+    {
+      "name": "Opening a block shows its settings in a floating panel; editing the name updates the block and is saved and restored",
+      "ok": true
+    },
+    {
+      "name": "The role is the person's choice and changes the block's label and default instructions",
+      "ok": true
+    },
+    {
+      "name": "The AI block is the person's choice: Kimi, Ollama, Gemini, Claude Code, Codex, Hermes, a person; a local model is typed",
+      "ok": true
+    },
+    {
+      "name": "Tools, approval and limits are attributes of the block",
+      "ok": true
+    },
+    {
+      "name": "\"Add block\" connects a new block of the chosen role to the selected block; it is selected, named and joined",
+      "ok": true
+    },
+    {
+      "name": "The + handles on the selected block add a block on that side",
+      "ok": true
+    },
+    {
+      "name": "Dragging a block moves it, it keeps the place after a reload, and \"Tidy up\" gives it back to the layout",
+      "ok": true
+    },
+    {
+      "name": "Arrow keys nudge the focused block and Delete asks before removing it; undo brings it back",
+      "ok": true
+    },
+    {
+      "name": "The Tree view shows the same blocks as a tree and the toggle returns to the map",
+      "ok": true
+    },
+    {
+      "name": "Running on the map: arrows animate, the writer needs approval, the tester fails once and is retried, the run ends done",
+      "ok": true
+    },
+    {
+      "name": "Clear returns every block to ready; Stop ends a run and the clock stops",
+      "ok": true
+    },
+    {
+      "name": "A run survives a reload; the structure is frozen while it is active",
+      "ok": true
+    },
+    {
+      "name": "Run from here starts one block and what hangs under it",
+      "ok": true
+    },
+    {
+      "name": "Process settings: goal, cost unit, tidy, export and import; the engine dialog explains how to connect",
+      "ok": true
+    },
+    {
+      "name": "A local-model template lays out Hermes Agent, two Ollama blocks and a person, and says what still needs choosing",
+      "ok": true
+    },
+    {
+      "name": "The library lists, switches, duplicates and deletes processes (with confirmation and undo)",
+      "ok": true
+    },
+    {
+      "name": "Phone: no horizontal overflow, blocks are readable, the dock fits and the settings open as a sheet",
+      "ok": true
+    },
+    {
+      "name": "Phone: a finger drags the background to pan and a block to move it; two fingers pinch to zoom",
+      "ok": true
+    },
+    {
+      "name": "Phone: the run can be started and decided without leaving the page",
+      "ok": true
+    },
+    {
+      "name": "WebKit: the map draws with its arrows, a block is edited and a run reaches the approval",
+      "ok": true
+    },
+    {
+      "name": "REST: the engine chip says connected, the engine's installed models are offered and processes save with versions",
+      "ok": true
+    },
+    {
+      "name": "REST: a run is started on the server; its snapshots, approval and result are shown; decisions are sent as actions",
+      "ok": true
+    },
+    {
+      "name": "REST: a refused save shows its message and keeps the edit; Retry saves again; a conflict offers Reload",
+      "ok": true
+    },
+    {
+      "name": "No page errors and nothing was requested from another origin",
+      "ok": true
+    }
+  ]
+}

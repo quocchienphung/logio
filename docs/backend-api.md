@@ -115,6 +115,24 @@ By default the browser simulates the run (a clock advances the plan, the snapsho
 - each person's action is applied optimistically, then sent: `POST {base}/workspaces/{id}/agent-run/actions` with `{type: "approve"|"deny", id}`, `{type:"stop"}`, `{type:"retry", id, now}`, `{type:"rename", id, title}`, `{type:"move", id, direction}`, `{type:"remove", id}`, `{type:"add", step}` or `{type:"restart", steps}`; the answer may contain `{"data": <RunSnapshot>}`, which replaces the screen's copy. If the request fails, the stored snapshot is reloaded.
 - `RunSnapshot` is validated (`isRunSnapshot`); steps, states, phase, elapsed and approvals are required.
 
+## Process (engine)
+
+The Process page (`/personalize?section=process`) stores its processes as the `process` resource (`ProcessLibrary`, see `docs/research/process/README.md`) and, in simulation, its run as `process-run`. With `serverProcess: true` next to `baseUrl` (or `NEXT_PUBLIC_WORKSPACE_SERVER_PROCESS=1`) a **server** runs the tasks; the page then sends the plan and the person's decisions and shows what the server reports. The page never calls a model; the server can forward each block to a local model server (Ollama), an agent framework (Hermes Agent, Claude Code, Codex) or a chat bot.
+
+Routes under `{base}/workspaces/{id}/process` (same auth headers as the rest of the API):
+
+| Route | Purpose |
+|---|---|
+| `GET /engines` | `{data: [{id, label, provider, local, note?}]}`: the AI blocks the server can run (e.g. installed Ollama models). `id` is stored in a block's `ai.model`. `404`/`204` = not listed; model names are typed instead |
+| `POST /runs` | Body `{processId, process, from?}` (`from` = a block id to run only that block and what hangs under it). Answer `{data: RunSnapshot, version?}` |
+| `GET /runs?processId=…&latest=1` | `{data: RunSnapshot or null}`: the run to show after a reload |
+| `GET /runs/{runId}` | `{data: RunSnapshot, version?}`; polled while the run is active; sends `If-None-Match` with the last `version`/`ETag`, `304` when unchanged |
+| `POST /runs/{runId}/actions` | Body `{type: "approve"/"reject"/"retry"/"dismiss", id}` or `{type: "stop"}`. The answer may carry `{data: RunSnapshot}` |
+
+`RunSnapshot = {id, processId, startedAt, at, state: "running"|"waiting"|"done"|"failed"|"stopped", nodes: {[blockId]: {status, cost, started?, ended?, ask?, error?, attempts?}}}`; times are epoch milliseconds in the **server's** clock (`at` is the moment the snapshot describes, so the page counts time from it). `status` is one of `idle, running, waiting, done, failed, stopped`. A snapshot that does not validate is ignored and the previous state is kept. Errors use `{error: {message}}`; the message is shown to the person (`401/403/404/409/412/429/5xx` map to the usual codes).
+
+A block's JSON includes `role` (`coordinator, planner, coder, fixer, reverter, revoker, instructor, helper, processor, custom`), `ai {provider, model, instructions}` and the optional map position `pos {x, y}`.
+
 ## Testing
 
 - `npm test` runs the unit tests (`src/lib/workspace-backend/workspace-backend.test.mjs`): routes, versions, retries, conflicts, secrets, queries, uploads, run actions.
