@@ -1,0 +1,335 @@
+{
+  "date": "2026-10-21T13:56:30.152Z",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "White workspace frames the painting and its surrounding document without extra titles",
+      "ok": true
+    },
+    {
+      "name": "One continuous color pass builds the painting over ten seconds",
+      "ok": true
+    },
+    {
+      "name": "Paint appears along actual cursor trajectories and stays absent ahead of the wands",
+      "ok": true
+    },
+    {
+      "name": "Autoplay opens browse at ten seconds and replaces the intro history entry",
+      "ok": true
+    },
+    {
+      "name": "Writers type, revise and follow their actual text carets, including after mobile reflow",
+      "ok": true
+    },
+    {
+      "name": "Provider presence follows the chosen agent and dims its teammates",
+      "ok": true
+    },
+    {
+      "name": "Comment popups stream in, collapse to pins and reopen on hover",
+      "ok": true
+    },
+    {
+      "name": "Reading and replying pauses the intro; Escape closes only the popup and resumes it",
+      "ok": true
+    },
+    {
+      "name": "Popup replies stay local and the check button resolves its comment",
+      "ok": true
+    },
+    {
+      "name": "Popup windows fit phones and small landscape screens and remain touch operable",
+      "ok": true
+    },
+    {
+      "name": "Painter tips travel steadily through the old phase boundaries, without teleporting",
+      "ok": true
+    },
+    {
+      "name": "Phone, small phone, tablet, wide desktop and landscape keep all content within the white workspace",
+      "ok": true
+    },
+    {
+      "name": "Resizing during painting redraws its current reveal correctly",
+      "ok": true
+    },
+    {
+      "name": "Keyboard pause/resume and Escape work without visible controls",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion shows finished art without cursors, then continues at ten seconds",
+      "ok": true
+    },
+    {
+      "name": "An asset failure allows retry and recovery",
+      "ok": true
+    },
+    {
+      "name": "Homepage desktop/mobile Guide me links enter this intro; direct browse bypasses it",
+      "ok": true
+    },
+    {
+      "name": "WebKit paints distinct early and final pixels with the same document layout",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors or external runtime service requests occur",
+      "ok": true
+    }
+  ],
+  "evidence": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "root": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 900
+      },
+      "canvas": {
+        "x": 451.21875,
+        "y": 259.078125,
+        "w": 537.546875,
+        "h": 425.828125
+      },
+      "sheet": {
+        "x": 160,
+        "y": 141.078125,
+        "w": 1120,
+        "h": 617.828125
+      },
+      "background": "rgb(255, 255, 255)",
+      "scrollWidth": 1440,
+      "scrollHeight": 900
+    },
+    "blank": {
+      "white": 1,
+      "color": 0,
+      "hash": 1020728977,
+      "width": 538,
+      "height": 426
+    },
+    "finalDifference": {
+      "mean": 0,
+      "wrongFraction": 0
+    },
+    "stages": [
+      {
+        "time": 880,
+        "phase": "color",
+        "white": 0.9834920634920635,
+        "color": 0.007619047619047619,
+        "hash": 2270091837,
+        "width": 538,
+        "height": 426
+      },
+      {
+        "time": 2384,
+        "phase": "color",
+        "white": 0.6933333333333334,
+        "color": 0.15936507936507938,
+        "hash": 142394914,
+        "width": 538,
+        "height": 426
+      },
+      {
+        "time": 4784,
+        "phase": "color",
+        "white": 0.2838095238095238,
+        "color": 0.379047619047619,
+        "hash": 728074528,
+        "width": 538,
+        "height": 426
+      },
+      {
+        "time": 6976,
+        "phase": "color",
+        "white": 0.005714285714285714,
+        "color": 0.4838095238095238,
+        "hash": 2391889810,
+        "width": 538,
+        "height": 426
+      },
+      {
+        "time": 9184,
+        "phase": "final",
+        "white": 0,
+        "color": 0.4895238095238095,
+        "hash": 2008464683,
+        "width": 538,
+        "height": 426
+      }
+    ],
+    "wandCorrelation": {
+      "changed": 264,
+      "near": 264,
+      "fraction": 1,
+      "farUntouched": 1843
+    },
+    "autoplayMs": 10278.40000000596,
+    "history": [
+      "http://localhost:3000/personalize?browse=1"
+    ],
+    "cursorSpeedPxPerMs": {
+      "median": 0.4609964650033902,
+      "maximum": 0.4804614053762986
+    },
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        "canvas": {
+          "x": 48,
+          "y": 193.046875,
+          "w": 294,
+          "h": 232.890625
+        },
+        "sheet": {
+          "x": 16,
+          "y": 116.046875,
+          "w": 358,
+          "h": 611.890625
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 390,
+        "scrollHeight": 844
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 568
+        },
+        "canvas": {
+          "x": 53,
+          "y": 114.234375,
+          "w": 214,
+          "h": 169.515625
+        },
+        "sheet": {
+          "x": 10,
+          "y": 45.234375,
+          "w": 300,
+          "h": 477.515625
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 320,
+        "scrollHeight": 568
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 1024
+        },
+        "canvas": {
+          "x": 215,
+          "y": 283.125,
+          "w": 338,
+          "h": 267.75
+        },
+        "sheet": {
+          "x": 74,
+          "y": 195.125,
+          "w": 620,
+          "h": 633.75
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 768,
+        "scrollHeight": 1024
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "canvas": {
+          "x": 371.21875,
+          "y": 209.078125,
+          "w": 537.546875,
+          "h": 425.828125
+        },
+        "sheet": {
+          "x": 80,
+          "y": 91.078125,
+          "w": 1120,
+          "h": 617.828125
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 1280,
+        "scrollHeight": 800
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080
+        },
+        "canvas": {
+          "x": 691.21875,
+          "y": 349.078125,
+          "w": 537.546875,
+          "h": 425.828125
+        },
+        "sheet": {
+          "x": 400,
+          "y": 231.078125,
+          "w": 1120,
+          "h": 617.828125
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 1920,
+        "scrollHeight": 1080
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 844,
+          "h": 390
+        },
+        "canvas": {
+          "x": 270.5625,
+          "y": 97.046875,
+          "w": 302.859375,
+          "h": 239.90625
+        },
+        "sheet": {
+          "x": 10,
+          "y": 25.046875,
+          "w": 824,
+          "h": 339.90625
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 844,
+        "scrollHeight": 390
+      }
+    ]
+  },
+  "errors": [],
+  "externalOrigins": []
+}

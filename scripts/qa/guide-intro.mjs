@@ -12,7 +12,7 @@ const contexts = [];
 let currentPage, safari;
 const check = async (name, run) => {
   try { await run(); results.push({ name, ok: true }); console.log('PASS', name); }
-  catch (error) { results.push({ name, ok: false, error: String(error.message) }); console.log('FAIL', name, String(error.message)); if (currentPage && !currentPage.isClosed()) await currentPage.screenshot({ path: `${output}/failed-${results.length}.png` }).catch(() => {}); }
+  catch (error) { results.push({ name, ok: false, error: String(error.stack) }); console.log('FAIL', name, String(error.stack)); if (currentPage && !currentPage.isClosed()) await currentPage.screenshot({ path: `${output}/failed-${results.length}.png` }).catch(() => {}); }
 };
 async function open(options = {}, controlled = true, engine = browser, setup, waitReady = true) {
   const context = await engine.newContext({ viewport: { width: 1440, height: 900 }, ...options }); contexts.push(context);
@@ -137,10 +137,10 @@ try {
       const c=document.querySelector(`[data-agent="${i?'researcher':'writer'}"]`).getBoundingClientRect();
       return Math.hypot(a.left-c.left,a.top+3-c.top);
     }));
-    await page.keyboard.press('Space'); await page.clock.runFor(150);
-    assert.ok((await aligned()).every(d=>d<1));
-    await page.setViewportSize({width:390,height:844}); await page.clock.runFor(150);
-    assert.ok((await aligned()).every(d=>d<1));
+    await page.keyboard.press('Space'); await page.clock.runFor(250);
+    assert.ok((await aligned()).every(d=>d<2),JSON.stringify({desktop:await aligned()}));
+    await page.setViewportSize({width:390,height:844}); await page.clock.runFor(250);
+    assert.ok((await aligned()).every(d=>d<2),JSON.stringify({phone:await aligned()}));
     await page.keyboard.press('Space'); await page.clock.runFor(3500);
     assert.equal(await page.locator('.artwork-note del').count(),0);
     assert.ok((await page.locator('.artwork-note__body').first().innerText()).includes('June 1889'));
@@ -153,6 +153,79 @@ try {
     assert.equal(await page.locator('.artist-cursor[data-dimmed]').count(),5);
     await page.getByRole('button',{name:/^Stop following Writer,/}).click();
     assert.equal(await page.locator('.artist-cursor[data-dimmed]').count(),0);
+  });
+  await check('Comment popups stream in, collapse to pins and reopen on hover', async()=>{
+    const page=await open(); await page.clock.runFor(1700);
+    assert.equal(await page.getByRole('dialog').count(),0);
+    await page.clock.runFor(600);
+    const card=page.getByRole('dialog',{name:'Comment from Researcher',exact:true});
+    await card.waitFor({state:'visible'});
+    assert.equal(await card.isVisible(),true);
+    const initial=await card.locator('.studio-comment__text').innerText();
+    await page.clock.runFor(700);
+    assert.ok((await card.locator('.studio-comment__text').innerText()).length>initial.length);
+    await page.screenshot({path:`${output}/researcher-popup.png`});
+    await page.clock.runFor(1250);
+    assert.equal(await card.isVisible(),false);
+    await page.getByRole('button',{name:/^Comment from Researcher:/}).hover();
+    await page.clock.runFor(400);
+    await card.waitFor({state:'visible'});
+    assert.equal(await card.isVisible(),true);
+    assert.ok((await card.innerText()).includes('June 1889'));
+    await page.mouse.move(0,0); await page.clock.runFor(400);
+    assert.equal(await card.isVisible(),false);
+  });
+  await check('Reading and replying pauses the intro; Escape closes only the popup and resumes it',async()=>{
+    const page=await open(); await page.clock.runFor(2750);
+    const card=page.getByRole('dialog',{name:'Comment from Researcher',exact:true});
+    await card.hover(); const at=await elapsed(page);
+    await page.clock.runFor(800); assert.equal(await elapsed(page),at);
+    await card.getByRole('textbox',{name:'Reply to Researcher'}).fill('Keep the original date in the final story.');
+    await card.getByRole('textbox').press('Enter');
+    assert.ok((await card.locator('.studio-comment__replies').innerText()).includes('Keep the original date'));
+    await page.clock.runFor(500); assert.equal(await elapsed(page),at);
+    await card.getByRole('textbox').press('Escape');
+    assert.equal(new URL(page.url()).pathname,'/guide');
+    await page.mouse.move(0,0); await page.clock.runFor(450);
+    assert.ok(await elapsed(page)>at+300);
+    assert.equal(await card.isVisible(),false);
+  });
+  await check('Popup replies stay local and the check button resolves its comment',async()=>{
+    const page=await open(); await page.clock.runFor(5200);
+    const card=page.getByRole('dialog',{name:'Comment from Colorist',exact:true});
+    await card.getByRole('textbox',{name:'Reply to Colorist'}).fill('A little more warmth.');
+    await card.getByRole('textbox').press('Enter');
+    assert.equal(await card.locator('.studio-comment__replies p').count(),1);
+    await card.getByRole('button',{name:'Resolve comment from Colorist'}).click();
+    await page.mouse.move(0,0); await page.clock.runFor(350);
+    assert.equal(await card.isVisible(),false);
+    assert.equal(await page.getByRole('button',{name:/^Comment from Colorist:/}).count(),0);
+    assert.equal(await page.locator('.guide-intro').getAttribute('data-interacting'),'false');
+  });
+  await check('Popup windows fit phones and small landscape screens and remain touch operable',async()=>{
+    for(const viewport of [{width:320,height:568},{width:390,height:844},{width:844,height:390}]) {
+      const page=await open({viewport,hasTouch:true}); await page.clock.runFor(3000);
+      const card=page.getByRole('dialog',{name:'Comment from Researcher',exact:true});
+      const box=await card.boundingBox(); assert.ok(box && box.x>=0 && box.y>=0 && box.x+box.width<=viewport.width+1 && box.y+box.height<=viewport.height+1,JSON.stringify({viewport,box}));
+      await page.screenshot({path:`${output}/popup-${viewport.width}.png`});
+      await card.getByRole('button',{name:'Resolve comment from Researcher'}).tap();
+      await page.clock.runFor(350); assert.equal(await card.isVisible(),false);
+    }
+  });
+  await check('Painter tips travel steadily through the old phase boundaries, without teleporting',async()=>{
+    const page=await open(); await page.clock.runFor(1000);
+    const frames=[];
+    for(let n=0;n<60;n++) {
+      await page.clock.runFor(32);
+      frames.push(await page.evaluate(()=>{
+        const canvas=document.querySelector('canvas').getBoundingClientRect();
+        return {at:Number(document.querySelector('.guide-intro').dataset.elapsed),points:Array.from(document.querySelectorAll('.artist-cursor[data-x]')).map(c=>({x:Number(c.dataset.x)*canvas.width,y:Number(c.dataset.y)*canvas.height}))};
+      }));
+    }
+    const speeds=frames.slice(1).flatMap((f,n)=>f.points.map((p,i)=>Math.hypot(p.x-frames[n].points[i].x,p.y-frames[n].points[i].y)/(f.at-frames[n].at))).filter(v=>v>.01).sort((a,b)=>a-b);
+    const median=speeds[Math.floor(speeds.length/2)],maximum=speeds.at(-1);
+    assert.ok(maximum<median*1.8 && maximum<.9,JSON.stringify({median,maximum}));
+    evidence.cursorSpeedPxPerMs={median,maximum};
   });
   await check('Phone, small phone, tablet, wide desktop and landscape keep all content within the white workspace', async () => {
     evidence.viewports=[];

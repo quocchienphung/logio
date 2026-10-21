@@ -17,7 +17,6 @@
 .guide-intro[data-phase="final"] .guide-intro__handle { opacity: 0; }
 .guide-intro__cursors { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .guide-intro .artist-cursor { opacity: 0; transition: none; }
-.guide-intro .artist-cursor[data-typing] { transition: transform 80ms linear; }
 .guide-intro .artist-cursor:not([data-typing])::before { position: absolute; left: -12px; top: -12px; width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle, #fff8d7b0, #f4d89032 38%, transparent 70%); content: ""; }
 .guide-intro .artist-cursor[data-dimmed] { filter: opacity(.18); }
 .guide-intro .artist-cursor[data-edge="right"] .artist-cursor__flag { left: auto; right: 9px; }

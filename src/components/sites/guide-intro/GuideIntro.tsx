@@ -19,7 +19,7 @@ function positionWriters(page: HTMLElement, elapsed: number, reduced: boolean) {
     if (!anchor || !node) continue;
     const at = anchor.getBoundingClientRect();
     const x = at.left - bounds.left, y = at.top - bounds.top + 3;
-    node.style.transform = `translate3d(${x}px,${y}px,0)`;
+    node.dataset.targetX = String(x); node.dataset.targetY = String(y);
     node.style.opacity = String(reduced ? 0 : Math.min(1, Math.max(0, (elapsed - start) / 220), Math.max(0, (8800 - elapsed) / 350)));
     node.dataset.edge = x > bounds.width - 160 ? "right" : "left";
     node.dataset.bottom = String((bounds.width < 520 && side === "left") || y > bounds.height - 70);
@@ -55,7 +55,9 @@ export function GuideIntro() {
     let painter: StudioPainter | undefined, frame = 0, previous = 0, disposed = false;
     let published = -100, resizeNeeded = true;
     let artBounds = { left: 0, top: 0, width: 1, height: 1 };
-    const nodes = Array.from(root.current?.querySelectorAll<HTMLElement>(".artist-cursor") ?? []).slice(0, 4);
+    const allNodes = Array.from(root.current?.querySelectorAll<HTMLElement>(".artist-cursor") ?? []);
+    const nodes = allNodes.slice(0, 4), writers = allNodes.slice(4);
+    const writerPoints = writers.map(() => ({ x: Number.NaN, y: Number.NaN }));
     const resize = new ResizeObserver(() => {
       resizeNeeded = true;
       if (root.current) positionWriters(root.current, clock.current.elapsed, preference.matches);
@@ -75,6 +77,7 @@ export function GuideIntro() {
 
     function tick(now: number) {
       if (disposed || !painter || !root.current) return;
+      const delta = previous ? Math.min(64, now - previous) : 16;
       if (previous && !clock.current.paused && !clock.current.interacting && !document.hidden) clock.current.elapsed += now - previous;
       previous = now;
       if (resizeNeeded) measure();
@@ -97,6 +100,14 @@ export function GuideIntro() {
         node.dataset.edge = x > root.current.clientWidth - 140 ? "right" : "left";
         node.dataset.bottom = "false";
         node.style.opacity = String(preference.matches ? 0 : Math.min(1, Math.max(0, (t - 260 - i * 45) / 250), Math.max(0, (9000 - t) / 400)));
+      }
+      for (const [i, node] of writers.entries()) {
+        const x = Number(node.dataset.targetX), y = Number(node.dataset.targetY);
+        if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+        const point = writerPoints[i], blend = 1 - Math.exp(-delta / 30);
+        point.x = Number.isFinite(point.x) ? point.x + (x - point.x) * blend : x;
+        point.y = Number.isFinite(point.y) ? point.y + (y - point.y) * blend : y;
+        node.style.transform = `translate3d(${point.x.toFixed(2)}px,${point.y.toFixed(2)}px,0)`;
       }
       if (t >= STUDIO_DURATION && !clock.current.paused && !clock.current.interacting) { router.replace(WORKSPACE_HREF); return; }
       frame = requestAnimationFrame(tick);

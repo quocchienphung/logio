@@ -1,0 +1,88 @@
+{
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "Tracing is a third section after Process: with no run it says so and sends the person to the Process page",
+      "ok": true
+    },
+    {
+      "name": "A run started on the Process page (in another tab) shows up here by itself, live, within seconds",
+      "ok": true
+    },
+    {
+      "name": "The waterfall is built from the run: the first block is the agent run, the others sub-agents, each with model calls, tool calls and a logo",
+      "ok": true
+    },
+    {
+      "name": "Header numbers: duration, cost, tokens, calls and errors count up while the run goes; the heading shows the goal",
+      "ok": true
+    },
+    {
+      "name": "The axis follows the run: round ticks starting at 0s, never more than five, and it moves up as the run gets longer",
+      "ok": true
+    },
+    {
+      "name": "A task that waits for a person shows a \"Waiting for approval\" span that is still running, and the state says Needs you",
+      "ok": true
+    },
+    {
+      "name": "Details: a click opens a window with the span's numbers and input; Esc closes it and puts focus back on the row",
+      "ok": true
+    },
+    {
+      "name": "Keyboard: one row is in the tab order; arrows, Home and End move between rows; Left folds and shows +N, Right opens again",
+      "ok": true
+    },
+    {
+      "name": "Fold finished closes finished blocks to one line each; Expand all opens them again; clicking a chevron folds one block",
+      "ok": true
+    },
+    {
+      "name": "The performance cards read the same trace: where the time went, the critical path and the engines; a row opens that span",
+      "ok": true
+    },
+    {
+      "name": "After the person approves on the Process page, the waiting span closes with the time it took, and the failed try of the tester stays as its own failed span",
+      "ok": true
+    },
+    {
+      "name": "When every block is finished the state turns Done, the clock stops and the numbers settle",
+      "ok": false,
+      "error": "page.screenshot: Timeout 15000ms exceeded. | Call log: | \u001b[2m  - taking page screenshot\u001b[22m | \u001b[2m  - waiting for fonts to load...\u001b[22m"
+    },
+    {
+      "name": "Dark mode: the waterfall follows the theme class and keeps its colors readable",
+      "ok": false,
+      "error": "page.screenshot: Timeout 15000ms exceeded. | Call log: | \u001b[2m  - taking page screenshot\u001b[22m | \u001b[2m  - waiting for fonts to load...\u001b[22m"
+    },
+    {
+      "name": "Several processes: the picker switches which run is shown; a process that has not run says so",
+      "ok": true
+    },
+    {
+      "name": "A loop shows in the trace: the plan ran twice, so the run holds a span for each round, and the deploy asked twice",
+      "ok": false,
+      "error": "Sonnet 5.5 | Gemini | GPT-6.1 Sol | Opus 5.5 | Hermes Agent"
+    },
+    {
+      "name": "Phone: no horizontal overflow; each row stacks (name, time and cost on one line, the bar under it); the numbers wrap to three columns",
+      "ok": true
+    },
+    {
+      "name": "Phone: a tap opens the details inside the screen and a second tap closes it; the cards fall into one column",
+      "ok": true
+    },
+    {
+      "name": "WebKit: the waterfall draws its bars and ticks, a row opens its details and the run counts up",
+      "ok": true
+    },
+    {
+      "name": "Server engine: the newest run is read from the engine; block spans and the calls it reported are shown, none are invented",
+      "ok": true
+    },
+    {
+      "name": "No page errors and nothing was requested from another origin",
+      "ok": true
+    }
+  ]
+}

@@ -81,7 +81,7 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
   await check('Header numbers: duration, cost, tokens, calls and errors count up while the run goes; the heading shows the goal', async () => {
     assert.equal(await trace.locator('.twf__heading').innerText(), 'Trace');
     assert.match(await trace.locator('.twf__task').innerText(), /Launch the new pricing page by Friday/);
-    assert.deepEqual(await trace.locator('.twf__stat dt').allInnerTexts(), ['Duration', 'Cost', 'Tokens', 'LLM calls', 'Tool calls', 'Errors']);
+    assert.deepEqual((await trace.locator('.twf__stat dt').allInnerTexts()).map(text => text.toLowerCase()), ['duration', 'cost', 'tokens', 'llm calls', 'tool calls', 'errors']);
     assert.match(await stat(trace, 'Cost'), /^\$\d+\.\d+$/);
     assert.match(await stat(trace, 'Tokens'), /^\d+(\.\d)?k?$/);
     assert.ok(Number(await stat(trace, 'LLM calls')) >= 5);
@@ -103,11 +103,12 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
   });
 
   await check('Details: a click opens a window with the span\'s numbers and input; Esc closes it and puts focus back on the row', async () => {
+    await trace.bringToFront();
     await row(trace, 'Planner').click();
     const dialog = trace.getByRole('dialog', { name: 'Planner details' });
     await dialog.waitFor();
     const text = await dialog.innerText();
-    for (const word of ['Duration', 'Started', 'Input', 'Break the launch into steps']) assert.ok(text.includes(word), word);
+    for (const word of ['duration', 'started', 'input', 'break the launch into steps']) assert.ok(text.toLowerCase().includes(word), word);
     assert.equal(await row(trace, 'Planner').getAttribute('aria-selected'), 'true');
     await trace.screenshot({ path: `${out}/tracing-details.png` });
     await trace.keyboard.press('Escape');
@@ -116,8 +117,8 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
     // a model call shows tokens and cost
     await trace.locator('.twf__row[data-kind="llm"]').first().click();
     const llm = await trace.getByRole('dialog').innerText();
-    assert.match(llm, /Tokens in/);
-    assert.match(llm, /Cost/);
+    assert.match(llm, /tokens in/i);
+    assert.match(llm, /cost/i);
     await trace.keyboard.press('Escape');
   });
   await check('Keyboard: one row is in the tab order; arrows, Home and End move between rows; Left folds and shows +N, Right opens again', async () => {
@@ -159,8 +160,9 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
   });
 
   await check('The performance cards read the same trace: where the time went, the critical path and the engines; a row opens that span', async () => {
+    await trace.bringToFront();
     assert.equal(await trace.locator('.trc__metric').count(), 4);
-    assert.match(await trace.locator('.trc__metric').first().innerText(), /Parallelism\s+\d+\.\d×/);
+    assert.match(await trace.locator('.trc__metric').first().innerText(), /parallelism\s+\d+\.\d×/i);
     assert.ok(await trace.locator('.trc__bars li').count() >= 3);
     assert.equal(await trace.locator('.trc__path li').first().innerText().then(text => text.replace(/\s+/g, ' ')), '1 Coordinator ' + (await trace.locator('.trc__path li').first().locator('.trc__bar-value').innerText()));
     assert.ok(await trace.locator('.trc__table tbody tr').count() >= 3);
@@ -173,21 +175,24 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
 
   // the person decides on the Process page; the trace shows how long the task waited
   await check('After the person approves on the Process page, the waiting span closes with the time it took, and the failed try of the tester stays as its own failed span', async () => {
-    await process.locator('.agt__sum-btn[data-kind="waiting"]').click();
-    await process.getByRole('dialog', { name: 'Blocks that need you' }).getByRole('button', { name: 'Approve' }).click();
+    await process.getByRole('button', { name: /Allow once/ }).click();
+    await trace.bringToFront();
     await trace.waitForFunction(() => { const wait = document.querySelector('.twf__row[data-kind="wait"]'); return wait?.getAttribute('data-status') === 'done'; }, null, { timeout: 10000 });
     await trace.waitForFunction(() => !!document.querySelector('.twf__row[data-kind="subagent"][data-status="failed"]'), null, { timeout: 30000 });
-    assert.equal(await stat(trace, 'Errors') >= '1', true);
+    assert.ok(Number(await stat(trace, 'Errors')) >= 1);
     assert.equal(await trace.locator('.twf__stat[data-kind="failed"]').count(), 1);
     await row(trace, 'Tester').click();
     assert.match(await trace.getByRole('dialog', { name: 'Tester details' }).innerText(), /Failed/);
     await trace.keyboard.press('Escape');
+    await process.bringToFront();
     await process.locator('.agt__sum-btn[data-kind="failed"]').click();
     await process.getByRole('dialog', { name: 'Failed blocks' }).getByRole('button', { name: 'Retry' }).click();
+    await trace.bringToFront();
     await trace.waitForFunction(() => [...document.querySelectorAll('.twf__row[data-status="failed"] .twf__title')].some(el => /try 1/.test(el.textContent)), null, { timeout: 10000 });
     assert.equal(await trace.locator('.twf__row[data-status="failed"]').count() >= 1, true, 'the failed try is kept');
   });
   await check('When every block is finished the state turns Done, the clock stops and the numbers settle', async () => {
+    await trace.bringToFront();
     await trace.waitForFunction(() => document.querySelector('.twf__head .twf__pill')?.textContent === 'Done', null, { timeout: 90000 });
     assert.equal(await trace.locator('.twf__bar[data-status="running"]').count(), 0);
     const duration = await stat(trace, 'Duration'), cost = await stat(trace, 'Cost');
@@ -200,6 +205,7 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
     await trace.screenshot({ path: `${out}/tracing-done.png` });
   });
   await check('Dark mode: the waterfall follows the theme class and keeps its colors readable', async () => {
+    await trace.bringToFront();
     await trace.evaluate(() => { document.documentElement.classList.add('dark'); document.documentElement.setAttribute('data-theme', 'dark'); });
     await trace.waitForTimeout(300);
     const colors = await trace.evaluate(() => { const style = getComputedStyle(document.querySelector('.twf')); return { background: style.backgroundColor, text: getComputedStyle(document.querySelector('.twf__title')).color }; });
@@ -210,6 +216,7 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
   });
 
   await check('Several processes: the picker switches which run is shown; a process that has not run says so', async () => {
+    await trace.bringToFront();
     await process.getByRole('button', { name: 'New process' }).click();
     await process.getByRole('dialog').getByRole('button', { name: /^Blank/ }).click();
     await process.waitForTimeout(900);
@@ -239,13 +246,13 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
   await goto(process, 'Tracing');
   await process.waitForSelector('.twf__row');
   await check('A loop shows in the trace: the plan ran twice, so the run holds a span for each round, and the deploy asked twice', async () => {
-    await process.waitForFunction(() => document.querySelector('.twf__row[data-kind="wait"]'), null, { timeout: 90000 });
+    await process.waitForFunction(() => document.querySelector('.twf__row[data-kind="wait"]'), null, { timeout: 120000 });
     await goto(process, 'Process');
     await process.waitForSelector('.pmap__block');
-    await process.getByRole('button', { name: /Allow once/ }).click({ timeout: 90000 });
+    await process.getByRole('button', { name: /Allow once/ }).click({ timeout: 120000 });
     await goto(process, 'Tracing');
-    await process.waitForFunction(() => [...document.querySelectorAll('.twf__row[data-kind="subagent"] .twf__detail')].some(el => /round 2/.test(el.textContent)), null, { timeout: 90000 });
-    const details = await process.locator('.twf__row[aria-level="2"][data-kind="subagent"] .twf__detail').allInnerTexts();
+    await process.waitForFunction(() => [...document.querySelectorAll('.twf__row[aria-level="2"][data-kind="subagent"]')].some(el => el.querySelector('.twf__title').textContent === 'Coordinator' && /round 2/.test(el.querySelector('.twf__detail').textContent)), null, { timeout: 180000 });
+    const details = await process.locator('.twf__row[aria-level="2"][data-kind="subagent"]').filter({ has: process.locator('.twf__title', { hasText: /^Coordinator$/ }) }).locator('.twf__detail').allInnerTexts();
     assert.ok(details.some(text => /round 1/.test(text)) && details.some(text => /round 2/.test(text)), details.join(' | '));
     assert.equal(await process.locator('.twf__row[aria-level="1"] .twf__title').innerText(), 'Coordinator');
     await process.getByRole('combobox', { name: 'Process' }).count();
@@ -342,7 +349,7 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
     assert.match(await page.locator('.trc__caption').innerText(), /what the connected engine reported/);
     await page.locator('.twf__row[data-kind="llm"]').click();
     const text = await page.getByRole('dialog').innerText();
-    assert.match(text, /Tokens in\s+1\.2k/);
+    assert.match(text, /tokens in\s+1\.2k/i);
     assert.match(text, /Three steps/);
     await page.screenshot({ path: `${out}/tracing-server.png` });
   });

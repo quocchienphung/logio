@@ -40,7 +40,7 @@ export function AgentComments({ elapsed, reduced, onInteractionChange }: {
         const target = page.querySelector(note.id === "moonlight" ? "[data-painting-frame]" : `[data-comment-anchor="${note.id}"]`);
         if (!target) continue;
         const rect = target.getBoundingClientRect();
-        const x = Math.max(12, Math.min(bounds.width - 40, rect.left - bounds.left + (note.id === "moonlight" ? rect.width * .82 : -24)));
+        const x = Math.max(12, Math.min(bounds.width - 40, rect.left - bounds.left + (note.id === "moonlight" ? rect.width * .82 : -32)));
         const y = Math.max(12, Math.min(bounds.height - 40, rect.top - bounds.top + (note.id === "moonlight" ? rect.height * .23 : note.id === "brushwork" ? 70 : 4)));
         const width = Math.min(310, bounds.width - 32);
         const left = Math.max(16, Math.min(bounds.width - width - 16, x));
@@ -87,7 +87,7 @@ function AgentComment({ note, position, elapsed, reduced, onInteract }: {
   const [replies, setReplies] = useState<string[]>([]);
   const pin = useRef<HTMLButtonElement>(null);
   const agent = artistAgents.find(item => item.id === note.agent) ?? artistAgents[0];
-  const visible = elapsed >= note.at && !resolved && !reduced;
+  const visible = elapsed >= note.at && elapsed < 9550 && !resolved && !reduced;
   const scheduled = elapsed >= note.at && elapsed < note.until;
   const open = visible && !dismissed && (scheduled || hovered || focused || pinned);
   const body = hovered || focused || pinned ? note.text : note.text.slice(0, Math.floor(Math.max(0, elapsed - note.at - 140) / 13));
@@ -99,7 +99,7 @@ function AgentComment({ note, position, elapsed, reduced, onInteract }: {
     pin.current?.focus(); pin.current?.blur();
   };
 
-  return <div className="studio-comment" style={style} data-visible={visible} data-open={open} data-above={position.above} inert={!visible}
+  return <div className="studio-comment" style={style} data-visible={visible} data-open={open} data-above={position.above} inert={!visible} aria-hidden={!visible}
     onPointerEnter={() => { if (!visible) return; setHovered(true); setDismissed(false); onInteract(note.id, true); }}
     onPointerLeave={() => { setHovered(false); if (!focused && !pinned) onInteract(note.id, false); }}
     onFocusCapture={() => { setFocused(true); onInteract(note.id, true); }}

@@ -32,7 +32,6 @@ export function useAutosave<T>(value: T, baseline: T, save: (value: T) => Promis
   const latestSaved = useRef(saved);
   useEffect(() => { latest.current = { value, json, save }; });
   useEffect(() => { latestSaved.current = saved; }, [saved]);
-  useEffect(() => { alive.current = true; return () => { alive.current = false; }; }, []);
 
   const flush = useCallback(async () => {
     if (busy.current) return;
@@ -61,6 +60,10 @@ export function useAutosave<T>(value: T, baseline: T, save: (value: T) => Promis
       if (alive.current) setSaving(false);
     }
   }, []);
+
+  // Leaving the page (another section opens) writes what is still waiting, so the next page sees it: a run started a moment ago
+  // has to be there when the Tracing page loads.
+  useEffect(() => { alive.current = true; return () => { alive.current = false; void flush(); }; }, [flush]);
 
   const dirty = json !== saved;
   useEffect(() => {
