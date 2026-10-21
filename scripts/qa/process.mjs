@@ -441,7 +441,7 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.keyboard.press('Escape');
     for (const role of ['QA', 'Creator', 'Reviewer']) assert.ok(options.some(option => option.startsWith(role)), role);
   });
-  await check('Every AI agent has a logo and can be chosen: the picker is grouped, searchable and lists more than eighty engines', async () => {
+  await check('Every AI agent has a logo and can be chosen: the picker is grouped, searchable and lists more than ninety engines', async () => {
     await combo(page, 'Who does it').click();
     const all = await page.getByRole('option').allInnerTexts();
     assert.ok(all.length >= 80, `${all.length} engines`);

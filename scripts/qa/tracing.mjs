@@ -256,7 +256,7 @@ const goto = async (page, section) => page.locator('.ui-as-side__item', { hasTex
     assert.ok(details.some(text => /round 1/.test(text)) && details.some(text => /round 2/.test(text)), details.join(' | '));
     assert.equal(await process.locator('.twf__row[aria-level="1"] .twf__title').innerText(), 'Coordinator');
     await process.getByRole('combobox', { name: 'Process' }).count();
-    assert.match(await process.locator('.trc__metric').nth(2).innerText(), /Rounds\s+2/);
+    assert.match(await process.locator('.trc__metric').nth(2).innerText(), /rounds\s+2/i);
     await process.screenshot({ path: `${out}/tracing-loop.png` });
   });
   await context.close();

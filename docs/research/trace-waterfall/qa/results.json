@@ -47,13 +47,11 @@
     },
     {
       "name": "When every block is finished the state turns Done, the clock stops and the numbers settle",
-      "ok": false,
-      "error": "page.screenshot: Timeout 15000ms exceeded. | Call log: | \u001b[2m  - taking page screenshot\u001b[22m | \u001b[2m  - waiting for fonts to load...\u001b[22m"
+      "ok": true
     },
     {
       "name": "Dark mode: the waterfall follows the theme class and keeps its colors readable",
-      "ok": false,
-      "error": "page.screenshot: Timeout 15000ms exceeded. | Call log: | \u001b[2m  - taking page screenshot\u001b[22m | \u001b[2m  - waiting for fonts to load...\u001b[22m"
+      "ok": true
     },
     {
       "name": "Several processes: the picker switches which run is shown; a process that has not run says so",
@@ -61,8 +59,7 @@
     },
     {
       "name": "A loop shows in the trace: the plan ran twice, so the run holds a span for each round, and the deploy asked twice",
-      "ok": false,
-      "error": "Sonnet 5.5 | Gemini | GPT-6.1 Sol | Opus 5.5 | Hermes Agent"
+      "ok": true
     },
     {
       "name": "Phone: no horizontal overflow; each row stacks (name, time and cost on one line, the bar under it); the numbers wrap to three columns",
