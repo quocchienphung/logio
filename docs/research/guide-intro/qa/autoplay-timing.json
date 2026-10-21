@@ -1,0 +1,25 @@
+{
+  "samples": [
+    {
+      "wallTime": 3509,
+      "elapsed": 3600,
+      "phase": "sketch"
+    },
+    {
+      "wallTime": 11501,
+      "elapsed": 11600,
+      "phase": "blueprint"
+    },
+    {
+      "wallTime": 22001,
+      "elapsed": 22000,
+      "phase": "color"
+    },
+    {
+      "wallTime": 31507,
+      "elapsed": 31600,
+      "phase": "final"
+    }
+  ],
+  "totalWallTime": 38028
+}

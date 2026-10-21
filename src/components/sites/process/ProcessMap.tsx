@@ -2,14 +2,15 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
-import { Maximize2, Minus, Plus } from "lucide-react";
+import { Hourglass, Maximize2, Minus, Plus, Repeat } from "lucide-react";
 import { AgentCardBody } from "../affectui-agent-tree/agent-card";
 import { durationLabel, flatten, isMuted, statusLabel, type TreeAgent } from "../affectui-agent-tree/tree-model";
-import { BLOCK, boxOf, clampScale, edgeBetween, fitView, freeSpot, layoutMap, zoomAt } from "./map-layout";
+import { BLOCK, anchorOf, blockAt, boxOf, clampScale, edgeBetween, fitView, freeSpot, layoutMap, zoomAt } from "./map-layout";
 import type { Shape } from "./map-layout";
 import type { Box, Point, Side, Size, View } from "./map-layout";
-import { flattenNodes } from "./process-model";
-import type { ProcessNode } from "./process-model";
+import { LinkEditor } from "./LinkEditor";
+import { flattenNodes, linkKind } from "./process-model";
+import type { LinkCheck, ProcessLink, ProcessNode } from "./process-model";
 import { isAttemptCard, taskIdOf } from "./run-view";
 import "../affectui-agent-tree/agent-tree.css";
 import "./process-map.css";
@@ -31,6 +32,16 @@ export interface ProcessMapProps {
   fitKey: string;
   /** A block to bring into view (the one just added). */
   revealId?: string | null;
+  /** The connections drawn on top of the tree, and the one whose card is open. */
+  links: readonly ProcessLink[];
+  selectedLinkId: string | null;
+  onSelectLink: (id: string | null) => void;
+  /** Whether the first block may be connected to the second (asked while a connection is being dragged, and answered with the reason when not). */
+  check: (from: string, to: string) => LinkCheck;
+  /** A connection was dragged from one block onto another. */
+  onConnect: (from: string, to: string) => void;
+  onLinkChange: (id: string, change: Partial<Pick<ProcessLink, "label" | "rounds">>) => void;
+  onLinkRemove: (id: string) => void;
   onSelect: (id: string) => void;
   /** A tap or Enter on a block (not a drag): open its settings. */
   onOpen?: (id: string) => void;
@@ -57,7 +68,7 @@ const GRID = 8;
 const SLOP = 4;
 const sides: Side[] = ["top", "right", "bottom", "left"];
 const sideLabel: Record<Side, string> = { top: "above", right: "to the right of", bottom: "below", left: "to the left of" };
-const roundSize = (size: Size): Size => ({ w: Math.round(size.w / 8) * 8, h: Math.round(size.h / 8) * 8 });
+const roundSize = (size: Size): Size => ({ w: Math.round(size.w), h: Math.round(size.h) });
 
 /** The map is never fitted smaller than this: tiny blocks cannot be read, so a big map is centered and panned instead. */
 const READABLE = 0.55;
@@ -67,7 +78,7 @@ const READABLE = 0.55;
  * to. Drag a block to put it where you want (it keeps that place), drag the background to pan, zoom with Ctrl + wheel, a
  * pinch or the buttons, and use the + on a selected block to connect a new block to it. Arrow keys nudge the focused block.
  */
-export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, onSelect, onOpen, onMove, onAdd, onDelete }: ProcessMapProps) {
+export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, onSelect, onOpen, onMove, onAdd, onDelete }: ProcessMapProps) {
   const [setViewport, viewport] = useSize();
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [sizes, setSizes] = useState<ReadonlyMap<string, Size>>(new Map());
@@ -76,6 +87,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   const [revealed, setRevealed] = useState<string | null>(null);
   const [drag, setDrag] = useState<{ id: string; x: number; y: number } | null>(null);
   const [panning, setPanning] = useState(false);
+  const [connect, setConnect] = useState<{ from: string; side: Side; point: Point; over: string | null } | null>(null);
   const blocks = useRef(new Map<string, HTMLElement>());
   const dragCancel = useRef<null | (() => void)>(null);
   const gesture = useRef({ pointers: new Map<number, Point>(), pinch: 0, pan: null as null | { x: number; y: number; view: View } });
@@ -120,12 +132,16 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     observer.current = new ResizeObserver(entries => {
       for (const entry of entries) { const id = (entry.target as HTMLElement).dataset.block; if (id) pending.set(id, roundSize({ w: (entry.target as HTMLElement).offsetWidth, h: (entry.target as HTMLElement).offsetHeight })); }
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => setSizes(current => {
-        let next: Map<string, Size> | null = null;
-        pending.forEach((size, id) => { const was = current.get(id); if (!was || was.w !== size.w || was.h !== size.h) (next ??= new Map(current)).set(id, size); });
+      frame = requestAnimationFrame(() => {
+        // Taken out of `pending` before the updater runs: an updater must be pure (React may call it twice).
+        const batch = new Map(pending);
         pending.clear();
-        return next ?? current;
-      }));
+        setSizes(current => {
+          let next: Map<string, Size> | null = null;
+          batch.forEach((size, id) => { const was = current.get(id); if (!was || was.w !== size.w || was.h !== size.h) (next ??= new Map(current)).set(id, size); });
+          return next ?? current;
+        });
+      });
     });
     blocks.current.forEach(element => observer.current?.observe(element));
     return () => { cancelAnimationFrame(frame); observer.current?.disconnect(); };
@@ -163,7 +179,8 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   }, []);
 
   function onBackgroundDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if (event.button !== 0 || (event.target as Element).closest(".pmap__block, .pmap__controls")) return;
+    if (event.button !== 0 || (event.target as Element).closest(".pmap__block, .pmap__controls, .pmap__pill, .pmap__editor")) return;
+    if (selectedLinkId) onSelectLink(null);
     const state = gesture.current;
     event.currentTarget.setPointerCapture(event.pointerId);
     if (state.pointers.size === 1) { state.pan = { ...local(event), view }; setPanning(true); }
@@ -183,7 +200,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   // Every finger is tracked wherever it lands (on a block too), so two fingers pinch even when both are on blocks. The
   // second finger cancels a block drag the first one had started.
   function trackDown(event: ReactPointerEvent<HTMLDivElement>) {
-    if ((event.target as Element).closest(".pmap__controls, button")) return;
+    if ((event.target as Element).closest(".pmap__controls, .pmap__editor, button")) return;
     const state = gesture.current;
     state.pointers.set(event.pointerId, local(event));
     if (state.pointers.size === 2) {
@@ -249,6 +266,39 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     else if (event.key === "0") { event.preventDefault(); fit(); }
   }
 
+  // ----- connecting: drag from a + handle onto another block (a connection), or onto empty canvas (a new block there) -----
+  function onHandleDown(event: ReactPointerEvent<HTMLButtonElement>, from: string, side: Side) {
+    if (event.button !== 0) return;
+    event.stopPropagation();
+    if (gesture.current.pointers.size > 1) return;
+    const start = { x: event.clientX, y: event.clientY }, scale = view.scale, shift = { x: view.x, y: view.y };
+    const rect = viewportRef.current?.getBoundingClientRect();
+    const toMap = (e: PointerEvent): Point => ({ x: (e.clientX - (rect?.left ?? 0) - shift.x) / scale, y: (e.clientY - (rect?.top ?? 0) - shift.y) / scale });
+    const boxes = new Map(nodes.map(node => [node.id, boxFor(node.id)] as const));
+    let moved = false;
+    const move = (e: PointerEvent) => {
+      if (gesture.current.pointers.size > 1) return;
+      if (!moved && Math.hypot(e.clientX - start.x, e.clientY - start.y) < SLOP + 3) return;
+      moved = true;
+      const point = toMap(e);
+      setConnect({ from, side, point, over: blockAt(point, boxes, from) });
+    };
+    const finish = (e: PointerEvent | null, drop: boolean) => {
+      dragCancel.current = null;
+      window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", cancel);
+      setConnect(null);
+      if (!e || !drop) return;
+      if (!moved) { addAt(from, side); return; }
+      const point = toMap(e), over = blockAt(point, boxes, from);
+      if (over) onConnect(from, over);
+      else onAdd(from, { x: Math.round(point.x / GRID) * GRID, y: Math.round(point.y / GRID) * GRID });
+    };
+    const up = (e: PointerEvent) => finish(e, true);
+    const cancel = (e: PointerEvent) => finish(e, false);
+    window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", cancel);
+    dragCancel.current = () => finish(null, false);
+  }
+
   const addAt = (parentId: string, side: Side) => {
     const taken = nodes.map(node => boxFor(node.id));
     onAdd(parentId, freeSpot(taken, boxFor(parentId), side));
@@ -257,6 +307,16 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   const stage: CSSProperties = { transform: `translate(${view.x}px, ${view.y}px) scale(${view.scale})` };
   const grid = { "--vx": `${view.x}px`, "--vy": `${view.y}px`, "--vs": view.scale } as CSSProperties;
   const edges = nodes.flatMap(node => node.children.map(child => ({ parent: node.id, child: child.id })));
+  const ids = new Set(nodes.map(node => node.id));
+  const drawn = links.filter(link => ids.has(link.from) && ids.has(link.to)).map(link => {
+    const kind = linkKind(root, link);
+    const edge = edgeBetween(boxFor(link.from), boxFor(link.to), kind === "loop" ? 72 : 44);
+    return { link, kind, edge, live: kind === "loop" && agents.get(link.to)?.status === "running" && (agents.get(link.to)?.round?.current ?? 1) > 1 };
+  });
+  const openLink = drawn.find(item => item.link.id === selectedLinkId);
+  const screenOf = (point: Point): Point => ({ x: view.x + point.x * view.scale, y: view.y + point.y * view.scale });
+  const connectCheck = connect?.over ? check(connect.from, connect.over) : null;
+  const nameOf = (id: string) => agents.get(id)?.name ?? "Block";
   const percent = `${Math.round(clampScale(view.scale) * 100)}%`;
 
   return <div
@@ -268,7 +328,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     <div className="pmap__stage" style={stage}>
       <svg className="pmap__edges" aria-hidden="true" width="1" height="1">
         <defs>
-          {[["pmap-arrow", "pmap__arrow"], ["pmap-arrow-muted", "pmap__arrow pmap__arrow--muted"]].map(([id, className]) => <marker key={id} id={id} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path className={className} d="M 1 1 L 9 5 L 1 9" fill="none" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></marker>)}
+          {[["pmap-arrow", "pmap__arrow"], ["pmap-arrow-muted", "pmap__arrow pmap__arrow--muted"], ["pmap-arrow-loop", "pmap__arrow pmap__arrow--loop"], ["pmap-arrow-wait", "pmap__arrow pmap__arrow--wait"]].map(([id, className]) => <marker key={id} id={id} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path className={className} d="M 1 1 L 9 5 L 1 9" fill="none" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></marker>)}
         </defs>
         {edges.map(({ parent, child }) => {
           const edge = edgeBetween(boxFor(parent), boxFor(child));
@@ -279,6 +339,15 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
             <circle className="agt__dot" cx={edge.from.x} cy={edge.from.y} r="4" />
           </g>;
         })}
+        {drawn.map(({ link, kind, edge, live }) => <g key={link.id} className="pmap__link" data-kind={kind} data-selected={link.id === selectedLinkId ? "" : undefined} data-live={live ? "" : undefined}>
+          <path className="pmap__edge" d={edge.d} markerEnd={`url(#${kind === "loop" ? "pmap-arrow-loop" : "pmap-arrow-wait"})`} />
+          <circle className="agt__dot" cx={edge.from.x} cy={edge.from.y} r="4" />
+        </g>)}
+        {connect && (() => {
+          const box = boxFor(connect.from), from = anchorOf(box, connect.side), reach = 60;
+          const lead = { x: from.x + (connect.side === "right" ? reach : connect.side === "left" ? -reach : 0), y: from.y + (connect.side === "bottom" ? reach : connect.side === "top" ? -reach : 0) };
+          return <path className="pmap__ghost" data-state={connectCheck ? connectCheck.ok ? "ok" : "no" : undefined} d={`M ${from.x} ${from.y} C ${lead.x} ${lead.y}, ${connect.point.x} ${connect.point.y}, ${connect.point.x} ${connect.point.y}`} markerEnd="url(#pmap-arrow-loop)" />;
+        })()}
       </svg>
       {nodes.map(node => {
         const agent = agents.get(node.id);
@@ -288,7 +357,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
         const failedTries = tries.get(node.id) ?? [];
         return <div
           key={node.id} ref={register(node.id)} data-block={node.id}
-          className="pmap__block agt__node" data-status={agent.status} data-selected={selected ? "" : undefined} data-dragging={drag?.id === node.id ? "" : undefined} data-root={node.id === root.id ? "" : undefined}
+          className="pmap__block agt__node" data-status={agent.status} data-selected={selected ? "" : undefined} data-target={connect?.over === node.id ? (connectCheck?.ok ? "ok" : "no") : undefined} data-dragging={drag?.id === node.id ? "" : undefined} data-root={node.id === root.id ? "" : undefined}
           role="group" aria-label={`${agent.name}, ${statusLabel[agent.status]}${agent.badge ? `, ${agent.badge.label}` : ""}`} aria-current={selected ? "true" : undefined} tabIndex={0}
           style={{ left: at.x - BLOCK.w / 2, top: at.y - size.h / 2 }}
           onPointerDown={event => onBlockDown(event, node.id)} onKeyDown={event => onBlockKey(event, node.id)}
@@ -298,9 +367,34 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
           {failedTries.length > 0 && <ul className="pmap__tries" aria-label={`Earlier tries of ${agent.name}`}>
             {failedTries.map((attempt, index) => <li key={attempt.id} title={attempt.error}><span>Try {index + 1} failed</span>{attempt.started !== undefined && attempt.ended !== undefined && <span>{showCost && attempt.cost !== undefined ? `${formatCost(attempt.cost)} · ` : ""}{durationLabel(attempt.ended - attempt.started)}</span>}</li>)}
           </ul>}
-          {selected && !locked && sides.map(side => <button key={side} type="button" className="pmap__add" data-side={side} aria-label={`Add a block ${sideLabel[side]} ${agent.name}`} onClick={() => addAt(node.id, side)}><Plus size={13} /></button>)}
+          {(agent.round?.earlier.length ?? 0) > 0 && <ul className="pmap__tries pmap__tries--rounds" aria-label={`Earlier rounds of ${agent.name}`}>
+            {agent.round!.earlier.map(round => <li key={round.round}><span>Round {round.round} · {statusLabel[round.status].toLowerCase()}</span>{round.started !== undefined && round.ended !== undefined && <span>{showCost ? `${formatCost(round.cost)} · ` : ""}{durationLabel(round.ended - round.started)}</span>}</li>)}
+          </ul>}
+          {selected && !locked && sides.map(side => <button key={side} type="button" className="pmap__add" data-side={side} aria-label={`Add a block ${sideLabel[side]} ${agent.name}. Drag onto another block to connect it.`} title="Click to add a block. Drag onto another block to connect it, or onto empty space for a new one." onPointerDown={event => onHandleDown(event, node.id, side)} onClick={event => { if (event.detail === 0) addAt(node.id, side); }}><Plus size={13} /></button>)}
         </div>;
       })}
+    </div>
+    <div className="pmap__pills">
+      {drawn.map(({ link, kind, edge }) => {
+        const at = screenOf(edge.mid), rounds = link.rounds ?? 2;
+        return <button key={link.id} type="button" className="pmap__pill" data-kind={kind} data-selected={link.id === selectedLinkId ? "" : undefined} style={{ left: at.x, top: at.y }}
+          aria-label={kind === "loop" ? `Loop from ${nameOf(link.from)} back to ${nameOf(link.to)}, up to ${rounds} rounds. Edit` : `${nameOf(link.to)} waits for ${nameOf(link.from)}. Edit`}
+          aria-expanded={link.id === selectedLinkId} onClick={() => onSelectLink(link.id === selectedLinkId ? null : link.id)}
+          onKeyDown={event => { if ((event.key === "Delete" || event.key === "Backspace") && !locked) { event.preventDefault(); onLinkRemove(link.id); } }}>
+          {kind === "loop" ? <Repeat size={12} /> : <Hourglass size={12} />}
+          <span>{link.label ? link.label : kind === "loop" ? `${rounds}×` : "waits"}</span>
+        </button>;
+      })}
+      {openLink && (() => {
+        const mid = screenOf(openLink.edge.mid), at = { x: Math.max(164, Math.min(viewport.w - 164, mid.x)), y: mid.y };
+        return <div className="pmap__editor-anchor" data-above={mid.y > viewport.h - 300 ? "" : undefined} style={{ left: at.x, top: at.y }}>
+          <LinkEditor link={openLink.link} kind={openLink.kind} fromName={nameOf(openLink.link.from)} toName={nameOf(openLink.link.to)} locked={locked}
+            onChange={change => onLinkChange(openLink.link.id, change)} onRemove={() => onLinkRemove(openLink.link.id)} onClose={() => onSelectLink(null)} />
+        </div>;
+      })()}
+      {connect && <div className="pmap__hint" data-state={connectCheck ? connectCheck.ok ? "ok" : "no" : "new"} style={{ left: screenOf(connect.point).x, top: screenOf(connect.point).y }} role="status">
+        {connectCheck ? connectCheck.ok ? (connectCheck.kind === "loop" ? `Loop back to ${nameOf(connect.over!)}` : `${nameOf(connect.over!)} will wait for ${nameOf(connect.from)}`) : connectCheck.reason : "Drop to add a new block here"}
+      </div>}
     </div>
     <div className="pmap__controls" role="toolbar" aria-label="Map view">
       <button type="button" className="pmap__control" aria-label="Zoom out" onClick={() => zoomBy(1 / 1.2)}><Minus size={14} /></button>

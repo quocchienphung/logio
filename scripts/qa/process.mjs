@@ -198,7 +198,7 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
   await check('The + handles on the selected block add a block on that side', async () => {
     await block(page, 'Planner').locator('.agt__name').click();
     const count = (await names(page)).length;
-    await page.getByRole('button', { name: /^Add a block (above|right of|left of|below) Planner$/ }).first().click();
+    await page.getByRole('button', { name: /^Add a block (above|to the right of|to the left of|below) Planner\./ }).first().click();
     assert.equal((await names(page)).length, count + 1);
     assert.equal(await page.locator('.pmap__block[data-selected] .agt__name').innerText(), 'New block');
   });
@@ -378,6 +378,186 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.getByRole('button', { name: /Saved processes/ }).click();
     assert.equal(await page.getByRole('dialog', { name: 'Saved processes' }).locator('.proc-library li').count(), count + 2 - 1);
     await page.keyboard.press('Escape');
+  });
+  await context.close();
+}
+
+// ---------- roles, every AI agent, connections and loops ----------
+{
+  const { context, page } = await open();
+  // Where every edge starts and ends, against the sides of the blocks: no gap, whatever state the cards are in
+  const edgeGaps = () => page.evaluate(() => {
+    const blocks = [...document.querySelectorAll('.pmap__block')].map(el => ({ x: parseFloat(el.style.left), y: parseFloat(el.style.top), w: el.offsetWidth, h: el.offsetHeight }));
+    const near = (point) => blocks.some(b => {
+      const onX = Math.abs(point.x - b.x) <= 1.5 || Math.abs(point.x - (b.x + b.w)) <= 1.5, onY = Math.abs(point.y - b.y) <= 1.5 || Math.abs(point.y - (b.y + b.h)) <= 1.5;
+      const inX = point.x >= b.x - 1.5 && point.x <= b.x + b.w + 1.5, inY = point.y >= b.y - 1.5 && point.y <= b.y + b.h + 1.5;
+      return (onX && inY) || (onY && inX);
+    });
+    return [...document.querySelectorAll('.pmap__edges .pmap__edge')].flatMap(path => {
+      const numbers = path.getAttribute('d').match(/-?\d+(\.\d+)?/g).map(Number);
+      const ends = [{ x: numbers[0], y: numbers[1] }, { x: numbers[numbers.length - 2], y: numbers[numbers.length - 1] }];
+      return ends.filter(point => !near(point)).map(point => `${Math.round(point.x)},${Math.round(point.y)}`);
+    });
+  });
+  await check('Every arrow starts and ends exactly on the side of its block, before a run, during it and after adding blocks (no gap on the way down)', async () => {
+    assert.deepEqual(await edgeGaps(), []);
+    await run(page).click();
+    await waitStatus(page, 'Coder', 'running', 6000);
+    assert.deepEqual(await edgeGaps(), [], 'while the cards change size');
+    await page.waitForFunction(() => document.querySelector('.proc-state')?.textContent === 'Needs you');
+    await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).click();
+    await page.locator('.agt__extra').getByRole('button', { name: 'Clear' }).click();
+    await block(page, 'Planner').locator('.agt__name').click();
+    await page.locator('.proc-dock').getByRole('button', { name: 'Add block' }).click();
+    await page.getByRole('menuitem', { name: /^QA/ }).click();
+    await page.waitForTimeout(400);
+    assert.deepEqual(await edgeGaps(), [], 'after a block was added');
+    await undo(page).click();
+  });
+  await check('Roles: QA, Creator and Reviewer join the others; each role explains itself and offers the sub-blocks and the next role that usually go with it', async () => {
+    await block(page, 'Coder').locator('.agt__name').click();
+    await page.locator('.proc-dock').getByRole('button', { name: 'Add block' }).click();
+    const items = await page.getByRole('menu').getByRole('menuitem').allInnerTexts();
+    for (const role of ['Coordinator', 'Planner', 'Creator', 'Coder', 'QA', 'Reviewer', 'Fixer', 'Reverter', 'Revoker', 'Instructor', 'Helper', 'Processor']) assert.ok(items.some(text => text.startsWith(role)), `${role} in ${items.join(' | ')}`);
+    await page.getByRole('menu').getByRole('menuitem', { name: /^QA/ }).click();
+    assert.equal(await page.locator('.pmap__block[data-selected] .agt__badge').innerText(), 'QA');
+    const guide = page.locator('.proc-guide');
+    const text = await guide.innerText();
+    for (const word of ['Use it', 'Give it', 'It passes on', 'Watch out', 'Add a sub-block', 'Usually next']) assert.ok(text.includes(word), word);
+    assert.match(text, /pass or fail/i);
+    // a sub-block the guide suggests, with its role and task
+    await guide.getByRole('button', { name: /Run the checks/ }).click();
+    assert.equal(await block(page, 'Run the checks').locator('.agt__badge').innerText(), 'QA');
+    // the next role that usually follows
+    await block(page, 'QA').locator('.agt__name').first().click();
+    const before = (await names(page)).length;
+    await page.locator('.proc-guide').getByRole('group', { name: 'Usually next' }).getByRole('button', { name: 'Reviewer' }).click();
+    assert.equal((await names(page)).length, before + 1);
+    assert.equal(await page.locator('.pmap__block[data-selected] .agt__badge').innerText(), 'Reviewer');
+    assert.match(await inspector(page).getByLabel('Instructions').inputValue(), /Judge the result against the goal/);
+    // creator and reviewer are in the role picker too
+    await combo(page, 'Role').click();
+    const options = await page.getByRole('option').allInnerTexts();
+    await page.keyboard.press('Escape');
+    for (const role of ['QA', 'Creator', 'Reviewer']) assert.ok(options.some(option => option.startsWith(role)), role);
+  });
+  await check('Every AI agent has a logo and can be chosen: the picker is grouped, searchable and lists more than eighty engines', async () => {
+    await combo(page, 'Who does it').click();
+    const all = await page.getByRole('option').allInnerTexts();
+    assert.ok(all.length >= 80, `${all.length} engines`);
+    for (const name of ['Claude', 'Claude Code', 'Codex', 'Gemini', 'Kimi', 'Hermes Agent', 'Ollama', 'Cursor', 'Windsurf', 'Cline', 'Devin', 'OpenHands', 'Goose', 'Kiro', 'Trae', 'Grok', 'Perplexity', 'LM Studio', 'Groq', 'OpenRouter', 'CrewAI', 'LangGraph', 'n8n', 'A person']) assert.ok(all.some(text => text.startsWith(name)), name);
+    await page.keyboard.type('cursor');
+    await page.getByRole('option', { name: /^Cursor/ }).first().click();
+    const selected = page.locator('.pmap__block[data-selected]');
+    assert.equal(await selected.locator('.agt__avatar').getAttribute('title'), 'Cursor');
+    assert.ok(await selected.locator('.agt__avatar svg').count() === 1, 'a drawn logo, not initials');
+    await pick(page, 'Who does it', 'Windsurf');
+    assert.equal(await selected.locator('.agt__avatar').getAttribute('title'), 'Windsurf');
+    assert.equal(await page.locator('.proc-chip[data-kind="warn"]').count(), 0, 'no model is required for these');
+    await page.screenshot({ path: `${out}/process-roles.png` });
+  });
+  await check('The person draws the connections: from Fixer back to Coordinator makes a loop with rounds, a label and a card; undo removes it', async () => {
+    await block(page, 'Fixer').locator('.agt__name').click();
+    const handle = page.getByRole('button', { name: /^Add a block .* Fixer/ }).first();
+    const from = await box(handle), to = await box(block(page, 'Coordinator'));
+    await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(to.x + 60, to.y + 40, { steps: 12 });
+    assert.match(await page.locator('.pmap__hint').innerText(), /Loop back to Coordinator/);
+    assert.equal(await block(page, 'Coordinator').getAttribute('data-target'), 'ok');
+    await page.mouse.up();
+    assert.equal(await page.locator('.pmap__link[data-kind="loop"]').count(), 1);
+    assert.equal(await page.locator('.pmap__edge').count() >= 9, true);
+    const editor = page.getByRole('dialog', { name: /Connection from Fixer to Coordinator/ });
+    await editor.waitFor();
+    assert.match(await editor.innerText(), /run again/);
+    assert.equal(await editor.locator('output').innerText(), '2×');
+    await editor.getByRole('button', { name: 'More rounds' }).click();
+    await editor.getByRole('button', { name: 'More rounds' }).click();
+    assert.equal(await editor.locator('output').innerText(), '4×');
+    await editor.getByLabel('Label').fill('until it ships');
+    await page.keyboard.press('Escape');
+    assert.equal(await page.locator('.pmap__editor').count(), 0);
+    const pill = page.locator('.pmap__pill[data-kind="loop"]');
+    assert.equal(await pill.innerText(), 'until it ships');
+    assert.match(await pill.getAttribute('aria-label'), /Loop from Fixer back to Coordinator, up to 4 rounds/);
+    await saved(page);
+    const raw = await storedLibrary(page);
+    assert.deepEqual(raw.processes[0].links.map(link => [link.from, link.to, link.rounds, link.label]), [['fixer', 'launch', 4, 'until it ships']]);
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector('.pmap__block');
+    assert.equal(await page.locator('.pmap__pill[data-kind="loop"]').count(), 1, 'connections survive a reload');
+    assert.deepEqual(await edgeGaps(), []);
+    await page.locator('.pmap__pill[data-kind="loop"]').click();
+    await page.getByRole('dialog', { name: /Connection from Fixer to Coordinator/ }).getByRole('button', { name: 'Remove connection' }).click();
+    assert.equal(await page.locator('.pmap__pill').count(), 0);
+    await page.waitForTimeout(150);
+    await saved(page);
+  });
+  await check('A connection that is not allowed says why; a block can be connected to any other, and the inspector lists and removes connections', async () => {
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForSelector('.pmap__block');
+    await block(page, 'Tester').locator('.agt__name').click();
+    // Tester -> Coder is a loop back (Coder holds Tester), Tester -> Writer waits; Writer -> Tester then would wait for each other
+    await combo(page, 'Connect this block to').click();
+    const options = await page.getByRole('option').allInnerTexts();
+    assert.ok(options.some(text => /Coder\s+loops back/.test(text)), options.join(' | '));
+    assert.ok(options.some(text => /Writer\s+waits for this block/.test(text)));
+    await page.getByRole('option', { name: /^Writer/ }).click();
+    assert.equal(await page.locator('.pmap__pill[data-kind="needs"]').count(), 1);
+    assert.match(await inspector(page).locator('.proc-links').innerText(), /Writer waits for this block/);
+    await page.keyboard.press('Escape');
+    await block(page, 'Writer').locator('.agt__name').click();
+    const refused = page.getByRole('button', { name: /^Add a block .* Writer/ }).first();
+    const hb = await box(refused), target = await box(block(page, 'Tester'));
+    await page.mouse.move(hb.x + hb.width / 2, hb.y + hb.height / 2);
+    await page.mouse.down(); await page.mouse.move(target.x + 50, target.y + 30, { steps: 10 });
+    assert.match(await page.locator('.pmap__hint').innerText(), /wait for each other/);
+    assert.equal(await block(page, 'Tester').getAttribute('data-target'), 'no');
+    await page.mouse.up();
+    assert.match(await page.locator('.proc-notice[data-kind=error]').innerText(), /wait for each other/);
+    assert.equal(await page.locator('.pmap__pill').count(), 1, 'nothing was connected');
+    // dropping on empty space makes a new block there, connected to the one dragged from
+    const count = (await names(page)).length;
+    const hb2 = await box(page.getByRole('button', { name: /^Add a block .* Writer/ }).first());
+    await page.mouse.move(hb2.x + hb2.width / 2, hb2.y + hb2.height / 2);
+    await page.mouse.down(); await page.mouse.move(hb2.x + 30, hb2.y + 330, { steps: 10 });
+    assert.match(await page.locator('.pmap__hint').innerText(), /new block/);
+    await page.mouse.up();
+    assert.equal((await names(page)).length, count + 1);
+    // removing from the inspector
+    await block(page, 'Tester').locator('.agt__name').click();
+    await inspector(page).getByRole('button', { name: /Remove the connection Tester to Writer/ }).click();
+    assert.equal(await page.locator('.pmap__pill').count(), 0);
+  });
+  await check('Deleting a block takes its connections with it; moving a block under another can drop a connection that is no longer allowed', async () => {
+    await block(page, 'Fixer').locator('.agt__name').click();
+    await combo(page, 'Connect this block to').click();
+    await page.getByRole('option', { name: /^Coordinator/ }).click();
+    await page.keyboard.press('Escape');
+    assert.equal(await page.locator('.pmap__pill[data-kind="loop"]').count(), 1);
+    await block(page, 'Fixer').focus();
+    await page.keyboard.press('Delete');
+    await page.getByRole('dialog').getByRole('button', { name: 'Delete', exact: true }).click();
+    await page.waitForFunction(() => document.querySelectorAll('.pmap__pill').length === 0);
+    assert.equal((await storedLibrary(page).then(raw => raw.processes[0].links)) ?? null, null, 'no links field left');
+  });
+  await check('The closed-loop template: the deploy asks, and after the person approves the loop goes round and asks again; the cards say which round', async () => {
+    await page.getByRole('button', { name: 'New process' }).click();
+    await page.getByRole('dialog').getByRole('button', { name: /Closed loop: ship to production/ }).click();
+    await page.waitForSelector('.pmap__block');
+    assert.deepEqual((await names(page)).sort(), ['Coder', 'Coordinator', 'Creator', 'Deployer', 'Fixer', 'Planner', 'QA', 'Reviewer']);
+    assert.equal(await page.locator('.pmap__pill[data-kind="loop"]').count(), 2);
+    assert.equal(await page.locator('.pmap__pill[data-kind="needs"]').count(), 4);
+    assert.deepEqual(await edgeGaps(), []);
+    await run(page).click();
+    await waitStatus(page, 'Deployer', 'waiting', 60000);
+    assert.ok(['done', 'running'].includes(await statusOf(page, 'Reviewer')) || (await statusOf(page, 'Reviewer')) === 'done', 'the reviewer came before the deployer');
+    await page.getByRole('button', { name: /Allow once/ }).click();
+    await page.waitForFunction(() => [...document.querySelectorAll('.agt__round')].some(el => /Round 2\//.test(el.textContent)), null, { timeout: 60000 });
+    assert.ok(await page.locator('.agt__round').count() >= 1, 'a block shows its round');
+    await page.screenshot({ path: `${out}/process-loop.png` });
+    await page.locator('.agt__extra').getByRole('button', { name: 'Stop' }).click();
   });
   await context.close();
 }

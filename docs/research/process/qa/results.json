@@ -82,6 +82,34 @@
       "ok": true
     },
     {
+      "name": "Every arrow starts and ends exactly on the side of its block, before a run, during it and after adding blocks (no gap on the way down)",
+      "ok": true
+    },
+    {
+      "name": "Roles: QA, Creator and Reviewer join the others; each role explains itself and offers the sub-blocks and the next role that usually go with it",
+      "ok": true
+    },
+    {
+      "name": "Every AI agent has a logo and can be chosen: the picker is grouped, searchable and lists more than eighty engines",
+      "ok": true
+    },
+    {
+      "name": "The person draws the connections: from Fixer back to Coordinator makes a loop with rounds, a label and a card; undo removes it",
+      "ok": true
+    },
+    {
+      "name": "A connection that is not allowed says why; a block can be connected to any other, and the inspector lists and removes connections",
+      "ok": true
+    },
+    {
+      "name": "Deleting a block takes its connections with it; moving a block under another can drop a connection that is no longer allowed",
+      "ok": true
+    },
+    {
+      "name": "The closed-loop template: the deploy asks, and after the person approves the loop goes round and asks again; the cards say which round",
+      "ok": true
+    },
+    {
       "name": "Phone: no horizontal overflow, blocks are readable, the dock fits and the settings open as a sheet",
       "ok": true
     },

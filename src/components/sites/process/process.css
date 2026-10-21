@@ -165,3 +165,31 @@
   .proc-treewrap { padding-top: 130px; padding-left: 12px; padding-right: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .proc-workspace *, .proc-workspace *::before, .proc-workspace *::after { transition: none !important; animation-duration: 1ms !important; } }
+
+/* What a role is for: a note under the role picker, with sub-blocks to add */
+.proc-guide { display: grid; gap: 10px; padding: 10px 12px; border-radius: 10px; background: var(--proc-hover); font-size: 12px; line-height: 17px; color: var(--proc-text); }
+.proc-guide > summary { display: flex; align-items: center; gap: 7px; cursor: pointer; font-weight: 550; color: var(--proc-ink); list-style: none; }
+.proc-guide > summary::-webkit-details-marker { display: none; }
+.proc-guide > summary::after { content: ""; margin-left: auto; width: 7px; height: 7px; border-right: 1.5px solid var(--proc-muted); border-bottom: 1.5px solid var(--proc-muted); transform: rotate(45deg); transition: transform 160ms ease; }
+.proc-guide[open] > summary::after { transform: rotate(-135deg); }
+.proc-guide__dot { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; }
+.proc-guide dl { display: grid; gap: 6px; margin: 0; }
+.proc-guide dl > div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 8px; }
+.proc-guide dt { font-weight: 550; color: var(--proc-muted); }
+.proc-guide dd { margin: 0; }
+.proc-guide__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.proc-guide__chips > span:first-child { flex: 0 0 88px; font-weight: 550; color: var(--proc-muted); }
+.proc-guide__chips .proc-chip { min-height: 24px; padding: 0 8px; font-size: 12px; }
+.proc-guide__chips .proc-guide__dot { width: 7px; height: 7px; }
+
+/* Connections of the selected block */
+.proc-links { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.proc-links li { display: flex; align-items: center; gap: 8px; min-height: 34px; padding: 4px 4px 4px 8px; border-radius: 8px; background: var(--proc-hover); }
+.proc-links__icon { display: grid; place-items: center; flex: none; color: var(--proc-accent); }
+.proc-links li[data-kind="needs"] .proc-links__icon { color: var(--proc-muted); }
+.proc-links__text { flex: 1 1 0; min-width: 0; overflow-wrap: anywhere; }
+.proc-links__text em { font-style: normal; color: var(--proc-muted); }
+.proc-links .pmap__stepper { background: var(--proc-panel); --agt-card: var(--proc-hover); --agt-ink: var(--proc-ink); --agt-text: var(--proc-text); }
+.proc-links .pmap__stepper button { width: 22px; height: 22px; }
+.proc-links .pmap__stepper output { min-width: 24px; font-size: 12px; }
+.proc-tag svg { display: inline; vertical-align: -1px; }

@@ -42,3 +42,42 @@
 .pmap__zoom { min-width: 40px; text-align: center; font-size: 12px; font-weight: 500; color: var(--agt-text); font-variant-numeric: tabular-nums; }
 @media (pointer: coarse) { .pmap__control { width: 36px; height: 36px; } }
 @media (prefers-reduced-motion: reduce) { .pmap *, .pmap *::before, .pmap *::after { animation: none !important; transition: none !important; } }
+/* Connections drawn on top of the tree: a loop is dashed in the accent color, a "waits for" link is dotted and quiet */
+.pmap__link .pmap__edge { stroke: var(--agt-accent); stroke-dasharray: 7 5; stroke-width: 1.6; }
+.pmap__link .agt__dot { stroke: var(--agt-accent); }
+.pmap__link[data-kind="needs"] .pmap__edge { stroke: var(--agt-muted); stroke-dasharray: 2 5; }
+.pmap__link[data-kind="needs"] .agt__dot { stroke: var(--agt-muted); }
+.pmap__link[data-selected] .pmap__edge { stroke-width: 2.6; }
+.pmap__link[data-live] .pmap__edge { animation: pmap-flow 900ms linear infinite; }
+.pmap__arrow--loop { stroke: var(--agt-accent); }
+.pmap__arrow--wait { stroke: var(--agt-muted); }
+.pmap__ghost { fill: none; stroke: var(--agt-accent); stroke-width: 1.8; stroke-dasharray: 5 5; stroke-linecap: round; }
+.pmap__ghost[data-state="no"] { stroke: var(--agt-danger-fg); }
+.pmap__block[data-target="ok"] { outline: 2px solid var(--agt-accent); outline-offset: 3px; }
+.pmap__block[data-target="no"] { outline: 2px solid var(--agt-danger-fg); outline-offset: 3px; }
+.pmap__tries--rounds { color: var(--agt-text); }
+.pmap__pills { position: absolute; inset: 0; z-index: 7; pointer-events: none; }
+.pmap__pill { position: absolute; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px 0 6px; border-radius: 11px; background: var(--agt-card); box-shadow: var(--agt-shadow), 0 1px 4px rgba(0, 0, 0, .1); font-size: 11px; font-weight: 500; line-height: 16px; color: var(--agt-accent); white-space: nowrap; pointer-events: auto; cursor: pointer; transform: translate(-50%, -50%); transition: background-color 140ms ease; font-variant-numeric: tabular-nums; }
+.pmap__pill[data-kind="needs"] { color: var(--agt-text); }
+.pmap__pill:hover, .pmap__pill[data-selected] { background: var(--agt-fill); }
+.pmap__pill:focus-visible { outline: 2px solid var(--agt-focus); outline-offset: 2px; }
+.pmap__hint { position: absolute; max-width: 260px; padding: 5px 9px; border-radius: 8px; background: var(--agt-ink); color: var(--agt-card); font-size: 12px; line-height: 16px; pointer-events: none; transform: translate(14px, 14px); box-shadow: var(--agt-pop); }
+.pmap__hint[data-state="no"] { background: var(--agt-danger-fg); color: #fff; }
+.pmap__editor-anchor { position: absolute; width: 0; height: 0; pointer-events: auto; }
+.pmap__editor { position: absolute; left: -150px; top: 20px; display: grid; gap: 10px; width: 300px; padding: 12px; border-radius: 12px; background: var(--agt-card); box-shadow: var(--agt-pop); color: var(--agt-text); font-size: 13px; line-height: 18px; animation: agt-pop 160ms var(--agt-ease) both; cursor: auto; }
+.pmap__editor-anchor[data-above] .pmap__editor { top: auto; bottom: 20px; }
+.pmap__editor-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.pmap__editor-icon { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--agt-fill); color: var(--agt-accent); flex: none; }
+.pmap__editor[data-kind="needs"] .pmap__editor-icon { color: var(--agt-text); }
+.pmap__editor-title { flex: 1 1 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--agt-ink); }
+.pmap__editor-text { margin: 0; font-size: 12px; line-height: 17px; color: var(--agt-muted); }
+.pmap__editor-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pmap__editor-label { display: grid; gap: 4px; justify-content: stretch; }
+.pmap__editor-label > span { font-size: 12px; color: var(--agt-muted); }
+.pmap__editor-actions { display: flex; justify-content: flex-end; }
+.pmap__stepper { display: inline-flex; align-items: center; gap: 2px; padding: 2px; border-radius: 8px; background: var(--agt-fill); }
+.pmap__stepper button { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 6px; color: var(--agt-text); }
+.pmap__stepper button:hover:not(:disabled) { background: var(--agt-card); color: var(--agt-ink); }
+.pmap__stepper button:disabled { opacity: .4; cursor: default; }
+.pmap__stepper output { min-width: 28px; text-align: center; font-weight: 500; color: var(--agt-ink); font-variant-numeric: tabular-nums; }
+@media (pointer: coarse) { .pmap__pill { height: 30px; padding: 0 10px 0 8px; } .pmap__stepper button { width: 34px; height: 34px; } }

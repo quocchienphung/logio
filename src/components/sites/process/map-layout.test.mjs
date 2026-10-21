@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { BLOCK, GAP, boundsOf, boxOf, clampScale, edgeBetween, facingSide, fitView, freeSpot, layoutMap, zoomAt } from "./map-layout.ts";
+import { BLOCK, GAP, anchorOf, blockAt, boundsOf, boxOf, clampScale, edgeBetween, facingSide, fitView, freeSpot, layoutMap, zoomAt } from "./map-layout.ts";
 import { createNode, createSampleProcess, flattenNodes, setPosition, clearPositions, addChild } from "./process-model.ts";
 
 const sample = () => createSampleProcess(new Date("2026-10-21T09:00:00Z")).root;
@@ -126,4 +126,29 @@ test("a tall screen gets rings taller than wide, and fitView never goes below it
   assert.ok(span(wide).w > span(wide).h, "wide map is wider than tall");
   const boxes = [...tall.values()].map(point => boxOf(point, BLOCK));
   assert.ok(fitView(boxes, { w: 390, h: 700 }, 56, {}, 0.55).scale >= 0.55);
+});
+
+test("a bent edge leaves the same sides and bulges to the right of its way; its middle is where a label can sit", () => {
+  const a = { x: 0, y: 0, w: 200, h: 100 }, b = { x: 500, y: 0, w: 200, h: 100 };
+  const straight = edgeBetween(a, b), right = edgeBetween(a, b, 60), left = edgeBetween(a, b, -60);
+  assert.deepEqual([right.from, right.to, right.fromSide, right.toSide], [straight.from, straight.to, straight.fromSide, straight.toSide]);
+  assert.equal(straight.mid.y, straight.from.y, "a level straight edge has its middle level");
+  assert.ok(right.mid.y > straight.mid.y, "bending right of an eastward edge goes south");
+  assert.ok(left.mid.y < straight.mid.y);
+  assert.ok(Math.abs(right.mid.y - straight.mid.y - 45) < 3, "the middle moves by three quarters of the bend");
+  const down = edgeBetween({ x: 0, y: 0, w: 200, h: 100 }, { x: 0, y: 400, w: 200, h: 100 }, 60);
+  assert.ok(down.mid.x < 0 + 100, "bending right of a southward edge goes west");
+});
+
+test("anchors sit exactly on the sides of the box, and blockAt finds the block under a point", () => {
+  const box = { x: 100, y: 50, w: 232, h: 96 };
+  assert.deepEqual(anchorOf(box, "bottom"), { x: 216, y: 146 });
+  assert.deepEqual(anchorOf(box, "right"), { x: 332, y: 98 });
+  const edge = edgeBetween(box, { x: 100, y: 400, w: 232, h: 96 });
+  assert.deepEqual(edge.from, { x: 216, y: 146 }, "the edge leaves at the bottom side of the block, with no gap");
+  assert.deepEqual(edge.to, { x: 216, y: 400 });
+  const boxes = new Map([["a", box], ["b", { x: 150, y: 80, w: 100, h: 100 }]]);
+  assert.equal(blockAt({ x: 160, y: 100 }, boxes), "b", "the later block is on top");
+  assert.equal(blockAt({ x: 160, y: 100 }, boxes, "b"), "a");
+  assert.equal(blockAt({ x: 900, y: 900 }, boxes), null);
 });

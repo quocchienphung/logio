@@ -1,4 +1,6 @@
 import type { AvatarMark, ToolMark } from "../affectui-agent-tree/tree-model.ts";
+import { roster } from "./agent-roster.ts";
+import type { RosterId } from "./agent-roster.ts";
 import { roleIds, roleOf } from "./roles.ts";
 import type { Role } from "./roles.ts";
 
@@ -7,7 +9,9 @@ import type { Role } from "./roles.ts";
  * person) that does it. Pure rules only (no React, no storage): creation, immutable tree edits, and normalizing
  * untrusted data (a saved copy, a backend answer, an imported file) into a value the screen can safely show.
  */
-export type Provider = "anthropic" | "claudecode" | "openai" | "codex" | "gemini" | "kimi" | "hermes" | "ollama" | "qwen" | "deepseek" | "mistral" | "human" | "custom";
+export type CoreProvider = "anthropic" | "claudecode" | "openai" | "codex" | "gemini" | "kimi" | "hermes" | "ollama" | "qwen" | "deepseek" | "mistral" | "human" | "custom";
+/** Every engine a block can be given: the first eleven, a person, a custom engine, and the roster of more AI agents and models. */
+export type Provider = CoreProvider | RosterId;
 export type Mode = "parallel" | "sequence";
 export type CostUnit = "usd" | "credits" | "tokens" | "none";
 
@@ -39,6 +43,14 @@ export interface ProcessNode {
   children: ProcessNode[];
 }
 
+/**
+ * A connection the person drew between two blocks, on top of the tree (each block hangs under one block; this is everything
+ * else). Pointing back at a block that came before (an ancestor) closes a loop: the blocks from there to here run again, for
+ * at most `rounds` rounds in all. Pointing at any other block means "wait for me": that block also starts only after this one
+ * has finished. The tree stays the structure; links never move a block.
+ */
+export interface ProcessLink { id: string; from: string; to: string; label?: string; rounds?: number }
+
 export interface ProcessDoc {
   id: string;
   name: string;
@@ -47,12 +59,18 @@ export interface ProcessDoc {
   createdAt: string;
   updatedAt: string;
   root: ProcessNode;
+  /** The connections drawn on top of the tree. Absent when there are none. */
+  links?: ProcessLink[];
 }
 
 export interface ProcessLibrary { version: 1; activeId: string; processes: ProcessDoc[] }
 
-export const LIMITS = { processes: 50, nodes: 200, depth: 8, name: 80, goal: 300, task: 600, instructions: 4000, model: 120, askText: 300, tools: 6 } as const;
-export const providerIds: readonly Provider[] = ["anthropic", "claudecode", "openai", "codex", "gemini", "kimi", "hermes", "ollama", "qwen", "deepseek", "mistral", "human", "custom"];
+export const LIMITS = { processes: 50, nodes: 200, depth: 8, name: 80, goal: 300, task: 600, instructions: 4000, model: 120, askText: 300, tools: 6, links: 100, label: 40, rounds: 10 } as const;
+/** How many times a loop goes around when nothing else is said (the first pass counts). */
+export const DEFAULT_ROUNDS = 2;
+export const providerIds: readonly Provider[] = ["anthropic", "claudecode", "openai", "codex", "gemini", "kimi", "hermes", "ollama", "qwen", "deepseek", "mistral", ...roster.map(entry => entry.id), "human", "custom"];
+/** Model servers that run on the person's own machine: a run costs no dollars there (in the demo numbers). */
+export const freeInDollars: ReadonlySet<Provider> = new Set<Provider>(["ollama", "lmstudio", "vllm", "xinference"]);
 export { roleIds };
 export const toolIds: readonly ToolMark[] = ["notion", "github", "slack", "figma", "hubspot", "stripe"];
 const costUnits: readonly CostUnit[] = ["usd", "credits", "tokens", "none"];
@@ -177,6 +195,123 @@ export function validParents(root: ProcessNode, id: string): ProcessNode[] {
 
 export const touch = (doc: ProcessDoc, now = new Date()): ProcessDoc => ({ ...doc, updatedAt: now.toISOString() });
 
+/* ---------- connections ---------- */
+/** The ids from a block up to the first block, the block itself included. */
+export function pathToRoot(root: ProcessNode, id: string): string[] {
+  const path: string[] = [];
+  const walk = (node: ProcessNode): boolean => {
+    if (node.id === id) { path.push(node.id); return true; }
+    if (node.children.some(walk)) { path.push(node.id); return true; }
+    return false;
+  };
+  walk(root);
+  return path;
+}
+
+export type LinkKind = "loop" | "needs";
+/** A link back to a block that came before is a loop; a link to any other block means "this one has to finish first". */
+export const linkKind = (root: ProcessNode, link: Pick<ProcessLink, "from" | "to">): LinkKind => pathToRoot(root, link.from).includes(link.to) ? "loop" : "needs";
+
+/**
+ * What has to happen before what. Every block has a start (S) and an end (E): a block starts before what it holds starts and ends
+ * after it ends, a sub-block in a sequence starts after the one before it ends, and a waiting link makes its target start after its
+ * source ends. A new waiting link is refused when its target's start already leads to its source's end: they would wait for each other.
+ */
+function happensBefore(root: ProcessNode, links: readonly ProcessLink[]): Map<string, Set<string>> {
+  const graph = new Map<string, Set<string>>();
+  const edge = (from: string, to: string) => graph.set(from, (graph.get(from) ?? new Set<string>()).add(to));
+  for (const node of flattenNodes(root)) {
+    edge(`S:${node.id}`, `E:${node.id}`);
+    node.children.forEach((child, index) => {
+      edge(`S:${node.id}`, `S:${child.id}`);
+      edge(`E:${child.id}`, `E:${node.id}`);
+      if (node.mode === "sequence" && index > 0) edge(`E:${node.children[index - 1].id}`, `S:${child.id}`);
+    });
+  }
+  for (const link of links) if (linkKind(root, link) === "needs") edge(`E:${link.from}`, `S:${link.to}`);
+  return graph;
+}
+function reaches(graph: Map<string, Set<string>>, from: string, to: string): boolean {
+  const seen = new Set<string>();
+  const stack = [from];
+  while (stack.length) {
+    const id = stack.pop()!;
+    if (id === to) return true;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    graph.get(id)?.forEach(next => stack.push(next));
+  }
+  return false;
+}
+
+export type LinkCheck = { ok: true; kind: LinkKind } | { ok: false; reason: string };
+/** Whether `from` may be connected to `to`, and if not, why (shown to the person). */
+export function checkLink(doc: Pick<ProcessDoc, "root" | "links">, from: string, to: string, ignore?: string): LinkCheck {
+  const { root } = doc, links = (doc.links ?? []).filter(link => link.id !== ignore);
+  const source = findNode(root, from), target = findNode(root, to);
+  if (!source || !target) return { ok: false, reason: "That block is not on the map." };
+  if (from === to) return { ok: false, reason: "A block cannot connect to itself." };
+  if (links.some(link => link.from === from && link.to === to)) return { ok: false, reason: `${source.name} is already connected to ${target.name}.` };
+  if (source.children.some(child => child.id === to)) return { ok: false, reason: `${target.name} is already a sub-block of ${source.name}.` };
+  if (links.length >= LIMITS.links) return { ok: false, reason: `A map can have up to ${LIMITS.links} connections.` };
+  const kind = linkKind(root, { from, to });
+  if (kind === "loop") {
+    if (links.some(link => link.from === from && linkKind(root, link) === "loop")) return { ok: false, reason: `${source.name} already loops back somewhere. A block loops back to one place.` };
+    return { ok: true, kind };
+  }
+  if (flattenNodes(source).some(node => node.id === to)) return { ok: false, reason: `${target.name} is already part of ${source.name}.` };
+  if (reaches(happensBefore(root, links), `S:${to}`, `E:${from}`)) return { ok: false, reason: `${target.name} already has to wait for ${source.name}, so this would make them wait for each other.` };
+  return { ok: true, kind };
+}
+
+export const clampRounds = (rounds: number) => Math.max(2, Math.min(LIMITS.rounds, Math.round(rounds) || DEFAULT_ROUNDS));
+/** Connects two blocks; the same doc comes back when the connection is not allowed. */
+export function addLink(doc: ProcessDoc, from: string, to: string, rounds = DEFAULT_ROUNDS, id = uid("link")): ProcessDoc {
+  const check = checkLink(doc, from, to);
+  if (!check.ok) return doc;
+  const link: ProcessLink = { id, from, to, ...(check.kind === "loop" ? { rounds: clampRounds(rounds) } : {}) };
+  return { ...doc, links: [...(doc.links ?? []), link] };
+}
+export function removeLink(doc: ProcessDoc, id: string): ProcessDoc {
+  if (!doc.links?.some(link => link.id === id)) return doc;
+  const links = doc.links.filter(link => link.id !== id);
+  const { links: removed, ...rest } = doc;
+  void removed;
+  return links.length ? { ...rest, links } : rest;
+}
+export function updateLink(doc: ProcessDoc, id: string, change: Partial<Pick<ProcessLink, "label" | "rounds">>): ProcessDoc {
+  if (!doc.links?.some(link => link.id === id)) return doc;
+  return { ...doc, links: doc.links.map(link => {
+    if (link.id !== id) return link;
+    const next: ProcessLink = { ...link };
+    if ("label" in change) { const label = (change.label ?? "").slice(0, LIMITS.label); if (label.trim()) next.label = label; else delete next.label; }
+    if (change.rounds !== undefined && linkKind(doc.root, link) === "loop") next.rounds = clampRounds(change.rounds);
+    return next;
+  }) };
+}
+/** The loop a block closes (the one it loops back with), if any. */
+export const loopFrom = (doc: Pick<ProcessDoc, "root" | "links">, id: string) => (doc.links ?? []).find(link => link.from === id && linkKind(doc.root, link) === "loop");
+/** The blocks `id` has to wait for besides the one it hangs under. */
+export const waitsFor = (doc: Pick<ProcessDoc, "root" | "links">, id: string) => (doc.links ?? []).filter(link => link.to === id && linkKind(doc.root, link) === "needs").map(link => link.from);
+
+/** Drops connections the tree no longer allows (a block was removed or moved) and gives each loop its rounds; the rest stays in order. */
+export function pruneLinks(doc: ProcessDoc): ProcessDoc {
+  if (!doc.links?.length) return doc;
+  const kept: ProcessLink[] = [];
+  for (const link of doc.links) {
+    const check = checkLink({ root: doc.root, links: kept }, link.from, link.to);
+    if (!check.ok) continue;
+    if (check.kind === "loop" && link.rounds === undefined) kept.push({ ...link, rounds: DEFAULT_ROUNDS });
+    else if (check.kind === "needs" && link.rounds !== undefined) { const { rounds, ...rest } = link; void rounds; kept.push(rest); }
+    else kept.push(link);
+  }
+  if (kept.length === doc.links.length && kept.every((link, index) => link === doc.links![index])) return doc;
+  const { links, ...rest } = doc;
+  void links;
+  return kept.length ? { ...rest, links: kept } : rest;
+}
+
+
 /* ---------- cost formatting ---------- */
 export function costFormatter(unit: CostUnit): (amount: number) => string {
   if (unit === "credits") return amount => `${amount.toFixed(amount >= 10 ? 0 : 1)} cr`;
@@ -220,7 +355,27 @@ export function normalizeProcess(raw: unknown): ProcessDoc | null {
   const id = text(raw.id, 80) || uid("proc");
   const stamp = new Date().toISOString();
   const dated = (value: unknown) => typeof value === "string" && !Number.isNaN(Date.parse(value)) ? value : stamp;
-  return { id, name: text(raw.name, LIMITS.name, "Untitled process") || "Untitled process", goal: text(raw.goal, LIMITS.goal), unit: costUnits.includes(raw.unit as CostUnit) ? raw.unit as CostUnit : "usd", createdAt: dated(raw.createdAt), updatedAt: dated(raw.updatedAt), root };
+  const doc: ProcessDoc = { id, name: text(raw.name, LIMITS.name, "Untitled process") || "Untitled process", goal: text(raw.goal, LIMITS.goal), unit: costUnits.includes(raw.unit as CostUnit) ? raw.unit as CostUnit : "usd", createdAt: dated(raw.createdAt), updatedAt: dated(raw.updatedAt), root };
+  return pruneLinks(withLinks(doc, raw.links));
+}
+
+/** Connections from untrusted data: only well-formed ones between blocks that exist; pruneLinks then drops the ones the tree does not allow. */
+function withLinks(doc: ProcessDoc, raw: unknown): ProcessDoc {
+  if (!Array.isArray(raw)) return doc;
+  const ids = new Set(flattenNodes(doc.root).map(node => node.id));
+  const seen = new Set<string>();
+  const links: ProcessLink[] = [];
+  for (const item of raw.slice(0, LIMITS.links)) {
+    if (!isRecord(item)) continue;
+    const from = text(item.from, 80), to = text(item.to, 80);
+    if (!ids.has(from) || !ids.has(to)) continue;
+    let id = text(item.id, 80);
+    if (!id || seen.has(id)) id = uid("link");
+    seen.add(id);
+    const label = text(item.label, LIMITS.label).trim(), rounds = finite(item.rounds);
+    links.push({ id, from, to, ...(label ? { label } : {}), ...(rounds !== undefined ? { rounds: clampRounds(rounds) } : {}) });
+  }
+  return links.length ? { ...doc, links } : doc;
 }
 
 /** A saved library, or null when it is not one (the screen then shows its retry notice and keeps the stored copy). */
@@ -288,14 +443,63 @@ export function createLocalProcess(now = new Date()): ProcessDoc {
   };
 }
 
+
+/**
+ * The closed loop: the blocks of a software team that go round and round until the work is shipped. The Coordinator splits the goal,
+ * the Planner plans it, the Creator makes the spec, the Coder builds it and QA checks it (with the Fixer looping back to QA), the
+ * Reviewer judges it and the Deployer ships it, but only after a person approves. The Deployer then loops back to the Coordinator for
+ * the next round. Nothing here deploys anything: it is a plan for an engine to run, and the simulated engine only plays it.
+ */
+export function createLoopProcess(now = new Date()): ProcessDoc {
+  const stamp = now.toISOString();
+  const role = (id: Role) => roleOf(id).instructions;
+  return {
+    id: "proc-loop", name: "Ship to production, round and round", goal: "Plan, build, check, review and deploy the change, then go round again for the next one", unit: "usd", createdAt: stamp, updatedAt: stamp,
+    root: node("loop-coordinator", "Coordinator", "Own the goal, hand each part to the right block and decide whether to go another round", { provider: "anthropic", model: "claude-opus-5-5", instructions: role("coordinator") }, {
+      role: "coordinator", tools: ["slack", "notion"], sim: { durationMs: 4000 },
+      children: [
+        node("loop-planner", "Planner", "Break the change into small steps and say who does each one", { provider: "anthropic", model: "claude-sonnet-5-5", instructions: role("planner") }, { role: "planner", tools: ["notion"], sim: { durationMs: 4000 } }),
+        node("loop-creator", "Creator", "Write the spec and the copy the change needs", { provider: "gemini", model: "gemini", instructions: role("creator") }, { role: "creator", tools: ["notion", "figma"], sim: { durationMs: 5000 } }),
+        node("loop-coder", "Coder", "Build the change in small commits", { provider: "codex", model: "gpt-6-1-sol", instructions: role("coder") }, {
+          role: "coder", tools: ["github"], sim: { durationMs: 6000 },
+          children: [
+            node("loop-qa", "QA", "Run the checks and try the main flow; report pass or fail with evidence", { provider: "openai", model: "gpt-6-luna", instructions: role("qa") }, {
+              role: "qa", tools: ["github"], sim: { durationMs: 4000 },
+              children: [
+                node("loop-fixer", "Fixer", "Fix whatever QA found, then hand back to QA", { provider: "claudecode", model: "claude-sonnet-5-5", instructions: role("fixer") }, { role: "fixer", tools: ["github"], sim: { durationMs: 4000 } }),
+              ],
+            }),
+          ],
+        }),
+        node("loop-reviewer", "Reviewer", "Judge the result against the goal and approve it or send it back", { provider: "anthropic", model: "claude-opus-5-5", instructions: role("reviewer") }, { role: "reviewer", tools: ["github", "slack"], sim: { durationMs: 4000 } }),
+        node("loop-deployer", "Deployer", "Build and publish the approved change", { provider: "hermes", model: "", instructions: role("processor") }, {
+          role: "processor", tools: ["github", "slack"], approval: true, askText: "Deploy this change to production?", sim: { durationMs: 5000 },
+        }),
+      ],
+    }),
+    links: [
+      { id: "loop-after-plan", from: "loop-planner", to: "loop-creator" },
+      { id: "loop-after-spec", from: "loop-creator", to: "loop-coder" },
+      { id: "loop-after-build", from: "loop-coder", to: "loop-reviewer" },
+      { id: "loop-after-review", from: "loop-reviewer", to: "loop-deployer" },
+      { id: "loop-fix-again", from: "loop-fixer", to: "loop-qa", rounds: 3, label: "until it passes" },
+      { id: "loop-next-round", from: "loop-deployer", to: "loop-coordinator", rounds: 2, label: "next release" },
+    ],
+  };
+}
+
 export const templates = [
   { id: "launch", label: "Pricing page launch", description: "Several AI blocks, one approval, one task that fails once", create: createSampleProcess },
   { id: "local", label: "Local model reply", description: "Hermes Agent and Ollama on this machine, a person approves", create: createLocalProcess },
+  { id: "loop", label: "Closed loop: ship to production", description: "Planner, Creator, Coder, QA, Reviewer, Fixer and Deployer go round and round; a person approves each deploy", create: createLoopProcess },
 ] as const;
 
 /** A copy of a template as a new process (fresh ids, so it can sit next to the original). */
 export function instantiate(doc: ProcessDoc, now = new Date()): ProcessDoc {
-  const fresh = (item: ProcessNode): ProcessNode => ({ ...item, id: uid(), children: item.children.map(fresh) });
+  const renamed = new Map<string, string>();
+  const fresh = (item: ProcessNode): ProcessNode => { const id = uid(); renamed.set(item.id, id); return { ...item, id, children: item.children.map(fresh) }; };
   const stamp = now.toISOString();
-  return { ...doc, id: uid("proc"), createdAt: stamp, updatedAt: stamp, root: fresh(doc.root) };
+  const root = fresh(doc.root);
+  const links = doc.links?.map(link => ({ ...link, id: uid("link"), from: renamed.get(link.from) ?? link.from, to: renamed.get(link.to) ?? link.to }));
+  return { ...doc, id: uid("proc"), createdAt: stamp, updatedAt: stamp, root, ...(links?.length ? { links } : {}) };
 }

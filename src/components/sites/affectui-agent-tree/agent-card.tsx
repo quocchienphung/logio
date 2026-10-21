@@ -35,6 +35,7 @@ export function AgentCardBody({ agent, now, formatCost, showCost, actions, fold 
     </p>
     <div className="agt__meta">
       {agent.badge && <span className="agt__badge" style={agent.badge.color ? { "--agt-badge": agent.badge.color } as React.CSSProperties : undefined}>{agent.badge.label}</span>}
+      {agent.round && agent.round.of > 1 && <span className="agt__round" title={`Pass ${agent.round.current} of ${agent.round.of} of a loop`}>Round {agent.round.current}/{agent.round.of}</span>}
       <span className="agt__cost">
         {showCost && agent.status !== "idle" && <><span className="agt__amount" data-live={branchLive(agent) ? "" : undefined}>{formatCost(cost)}</span>{busy !== undefined && " · "}</>}
         {busy !== undefined && <span className="agt__time">{durationLabel(busy)}</span>}

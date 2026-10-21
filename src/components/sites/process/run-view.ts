@@ -16,11 +16,15 @@ interface ViewOptions { snapshot: RunSnapshot | null; engines?: readonly EngineI
 
 function agentOf(node: ProcessNode, run: NodeRun | undefined, snapshot: RunSnapshot | null, engines: readonly EngineInfo[]): TreeAgent {
   const idle = !snapshot;
+  const earlier = run?.rounds ?? [];
+  // A loop that ran the block again: the card shows the newest pass, and what the block cost is what every pass cost.
+  const cost = run && earlier.length ? run.cost + earlier.reduce((sum, round) => sum + round.cost, 0) : run?.cost;
   return {
     id: node.id, name: node.name, task: node.task, model: modelLabel(node.ai.provider, node.ai.model, engines), mark: markOf(node.ai.provider),
     initials: node.ai.provider === "human" ? "ME" : node.name.slice(0, 2), tools: node.tools,
     ...(node.role !== "custom" ? { badge: { label: roleOf(node.role).label, color: roleOf(node.role).color } } : {}),
-    status: idle ? "idle" : run?.status ?? "idle", ask: run?.ask, error: run?.error, cost: run?.cost, started: run?.started, ended: run?.ended,
+    status: idle ? "idle" : run?.status ?? "idle", ask: run?.ask, error: run?.error, cost, started: run?.started, ended: run?.ended,
+    ...(run?.of && run.of > 1 ? { round: { current: run.round ?? 1, of: run.of, earlier: earlier.map(round => ({ round: round.round, status: round.status, cost: round.cost, started: round.started, ended: round.ended })) } } : {}),
   };
 }
 

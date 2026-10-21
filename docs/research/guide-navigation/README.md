@@ -2,6 +2,8 @@
 
 Route: `/personalize?browse=1&group=sales`. Implementation: `src/components/sites/guide-navigation/`.
 
+Homepage Guide me now enters `/guide`, a collaborative painting intro that automatically continues to `/personalize?browse=1`. See [intro reference, timing and QA](../guide-intro/README.md). Direct browse links retain immediate access to this selector.
+
 ## Touch fixes — 2026-10-20
 
 - Previously, the page used `touch-action: pan-y` and recognized horizontal swipes only. A native vertical drag through the list produced `pointercancel` as the browser took over scrolling; touch's implicit pointer capture also prevented row `pointerenter` events from following the finger.

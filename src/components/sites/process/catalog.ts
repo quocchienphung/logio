@@ -1,4 +1,5 @@
 import { assistantModels } from "../affectui-assistant/assistant-models.ts";
+import { roster } from "./agent-roster.ts";
 import type { Provider, ProcessNode } from "./process-model.ts";
 import type { EngineInfo } from "./engine.ts";
 
@@ -10,7 +11,8 @@ import type { EngineInfo } from "./engine.ts";
  */
 export interface ProviderInfo { id: Provider; label: string; hint: string; group: string; local: boolean; needsModel: boolean; placeholder: string }
 
-export const providers: readonly ProviderInfo[] = [
+const groupOrder = ["Hosted models", "Coding agents", "Agent frameworks", "Local and open", "Routers and clouds", "Other"];
+const listed: ProviderInfo[] = [
   { id: "anthropic", label: "Claude", hint: "Anthropic", group: "Hosted models", local: false, needsModel: true, placeholder: "Pick a Claude model" },
   { id: "claudecode", label: "Claude Code", hint: "Anthropic's coding agent", group: "Coding agents", local: false, needsModel: false, placeholder: "Optional: a Claude model" },
   { id: "openai", label: "ChatGPT", hint: "OpenAI", group: "Hosted models", local: false, needsModel: true, placeholder: "Pick a ChatGPT model" },
@@ -22,9 +24,12 @@ export const providers: readonly ProviderInfo[] = [
   { id: "qwen", label: "Qwen", hint: "Open models, Alibaba", group: "Local and open", local: true, needsModel: false, placeholder: "Optional: the Qwen model to use" },
   { id: "deepseek", label: "DeepSeek", hint: "Open models", group: "Local and open", local: true, needsModel: false, placeholder: "Optional: the DeepSeek model to use" },
   { id: "mistral", label: "Mistral", hint: "Open models", group: "Local and open", local: true, needsModel: false, placeholder: "Optional: the Mistral model to use" },
+  ...roster.map((entry): ProviderInfo => ({ id: entry.id, label: entry.label, hint: entry.hint, group: entry.group, local: entry.local, needsModel: false, placeholder: `Optional: the ${entry.label} model or setup to use` })),
   { id: "human", label: "A person", hint: "Decides or writes it themselves", group: "Other", local: false, needsModel: false, placeholder: "" },
   { id: "custom", label: "Custom engine", hint: "Your own chat bot or agent", group: "Other", local: false, needsModel: false, placeholder: "The engine's id" },
 ];
+/** Grouped by kind, in the order the picker shows them; inside a group the order above is kept. */
+export const providers: readonly ProviderInfo[] = groupOrder.flatMap(group => listed.filter(item => item.group === group));
 
 export const providerOf = (id: Provider) => providers.find(item => item.id === id) ?? providers[0];
 

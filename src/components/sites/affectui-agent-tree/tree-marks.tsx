@@ -13,15 +13,19 @@ import type { AgentStatus, AvatarMark, ToolMark } from "./tree-model";
  * Both files are generated static markup, never user input.
  */
 export const markNames: Record<AvatarMark | ToolMark, string> = {
+  ...(Object.fromEntries(Object.entries(aiMarks).map(([id, mark]) => [id, mark.title])) as Record<AiMarkId, string>),
   anthropic: "Anthropic", openai: "OpenAI", gemini: "Gemini", hermes: "Hermes Agent", ollama: "Ollama", kimi: "Kimi", codex: "Codex", claudecode: "Claude Code", qwen: "Qwen", deepseek: "DeepSeek", mistral: "Mistral",
   notion: "Notion", github: "GitHub", slack: "Slack", figma: "Figma", hubspot: "HubSpot", stripe: "Stripe",
 };
+
+/** Logos whose artwork is dark on dark: in dark mode they are lifted so they can be seen. */
+const darkInk: ReadonlySet<string> = new Set(["langgraph", "deepinfra", "gemma", "fireworks", "unsloth"]);
 
 export function Mark({ id }: { id: AvatarMark | ToolMark }) {
   const uid = useId().replace(/[^\w-]/g, "");
   if (id in aiMarks) {
     const mark = aiMarks[id as AiMarkId];
-    return <svg className="agt__mark" data-mono={mark.mono ? "" : undefined} viewBox={mark.viewBox} fill={mark.fill ?? undefined} fillRule={(mark.fillRule as "evenodd" | null) ?? undefined} aria-hidden="true" dangerouslySetInnerHTML={{ __html: mark.html.replaceAll("__uid__", uid) }} />;
+    return <svg className="agt__mark" data-mono={mark.mono ? "" : undefined} data-dim={darkInk.has(id) ? "" : undefined} viewBox={mark.viewBox} fill={mark.fill ?? undefined} fillRule={(mark.fillRule as "evenodd" | null) ?? undefined} aria-hidden="true" dangerouslySetInnerHTML={{ __html: mark.html.replaceAll("__uid__", uid) }} />;
   }
   const icon = brandIcons[id as keyof typeof brandIcons];
   // A gradient id must be unique in the document, and the same logo can sit on many cards.

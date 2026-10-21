@@ -55,7 +55,7 @@ export function createSimulatedEngine(): ProcessEngine {
     async start(_workspace, doc, from, now) {
       const root = from ? findNode(doc.root, from) : doc.root;
       if (!root) throw new BackendError("not-found", "That task is not in this process any more.");
-      return { kind: "simulated", log: startLog(root, doc.id, doc.unit, now) };
+      return { kind: "simulated", log: startLog(root, doc.id, doc.unit, now, undefined, doc.links) };
     },
     async act(_workspace, handle, action, now) {
       if (handle.kind !== "simulated") throw new BackendError("invalid", "This run belongs to another engine.");

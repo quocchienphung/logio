@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
 import type { Reducer } from "react";
-import { AlertTriangle, Check, FolderOpen, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Settings2, Square, Undo2, X } from "lucide-react";
-import { BackendError } from "@/lib/workspace-backend";
+import { AlertTriangle, Check, FolderOpen, Hourglass, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, Square, Undo2, X } from "lucide-react";
 import type { SnapshotSource } from "@/lib/workspace-backend";
 import { downloadFile } from "../affectui-crm/workspace-state";
 import { AgentTree } from "../affectui-agent-tree/AgentTree";
@@ -16,7 +15,7 @@ import { ConfirmDialog, ConnectDialog, LibraryDialog, NewProcessDialog, Settings
 import { ProcessMap } from "./ProcessMap";
 import { ProcessPermissions } from "./ProcessPermissions";
 import { roles } from "./roles";
-import type { Role } from "./roles";
+import type { Role, RoleStep } from "./roles";
 import type { Point } from "./map-layout";
 import { problemsOf, providerOf } from "./catalog";
 import { configuredEngine, handleNow, simulatedHandle } from "./engine";
@@ -24,30 +23,19 @@ import type { EngineInfo, ProcessEngine, RunHandle } from "./engine";
 import { createHistory, historyReducer } from "./history";
 import type { History, HistoryAction } from "./history";
 import {
-  addChild, costFormatter, createBlankProcess, createLibrary, createNode, createSampleProcess, duplicateNode, findNode, flattenNodes, instantiate, LIMITS, moveNode, normalizeLibrary,
-  normalizeProcess, parentNode, removeNode, reparentNode, setPosition, clearPositions, templates, touch, updateNode, countNodes,
+  addChild, addLink, checkLink, costFormatter, createBlankProcess, createLibrary, createNode, createSampleProcess, DEFAULT_ROUNDS, duplicateNode, findNode, flattenNodes, instantiate, LIMITS, loopFrom, moveNode, 
+  normalizeProcess, parentNode, pruneLinks, removeLink, removeNode, reparentNode, setPosition, clearPositions, templates, touch, uid, updateLink, updateNode, countNodes, waitsFor,
 } from "./process-model";
 import type { CostUnit, ProcessDoc, ProcessLibrary, ProcessNode } from "./process-model";
-import { emptyRunStore, isActive, normalizeRunStore } from "./run-model";
+import { decisionId, emptyRunStore, isActive } from "./run-model";
 import type { RunAction, RunStore } from "./run-model";
 import { buildTree, taskIdOf } from "./run-view";
+import { createLocalProcessSource, createLocalRunSource } from "./local-sources";
 import { useAutosave } from "./use-autosave";
 import { peekTick, useTicker } from "./use-ticker";
 import "./process.css";
 
-/* ---------- data sources ---------- */
-export function createLocalProcessSource(key: string): SnapshotSource<ProcessLibrary> {
-  return {
-    async load() { const saved = localStorage.getItem(key); if (!saved) return null; const value = normalizeLibrary(JSON.parse(saved)); if (!value) throw new BackendError("invalid", "The saved processes are invalid. Your stored copy has been kept."); return value; },
-    async save(library) { localStorage.setItem(key, JSON.stringify(library)); },
-  };
-}
-export function createLocalRunSource(key: string): SnapshotSource<RunStore> {
-  return {
-    async load() { const saved = localStorage.getItem(key); return saved ? normalizeRunStore(JSON.parse(saved)) : null; },
-    async save(store) { localStorage.setItem(key, JSON.stringify(store)); },
-  };
-}
+export { createLocalProcessSource, createLocalRunSource } from "./local-sources";
 
 export interface ProcessProps {
   workspaceId: string;
@@ -111,6 +99,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const [panel, setPanel] = useState(false);
   const [palette, setPalette] = useState(false);
   const [revealId, setRevealId] = useState<string | null>(null);
+  const [pickedLinkId, setPickedLinkId] = useState<string | null>(null);
   const [tidied, setTidied] = useState(0);
   const [permissionReview, setPermissionReview] = useState<{ id?: string; revision: number }>({ revision: 0 });
   const actionPending = useRef(false);
@@ -174,11 +163,13 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   }
   async function act(action: RunAction) {
     if (!handle || actionPending.current) return false;
+    // A block in a later pass of a loop has its own name for the engine; the screen only knows the block.
+    const sent: RunAction = action.type === "stop" ? action : { ...action, id: decisionId(snapshot, action.id) };
     actionPending.current = true;
     runRevision.current += 1;
     setNotice(null);
     try {
-      const next = await engine.act(workspaceId, handle, action, Date.now());
+      const next = await engine.act(workspaceId, handle, sent, Date.now());
       setHandles(current => current[doc.id] === handle ? { ...current, [doc.id]: next } : current);
       return true;
     } catch (error) { fail(error, "That did not work."); return false; }
@@ -194,7 +185,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const edit = useCallback((change: (doc: ProcessDoc) => ProcessDoc, key?: string) => dispatch({ type: "edit", key, at: Date.now(), next: current => {
     const index = current.processes.findIndex(item => item.id === current.activeId);
     if (index < 0) return current;
-    const before = current.processes[index], after = change(before);
+    const before = current.processes[index], after = pruneLinks(change(before));
     if (after === before) return current;
     const processes = [...current.processes];
     processes[index] = touch(after);
@@ -205,12 +196,12 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const locked = active;
 
   /** Connects a new block to `parentId`. With a role the block starts as that role (its name, task text and instructions); with a position it goes there. */
-  function addBlock(parentId: string, options: { role?: Role; pos?: Point } = {}) {
+  function addBlock(parentId: string, options: { role?: Role; pos?: Point; name?: string; task?: string } = {}) {
     const parent = findNode(doc.root, parentId);
     if (!parent) return;
     const info = options.role ? roles.find(item => item.id === options.role) : undefined;
     const node = createNode({
-      name: info?.label ?? "New block", role: options.role ?? "custom", ...(info ? { task: info.description } : {}),
+      name: options.name ?? info?.label ?? "New block", role: options.role ?? "custom", ...(options.task ? { task: options.task } : info ? { task: info.description } : {}),
       ai: { ...parent.ai, instructions: info?.instructions ?? "" }, ...(options.pos ? { pos: options.pos } : {}),
     });
     const next = addChild(doc.root, parentId, node);
@@ -224,6 +215,20 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     if (narrow) setDialog("inspector"); else setPanel(true);
   }
   const moveBlock = (id: string, pos: Point) => editRoot(root => setPosition(root, id, pos), `pos:${id}`);
+  /** The person drew a connection: from any block to any other. A loop (back to an earlier block) opens its card to set the rounds. */
+  function connectBlocks(from: string, to: string) {
+    const check = checkLink(doc, from, to);
+    if (!check.ok) { setNotice({ kind: "error", text: check.reason }); return; }
+    const id = uid("link");
+    edit(item => addLink(item, from, to, DEFAULT_ROUNDS, id));
+    setNotice(null);
+    if (view === "map") setPickedLinkId(id);
+    else setNotice({ kind: "info", text: check.kind === "loop" ? `${findNode(doc.root, from)?.name} now loops back to ${findNode(doc.root, to)?.name}.` : `${findNode(doc.root, to)?.name} now waits for ${findNode(doc.root, from)?.name}.` });
+  }
+  const changeLink = (id: string, change: Parameters<typeof updateLink>[2]) => edit(item => updateLink(item, id, change), `link:${id}:${Object.keys(change).join(",")}`);
+  const dropLink = (id: string) => { edit(item => removeLink(item, id)); setPickedLinkId(null); };
+  const pickedLink = doc.links?.some(link => link.id === pickedLinkId) ? pickedLinkId : null;
+  const addStep = (step: RoleStep) => addBlock(selected.id, { role: step.role, name: step.name, task: step.task });
   function tidyUp() { editRoot(clearPositions); setTidied(count => count + 1); }
   function deleteTask(id: string) {
     const parent = parentNode(doc.root, id);
@@ -301,7 +306,8 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     onChange={(change, field) => editNode(selected.id, change, field)} onAddChild={() => addBlock(selected.id)} onDuplicate={() => duplicateTask(selected.id)}
     onDelete={() => setDialog({ kind: "delete-task", id: selected.id })} onMove={delta => editRoot(root => moveNode(root, selected.id, delta))}
     onReparent={parentId => editRoot(root => reparentNode(root, selected.id, parentId))} onRunBranch={() => void start(selected.id)}
-    onResolve={action => void act({ type: action, id: selected.id })} onReviewPermission={() => reviewPermission(selected.id)} />;
+    onResolve={action => void act({ type: action, id: selected.id })} onReviewPermission={() => reviewPermission(selected.id)}
+    onConnect={to => connectBlocks(selected.id, to)} onLinkChange={changeLink} onLinkRemove={dropLink} onAddStep={addStep} onAddNext={role => addBlock(selected.id, { role })} />;
 
   const runControls = active
     ? <button type="button" className="proc-button proc-button--small" onClick={() => void act({ type: "stop" })}><Square size={12} />Stop</button>
@@ -319,7 +325,8 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
       {view === "map"
         ? <ProcessMap
           root={doc.root} tree={tree} selectedId={selected.id} now={clock} formatCost={format} showCost={unit !== "none"} locked={locked} inset={mapInset} fitKey={`${doc.id}:${tidied}`} revealId={revealId}
-          onSelect={id => { setSelectedId(id); setRevealId(null); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={id => setDialog({ kind: "delete-task", id })} />
+          links={doc.links ?? []} selectedLinkId={pickedLink} onSelectLink={setPickedLinkId} check={(from, to) => checkLink(doc, from, to)} onConnect={connectBlocks} onLinkChange={changeLink} onLinkRemove={dropLink}
+          onSelect={id => { setSelectedId(id); setRevealId(null); setPickedLinkId(null); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={id => setDialog({ kind: "delete-task", id })} />
         : <div className="proc-treewrap" style={{ paddingRight: !narrow && panel ? 372 : undefined }}>
           <AgentTree
             root={tree} title="Tasks" noun={["task", "tasks"]} now={clock} formatCost={format} showCost={unit !== "none"} collapsed={collapsed} onCollapsedChange={setCollapsed}
@@ -329,6 +336,8 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
               if (!node) return null;
               return <>
                 {node.approval && <span className="proc-tag" title="Asks you before it runs">Approval</span>}
+                {(() => { const loop = loopFrom(doc, node.id); return loop ? <span className="proc-tag" title={`When it has finished, the blocks from ${findNode(doc.root, loop.to)?.name} down to here run again`}><Repeat size={10} /> back to {findNode(doc.root, loop.to)?.name} ×{loop.rounds ?? 2}</span> : null; })()}
+                {waitsFor(doc, node.id).length > 0 && <span className="proc-tag" title="Starts only after these blocks have finished"><Hourglass size={10} /> waits for {waitsFor(doc, node.id).map(from => findNode(doc.root, from)?.name).join(", ")}</span>}
                 <button type="button" className="proc-add" aria-label={`Add a sub-task to ${node.name}`} title="Add a sub-task" disabled={locked} onClick={() => addBlock(node.id)}><Plus size={12} /></button>
               </>;
             }}

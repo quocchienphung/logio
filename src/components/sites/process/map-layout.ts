@@ -110,10 +110,10 @@ export function zoomAt(view: View, factor: number, around: Point): View {
 }
 
 export type Side = "top" | "right" | "bottom" | "left";
-export interface Edge { d: string; from: Point; to: Point; fromSide: Side; toSide: Side; length: number }
+export interface Edge { d: string; from: Point; to: Point; fromSide: Side; toSide: Side; length: number; /** The middle of the curve: where a label sits. */ mid: Point }
 
 const OPPOSITE: Record<Side, Side> = { top: "bottom", bottom: "top", left: "right", right: "left" };
-const anchor = (box: Box, side: Side): Point => side === "top" ? { x: box.x + box.w / 2, y: box.y } : side === "bottom" ? { x: box.x + box.w / 2, y: box.y + box.h } : side === "left" ? { x: box.x, y: box.y + box.h / 2 } : { x: box.x + box.w, y: box.y + box.h / 2 };
+export const anchorOf = (box: Box, side: Side): Point => side === "top" ? { x: box.x + box.w / 2, y: box.y } : side === "bottom" ? { x: box.x + box.w / 2, y: box.y + box.h } : side === "left" ? { x: box.x, y: box.y + box.h / 2 } : { x: box.x + box.w, y: box.y + box.h / 2 };
 
 /** The side of `from` that faces `to`: across when the blocks are mostly side by side, up or down when they are mostly stacked. */
 export function facingSide(from: Box, to: Box): Side {
@@ -121,14 +121,29 @@ export function facingSide(from: Box, to: Box): Side {
   return Math.abs(dx) / (from.w + to.w) > Math.abs(dy) / (from.h + to.h) ? (dx >= 0 ? "right" : "left") : (dy >= 0 ? "bottom" : "top");
 }
 
-/** The curve that joins a block to the one it hands work to: out of the side that faces it, into the side that faces back. */
-export function edgeBetween(parent: Box, child: Box): Edge {
+/**
+ * The curve that joins a block to the one it hands work to: out of the side that faces it, into the side that faces back.
+ * `bend` pushes the middle of the curve sideways (to the right of the way it travels when positive), so a connection drawn on top
+ * of the tree does not lie on the tree's own curve.
+ */
+export function edgeBetween(parent: Box, child: Box, bend = 0): Edge {
   const fromSide = facingSide(parent, child), toSide = OPPOSITE[fromSide];
-  const from = anchor(parent, fromSide), to = anchor(child, toSide);
-  const reach = Math.max(40, Math.min(160, Math.hypot(to.x - from.x, to.y - from.y) / 2));
+  const from = anchorOf(parent, fromSide), to = anchorOf(child, toSide);
+  const length = Math.hypot(to.x - from.x, to.y - from.y);
+  const reach = Math.max(40, Math.min(160, length / 2));
   const lead = (point: Point, side: Side): Point => ({ x: point.x + (side === "right" ? reach : side === "left" ? -reach : 0), y: point.y + (side === "bottom" ? reach : side === "top" ? -reach : 0) });
+  const push = length ? { x: -(to.y - from.y) / length * bend, y: (to.x - from.x) / length * bend } : { x: 0, y: 0 };
   const c1 = lead(from, fromSide), c2 = lead(to, toSide);
-  return { d: `M ${from.x} ${from.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${to.x} ${to.y}`, from, to, fromSide, toSide, length: Math.hypot(to.x - from.x, to.y - from.y) };
+  c1.x += push.x; c1.y += push.y; c2.x += push.x; c2.y += push.y;
+  const mid = { x: Math.round((from.x + 3 * c1.x + 3 * c2.x + to.x) / 8), y: Math.round((from.y + 3 * c1.y + 3 * c2.y + to.y) / 8) };
+  return { d: `M ${from.x} ${from.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${to.x} ${to.y}`, from, to, fromSide, toSide, length, mid };
+}
+
+/** The block under a point of the map (the topmost in `ids` order), ignoring `except`; null over empty canvas. */
+export function blockAt(point: Point, boxes: ReadonlyMap<string, Box>, except?: string): string | null {
+  let found: string | null = null;
+  for (const [id, box] of boxes) if (id !== except && point.x >= box.x && point.x <= box.x + box.w && point.y >= box.y && point.y <= box.y + box.h) found = id;
+  return found;
 }
 
 /** A free place for a new block next to `from` on `side`, stepping away from blocks that are already there. */

@@ -118,6 +118,7 @@
 .agt__meta { display: flex; align-items: center; gap: 6px; min-height: 20px; }
 /* A label with a color dot, for example the block's role */
 .agt__badge { display: inline-flex; flex: none; align-items: center; gap: 5px; height: 18px; padding: 0 6px 0 5px; border-radius: 4px; background: var(--agt-fill); font-size: 11px; font-weight: 500; line-height: 16px; color: var(--agt-text); white-space: nowrap; }
+.agt__round { display: inline-flex; flex: none; align-items: center; height: 18px; padding: 0 6px; border-radius: 4px; background: var(--agt-fill); font-size: 11px; font-weight: 500; line-height: 16px; color: var(--agt-accent); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .agt__badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--agt-badge, var(--agt-muted)); }
 .agt__cost { flex: 1; min-width: 0; overflow: hidden; font-size: 11px; font-weight: 500; line-height: 16px; color: var(--agt-ink); white-space: nowrap; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
 /* Costs that still climb: a light shimmer runs over the amount */
@@ -147,3 +148,5 @@
   --agt-focus: rgba(91, 154, 255, .45); --agt-solid: rgba(255, 255, 255, .92); --agt-on-solid: #141416; --agt-select: rgba(112, 184, 255, .7);
   --agt-pop: 0 0 0 .5px rgba(255, 255, 255, .12), 0 12px 28px -10px rgba(0, 0, 0, .6); --agt-shadow: 0 0 0 .5px rgba(255, 255, 255, .1), 0 1px 2px 0 rgba(0, 0, 0, .4);
 }
+
+:where(.dark, [data-theme="dark"]) .agt__mark[data-dim] { filter: brightness(2.1) saturate(1.15); }

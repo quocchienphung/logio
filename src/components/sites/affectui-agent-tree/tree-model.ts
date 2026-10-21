@@ -1,11 +1,13 @@
+import type { AiMarkId } from "./ai-marks.generated.ts";
+
 /**
  * The pure rules of the Agent Tree: statuses, what a branch costs, the totals in the bar, how long an agent has
  * been busy, and what a folded tree shows. No React, no clock of its own: every rule takes `now` as a number.
  */
 export type AgentStatus = "idle" | "queued" | "running" | "waiting" | "done" | "failed" | "stopped";
 
-/** The marks an avatar can show (the AI engines the plan offers); without one it shows initials. */
-export type AvatarMark = "anthropic" | "openai" | "gemini" | "hermes" | "ollama" | "kimi" | "codex" | "claudecode" | "qwen" | "deepseek" | "mistral";
+/** The marks an avatar can show (the AI engines the plan offers); without one it shows initials. The three logos from the Delegate Board preview, and every logo in `ai-marks.generated.ts`. */
+export type AvatarMark = "anthropic" | "openai" | "gemini" | AiMarkId;
 /** The apps a task touches, drawn as their logos. */
 export type ToolMark = "notion" | "github" | "slack" | "figma" | "hubspot" | "stripe";
 
@@ -30,6 +32,8 @@ export interface TreeAgent {
   /** Epoch milliseconds. */
   started?: number;
   ended?: number;
+  /** Set when a loop ran this agent more than once: which pass the card shows, how many there are, and what the earlier passes did. */
+  round?: { current: number; of: number; earlier: readonly { round: number; status: AgentStatus; cost: number; started?: number; ended?: number }[] };
   children?: readonly TreeAgent[];
 }
 

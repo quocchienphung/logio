@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildTree, isAttemptCard, taskIdOf } from "./run-view.ts";
 import { modelLabel, modelChoices, problemsOf, providerOf, providers } from "./catalog.ts";
-import { createNode, createSampleProcess } from "./process-model.ts";
+import { createNode, createSampleProcess, markOf, providerIds } from "./process-model.ts";
+import { roster } from "./agent-roster.ts";
+import { aiMarks } from "../affectui-agent-tree/ai-marks.generated.ts";
 import { replay, startLog } from "./run-model.ts";
 import { flatten, totalsOf } from "../affectui-agent-tree/tree-model.ts";
 
@@ -58,6 +60,21 @@ test("a task that is not in the run yet (added after it started) is ready, not q
   assert.equal(buildTree(extended, { snapshot: snap }).children[4].status, "idle");
 });
 
+test("the roster: every AI engine has a unique id, a real logo and a place in the picker", () => {
+  const ids = providers.map(item => item.id);
+  assert.equal(new Set(ids).size, ids.length, "ids are unique");
+  assert.ok(roster.length >= 70, `${roster.length} engines in the roster`);
+  for (const entry of roster) {
+    assert.ok(aiMarks[entry.id]?.html.includes("<path"), `${entry.id} has a drawn logo`);
+    assert.equal(providerOf(entry.id).label, entry.label);
+    assert.ok(providerIds.includes(entry.id), `${entry.id} is a valid provider`);
+  }
+  for (const name of ["Cursor", "Windsurf", "Cline", "Devin", "OpenHands", "Goose", "Kiro", "Trae", "Grok", "Perplexity", "LM Studio", "Groq", "OpenRouter"]) assert.ok(providers.some(item => item.label === name), name);
+  assert.deepEqual([...new Set(providers.map(item => item.group))], ["Hosted models", "Coding agents", "Agent frameworks", "Local and open", "Routers and clouds", "Other"]);
+  assert.equal(markOf("cursor"), "cursor");
+  assert.equal(markOf("human"), undefined);
+});
+
 test("model names: the app's list, what the engine reports, then what was typed", () => {
   assert.equal(modelLabel("anthropic", "claude-sonnet-5-5"), "Sonnet 5.5");
   assert.equal(modelLabel("openai", "gpt-6-luna"), "GPT-6 Luna");
@@ -68,7 +85,7 @@ test("model names: the app's list, what the engine reports, then what was typed"
   assert.equal(modelLabel("human", "x"), "Person");
   assert.equal(modelLabel("custom", ""), "Custom engine");
   assert.equal(providerOf("ollama").local, true);
-  assert.equal(providers.length, 13);
+  assert.equal(providers.length, 13 + roster.length);
   assert.equal(modelLabel("kimi", ""), "Kimi");
   assert.equal(modelLabel("claudecode", "claude-opus-5-5"), "Opus 5.5");
   assert.equal(modelLabel("codex", "gpt-6-luna"), "GPT-6 Luna");

@@ -1,0 +1,501 @@
+{
+  "date": "2026-10-21T13:06:46.119Z",
+  "viewports": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "scrollWidth": 1440,
+      "pause": {
+        "x": 340,
+        "y": 882.328125,
+        "width": 28,
+        "height": 28,
+        "bottom": 910.328125,
+        "right": 368
+      },
+      "range": {
+        "x": 340,
+        "y": 859.828125,
+        "width": 760,
+        "height": 14,
+        "bottom": 873.828125,
+        "right": 1100
+      },
+      "dock": {
+        "x": 340,
+        "y": 827.828125,
+        "width": 760,
+        "height": 86,
+        "bottom": 913.828125,
+        "right": 1100
+      },
+      "canvas": {
+        "x": 469,
+        "y": 308.15625,
+        "width": 502,
+        "height": 397.671875,
+        "bottom": 705.828125,
+        "right": 971
+      },
+      "targets": [
+        {
+          "x": 1025.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1049.25
+        },
+        {
+          "x": 1046.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1070.25
+        },
+        {
+          "x": 1067.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1091.25
+        },
+        {
+          "x": 1088.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1112.25
+        },
+        {
+          "x": 1109.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1133.25
+        },
+        {
+          "x": 1130.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1154.25
+        }
+      ],
+      "documentOverflow": "visible",
+      "tooltips": [
+        {
+          "x": 1064.9140625,
+          "y": 120.15625,
+          "right": 1219.5859375,
+          "bottom": 191.15625,
+          "width": 154.671875,
+          "height": 71,
+          "visibility": "visible",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "scrollWidth": 1280,
+      "pause": {
+        "x": 277,
+        "y": 749.5,
+        "width": 28,
+        "height": 28,
+        "bottom": 777.5,
+        "right": 305
+      },
+      "range": {
+        "x": 277,
+        "y": 727,
+        "width": 726,
+        "height": 14,
+        "bottom": 741,
+        "right": 1003
+      },
+      "dock": {
+        "x": 260,
+        "y": 684,
+        "width": 760,
+        "height": 106,
+        "bottom": 790,
+        "right": 1020
+      },
+      "canvas": {
+        "x": 459,
+        "y": 308.265625,
+        "width": 362,
+        "height": 286.765625,
+        "bottom": 595.03125,
+        "right": 821
+      },
+      "targets": [
+        {
+          "x": 905.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 929.25
+        },
+        {
+          "x": 926.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 950.25
+        },
+        {
+          "x": 947.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 971.25
+        },
+        {
+          "x": 968.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 992.25
+        },
+        {
+          "x": 989.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1013.25
+        },
+        {
+          "x": 1010.25,
+          "y": 201.15625,
+          "width": 24,
+          "height": 24,
+          "bottom": 225.15625,
+          "right": 1034.25
+        }
+      ],
+      "documentOverflow": "visible",
+      "tooltips": [
+        {
+          "x": 944.9140625,
+          "y": 80.15625,
+          "right": 1099.5859375,
+          "bottom": 151.15625,
+          "width": 154.671875,
+          "height": 71,
+          "visibility": "visible",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scrollWidth": 390,
+      "pause": {
+        "x": 25,
+        "y": 781,
+        "width": 38,
+        "height": 44,
+        "bottom": 825,
+        "right": 63
+      },
+      "range": {
+        "x": 25,
+        "y": 748,
+        "width": 340,
+        "height": 28,
+        "bottom": 776,
+        "right": 365
+      },
+      "dock": {
+        "x": 12,
+        "y": 689,
+        "width": 366,
+        "height": 145,
+        "bottom": 834,
+        "right": 378
+      },
+      "canvas": {
+        "x": 48,
+        "y": 380,
+        "width": 294,
+        "height": 232.890625,
+        "bottom": 612.890625,
+        "right": 342
+      },
+      "targets": [
+        {
+          "x": 210,
+          "y": 279,
+          "width": 28,
+          "height": 28,
+          "bottom": 307,
+          "right": 238
+        },
+        {
+          "x": 235,
+          "y": 279,
+          "width": 28,
+          "height": 28,
+          "bottom": 307,
+          "right": 263
+        },
+        {
+          "x": 260,
+          "y": 279,
+          "width": 28,
+          "height": 28,
+          "bottom": 307,
+          "right": 288
+        },
+        {
+          "x": 285,
+          "y": 279,
+          "width": 28,
+          "height": 28,
+          "bottom": 307,
+          "right": 313
+        },
+        {
+          "x": 310,
+          "y": 279,
+          "width": 28,
+          "height": 28,
+          "bottom": 307,
+          "right": 338
+        },
+        {
+          "x": 335,
+          "y": 279,
+          "width": 28,
+          "height": 28,
+          "bottom": 307,
+          "right": 363
+        }
+      ],
+      "documentOverflow": "visible",
+      "tooltips": [
+        {
+          "x": 187.125,
+          "y": 142,
+          "right": 338,
+          "bottom": 213,
+          "width": 150.875,
+          "height": 71,
+          "visibility": "visible",
+          "opacity": "1"
+        },
+        {
+          "x": 208.328125,
+          "y": 142,
+          "right": 363,
+          "bottom": 213,
+          "width": 154.671875,
+          "height": 71,
+          "visibility": "visible",
+          "opacity": "1"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "scrollWidth": 320,
+      "pause": {
+        "x": 25,
+        "y": 505,
+        "width": 35.640625,
+        "height": 44,
+        "bottom": 549,
+        "right": 60.640625
+      },
+      "range": {
+        "x": 25,
+        "y": 472,
+        "width": 270,
+        "height": 28,
+        "bottom": 500,
+        "right": 295
+      },
+      "dock": {
+        "x": 12,
+        "y": 411,
+        "width": 296,
+        "height": 147,
+        "bottom": 558,
+        "right": 308
+      },
+      "canvas": {
+        "x": 48,
+        "y": 227,
+        "width": 224,
+        "height": 177.4375,
+        "bottom": 404.4375,
+        "right": 272
+      },
+      "targets": [
+        {
+          "x": 140,
+          "y": 151,
+          "width": 28,
+          "height": 28,
+          "bottom": 179,
+          "right": 168
+        },
+        {
+          "x": 165,
+          "y": 151,
+          "width": 28,
+          "height": 28,
+          "bottom": 179,
+          "right": 193
+        },
+        {
+          "x": 190,
+          "y": 151,
+          "width": 28,
+          "height": 28,
+          "bottom": 179,
+          "right": 218
+        },
+        {
+          "x": 215,
+          "y": 151,
+          "width": 28,
+          "height": 28,
+          "bottom": 179,
+          "right": 243
+        },
+        {
+          "x": 240,
+          "y": 151,
+          "width": 28,
+          "height": 28,
+          "bottom": 179,
+          "right": 268
+        },
+        {
+          "x": 265,
+          "y": 151,
+          "width": 28,
+          "height": 28,
+          "bottom": 179,
+          "right": 293
+        }
+      ],
+      "documentOverflow": "visible",
+      "tooltips": [
+        {
+          "x": 117.125,
+          "y": 30,
+          "right": 268,
+          "bottom": 101,
+          "width": 150.875,
+          "height": 71,
+          "visibility": "visible",
+          "opacity": "1"
+        },
+        {
+          "x": 138.328125,
+          "y": 30,
+          "right": 293,
+          "bottom": 101,
+          "width": 154.671875,
+          "height": 71,
+          "visibility": "visible",
+          "opacity": "1"
+        }
+      ]
+    }
+  ],
+  "performance": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "duration": 4004.9999999880793,
+      "frames": 660,
+      "p50": 6.099999999999454,
+      "p95": 6.299999999999272,
+      "over40": 0,
+      "max": 6.399999999999636,
+      "elapsedAdvance": 3995
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "duration": 4003.3,
+      "frames": 660,
+      "p50": 6.099999999999909,
+      "p95": 6.100000000000364,
+      "over40": 0,
+      "max": 6.200000000000728,
+      "elapsedAdvance": 3959
+    }
+  ],
+  "webkit": {
+    "sketch": 201883382,
+    "final": 85858063,
+    "seekCommitMs": 514
+  },
+  "stages": [
+    {
+      "id": "paper",
+      "sum": 211257683,
+      "dark": 0,
+      "blue": 0
+    },
+    {
+      "id": "sketch",
+      "sum": 206818844,
+      "dark": 310,
+      "blue": 0
+    },
+    {
+      "id": "blueprint",
+      "sum": 196074672,
+      "dark": 1384,
+      "blue": 15004
+    },
+    {
+      "id": "color",
+      "sum": 145953671,
+      "dark": 32235,
+      "blue": 30998
+    },
+    {
+      "id": "final",
+      "sum": 85858063,
+      "dark": 57344,
+      "blue": 47514
+    }
+  ],
+  "errors": [],
+  "issues": [],
+  "ok": true
+}
