@@ -95,7 +95,8 @@
     },
     {
       "name": "The person draws the connections: from Fixer back to Coordinator makes a loop with rounds, a label and a card; undo removes it",
-      "ok": true
+      "ok": false,
+      "error": "The input did not match the regular expression /Loop back to Coordinator/. Input: |  | 'Drop to add a new block here' | "
     },
     {
       "name": "A connection that is not allowed says why; a block can be connected to any other, and the inspector lists and removes connections",
@@ -103,8 +104,7 @@
     },
     {
       "name": "Deleting a block takes its connections with it; moving a block under another can drop a connection that is no longer allowed",
-      "ok": false,
-      "error": "no links field left | + actual - expected |  | + ["
+      "ok": true
     },
     {
       "name": "The closed-loop template: the deploy asks, and after the person approves the loop goes round and asks again; the cards say which round",
@@ -113,7 +113,7 @@
     {
       "name": "Ctrl + click chooses several blocks: they are marked, counted, and clicking one again lets it go; a plain click clears the group",
       "ok": false,
-      "error": "one block is just selected |  | 2 !== 0 | "
+      "error": "locator.click: Timeout 12000ms exceeded. | Call log: | \u001b[2m  - waiting for locator('.pmap__block').filter({ has: locator('.agt__name').filter({ hasText: /^Fixer$/ }) }).locator('.agt__name')\u001b[22m | \u001b[2m    - locator resolved to <span class=\"agt__name\">Fixer</span>\u001b[22m"
     },
     {
       "name": "Ctrl + A chooses every block and Escape lets the group go",
@@ -125,18 +125,15 @@
     },
     {
       "name": "A group that holds the first block keeps it; a block's own sub-blocks go with it; the button works too",
-      "ok": false,
-      "error": "The input did not match the regular expression /and what hangs under them, 7 blocks in all/. Input: |  | 'Delete blocks\\n' + |   '\\n' +"
+      "ok": true
     },
     {
       "name": "Dragging one block of a group moves the whole group by the same amount, and it is one step to undo",
-      "ok": false,
-      "error": "locator.click: Timeout 12000ms exceeded. | Call log: | \u001b[2m  - waiting for locator('.pmap__block').filter({ has: locator('.agt__name').filter({ hasText: /^Planner$/ }) }).locator('.agt__name')\u001b[22m | \u001b[2m    - locator resolved to <span class=\"agt__name\">Planner</span>\u001b[22m"
+      "ok": true
     },
     {
       "name": "While a run is active the structure is frozen: Delete says so and removes nothing",
-      "ok": false,
-      "error": "locator.click: Timeout 12000ms exceeded. | Call log: | \u001b[2m  - waiting for locator('.agt__extra').getByRole('button', { name: 'Run', exact: true })\u001b[22m | \u001b[2m    - locator resolved to <button type=\"button\" class=\"proc-button proc-button--dark proc-button--small\">…</button>\u001b[22m"
+      "ok": true
     },
     {
       "name": "A finished block pops up a notice with its engine, cost and time, and a way to find it on the map; the stack is a labelled region",
@@ -152,8 +149,7 @@
     },
     {
       "name": "Retry on the notice retries the block and retires the failure notice; the new run of the block shows on the map",
-      "ok": false,
-      "error": "locator.getAttribute: Timeout 12000ms exceeded. | Call log: | \u001b[2m  - waiting for locator('.agt__node').filter({ has: locator('.agt__name').filter({ hasText: /^Tester$/ }) }).nth(1)\u001b[22m | "
+      "ok": true
     },
     {
       "name": "Dismissing slides the front card away and the next one moves up; Escape dismisses the front card; Dismiss all clears the stack",
@@ -161,8 +157,7 @@
     },
     {
       "name": "The permission request decides the waiting block; when the run ends one notice says so, with the cost and time, and opens the trace",
-      "ok": false,
-      "error": "Expected values to be strictly equal: | + actual - expected |  | + 'RUN FINISHED'"
+      "ok": true
     },
     {
       "name": "A quiet notice goes away by itself after a while, and not while the pointer is on it",

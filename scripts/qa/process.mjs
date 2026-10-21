@@ -458,6 +458,9 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.screenshot({ path: `${out}/process-roles.png` });
   });
   await check('The person draws the connections: from Fixer back to Coordinator makes a loop with rounds, a label and a card; undo removes it', async () => {
+    await page.getByRole('button', { name: 'Close block settings' }).click().catch(() => {});
+    await page.getByRole('button', { name: 'Fit the whole map' }).click();
+    await page.waitForTimeout(300);
     await block(page, 'Fixer').locator('.agt__name').click();
     const handle = page.getByRole('button', { name: /^Add a block .* Fixer/ }).first();
     const from = await box(handle), to = await box(block(page, 'Coordinator'));
@@ -571,6 +574,8 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
   const ctrl = { modifiers: ['Control'] };
   const count = () => page.locator('.pmap__block[data-multi]').count();
   await check('Ctrl + click chooses several blocks: they are marked, counted, and clicking one again lets it go; a plain click clears the group', async () => {
+    await page.getByRole('button', { name: 'Fit the whole map' }).click();
+    await page.waitForTimeout(300);
     await block(page, 'Scraper').locator('.agt__name').click();
     assert.equal(await count(), 0, 'one block is just selected');
     await block(page, 'Analyst').locator('.agt__name').click(ctrl);
