@@ -2,6 +2,8 @@
 
 Implemented 2026-10-22. Local route: `/skilled` (also available through the Skilled workspace group). Replaces the old full-page context-window preview; the context-window component remains in the Explore pages selector.
 
+Layout cleanup: the introductory heading, breadcrumb/storage top bar and passive knowledge note were removed at the user's request. The composer and stream now start near the top of the workspace; Deliver skills and save status share the library toolbar. Decorative footer copy was removed, while actionable help and operation/error states remain. Verified with the 27 browser workflow checks, targeted ESLint and TypeScript; desktop and 390px/320px screenshots are `layout-clean-*.png`, with no horizontal overflow.
+
 ## Reference → implementation
 
 | Public reference | Local owner | What is retained |

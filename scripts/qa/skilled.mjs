@@ -14,7 +14,7 @@ try {
   const page = await context.newPage();
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(`${base}/skilled`, { waitUntil: 'networkidle' });
-  await page.getByRole('heading', { name: 'Better skills. Grounded work.' }).waitFor();
+  await page.getByRole('region', { name: 'Skilled workspace', exact: true }).waitFor();
   await page.screenshot({ path: `${out}/local-desktop.png` });
   check('Workspace sidebar owns Skilled', await page.getByRole('navigation', { name: 'Main menu' }).getByRole('button', { name: 'Skilled' }).getAttribute('aria-current') === 'page');
   check('No invented initial readings', await page.locator('.sk-metrics strong').first().innerText() === '0');
