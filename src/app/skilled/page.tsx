@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { SkilledPage } from "@/components/sites/affectui-context-window/SkilledPage";
+import { SkilledWorkspace } from "@/components/sites/skilled/SkilledWorkspace";
 
 export const metadata: Metadata = {
   title: "Skilled · Logio",
-  description: "Explore the model's context window.",
+  description: "A workspace for agent skills, source evidence and measured delivery.",
 };
 
 export default function Page() {
-  return <SkilledPage />;
+  return <SkilledWorkspace />;
 }

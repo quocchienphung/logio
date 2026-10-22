@@ -1,8 +1,9 @@
 "use client";
 
 import { createContext, useContext, useSyncExternalStore } from "react";
+import { useRouter } from "next/navigation.js";
 
-export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "New chat", "Files", "Run", "Mapping", "Process", "Tracing", "Invoice", "Settings", "New business", "Renewals", "Partnerships"] as const;
+export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "New chat", "Files", "Run", "Mapping", "Process", "Tracing", "Invoice", "Settings", "Skilled", "New business", "Renewals", "Partnerships"] as const;
 export type WorkspaceSection = (typeof workspaceSections)[number];
 
 function subscribeRoute(listener: () => void) {
@@ -14,6 +15,7 @@ export function sectionFromParam(section: string | null | undefined): WorkspaceS
   return workspaceSections.find(value => value.toLowerCase().replaceAll(" ", "-") === section) || "Companies";
 }
 function routeSnapshot(): WorkspaceSection {
+  if (window.location.pathname === "/skilled" && !new URLSearchParams(window.location.search).has("section")) return "Skilled";
   return sectionFromParam(new URLSearchParams(window.location.search).get("section"));
 }
 /**
@@ -26,17 +28,20 @@ export const InitialRouteProvider = InitialRoute.Provider;
 export const useInitialSection = (): WorkspaceSection | null => useContext(InitialRoute)?.section ?? null;
 function viewSnapshot() { return new URLSearchParams(window.location.search).get("crm-view"); }
 export function useWorkspaceRoute() {
+  const router = useRouter();
   const initial = useContext(InitialRoute);
   const section = useSyncExternalStore(subscribeRoute, routeSnapshot, () => initial?.section ?? "Companies");
   const crmView = useSyncExternalStore(subscribeRoute, viewSnapshot, () => initial?.view ?? null);
   function navigate(next: WorkspaceSection, view?: string) {
+    if (next === "Skilled" && window.location.pathname !== "/skilled") { router.push("/skilled"); return; }
+    if (next !== "Skilled" && window.location.pathname === "/skilled") { router.push(`/personalize?section=${next.toLowerCase().replaceAll(" ", "-")}`); return; }
     const url = new URL(window.location.href);
     url.searchParams.delete("panel");
     url.searchParams.delete("settings-tab");
     url.searchParams.delete("folder");
     if (view) url.searchParams.set("crm-view", view);
     else url.searchParams.delete("crm-view");
-    if (next === "Companies") url.searchParams.delete("section");
+    if (next === "Companies" || next === "Skilled") url.searchParams.delete("section");
     else url.searchParams.set("section", next.toLowerCase().replaceAll(" ", "-"));
     if (url.href !== window.location.href) {
       window.history.pushState({}, "", url);

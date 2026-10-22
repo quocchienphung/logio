@@ -91,6 +91,14 @@ While a REST load is in flight a collection shows its `empty` value (no demo row
 
 ## Commands
 
+### Skilled workspace
+
+`/skilled` shares the configured workspace backend and workspace IDs. `GET/PUT {base}/workspaces/{id}/skill-library` stores validated `SkillRecord[]`; `GET/PUT .../skill-events` stores the latest 200 `SkillEvent[]` and supports live resource polling/push. Types, parsers and SHA-256 bundle validation are in `src/components/sites/skilled/skill-model.ts`. The default local backend persists in this browser; this repository does not include a database server.
+
+`POST {base}/workspaces/{id}/commands/skill.transfer` accepts `{agent: string, bundle: {version:1,workspaceId,createdAt,skills:SkillRecord[]}}`. The server routes the bundle to that agent and returns `{data:{bundleVersion:1,workspaceId,receivedAt:<ISO>,agent,accepted:[{id,sha256,files?:[{path,sha256}]}],bytes:<sum of instruction and supporting-file bytes>}}` only after acknowledged delivery. Every ID/hash, supporting-file path/hash, workspace, agent and byte count must match; supporting acknowledgements are required for nonempty captured folders; absent, malformed or mismatched receipts show an error. This receipt acknowledges instruction delivery, not model loading, execution or answer quality. Existing authentication/credentials/error conventions apply. A backend must authorize workspace and agent access; it should not execute imported instructions while storing them.
+
+Public file import is separate: the local Next handler `POST /api/skilled/import` accepts `{url}` and scans the selected skill folder in a public GitHub source archive, with no GitHub or UIArc API. Scripts/references/assets inside that folder and a source license are captured at a pinned commit; external dependencies are not installed. Portable bundle delivery works without a remote backend; `scripts/skilled/install-bundle.mjs` writes checked files and a receipt that can be imported through Deliver skills. Details, measurement semantics and source/motion evidence: `docs/research/uiarc-skilled/README.md`.
+
 `POST {base}/workspaces/{id}/commands/{name}`, body = input, `200 {"data": …}`.
 
 - `api-key.create` — input `{"name": "New key 3"}`; answer `{"data": {"key": {id, name, prefix, suffix, created, lastUsed}, "secret": "sk-…"}}`. The secret is shown once in a dialog and never stored by the page. The list is then reloaded from `GET …/settings-api-keys`. Rename and revoke go through the normal `PUT` (`changes` with `update`/`delete`). Without a command-capable remote backend the screen creates local demo keys as before.

@@ -13,12 +13,12 @@ export type ResourceName =
   | "report-period" | "reports"
   | "run-draft" | "agent-run"
   | "settings-general" | "settings-members" | "settings-billing" | "settings-api-keys"
-  | "mapping" | "invoice" | "file-library" | "process" | "process-run";
+  | "mapping" | "invoice" | "file-library" | "process" | "process-run" | "skill-library" | "skill-events";
 
 /** Read-only data a screen shows but never edits (the backend computes it). */
 export type QueryName = "analytics" | "usage" | "invoices" | "plans";
 /** Actions whose result only the backend can produce (a secret, an uploaded file's URL). */
-export type CommandName = "api-key.create";
+export type CommandName = "api-key.create" | "skill.transfer";
 
 export type UploadKind = "avatar" | "logo" | "document";
 
