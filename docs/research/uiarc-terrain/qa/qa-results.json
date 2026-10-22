@@ -59,7 +59,7 @@
   {
    "name": "Metric switch animates a wave of column heights",
    "ok": true,
-   "detail": "frames 160"
+   "detail": "frames 158"
   },
   {
    "name": "Stats follow the metric",
@@ -99,7 +99,7 @@
   {
    "name": "Flattening takes about a second and a half",
    "ok": true,
-   "detail": "frames 370"
+   "detail": "frames 367"
   },
   {
    "name": "Perspective restores the rest pose",
@@ -109,7 +109,7 @@
   {
    "name": "Dragging orbits the terrain, with momentum after release",
    "ok": true,
-   "detail": "moved 405px over 473 frames"
+   "detail": "moved 409px over 473 frames"
   },
   {
    "name": "Drag state is cleared on release",
@@ -119,7 +119,7 @@
   {
    "name": "Dragging down tilts the camera (scale and pan follow its pitch)",
    "ok": true,
-   "detail": "78px over 500 frames"
+   "detail": "77px over 499 frames"
   },
   {
    "name": "Tab reaches the plot",
@@ -235,6 +235,11 @@
    "name": "Dark theme draws the dark platform and light labels",
    "ok": true,
    "detail": "#212121 #8c8c8c"
+  },
+  {
+   "name": "Switching the workspace theme repaints the terrain",
+   "ok": true,
+   "detail": "1 frames"
   },
   {
    "name": "Phone: no horizontal overflow",

@@ -126,8 +126,10 @@ export class TerrainEngine {
     const resize = new ResizeObserver(() => this.resize()); resize.observe(this.plot); this.cleanups.push(() => resize.disconnect());
     const intersect = new IntersectionObserver(entries => { this.onScreen = entries[entries.length - 1]?.isIntersecting ?? true; if (this.onScreen) { this.last = 0; this.invalidate(); } });
     intersect.observe(this.plot); this.cleanups.push(() => intersect.disconnect());
+    // the workspace sets its theme on its own page element (and a host page may on <html>): watch every ancestor
     const theme = new MutationObserver(() => { this.readTheme(); this.invalidate(); });
-    theme.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "data-theme", "style"] }); this.cleanups.push(() => theme.disconnect());
+    for (let ancestor: Element | null = this.plot; ancestor; ancestor = ancestor.parentElement) theme.observe(ancestor, { attributes: true, attributeFilter: ["class", "data-theme", "style"] });
+    this.cleanups.push(() => theme.disconnect());
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const motionChanged = () => { this.reduced = motion.matches; this.camera.reduced = this.reduced; if (this.reduced) { this.columns.snap(); this.camera.snap(); } this.invalidate(); };
     motion.addEventListener("change", motionChanged); this.cleanups.push(() => motion.removeEventListener("change", motionChanged));

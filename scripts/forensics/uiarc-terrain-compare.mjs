@@ -46,7 +46,7 @@ try {
   const intro = await stopTrace(page);
   // the first frame of the local intro is the first frame drawn after the data arrived
   compare('intro', intro, await load('load'));
-  const plot = page.locator('.at__plot'), box = await plot.boundingBox();
+  const plot = page.locator('.at__plot');
   const run = async (name, source, action, ms = 3500, align = 'frame') => { await startTrace(page); await action(); await sleep(ms); const t = await stopTrace(page); if (t.frames.length) compare(name, t, await load(source), align); else console.log(name, 'no frames'); };
   await run('metric Deliveries', 'metric-deploys', () => page.getByRole('button', { name: 'Deliveries', exact: true }).click(), 2500);
   await sleep(1000);
@@ -60,18 +60,7 @@ try {
   await sleep(1200);
   await run('zoom keys', 'zoom-keys', async () => { await plot.focus(); await page.keyboard.press('+'); await sleep(250); await page.keyboard.press('+'); await sleep(250); await page.keyboard.press('-'); }, 2800);
   await sleep(1500);
-  // replay the recorded drag with its own pacing (the events' times, relative to the press)
-  const recorded = (await load('orbit-drag-slow')).events.filter(e => ['pointerdown', 'pointermove', 'pointerup'].includes(e.type));
-  const down = recorded.find(e => e.type === 'pointerdown'), cx = box.x + box.width / 2, cy = box.y + box.height * 0.45;
-  await run('drag orbit (recorded pacing)', 'orbit-drag-slow', async () => {
-    let clock = down.t;
-    for (const e of recorded.filter(r => r.t >= down.t)) {
-      await sleep(Math.max(0, e.t - clock - 2)); clock = e.t;
-      if (e.type === 'pointerdown') { await page.mouse.move(cx, cy); await page.mouse.down(); }
-      else if (e.type === 'pointermove') await page.mouse.move(cx + (e.x - down.x), cy + (e.y - down.y));
-      else await page.mouse.up();
-    }
-  }, 4200, 'press');
+  // dragging is not compared here: Playwright cannot pace pointer events like the recording, and momentum scales with speed; the recorded drags are replayed against the camera in node instead (uiarc-terrain-sim.mjs)
   await fs.writeFile('docs/research/uiarc-terrain/compare.json', JSON.stringify({ viewport: '1440x1000', plot: size, results }, null, 1));
   await context.close();
 } finally { await browser.close(); }

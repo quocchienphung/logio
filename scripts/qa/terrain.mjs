@@ -196,6 +196,9 @@ try {
     check('Dark theme draws the dark platform and light labels', sameColor(last(t).polys[0].f, [33, 33, 33]) && sameColor(last(t).labels[0].fill, [140, 140, 140]), `${last(t).polys[0].f} ${last(t).labels[0].fill}`);
     await page.waitForTimeout(1500);
     await root(page).screenshot({ path: `${out}/local-dark.png` });
+    // the workspace's own switch lives on its page element, not on <html>
+    const light = await record(page, 600, () => page.evaluate(() => { document.documentElement.classList.remove('dark'); delete document.documentElement.dataset.theme; document.querySelector('.crm-page')?.setAttribute('data-theme', 'light'); }));
+    check('Switching the workspace theme repaints the terrain', light.frames.length > 0 && sameColor(last(light).polys[0].f, [249, 249, 249]), `${light.frames.length} frames`);
     await context.close();
   }
 
