@@ -28,20 +28,20 @@ export function PermissionRequest({ name, avatar, target, reason, items, decisio
       <span id={`${id}-title`}><strong>{decision === "approve" ? "Allowed just once" : "Denied"}</strong><span className="permission-request__result-name"> · {name}</span></span>
       {onReset && <button type="button" className="permission-request__text-button" onClick={onReset}>Try again</button>}
     </div> : <>
-      <header className="permission-request__head">
+      <header className="permission-request__head" data-panel-reveal>
         <span className="permission-request__avatar" aria-hidden="true">{avatar ?? name.slice(0, 2).toUpperCase()}</span>
         <div className="permission-request__heading"><span id={`${id}-title`}><b>{name}</b> wants to <b>run this block</b></span><span className="permission-request__target">{target}</span></div>
         <span className="permission-request__badge"><ShieldCheck size={12} aria-hidden="true" />Ask first</span>
       </header>
-      <p id={`${id}-reason`} className="permission-request__reason">{reason}</p>
-      <section className="permission-request__preview" aria-labelledby={`${id}-what`}>
+      <p id={`${id}-reason`} className="permission-request__reason" data-panel-reveal>{reason}</p>
+      <section className="permission-request__preview" aria-labelledby={`${id}-what`} data-panel-reveal>
         <h4 id={`${id}-what`}>What will happen <span>{items.length}</span></h4>
         <ul>{items.map(item => <li key={item.id}>
           <span className="permission-request__item-icon" aria-hidden="true">{item.icon ?? <ShieldCheck size={16} />}</span>
           <span className="permission-request__item-label">{item.label}</span>{item.detail && <span className="permission-request__meta">{item.detail}</span>}
         </li>)}</ul>
       </section>
-      <footer className="permission-request__answer">
+      <footer className="permission-request__answer" data-panel-reveal>
         <div className="permission-request__scope"><span><ShieldCheck size={13} aria-hidden="true" />Just once</span><small>Ask again next run</small></div>
         <p className="permission-request__note">{preview ? "Preview only. These buttons won’t start a run." : simulated ? "Simulation only. No model or external tool is called." : "Allows this block in this run. Other blocks keep their own rules."}</p>
         {error && <p className="permission-request__error" role="alert">{error}</p>}

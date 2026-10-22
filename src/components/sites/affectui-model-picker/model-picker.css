@@ -132,6 +132,16 @@
   .mp .mp__seg-btn { height: 30px; padding: 0 10px; }
   .mp__keys { display: none; }
 }
+/* One timing vocabulary for model selection and its expanding effort controls. */
+.mp .mp__pop { transform: translateY(-2.5px) scale(.985); transition: opacity var(--interaction-duration-exit) var(--interaction-ease-standard), transform var(--interaction-duration-exit) var(--interaction-ease-standard), visibility 0s linear var(--interaction-duration-exit); }
+.mp[data-side="top"] .mp__pop { transform: translateY(2.5px) scale(.985); }
+.mp[data-open] .mp__pop { transform: none; transition: opacity var(--interaction-duration-fast) var(--interaction-ease-enter), transform var(--interaction-duration-spring) var(--interaction-ease-spring), visibility 0s; }
+.mp__chevron { transition: transform var(--interaction-duration-spring) var(--interaction-ease-spring); }
+.mp__fold, .mp__fold[data-open] { transition: grid-template-rows var(--interaction-duration-spring) var(--interaction-ease-spring), opacity var(--interaction-duration-fast) var(--interaction-ease-enter); }
+@starting-style {
+  .mp[data-open] .mp__pop { opacity: 0; transform: translateY(-5px) scale(.97); }
+  .mp[data-side="top"][data-open] .mp__pop { transform: translateY(5px) scale(.97); }
+}
 @media (prefers-reduced-motion: reduce) {
   .mp *, .mp ::before, .mp ::after { animation: none !important; transition: none !important; }
   /* Without the fade-out the old copy would sit on top of the new one until it is removed. */

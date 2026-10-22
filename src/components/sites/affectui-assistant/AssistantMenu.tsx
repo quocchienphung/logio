@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { wireMenuHighlight } from "@/components/interaction/menu-motion";
 
 /** Native top-layer menus stay visible above the composer, including at the bottom of a mobile chat. */
 export function AssistantMenu({ label, title, children, end = false, active = false, className = "ui-as-ghost" }: {
@@ -9,6 +10,7 @@ export function AssistantMenu({ label, title, children, end = false, active = fa
   const trigger = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
+  useEffect(() => menu.current ? wireMenuHighlight(menu.current) : undefined, []);
   function close() { setOpen(false); }
   useEffect(() => {
     if (!open && menu.current?.matches(":popover-open")) { menu.current.hidePopover(); trigger.current?.focus(); }
@@ -18,14 +20,16 @@ export function AssistantMenu({ label, title, children, end = false, active = fa
     if (!panel || !button) return;
     if (panel.matches(":popover-open")) { panel.hidePopover(); button.focus(); return; }
     panel.showPopover();
-    const rect = button.getBoundingClientRect(), box = panel.getBoundingClientRect();
+    const rect = button.getBoundingClientRect(), box = { width: panel.offsetWidth, height: panel.offsetHeight };
     panel.style.left = `${Math.max(8, Math.min(end ? rect.right - box.width : rect.left, innerWidth - box.width - 8))}px`;
-    panel.style.top = `${Math.max(8, Math.min(rect.bottom + box.height + 8 > innerHeight ? rect.top - box.height - 6 : rect.bottom + 6, innerHeight - box.height - 8))}px`;
+    const above = rect.bottom + box.height + 8 > innerHeight;
+    panel.dataset.interactionSide = above ? "top" : "bottom";
+    panel.style.top = `${Math.max(8, Math.min(above ? rect.top - box.height - 6 : rect.bottom + 6, innerHeight - box.height - 8))}px`;
     if (focus) panel.querySelector<HTMLButtonElement>("button")?.focus();
   }
   return <span className="ui-as-anchor">
     <button ref={trigger} type="button" className={className} aria-haspopup="menu" aria-expanded={open} data-active={active || undefined} onClick={() => show()} onKeyDown={event => { if (event.key === "ArrowDown") { event.preventDefault(); show(true); } }}>{label}</button>
-    <div ref={menu} popover="auto" className="ui-as-menu assistant-menu" aria-label={title} onToggle={event => setOpen(event.newState === "open")} onKeyDown={event => {
+    <div ref={menu} popover="auto" className="ui-as-menu assistant-menu" data-interaction-menu data-align={end ? "end" : undefined} aria-label={title} onToggle={event => setOpen(event.newState === "open")} onKeyDown={event => {
       if (event.key === "Escape") { close(); return; }
       if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
       const items = Array.from(menu.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)") || []);

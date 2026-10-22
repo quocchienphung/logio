@@ -1,0 +1,18 @@
+{
+  "base": "http://localhost:3013",
+  "results": [
+    {
+      "engine": "Chromium",
+      "pass": true,
+      "escapeRestoresTrigger": true,
+      "newDialogKeepsFocus": true
+    },
+    {
+      "engine": "WebKit",
+      "pass": true,
+      "escapeRestoresTrigger": true,
+      "newDialogKeepsFocus": true
+    }
+  ],
+  "errors": []
+}

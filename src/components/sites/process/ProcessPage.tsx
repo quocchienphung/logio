@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import { MenuSurface } from "@/components/interaction/MenuSurface";
 import type { Reducer } from "react";
 import { AlertTriangle, Check, FolderOpen, Hourglass, Trash2, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, Square, Undo2, X } from "lucide-react";
 import type { SnapshotSource } from "@/lib/workspace-backend";
@@ -464,21 +466,21 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
       {inspector}
     </aside>}
 
-    {snapshot && <ProcessPermissions key={`${snapshot.id}:${permissionReview.revision}`} doc={handle?.kind === "simulated" ? { ...doc, unit: handle.log.unit } : doc}
+    {snapshot && <ProcessPermissions key={snapshot.id} doc={handle?.kind === "simulated" ? { ...doc, unit: handle.log.unit } : doc}
       root={handle?.kind === "simulated" ? handle.log.root : doc.root} snapshot={snapshot} simulated={simulated} engines={engines}
-      preferredId={permissionReview.id} focusOnOpen={permissionReview.revision > 0}
+      preferredId={permissionReview.id} focusOnOpen={permissionReview.revision > 0} reviewRevision={permissionReview.revision}
       onDecide={(id, decision) => act({ type: decision, id })}
       onLocate={id => { setView("map"); setSelectedId(id); setRevealId(id); }} />}
 
     <div className="proc-dock proc-pill" role="toolbar" aria-label="Map tools">
       <div className="proc-dock__add">
         <button type="button" className="proc-button proc-button--dark proc-button--small" aria-haspopup="menu" aria-expanded={palette} disabled={locked} onClick={() => setPalette(value => !value)}><Plus size={13} />Add block</button>
-        {palette && <div className="proc-menu" role="menu" aria-label={`Add a block connected to ${selected.name}`}>
+        <AnimatePresence>{palette && <MenuSurface className="proc-menu" side="top" role="menu" aria-label={`Add a block connected to ${selected.name}`}>
           <p className="proc-menu__title">Connect a new block to <strong>{selected.name}</strong> as</p>
           {roles.map(role => <button key={role.id} type="button" role="menuitem" className="proc-menu__item" onClick={() => addBlock(selected.id, { role: role.id === "custom" ? undefined : role.id })}>
             <span className="proc-menu__dot" style={{ background: role.color }} /><span><strong>{role.label}</strong><small>{role.description}</small></span>
           </button>)}
-        </div>}
+        </MenuSurface>}</AnimatePresence>
       </div>
       <span className="proc-sep" />
       <button type="button" className="proc-icon-button" aria-label="Undo" title="Undo (Ctrl+Z)" disabled={!history.past.length} onClick={() => dispatch({ type: "undo" })}><Undo2 size={15} /></button>

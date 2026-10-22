@@ -34,6 +34,12 @@ Timed/permanent grants and Revoke are deliberately absent: the engine has no per
 
 ## Verification
 
+### UIArc-inspired size morph (2026-10-22)
+
+The live request now stays on one measured surface through initial appearance, minimize/Review, explicit Needs you reviews and decision receipts. It grows/folds over a one-second trajectory sampled from UIArc's public KPI Drilldown preview; content reveals in a short stagger. Reversing the transition retargets from current size, text keeps its final metrics, short screens keep internal scrolling, and reduced motion skips the size animation. Explicit review updates the component instead of remounting a full-size card. The existing approval engine, scope, queue and keyboard decision semantics are unchanged.
+
+See [shared motion evidence, ownership and QA](../../uiarc-interactions/README.md). This is an independently authored adaptation of the public preview, with no UIArc API or Pro source.
+
 Run:
 
 ```sh

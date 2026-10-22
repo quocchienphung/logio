@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { revealPanelContent, useMorphingPanel } from "@/components/interaction/useMorphingPanel";
 import { ArrowRight, ChevronLeft, ChevronRight, CircleDollarSign, Eye, GitBranch, ListChecks, Minus, ShieldCheck, Wrench, X } from "lucide-react";
 import { PermissionRequest } from "../affectui-permission-request/PermissionRequest";
 import type { PermissionDecision, PermissionItem } from "../affectui-permission-request/PermissionRequest";
@@ -37,7 +38,7 @@ function RequestCard({ node, doc, simulated, engines = [], reason, ...props }: {
 /** A sandbox next to the approval rule: it never calls the engine or writes a decision. */
 export function PermissionPreview({ node, doc, simulated, engines }: { node: ProcessNode; doc: ProcessDoc; simulated: boolean; engines: readonly EngineInfo[] }) {
   const [decision, setDecision] = useState<PermissionDecision>();
-  return <details className="proc-permission-preview">
+  return <details className="proc-permission-preview" data-interaction-accordion>
     <summary><Eye size={14} aria-hidden="true" /><span>Preview permission request</span><ChevronRight size={13} aria-hidden="true" /></summary>
     <div className="proc-permission-preview__body">
       <span className="proc-permission-preview__label">Interactive preview</span>
@@ -47,9 +48,9 @@ export function PermissionPreview({ node, doc, simulated, engines }: { node: Pro
 }
 
 /** One calm review surface for both views. Decisions always go through the existing engine; failures stay open. */
-export function ProcessPermissions({ doc, root, snapshot, simulated, engines, preferredId, focusOnOpen, onDecide, onLocate }: {
+export function ProcessPermissions({ doc, root, snapshot, simulated, engines, preferredId, focusOnOpen, reviewRevision = 0, onDecide, onLocate }: {
   doc: ProcessDoc; root: ProcessNode; snapshot: RunSnapshot; simulated: boolean; engines: readonly EngineInfo[];
-  preferredId?: string; focusOnOpen: boolean;
+  preferredId?: string; focusOnOpen: boolean; reviewRevision?: number;
   onDecide: (id: string, decision: PermissionDecision) => Promise<boolean>; onLocate: (id: string) => void;
 }) {
   const [selectedId, setSelectedId] = useState(preferredId);
@@ -61,11 +62,24 @@ export function ProcessPermissions({ doc, root, snapshot, simulated, engines, pr
   const container = useRef<HTMLDivElement>(null);
   const inFlight = useRef(false);
   const moveFocus = useRef(focusOnOpen);
+  const [reviewed, setReviewed] = useState(reviewRevision);
+  // Explicit review retargets the same surface, rather than remounting a full-size card.
+  if (reviewed !== reviewRevision) {
+    setReviewed(reviewRevision); setSelectedId(preferredId); setMinimized(false); setDismissed(false); setReceipt(undefined);
+    moveFocus.current = focusOnOpen;
+  }
   const titleId = useId();
   const waiting = flattenNodes(root).filter(node => snapshot.nodes[node.id]?.status === "waiting");
   const index = Math.max(0, waiting.findIndex(node => node.id === selectedId));
   const node = waiting[index];
   const signature = waiting.map(item => item.id).join(":");
+  const visible = !!node || (!!receipt && !dismissed);
+  const compact = !!node && (minimized || dismissed);
+  const surfaceState = `${compact}:${receipt?.node.id}:${receipt?.decision}:${node?.id}:${waiting.length}:${error ?? ""}`;
+  useMorphingPanel(container, surfaceState, visible);
+  useLayoutEffect(() => {
+    if (container.current && visible && !compact) return revealPanelContent(container.current);
+  }, [surfaceState, visible, compact]);
   // Only user-initiated reviews/decisions move focus. An incoming request never interrupts typing or map controls.
   useEffect(() => {
     if (!moveFocus.current) return;
@@ -91,13 +105,13 @@ export function ProcessPermissions({ doc, root, snapshot, simulated, engines, pr
     finally { inFlight.current = false; setBusy(false); }
   }
 
-  if (!node && (!receipt || dismissed)) return null;
-  if ((minimized || dismissed) && node) return <div className="proc-permissions proc-permissions--minimized" ref={container}>
+  if (!visible) return null;
+  return <section className={`proc-permissions${compact ? " proc-permissions--minimized" : ""}`} aria-labelledby={compact ? undefined : titleId} ref={container}>
+    <div className="proc-permissions__inner" data-morph-content>
+    {compact ? <>
     <button type="button" className="proc-permissions__trigger proc-pill" data-review-trigger onClick={() => { moveFocus.current = true; setMinimized(false); setDismissed(false); setReceipt(undefined); }}><ShieldCheck size={16} /><span>{waiting.length} permission request{waiting.length === 1 ? "" : "s"}</span><span className="proc-permissions__count">Review<ArrowRight size={12} /></span></button>
-  </div>;
-
-  return <section className="proc-permissions" aria-labelledby={titleId} ref={container}>
-    <div className="proc-permissions__bar">
+    </> : <>
+    <div className="proc-permissions__bar" data-panel-reveal>
       <span id={titleId}><ShieldCheck size={13} aria-hidden="true" />{receipt ? "Your decision" : "Permission request"}{waiting.length > 0 && <span className="proc-permissions__number">{waiting.length} waiting</span>}</span>
       <button type="button" className="proc-icon-button" aria-label={receipt && !node ? "Dismiss decision" : "Minimize permission requests"} disabled={busy} onClick={() => { moveFocus.current = true; if (!node) dismissReceipt(); else setMinimized(true); }}><Minus size={14} /></button>
     </div>
@@ -114,5 +128,7 @@ export function ProcessPermissions({ doc, root, snapshot, simulated, engines, pr
       </>}
     </div>
     <span className="proc-sr" role="status">{waiting.length ? `${waiting.length} permission request${waiting.length === 1 ? " is" : "s are"} waiting for your decision.` : "No permission requests waiting."}</span>
+    </>}
+    </div>
   </section>;
 }

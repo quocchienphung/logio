@@ -20,6 +20,7 @@ import {
 } from "@/components/stripe/icons";
 import { MegaMenuContent } from "./MegaMenu";
 import { MENUS, type Menu } from "./menus";
+import { interactionMotion } from "@/components/interaction/motion-tokens";
 
 type MenuId = Menu["id"];
 type Status = "initial" | "open" | "close";
@@ -27,7 +28,7 @@ type Status = "initial" | "open" | "close";
 // Menus open on the first hover frame; the close delay alone keeps passing pointers from flickering them.
 const OPEN_DELAY = 0;
 const CLOSE_DELAY = 150;
-const CLOSE_ANIM = 300; // --navigation-duration-slow
+const CLOSE_ANIM = interactionMotion.exit;
 const MOBILE_QUERY = "(max-width: 939px)";
 
 /**
@@ -149,7 +150,7 @@ function NavigationMenu() {
         );
         setLeaving(active);
         clear("leave");
-        timers.current.leave = window.setTimeout(() => setLeaving(null), 500);
+        timers.current.leave = window.setTimeout(() => setLeaving(null), interactionMotion.spring);
       } else {
         setDirection(undefined);
       }
@@ -580,6 +581,7 @@ function NavigationMenu() {
                 <nav
                   className="hds-navigation-menu__popup"
                   data-status={popupStatus ?? undefined}
+                  inert={popupStatus === "close"}
                   data-activation-direction={mobile ? undefined : direction}
                   id={
                     active

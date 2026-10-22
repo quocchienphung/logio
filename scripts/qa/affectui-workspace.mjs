@@ -75,10 +75,10 @@ try{
     await page.getByLabel('Report name').fill('Quarterly review');await page.getByRole('button',{name:'Save report',exact:true}).click();
     await page.reload({waitUntil:'networkidle'});await page.locator('.ui-as-rev').waitFor();
     await period(7);await page.getByRole('button',{name:'Saved reports',exact:true}).click();
-    await page.getByRole('button',{name:/Quarterly review Last 30 days/}).click();
+    await page.getByRole('menuitem',{name:/Quarterly review Last 30 days/}).click();
     assert.match(await page.locator('.ui-as-rev__period').innerText(),/30/);
     await page.getByRole('button',{name:'Saved reports',exact:true}).click();
-    await page.getByRole('button',{name:'Delete Quarterly review',exact:true}).click();
+    await page.getByRole('menuitem',{name:'Delete Quarterly review',exact:true}).click();
     assert.equal(await page.getByRole('button',{name:'Saved reports',exact:true}).count(),0);
   });
   await check('metric explanations and product detail dialogs',async()=>{

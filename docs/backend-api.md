@@ -72,7 +72,7 @@ Saving: edits appear immediately and are sent after `debounceMs` of quiet; one s
 | `settings-billing` | workspace | Settings → Billing | `BillingState` (`SettingsBilling.tsx`) |
 | `settings-api-keys` | workspace, collection, **secret `value`** | Settings → API keys | `{id, name, prefix, suffix, created, lastUsed}[]` |
 | `mapping` | workspace | Mapping | `MappingData` (`version: 1`; `mapping-types.ts`), saved after 350 ms with `commands` |
-| `invoice` | workspace | Invoice | `InvoiceLibrary` (`version: 2`; `invoice-model.ts`), with v1 migration; see `docs/research/invoice-credit/api-contract.md` |
+| `invoice` | workspace | Invoice | `InvoiceLibrary` (`version: 2`; `invoice-model.ts`; a document may carry an optional `stamp: { kind: "paid"|"received"|"approved"|"due", date: "yyyy-mm-dd", ink: "red"|"blue"|"green"|"violet"|"black" }`), with v1 migration; see `docs/research/invoice-credit/api-contract.md` |
 
 Answers are validated before a screen sees them (`parse` per resource, `normalizeData` / `normalizeInvoice` for the map and the invoice). An invalid answer is ignored with a console warning and the screen keeps its demo defaults; a map or invoice in an unknown format shows the retry notice.
 

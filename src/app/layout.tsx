@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MotionScript } from "@/components/motion/MotionScript";
+import { InteractionRuntime } from "@/components/interaction/InteractionRuntime";
 import { PageTransitionScript } from "@/components/page-transition/PageTransitionScript";
 import { StripeNavigationScript } from "@/components/navigation/StripeNavigationScript";
 import "./globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <div id="__next">{children}</div>
+        <InteractionRuntime />
       </body>
     </html>
   );

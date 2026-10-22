@@ -70,7 +70,7 @@ span.cbx__chip-x { width: 16px; }
 .cbx__list { position: relative; max-height: var(--cbx-max, 300px); padding: 4px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--cbx-hover) transparent; transition: height .3s var(--cbx-ease); }
 .cbx__list-inner { position: relative; }
 .cbx__pill { position: absolute; left: 4px; right: 4px; top: 0; height: 32px; border-radius: 6px; background: var(--cbx-hover); opacity: 1; pointer-events: none; }
-.cbx__pill[data-ready] { transition: transform .09s ease-out, height .09s ease-out, opacity .14s ease; }
+.cbx__pill[data-ready] { transition: transform var(--interaction-duration-spring) var(--interaction-ease-spring), height var(--interaction-duration-spring) var(--interaction-ease-spring), opacity var(--interaction-duration-fast) var(--interaction-ease-standard); }
 .cbx__pill[data-hidden], .cbx__pill[data-empty] { opacity: 0; }
 .cbx__group-label { padding: 4px 8px; color: var(--cbx-faint); font-size: 10px; line-height: 16px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; }
 .cbx__option { position: relative; display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 8px; border-radius: 6px; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
@@ -110,6 +110,12 @@ span.cbx__chip-x { width: 16px; }
   .cbx__pill { display: none; }
   .cbx__option[data-active] { background: var(--cbx-hover); }
 }
+/* Shared observed menu recipe; the selection/positioning engine stays local. */
+.cbx__pop, .cbx__pop[data-side="above"] { --interaction-menu-y: -5px; animation: interaction-menu-opacity var(--interaction-duration-fast) var(--interaction-ease-enter) both, interaction-menu-transform var(--interaction-duration-spring) var(--interaction-ease-spring) both; }
+.cbx__pop[data-side="above"] { --interaction-menu-y: 5px; }
+.cbx__pop[data-state="closing"], .cbx__pop[data-side="above"][data-state="closing"] { animation: interaction-menu-close var(--interaction-duration-exit) var(--interaction-ease-standard) both; }
+.cbx__list { transition: height var(--interaction-duration-spring) var(--interaction-ease-spring); }
+.cbx__toggle .cbx__glyph { transition: transform var(--interaction-duration-spring) var(--interaction-ease-spring); }
 @media (prefers-reduced-motion: reduce) {
   .cbx__pop, .cbx__pop[data-state="closing"], .cbx__roll > span { animation: none; }
   .cbx__list, .cbx__pill[data-ready], .cbx__check, .cbx__toggle .cbx__glyph, .cbx__field, .cbx__chip-body { transition: none; }

@@ -204,7 +204,9 @@ try {
     await touch.getByRole("button", { name: "Open sidebar", exact: true }).tap(); await touch.waitForTimeout(500);
     await touch.locator(".workspace-nav-label").getByText("Contacts", { exact: true }).tap(); await touch.waitForTimeout(800);
     const sort = touch.getByRole("combobox", { name: "Sort contacts", exact: true });
-    await sort.tap(); await touch.locator(".cbx__pop").waitFor(); await touch.waitForTimeout(400);
+    await sort.tap(); await touch.locator(".cbx__pop").waitFor();
+    // Measure the final touch target after the shared entrance has settled.
+    await touch.locator(".cbx__pop").evaluate(node => Promise.all(node.getAnimations().map(animation => animation.finished.catch(() => {}))));
     const metrics = await touch.evaluate(() => { const row = document.querySelector(".cbx__pop [role=option]").getBoundingClientRect(), pop = document.querySelector(".cbx__pop").getBoundingClientRect(), field = document.querySelector(".cbx__field").getBoundingClientRect(), input = getComputedStyle(document.querySelector(".cbx__input")); return { row: row.height, font: input.fontSize, popWidth: Math.round(pop.width), fieldWidth: Math.round(field.width), inside: pop.left >= 0 && pop.right <= innerWidth }; });
     assert.equal(metrics.row, 44); assert.equal(metrics.font, "16px"); assert.equal(metrics.popWidth, metrics.fieldWidth); assert.equal(metrics.inside, true);
     await touch.getByRole("option", { name: "Most companies", exact: true }).tap(); await touch.waitForTimeout(500);

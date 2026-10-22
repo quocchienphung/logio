@@ -1,4 +1,5 @@
 "use client";
+import { interactionMotion } from "@/components/interaction/motion-tokens";
 
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
@@ -123,7 +124,7 @@ export function ModelPicker({
       frame = requestAnimationFrame(() => { host.setAttribute("data-open", ""); panel.inert = false; list.current?.focus({ preventScroll: true }); });
     } else {
       host.removeAttribute("data-open"); panel.inert = true;
-      timer = window.setTimeout(() => { if (panel.matches(":popover-open")) panel.hidePopover(); }, 240);
+      timer = window.setTimeout(() => { if (panel.matches(":popover-open")) panel.hidePopover(); }, interactionMotion.exit);
     }
     return () => { cancelAnimationFrame(frame); window.clearTimeout(timer); };
   }, [isOpen, place, measureThumb]);
@@ -133,12 +134,17 @@ export function ModelPicker({
   useEffect(() => {
     if (!isOpen) return;
     let frame = 0;
-    const follow = () => { place(); frame = requestAnimationFrame(follow); };
-    frame = requestAnimationFrame(follow);
+    const follow = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(place); };
+    const observer = new ResizeObserver(follow);
+    for (const element of [trigger.current, card.current, list.current, root.current?.parentElement]) if (element) observer.observe(element);
+    window.addEventListener("resize", follow);
+    document.addEventListener("scroll", follow, { capture: true, passive: true });
+    window.visualViewport?.addEventListener("resize", follow);
+    follow();
     const outside = (event: PointerEvent) => { if (event.target instanceof Node && !root.current?.contains(event.target)) close(false); };
     document.addEventListener("pointerdown", outside, true);
     void document.fonts?.ready.then(measureThumb);
-    return () => { cancelAnimationFrame(frame); document.removeEventListener("pointerdown", outside, true); };
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener("resize", follow); document.removeEventListener("scroll", follow, true); window.visualViewport?.removeEventListener("resize", follow); document.removeEventListener("pointerdown", outside, true); };
   }, [isOpen, place, close, measureThumb]);
   useEffect(() => { if (!isOpen) return; const row = list.current?.querySelector(`[data-id="${CSS.escape(activeId ?? selected?.id ?? "")}"]`); row?.scrollIntoView({ block: "nearest" }); }, [isOpen, activeId, selected?.id]);
 

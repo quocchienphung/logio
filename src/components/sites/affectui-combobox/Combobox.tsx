@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { buildSections, filterOptions, firstEnabled, hasExactMatch, initials, lastEnabled, matchRanges, moveActive, typeahead } from "./combobox-model";
 import type { ComboboxOption, Row } from "./combobox-model";
 import "./combobox.css";
+import { interactionMotion } from "@/components/interaction/motion-tokens";
 
 export type { ComboboxOption } from "./combobox-model";
 
@@ -120,7 +121,7 @@ export function Combobox(props: ComboboxProps) {
   const closeList = useCallback(() => {
     setOpen(false); setArmed(false);
     clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setShown(false), reduce ? 0 : 150);
+    closeTimer.current = setTimeout(() => setShown(false), reduce ? 0 : interactionMotion.exit);
   }, [reduce]);
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
@@ -160,6 +161,7 @@ export function Combobox(props: ComboboxProps) {
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    pill.current?.style.setProperty("transition-duration", "0ms");
     const { key } = event;
     if (disabled) return;
     if (key === "ArrowDown" || key === "ArrowUp") {
@@ -315,7 +317,7 @@ export function Combobox(props: ComboboxProps) {
             {section.title && <div className="cbx__group-label" id={`${uid}-${section.id}`}>{section.title}</div>}
             {section.rows.map(({ row, index }) => {
               const option = row.option, chosen = !!option && values.includes(option.value);
-              return <div key={option?.value ?? "create"} id={`${uid}-o${index}`} data-index={index} role="option" aria-selected={row.kind === "option" ? chosen : false} aria-disabled={option?.disabled || undefined} data-active={index === active || undefined} className={`cbx__option${row.kind === "create" ? " cbx__create" : ""}`} onPointerMove={event => { if (event.pointerType !== "touch" && (index !== active || !pointerIn)) { setActive(index); setPointerIn(true); } }} onClick={() => choose(row)}>
+              return <div key={option?.value ?? "create"} id={`${uid}-o${index}`} data-index={index} role="option" aria-selected={row.kind === "option" ? chosen : false} aria-disabled={option?.disabled || undefined} data-active={index === active || undefined} className={`cbx__option${row.kind === "create" ? " cbx__create" : ""}`} onPointerMove={event => { if (event.pointerType !== "touch" && (index !== active || !pointerIn)) { pill.current?.style.removeProperty("transition-duration"); setActive(index); setPointerIn(true); } }} onClick={() => choose(row)}>
                 {row.kind === "create" ? <><span className="cbx__plus" aria-hidden="true"><Glyph d="M12 6v12M6 12h12" /></span><span className="cbx__name">{createLabel(row.text ?? "")}</span></> : <>
                   {option && <Avatar option={option} />}
                   {option?.color && <span className="cbx__dot" style={{ background: option.color }} aria-hidden="true" />}

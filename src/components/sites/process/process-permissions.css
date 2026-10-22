@@ -7,7 +7,9 @@
 .proc-permission-preview[open] summary { border-bottom: 1px solid var(--proc-line); }
 .proc-permission-preview__body { display: grid; gap: 10px; padding: 10px; background: var(--proc-bg); border-radius: 0 0 9px 9px; }
 .proc-permission-preview__label { color: var(--proc-muted); font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
-.proc-permissions { position: absolute; z-index: 13; left: 16px; bottom: 76px; width: min(400px, calc(100% - 32px)); max-height: calc(100% - 158px); display: flex; flex-direction: column; padding: 6px; border-radius: 15px; background: var(--proc-panel); box-shadow: var(--proc-float); animation: proc-pop 200ms cubic-bezier(.32,.72,.24,1) both; }
+.proc-permissions { position: absolute; z-index: 13; left: 16px; bottom: 76px; box-sizing: border-box; width: min(400px, calc(100% - 32px)); max-height: calc(100% - 158px); display: flex; flex-direction: column; overflow: hidden; padding: 6px; border-radius: 15px; background: var(--proc-panel); box-shadow: var(--proc-float); }
+.proc-permissions__inner { display: flex; flex: 0 1 auto; flex-direction: column; min-height: 0; width: 100%; }
+.proc-permissions[data-morphing] > .proc-permissions__inner { flex: none; }
 .proc-permissions__bar { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 6px; min-height: 28px; padding: 0 0 6px 8px; }
 .proc-permissions__bar > span { display: flex; align-items: center; gap: 7px; color: var(--proc-text); font-size: 11px; font-weight: 500; }
 .proc-permissions__bar > span > svg { color: var(--proc-warn); }

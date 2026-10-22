@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import { MenuSurface } from "@/components/interaction/MenuSurface";
 import type { ReactNode } from "react";
 import { agentsWith, dollars, totalsOf, type TreeAgent } from "./tree-model";
 import { Chevron, Spark, StatusGlyph } from "./tree-marks";
@@ -68,7 +70,7 @@ export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], f
       {totals.failed > 0 && <button type="button" className="agt__sum-btn" data-kind="failed" aria-expanded={windowKind === "failed"} aria-haspopup="dialog" aria-controls={windowKind === "failed" ? `${ids}-window` : undefined} onClick={() => setOpen(windowKind === "failed" ? null : "failed")}>{totals.failed} failed<Chevron /></button>}
       {showCost && <span className="agt__sum-cost"><span className="agt__amount" data-live={totals.live ? "" : undefined}>{formatCost(totals.cost)}</span></span>}
     </span>
-    {windowKind && <div className="agt__pop" ref={pop} id={`${ids}-window`} role="dialog" aria-label={windowKind === "waiting" ? `${many.charAt(0).toUpperCase()}${many.slice(1)} that need you` : `Failed ${many}`}>
+    <AnimatePresence>{windowKind && <MenuSurface className="agt__pop" ref={pop} id={`${ids}-window`} role="dialog" aria-label={windowKind === "waiting" ? `${many.charAt(0).toUpperCase()}${many.slice(1)} that need you` : `Failed ${many}`}>
       {windowAgents.map(agent => <div className="agt__pop-item" key={agent.id}>
         <div className="agt__pop-head"><span className="agt__status" data-status={agent.status}><StatusGlyph status={agent.status} /></span><span className="agt__pop-name">{agent.name}</span><span className="agt__pop-task">{agent.task}</span></div>
         <p className="agt__pop-text">{windowKind === "waiting" ? (agent.ask ?? `This ${one} is waiting for your decision.`) : (agent.error ?? `This ${one} failed.`)}</p>
@@ -77,7 +79,7 @@ export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], f
           <button type="button" className="agt__btn agt__btn--primary" onClick={() => onResolve(agent, windowKind === "waiting" ? "approve" : "retry")}>{windowKind === "waiting" ? "Approve" : "Retry"}</button>
         </div>}
       </div>)}
-    </div>}
+    </MenuSurface>}</AnimatePresence>
     <span className="agt__sr" role="status" aria-live="polite">{announce}</span>
   </div>;
 }

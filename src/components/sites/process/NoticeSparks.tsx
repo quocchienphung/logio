@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import { MenuSurface } from "@/components/interaction/MenuSurface";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import { NotificationStack } from "../affectui-notification-stack/NotificationStack";
 import type { Notice } from "../affectui-notification-stack/stack-model";
@@ -89,12 +91,12 @@ export function NoticeSparks({ groups, screenBox, nameOf, viewport, inset, seen,
         {count > 1 && <span className="pmap__spark-count" aria-hidden="true">{count}</span>}
       </button>;
     })}
-    {open && place && <div ref={card} className="pmap__notice" role="dialog" aria-label={`Notifications for ${nameOf(open.blockId)}`} data-side={place.side}
+    <AnimatePresence>{open && place && <MenuSurface key={open.blockId} ref={card} className="pmap__notice" role="dialog" aria-label={`Notifications for ${nameOf(open.blockId)}`} data-side={place.side}
       style={{ left: place.left, width: place.width, top: place.top, bottom: place.bottom }}>
       <NotificationStack notices={open.notices} label={`Notifications for ${nameOf(open.blockId)}`}
         onDismiss={notice => onDismiss(notice.id)}
         // "Dismiss all" in the card calls onDismiss for each of its notices first; nothing is left to do here
         onDismissAll={() => {}} />
-    </div>}
+    </MenuSurface>}</AnimatePresence>
   </div>;
 }
