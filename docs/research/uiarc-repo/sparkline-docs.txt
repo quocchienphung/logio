@@ -1,0 +1,211 @@
+Components
+Sparkline
+Sparkline
+
+Show a compact trend beside a value.
+
+$
+pnpm dlx shadcn@latest add @uiarc/sparkline
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Daily active users
+2,486
++7.2%
+1W
+1M
+1Y
+When to use
+A compact trend inside a card, table row, or KPI tile.
+Small charts people can scrub by pointer or keyboard to read past values.
+When not to use
+Use bar-chart for comparing discrete periods with axes.
+Use stat-card or metric-card when only the latest value matters.
+Installation
+
+Add Sparkline with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/sparkline
+pnpm dlx shadcn@latest add @uiarc/sparkline
+
+Adds the component and its local dependencies, and installs motion. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/sparkline.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { Sparkline } from "@/components/arc/sparkline/sparkline";
+2
+ 
+3
+export function Signups() {
+4
+  return (
+5
+    <Sparkline
+6
+      label="Signups"
+7
+      data={[12, 18, 15, 22, 30, 27, 34]}
+8
+      labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
+9
+      value="34"
+10
+      change="+26%"
+11
+      tone="success"
+12
+    />
+13
+  );
+14
+}
+API reference
+Sparkline
+
+A small line chart with a headline value that can be scrubbed by pointer or keyboard.
+
+Prop
+Type
+Default
+Description
+data
+Required
+number[]
+–
+Points in order, oldest first.
+label
+Required
+string
+–
+What is measured. Names the chart.
+value
+string
+–
+Headline value at rest. While scrubbing it shows the point under the cursor.
+change
+string
+–
+Aside text at rest, such as "+4.1%".
+tone
+"accent" | "success" | "warning" | "danger"
+"accent"
+Line and change color.
+width
+number
+160
+Drawing width in SVG units.
+height
+number
+52
+Drawing height in SVG units.
+labels
+string[]
+–
+One label per point, such as a date, shown while scrubbing.
+formatValue
+(value: number, index: number) => string
+–
+Formats a scrubbed point. Defaults to a grouped number.
+area
+boolean
+true
+Quiet fill under the line.
+interactive
+boolean
+true
+Enables pointer and keyboard scrubbing.
+Keyboard interactions
+ArrowLeft
+or
+ArrowRight
+Moves the cursor one point back or forward (ArrowDown and ArrowUp too).
+PageDown
+or
+PageUp
+Moves about a sixth of the series.
+Home
+or
+End
+Jumps to the first or last point.
+Escape
+Stops scrubbing and returns to the latest value.
+Accessibility
+The figure has an aria-label describing the series; the SVG is hidden.
+When interactive, the plot is a focusable role="slider" whose aria-valuetext reads the point label and value.
+Pass labels so scrubbed points read as dates rather than positions.
+Motion
+The line draws in on first view and the end dot appears as it lands.
+While scrubbing, the cursor springs between points, later points dim, and headline copy rolls.
+Reduced motion shows the full line at once and moves the cursor without springing.
+Responsive behavior
+The plot measures its width with a ResizeObserver and redraws to fill its container.
+Scrubbing uses touch-action pan-y, so a horizontal drag scrubs while vertical swipes still scroll the page.
+On touch the readout returns to the latest value when the finger lifts.
+Performance
+Each chart has its own ResizeObservers and an in-view draw; set interactive to false in dense tables to drop tab stops and handlers.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for a compact trend inside a card or table row. Use bar-chart for comparing discrete periods with axes.
+Pass value as the formatted latest reading; formatValue should match it so scrubbed values look consistent.
+Set interactive to false in dense tables to avoid many tab stops.
+/components/sparkline/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Bar chart
+Component
+Compare one measure across days and scrub any bar for its value.
+Metric card
+Component
+A compact summary for a number that needs context.
+Gauge
+Component
+Show a value against a known range.
+Previous
+Slope chart
+Next
+Gauge
+Arc · 182 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

@@ -3,7 +3,7 @@ import { isSafeSkillPath, parseSkillMarkdown, parseSkillFiles, sha256, sha256Byt
 import { resolveGitHubSkillUrl, SkillImportError, type ImportedSkill } from "./github-source.ts";
 
 const MAX_ARCHIVE = 20 * 1024 * 1024;
-interface ArchiveEntry { name: string; bytes: number; mode: number }
+export interface ArchiveEntry { name: string; bytes: number; mode: number }
 export interface SkillCandidate { name: string; description: string; path: string; url: string }
 export type GitHubSourceScan = (ImportedSkill & { files: SkillFile[] }) | { candidates: SkillCandidate[]; skipped?: number };
 
@@ -34,7 +34,7 @@ function archiveIndex(data: Uint8Array) {
   return { entries, commit };
 }
 
-function inspectArchive(data: Uint8Array) {
+export function inspectArchive(data: Uint8Array) {
   if (data.length < 22 || data.length > MAX_ARCHIVE) throw new SkillImportError("Repository archive exceeds 20 MiB or is invalid.", 413);
   const { entries, commit } = archiveIndex(data);
   const root = entries[0]?.name.split("/")[0];
@@ -86,7 +86,7 @@ export async function readSkillArchive(data: Uint8Array, input: string): Promise
 }
 
 /** Download one bounded public archive. Discovery and exact imports share the same source bytes. */
-async function downloadArchive(input: string, fetcher: typeof fetch): Promise<Uint8Array> {
+export async function downloadArchive(input: string, fetcher: typeof fetch): Promise<Uint8Array> {
   const location = resolveGitHubSkillUrl(input);
   const parts = new URL(location.sourceUrl).pathname.split("/").filter(Boolean);
   const controller = new AbortController();
@@ -114,15 +114,11 @@ export async function importGitHubFolder(input: string, fetcher: typeof fetch = 
   return readSkillArchive(await downloadArchive(input, fetcher), input);
 }
 
-/** Discover real SKILL.md documents without choosing an arbitrary nested skill. */
-export async function scanGitHubSource(input: string, fetcher: typeof fetch = fetch): Promise<GitHubSourceScan> {
-  const location = resolveGitHubSkillUrl(input);
-  const data = await downloadArchive(input, fetcher);
+/** Every valid SKILL.md under the location's folder, with a commit-pinned link for each. Shared by skill discovery and the repository scan. */
+export async function collectSkillCandidates(data: Uint8Array, location: ReturnType<typeof resolveGitHubSkillUrl>): Promise<{ candidates: SkillCandidate[]; skipped: number; commit: string; root: string; entries: ArchiveEntry[] }> {
   const { entries, root, commit } = inspectArchive(data);
   const directory = location.sourcePath.slice(0, -"SKILL.md".length);
   const prefix = `${root}/${directory}`;
-  if (entries.some(entry => entry.name === `${prefix}SKILL.md`)) return readSkillArchive(data, input);
-  if (location.kind === "file") throw new SkillImportError("This repository path does not contain SKILL.md.", 404);
   const documents = entries.filter(entry => entry.name.startsWith(prefix) && entry.name.endsWith("/SKILL.md") && !entry.name.endsWith("/"));
   if (documents.length > 100) throw new SkillImportError("This source contains more than 100 skill documents. Choose a narrower GitHub folder to scan.", 413);
   let skipped = 0;

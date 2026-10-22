@@ -1,0 +1,157 @@
+Components
+Animated counter
+Animated counter
+
+A countup animation for React. The number is an odometer: each digit column rolls to the new value, in the direction the number moved. Set animateOnView to count up from zero when it scrolls into view, and use prefix, suffix and decimals for money and percentages. Reduced motion jumps the digits into place.
+
+$
+pnpm dlx shadcn@latest add @uiarc/animated-counter
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Total responses
+12,840
+1
+2
+,
+8
+4
+0
+Click to simulate new responses
+When to use
+Standalone numbers that change, such as totals, prices, or live counts.
+Hero stats that roll up from zero when they scroll into view, via animateOnView.
+When not to use
+Use metric-card or stat-card when the number needs a card around it.
+Use text-morph for words rather than numbers.
+Installation
+
+Add Animated counter with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/animated-counter
+pnpm dlx shadcn@latest add @uiarc/animated-counter
+
+Adds the component and its local dependencies, and installs motion. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/animated-counter.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { AnimatedCounter } from "@/components/arc/animated-counter/animated-counter";
+2
+ 
+3
+export function Raised({ amount }: { amount: number }) {
+4
+  return <AnimatedCounter label="Raised" value={amount} prefix="$" animateOnView />;
+5
+}
+API reference
+AnimatedCounter
+
+An odometer style number whose digit columns roll to each new value.
+
+Prop
+Type
+Default
+Description
+value
+Required
+number
+–
+The number to show.
+label
+string
+–
+Small label above the number.
+prefix
+string
+""
+Text before the number, such as "$".
+suffix
+string
+""
+Text after the number, such as "%".
+decimals
+number
+0
+Fixed fraction digits.
+animateOnView
+boolean
+false
+Rolls every digit up from zero the first time it scrolls into view.
+locale
+string
+"en-US"
+Formatting locale. Fixed by default so server and client match.
+Accessibility
+A visually hidden copy holds the full formatted text; the rolling digits are aria-hidden.
+It does not announce changes; wrap it in a live region if updates must be spoken.
+Motion
+Each digit column turns in the direction the whole number moved, wrapping 9 to 0, with a slight stagger on first reveal.
+Columns and separators slide in or out when the digit count changes.
+Reduced motion jumps digits into place.
+Responsive behavior
+It sizes to its digits, and columns slide in or out when the digit count changes, so neighbours shift slightly.
+Performance
+Each digit is its own motion column; fine for a few counters, not for every cell of a table.
+The first reveal waits for 60% visibility through useInView.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for standalone numbers that change: totals, prices, counts. Use metric-card or stat-card when the number needs a card around it.
+Pass a raw number and let decimals, prefix, and suffix format it; do not pass preformatted strings.
+/components/animated-counter/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Metric card
+Component
+A compact summary for a number that needs context.
+Text morph
+Component
+Morph a label into its next state, letter by letter.
+Previous
+Activity heatmap
+Next
+Ridgeline
+Arc · 182 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

@@ -1,0 +1,249 @@
+Components
+Timeline
+Timeline
+
+Follow what happened, newest first, grouped by day.
+
+$
+pnpm dlx shadcn@latest add @uiarc/timeline
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Checkout redesign
+
+Project activity
+
+Add update
+Today
+4
+ updates
+, 4 updates
+Emma Collins merged Checkout redesign into main
+Pull request #482
+11m
+11 minutes ago, Monday, September 21 at 2:21 PM
+Staging deploy passed
+Build 1,284 · 4m 12s
+1h
+1 hour ago, Monday, September 21 at 1:05 PM
+Ava Mitchell commented on Billing settings
+Design review
+2h
+2 hours ago, Monday, September 21 at 11:48 AM
+Marcus Johnson moved Apple Pay support to In review
+Sprint 38
+5h
+5 hours ago, Monday, September 21 at 9:30 AM
+Friday, September 18
+3
+ updates
+, 3 updates
+Sofia Ramirez updated the release notes
+v2.8 draft
+5:40 PM
+Friday, September 18 at 5:40 PM
+Jasmine Brooks scheduled release v2.8
+Thursday, 10:00 to 11:00
+3:12 PM
+Friday, September 18 at 3:12 PM
+Checkout tests failed on main
+Build 1,279 · 2 failing
+10:03 AM
+Friday, September 18 at 10:03 AM
+Thursday, September 17
+2
+ updates
+, 2 updates
+Emma Collins shared new checkout designs
+14 frames
+4:26 PM
+Thursday, September 17 at 4:26 PM
+Ava Mitchell created the project brief
+Q4 roadmap
+11:10 AM
+Thursday, September 17 at 11:10 AM
+When to use
+Project history, audit logs, and deploy streams where recency matters.
+Live feeds where new updates slide in at the top.
+Rows that expand in place to show logs or detail.
+When not to use
+Use sortable-data-table when people sort or compare.
+Use stepper for progress through fixed steps.
+Installation
+
+Add Timeline with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/timeline
+pnpm dlx shadcn@latest add @uiarc/timeline
+
+Adds the component and its local dependencies, and installs motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/timeline.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { Timeline } from "@/components/arc/timeline/timeline";
+2
+ 
+3
+const events = [
+4
+  { id: "e1", at: "2026-09-22T09:12:00Z", actor: "Maya", title: "merged Checkout redesign into main", meta: "PR #482" },
+5
+  { id: "e2", at: "2026-09-22T08:40:00Z", title: "Deploy failed", tone: "danger" as const, detail: <pre>Build step exited 1</pre> },
+6
+];
+7
+ 
+8
+export function Activity({ now }: { now: number }) {
+9
+  return <Timeline events={events} now={now} label="Project activity" maxHeight={420} />;
+10
+}
+API reference
+Timeline
+
+A vertical activity feed grouped by day with pinned day labels and rows that expand in place.
+
+Prop
+Type
+Default
+Description
+events
+Required
+{ id: string; at: string | number; actor?: string; title: string; meta?: string; detail?: ReactNode; avatar?: string; icon?: ReactNode; tone?: "neutral" | "success" | "danger" }[]
+–
+Updates in any order; newest shows first. Rows with detail are expandable.
+now
+Required
+number
+–
+Reference time in epoch ms for relative labels and day groups. Pass a ticking clock to keep labels fresh.
+label
+Required
+string
+–
+Accessible name for the feed.
+timeZone
+string
+"UTC"
+Time zone for day groups and clock times.
+locale
+string
+"en-US"
+Formatting locale.
+maxHeight
+number | string
+–
+Height of the scrolling area. Without it the feed grows with the page.
+scrollToNew
+boolean
+true
+Scrolls back to the top when a new update arrives.
+defaultExpanded
+string[]
+[]
+Event ids expanded on mount.
+headingLevel
+2 | 3 | 4 | 5 | 6
+3
+Heading level for day labels.
+className
+string
+–
+Class for the root.
+Keyboard interactions
+ArrowDown
+or
+ArrowUp
+Moves between expandable rows.
+Home
+or
+End
+Jumps to the first or last expandable row.
+Enter
+or
+Space
+Expands or collapses the focused row.
+Accessibility
+The feed is a labelled role="region"; day labels are headings at headingLevel with a hidden update count.
+Expandable rows are buttons with aria-expanded and aria-controls; rows without detail are not interactive.
+Times use a time element with the full date in hidden text, and new updates are announced in a status region.
+Say the outcome in the title, since tone is color only.
+Motion
+The connecting line draws as rows come into view and markers pop in.
+New updates slide in at the top while the rest glide down; details expand on a spring.
+Reduced motion replaces travel with short fades and instant height changes.
+Responsive behavior
+Day labels stay pinned while updates scroll under them, inside maxHeight or the page.
+Below 420px row padding tightens so text keeps its width.
+Performance
+Events are not virtualized; set maxHeight for long feeds and trim old events.
+Pass a now that ticks about once a minute rather than every second, since it re-renders every row.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for project history, audit logs, and deploy streams where order and recency matter. Use sortable-data-table when people sort or compare.
+Pass a ticking now (for example updated every minute) so relative times stay current, and a fixed timeZone to avoid hydration mismatches.
+/components/timeline/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Sortable data table
+Component
+Compare structured records with sortable columns.
+Avatar
+Component
+A compact identity marker for people and accounts.
+Badge
+Component
+A small label for status, category, or metadata.
+Stepper
+Component
+Show where a person is in a multi-step flow and what is done.
+Previous
+JSON viewer
+Next
+Comment thread
+Arc · 182 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
