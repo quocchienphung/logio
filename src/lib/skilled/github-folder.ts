@@ -1,9 +1,11 @@
 import { unzipSync } from "fflate";
-import { parseSkillMarkdown, parseSkillFiles, sha256, sha256Bytes, type SkillFile } from "../../components/sites/skilled/skill-model.ts";
+import { isSafeSkillPath, parseSkillMarkdown, parseSkillFiles, sha256, sha256Bytes, type SkillFile } from "../../components/sites/skilled/skill-model.ts";
 import { resolveGitHubSkillUrl, SkillImportError, type ImportedSkill } from "./github-source.ts";
 
 const MAX_ARCHIVE = 20 * 1024 * 1024;
 interface ArchiveEntry { name: string; bytes: number; mode: number }
+export interface SkillCandidate { name: string; description: string; path: string; url: string }
+export type GitHubSourceScan = (ImportedSkill & { files: SkillFile[] }) | { candidates: SkillCandidate[]; skipped?: number };
 
 /** Read the central directory before inflation; never extract archive paths onto disk. */
 function archiveIndex(data: Uint8Array) {
@@ -23,19 +25,26 @@ function archiveIndex(data: Uint8Array) {
     if (offset + 46 > end || view.getUint32(offset, true) !== 0x02014b50) throw new SkillImportError("Invalid archive directory.", 422);
     const length = view.getUint16(offset + 28, true), extra = view.getUint16(offset + 30, true), comment = view.getUint16(offset + 32, true);
     if (offset + 46 + length + extra + comment > end) throw new SkillImportError("Invalid archive entry.", 422);
-    const name = new TextDecoder("utf-8", { fatal: true }).decode(data.subarray(offset + 46, offset + 46 + length));
+    let name: string;
+    try { name = new TextDecoder("utf-8", { fatal: true }).decode(data.subarray(offset + 46, offset + 46 + length)); }
+    catch { throw new SkillImportError("Archive entry names must be valid UTF-8.", 422); }
     entries.push({ name, bytes: view.getUint32(offset + 24, true), mode: view.getUint32(offset + 38, true) >>> 16 });
     offset += 46 + length + extra + comment;
   }
   return { entries, commit };
 }
 
-export async function readSkillArchive(data: Uint8Array, input: string): Promise<ImportedSkill & { files: SkillFile[] }> {
+function inspectArchive(data: Uint8Array) {
   if (data.length < 22 || data.length > MAX_ARCHIVE) throw new SkillImportError("Repository archive exceeds 20 MiB or is invalid.", 413);
-  const location = resolveGitHubSkillUrl(input);
   const { entries, commit } = archiveIndex(data);
   const root = entries[0]?.name.split("/")[0];
-  if (!root || entries.some(entry => !entry.name.startsWith(`${root}/`))) throw new SkillImportError("Archive has inconsistent repository roots.", 422);
+  if (!root || !isSafeSkillPath(root) || entries.some(entry => !entry.name.startsWith(`${root}/`)) || new Set(entries.map(entry => entry.name)).size !== entries.length) throw new SkillImportError("Archive has inconsistent repository roots or duplicate entries.", 422);
+  return { entries, commit, root };
+}
+
+export async function readSkillArchive(data: Uint8Array, input: string): Promise<ImportedSkill & { files: SkillFile[] }> {
+  const location = resolveGitHubSkillUrl(input);
+  const { entries, commit, root } = inspectArchive(data);
   const directory = location.sourcePath.slice(0, -"SKILL.md".length);
   const prefix = `${root}/${directory}`;
   const selected = entries.filter(entry => entry.name.startsWith(prefix) && !entry.name.endsWith("/"));
@@ -56,7 +65,9 @@ export async function readSkillArchive(data: Uint8Array, input: string): Promise
   let instructions: string;
   try { instructions = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(main); }
   catch { throw new SkillImportError("SKILL.md must be valid UTF-8.", 422); }
-  const metadata = parseSkillMarkdown(instructions);
+  let metadata: ReturnType<typeof parseSkillMarkdown>;
+  try { metadata = parseSkillMarkdown(instructions); }
+  catch (error) { throw new SkillImportError(error instanceof Error ? error.message : "Invalid SKILL.md frontmatter.", 422); }
   const files: SkillFile[] = [];
   for (const entry of selected) {
     if (entry.name === `${prefix}SKILL.md`) continue;
@@ -74,8 +85,8 @@ export async function readSkillArchive(data: Uint8Array, input: string): Promise
   return { ...metadata, instructions, bytes: main.length, sha256: await sha256(instructions), files, sourceRef: commit, sourcePath: location.sourcePath, sourceUrl: `https://github.com/${parts[0]}/${parts[1]}/blob/${commit}/${location.sourcePath.split("/").map(encodeURIComponent).join("/")}` };
 }
 
-/** GitHub's public source archive, not an API or executable source bundle. Only the selected skill is retained. */
-export async function importGitHubFolder(input: string, fetcher: typeof fetch = fetch): Promise<ImportedSkill & { files: SkillFile[] }> {
+/** Download one bounded public archive. Discovery and exact imports share the same source bytes. */
+async function downloadArchive(input: string, fetcher: typeof fetch): Promise<Uint8Array> {
   const location = resolveGitHubSkillUrl(input);
   const parts = new URL(location.sourceUrl).pathname.split("/").filter(Boolean);
   const controller = new AbortController();
@@ -91,9 +102,54 @@ export async function importGitHubFolder(input: string, fetcher: typeof fetch = 
     } finally { reader.releaseLock(); }
     const data = new Uint8Array(length); let offset = 0;
     for (const chunk of chunks) { data.set(chunk, offset); offset += chunk.length; }
-    return await readSkillArchive(data, input);
+    return data;
   } catch (failure) {
     if (failure instanceof SkillImportError) throw failure;
     throw new SkillImportError(controller.signal.aborted ? "Repository scan timed out after 25 seconds." : failure instanceof Error ? failure.message : "Could not scan the skill folder.", 422);
   } finally { clearTimeout(timeout); }
+}
+
+/** GitHub's public source archive, not an API or executable source bundle. Only the selected skill is retained. */
+export async function importGitHubFolder(input: string, fetcher: typeof fetch = fetch): Promise<ImportedSkill & { files: SkillFile[] }> {
+  return readSkillArchive(await downloadArchive(input, fetcher), input);
+}
+
+/** Discover real SKILL.md documents without choosing an arbitrary nested skill. */
+export async function scanGitHubSource(input: string, fetcher: typeof fetch = fetch): Promise<GitHubSourceScan> {
+  const location = resolveGitHubSkillUrl(input);
+  const data = await downloadArchive(input, fetcher);
+  const { entries, root, commit } = inspectArchive(data);
+  const directory = location.sourcePath.slice(0, -"SKILL.md".length);
+  const prefix = `${root}/${directory}`;
+  if (entries.some(entry => entry.name === `${prefix}SKILL.md`)) return readSkillArchive(data, input);
+  if (location.kind === "file") throw new SkillImportError("This repository path does not contain SKILL.md.", 404);
+  const documents = entries.filter(entry => entry.name.startsWith(prefix) && entry.name.endsWith("/SKILL.md") && !entry.name.endsWith("/"));
+  if (documents.length > 100) throw new SkillImportError("This source contains more than 100 skill documents. Choose a narrower GitHub folder to scan.", 413);
+  let skipped = 0;
+  const selected = documents.filter(entry => {
+    const type = entry.mode & 0o170000;
+    if (!isSafeSkillPath(entry.name.slice(root.length + 1)) || !entry.bytes || entry.bytes > 256 * 1024 || (type !== 0 && type !== 0o100000)) { skipped++; return false; }
+    return true;
+  });
+  if (selected.reduce((sum, entry) => sum + entry.bytes, 0) > 4 * 1024 * 1024) throw new SkillImportError("Skill discovery exceeds 4 MiB of instruction documents. Choose a narrower GitHub folder.", 413);
+  const names = new Set(selected.map(entry => entry.name));
+  let unpacked: Record<string, Uint8Array>;
+  try { unpacked = unzipSync(data, { filter: entry => names.has(entry.name) && entry.originalSize <= 256 * 1024 }); }
+  catch { throw new SkillImportError("Could not decode this GitHub archive.", 422); }
+  const parts = new URL(location.sourceUrl).pathname.split("/").filter(Boolean);
+  const candidates: SkillCandidate[] = [];
+  for (const entry of selected) {
+    const bytes = unpacked[entry.name];
+    if (!bytes || bytes.length !== entry.bytes) throw new SkillImportError("Skill document size does not match its archive entry.", 422);
+    const path = entry.name.slice(root.length + 1);
+    try {
+      const instructions = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes);
+      if (instructions.includes("\0")) throw new Error();
+      const metadata = parseSkillMarkdown(instructions);
+      candidates.push({ ...metadata, path, url: `https://github.com/${parts[0]}/${parts[1]}/blob/${commit}/${path.split("/").map(encodeURIComponent).join("/")}` });
+    } catch { skipped++; }
+  }
+  candidates.sort((left, right) => left.path.localeCompare(right.path));
+  if (!candidates.length) throw new SkillImportError(skipped ? "No valid skills were found. SKILL.md files need a valid name and description in YAML frontmatter." : "No SKILL.md files were found in this repository or folder.", 404);
+  return { candidates, ...(skipped ? { skipped } : {}) };
 }

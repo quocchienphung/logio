@@ -1,0 +1,36 @@
+{
+ "mine": {
+  "--background": "oklch(100% 0 0)",
+  "--foreground": "oklch(15% 0 0)",
+  "--muted-foreground": "",
+  "--border": "oklch(93.5% 0 0)",
+  "--card": "",
+  "--accent": "oklch(33% 0 0)",
+  "--primary": ""
+ },
+ "count": 22,
+ "sample": {
+  "--footer-muted": "color-mix(in oklab,var(--text-secondary) 88%,var(--background))",
+  "--background": "oklch(19% 0 0)",
+  "--surface": "oklch(21.5% 0 0)",
+  "--surface-raised": "oklch(24% 0 0)",
+  "--surface-muted": "oklch(26% 0 0)",
+  "--foreground": "oklch(96% 0 0)",
+  "--text-muted": "oklch(64% 0 0)",
+  "--border": "oklch(29% 0 0)",
+  "--border-subtle": "oklch(25% 0 0)",
+  "--border-strong": "oklch(40% 0 0)",
+  "--accent": "#ff8bc5",
+  "--accent-strong": "#ffc0df",
+  "--accent-subtle": "#ed4e9d33",
+  "--accent-foreground": "#17130f",
+  "--arc-gradient-foreground": "oklch(96% .005 300)",
+  "--radius-surface": "2.125rem",
+  "--badge-foreground": "var(--danger)",
+  "--badge-background": "color-mix(in oklab,var(--danger) 10%,var(--surface))",
+  "--badge-border": "color-mix(in oklab,var(--danger) 26%,var(--border))",
+  "--hold-border": "var(--border-strong)",
+  "--presence-surface": "var(--surface-raised)",
+  "--metal-muted": "rgb(17 18 20/.62)"
+ }
+}

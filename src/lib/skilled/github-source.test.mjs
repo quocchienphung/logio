@@ -13,10 +13,12 @@ test("GitHub file/tree/raw links resolve to raw content with explicit provenance
     assert.equal(resolved.sourceUrl, "https://github.com/owner/skills/blob/main/source-reader/SKILL.md");
   }
   assert.equal(resolveGitHubSkillUrl("https://github.com/owner/repo/tree/abc123").sourcePath, "SKILL.md");
+  const root = resolveGitHubSkillUrl("https://github.com/owner/repo/");
+  assert.equal(root.sourceRef, "HEAD"); assert.equal(root.sourcePath, "SKILL.md"); assert.equal(root.kind, "repository");
 });
 
 test("URL allowlist blocks SSRF, alternate protocols, credentials, escapes and unsupported filenames", () => {
-  for (const url of ["http://github.com/o/r/blob/main/SKILL.md", "https://localhost/SKILL.md", "https://github.com.evil.test/o/r/blob/main/SKILL.md", "https://user@github.com/o/r/blob/main/SKILL.md", "https://github.com:444/o/r/blob/main/SKILL.md", "https://api.github.com/repos/o/r", "https://github.com/o/r", "https://github.com/o/r/blob/main/README.md", "https://github.com/o/r/blob/main/a%2fb/SKILL.md", "https://github.com/o/r/blob/main/%00/SKILL.md"]) assert.throws(() => resolveGitHubSkillUrl(url), undefined, url);
+  for (const url of ["http://github.com/o/r/blob/main/SKILL.md", "https://localhost/SKILL.md", "https://github.com.evil.test/o/r/blob/main/SKILL.md", "https://user@github.com/o/r/blob/main/SKILL.md", "https://github.com:444/o/r/blob/main/SKILL.md", "https://api.github.com/repos/o/r", "https://github.com/o", "https://github.com/o/r/blob/main/README.md", "https://github.com/o/r/blob/main/a%2fb/SKILL.md", "https://github.com/o/r/blob/main/%00/SKILL.md", "https://github.com/o/r/../other", "https://github.com/o/r/tree/main/a/%2e%2e/skills", "https://github.com/o/r/tree/main/%2E", "https://github.com/o/r/tree/main/%5c..%5cescape", "https://github.com/o/r/tree/main%2F../skills"]) assert.throws(() => resolveGitHubSkillUrl(url), undefined, url);
 });
 
 test("import streams raw bytes, checks metadata and computes SHA-256 without executing instructions", async () => {

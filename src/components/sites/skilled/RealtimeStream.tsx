@@ -25,11 +25,14 @@ interface RealtimeStreamProps {
 interface HeldView {
   points: readonly StreamPoint[];
   end: number;
+  min: number;
+  max: number;
 }
 
 const numberFormat = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
 const timeFormat = new Intl.DateTimeFormat("en-GB", {
   hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
+  timeZone: "Asia/Ho_Chi_Minh",
 });
 
 function formatTime(t: number) {
@@ -65,6 +68,9 @@ export function RealtimeStream({
   const figureRef = useRef<HTMLElement>(null);
   const viewRef = useRef({ end: 0, min: 0, max: 1 });
   const markerBirths = useRef(new Map<number, number>());
+  const markerHistory = useRef({ initialized: false, newest: -Infinity });
+  const holdReasons = useRef({ pointer: false, focus: false });
+  const pointerFocus = useRef(false);
   const [paused, setPaused] = useState(false);
   const [held, setHeld] = useState<HeldView | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
@@ -80,17 +86,18 @@ export function RealtimeStream({
   const latest = visiblePoints.at(-1);
   const reading = selected === null ? undefined : visiblePoints[selected];
   const end = held?.end ?? latest?.t ?? 0;
-  const startIndex = Math.max(0, lowerBound(visiblePoints, end - span) - 1);
+  const startIndex = Math.min(Math.max(0, visiblePoints.length - 1), lowerBound(visiblePoints, end - span));
   const selectedPoint = latest;
   const readout = selectedPoint ? numberFormat.format(selectedPoint.value) : "—";
-  const tooltipX = reading ? Math.max(4, Math.min(plotWidth - 124, ((reading.t - end + span) / span) * (plotWidth - 44) + 12)) : 0;
+  const tooltipX = reading ? Math.max(4, Math.min(plotWidth - 168, ((reading.t - end + span) / span) * (plotWidth - 44) + 12)) : 0;
 
   function holdView() {
-    if (!held) setHeld({ points: cleanPoints, end: viewRef.current.end || cleanPoints.at(-1)?.t || 0 });
+    if (!held) setHeld({ points: cleanPoints, ...viewRef.current, end: viewRef.current.end || cleanPoints.at(-1)?.t || 0 });
   }
 
   function togglePause() {
     if (paused) {
+      holdReasons.current = { pointer: false, focus: false };
       setPaused(false);
       setHeld(null);
       setSelected(null);
@@ -100,13 +107,26 @@ export function RealtimeStream({
     }
   }
 
-  function clearReading() {
-    setSelected(null);
-    if (!paused) setHeld(null);
+  function clearPointer() {
+    holdReasons.current.pointer = false;
+    if (!holdReasons.current.focus) {
+      setSelected(null);
+      if (!paused) setHeld(null);
+    }
+  }
+
+  function clearFocus() {
+    pointerFocus.current = false;
+    holdReasons.current.focus = false;
+    if (!holdReasons.current.pointer) {
+      setSelected(null);
+      if (!paused) setHeld(null);
+    }
   }
 
   function readPointer(event: PointerEvent<HTMLDivElement>) {
     if (!visiblePoints.length) return;
+    holdReasons.current.pointer = true;
     holdView();
     const rect = event.currentTarget.getBoundingClientRect();
     const fraction = Math.max(0, Math.min(1, (event.clientX - rect.left) / Math.max(1, rect.width - 44)));
@@ -125,15 +145,18 @@ export function RealtimeStream({
     if (event.key === "End") next = visiblePoints.length - 1;
     if (event.key === " " || event.key === "Enter") {
       event.preventDefault();
+      holdReasons.current = { pointer: false, focus: false };
       togglePause();
     } else if (event.key === "Escape") {
       event.preventDefault();
+      holdReasons.current = { pointer: false, focus: false };
       setPaused(false);
       setHeld(null);
       setSelected(null);
     } else if (next !== undefined && visiblePoints.length) {
       event.preventDefault();
       holdView();
+      holdReasons.current.focus = true;
       const index = Math.max(startIndex, Math.min(visiblePoints.length - 1, next));
       setSelected(index);
       const point = visiblePoints[index];
@@ -158,9 +181,16 @@ export function RealtimeStream({
     const targetEnd = held?.end ?? visiblePoints.at(-1)?.t ?? 0;
     const windowPoints = visiblePoints.slice(Math.max(0, lowerBound(visiblePoints, targetEnd - span) - 1));
     const markerNow = performance.now();
-    for (const point of windowPoints) {
-      if (point.anomaly && !markerBirths.current.has(point.t)) markerBirths.current.set(point.t, markerNow);
+    const wallNow = Date.now();
+    // Existing history is already settled. Only newly appended live anomalies may pop.
+    for (const point of cleanPoints) {
+      if (point.anomaly && !markerBirths.current.has(point.t)) {
+        const recent = point.t >= wallNow - Math.max(2000, cadence * 2) && point.t <= wallNow + cadence;
+        const isNew = markerHistory.current.initialized && point.t > markerHistory.current.newest && recent && !held;
+        markerBirths.current.set(point.t, isNew ? markerNow : -Infinity);
+      }
     }
+    markerHistory.current = { initialized: true, newest: Math.max(markerHistory.current.newest, cleanPoints.at(-1)?.t ?? -Infinity) };
     for (const time of markerBirths.current.keys()) {
       if (time < targetEnd - span * 2) markerBirths.current.delete(time);
     }
@@ -174,7 +204,8 @@ export function RealtimeStream({
       high += padding;
       if (high <= low) high = low + 1;
     }
-    if (!viewRef.current.end || motion.matches || held) {
+    if (held) { low = held.min; high = held.max; }
+    if (!viewRef.current.end || motion.matches) {
       viewRef.current = { end: targetEnd, min: low, max: high };
     }
 
@@ -244,20 +275,62 @@ export function RealtimeStream({
         context.fillStyle = colors.line; context.globalAlpha = 0.08; context.fill(area); context.globalAlpha = 1;
         context.strokeStyle = colors.line; context.lineWidth = 1.75; context.lineJoin = "round"; context.stroke(path);
         const head = drawn.at(-1)!;
-        context.beginPath(); context.arc(x(head.t), y(head.value), 4, 0, Math.PI * 2); context.fill();
+        context.fillStyle = colors.line;
+        const nextIndex = lowerBound(drawn, view.end);
+        const nextPoint = drawn[Math.min(nextIndex, drawn.length - 1)];
+        const previousPoint = drawn[Math.max(0, nextIndex - 1)];
+        const fraction = nextPoint.t === previousPoint.t ? 1 : Math.max(0, Math.min(1, (view.end - previousPoint.t) / (nextPoint.t - previousPoint.t)));
+        const headValue = previousPoint.value + (nextPoint.value - previousPoint.value) * (fraction * fraction * (3 - 2 * fraction));
+        context.beginPath(); context.arc(x(Math.min(head.t, view.end)), y(headValue), 4, 0, Math.PI * 2); context.fill();
         for (const point of drawn) {
           if (!point.anomaly) continue;
           const px = x(point.t); const py = y(point.value);
           const age = Math.max(0, now - (markerBirths.current.get(point.t) ?? 0));
-          const scale = motion.matches || held ? 1 : 1 - Math.exp(-age / 100) * Math.cos(age / 75);
+          const scale = motion.matches || held || age >= 700 ? 1 : 1 - Math.exp(-age / 100) * Math.cos(age / 75);
           if (age < 700 && !held) animatingMarker = true;
           context.fillStyle = colors.anomaly;
           context.beginPath(); context.arc(px, py, 4 * Math.max(0, scale), 0, Math.PI * 2); context.fill();
-          const text = point.anomaly.slice(0, 22);
+        }
+        // Keep every anomaly dot, but place only labels that fit without collisions.
+        // The inspected point and newest anomalies win when many failures share a time.
+        const anomalyPoints = drawn.filter(point => point.anomaly && x(point.t) >= 0 && x(point.t) <= chartWidth);
+        const candidates = [...anomalyPoints].reverse();
+        if (reading?.anomaly) {
+          const index = candidates.indexOf(reading);
+          if (index >= 0) candidates.splice(index, 1);
+          candidates.unshift(reading);
+        }
+        const occupied: { x: number; y: number; width: number; height: number }[] = [];
+        if (reading) occupied.push({ x: tooltipX, y: plotHeight * 0.44, width: 160, height: 58 });
+        const maxLabels = width < 360 ? 3 : 5;
+        let labelCount = 0;
+        for (const point of candidates) {
+          if (labelCount >= maxLabels) break;
+          const px = x(point.t); const py = y(point.value);
+          let text = point.anomaly!.slice(0, 80);
+          const limit = Math.min(158, chartWidth - 20);
+          while (text.length > 1 && context.measureText(text).width > limit) text = text.slice(0, -2) + "…";
           const textWidth = context.measureText(text).width;
-          const tagX = Math.max(0, Math.min(chartWidth - textWidth - 12, px - textWidth / 2 - 6));
-          context.globalAlpha = 0.12; context.fillRect(tagX, Math.max(0, py - 27), textWidth + 12, 20); context.globalAlpha = 1;
-          context.fillText(text, tagX + 6, Math.max(10, py - 17));
+          const tagWidth = textWidth + 12;
+          const horizontal = [px - tagWidth / 2, px - tagWidth - 10, px + 10];
+          const vertical = [py - 28, py - 52, py + 12, top, top + 24, top + 48];
+          let position: { x: number; y: number; width: number; height: number } | undefined;
+          for (const candidateY of vertical) {
+            for (const candidateX of horizontal) {
+              const rect = { x: Math.max(2, Math.min(chartWidth - tagWidth - 2, candidateX)), y: Math.max(top, Math.min(bottom - 23, candidateY)), width: tagWidth, height: 20 };
+              const overlaps = occupied.some(other => rect.x < other.x + other.width + 6 && rect.x + rect.width + 6 > other.x && rect.y < other.y + other.height + 4 && rect.y + rect.height + 4 > other.y);
+              if (!overlaps) { position = rect; break; }
+            }
+            if (position) break;
+          }
+          if (!position) continue;
+          occupied.push(position); labelCount++;
+          context.strokeStyle = colors.anomaly; context.lineWidth = 0.75; context.globalAlpha = 0.35;
+          context.beginPath(); context.moveTo(px, py); context.lineTo(Math.max(position.x + 4, Math.min(position.x + position.width - 4, px)), position.y + position.height / 2); context.stroke();
+          context.globalAlpha = 1; context.fillStyle = colors.surface;
+          context.beginPath(); context.roundRect(position.x, position.y, position.width, position.height, 5); context.fill();
+          context.fillStyle = colors.anomaly; context.globalAlpha = 0.1; context.fill(); context.globalAlpha = 1;
+          context.fillText(text, position.x + 6, position.y + 10);
         }
         if (reading) {
           const px = x(reading.t); const py = y(reading.value);
@@ -298,7 +371,10 @@ export function RealtimeStream({
     });
     intersectionObserver.observe(plot);
     const themeObserver = new MutationObserver(() => { resolveColors(); schedule(); });
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "data-theme", "style"] });
+    // The workspace theme lives on .crm-page, rather than necessarily on <html>.
+    for (let ancestor: HTMLElement | null = figure; ancestor; ancestor = ancestor.parentElement) {
+      themeObserver.observe(ancestor, { attributes: true, attributeFilter: ["class", "data-theme", "style"] });
+    }
     document.addEventListener("visibilitychange", visibility);
     motion.addEventListener("change", schedule);
     resize();
@@ -308,9 +384,10 @@ export function RealtimeStream({
       document.removeEventListener("visibilitychange", visibility);
       motion.removeEventListener("change", schedule);
     };
-  }, [visiblePoints, held, reading, span, cadence, plotHeight]);
+  }, [cleanPoints, visiblePoints, held, reading, span, cadence, plotHeight, tooltipX]);
 
   const anomalies = cleanPoints.filter(point => point.anomaly).slice(-3);
+  const queued = held ? cleanPoints.filter(point => point.t > (held.points.at(-1)?.t ?? -Infinity)).length : 0;
   return (
     <figure ref={figureRef} className={`skilled-stream ${className}`} aria-label={label}>
       <figcaption className="skilled-stream-caption">
@@ -322,19 +399,27 @@ export function RealtimeStream({
           <span className="skilled-stream-unit" aria-hidden="true">{unit}</span>
         </p>
         <button type="button" className="skilled-stream-status" aria-pressed={paused} onClick={togglePause}>
-          <span className="skilled-stream-dot" data-paused={paused || undefined} aria-hidden="true" />
-          <span>{paused ? "Paused" : held ? "Reading" : "Live"}</span>
+          <span className="skilled-stream-dot" data-paused={paused || !!held || undefined} aria-hidden="true" />
+          <span>{paused || held ? `Paused${queued ? `, ${queued} new` : ""}` : "Live"}</span>
           <span className="skilled-stream-sr">{paused ? ", resume" : ", pause"}</span>
         </button>
       </div>
       <div ref={plotRef} className="skilled-stream-plot" style={{ height: plotHeight }} role="group" tabIndex={0}
         aria-roledescription="live chart" aria-label={`${label}, last ${span / 1000} seconds`}
         aria-describedby={helpId} onKeyDown={readKeyboard}
-        onFocus={() => { holdView(); if (visiblePoints.length) setSelected(visiblePoints.length - 1); }}
-        onBlur={clearReading} onPointerMove={readPointer} onPointerLeave={clearReading}
-        onPointerDown={event => { event.currentTarget.setPointerCapture(event.pointerId); readPointer(event); }}
-        onPointerUp={event => { event.currentTarget.releasePointerCapture(event.pointerId); if (event.pointerType !== "mouse") clearReading(); }}
-        onPointerCancel={clearReading}>
+        onFocus={() => {
+          if (pointerFocus.current || holdReasons.current.pointer) { pointerFocus.current = false; return; }
+          holdReasons.current.focus = true; holdView();
+          if (visiblePoints.length) {
+            setSelected(visiblePoints.length - 1);
+            const point = visiblePoints[visiblePoints.length - 1];
+            setAnnouncement(`${numberFormat.format(point.value)} ${unit}, ${formatTime(point.t)}${point.anomaly ? `, ${point.anomaly}` : ""}`);
+          }
+        }}
+        onBlur={clearFocus} onPointerMove={readPointer} onPointerLeave={clearPointer}
+        onPointerDown={event => { pointerFocus.current = true; event.currentTarget.setPointerCapture(event.pointerId); readPointer(event); }}
+        onPointerUp={event => { event.currentTarget.releasePointerCapture(event.pointerId); if (event.pointerType !== "mouse") clearPointer(); }}
+        onPointerCancel={clearPointer}>
         <canvas ref={canvasRef} aria-hidden="true" />
         {!latest && <p className="skilled-stream-empty">{emptyLabel}</p>}
         {reading && <div className="skilled-stream-tooltip" style={{ left: tooltipX }} aria-hidden="true">

@@ -1,6 +1,6 @@
 import { MAX_SKILL_BYTES, parseSkillMarkdown, sha256 } from "../../components/sites/skilled/skill-model.ts";
 
-export interface GitHubSkillLocation { sourceUrl: string; rawUrl: string; sourceRef: string; sourcePath: string }
+export interface GitHubSkillLocation { sourceUrl: string; rawUrl: string; sourceRef: string; sourcePath: string; kind: "repository" | "folder" | "file" }
 export interface ImportedSkill {
   name: string; description: string; instructions: string; sourceUrl: string;
   sourceRef: string; sourcePath: string; sha256: string; bytes: number;
@@ -12,10 +12,16 @@ export class SkillImportError extends Error {
 
 /** Resolve public GitHub file/tree links without using the GitHub API or following redirects. */
 export function resolveGitHubSkillUrl(input: string): GitHubSkillLocation {
+  input = input.trim();
   if (input.length > 2048) throw new SkillImportError("GitHub URL is too long.");
   let url: URL;
   try { url = new URL(input); } catch { throw new SkillImportError("Enter a complete HTTPS GitHub URL."); }
   if (url.protocol !== "https:" || url.port || url.username || url.password || !["github.com", "raw.githubusercontent.com"].includes(url.hostname)) throw new SkillImportError("Only public HTTPS github.com or raw.githubusercontent.com skill links are supported.");
+  // URL normalizes dot segments, so inspect the original path before that normalization can hide them.
+  const originalPath = /^[a-z][a-z0-9+.-]*:\/\/[^/?#]+([^?#]*)/i.exec(input)?.[1] ?? "";
+  try {
+    if (originalPath.split("/").some(segment => { const decoded = decodeURIComponent(segment); return decoded === "." || decoded === ".." || /[\\\u0000-\u001f]/.test(decoded); })) throw new SkillImportError("GitHub URL contains an invalid path.");
+  } catch (error) { if (error instanceof SkillImportError) throw error; throw new SkillImportError("GitHub URL contains invalid escaping."); }
   let parts: string[];
   try { parts = url.pathname.replace(/\/$/, "").slice(1).split("/").map(decodeURIComponent); } catch { throw new SkillImportError("GitHub URL contains invalid escaping."); }
   if (parts.some(part => !part || part === "." || part === ".." || /[\\\0\r\n]/.test(part))) throw new SkillImportError("GitHub URL contains an invalid path.");
@@ -23,10 +29,14 @@ export function resolveGitHubSkillUrl(input: string): GitHubSkillLocation {
   if (!owner || !repo || !/^[A-Za-z0-9_.-]+$/.test(owner) || !/^[A-Za-z0-9_.-]+$/.test(repo)) throw new SkillImportError("A GitHub owner and repository are required.");
   let ref: string;
   let path: string[];
+  let kind: GitHubSkillLocation["kind"] = "file";
   if (url.hostname === "github.com") {
-    if (!["blob", "tree"].includes(parts[2]) || !parts[3]) throw new SkillImportError("Use a GitHub file or folder URL with an explicit branch, tag or commit.");
-    ref = parts[3]; path = parts.slice(4);
-    if (parts[2] === "tree") path.push("SKILL.md");
+    if (parts.length === 2) { ref = "HEAD"; path = ["SKILL.md"]; kind = "repository"; }
+    else {
+      if (!["blob", "tree"].includes(parts[2]) || !parts[3]) throw new SkillImportError("Use a repository URL or a GitHub file/folder link with a branch, tag or commit.");
+      ref = parts[3]; path = parts.slice(4);
+      if (parts[2] === "tree") { path.push("SKILL.md"); kind = "folder"; }
+    }
   } else { ref = parts[2]; path = parts.slice(3); }
   if (!ref || !path.length || path.at(-1) !== "SKILL.md" || path.some(part => part.includes("/"))) throw new SkillImportError("The link must point to a SKILL.md file (or its GitHub tree folder).");
   if (ref.length > 256 || /[~^:?*\[\]\\\s]/.test(ref) || ref.includes("..") || ref.startsWith("/") || ref.endsWith("/")) throw new SkillImportError("Unsupported Git reference. Use a commit-pinned SKILL.md URL.");
@@ -34,7 +44,7 @@ export function resolveGitHubSkillUrl(input: string): GitHubSkillLocation {
   return {
     sourceUrl: `https://github.com/${[owner, repo, "blob", ref, ...path].map(encodeURIComponent).join("/")}`,
     rawUrl: `https://raw.githubusercontent.com/${rawPath}`,
-    sourceRef: ref, sourcePath: path.join("/"),
+    sourceRef: ref, sourcePath: path.join("/"), kind,
   };
 }
 

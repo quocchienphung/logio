@@ -1,5 +1,5 @@
 import { SkillImportError } from "@/lib/skilled/github-source";
-import { importGitHubFolder } from "@/lib/skilled/github-folder";
+import { scanGitHubSource } from "@/lib/skilled/github-folder";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     let raw: unknown;
     try { raw = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(content)); } catch { return Response.json({ error: { message: "Malformed JSON body." } }, { status: 400, headers }); }
     if (!raw || typeof raw !== "object" || Array.isArray(raw) || Object.keys(raw).some(key => key !== "url") || typeof (raw as { url?: unknown }).url !== "string") return Response.json({ error: { message: "Expected exactly { url: string }." } }, { status: 400, headers });
-    return Response.json({ data: await importGitHubFolder((raw as { url: string }).url) }, { headers });
+    return Response.json({ data: await scanGitHubSource((raw as { url: string }).url) }, { headers });
   } catch (error) {
     return Response.json({ error: { message: error instanceof SkillImportError ? error.message : "Could not import this skill." } }, { status: error instanceof SkillImportError ? error.status : 500, headers });
   }

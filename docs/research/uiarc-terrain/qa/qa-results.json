@@ -1,0 +1,266 @@
+{
+ "base": "http://localhost:3000",
+ "results": [
+  {
+   "name": "Sample week by default when nothing is recorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Source switch offers your activity and a sample",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Heading, range and totals match the sample week",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Canvas has a text summary",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Every value is in the table that follows",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Idle loop sleeps when nothing moves",
+   "ok": true,
+   "detail": "frames 0"
+  },
+  {
+   "name": "Hover shows the panel beside a column",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Panel carries day, hour, value, last week, change and share",
+   "ok": true,
+   "detail": "Friday 10:00 to 11:00 3,620 operations Last week 3,295 Change +9.9% Share of Fri 9.9%"
+  },
+  {
+   "name": "Pointer cursor over a column",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Highlight draws guide lines, outline and two label pills",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Leaving the plot hides the panel",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Metric switch animates a wave of column heights",
+   "ok": true,
+   "detail": "frames 160"
+  },
+  {
+   "name": "Stats follow the metric",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Errors use the danger tone and read as bad news when they rise",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Three peak hours listed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Peak button flies in and is pressed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Flying in zooms the terrain",
+   "ok": true,
+   "detail": "1177 vs 748"
+  },
+  {
+   "name": "Reset view flies back out",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Top view is a straight-on rectangle",
+   "ok": true,
+   "detail": "[58.7,114.4,807.1,114.4,807.1,345.2,58.7,345.2]"
+  },
+  {
+   "name": "Flattening takes about a second and a half",
+   "ok": true,
+   "detail": "frames 370"
+  },
+  {
+   "name": "Perspective restores the rest pose",
+   "ok": true,
+   "detail": "0.00px"
+  },
+  {
+   "name": "Dragging orbits the terrain, with momentum after release",
+   "ok": true,
+   "detail": "moved 405px over 473 frames"
+  },
+  {
+   "name": "Drag state is cleared on release",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Dragging down tilts the camera (scale and pan follow its pitch)",
+   "ok": true,
+   "detail": "78px over 500 frames"
+  },
+  {
+   "name": "Tab reaches the plot",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Focusing from the keyboard highlights the busiest hour",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "The highlighted hour is read out",
+   "ok": true,
+   "detail": "Wednesday 15:00 to 16:00: 4,745 operations, +4.1% on last week."
+  },
+  {
+   "name": "Arrow right: next hour",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Arrow down: next day",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Home: first hour of the day",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "End: last hour of the day",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Shift + arrows orbit the camera",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Enter flies to the highlighted hour",
+   "ok": true,
+   "detail": "Focused on Thursday 23:00 to 00:00: 398 operations, +5.6% on last week."
+  },
+  {
+   "name": "Escape returns to the whole week",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "The highlight stays after the first Escape",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "A second Escape clears the highlight",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Plus zooms in and minus zooms out",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Your activity with nothing recorded says so",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Totals are zero, with no invented peak",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Preview a sample week switches back",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Real operations replace the sample",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Counted per metric: deliveries are successful exports and transfers, errors are failures",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "One busy hour holds all four",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Nothing last week to compare with",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "Reduced motion: a metric change lands in one frame",
+   "ok": true,
+   "detail": "frames 1"
+  },
+  {
+   "name": "Reduced motion: top view lands in one frame",
+   "ok": true,
+   "detail": "frames 1"
+  },
+  {
+   "name": "Dark theme draws the dark platform and light labels",
+   "ok": true,
+   "detail": "#212121 #8c8c8c"
+  },
+  {
+   "name": "Phone: no horizontal overflow",
+   "ok": true,
+   "detail": "{\"overflow\":0,\"plot\":[288,280],\"touchHint\":\"inline\",\"fineHint\":\"none\",\"cols\":2}"
+  },
+  {
+   "name": "Phone: plot is 280 px tall and the hint is for touch",
+   "ok": true,
+   "detail": "{\"overflow\":0,\"plot\":[288,280],\"touchHint\":\"inline\",\"fineHint\":\"none\",\"cols\":2}"
+  },
+  {
+   "name": "Phone: stats in two columns under the plot",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "WebKit: the terrain draws and flies",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "No console or page errors",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "errors": []
+}

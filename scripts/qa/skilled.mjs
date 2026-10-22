@@ -57,7 +57,7 @@ try {
   check('Search empty state works', await page.getByRole('heading', { name: 'No skills in this view' }).isVisible());
   await page.getByLabel('Search skills').fill('');
   await page.getByRole('button', { name: 'Attributes', exact: true }).click();
-  await page.getByLabel('GitHub SKILL.md URL', { exact: false }).fill('https://github.com/anthropics/skills/blob/main/skills/webapp-testing/SKILL.md');
+  await page.getByLabel('GitHub repository or skill URL', { exact: false }).fill('https://github.com/anthropics/skills/blob/main/skills/webapp-testing/SKILL.md');
   await page.getByLabel('Skill instructions', { exact: true }).fill('Prioritize primary source evidence for this workspace.');
   await page.getByRole('button', { name: 'Add skill', exact: true }).click();
   await page.getByRole('button', { name: 'webapp-testing', exact: true }).waitFor({ timeout: 30000 });
@@ -80,7 +80,7 @@ try {
   await page.getByRole('status').filter({ hasText: 'Receipt imported' }).waitFor();
   check('Full-folder receipt validates supporting file hashes', await page.locator('.sk-notice').innerText().then(text => text.includes('Receipt imported')));
   const localInstructions = '---\nname: local-skill\ndescription: Preserve a local instruction file.\n---\n\nCheck the evidence before responding.\n';
-  await page.locator('.sk-attributes input[type=file]').setInputFiles({ name: 'SKILL.md', mimeType: 'text/markdown', buffer: Buffer.from(localInstructions) });
+  await page.locator('.sk-composer input[type=file]').setInputFiles({ name: 'SKILL.md', mimeType: 'text/markdown', buffer: Buffer.from(localInstructions) });
   await page.getByRole('button', { name: 'Add skill', exact: true }).click();
   await page.getByRole('button', { name: 'local-skill', exact: true }).waitFor();
   await page.waitForFunction(expected => JSON.parse(localStorage.getItem('affectui:acme:skill-library') || '[]').some(skill => skill.name === 'local-skill' && skill.instructions === expected), localInstructions);

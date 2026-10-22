@@ -1,0 +1,233 @@
+Blocks
+Activity terrain
+Activity terrain
+Pro
+
+A 3D terrain of hourly activity you can orbit, zoom, fly into and flatten into a heatmap.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live block · sample data
+The shape of your week
+
+Hourly sessions, deploys and errors for Sep 14 to 20, 2026, in workspace time.
+
+Sessions
+Deploys
+Errors
+Perspective
+Top view
+Fewer
+More
+
+Drag to orbit, pinch to zoom, click a bar to fly in.
+Arrow keys move between hours and days, Enter focuses a bar, Shift with arrow keys orbits, plus and minus zoom, Escape clears.
+
+Sessions this week
+
+231,253
+2
+3
+1
+,
+2
+5
+3
+
++8.6%
+vs last week
+
+Peak hours
+
+Wed 15:00
+4,745
+4
+,
+7
+4
+5
+Wed 14:00
+4,694
+4
+,
+6
+9
+4
+Thu 14:00
+4,679
+4
+,
+6
+7
+9
+
+Busiest day
+
+Wednesday
+
+44,019
+4
+4
+,
+0
+1
+9
+ sessions, 
+70.8%
+7
+0
+.
+8
+%
+ in working hours
+
+Sessions per hour, Sep 14 to 20, 2026, workspace time
+Day	00:00	01:00	02:00	03:00	04:00	05:00	06:00	07:00	08:00	09:00	10:00	11:00	12:00	13:00	14:00	15:00	16:00	17:00	18:00	19:00	20:00	21:00	22:00	23:00
+Monday	186	183	189	183	184	187	251	490	1,305	2,827	3,964	4,119	3,666	3,635	4,243	4,245	3,200	2,106	1,112	800	937	960	698	360
+Tuesday	193	206	193	205	202	206	259	511	1,385	3,007	4,537	4,167	3,856	4,081	4,499	4,524	3,525	2,349	1,228	898	967	1,106	748	429
+Wednesday	218	198	200	217	202	227	262	532	1,551	3,237	4,216	4,545	3,627	3,843	4,694	4,745	3,665	2,294	1,198	974	1,096	1,113	766	399
+Thursday	197	191	201	193	205	212	262	476	1,447	3,038	4,136	4,196	3,438	3,671	4,679	4,442	3,226	2,225	1,189	913	969	1,055	693	398
+Friday	176	177	164	182	176	169	231	400	1,183	2,696	3,620	3,827	3,172	3,289	3,783	3,972	3,036	1,856	1,102	793	854	856	606	364
+Saturday	162	158	172	172	164	186	210	291	400	574	711	909	1,007	1,156	1,067	950	752	619	615	737	832	794	614	410
+Sunday	145	145	150	152	151	168	189	241	339	487	622	839	970	1,015	866	761	626	569	573	659	744	663	522	329
+When to use
+Analytics or operations pages showing when a product is busiest across a week.
+Showcase dashboards where a 3D view of a 7 by 24 grid adds impact, with a flat heatmap fallback.
+When not to use
+Use activity-heatmap for a plain 2D grid that is easier to read.
+Use bar-chart for totals by day or hour.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Activity terrain is part of Arc Pro
+Pro
+
+The preview is open to everyone. Pro members get the source, the install command, and updates for every Pro block.
+
+Get Arc Pro
+Sign in
+Usage
+
+Use this on an analytics or operations page to show when a product is busiest. Replace the seeded week in terrain-data.ts with hourly counts from your events warehouse; the camera, springs and summaries follow the data.
+
+example.tsx
+Copy
+Copied
+Failed
+1
+import { ActivityTerrain } from "@/components/arc/blocks/activity-terrain/activity-terrain";
+2
+ 
+3
+export default function UsagePatterns() {
+4
+  return (
+5
+    <section>
+6
+      <ActivityTerrain />
+7
+    </section>
+8
+  );
+9
+}
+API reference
+ActivityTerrain
+
+A canvas 3D terrain of hourly activity across a week that can orbit, zoom, fly to a cell and flatten into a heatmap. Takes no props; metrics and the hourly grid are sample data in terrain-data.ts.
+
+No props.
+
+Keyboard interactions
+Arrow keys
+Moves the highlighted day and hour.
+Shift
++
+Arrow keys
+Orbits the camera.
+Home
+or
+End
+Jumps to the first or last hour of the day.
++
+or
+-
+Zooms in or out.
+Enter
+or
+Space
+Flies to the highlighted hour.
+Escape
+Returns to the whole week, then clears the highlight.
+Accessibility
+The stage is a focusable group with a keyboard hint, and the canvas has a text summary as its label.
+Peak hours are aria-pressed buttons that fly to or leave the hour.
+A polite live region reads the highlighted hour's value.
+Motion
+Columns rise in a wave on load and when the metric changes; camera moves use spring physics with momentum on drag.
+Flattening to a heatmap springs the camera to a top view.
+The engine watches prefers-reduced-motion and snaps the camera and heights with no wave.
+Responsive behavior
+Below an 880px container the stats move under the plot; below 560px the plot is 280px tall and the camera starts from a steeper angle.
+Touch devices swipe sideways to orbit while vertical swipes scroll the page, and the hint text switches for coarse pointers.
+Two-finger pinch zooms on touch.
+Performance
+Draws on a 2D canvas with devicePixelRatio capped at 2.
+The requestAnimationFrame loop pauses offscreen via IntersectionObserver and in hidden tabs, and idles when nothing moves.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use on an analytics or operations page to show when a product is busiest across a week.
+Replace METRICS in terrain-data.ts with hourly counts from your events warehouse; keep the 7 by 24 shape.
+/components/blocks/activity-terrain/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Activity heatmap
+Component
+See a year of activity at a glance, one square per day.
+Revenue globe
+Pro
+Block
+A dotted globe where live payments arc home to headquarters, with a replayable day.
+Customer galaxy
+Pro
+Block
+2,400 accounts as a drifting galaxy that spirals into clusters by plan, region or health.
+Segmented control
+Component
+Switch between a small set of related views.
+Previous
+Metric explorer
+Next
+Revenue globe
+Arc · 102 block pages
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

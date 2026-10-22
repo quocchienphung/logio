@@ -246,4 +246,8 @@ Files: `src/components/sites/invoice/` (`StampStage.tsx`, `Stamp3D.tsx`, `stamp-
 
 ## Skilled workspace - 2026-10-22
 
+### Activity terrain (added to /skilled, 2026-10-22)
+
+A 3D terrain of the workspace's operations, deliveries and errors by hour, under the library and the realtime stream. Rebuilt from the public UIArc Activity terrain preview by recording the polygons its canvas draws and fitting camera, springs, framing and colours (no screenshot, bundle, API or Pro source). Read [Activity terrain](research/uiarc-terrain/README.md) before extending it: it lists every measured value, the validation numbers and the honest gaps. Code: `src/components/sites/skilled/terrain/` (pure `terrain-*.ts` + `ActivityTerrain.tsx`); tests: `terrain.test.mjs` with `docs/research/uiarc-terrain/fixtures/`; QA: `node scripts/qa/terrain.mjs`. With no recorded events a labelled sample week is shown; nothing is simulated.
+
 `/skilled` now reuses the workspace shell and replaces the old standalone context-window preview. Independent public-UIArc Agent Tasks + Realtime Stream reconstruction, commit-pinned skill-folder imports with per-file SHA-256/provenance, per-workspace local/REST resources, portable local installer and receipt-validated agent transfer. Read [Skilled research and handoff](research/uiarc-skilled/README.md) before extending it. Code: `src/components/sites/skilled/`; GitHub importer: `src/lib/skilled/` and `src/app/api/skilled/import/`; QA: `node scripts/qa/skilled.mjs`. Supporting files inside the GitHub skill folder are bundled; external dependencies and a real database/agent backend are not included. No simulated operation readings or model correctness scores.

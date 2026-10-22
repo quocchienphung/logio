@@ -4,6 +4,18 @@ Implemented 2026-10-22. Local route: `/skilled` (also available through the Skil
 
 Layout cleanup: the introductory heading, breadcrumb/storage top bar and passive knowledge note were removed at the user's request. The composer and stream now start near the top of the workspace; Deliver skills and save status share the library toolbar. Decorative footer copy was removed, while actionable help and operation/error states remain. Verified with the 27 browser workflow checks, targeted ESLint and TypeScript; desktop and 390px/320px screenshots are `layout-clean-*.png`, with no horizontal overflow.
 
+## ARC interaction refinement
+
+The source menus, keyboard behavior and opening frames were re-inspected with `node scripts/forensics/uiarc-skilled-interactions.mjs`. Evidence is in `interactions/source-menus.json` and `source-*-menu.png`: 200px menu width, 5px inner padding, 16px outer / 11px row radii, 14px item text, approximately 34px simple rows and 120ms hover transition. Opening starts around scale .97 / translateY(-3px). Private source spring parameters are not claimed. The implementation uses the installed Base UI menu primitive for positioning, typeahead, radio state, Escape, selection dismissal and focus restoration; measured appearance is in `SkillMenu.tsx` / `skill-menu.css`. Menus render through a portal and adapt for touch and reduced motion.
+
+Both native dropdowns were replaced. The source chip now offers GitHub, local file and authored instructions; choosing GitHub focuses the URL field. The composer grows with its text and collapses attributes after a successful import. Invalid URLs show an inline error before any network request, without adding fake failed-transfer readings. A repository URL discovers actual SKILL.md choices instead of repeatedly failing; selection is explicit. Exact skill links still import directly.
+
+`SkillCard.tsx` keeps collapsed details mounted and inert, supports independently expanded cards, and uses two columns for instructions/files from a 600px panel width. File lists have bounded scrolling. Filter counts roll and selection glides. The workspace caps content width at 1200px, keeps readable 14px controls and balances the 336px monitor against the composer, while retaining the requested absence of top headings/notes.
+
+The chart now preserves frozen axis bounds while reading, matches observed pointer/keyboard/touch release and queued-reading status, avoids replaying historical marker pops, and places anomaly labels without collisions. All anomaly dots and accessible readings remain. Collision placement and easing are independently authored; this does not claim private ARC implementation parity.
+
+Verification for this refinement: 27 workflow checks, 21 additional interaction checks (`node scripts/qa/skilled-interactions.mjs`), 24 chart interaction checks (dense/pause/queued/touch/theme), 299 unit/storage tests, lint/typecheck/production build. Rendered evidence includes `interactions/local-target-menu.png`, `local-source-menu.png`, `local-expanded-card.png`, `local-discovered-skills.png`, `local-mobile-menu.png` and `stream-dense-*.png`.
+
 ## Reference → implementation
 
 | Public reference | Local owner | What is retained |
@@ -48,4 +60,4 @@ Guardrails instruct the consumer to cite evidence, verify claims and state uncer
 
 QA output is stored in `qa-results.json`, `test.log`, `check.log`, `skeleton-qa.log`. No physical-phone profiling or real deployed agent/model behavior was verified.
 
-Completed: 27/27 browser workflow checks; 296/296 unit/storage tests; 8/8 skeleton browser regressions; lint/typecheck/production build successful. `local-performance.json` records a brief local rAF/expansion sample (6.1ms median / 6.3ms p95 scheduler interval, zero observed long tasks during this short capture), not an FPS guarantee.
+Completed: 27/27 browser workflow checks; 299/299 unit/storage tests; 8/8 skeleton browser regressions; lint/typecheck/production build successful. `local-performance.json` records a brief local rAF/expansion sample (6.1ms median / 6.3ms p95 scheduler interval, zero observed long tasks during this short capture), not an FPS guarantee.

@@ -1,0 +1,97 @@
+{
+ "viewport": "1440x1000",
+ "plot": [
+  622,
+  291
+ ],
+ "results": [
+  {
+   "name": "intro",
+   "localFrames": 505,
+   "sourceFrames": 696,
+   "localSeconds": 4.54,
+   "sourceSeconds": 4.49,
+   "meanPx": 1.8,
+   "p95Px": 5.45,
+   "maxPx": 5.88,
+   "finalPx": 0.99
+  },
+  {
+   "name": "metric Deliveries",
+   "localFrames": 101,
+   "sourceFrames": 183,
+   "localSeconds": 1.29,
+   "sourceSeconds": 1.2,
+   "meanPx": 1.16,
+   "p95Px": 1.25,
+   "maxPx": 1.62,
+   "finalPx": 1.25
+  },
+  {
+   "name": "metric Errors",
+   "localFrames": 81,
+   "sourceFrames": 205,
+   "localSeconds": 1.13,
+   "sourceSeconds": 1.25,
+   "meanPx": 1.25,
+   "p95Px": 2.62,
+   "maxPx": 2.71,
+   "finalPx": 0.83
+  },
+  {
+   "name": "metric Operations",
+   "localFrames": 39,
+   "sourceFrames": 194,
+   "localSeconds": 1.22,
+   "sourceSeconds": 1.19,
+   "meanPx": 1.56,
+   "p95Px": 3.89,
+   "maxPx": 3.92,
+   "finalPx": 0.99
+  },
+  {
+   "name": "flatten to top view",
+   "localFrames": 245,
+   "sourceFrames": 473,
+   "localSeconds": 2.13,
+   "sourceSeconds": 2.87,
+   "meanPx": 25.75,
+   "p95Px": 72.44,
+   "maxPx": 74.33,
+   "finalPx": 0.8
+  },
+  {
+   "name": "back to perspective",
+   "localFrames": 183,
+   "sourceFrames": 468,
+   "localSeconds": 1.83,
+   "sourceSeconds": 2.84,
+   "meanPx": 19.66,
+   "p95Px": 46.49,
+   "maxPx": 48.78,
+   "finalPx": 1.58
+  },
+  {
+   "name": "zoom keys",
+   "localFrames": 176,
+   "sourceFrames": 239,
+   "localSeconds": 1.47,
+   "sourceSeconds": 1.44,
+   "meanPx": 2.55,
+   "p95Px": 5.96,
+   "maxPx": 6.64,
+   "finalPx": 1.13
+  },
+  {
+   "name": "drag orbit (recorded pacing)",
+   "localFrames": 544,
+   "sourceFrames": 384,
+   "localSeconds": 3.43,
+   "sourceSeconds": 2.32,
+   "meanPx": 71.21,
+   "p95Px": 96.13,
+   "maxPx": 99.25,
+   "finalPx": 59.14
+  }
+ ]
+}
