@@ -3,7 +3,7 @@
 import { createContext, useContext, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation.js";
 
-export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "New chat", "Files", "Run", "Mapping", "Process", "Tracing", "Invoice", "Settings", "Skilled", "New business", "Renewals", "Partnerships"] as const;
+export const workspaceSections = ["Home", "Companies", "Contacts", "Deals", "Reports", "New chat", "Files", "Run", "Mapping", "Process", "Tracing", "Invoice", "Settings", "Skilled", "Repo", "New business", "Renewals", "Partnerships"] as const;
 export type WorkspaceSection = (typeof workspaceSections)[number];
 
 function subscribeRoute(listener: () => void) {

@@ -8,14 +8,14 @@ import { downloadFile } from "../affectui-crm/workspace-state";
 import { SectionSkeleton } from "../shimmer-loader/SectionSkeleton";
 import { GitHubMark as Github } from "./GitHubMark";
 import { RealtimeStream } from "./RealtimeStream";
-import { ActivityTerrain } from "./terrain/ActivityTerrain";
 import { SkillMenu } from "./SkillMenu";
 import { SkillCard } from "./SkillCard";
 import { resolveGitHubSkillUrl } from "@/lib/skilled/github-source";
 import type { SkillCandidate } from "@/lib/skilled/github-folder";
-import { skillSources, sourceUrl } from "./catalog";
 import { createBundle, parseSkillMarkdown, parseSkillRecord, sha256, totalSkillBytes, validateTransferReceipt, type SkillRecord, type SkillTarget } from "./skill-model";
 import { useSkills } from "./useSkills";
+import { SkillOverview } from "./SkillOverview";
+import { SkillTimeline } from "./SkillTimeline";
 import "./skilled.css";
 
 type Filter = "all" | "ready" | "archived";
@@ -42,7 +42,6 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
   const [candidates, setCandidates] = useState<SkillCandidate[]>([]);
   const [picking, setPicking] = useState(false);
   const [candidateSearch, setCandidateSearch] = useState("");
-  const [catalog, setCatalog] = useState(false);
   const [transfer, setTransfer] = useState(false);
   const [agent, setAgent] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
@@ -113,7 +112,7 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
       if (!parseSkillRecord(skill) || await sha256(skill.instructions) !== skill.sha256) throw new Error("Skill data or checksum is invalid. Check the source and file size.");
       setSkills(current => [skill, ...current]);
       record({ kind: "import", skillId: skill.id, label: source ? "GitHub skill folder scan" : "Authored instruction", durationMs: performance.now() - started, bytes: totalSkillBytes(skill), outcome: "success" });
-      setInstructions(""); setName(""); setDescription(""); setUrl(""); setExpanded(current => new Set([...current, skill.id])); setCatalog(false); setFilter("all"); setAttributes(false); setSourceMode("github");
+      setInstructions(""); setName(""); setDescription(""); setUrl(""); setExpanded(current => new Set([...current, skill.id])); setFilter("all"); setAttributes(false); setSourceMode("github");
       tell(`${skill.name} added. The save status confirms when it is persisted.`);
     } catch (failure) {
       if (controller.signal.aborted) { tell("Import cancelled."); return; }
@@ -202,6 +201,7 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
     <div className="sk-content">
       <div className="sk-layout">
         <div className="sk-primary">
+          <SkillOverview skills={skills} events={events} />
           <section className="sk-task-panel" aria-label="Skill library">
             <form className="sk-composer" onSubmit={submit} aria-label="Add a skill" noValidate>
               <div className="sk-composer-field" data-busy={busy || undefined}>
@@ -242,14 +242,14 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
               <div className="sk-tabs" role="tablist" aria-label="Filter skills">{([["all", "All skills"], ["ready", "Ready"], ["archived", "Archived"]] as const).map(([id, label], index) => <button key={id} role="tab" aria-selected={filter === id} tabIndex={filter === id ? 0 : -1} onKeyDown={event => {
                 if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) { event.preventDefault(); const next = event.key === "Home" ? 0 : event.key === "End" ? 2 : (index + (event.key === "ArrowRight" ? 1 : 2)) % 3; setFilter((["all", "ready", "archived"] as const)[next]); (event.currentTarget.parentElement?.children[next] as HTMLElement)?.focus(); }
               }} onClick={() => setFilter(id)}>{filter === id && <motion.span layoutId="skill-filter" transition={{ type: "spring", stiffness: 450, damping: 38 }} />}<span>{label}</span><span className="sk-count"><AnimatePresence initial={false} mode="popLayout"><motion.span key={id === "all" ? skills.length : skills.filter(skill => skill.status === id).length} initial={{ y: 6, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -6, opacity: 0 }} transition={{ duration: .18 }}>{id === "all" ? skills.length : skills.filter(skill => skill.status === id).length}</motion.span></AnimatePresence></span></button>)}</div>
-              <div className="sk-library-actions"><span className="sk-save-status">{sync.save === "saving" ? "Saving..." : sync.error ? "Save failed" : "Saved"}</span>{ready.length > 0 && <button className="sk-secondary sk-deliver-all" aria-label="Deliver skills" onClick={() => { setSelected(ready.map(skill => skill.id)); setTransfer(true); }}><ArrowDownToLine size={14} /><span>Deliver skills</span></button>}<button className="sk-icon-button" aria-label="Browse skill sources" onClick={() => setCatalog(true)}><Plus size={16} /></button></div>
+              <div className="sk-library-actions"><span className="sk-save-status">{sync.save === "saving" ? "Saving..." : sync.error ? "Save failed" : "Saved"}</span>{ready.length > 0 && <button className="sk-secondary sk-deliver-all" aria-label="Deliver skills" onClick={() => { setSelected(ready.map(skill => skill.id)); setTransfer(true); }}><ArrowDownToLine size={14} /><span>Deliver skills</span></button>}</div>
             </div>
             {skills.length > 0 && <label className="sk-search"><Search size={14} /><input aria-label="Search skills" placeholder="Find a skill..." value={query} onChange={event => setQuery(event.target.value)} /><span>{skills.length}/200</span></label>}
             <div className="sk-cards"><AnimatePresence initial={false}>{visible.map(skill => <SkillCard key={skill.id} skill={skill} expanded={expanded.has(skill.id)} onToggle={() => toggleCard(skill.id)} onDeliver={() => { setSelected([skill.id]); setTransfer(true); }} onArchive={() => archive(skill)} onRestore={() => restore(skill)} />)}</AnimatePresence>
-              {!visible.length && <div className="sk-empty"><div className="sk-empty-icon"><BookOpen size={23} /><span><Plus size={10} /></span></div><h2>{skills.length ? "No skills in this view" : "No skills yet"}</h2><p>{skills.length ? "Try a different filter or search." : "Import from GitHub or add your own instructions."}</p><button className="sk-secondary" onClick={() => setCatalog(true)}>Explore skill sources<ArrowRight size={14} /></button></div>}
+              {!visible.length && <div className="sk-empty"><div className="sk-empty-icon"><BookOpen size={23} /><span><Plus size={10} /></span></div><h2>{skills.length ? "No skills in this view" : "No skills yet"}</h2><p>{skills.length ? "Try a different filter or search." : "Import from GitHub or add your own instructions."}</p><button className="sk-secondary" onClick={() => chooseSource("github")}>Add from GitHub<ArrowRight size={14} /></button></div>}
             </div>
           </section>
-          <section className="sk-discover"><div className="sk-section-title"><h2>Skill sources</h2><button onClick={() => setCatalog(true)}>View all sources<ArrowRight size={13} /></button></div><div className="sk-source-grid">{skillSources.slice(0, 3).map(source => <button className="sk-source" key={source.path} disabled={busy} onClick={() => { setUrl(sourceUrl(source)); setSourceMode("github"); setAttributes(true); setFieldError(""); requestAnimationFrame(() => document.getElementById("sk-source")?.focus()); }}><span className="sk-source-icon"><Github size={18} /></span><span className="sk-source-category">{source.category}</span><h3>{source.name}</h3><p>{source.description}</p><span className="sk-source-owner">{source.owner}<ArrowRight size={13} /></span></button>)}</div></section>
+          <SkillTimeline skills={skills} events={events} />
         </div>
         <aside className="sk-observability" aria-label="Skill operations measurement">
           <section className="sk-monitor">
@@ -262,11 +262,9 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
           <section className="sk-activity"><div className="sk-section-title"><h2>Activity</h2><span>{events.length}</span></div>{!events.length ? <div className="sk-activity-empty"><span className="sk-quiet-dot" />Waiting for your first operation.</div> : <ol>{events.slice(-5).reverse().map(event => <li key={event.id}><span className="sk-event-icon" data-error={event.outcome === "error"}>{event.outcome === "success" ? <Check size={12} /> : <X size={12} />}</span><div><strong>{event.label}</strong><span title={event.detail}>{event.outcome === "error" ? event.detail : `${bytes(event.bytes)} - ${new Date(event.t).toLocaleTimeString("en-GB", { timeZone: "Asia/Ho_Chi_Minh" })}`}</span></div><small>{event.durationMs < 10 ? event.durationMs.toFixed(1) : Math.round(event.durationMs)} ms</small></li>)}</ol>}</section>
         </aside>
       </div>
-      <ActivityTerrain events={events} />
       {(error || sync.error || eventsSync.error) && <div className="sk-error" role="alert"><CircleAlert size={16} /><span>{error || sync.error?.message || eventsSync.error?.message}</span>{sync.error && <button onClick={sync.retry}>Retry save</button>}{eventsSync.error && <button onClick={eventsSync.retry}>Retry activity save</button>}<button aria-label="Dismiss error" onClick={() => setError("")}><X size={14} /></button></div>}
       <div className="sk-notice" role="status">{notice && <><CheckCircle2 size={14} /><span>{notice}</span>{undo && <button onClick={() => { const previous = undo; if (skills.some(item => item.name === previous.name && item.id !== previous.id && item.status === "ready")) { setError("Archive the active version before undoing."); return; } setSkills(current => current.map(item => item.id === previous.id ? previous : item)); setUndo(null); tell("Archive undone."); }}>Undo</button>}<button aria-label="Dismiss notice" onClick={() => { setNotice(""); setUndo(null); }}><X size={13} /></button></>}</div>
     </div>
-    <WorkspaceDialog open={catalog} onClose={() => setCatalog(false)} title="Explore skill sources" wide><div className="sk-dialog-body"><div className="sk-catalog">{skillSources.map(source => <div key={source.path}><Github size={19} /><div><h3>{source.name}</h3><p>{source.description}</p><a href={sourceUrl(source)} target="_blank" rel="noreferrer">{source.owner}</a></div><button className="sk-secondary" disabled={busy} onClick={() => { setUrl(sourceUrl(source)); setSourceMode("github"); setAttributes(true); setCatalog(false); setFieldError(""); }}>Use source<Plus size={13} /></button></div>)}</div></div></WorkspaceDialog>
     <WorkspaceDialog open={picking} onClose={() => setPicking(false)} title="Choose a skill" wide><div className="sk-dialog-body"><label className="sk-candidate-search"><Search size={15} /><input aria-label="Search discovered skills" placeholder="Find a skill in this repository..." value={candidateSearch} onChange={event => setCandidateSearch(event.target.value)} autoFocus /></label><div className="sk-catalog sk-candidate-list">{filteredCandidates.map(candidate => <div key={candidate.path}><FileCode2 size={18} /><div><h3>{candidate.name}</h3><p>{candidate.description}</p><code>{candidate.path}</code></div><button className="sk-secondary" disabled={busy} onClick={() => { setUrl(candidate.url); setPicking(false); void addSkill(candidate.url); }}>Import skill<Plus size={13} /></button></div>)}</div>{!filteredCandidates.length && <p>No matching skills.</p>}</div></WorkspaceDialog>
     <WorkspaceDialog open={transfer} onClose={() => { if (!busy) setTransfer(false); }} title="Deliver skills" wide><div className="sk-dialog-body"><p>Choose the instructions to include. Agent delivery is confirmed by a matching receipt.</p><div className="sk-delivery-list">{ready.map(skill => <label key={skill.id}><input type="checkbox" checked={selected.includes(skill.id)} onChange={event => setSelected(current => event.target.checked ? [...current, skill.id] : current.filter(id => id !== skill.id))} /><span>{skill.name}<small>{skill.target} - {bytes(totalSkillBytes(skill))}</small></span><Fingerprint size={14} /></label>)}</div><div className="sk-delivery-method"><h3><ArrowDownToLine size={15} />Local AI / portable bundle</h3><p>Includes SKILL.md, supporting files, source metadata, checksums and guardrails.</p><code>node scripts/skilled/install-bundle.mjs bundle.json --dir ./agent-skills</code><p>Your agent must load SKILL.md and LOGIO.md to use them.</p><button type="button" className="sk-text-button" onClick={() => receiptFile.current?.click()}><FileCode2 size={13} />Import installer receipt</button><input ref={receiptFile} type="file" accept=".json,application/json" hidden onChange={event => { const file = event.target.files?.[0]; if (file) void importReceipt(file); event.target.value = ""; }} /><button className="sk-start" disabled={!chosen.length || busy} onClick={() => void deliver(false)}>{busy ? <Loader2 size={14} className="sk-spin" /> : <ArrowDownToLine size={14} />}Export {chosen.length} skill{chosen.length !== 1 ? "s" : ""}</button></div><div className="sk-delivery-method"><h3><Send size={15} />Connected AI agent</h3><label>Agent ID<input placeholder="e.g. research-agent" value={agent} maxLength={128} onChange={event => setAgent(event.target.value)} disabled={!backend.remote} /></label><p>{backend.remote ? "A receipt confirms delivery, not model execution." : "Configure a workspace backend to enable agent delivery."}</p><button className="sk-secondary" disabled={!backend.remote || !backend.command || !chosen.length || !agent.trim() || busy} onClick={() => void deliver(true)}>Transfer &amp; verify receipt<ArrowRight size={14} /></button></div></div></WorkspaceDialog>
   </div>;

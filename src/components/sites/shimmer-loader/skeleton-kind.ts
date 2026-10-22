@@ -6,7 +6,7 @@ export type SkeletonKind = "home" | "table" | "reports" | "chat" | "files" | "ru
 
 const kinds: Record<string, SkeletonKind> = {
   Home: "home", Companies: "table", Contacts: "table", Deals: "table", "New business": "table", Renewals: "table", Partnerships: "table",
-  Reports: "reports", "New chat": "chat", Files: "files", Run: "run", Skilled: "run", Mapping: "canvas", Process: "canvas", Tracing: "trace", Invoice: "invoice", Settings: "settings",
+  Reports: "reports", "New chat": "chat", Files: "files", Run: "run", Skilled: "run", Repo: "run", Mapping: "canvas", Process: "canvas", Tracing: "trace", Invoice: "invoice", Settings: "settings",
 };
 export const skeletonKindOf = (section: string): SkeletonKind => kinds[section] ?? "table";
 

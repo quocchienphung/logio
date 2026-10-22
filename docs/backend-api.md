@@ -97,6 +97,23 @@ While a REST load is in flight a collection shows its `empty` value (no demo row
 
 `POST {base}/workspaces/{id}/commands/skill.transfer` accepts `{agent: string, bundle: {version:1,workspaceId,createdAt,skills:SkillRecord[]}}`. The server routes the bundle to that agent and returns `{data:{bundleVersion:1,workspaceId,receivedAt:<ISO>,agent,accepted:[{id,sha256,files?:[{path,sha256}]}],bytes:<sum of instruction and supporting-file bytes>}}` only after acknowledged delivery. Every ID/hash, supporting-file path/hash, workspace, agent and byte count must match; supporting acknowledgements are required for nonempty captured folders; absent, malformed or mismatched receipts show an error. This receipt acknowledges instruction delivery, not model loading, execution or answer quality. Existing authentication/credentials/error conventions apply. A backend must authorize workspace and agent access; it should not execute imported instructions while storing them.
 
+### Repo workspace
+
+`/personalize?section=repo` (under Skilled in the sidebar) shows the Activity terrain, drawn from the `skill-events` resource Skilled records. It stores nothing of its own.
+
+### Built-in home-server API (`/api/workspace/*`)
+
+This app can itself be the REST backend described above, with files on the machine that runs it. Set `NEXT_PUBLIC_WORKSPACE_API_URL=/api/workspace` (build time) or `window.__workspaceBackendConfig = { baseUrl: "/api/workspace" }`.
+
+| Route | Behavior |
+| --- | --- |
+| `GET/PUT /account/{name}`, `GET/PUT /workspaces/{id}/{name}` | One JSON file per resource under `LOGIO_DATA_DIR` (default `./.logio-data`). Names match `[a-z0-9-]{1,48}`, workspace ids `[A-Za-z0-9_-]{1,128}`. A version is a hash of the stored value (also sent as `ETag`); `If-None-Match` answers `304`, a stale `If-Match` answers `412`, a missing resource `204`. Writes are atomic (temp file + rename) and serialised per file. Body limit 24 MiB. |
+| `POST /workspaces/{id}/commands/skill.transfer` | Validates the whole bundle (hashes, byte counts, safe paths, same workspace), writes it to `LOGIO_AGENT_SKILLS_DIR/<agent>/` (default `<data>/agents/<agent>`) with `SKILL.md` + `LOGIO.md` per skill, and returns the receipt the page verifies. `LOGIO_AGENTS` (comma separated) limits agent ids. The receipt means the files were written; it does not mean a model loaded them. Nothing is executed. |
+| `GET /health` | `{data:{ok, store:{writable,dir}, agents:{dir,restricted}, auth:{tokenRequired}}}` (shown in the Repo page's Home server card). |
+| queries, uploads, other commands, `agent-run/actions` | Not served (`404`): the page uses its built-in samples and keeps files inside the saved JSON as `data:` URLs. |
+
+Access: with `LOGIO_API_TOKEN` set every request needs `Authorization: Bearer <token>`. Without it only requests addressed to this machine or a private name (`localhost`, `127.x`, `10.x`, `192.168.x`, `172.16-31.x`, `*.local`, `*.lan`, `*.home`, `*.internal`) or a host in `LOGIO_ALLOWED_HOSTS` are served; anything else gets `403`. Browser writes must have an `Origin` equal to the request's `Host`. Switching a workspace from the browser backend to this one does not copy existing browser data. See `.env.example`.
+
 Public file import is separate: the local Next handler `POST /api/skilled/import` accepts `{url}` and scans a public GitHub source archive, with no GitHub or UIArc API. An exact skill returns `{data:<ImportedSkill with files>}`. A repository root URL (default `HEAD`) or folder containing nested skills returns `{data:{candidates:[{name,description,path,url}],skipped?:number}}`; the person chooses a commit-pinned candidate before importing. Discovery is bounded to 100 documents / 4 MiB and validates real frontmatter. Scripts/references/assets inside a selected skill folder and a source license are captured at a pinned commit; external dependencies are not installed. Portable bundle delivery works without a remote backend; `scripts/skilled/install-bundle.mjs` writes checked files and a receipt that can be imported through Deliver skills. Details, measurement semantics and source/motion evidence: `docs/research/uiarc-skilled/README.md`.
 
 `POST {base}/workspaces/{id}/commands/{name}`, body = input, `200 {"data": …}`.

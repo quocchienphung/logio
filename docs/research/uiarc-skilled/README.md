@@ -16,6 +16,10 @@ The chart now preserves frozen axis bounds while reading, matches observed point
 
 Verification for this refinement: 27 workflow checks, 21 additional interaction checks (`node scripts/qa/skilled-interactions.mjs`), 24 chart interaction checks (dense/pause/queued/touch/theme), 299 unit/storage tests, lint/typecheck/production build. Rendered evidence includes `interactions/local-target-menu.png`, `local-source-menu.png`, `local-expanded-card.png`, `local-discovered-skills.png`, `local-mobile-menu.png` and `stream-dense-*.png`.
 
+## Update 2026-10-22: terrain moved to Repo, sources removed
+
+The Activity terrain now lives on the Repo page (`docs/research/repo/README.md`), and the "Skill sources" cards and dialog were removed from Skilled (`catalog.ts` was deleted). The left column now has a Metric card row and a Timeline (`SkillOverview.tsx`, `SkillTimeline.tsx`). Importing from GitHub still works through the composer's source menu.
+
 ## Reference → implementation
 
 | Public reference | Local owner | What is retained |

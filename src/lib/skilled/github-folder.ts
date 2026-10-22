@@ -146,6 +146,18 @@ export async function collectSkillCandidates(data: Uint8Array, location: ReturnT
     } catch { skipped++; }
   }
   candidates.sort((left, right) => left.path.localeCompare(right.path));
+  return { candidates, skipped, commit, root, entries };
+}
+
+/** Discover real SKILL.md documents without choosing an arbitrary nested skill. */
+export async function scanGitHubSource(input: string, fetcher: typeof fetch = fetch): Promise<GitHubSourceScan> {
+  const location = resolveGitHubSkillUrl(input);
+  const data = await downloadArchive(input, fetcher);
+  const { entries, root } = inspectArchive(data);
+  const directory = location.sourcePath.slice(0, -"SKILL.md".length);
+  if (entries.some(entry => entry.name === `${root}/${directory}SKILL.md`)) return readSkillArchive(data, input);
+  if (location.kind === "file") throw new SkillImportError("This repository path does not contain SKILL.md.", 404);
+  const { candidates, skipped } = await collectSkillCandidates(data, location);
   if (!candidates.length) throw new SkillImportError(skipped ? "No valid skills were found. SKILL.md files need a valid name and description in YAML frontmatter." : "No SKILL.md files were found in this repository or folder.", 404);
   return { candidates, ...(skipped ? { skipped } : {}) };
 }
