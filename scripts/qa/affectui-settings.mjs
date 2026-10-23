@@ -69,7 +69,7 @@ try {
   await check('Workspace data remains isolated; Settings user menu routes correctly',async()=>{
     await tab('Billing');await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Personal/}).click();await page.locator('.ui-sb-plan').waitFor();assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Pro/);assert.match(await page.locator('.ui-sb-pay').innerText(),/4242/);
     await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Logio/}).click();await page.waitForTimeout(350);assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Team/);
-    await nav('Reports');await page.locator('.ui-as-rev').waitFor();await page.locator('.ui-as-user').click();await page.getByRole('menuitem',{name:'Settings',exact:true}).click();await page.locator('.sc-frame').waitFor();await nav('Usage');await page.locator('.ui-sb').waitFor();
+    await nav('Reports');await page.locator('.ui-as-rev').waitFor();await page.locator('.ui-as-user').click();await page.getByRole('menuitem',{name:'Settings',exact:true}).click();await page.locator('.sc-frame').waitFor();await page.keyboard.press('Escape');await page.locator('.sc-overlay').waitFor({state:'detached'});await nav('Usage');await page.locator('.ui-sb').waitFor();
     await nav('Companies');await page.getByRole('button',{name:'Company CRM',exact:true}).click();assert.equal(await page.locator('.ui-dt tbody tr').count(),10);await nav('Usage');
   });
   await check('Mobile drawer, invoice overflow and reduced motion',async()=>{

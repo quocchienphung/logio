@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
+import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from "react";
 import { Hourglass, Maximize2, Minus, Plus, Repeat } from "lucide-react";
 import { AgentCardBody } from "../affectui-agent-tree/agent-card";
 import { durationLabel, flatten, isMuted, statusLabel, type TreeAgent } from "../affectui-agent-tree/tree-model";
@@ -9,6 +9,7 @@ import { BLOCK, anchorOf, blockAt, boxOf, clampScale, edgeBetween, fitView, free
 import type { Shape } from "./map-layout";
 import type { Box, Point, Side, Size, View } from "./map-layout";
 import { LinkEditor } from "./LinkEditor";
+import { menuAnchor } from "./block-shortcuts";
 import { flattenNodes, linkKind } from "./process-model";
 import type { LinkCheck, ProcessLink, ProcessNode } from "./process-model";
 import { isAttemptCard, taskIdOf } from "./run-view";
@@ -57,6 +58,8 @@ export interface ProcessMapProps {
   onMove: (id: string, pos: Point) => void;
   onAdd: (parentId: string, pos: Point) => void;
   onDelete: (id: string) => void;
+  /** A right click, the Menu key, or a long press on a block: where to open its shortcut menu (viewport coordinates). */
+  onBlockMenu?: (request: { id: string; at: Point; keyboard: boolean; element: HTMLElement }) => void;
 }
 
 /** The size of an element as an external store (a string, so the snapshot stays stable between renders). */
@@ -75,6 +78,8 @@ function useSize() {
 
 const GRID = 8;
 const SLOP = 4;
+/** A finger held still this long on a block asks for its shortcut menu, like a right click. */
+const LONG_PRESS_MS = 480;
 const sides: Side[] = ["top", "right", "bottom", "left"];
 const sideLabel: Record<Side, string> = { top: "above", right: "to the right of", bottom: "below", left: "to the left of" };
 const roundSize = (size: Size): Size => ({ w: Math.round(size.w), h: Math.round(size.h) });
@@ -87,7 +92,7 @@ const READABLE = 0.55;
  * to. Drag a block to put it where you want (it keeps that place), drag the background to pan, zoom with Ctrl + wheel, a
  * pinch or the buttons, and use the + on a selected block to connect a new block to it. Arrow keys nudge the focused block.
  */
-export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, notices, onSelect, onOpen, onMove, onAdd, onDelete }: ProcessMapProps) {
+export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, notices, onSelect, onOpen, onMove, onAdd, onDelete, onBlockMenu }: ProcessMapProps) {
   const [setViewport, viewport] = useSize();
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [sizes, setSizes] = useState<ReadonlyMap<string, Size>>(new Map());
@@ -99,6 +104,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   const [connect, setConnect] = useState<{ from: string; side: Side; point: Point; over: string | null } | null>(null);
   const blocks = useRef(new Map<string, HTMLElement>());
   const dragCancel = useRef<null | (() => void)>(null);
+  const touchMenuAt = useRef(0);
   const gesture = useRef({ pointers: new Map<number, Point>(), pinch: 0, pan: null as null | { x: number; y: number; view: View } });
 
   const agents = useMemo(() => new Map(flatten(tree).map(agent => [agent.id, agent])), [tree]);
@@ -245,22 +251,30 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     event.stopPropagation();
     if (gesture.current.pointers.size > 1) return; // a second finger is a pinch, not a block
     if (event.ctrlKey || event.metaKey || event.shiftKey) { event.preventDefault(); onToggle(id); return; }
-    const start = { x: event.clientX, y: event.clientY }, origin = centerOf(id), scale = view.scale;
-    let moved = false;
+    const start = { x: event.clientX, y: event.clientY }, origin = centerOf(id), scale = view.scale, element = event.currentTarget;
+    let moved = false, menuOpened = false;
+    // A finger held still on a block opens its shortcut menu (touch screens have no right click)
+    const hold = onBlockMenu && event.pointerType === "touch" ? window.setTimeout(() => {
+      if (moved || gesture.current.pointers.size > 1) return;
+      menuOpened = true; touchMenuAt.current = performance.now();
+      onBlockMenu({ id, at: start, keyboard: false, element });
+    }, LONG_PRESS_MS) : undefined;
     const move = (e: PointerEvent) => {
-      if (gesture.current.pointers.size > 1) return;
+      if (menuOpened || gesture.current.pointers.size > 1) return;
       if (!moved && Math.hypot(e.clientX - start.x, e.clientY - start.y) < SLOP) return;
       moved = true;
+      window.clearTimeout(hold);
       setDrag({ id, x: origin.x + (e.clientX - start.x) / scale, y: origin.y + (e.clientY - start.y) / scale, from: origin });
     };
     const finish = (e: PointerEvent | null, drop: boolean) => {
       dragCancel.current = null;
+      window.clearTimeout(hold);
       window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", cancel);
       if (e && moved && drop) {
         const x = Math.round((origin.x + (e.clientX - start.x) / scale) / GRID) * GRID, y = Math.round((origin.y + (e.clientY - start.y) / scale) / GRID) * GRID;
         if (multiIds.length > 1 && multiIds.includes(id)) onMoveMany(multiIds.map(other => { const at = other === id ? origin : centers.get(other) ?? { x: 0, y: 0 }; return { id: other, pos: { x: at.x + x - origin.x, y: at.y + y - origin.y } }; }));
         else onMove(id, { x, y });
-      } else if (e && !moved && drop) { onSelect(id); onOpen?.(id); }
+      } else if (e && !moved && !menuOpened && drop) { onSelect(id); onOpen?.(id); }
       setDrag(null);
     };
     const up = (e: PointerEvent) => finish(e, true);
@@ -277,6 +291,15 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     if (arrows[event.key]) { event.preventDefault(); const at = centerOf(id); onMove(id, { x: at.x + arrows[event.key].x, y: at.y + arrows[event.key].y }); }
     else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onSelect(id); onOpen?.(id); }
     else if ((event.key === "Delete" || event.key === "Backspace") && id !== root.id) { event.preventDefault(); onDelete(id); }
+  }
+  function onBlockContext(event: ReactMouseEvent<HTMLDivElement>, id: string) {
+    if (!onBlockMenu) return;
+    event.preventDefault(); event.stopPropagation();
+    // Android sends a contextmenu after the long press that already opened the menu: it stays where the finger is
+    if (performance.now() - touchMenuAt.current < 1500) return;
+    dragCancel.current?.();
+    const at = menuAnchor(event, event.currentTarget.getBoundingClientRect());
+    onBlockMenu({ id, at: { x: at.x, y: at.y }, keyboard: at.keyboard, element: event.currentTarget });
   }
   function onViewportKey(event: ReactKeyboardEvent<HTMLDivElement>) {
     if ((event.target as HTMLElement).closest("input, textarea, [role=combobox]")) return;
@@ -340,7 +363,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
 
   return <div
     className="pmap agt" ref={attach} data-panning={panning ? "" : undefined}
-    style={grid} role="group" aria-label="Process map. Drag a block to move it, drag the background to pan, press plus or minus to zoom, zero to fit." tabIndex={-1}
+    style={grid} role="group" aria-label="Process map. Drag a block to move it, right-click a block for its shortcuts, drag the background to pan, press plus or minus to zoom, zero to fit." tabIndex={-1}
     onPointerDownCapture={trackDown} onPointerMoveCapture={trackMove} onPointerUpCapture={trackUp} onPointerCancelCapture={trackUp}
     onPointerDown={onBackgroundDown} onPointerMove={onBackgroundMove} onPointerUp={onBackgroundUp} onPointerCancel={onBackgroundUp} onKeyDown={onViewportKey}
   >
@@ -379,7 +402,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
           className="pmap__block agt__node" data-status={agent.status} data-selected={selected ? "" : undefined} data-multi={grouped.has(node.id) ? "" : undefined} data-target={connect?.over === node.id ? (connectCheck?.ok ? "ok" : "no") : undefined} data-dragging={drag?.id === node.id ? "" : undefined} data-root={node.id === root.id ? "" : undefined}
           role="group" aria-label={`${agent.name}, ${statusLabel[agent.status]}${agent.badge ? `, ${agent.badge.label}` : ""}`} aria-current={selected ? "true" : undefined} tabIndex={0}
           style={{ left: at.x - BLOCK.w / 2, top: at.y - size.h / 2 }}
-          onPointerDown={event => onBlockDown(event, node.id)} onKeyDown={event => onBlockKey(event, node.id)}
+          onPointerDown={event => onBlockDown(event, node.id)} onKeyDown={event => onBlockKey(event, node.id)} onContextMenu={event => onBlockContext(event, node.id)}
         >
           <AgentCardBody agent={agent} now={now} formatCost={formatCost} showCost={showCost} />
           {node.approval && <span className="proc-tag pmap__tag" title="Asks you before it runs">Approval</span>}

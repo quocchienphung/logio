@@ -2,15 +2,18 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { Row, Segmented, SelectField, Switch, TextField } from "./Controls";
 import { SaveBar, type BarPhase } from "./SaveBar";
 import { SettingsPalette, type FlightRect } from "./SettingsPalette";
 import { sectionIcons } from "./section-icons";
 import { changedKeys, dirtySections, errorsOf, rows, sections, type SectionId, type SettingKey, type SettingRow, type SettingsValues } from "./settings-model";
+import type { CSSProperties } from "react";
 import "./settings-command.css";
 
-const MEMBERS_TAB: Record<string, SectionId> = { members: "members", billing: "billing", general: "general" };
+
+/** The place of an element in the order the page rises into view while it opens (see `reveal`). */
+const step = (index: number) => ({ "--i": index }) as CSSProperties;
 
 function rectIn(node: Element, frame: Element): FlightRect {
   const a = node.getBoundingClientRect(), b = frame.getBoundingClientRect();
@@ -24,7 +27,15 @@ function rectIn(node: Element, frame: Element): FlightRect {
  *
  * `saved` is what the workspace holds; `onSave` receives the edited copy once it validates. Nothing leaves the browser from here.
  */
-export function SettingsCommand({ saved, onSave, notify }: { saved: SettingsValues; onSave: (values: SettingsValues) => void; notify?: (message: string) => void }) {
+export function SettingsCommand({ saved, onSave, notify, initialSection, onClose, reveal = false }: {
+  saved: SettingsValues; onSave: (values: SettingsValues) => void; notify?: (message: string) => void;
+  /** The section to open on (a link such as `?settings=members`). */
+  initialSection?: SectionId;
+  /** Shown as a close button in the header when the page sits in a panel over the workspace. */
+  onClose?: () => void;
+  /** Texts, tabs and rows rise into place one after another (while the panel grows out of the menu). */
+  reveal?: boolean;
+}) {
   const reduce = useReducedMotion();
   const [draft, setDraft] = useState(saved);
   const [current, setCurrent] = useState<SectionId>("general");
@@ -105,10 +116,9 @@ export function SettingsCommand({ saved, onSave, notify }: { saved: SettingsValu
     return () => { node.removeEventListener("scroll", onScroll); if (frameId) cancelAnimationFrame(frameId); };
   }, []);
 
-  // A link such as /personalize?section=settings&settings-tab=members opens on that section.
+  // A link such as ?settings=members opens on that section.
   useEffect(() => {
-    const tab = new URLSearchParams(window.location.search).get("settings-tab");
-    const id = tab ? MEMBERS_TAB[tab] : undefined;
+    const id = initialSection;
     if (id) requestAnimationFrame(() => {
       setCurrent(id);
       const node = scroller.current;
@@ -118,6 +128,7 @@ export function SettingsCommand({ saved, onSave, notify }: { saved: SettingsValu
       node.scrollTop = sectionTop(id);
       later(() => { lock.current = null; }, 250);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function openPalette() {
@@ -198,21 +209,22 @@ export function SettingsCommand({ saved, onSave, notify }: { saved: SettingsValu
     return <Switch id={row.id} checked={Boolean(value)} onChange={next => update(row.key, next as never)} labelledBy={labelled} describedBy={described} />;
   }
 
-  return <div className="sc sc-tokens" onKeyDown={event => { if (event.key === "Escape" && !palette && changed.length && (event.target as HTMLElement).matches?.("input")) (event.target as HTMLElement).blur(); }}>
+  return <div className="sc sc-tokens" data-reveal={reveal ? "" : undefined} onKeyDown={event => { if (event.key === "Escape" && !palette && changed.length && (event.target as HTMLElement).matches?.("input")) (event.target as HTMLElement).blur(); }}>
     <div className="sc-frame" ref={frame}>
       <header className="sc-header">
-        <h2>Settings</h2>
-        <div className="sc-trigger-slot">
+        <h2 style={step(0)}>Settings</h2>
+        <div className="sc-trigger-slot" style={step(1)}>
           <button ref={trigger} type="button" className="sc-trigger" aria-haspopup="dialog" aria-keyshortcuts="Meta+K Control+K /" data-hidden={palette ? "" : undefined} onClick={openPalette}>
             <Search size={16} aria-hidden="true" /><span>Search settings</span><kbd className="sc-kbd" aria-hidden="true">{shortcut}</kbd>
           </button>
         </div>
+        {onClose && <button type="button" className="sc-close" aria-label="Close settings" style={step(2)} onClick={onClose}><X size={16} aria-hidden="true" /></button>}
       </header>
       <nav className="sc-nav" aria-label="Settings sections"><ul>
-        {sections.map(section => {
+        {sections.map((section, index) => {
           const Icon = sectionIcons[section.id];
           const active = current === section.id;
-          return <li key={section.id}><button type="button" className="sc-nav__item" aria-current={active ? "true" : undefined} onClick={() => goToSection(section.id)}>
+          return <li key={section.id} style={step(3 + index)}><button type="button" className="sc-nav__item" aria-current={active ? "true" : undefined} onClick={() => goToSection(section.id)}>
             {active && <motion.span className="sc-nav__highlight" layoutId="sc-nav-highlight" aria-hidden="true" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 520, damping: 40 }} />}
             <Icon size={16} aria-hidden="true" /><span className="sc-nav__label">{section.label}</span>
             {dirty.has(section.id) && <><span className="sc-nav__dot" aria-hidden="true" /><span className="sc-sr-only">Has edited settings</span></>}
@@ -221,10 +233,10 @@ export function SettingsCommand({ saved, onSave, notify }: { saved: SettingsValu
       </ul></nav>
       <div className="sc-main">
         <div className="sc-scroller" ref={scroller} tabIndex={-1}>
-          {sections.map(section => <section key={section.id} className="sc-section" id={`sc-section-${section.id}`} aria-labelledby={`sc-heading-${section.id}`} ref={node => { if (node) sectionNodes.current.set(section.id, node); }}>
-            <div className="sc-section__head"><h3 id={`sc-heading-${section.id}`}>{section.label}</h3><p>{section.description(draft)}</p></div>
+          {sections.map((section, sectionIndex) => <section key={section.id} className="sc-section" id={`sc-section-${section.id}`} aria-labelledby={`sc-heading-${section.id}`} ref={node => { if (node) sectionNodes.current.set(section.id, node); }}>
+            <div className="sc-section__head" style={step(9 + sectionIndex * 2)}><h3 id={`sc-heading-${section.id}`}>{section.label}</h3><p>{section.description(draft)}</p></div>
             <div className="sc-rows">
-              {rows.filter(row => row.section === section.id).map(row => <Row key={row.id} id={row.id} label={row.label} hint={row.hint} kind={row.kind} wide={row.kind === "text"} dirty={edited.has(row.key)} error={errors[row.key] && (attempted || edited.has(row.key)) ? errors[row.key] : undefined} pulse={pulse?.id === row.id ? pulse.flip : undefined} rowRef={node => { if (node) rowNodes.current.set(row.id, node); else rowNodes.current.delete(row.id); }}>{control(row)}</Row>)}
+              {rows.filter(row => row.section === section.id).map(row => <Row key={row.id} order={rows.indexOf(row)} id={row.id} label={row.label} hint={row.hint} kind={row.kind} wide={row.kind === "text"} dirty={edited.has(row.key)} error={errors[row.key] && (attempted || edited.has(row.key)) ? errors[row.key] : undefined} pulse={pulse?.id === row.id ? pulse.flip : undefined} rowRef={node => { if (node) rowNodes.current.set(row.id, node); else rowNodes.current.delete(row.id); }}>{control(row)}</Row>)}
             </div>
           </section>)}
         </div>

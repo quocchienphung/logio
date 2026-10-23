@@ -228,7 +228,7 @@ try {
     assert.ok(await page.getByText("Folder note").first().isVisible());
   });
   await run("no native <select> remains anywhere in the workspace screens", async () => {
-    for (const name of ["Home", "Companies", "Contacts", "Deals", "Reports", "Run", "Mapping", "Invoice", "Usage", "Settings"]) { await nav(name); await noSelects(name); }
+    for (const name of ["Home", "Companies", "Contacts", "Deals", "Reports", "Run", "Mapping", "Invoice", "Usage"]) { await nav(name); await noSelects(name); }
   });
   assert.deepEqual(errors, []);
 } finally {

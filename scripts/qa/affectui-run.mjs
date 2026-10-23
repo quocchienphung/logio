@@ -14,7 +14,7 @@ const readRun=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('affectui:ac
 try{
   await page.goto(`${base}/personalize?section=run`,{waitUntil:'networkidle'});await page.locator('.ui-ar').waitFor();await page.addStyleTag({content:'nextjs-portal{display:none!important}'});
   await check('Run follows Reports and renders actual interactive DOM',async()=>{
-    const labels=await page.locator('.workspace-nav-label').allTextContents();assert.deepEqual(labels,['Run','Usage','Settings']);assert.equal(await page.locator('.ui-pl__step').count(),5);assert.equal(await page.locator('.ui-ar iframe,.ui-ar img,canvas').count(),0);assert.equal(await page.locator('.ui-df__chg').count(),9);
+    const labels=await page.locator('.workspace-nav-label').allTextContents();assert.deepEqual(labels,['New chat','Files','Run','Usage']);assert.equal(await page.locator('.ui-pl__step').count(),5);assert.equal(await page.locator('.ui-ar iframe,.ui-ar img,canvas').count(),0);assert.equal(await page.locator('.ui-df__chg').count(),9);
   });
   await check('Simulation advances sequentially and gates email/calendar on approval',async()=>{
     await page.getByRole('button',{name:'Approve',exact:true}).waitFor();const run=await readRun();assert.equal(run.phase,'waiting');assert.equal(run.states.draft.status,'done');assert.equal(run.states.send.completedCalls,0);assert.equal(run.states.review.status,'pending');assert.equal(await page.locator('.ui-tc-group').count(),3);

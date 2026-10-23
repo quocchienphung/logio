@@ -11,7 +11,7 @@
 .pmap__arrow--muted { stroke: var(--agt-link-muted); }
 @keyframes pmap-flow { to { stroke-dashoffset: -12; } }
 /* More specific than the tree's own width rules for its cards, so a block is always one block wide */
-.pmap.agt .pmap__block.agt__node { position: absolute; width: 232px; cursor: grab; touch-action: none; transition: box-shadow 200ms ease, opacity 240ms ease; }
+.pmap.agt .pmap__block.agt__node { position: absolute; width: 232px; cursor: grab; touch-action: none; -webkit-touch-callout: none; transition: box-shadow 200ms ease, opacity 240ms ease; }
 .pmap__block[data-dragging] { z-index: 6; cursor: grabbing; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .1), 0 18px 36px -14px rgba(0, 0, 0, .35); }
 .pmap__block[data-selected] { z-index: 4; }
 .pmap__block[data-root] { box-shadow: 0 0 0 1px var(--agt-link), var(--agt-shadow); }

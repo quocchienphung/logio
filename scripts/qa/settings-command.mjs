@@ -10,7 +10,7 @@ await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome' });
 const results = [], errors = [];
 const check = (name, result) => { assert.ok(result, name); results.push(name); };
-const fresh = async (viewport, url = '/personalize?section=settings') => {
+const fresh = async (viewport, url = '/personalize?section=new-chat&settings=1') => {
   const context = await browser.newContext({ viewport, hasTouch: viewport.width < 500 });
   const page = await context.newPage();
   page.on('pageerror', error => errors.push(error.message));
@@ -18,18 +18,18 @@ const fresh = async (viewport, url = '/personalize?section=settings') => {
   await page.evaluate(() => localStorage.clear());
   await page.goto(`${base}${url}`, { waitUntil: 'networkidle' });
   await page.waitForSelector('.sc-frame', { timeout: 30000 });
-  await page.waitForTimeout(700);
+  await page.waitForTimeout(2000);
   return { context, page };
 };
 try {
   const { context, page } = await fresh({ width: 1440, height: 1000 });
 
-  // Structure: six sections, 28 rows, the measured geometry.
+  // Structure: six sections, 29 rows, the measured geometry.
   check('six navigation items', await page.locator('.sc-nav__item').count() === 6);
   const tabs = await page.locator('.sc-nav__item').evaluateAll(nodes => nodes.map(node => { const r = node.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.top)]; }));
   check('navigation tabs sit side by side on one line, with their icons', new Set(tabs.map(tab => tab[1])).size === 1 && tabs.every((tab, index) => !index || tab[0] > tabs[index - 1][0]) && await page.locator('.sc-nav__item svg').first().isVisible());
   check('six sections', await page.locator('.sc-section').count() === 6);
-  check('28 rows', await page.locator('.sc-row').count() === 28);
+  check('29 rows', await page.locator('.sc-row').count() === 29);
   const geometry = await page.evaluate(() => {
     const box = selector => document.querySelector(selector).getBoundingClientRect();
     return { header: box('.sc-header').height, nav: [box('.sc-nav').width, box('.sc-nav').height, box('.sc-nav').top - box('.sc-header').bottom], trigger: [box('.sc-trigger').width, box('.sc-trigger').height], text: box('.sc-text').height, switch: [box('.sc-switch__track').width, box('.sc-switch__track').height], section: box('.sc-section').width, seg: box('.sc-seg').height };
@@ -40,7 +40,8 @@ try {
   check('sections are at most 620px wide', geometry.section <= 620);
 
   // The old Settings page moved to Usage and still renders.
-  check('sidebar lists Usage and Settings', await page.getByRole('button', { name: 'Usage', exact: true }).count() === 1);
+  check('sidebar lists Usage, and Settings is not a page of the sidebar', await page.getByRole('button', { name: 'Usage', exact: true }).count() === 1 && await page.locator('.workspace-nav-label', { hasText: /^Settings$/ }).count() === 0);
+  check('Settings sit in a modal panel over the page that was open', await page.locator('.sc-overlay__panel[role="dialog"][aria-modal="true"]').count() === 1 && page.url().includes('section=new-chat'));
 
   // Navigation: clicking a section scrolls to it and lights it; scrolling lights the section in view.
   await page.locator('.sc-nav__item', { hasText: 'Security' }).click();
@@ -110,12 +111,12 @@ try {
   const language = page.locator('#language');
   await language.focus();
   await page.keyboard.press('Enter');
-  check('select opens a listbox', await page.locator('[role="listbox"] [role="option"]').count() === 6);
+  check('select opens a listbox', await page.locator('.sc-select__content [role="option"]').count() === 6);
   await page.screenshot({ path: `${out}/qa-select.png` });
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('Enter');
   check('select picks with the keyboard', (await language.innerText()).includes('English (UK)') || (await language.innerText()).includes('Deutsch'));
-  check('select closes and returns focus', await page.locator('[role="listbox"]').count() === 0 && await page.evaluate(() => document.activeElement?.id === 'language'));
+  check('select closes and returns focus', await page.locator('.sc-select__content').count() === 0 && await page.evaluate(() => document.activeElement?.id === 'language'));
   await page.getByRole('button', { name: 'Discard' }).click();
 
   // Search palette.
@@ -130,11 +131,11 @@ try {
   check('palette settles at 560 wide', Math.round(palette.width) === 560);
   check('palette is a modal combobox dialog', await page.locator('[role="dialog"][aria-modal="true"] input[role="combobox"]').count() === 1);
   check('input has focus', await page.evaluate(() => document.activeElement?.getAttribute('role') === 'combobox'));
-  check('suggested settings listed first', (await page.locator('.sc-palette__hint').innerText()) === 'Suggested' && await page.locator('[role="option"]').count() === 5);
+  check('suggested settings listed first', (await page.locator('.sc-palette__hint').innerText()) === 'Suggested' && await page.locator('.sc-palette [role="option"]').count() === 5);
   await page.screenshot({ path: `${out}/qa-palette.png` });
   await page.keyboard.type('sess');
   await page.waitForTimeout(300);
-  check('typing filters and marks the match', await page.locator('[role="option"]').count() === 1 && (await page.locator('.sc-mark').innerText()).toLowerCase() === 'sess');
+  check('typing filters and marks the match', await page.locator('.sc-palette [role="option"]').count() === 1 && (await page.locator('.sc-mark').innerText()).toLowerCase() === 'sess');
   await page.keyboard.press('Escape');
   await page.waitForSelector('.sc-palette', { state: 'detached', timeout: 3000 });
   await page.waitForTimeout(150);
@@ -155,10 +156,9 @@ try {
   check('the row is in view', rowBox.y >= scrollBox.y && rowBox.y + rowBox.height <= scrollBox.y + scrollBox.height);
   check('the section in view follows', await page.locator('.sc-nav__item[aria-current]').innerText() === 'Billing');
   await page.waitForTimeout(500);
-  await page.keyboard.press('Escape');
   await page.evaluate(() => document.activeElement?.blur());
   await page.locator('.sc-scroller').hover();
-  await page.mouse.click(1300, 500);
+  await page.mouse.click(1100, 500);
   await page.keyboard.press('/');
   check('"/" opens the search while focus is in the page', await page.locator('.sc-palette').count() === 1);
   await page.keyboard.type('zzzz');
@@ -166,6 +166,11 @@ try {
   check('no match shows an empty message', (await page.locator('.sc-empty').innerText()).includes('zzzz'));
   await page.keyboard.press('Escape');
   await page.waitForSelector('.sc-palette', { state: 'detached' });
+
+  // The Settings close with Escape and leave the page underneath as it was.
+  await page.keyboard.press('Escape');
+  await page.waitForSelector('.sc-overlay', { state: 'detached', timeout: 4000 });
+  check('Escape closes the panel and the address drops ?settings', !page.url().includes('settings=') && page.url().includes('section=new-chat'));
 
   // Compact pop-up from the account menu.
   await page.locator('.ui-as-user').click();
@@ -182,18 +187,64 @@ try {
   await page.keyboard.press('Enter');
   await dialog.getByRole('button', { name: 'Save' }).click();
   await dialog.waitFor({ state: 'hidden' });
+  await page.locator('.ui-as-user').click();
+  await page.getByRole('menuitem', { name: 'Settings', exact: true }).click();
+  await page.waitForSelector('.sc-frame');
+  await page.waitForTimeout(1800);
   check('pop-up save is shared with the page', await page.locator('[data-setting="mentions"] button[role="switch"]').getAttribute('aria-checked') === 'false');
+  await page.keyboard.press('Escape');
+  await page.waitForSelector('.sc-overlay', { state: 'detached' });
   await page.locator('.ui-as-user').click();
   await page.getByRole('menuitem', { name: 'Appearance & notifications' }).click();
   await dialog.getByRole('button', { name: /All settings/ }).click();
   await dialog.waitFor({ state: 'hidden' });
-  check('"All settings" lands on the page', (await page.url()).includes('section=settings'));
+  await page.waitForSelector('.sc-overlay__panel');
+  check('"All settings" opens the Settings panel', page.url().includes('settings=') && await page.locator('.sc-overlay__panel').count() === 1);
+  await page.waitForTimeout(1800);
+  await page.locator('.sc-close').click();
+  await page.waitForSelector('.sc-overlay', { state: 'detached', timeout: 4000 });
+  check('the close button closes the panel', !page.url().includes('settings='));
 
   // Deep link from "Invite teammates" opens Members.
+  await page.goto(`${base}/personalize?section=new-chat&settings=members`, { waitUntil: 'networkidle' });
+  await page.waitForSelector('.sc-frame');
+  await page.waitForTimeout(2000);
+  check('?settings=members opens on Members', await page.locator('.sc-nav__item[aria-current]').innerText() === 'Members');
+
+  // Growth out of the menu.
+  await page.keyboard.press('Escape');
+  await page.waitForSelector('.sc-overlay', { state: 'detached', timeout: 4000 });
+  await page.goto(`${base}/personalize?section=new-chat`, { waitUntil: 'networkidle' });
+  await page.locator('.ui-as-user').click();
+  const menuBox = await page.locator('[role="menu"].ui-as-popover').boundingBox();
+  await page.evaluate(() => {
+    window.__frames = [];
+    const sample = () => { const node = document.querySelector('.sc-overlay__panel'); if (node) { const box = node.getBoundingClientRect(); window.__frames.push([box.x, box.y, box.width, box.height]); } if (window.__frames.length < 120) requestAnimationFrame(sample); };
+    requestAnimationFrame(sample);
+  });
+  await page.getByRole('menuitem', { name: 'Settings', exact: true }).click();
+  await page.waitForTimeout(1600);
+  const frames = await page.evaluate(() => window.__frames);
+  const first = frames[0], last = frames[frames.length - 1];
+  check('the panel starts as the menu (same box)', Math.abs(first[0] - menuBox.x) < 14 && Math.abs(first[2] - menuBox.width) < 40 && Math.abs(first[3] - menuBox.height) < 40);
+  check('then grows to the large panel', last[2] >= 1000 && last[3] >= 700);
+  check('growth is smooth: width never shrinks and no frame jumps over 40% of the way', frames.every((frame, index) => !index || frame[2] >= frames[index - 1][2] - 1) && frames.every((frame, index) => !index || frame[2] - frames[index - 1][2] < (last[2] - first[2]) * 0.4));
+  const risen = await page.evaluate(() => [...document.querySelectorAll('.sc-row, .sc-nav li, .sc-section__head')].every(node => getComputedStyle(node).animationName === 'sc-rise'));
+  check('texts, tabs and rows rise in with a stagger', risen);
+  const delays = await page.locator('.sc-row').evaluateAll(nodes => nodes.slice(0, 6).map(node => parseFloat(getComputedStyle(node).animationDelay)));
+  check('later rows start later', delays.every((delay, index) => !index || delay > delays[index - 1]));
+  await page.waitForTimeout(600);
+  await page.screenshot({ path: `${out}/qa-panel.png` });
+  await page.locator('.sc-overlay__scrim').click({ position: { x: 20, y: 20 } });
+  await page.waitForSelector('.sc-overlay', { state: 'detached', timeout: 4000 });
+  check('clicking outside closes the panel; the page underneath is still the chat', !page.url().includes('settings=') && page.url().includes('section=new-chat'));
+  check('focus returns to the account button', await page.evaluate(() => document.activeElement?.classList.contains('ui-as-user')));
   await page.goto(`${base}/personalize?section=settings&settings-tab=members`, { waitUntil: 'networkidle' });
   await page.waitForSelector('.sc-frame');
-  await page.waitForTimeout(600);
-  check('settings-tab=members opens on Members', await page.locator('.sc-nav__item[aria-current]').innerText() === 'Members');
+  await page.waitForTimeout(2000);
+  check('the older ?section=settings link opens the panel on Members', await page.locator('.sc-nav__item[aria-current]').innerText() === 'Members');
+  await page.keyboard.press('Escape');
+  await page.waitForSelector('.sc-overlay', { state: 'detached', timeout: 4000 });
 
   // Usage: the agent-usage page that used to be Settings.
   await page.goto(`${base}/personalize?section=usage`, { waitUntil: 'networkidle' });
@@ -216,7 +267,7 @@ try {
   await phone.page.locator('.sc-trigger').click();
   await phone.page.waitForTimeout(1000);
   const phonePalette = await phone.page.locator('.sc-palette').boundingBox();
-  check('phone: palette keeps a 12px margin', phonePalette.width <= 390 && phonePalette.x >= 40);
+  check('phone: palette keeps a 12px margin inside the panel', phonePalette.x >= 8 + 11 && phonePalette.x + phonePalette.width <= 390 - 8 - 11);
   await phone.page.screenshot({ path: `${out}/qa-phone-palette.png` });
   await phone.context.close();
 
@@ -224,11 +275,12 @@ try {
   const reduced = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
   const rp = await reduced.newPage();
   rp.on('pageerror', error => errors.push(error.message));
-  await rp.goto(`${base}/personalize?section=settings`, { waitUntil: 'networkidle' });
+  await rp.goto(`${base}/personalize?section=new-chat&settings=1`, { waitUntil: 'networkidle' });
   await rp.waitForSelector('.sc-frame');
   await rp.locator('.sc-trigger').click();
   await rp.waitForTimeout(120);
   check('reduced motion: palette is already at its place', Math.round((await rp.locator('.sc-palette').boundingBox()).width) === 560);
+  check('reduced motion: the panel is at its size and rows do not animate', Math.round((await rp.locator('.sc-overlay__panel').boundingBox()).width) >= 1000 && await rp.evaluate(() => getComputedStyle(document.querySelector('.sc-row')).animationName === 'none'));
   await reduced.close();
 
   check('no page errors', errors.length === 0);

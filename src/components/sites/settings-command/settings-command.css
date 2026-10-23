@@ -224,3 +224,25 @@
   .sc-quick__row[data-kind="switch"] { grid-template-columns: minmax(0, 1fr) auto; }
   .sc-quick .sc-select { width: 100%; }
 }
+
+/* The Settings as a panel that grows out of the account menu. */
+.sc-overlay { position: fixed; inset: 0; z-index: 200; }
+.sc-overlay__scrim { position: absolute; inset: 0; background: oklch(0% 0 0 / .3); backdrop-filter: blur(3px); }
+.sc-overlay__panel { position: absolute; top: 0; left: 0; overflow: hidden; border: 1px solid var(--sc-border); background: var(--sc-surface); box-shadow: var(--sc-shadow-floating); outline: none; will-change: transform; }
+.sc-overlay__content { position: absolute; top: 0; left: 0; }
+.sc-overlay .sc { height: 100%; }
+.sc-overlay .sc-frame { min-height: 0; }
+.sc-close { display: grid; flex: 0 0 auto; width: 32px; height: 32px; place-items: center; border: 0; border-radius: 9px; padding: 0; background: transparent; color: var(--sc-text-2); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: color var(--sc-fast) var(--sc-ease), background-color var(--sc-fast) var(--sc-ease); }
+.sc-close:active { background: var(--sc-muted); color: var(--sc-fg); }
+.sc-close:focus-visible { outline: 2px solid color-mix(in oklab, var(--sc-accent) 55%, transparent); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .sc-close:hover { background: var(--sc-muted); color: var(--sc-fg); } }
+.sc-header .sc-trigger-slot { margin-left: auto; }
+.sc-header:has(.sc-close) { gap: 8px; }
+
+/* While the panel grows, every text block, tab and row rises into its place in reading order (--i is its place in line). */
+.sc[data-reveal] :is(.sc-header h2, .sc-trigger-slot, .sc-close, .sc-nav li, .sc-section__head, .sc-row) {
+  animation: sc-rise .6s var(--sc-ease) both;
+  animation-delay: calc(.12s + min(var(--i, 0), 34) * 30ms);
+}
+@keyframes sc-rise { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@media (prefers-reduced-motion: reduce) { .sc[data-reveal] :is(.sc-header h2, .sc-trigger-slot, .sc-close, .sc-nav li, .sc-section__head, .sc-row) { animation: none; } }

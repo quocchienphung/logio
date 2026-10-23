@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { ShimmerText, Skeleton } from "./Shimmer";
 import { loadingLabel, skeletonKindOf } from "./skeleton-kind";
 import type { SkeletonKind } from "./skeleton-kind";
+import { AsciiLoading } from "../ascii-reveal/AsciiReveal";
 import "./shimmer-loader.css";
 
 /**
@@ -13,6 +14,7 @@ export function SectionSkeleton({ section, immediate = false, label }: { section
   const kind = skeletonKindOf(section);
   return <div className={`shm-page shm-page--${kind}${kind === "canvas" || kind === "preferences" ? "" : " workspace-page"}`} data-immediate={immediate ? "" : undefined} data-kind={kind} role="status" aria-busy="true" aria-live="polite" style={kind === "canvas" ? { height: "100%", gap: 0 } : undefined}>
     <span className="shm-sr">{label ?? loadingLabel(section)}</span>
+    <AsciiLoading />
     {kind === "home" ? <Home /> : kind === "table" ? <Table /> : kind === "reports" ? <Reports /> : kind === "chat" ? <Chat /> : kind === "files" ? <Files /> : kind === "run" ? <Run />
       : kind === "canvas" ? <Canvas text={label ?? loadingLabel(section)} /> : kind === "trace" ? <Trace /> : kind === "invoice" ? <Invoice /> : kind === "preferences" ? <Preferences /> : <Settings />}
   </div>;

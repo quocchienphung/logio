@@ -6,11 +6,11 @@ Source: the public preview of the **Settings command** block, <https://uiarc.dev
 
 | Source | Local |
 | --- | --- |
-| Settings command preview (desktop 745 px frame, phone 390 px) | `/personalize?section=settings` → `src/components/sites/settings-command/SettingsCommand.tsx` |
+| Settings command preview (desktop 745 px frame, phone 390 px) | **Not a sidebar page.** A panel over the page that is open: `?settings=<section>` (`1`, `general`, `members`, …) → `settings-command/SettingsOverlay.tsx` hosting `SettingsCommand.tsx`. The older `?section=settings[&settings-tab=…]` link opens the same panel. |
 | (this app) agent usage, plan, members and API keys — the page that used to be Settings | `/personalize?section=usage` → `affectui-settings/SettingsBilling.tsx` (unchanged) |
 | (this app) compact version | account menu → **Appearance & notifications** → `settings-command/QuickSettings.tsx`, shown in `WorkspaceEditors` |
 
-The sidebar lists **Usage** and **Settings** under Agent Chat. The "Invite your teammates" step opens `section=usage&settings-tab=members` (invitations live on Usage); `section=settings&settings-tab=members` opens the Members section of the new page.
+The sidebar lists **Usage** under Agent Chat; Settings are opened from the account menu (**Settings**) or the pop-up's **All settings**, and closed with the X, Escape or a click outside (the page underneath is never left). The "Invite your teammates" step opens `section=usage&settings-tab=members` (invitations live on Usage); `section=settings&settings-tab=members` opens the Members section of the new page.
 
 ## What was observed (`source/`)
 
@@ -31,6 +31,11 @@ The sidebar lists **Usage** and **Settings** under Agent Chat. The "Invite your 
 
 Keyboard: `Ctrl/⌘ K` (anywhere on the page, taking the shortcut from the workspace search) or `/` (focus in the page, not in a field) opens the search; ↑/↓/Home/End move, Enter jumps, Esc closes and returns focus to the field. The palette is a modal `dialog` with a `combobox` input and a `listbox` (`aria-activedescendant`); a polite live region announces results, jumps, saves and errors.
 
+## Growing out of the menu
+
+Clicking **Settings** in the account menu turns the menu's own box into the panel: `SettingsOverlay` takes the menu's rect (place, size) as the first frame, then springs (stiffness 170, damping 24) to a centred 1040 × 760 panel (nearly full screen on phones), radius 14 → 20, settled in ~0.5 s. The panel content is laid out at its final size from the first frame and clipped by the growing box, so nothing reflows. While it grows, the title, search field, tabs, section heads and rows **rise into place one after another** (`sc-rise`: 12 px, blur 4 px → none, 0.6 s, delay 0.12 s + 30 ms × the element's place in reading order, capped at 34 steps). Closing sends the panel back into the account button and fades it. From the compact pop-up the box that grows is the pop-up. Reduced motion: no flight, no stagger. The code of the panel is fetched when the account menu opens, so the growth starts at once.
+Trace: `node scripts/forensics/settings-command-morph-trace.mjs` (start rect ≈ the menu's rect, end 1040 × 760).
+
 ## Local behaviour
 
 - **Save** validates first (workspace name, URL slug, billing email, allowed domains). An invalid row shows its message, the count turns red, focus goes to the first invalid field and nothing is saved. A valid save shows "Saving…" ~0.9 s, then "Settings saved".
@@ -50,5 +55,5 @@ Keyboard: `Ctrl/⌘ K` (anywhere on the page, taking the shortcut from the works
 node scripts/qa/settings-command.mjs http://localhost:3000
 ```
 
-56 checks: structure and measured geometry, navigation and scroll-spy, edit/discard/validation/save, theme and rename applied, reload persistence, select keyboard, palette (growth, filtering, Ctrl+K, "/", jump, empty state), compact pop-up and its shared state, deep link, Usage page, phone layout, reduced motion, no page errors. Captures land in `qa/`; the source captures are in `source/` (`root.html`, `declared-styles.css`, `tokens.json`, traces).
+69 checks: structure and measured geometry, growth out of the menu (first frame = the menu's box, monotonic growth, staggered rows), closing (X, Escape, outside click, focus back on the account button), navigation and scroll-spy, edit/discard/validation/save, theme and rename applied, reload persistence, select keyboard, palette (growth, filtering, Ctrl+K, "/", jump, empty state), compact pop-up and its shared state, deep link, Usage page, phone layout, reduced motion, no page errors. Captures land in `qa/`; the source captures are in `source/` (`root.html`, `declared-styles.css`, `tokens.json`, traces).
 CSS fixes belong in `src/components/sites/settings-command/settings-command.css`.

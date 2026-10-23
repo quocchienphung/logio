@@ -9,6 +9,7 @@ export type SectionId = "general" | "appearance" | "notifications" | "security" 
 export interface SettingsValues {
   workspaceName: string; workspaceUrl: string; language: string; timezone: string; weekStart: "mon" | "sun";
   theme: "light" | "dark" | "system"; density: "comfortable" | "compact"; textSize: "small" | "default" | "large"; sidebarCounts: boolean; motion: boolean;
+  loadingEffect: "decode" | "dither" | "terminal" | "blueprint" | "off";
   mentions: boolean; assigned: boolean; deployFailures: boolean; weeklyDigest: boolean; emailCadence: string;
   twoStep: boolean; saml: boolean; sessionLength: string; ipAllowlist: boolean; auditRetention: string;
   defaultRole: string; invitePolicy: "admins" | "everyone"; guests: boolean; domains: string;
@@ -48,6 +49,8 @@ export const rows: readonly SettingRow[] = [
   { key: "sidebarCounts", id: "sidebar-counts", section: "appearance", kind: "switch", label: "Sidebar counts", hint: "Show unread counts beside each view." },
   { key: "motion", id: "smooth-motion", section: "appearance", kind: "switch", label: "Interface motion", hint: "Turn off to swap movement for fades." },
 
+  { key: "loadingEffect", id: "loading-effect", section: "appearance", kind: "select", label: "Loading effect", hint: "How a page appears after a wait.", options: [{ value: "decode", label: "Decode" }, { value: "dither", label: "Dither" }, { value: "terminal", label: "Terminal" }, { value: "blueprint", label: "Blueprint" }, { value: "off", label: "Off" }] },
+
   { key: "mentions", id: "mentions", section: "notifications", kind: "switch", label: "Mentions", hint: "When someone @mentions you or your team." },
   { key: "assigned", id: "assigned", section: "notifications", kind: "switch", label: "Assigned to me", hint: "New issues and reviews that land on you." },
   { key: "deployFailures", id: "deploy-failures", section: "notifications", kind: "switch", label: "Failed deploys", hint: "Builds that fail on a branch you own." },
@@ -81,7 +84,7 @@ export function slugify(name: string) {
 export function defaultSettings(workspaceName: string): SettingsValues {
   return {
     workspaceName, workspaceUrl: slugify(workspaceName) || "workspace", language: "en-us", timezone: "lisbon", weekStart: "mon",
-    theme: "system", density: "comfortable", textSize: "default", sidebarCounts: true, motion: true,
+    theme: "system", density: "comfortable", textSize: "default", sidebarCounts: true, motion: true, loadingEffect: "decode",
     mentions: true, assigned: true, deployFailures: true, weeklyDigest: false, emailCadence: "hourly",
     twoStep: true, saml: false, sessionLength: "24h", ipAllowlist: false, auditRetention: "1y",
     defaultRole: "member", invitePolicy: "admins", guests: true, domains: `${slugify(workspaceName) || "workspace"}.com`,

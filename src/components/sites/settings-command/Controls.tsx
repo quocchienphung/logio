@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, ChevronDown } from "lucide-react";
@@ -127,8 +127,8 @@ export function SelectField({ id, label, value, options, onChange, size = "row" 
 }
 
 /** A label, its hint and the control, in the row grid of the page (also the unit the search jumps to). */
-export function Row({ id, label, hint, kind, wide, dirty, error, pulse, children, rowRef }: { id: string; label: string; hint: string; kind: string; wide?: boolean; dirty: boolean; error?: string; pulse?: "a" | "b"; children: ReactNode; rowRef?: (node: HTMLDivElement | null) => void }) {
-  return <div ref={rowRef} className={`sc-row${wide ? " sc-row--wide" : ""}${pulse ? ` sc-row--pulse-${pulse}` : ""}`} data-setting={id} data-kind={kind} data-dirty={dirty ? "" : undefined}>
+export function Row({ id, order, label, hint, kind, wide, dirty, error, pulse, children, rowRef }: { id: string; order: number; label: string; hint: string; kind: string; wide?: boolean; dirty: boolean; error?: string; pulse?: "a" | "b"; children: ReactNode; rowRef?: (node: HTMLDivElement | null) => void }) {
+  return <div ref={rowRef} style={{ "--i": 12 + order } as CSSProperties} className={`sc-row${wide ? " sc-row--wide" : ""}${pulse ? ` sc-row--pulse-${pulse}` : ""}`} data-setting={id} data-kind={kind} data-dirty={dirty ? "" : undefined}>
     <div className="sc-row__text">
       <span className="sc-row__label"><label id={`${id}-label`} htmlFor={kind === "select" ? id : kind === "segmented" ? undefined : id}>{label}</label>{dirty && <><span className="sc-row__dirty" aria-hidden="true" /><span className="sc-sr-only">Edited</span></>}</span>
       <p id={`${id}-hint`}>{hint}</p>

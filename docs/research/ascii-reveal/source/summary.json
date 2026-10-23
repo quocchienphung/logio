@@ -1,0 +1,226 @@
+{
+ "summary": {
+  "title": "ascii-reveal",
+  "probe": {
+   "storage": [],
+   "raf": 11192,
+   "canvas": 15,
+   "fonts": []
+  },
+  "scripts": [
+   {
+    "src": "https://quanhoangindex.github.io/ascii-reveal/assets/index-DSarlY7x.js",
+    "inline": false,
+    "length": 0
+   }
+  ],
+  "links": [
+   {
+    "rel": "icon",
+    "href": "https://quanhoangindex.github.io/ascii-reveal/favicon.svg"
+   },
+   {
+    "rel": "preconnect",
+    "href": "https://fonts.googleapis.com/"
+   },
+   {
+    "rel": "preconnect",
+    "href": "https://fonts.gstatic.com/"
+   },
+   {
+    "rel": "stylesheet",
+    "href": "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+   },
+   {
+    "rel": "stylesheet",
+    "href": "https://quanhoangindex.github.io/ascii-reveal/assets/index-B6wWFduE.css"
+   }
+  ],
+  "forms": 0,
+  "iframes": 0,
+  "canvases": [
+   {
+    "w": 1440,
+    "h": 900,
+    "class": "backdrop"
+   },
+   {
+    "w": 304,
+    "h": 190,
+    "class": "media chart"
+   },
+   {
+    "w": 1198,
+    "h": 786,
+    "class": ""
+   }
+  ],
+  "pres": [
+   {
+    "tag": "PRE",
+    "class": "code cmp-code",
+    "text": "<AsciiReveal loading={!data} preset=\"decode\">\n  {data\n    ? <Profile data={data} />\n    : <AsciiSkeleton variant=\"dither",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "CODE",
+    "class": "",
+    "text": "<AsciiReveal loading={!data} preset=\"decode\">\n  {data\n    ? <Profile data={data} />\n    : <AsciiSkeleton variant=\"dither",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "PRE",
+    "class": "code",
+    "text": "<AsciiReveal loading={isLoading} mascot=\"spider\">",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "CODE",
+    "class": "",
+    "text": "<AsciiReveal loading={isLoading} mascot=\"spider\">",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "PRE",
+    "class": "code",
+    "text": "npm i ascii-reveal\n\n# or straight from GitHub\nnpm i github:quanhoangindex/ascii-reveal",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "CODE",
+    "class": "",
+    "text": "npm i ascii-reveal\n\n# or straight from GitHub\nnpm i github:quanhoangindex/ascii-reveal",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "PRE",
+    "class": "code",
+    "text": "import { AsciiReveal } from 'ascii-reveal';\n\n<AsciiReveal preset=\"decode\">\n  <YourPage />\n</AsciiReveal>",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "CODE",
+    "class": "",
+    "text": "import { AsciiReveal } from 'ascii-reveal';\n\n<AsciiReveal preset=\"decode\">\n  <YourPage />\n</AsciiReveal>",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "PRE",
+    "class": "code",
+    "text": "<article data-ascii=\"surface\">…</article>\n<button data-ascii=\"fade\">Buy</button>\n<nav data-ascii=\"skip\">…</nav>",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "CODE",
+    "class": "",
+    "text": "<article data-ascii=\"surface\">…</article>\n<button data-ascii=\"fade\">Buy</button>\n<nav data-ascii=\"skip\">…</nav>",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "PRE",
+    "class": "code",
+    "text": "import { AsciiReveal, AsciiSkeleton } from 'ascii-reveal';\n\n<AsciiReveal loading={!data}>\n  {data\n    ? <Stats data={dat",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   },
+   {
+    "tag": "CODE",
+    "class": "",
+    "text": "import { AsciiReveal, AsciiSkeleton } from 'ascii-reveal';\n\n<AsciiReveal loading={!data}>\n  {data\n    ? <Stats data={dat",
+    "font": "12.5px / 21.875px \"Geist Mono\", ui-monospace, \"SF Mono\", Menlo, Consolas, monospace"
+   }
+  ],
+  "bodyClass": "",
+  "rootStyle": 0,
+  "cookies": "",
+  "localStorageKeys": [],
+  "textSample": "ascii-reveal\nv0.3 · open source\nGitHub\nNew\nA loading effect for React\nYour skeleton loader is boring us to death.\n\nNobody has ever enjoyed a pulsing gray rectangle. ascii-reveal decodes your real content into place, glyph by glyph, so the wait looks like something is actually happening.\n\nSee it in action\n↓\n$ npm i ascii-reveal\nCopy\nPRESET\nDecode\nDither\nTerminal\nBlueprint\nWAVE FROM\nCenter\nCorner\nCursor\nSPEED\n1.0×\nReplay\nR\n\nClick a card to replay it from that point\n\nRedeploy runs the loading → loaded cycle\n\nQuan Hoang\n\nDesigner & UX/UI Engineer\n\nDesigns and builds interfaces where motion explain"
+ },
+ "requests": [
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/",
+   "type": "document",
+   "method": "GET"
+  },
+  {
+   "url": "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap",
+   "type": "stylesheet",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/assets/index-DSarlY7x.js",
+   "type": "script",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/assets/index-B6wWFduE.css",
+   "type": "stylesheet",
+   "method": "GET"
+  },
+  {
+   "url": "https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwcGFU.woff2",
+   "type": "font",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/card-cover.png",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/card-avatar.png",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/album-art.png",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/story-bg.webp",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/northwind-logo.svg",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/story-author.png",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmg.woff2",
+   "type": "font",
+   "method": "GET"
+  },
+  {
+   "url": "https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFg08vz7ehw.woff2",
+   "type": "font",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/hero-glow.webp",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/hero-figure.png",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/avatar.png",
+   "type": "image",
+   "method": "GET"
+  },
+  {
+   "url": "https://quanhoangindex.github.io/ascii-reveal/images/print.png",
+   "type": "image",
+   "method": "GET"
+  }
+ ],
+ "consoleLines": []
+}

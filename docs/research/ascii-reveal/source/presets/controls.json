@@ -1,0 +1,341 @@
+{
+ "info": {
+  "Decode": {
+   "canvases": 3,
+   "layer": 32,
+   "html": 4316
+  },
+  "Dither": {
+   "canvases": 3,
+   "layer": 32,
+   "html": 4316
+  },
+  "Terminal": {
+   "canvases": 3,
+   "layer": 32,
+   "html": 4316
+  },
+  "Blueprint": {
+   "canvases": 3,
+   "layer": 32,
+   "html": 4316
+  }
+ },
+ "controls": [
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "See it in action ↓",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": "Copy install command",
+   "text": "$ npm i ascii-revealCopy",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Decode",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Dither",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Terminal",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Blueprint",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Center",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Corner",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Cursor",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "INPUT",
+   "role": null,
+   "label": null,
+   "text": "",
+   "type": "range",
+   "min": "0.4",
+   "max": "2",
+   "step": "0.1",
+   "value": "1"
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Replay R",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Say hello",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "View work",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Add to cart",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Redeploy",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": "tab",
+   "label": null,
+   "text": "Skeleton + reveal",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": "tab",
+   "label": null,
+   "text": "Skeleton only",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Dither",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Scan",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Braille",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Terminal",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Decode",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Dither",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Terminal",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Blueprint",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "↻ Reload",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": "Copy code",
+   "text": "Copy",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Load all",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Load",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Load",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Load",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Load",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": "Copy code",
+   "text": "Copy",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": "Copy code",
+   "text": "Copy",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": "Copy code",
+   "text": "Copy",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": "Copy code",
+   "text": "Copy",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "System",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Light",
+   "type": "button",
+   "value": ""
+  },
+  {
+   "tag": "BUTTON",
+   "role": null,
+   "label": null,
+   "text": "Dark",
+   "type": "button",
+   "value": ""
+  }
+ ]
+}

@@ -4,7 +4,11 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, u
 import { AnimatePresence } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
 import type { Reducer } from "react";
-import { AlertTriangle, Check, FolderOpen, Hourglass, Trash2, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, Square, Undo2, X } from "lucide-react";
+import { AlertTriangle, Check, Copy, FolderOpen, Hourglass, Trash2, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, ShieldCheck, Square, Undo2, Waypoints, X } from "lucide-react";
+import { OrbitMenu } from "../orbit-menu/OrbitMenu";
+import type { OrbitBoundary, OrbitPoint } from "../orbit-menu/orbit-geometry";
+import { blockShortcuts, menuAnchor } from "./block-shortcuts";
+import type { BlockShortcutId } from "./block-shortcuts";
 import type { SnapshotSource } from "@/lib/workspace-backend";
 import { downloadFile } from "../affectui-crm/workspace-state";
 import { AgentTree } from "../affectui-agent-tree/AgentTree";
@@ -84,6 +88,7 @@ export function Process({ workspaceId, dataSource, runSource, engine: suppliedEn
 
 type Dialog = "library" | "new" | "connect" | "inspector" | "settings" | { kind: "delete-task"; id: string } | { kind: "delete-tasks"; ids: string[] } | { kind: "delete-process"; id: string } | null;
 const POLL_MS = 2000;
+const shortcutIcons: Record<BlockShortcutId, typeof Play> = { run: Play, review: ShieldCheck, retry: Redo2, trace: Waypoints, settings: Settings2, add: Plus, duplicate: Copy, approval: ShieldCheck, delete: Trash2 };
 const historyOf = historyReducer as Reducer<History<ProcessLibrary>, HistoryAction<ProcessLibrary>>;
 const stateLabel = { running: "Running", waiting: "Needs you", done: "Done", failed: "Failed", stopped: "Stopped" } as const;
 const isField = (target: EventTarget | null) => target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) || target.closest("[role=combobox], [role=listbox]") !== null);
@@ -116,6 +121,13 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const [tidied, setTidied] = useState(0);
   const [permissionReview, setPermissionReview] = useState<{ id?: string; revision: number }>({ revision: 0 });
   const actionPending = useRef(false);
+  const startPending = useRef(false);
+  const [runStarting, setRunStarting] = useState(false);
+  /** The shortcut menu of a block (right click, Menu key or long press). It stays mounted after it closes so it can fold away. */
+  const [blockMenu, setBlockMenu] = useState<{ id: string; at: OrbitPoint; boundary: OrbitBoundary; theme?: string; motionOff: boolean; keyboard: boolean; open: boolean } | null>(null);
+  const treeHold = useRef<number | undefined>(undefined);
+  const treeSwallowClick = useRef(false);
+  const treeTouchMenuAt = useRef(0);
   const runRevision = useRef(0);
   function reviewPermission(id?: string) {
     setDialog(null);
@@ -180,12 +192,17 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
 
   const fail = (error: unknown, fallback: string) => setNotice({ kind: "error", text: error instanceof Error && error.message ? error.message : fallback });
   async function start(from?: string) {
+    if (startPending.current || active) return false;
+    startPending.current = true;
+    setRunStarting(true);
     runRevision.current += 1;
     setNotice(null);
     try {
       const next = await engine.start(workspaceId, doc, from, Date.now());
       setHandles(current => ({ ...current, [doc.id]: next }));
-    } catch (error) { fail(error, "The run could not start."); }
+      return true;
+    } catch (error) { fail(error, "The run could not start."); return false; }
+    finally { startPending.current = false; setRunStarting(false); }
   }
   async function act(action: RunAction) {
     if (!handle || actionPending.current) return false;
@@ -219,7 +236,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   } }), []);
   const editRoot = (change: (root: ProcessNode) => ProcessNode, key?: string) => edit(item => { const root = change(item.root); return root === item.root ? item : { ...item, root }; }, key);
   const editNode = (id: string, change: (node: ProcessNode) => ProcessNode, field?: string) => editRoot(root => updateNode(root, id, change), field ? `node:${id}:${field}` : undefined);
-  const locked = active;
+  const locked = active || runStarting;
 
   /** Connects a new block to `parentId`. With a role the block starts as that role (its name, task text and instructions); with a position it goes there. */
   function addBlock(parentId: string, options: { role?: Role; pos?: Point; name?: string; task?: string } = {}) {
@@ -311,7 +328,85 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     if (!result.copyId) { setNotice({ kind: "error", text: `A process holds up to ${LIMITS.nodes} tasks.` }); return; }
     editRoot(() => result.root);
     setSelectedId(result.copyId);
+    setRevealId(result.copyId);
   }
+  function selectShortcutBlock(id: string) {
+    setSelectedId(id); setMulti([]); setPickedLinkId(null); setPalette(false);
+  }
+  function openBlockMenu({ id, at, keyboard, element }: { id: string; at: OrbitPoint; keyboard: boolean; element: HTMLElement }) {
+    selectShortcutBlock(id);
+    // The fan keeps inside the map (or the task list) and out from under the settings panel.
+    const area = element.closest(".pmap, .proc-treewrap")?.getBoundingClientRect();
+    const boundary: OrbitBoundary = {
+      left: Math.max(8, area?.left ?? 0) + 4, top: Math.max(8, area?.top ?? 0) + 4,
+      right: Math.min(window.innerWidth, area?.right ?? window.innerWidth) - (!narrow && panel ? 372 : 0) - 8, bottom: Math.min(window.innerHeight, area?.bottom ?? window.innerHeight) - 8,
+    };
+    setBlockMenu({ id, at, boundary, theme: element.closest("[data-theme]")?.getAttribute("data-theme") ?? document.documentElement.getAttribute("data-theme") ?? undefined, motionOff: element.closest('[data-ui-motion="off"]') !== null, keyboard, open: true });
+  }
+  function renderBlockMenu(menu: NonNullable<typeof blockMenu>) {
+    const node = findNode(doc.root, menu.id);
+    if (!node) return null;
+    const shortcuts = blockShortcuts(doc, node, { active, starting: runStarting, run: snapshot?.nodes[node.id] });
+    return <OrbitMenu
+      key="block-menu" anchor={menu.at} boundary={menu.boundary} theme={menu.theme} motionOff={menu.motionOff} open={menu.open}
+      label={`${node.name} shortcuts`} triggerLabel={`Close shortcuts for ${node.name}`} className={menu.keyboard ? "proc-block-orbit is-keyboard" : "proc-block-orbit"} triggerSize={narrow ? 44 : 48}
+      onOpenChange={open => {
+        setBlockMenu(current => current && current.id === menu.id ? { ...current, open } : current);
+        // Opened from the keyboard: the focus goes back to the block, unless an action has moved it into a dialog.
+        if (!open && menu.keyboard) requestAnimationFrame(() => {
+          const now = document.activeElement;
+          if (!now || now === document.body || now.closest(".orbit-menu, .orbit-menu-portal")) document.querySelector<HTMLElement>(`[data-block="${CSS.escape(menu.id)}"]`)?.focus({ preventScroll: true });
+        });
+      }}
+      actions={shortcuts.map(shortcut => {
+        const Icon = shortcutIcons[shortcut.id];
+        return { ...shortcut, icon: <Icon size={21} strokeWidth={1.8} />, tone: shortcut.danger ? "danger" : "neutral", done: shortcut.id === "approval" ? (node.approval ? "Approval removed" : "Approval required") : undefined };
+      })}
+      onAction={async id => {
+        // Check again at activation: the engine may have advanced while the menu was open.
+        const shortcut = blockShortcuts(doc, node, { active, starting: startPending.current, run: snapshot?.nodes[node.id] }).find(item => item.id === id);
+        if (!shortcut || shortcut.disabled) return;
+        if (id === "run") { if (!await start(node.id)) throw new Error("The run could not start. See the process message for details."); }
+        else if (id === "retry") { if (!await act({ type: "retry", id: node.id })) throw new Error("The block could not be retried. See the process message for details."); }
+        else if (id === "review") reviewPermission(node.id);
+        else if (id === "trace") goTo("Tracing");
+        else if (id === "settings") { setRevealId(node.id); if (narrow) setDialog("inspector"); else setPanel(true); }
+        else if (id === "add") addBlock(node.id);
+        else if (id === "duplicate") duplicateTask(node.id);
+        else if (id === "approval") editNode(node.id, current => ({ ...current, approval: !current.approval }));
+        else if (id === "delete") setDialog({ kind: "delete-task", id: node.id });
+      }}
+      onError={error => fail(error, "That shortcut could not complete.")}
+    />;
+  }
+  /** The task list has no hook for it, so each card carries a hidden marker with its block id and the list asks the DOM. */
+  function treeBlockAt(target: EventTarget | null) {
+    const card = target instanceof Element ? target.closest<HTMLElement>(".agt__node") : null;
+    const id = card?.querySelector<HTMLElement>("[data-block-menu]")?.dataset.blockMenu;
+    return card && id ? { card, id } : null;
+  }
+  const treeMenuHandlers = {
+    onContextMenu: (event: React.MouseEvent<HTMLDivElement>) => {
+      const hit = treeBlockAt(event.target);
+      if (!hit) return;
+      event.preventDefault();
+      if (performance.now() - treeTouchMenuAt.current < 1500) return;
+      const at = menuAnchor(event, hit.card.getBoundingClientRect());
+      openBlockMenu({ id: hit.id, at: { x: at.x, y: at.y }, keyboard: at.keyboard, element: hit.card });
+    },
+    onPointerDown: (event: React.PointerEvent<HTMLDivElement>) => {
+      treeSwallowClick.current = false;
+      window.clearTimeout(treeHold.current);
+      const hit = event.pointerType === "touch" ? treeBlockAt(event.target) : null;
+      if (!hit) return;
+      const at = { x: event.clientX, y: event.clientY };
+      treeHold.current = window.setTimeout(() => { treeSwallowClick.current = true; treeTouchMenuAt.current = performance.now(); openBlockMenu({ id: hit.id, at, keyboard: false, element: hit.card }); }, 480);
+    },
+    // Scrolling the list ends the press (the browser cancels the pointer), so a swipe never opens a menu.
+    onPointerUp: () => window.clearTimeout(treeHold.current),
+    onPointerCancel: () => window.clearTimeout(treeHold.current),
+    onClickCapture: (event: React.MouseEvent<HTMLDivElement>) => { if (treeSwallowClick.current) { treeSwallowClick.current = false; event.preventDefault(); event.stopPropagation(); } },
+  };
   function switchTo(id: string) { dispatch({ type: "edit", at: Date.now(), next: current => current.activeId === id ? current : { ...current, activeId: id } }); setSelectedId(library.processes.find(item => item.id === id)?.root.id ?? ""); setCollapsed([]); }
   function addProcess(created: ProcessDoc) {
     if (library.processes.length >= LIMITS.processes) { setNotice({ kind: "error", text: `You can keep up to ${LIMITS.processes} processes.` }); return; }
@@ -368,7 +463,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   }, []);
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
-      if (!(event.ctrlKey || event.metaKey) || isField(event.target)) return;
+      if (!(event.ctrlKey || event.metaKey) || isField(event.target) || event.defaultPrevented) return;
       const key = event.key.toLowerCase();
       if (key === "z") { event.preventDefault(); dispatch({ type: event.shiftKey ? "redo" : "undo" }); }
       else if (key === "y") { event.preventDefault(); dispatch({ type: "redo" }); }
@@ -396,7 +491,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const runControls = active
     ? <button type="button" className="proc-button proc-button--small" onClick={() => void act({ type: "stop" })}><Square size={12} />Stop</button>
     : <>
-      <button type="button" className="proc-button proc-button--dark proc-button--small" onClick={() => void start()}><Play size={12} />{snapshot ? "Run again" : "Run"}</button>
+      <button type="button" className="proc-button proc-button--dark proc-button--small" disabled={runStarting} onClick={() => void start()}>{runStarting ? <LoaderCircle className="proc-spin" size={12} /> : <Play size={12} />}{runStarting ? "Starting..." : snapshot ? "Run again" : "Run"}</button>
       {snapshot && <button type="button" className="proc-button proc-button--small" onClick={clearRun}>Clear</button>}
     </>;
 
@@ -411,8 +506,9 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
           root={doc.root} tree={tree} selectedId={selected.id} now={clock} formatCost={format} showCost={unit !== "none"} locked={locked} inset={mapInset} fitKey={`${doc.id}:${tidied}`} revealId={revealId}
           links={doc.links ?? []} selectedLinkId={pickedLink} onSelectLink={setPickedLinkId} check={(from, to) => checkLink(doc, from, to)} onConnect={connectBlocks} onLinkChange={changeLink} onLinkRemove={dropLink}
           multiIds={groupIds} onToggle={toggleMulti} onMoveMany={moveBlocks} notices={{ groups: sparkGroups, seen: seenSet, onSeen: markSeen, onDismiss: dropAlert }}
+          onBlockMenu={openBlockMenu}
           onSelect={id => { setSelectedId(id); setRevealId(null); setPickedLinkId(null); setMulti([]); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={requestDelete} />
-        : <div className="proc-treewrap" style={{ paddingRight: !narrow && panel ? 372 : undefined }}>
+        : <div className="proc-treewrap" style={{ paddingRight: !narrow && panel ? 372 : undefined }} {...treeMenuHandlers}>
           <AgentTree
             root={tree} title="Tasks" noun={["task", "tasks"]} now={clock} formatCost={format} showCost={unit !== "none"} collapsed={collapsed} onCollapsedChange={setCollapsed}
             onSelect={agent => { setSelectedId(taskIdOf(agent.id)); setMulti([]); if (narrow) setDialog("inspector"); }} selectedId={selected.id} onResolve={resolve}
@@ -424,11 +520,13 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
                 {(() => { const loop = loopFrom(doc, node.id); return loop ? <span className="proc-tag" title={`When it has finished, the blocks from ${findNode(doc.root, loop.to)?.name} down to here run again`}><Repeat size={10} /> back to {findNode(doc.root, loop.to)?.name} ×{loop.rounds ?? 2}</span> : null; })()}
                 {waitsFor(doc, node.id).length > 0 && <span className="proc-tag" title="Starts only after these blocks have finished"><Hourglass size={10} /> waits for {waitsFor(doc, node.id).map(from => findNode(doc.root, from)?.name).join(", ")}</span>}
                 <button type="button" className="proc-add" aria-label={`Add a sub-task to ${node.name}`} title="Add a sub-task" disabled={locked} onClick={() => addBlock(node.id)}><Plus size={12} /></button>
+                <span hidden data-block-menu={node.id} />
               </>;
             }}
           />
         </div>}
     </div>
+    {blockMenu && renderBlockMenu(blockMenu)}
 
     <div className="proc-top">
       <div className="proc-pill proc-pill--name">

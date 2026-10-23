@@ -1,0 +1,177 @@
+[
+  {
+    "afterDelay": 30,
+    "styles": [
+      {
+        "label": "Like",
+        "transform": "matrix(0.460424, 0, 0, 0.460424, -9.59427, 4.20047)",
+        "opacity": "0.831802",
+        "filter": "blur(3.33px)"
+      },
+      {
+        "label": "Add to album",
+        "transform": "matrix(0.407538, 0, 0, 0.407538, -1.28644, -0.22841)",
+        "opacity": "0.417388",
+        "filter": "blur(3.92px)"
+      },
+      {
+        "label": "Share with Ryan",
+        "transform": "matrix(0.4, 0, 0, 0.4, 0, 0)",
+        "opacity": "0",
+        "filter": "blur(4px)"
+      },
+      {
+        "label": "Download",
+        "transform": "matrix(0.4, 0, 0, 0.4, 0, 0)",
+        "opacity": "0",
+        "filter": "blur(4px)"
+      },
+      {
+        "label": "Delete",
+        "transform": "matrix(0.4, 0, 0, 0.4, 0, 0)",
+        "opacity": "0",
+        "filter": "blur(4px)"
+      }
+    ]
+  },
+  {
+    "afterDelay": 50,
+    "styles": [
+      {
+        "label": "Like",
+        "transform": "matrix(0.596525, 0, 0, 0.596525, -33.0674, 8.18134)",
+        "opacity": "0.982815",
+        "filter": "blur(1.82px)"
+      },
+      {
+        "label": "Add to album",
+        "transform": "matrix(0.516094, 0, 0, 0.516094, -19.155, -6.16577)",
+        "opacity": "0.932832",
+        "filter": "blur(2.71px)"
+      },
+      {
+        "label": "Share with Ryan",
+        "transform": "matrix(0.443522, 0, 0, 0.443522, -4.83445, -5.79123)",
+        "opacity": "0.769061",
+        "filter": "blur(3.52px)"
+      },
+      {
+        "label": "Download",
+        "transform": "matrix(0.401535, 0, 0, 0.401535, -0.024869, -0.264968)",
+        "opacity": "0.203397",
+        "filter": "blur(3.98px)"
+      },
+      {
+        "label": "Delete",
+        "transform": "matrix(0.4, 0, 0, 0.4, 0, 0)",
+        "opacity": "0",
+        "filter": "blur(4px)"
+      }
+    ]
+  },
+  {
+    "afterDelay": 80,
+    "styles": [
+      {
+        "label": "Like",
+        "transform": "matrix(0.776187, 0, 0, 0.776187, -65.1952, 1.17151)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Add to album",
+        "transform": "matrix(0.714965, 0, 0, 0.714965, -46.2549, -28.9997)",
+        "opacity": "0.999463",
+        "filter": "blur(0.5px)"
+      },
+      {
+        "label": "Share with Ryan",
+        "transform": "matrix(0.643402, 0, 0, 0.643402, -18.1893, -38.0672)",
+        "opacity": "0.993637",
+        "filter": "blur(1.3px)"
+      },
+      {
+        "label": "Download",
+        "transform": "matrix(0.564339, 0, 0, 0.564339, 3.12487, -28.3135)",
+        "opacity": "0.969411",
+        "filter": "blur(2.17px)"
+      },
+      {
+        "label": "Delete",
+        "transform": "matrix(0.485162, 0, 0, 0.485162, 9.11385, -11.6119)",
+        "opacity": "0.88959",
+        "filter": "blur(3.05px)"
+      }
+    ]
+  },
+  {
+    "afterDelay": 150,
+    "styles": [
+      {
+        "label": "Like",
+        "transform": "matrix(0.934564, 0, 0, 0.934564, -91.1607, -16.5889)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Add to album",
+        "transform": "matrix(0.912834, 0, 0, 0.912834, -61.4614, -64.2195)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Share with Ryan",
+        "transform": "matrix(0.884687, 0, 0, 0.884687, -12.0677, -83.1413)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Download",
+        "transform": "matrix(0.848704, 0, 0, 0.848704, 34.9025, -69.504)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Delete",
+        "transform": "matrix(0.803459, 0, 0, 0.803459, 61.1195, -33.9855)",
+        "opacity": "1",
+        "filter": "none"
+      }
+    ]
+  },
+  {
+    "afterDelay": 400,
+    "styles": [
+      {
+        "label": "Like",
+        "transform": "matrix(0.998239, 0, 0, 0.998239, -100.22, -26.6177)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Add to album",
+        "transform": "matrix(0.997563, 0, 0, 0.997563, -63.3041, -81.9812)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Share with Ryan",
+        "transform": "matrix(0.996633, 0, 0, 0.996633, -0.435283, -103.415)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Download",
+        "transform": "matrix(0.995357, 0, 0, 0.995357, 62.345, -82.2335)",
+        "opacity": "1",
+        "filter": "none"
+      },
+      {
+        "label": "Delete",
+        "transform": "matrix(0.993611, 0, 0, 0.993611, 99.1706, -27.4235)",
+        "opacity": "1",
+        "filter": "none"
+      }
+    ]
+  }
+]
