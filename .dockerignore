@@ -37,7 +37,9 @@ CLAUDE.md
 
 # Docs / research (large, not needed at runtime)
 docs
-scripts
+# scripts/skilled/install-bundle.mjs is imported by src/lib/server/agent-delivery.ts
+scripts/*
+!scripts/skilled
 
 # Docker files themselves (no need to copy into image)
 Dockerfile
