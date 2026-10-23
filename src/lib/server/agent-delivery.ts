@@ -1,5 +1,5 @@
 import path from "node:path";
-import { installBundle } from "../../../scripts/skilled/install-bundle.mjs";
+import { installBundle } from "./install-bundle.mjs";
 import { agentsRoot, StoreError } from "./workspace-store.ts";
 
 const agentRule = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$/;
