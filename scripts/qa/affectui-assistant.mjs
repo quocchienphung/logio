@@ -136,7 +136,7 @@ try {
     await draft(page).press("Enter");
     await page.getByRole("alert").filter({ hasText: "Connect the workspace backend" }).waitFor();
     await page.getByRole("button", { name: "Invite people", exact: true }).click();
-    await page.waitForURL(/section=settings.*settings-tab=members/);
+    await page.waitForURL(/section=usage.*settings-tab=members/);
     await page.getByRole("heading", { name: "Members", exact: true }).waitFor();
   });
   await open(page);

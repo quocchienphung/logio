@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion, useReducedMotion } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
-import { ArrowLeft, BookOpen, Check, GitBranch, ChevronDown, ChevronRight, CirclePlay, FileText, Folder, Map, MessageSquarePlus, Moon, Search, Settings, Star, Sun, Waypoints, Workflow, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Check, GitBranch, HardDrive, ChevronDown, ChevronRight, CirclePlay, FileText, Folder, Gauge, Map, MessageSquarePlus, Moon, Search, Settings, Star, Sun, Waypoints, Workflow, X } from "lucide-react";
 import { CrmIcon } from "./CrmIcon";
 import { SidebarFolder } from "./SidebarFolder";
 import { CrmTable } from "./CrmTable";
@@ -25,9 +25,11 @@ import { useResource } from "@/lib/workspace-backend/react";
 import { SyncStatus } from "@/lib/workspace-backend/SyncStatus";
 import { resources } from "../workspace-resources";
 import { SectionSkeleton } from "../shimmer-loader/SectionSkeleton";
+import { defaultSettings, mergeSettings, type SettingsValues } from "../settings-command/settings-model";
 import { Skeleton } from "../shimmer-loader/Shimmer";
 
-const SettingsBilling=dynamic(()=>import("../affectui-settings/SettingsBilling").then(module=>module.SettingsBilling),{loading:()=> <SectionSkeleton section="Settings" />});
+const SettingsCommand=dynamic(()=>import("../settings-command/SettingsCommand").then(module=>module.SettingsCommand),{loading:()=> <SectionSkeleton section="Settings" />});
+const SettingsBilling=dynamic(()=>import("../affectui-settings/SettingsBilling").then(module=>module.SettingsBilling),{loading:()=> <SectionSkeleton section="Usage" />});
 const AgentRun=dynamic(()=>import("../affectui-run/AgentRun").then(module=>module.AgentRun),{loading:()=> <SectionSkeleton section="Run" />});
 const Mapping=dynamic(()=>import("../mapping/BackendMapping").then(module=>module.BackendMapping),{loading:()=> <SectionSkeleton section="Mapping" />});
 const Invoice=dynamic(()=>import("../invoice/BackendInvoice").then(module=>module.BackendInvoice),{loading:()=> <SectionSkeleton section="Invoice" />});
@@ -35,8 +37,10 @@ const Tracing=dynamic(()=>import("../tracing/BackendTracing").then(module=>modul
 const Process=dynamic(()=>import("../process/BackendProcess").then(module=>module.BackendProcess),{loading:()=> <SectionSkeleton section="Process" />});
 const AssistantHome=dynamic(()=>import("../affectui-assistant/AssistantHome").then(module=>module.AssistantHome),{loading:()=> <SectionSkeleton section="New chat" />});
 const Skilled=dynamic(()=>import("../skilled/Skilled").then(module=>module.Skilled),{loading:()=> <SectionSkeleton section="Skilled" />});
+const Storage=dynamic(()=>import("../storage/Storage").then(module=>module.Storage),{loading:()=> <SectionSkeleton section="Storage" />});
 const Repo=dynamic(()=>import("../repo/Repo").then(module=>module.Repo),{loading:()=> <SectionSkeleton section="Repo" />});
 const Files=dynamic(()=>import("../affectui-files/Files").then(module=>module.Files),{loading:()=> <SectionSkeleton section="Files" />});
+const seedSettings=defaultSettings("Logio");
 const setupGroups=[
   {title:"Set up your workspace",items:["Name your workspace","Invite your teammates","Connect your first app"]},
   {title:"Start working",items:["Create a folder","Start your first chat","Upload a file"]},
@@ -61,6 +65,9 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
   const [booted,setBooted]=useState(false);
   if(!booted && coreReady)setBooted(true);
   const booting=!booted;
+  const [storedSettings,setStoredSettings]=useResource(resources.commandSettings, workspaceId, seedSettings);
+  // The theme lives in the preferences (it paints the whole app) and the name in the workspace list; every other value is the stored copy.
+  const savedSettings=useMemo<SettingsValues>(()=>({...mergeSettings(storedSettings,defaultSettings(workspaceName)),workspaceName,theme:preferences.theme ?? (preferences.dark ? "dark" : "light")}),[storedSettings,workspaceName,preferences.theme,preferences.dark]);
   const [customViews,setCustomViews]=useResource(resources.views, workspaceId, []);
   const [tab,setTab]=useResource(resources.activeTab, workspaceId, "Company CRM");
   const [view,setView]=useState("Head of Sales");
@@ -93,7 +100,7 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
   const sidebarFolders=[{id:"techniques",title:"Techniques",items:["Process","Tracing"] as const}];
   const [folders,setFolders]=useState<Record<string,boolean>>({});
   const folderOpen=(folder:(typeof sidebarFolders)[number])=>folders[folder.id] ?? (folder.items as readonly string[]).includes(section);
-  const navItem=(label:WorkspaceSection)=><button type="button" className="ui-as-side__item" aria-current={section===label ? "page" : undefined} key={label} onClick={()=>navigate(label)}>{section===label && <motion.span className="workspace-nav-pill" layoutId="active-navigation" transition={{type:"spring",stiffness:450,damping:38}} />}{label==="Skilled" ? <BookOpen size={16} strokeWidth={1.7} /> : label==="Repo" ? <GitBranch size={16} strokeWidth={1.7} /> : label==="Files" ? <Folder size={16} strokeWidth={1.7} /> : label==="New chat" ? <MessageSquarePlus size={16} strokeWidth={1.7} /> : label==="Mapping" ? <Map size={16} strokeWidth={1.7} /> : label==="Process" ? <Workflow size={16} strokeWidth={1.7} /> : label==="Tracing" ? <Waypoints size={16} strokeWidth={1.7} /> : label==="Invoice" ? <FileText size={16} strokeWidth={1.7} /> : label==="Run" ? <CirclePlay size={16} strokeWidth={1.7} /> : label==="Settings" ? <Settings size={16} strokeWidth={1.7} /> : <CrmIcon name={label==="Companies" ? "Companies284" : label} />}<span className="workspace-nav-label">{label}</span>{label==="Companies" && !booting && <span className="ui-as-side__count">{workspaceId==="acme" ? 284+engine.rows.length-10 : engine.rows.length}</span>}</button>;
+  const navItem=(label:WorkspaceSection)=><button type="button" className="ui-as-side__item" aria-current={section===label ? "page" : undefined} key={label} onClick={()=>navigate(label)}>{section===label && <motion.span className="workspace-nav-pill" layoutId="active-navigation" transition={{type:"spring",stiffness:450,damping:38}} />}{label==="Skilled" ? <BookOpen size={16} strokeWidth={1.7} /> : label==="Storage" ? <HardDrive size={16} strokeWidth={1.7} /> : label==="Repo" ? <GitBranch size={16} strokeWidth={1.7} /> : label==="Files" ? <Folder size={16} strokeWidth={1.7} /> : label==="New chat" ? <MessageSquarePlus size={16} strokeWidth={1.7} /> : label==="Mapping" ? <Map size={16} strokeWidth={1.7} /> : label==="Process" ? <Workflow size={16} strokeWidth={1.7} /> : label==="Tracing" ? <Waypoints size={16} strokeWidth={1.7} /> : label==="Invoice" ? <FileText size={16} strokeWidth={1.7} /> : label==="Run" ? <CirclePlay size={16} strokeWidth={1.7} /> : label==="Usage" ? <Gauge size={16} strokeWidth={1.7} /> : label==="Settings" ? <Settings size={16} strokeWidth={1.7} /> : <CrmIcon name={label==="Companies" ? "Companies284" : label} />}<span className="workspace-nav-label">{label}</span>{label==="Companies" && !booting && <span className="ui-as-side__count">{workspaceId==="acme" ? 284+engine.rows.length-10 : engine.rows.length}</span>}</button>;
   const viewTitle=custom?.name || view;
   const favorite=favorites.includes(viewTitle);
   const initials=profile.name.split(" ").map(part=>part[0]).slice(0,2).join("");
@@ -110,9 +117,15 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
     onNavigate?.(label);setDrawer(false);setMenu(null);setQuery("");routeTo(label);
   }
   function inviteToWorkspace() {
-    navigate("Settings");
+    navigate("Usage");
     const url=new URL(window.location.href);url.searchParams.set("settings-tab","members");
     window.history.replaceState({},"",url);window.dispatchEvent(new PopStateEvent("popstate"));
+  }
+  function applySettings(values:SettingsValues) {
+    const name=values.workspaceName.trim();
+    setStoredSettings(values);
+    if(name && name!==workspaceName)setWorkspaces(workspaces.map(item=>item.id===workspaceId ? {...item,name} : item));
+    setPreferences({...preferences,theme:values.theme,dark:values.theme==="dark" || (values.theme==="system" && window.matchMedia("(prefers-color-scheme: dark)").matches),emailNotifications:values.emailCadence!=="never",desktopNotifications:values.mentions || values.assigned || values.deployFailures});
   }
   function openCompany(name:string) {navigate("Companies");setView("Head of Sales");setTab("Company CRM");setQuery(name);setTableEpoch(current=>current+1);}
   function switchTab(id:string) {onNavigate?.("Companies");setDrawer(false);setMenu(null);setQuery("");setTab(id);routeTo("Companies",id);}
@@ -120,6 +133,14 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
   function openSearch() {setSearch("");setSearchOpen(true);setMenu(null);}
   function toggleMenu(id:string) {setMenu(current=>current===id ? null : id);}
 
+  // A person who chose "System" follows the device: the preference's dark flag tracks it.
+  useEffect(()=>{
+    if(preferences.theme!=="system")return;
+    const mq=window.matchMedia("(prefers-color-scheme: dark)");
+    const follow=()=>{if(preferences.dark!==mq.matches)setPreferences({...preferences,dark:mq.matches});};
+    follow();mq.addEventListener("change",follow);
+    return()=>mq.removeEventListener("change",follow);
+  },[preferences,setPreferences]);
   useEffect(()=>{
     const key=(event:KeyboardEvent)=>{
       if(event.key==="Escape"){setMenu(null);setGuide(false);setDrawer(false);}
@@ -163,12 +184,12 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
             <div className="workspace-account-divider" />
             <button type="button" role="menuitem" className="ui-as-menu__item" aria-label="Search" onClick={openSearch}><Search size={14} />Search</button>
             <button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>{setCollapsed(true);setDrawer(false);setMenu(null);}}><CrmIcon name="Collapse sidebar" size={14} />Collapse sidebar</button>
-            {(["Profile","Settings","Help & feedback"] as const).map(label=><button type="button" role="menuitem" className="ui-as-menu__item" key={label} onClick={()=>label==="Settings" ? navigate("Settings") : openEditor(label)}>{label}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>setPreferences({...preferences,dark:!preferences.dark})}>{preferences.dark ? <Sun size={14} /> : <Moon size={14} />}{preferences.dark ? "Light mode" : "Dark mode"}</button><button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Settings")}>Appearance &amp; notifications</button><Link href="/" role="menuitem" className="ui-as-menu__item"><ArrowLeft size={14} />Back to Stripe</Link>
+            {(["Profile","Settings","Help & feedback"] as const).map(label=><button type="button" role="menuitem" className="ui-as-menu__item" key={label} onClick={()=>label==="Settings" ? navigate("Settings") : openEditor(label)}>{label}</button>)}<button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>setPreferences({...preferences,dark:!preferences.dark,theme:preferences.dark ? "light" : "dark"})}>{preferences.dark ? <Sun size={14} /> : <Moon size={14} />}{preferences.dark ? "Light mode" : "Dark mode"}</button><button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Appearance & notifications")}>Appearance &amp; notifications</button><Link href="/" role="menuitem" className="ui-as-menu__item"><ArrowLeft size={14} />Back to Stripe</Link>
           </>,true)}</span>
         </div>
       </aside>
       <main className="ui-as-main" aria-busy={booting || undefined}>{booting && <div className="workspace-surface"><SectionSkeleton section={section} /></div>}{!booting && <AnimatePresence mode="wait" initial={false}><motion.div key={section} className="workspace-surface" initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-4}} transition={{duration:reduce ? 0 : 0.18,ease:[0.22,1,0.36,1]}}>
-        {section==="Skilled" ? <Skilled key={workspaceId} workspaceId={workspaceId} /> : section==="Repo" ? <Repo key={workspaceId} workspaceId={workspaceId} /> : section==="Files" ? <Files key={workspaceId} workspaceId={workspaceId} userName={profile.name} notify={notify} /> : section==="New chat" ? <AssistantHome key={`${workspaceId}:${chatEpoch}`} workspaceId={workspaceId} userName={profile.name} onInvite={inviteToWorkspace} notify={notify} startFresh={chatEpoch>0} /> : section==="Invoice" ? <Invoice key={workspaceId} workspaceId={workspaceId} /> : section==="Mapping" ? <Mapping key={workspaceId} workspaceId={workspaceId} /> : section==="Process" ? <Process key={workspaceId} workspaceId={workspaceId} /> : section==="Tracing" ? <Tracing key={workspaceId} workspaceId={workspaceId} /> : section==="Run" ? <AgentRun key={workspaceId} workspaceId={workspaceId} userName={profile.name} notify={notify} /> : section==="Settings" ? <SettingsBilling key={workspaceId} workspaceId={workspaceId} workspaceName={workspaceName} notify={notify} onRename={name=>setWorkspaces(workspaces.map(item=>item.id===workspaceId ? {...item,name} : item))} onLogoChange={logo=>setWorkspaces(current=>current.map(item=>item.id===workspaceId ? {...item,logo} : item))} /> : section==="Reports" ? <Analytics workspaceId={workspaceId} notify={notify} /> : section==="Home" ? <WorkspaceHome engine={engine} name={profile.name} navigate={navigate} openCompany={openCompany} /> : section==="Contacts" ? <ContactsPage engine={engine} workspaceId={workspaceId} notify={notify} /> : section!=="Companies" ? <DealsPage engine={engine} section={section} openCompany={openCompany} /> : <div className="ui-as-crm">
+        {section==="Skilled" ? <Skilled key={workspaceId} workspaceId={workspaceId} /> : section==="Repo" ? <Repo key={workspaceId} workspaceId={workspaceId} /> : section==="Storage" ? <Storage key={workspaceId} workspaceId={workspaceId} /> : section==="Files" ? <Files key={workspaceId} workspaceId={workspaceId} userName={profile.name} notify={notify} /> : section==="New chat" ? <AssistantHome key={`${workspaceId}:${chatEpoch}`} workspaceId={workspaceId} userName={profile.name} onInvite={inviteToWorkspace} notify={notify} startFresh={chatEpoch>0} /> : section==="Invoice" ? <Invoice key={workspaceId} workspaceId={workspaceId} /> : section==="Mapping" ? <Mapping key={workspaceId} workspaceId={workspaceId} /> : section==="Process" ? <Process key={workspaceId} workspaceId={workspaceId} /> : section==="Tracing" ? <Tracing key={workspaceId} workspaceId={workspaceId} /> : section==="Run" ? <AgentRun key={workspaceId} workspaceId={workspaceId} userName={profile.name} notify={notify} /> : section==="Usage" ? <SettingsBilling key={workspaceId} workspaceId={workspaceId} workspaceName={workspaceName} notify={notify} onRename={name=>setWorkspaces(workspaces.map(item=>item.id===workspaceId ? {...item,name} : item))} onLogoChange={logo=>setWorkspaces(current=>current.map(item=>item.id===workspaceId ? {...item,logo} : item))} /> : section==="Settings" ? <SettingsCommand key={workspaceId} saved={savedSettings} onSave={applySettings} notify={notify} /> : section==="Reports" ? <Analytics workspaceId={workspaceId} notify={notify} /> : section==="Home" ? <WorkspaceHome engine={engine} name={profile.name} navigate={navigate} openCompany={openCompany} /> : section==="Contacts" ? <ContactsPage engine={engine} workspaceId={workspaceId} notify={notify} /> : section!=="Companies" ? <DealsPage engine={engine} section={section} openCompany={openCompany} /> : <div className="ui-as-crm">
           <div className="ui-as-crm__top"><div className="ui-as-crm__path"><Folder size={16} /><span>Sales</span><i>/</i></div><span className="ui-as-anchor"><button type="button" className="ui-as-crm__view" aria-expanded={menu==="view"} onClick={()=>toggleMenu("view")}>{viewTitle}<ChevronDown size={12} /></button>{popover("view","Views",["Head of Sales","Account executive","Partner manager"].map(label=><button type="button" className="ui-as-menu__item" role="menuitemradio" aria-checked={view===label && !custom} key={label} onClick={()=>{setView(label);switchTab("Company CRM");}}>{label}{view===label && !custom && <Check size={13} />}</button>))}</span><button type="button" className="ui-as-icon-btn ui-as-crm__star" aria-label={favorite ? "Remove from favorites" : "Add to favorites"} aria-pressed={favorite} onClick={()=>setFavorites(favorite ? favorites.filter(value=>value!==viewTitle) : [...favorites,viewTitle])}><CrmIcon name="Add to favorites" size={15} /></button></div>
           <nav className="ui-as-crm__tabs" aria-label="Open views"><button type="button" className="ui-as-icon-btn" aria-label="New view" onClick={()=>openEditor("New view")}><CrmIcon name="New view" /></button><span className="ui-as-anchor"><button type="button" className="ui-as-icon-btn" aria-label="All views" aria-expanded={menu==="all-views"} onClick={()=>toggleMenu("all-views")}><CrmIcon name="All views" /></button>{popover("all-views","All views",allTabs.map(item=><button type="button" className="ui-as-menu__item" role="menuitem" key={item.id} onClick={()=>{switchTab(item.id);setMenu(null);}}><CrmIcon name={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"} size={18} />{item.name}{favorites.includes(item.name) && <Star size={12} />}</button>))}</span><span className="ui-as-crm__sep" />{allTabs.map(item=><div className="workspace-tab-wrap" key={item.id}><button type="button" className="ui-as-crm__tab" aria-current={activeTab===item.id ? "page" : undefined} onClick={()=>switchTab(item.id)}>{activeTab===item.id && <motion.span className="workspace-tab-pill" layoutId="active-crm-tab" transition={{type:"spring",stiffness:450,damping:38}} />}<span className="ui-as-crm__tab-logo" data-tab={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"}><CrmIcon name={crmTabs.includes(item.name as typeof crmTabs[number]) ? item.name : "Company CRM"} size={11} /></span><span>{item.name}</span></button>{customViews.some(value=>value.id===item.id) && <button type="button" className="workspace-tab-close" aria-label={`Close ${item.name} view`} onClick={()=>{setCustomViews(customViews.filter(value=>value.id!==item.id));if(tab===item.id)setTab("Company CRM");}}><X size={11} /></button>}</div>)}</nav>
           {query && <div className="workspace-filter-chip">Showing companies matching “{query}”<button type="button" aria-label="Clear company search" onClick={()=>setQuery("")}><X size={12} /></button></div>}
@@ -177,7 +198,7 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
       </motion.div></AnimatePresence>}</main>
       <AnimatePresence>{toast && <motion.div className="ui-as-toast" role="status" key={toast.id} initial={{opacity:0,y:8,scale:0.97}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:5,scale:0.98}} transition={{duration:reduce ? 0 : 0.2}}><Check size={14} />{toast.text}</motion.div>}</AnimatePresence>
       <WorkspaceDialog open={searchOpen} title="Search workspace" onClose={()=>setSearchOpen(false)}><label className="workspace-search workspace-search--dialog"><Search size={17} /><input autoFocus aria-label="Search workspace" placeholder="Search companies and views…" value={search} onChange={event=>setSearch(event.target.value)} /></label><div className="crm-search__results"><AnimatePresence initial={false}>{searchItems.map(item=><motion.button type="button" layout initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} key={item.id} onClick={()=>{if(item.kind==="section")navigate(item.label as WorkspaceSection);else if(item.kind==="view")switchTab(item.id);else openCompany(item.label);setSearchOpen(false);}}><CrmIcon name={item.label} /><span>{item.label}</span><small>{item.kind}</small><ChevronRight size={12} /></motion.button>)}</AnimatePresence>{!searchItems.length && <p className="workspace-muted">No companies or views found.</p>}</div></WorkspaceDialog>
-      <WorkspaceEditors kind={editor} open={editorOpen} onClose={()=>setEditorOpen(false)} profile={profile} setProfile={setProfile} preferences={preferences} setPreferences={setPreferences} owners={[...new Set(engine.rows.map(row=>row.owner))].filter(Boolean)} notify={notify} createWorkspace={name=>{const id=crypto.randomUUID();setWorkspaces([...workspaces,{id,name}]);setWorkspaceId(id);navigate("Companies");notify("Workspace created");}} createView={newView=>{setCustomViews([...customViews,newView]);navigate("Companies");setTab(newView.id);notify("View created");}} />
+      <WorkspaceEditors kind={editor} open={editorOpen} onClose={()=>setEditorOpen(false)} profile={profile} setProfile={setProfile} settings={savedSettings} onSaveSettings={applySettings} onOpenSettings={()=>navigate("Settings")} owners={[...new Set(engine.rows.map(row=>row.owner))].filter(Boolean)} notify={notify} createWorkspace={name=>{const id=crypto.randomUUID();setWorkspaces([...workspaces,{id,name}]);setWorkspaceId(id);navigate("Companies");notify("Workspace created");}} createView={newView=>{setCustomViews([...customViews,newView]);navigate("Companies");setTab(newView.id);notify("View created");}} />
     </div>
   </div></LayoutGroup>;
 }

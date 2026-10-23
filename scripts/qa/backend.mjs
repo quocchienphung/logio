@@ -165,7 +165,7 @@ try {
   });
 
   await check("Settings billing shows the server's plans, invoices, usage and renewal date", async () => {
-    await goToSection(page, "Settings", 700);
+    await goToSection(page, "Usage", 700);
     await page.locator(".ui-sb").waitFor();
     const text = await page.locator(".ui-sb").innerText();
     for (const expected of [/Remote Basic/, /Remote Plus/, /INV-REMOTE-1/, /Resets in 3 days/, /Renews on Jan 3, 2030/]) assert.match(text, expected);

@@ -10,7 +10,7 @@ const results=[];
 const quick=process.argv.includes('--quick');
 for(const viewport of quick ? [{width:1440,height:1100}] : [{width:1440,height:1100},{width:1920,height:1080},{width:1024,height:900},{width:768,height:1024},{width:390,height:844}]){
   const pages=[];
-  for(const [label,url] of [['source','https://www.affectui.com/screens/settings-billing/full'],['local',`${base}/personalize?section=settings`]]){
+  for(const [label,url] of [['source','https://www.affectui.com/screens/settings-billing/full'],['local',`${base}/personalize?section=usage`]]){
     const page=await browser.newPage({viewport});const errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(url,{waitUntil:'networkidle'});await page.locator('.ui-sb').waitFor();await page.evaluate(()=>document.fonts.ready);
     await page.addStyleTag({content:'nextjs-portal{display:none!important}'});await page.waitForTimeout(1800);

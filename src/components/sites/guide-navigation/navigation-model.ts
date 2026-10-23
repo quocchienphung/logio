@@ -10,10 +10,10 @@ export type LiveFrame = "writing-assistant" | "agent-plan" | "delegate-board" | 
 
 export const guideGroups = [
   { id: "sales", name: "Sales", number: "01", href: "/personalize?section=invoice", image: null, live: "agent-plan", sections: ["Invoice"], pipelines: [] },
-  { id: "agent-chat", name: "Agent Chat", number: "02", href: "/personalize?section=new-chat", image: null, live: "writing-assistant", sections: ["New chat", "Files", "Run", "Settings"], pipelines: [] },
+  { id: "agent-chat", name: "Agent Chat", number: "02", href: "/personalize?section=new-chat", image: null, live: "writing-assistant", sections: ["New chat", "Files", "Run", "Usage", "Settings"], pipelines: [] },
   { id: "crm", name: "CRM", number: "03", href: "/personalize?section=home", image: null, live: "agent-lanes", sections: ["Home", "Companies", "Contacts", "Deals", "Reports"], pipelines: ["New business", "Renewals", "Partnerships"] },
   { id: "project-management", name: "Project Management", number: "04", href: "/personalize?section=mapping", image: null, live: "delegate-board", sections: ["Mapping", "Process", "Tracing"], pipelines: [] },
-  { id: "skilled", name: "Skilled", number: "05", href: "/skilled", image: null, live: "context-window", sections: ["Skilled", "Repo"], pipelines: [] },
+  { id: "skilled", name: "Skilled", number: "05", href: "/skilled", image: null, live: "context-window", sections: ["Skilled", "Repo", "Storage"], pipelines: [] },
 ] as const satisfies readonly { id: string; name: string; number: string; href: string; image: string | null; live?: LiveFrame; sections: readonly WorkspaceSection[]; pipelines: readonly WorkspaceSection[] }[];
 
 export type GuideGroup = (typeof guideGroups)[number];

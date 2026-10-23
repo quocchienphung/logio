@@ -1,9 +1,4 @@
 {
-  "passed": [
-    "Guide me entries open the selector with the second item active, as in the first video frame",
-    "Hover slides the strip up for later items and down for earlier ones, then settles",
-    "Rapid hover settles on the last item, with no queued animations or extra layers",
-    "Keyboard arrows select, wrap, Home/End work and Enter opens the group"
-  ],
+  "passed": [],
   "errors": []
 }

@@ -1,0 +1,63 @@
+Add rate limiting to the public API
+Claude Sonnet 5.5
+Done
+0:12
+12 steps · 12s
+Planned the change
+1.2s
+Read
+src/api/routes.ts
+0.9s
+Searched for
+rate limit middleware
+1.0s
+Read
+package.json
+0.7s
+Read
+src/lib/redis.ts
+0.7s
+Searched for
+the API key on requests
+0.9s
+Approved
+changes to 2 files
+0.8s
+Wrote
+src/middleware/rate-limit.ts
+0.9s
+Edited
+src/api/routes.ts
+0.7s
+Checked types
+no errors
+1.1s
+Ran tests
+12 passed
+2.6s
+Wrote the summary
+0.7s
+
+Every /api route now goes through a Redis rate limiter: 60 requests a minute per API key, falling back to the IP. Responses carry RateLimit-Remaining, and a client over the limit gets a 429 with Retry-After. Types check and all 12 API tests pass.
+
+2 files changed
+17 added
++17
+, 1 removed
+−1
+
+src/middleware/rate-limit.ts
+15 added
++15
+src/api/routes.ts
+2 added
++2
+, 1 removed
+−1
+12 of 12 tests passed
+No type errors
+Open pull request
+Opening
+PR # opened
+
+Done in 12s. 12 of 12 tests passed.

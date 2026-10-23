@@ -1,4 +1,5 @@
 import { BackendError } from "./types.ts";
+import { parseKnowledgeIndex } from "../storage/knowledge-contract.ts";
 import type { CommandName, FailureCode, Loaded, QueryName, ResourceRef, SaveContext, SaveResult, UploadKind, WorkspaceBackend } from "./types.ts";
 
 export type HttpTarget =
@@ -6,6 +7,7 @@ export type HttpTarget =
   | { kind: "query"; name: QueryName; workspaceId: string; params: Record<string, string | number> }
   | { kind: "command"; name: CommandName; workspaceId: string }
   | { kind: "run"; workspaceId: string }
+  | { kind: "knowledge"; workspaceId: string; id?: string; operation: "document" | "index" | "original" | "search"; query?: string }
   | { kind: "upload"; workspaceId: string | undefined; upload: UploadKind };
 
 export interface HttpBackendConfig {
@@ -62,6 +64,11 @@ export function createHttpBackend(config: HttpBackendConfig): WorkspaceBackend {
     if (target.kind === "query") { const search = new URLSearchParams(Object.entries(target.params).map(([key, value]) => [key, String(value)])).toString(); return `${workspace}/queries/${target.name}${search ? `?${search}` : ""}`; }
     if (target.kind === "command") return `${workspace}/commands/${target.name}`;
     if (target.kind === "upload") return `${workspace}/uploads/${target.upload}`;
+    if (target.kind === "knowledge") {
+      const root = `${workspace}/storage`;
+      if (target.operation === "search") return `${root}/search?q=${encodeURIComponent(target.query ?? "")}`;
+      return `${root}/documents/${encodeURIComponent(target.id ?? "")}${target.operation === "document" ? "" : `/${target.operation}`}`;
+    }
     return `${workspace}/agent-run/actions`;
   };
 
@@ -153,6 +160,43 @@ export function createHttpBackend(config: HttpBackendConfig): WorkspaceBackend {
         return body && typeof body === "object" && "data" in body ? (body as { data: unknown }).data : undefined;
       },
     } : undefined,
+    knowledge: {
+      async save(workspaceId, id, file, index, sha256, signal) {
+        if (!parseKnowledgeIndex(index)) throw new BackendError("invalid", "The document index is invalid.");
+        const form = new FormData(); form.set("file", file); form.set("text", index.text); form.set("sha256", sha256);
+        const response = await request(urlFor({ kind: "knowledge", workspaceId, id, operation: "document" }), { method: "PUT", body: form }, signal);
+        const body = await readBody(response);
+        if (!response.ok) throw failure(response.status, body);
+        const result = dataOf(body, response.status) as { id?: unknown; sha256?: unknown; bytes?: unknown } | null;
+        if (!result || result.id !== id || result.sha256 !== sha256 || result.bytes !== file.size) throw new BackendError("invalid", "The document upload receipt does not match the original.");
+        return { id, sha256, bytes: file.size };
+      },
+      async load(workspaceId, id, signal) {
+        const response = await request(urlFor({ kind: "knowledge", workspaceId, id, operation: "index" }), { method: "GET" }, signal);
+        const body = await readBody(response);
+        if (!response.ok) throw failure(response.status, body);
+        const index = parseKnowledgeIndex(dataOf(body, response.status));
+        if (!index) throw new BackendError("invalid", "The server returned an invalid document index.");
+        return index;
+      },
+      async download(workspaceId, id, signal) {
+        const response = await request(urlFor({ kind: "knowledge", workspaceId, id, operation: "original" }), { method: "GET", headers: { Accept: "application/octet-stream" } }, signal);
+        if (!response.ok) throw failure(response.status, await readBody(response));
+        return response.blob();
+      },
+      async remove(workspaceId, id, signal) {
+        const response = await request(urlFor({ kind: "knowledge", workspaceId, id, operation: "document" }), { method: "DELETE" }, signal);
+        if (!response.ok) throw failure(response.status, await readBody(response));
+      },
+      async search(workspaceId, query, signal) {
+        const response = await request(urlFor({ kind: "knowledge", workspaceId, operation: "search", query }), { method: "GET" }, signal);
+        const body = await readBody(response);
+        if (!response.ok) throw failure(response.status, body);
+        const result = dataOf(body, response.status) as { ids?: unknown } | null;
+        if (!result || !Array.isArray(result.ids) || !result.ids.every(id => typeof id === "string")) throw new BackendError("invalid", "The server returned invalid document search results.");
+        return result.ids as string[];
+      },
+    },
     async upload(workspaceId: string | undefined, kind: UploadKind, file: File, signal?: AbortSignal) {
       const form = new FormData(); form.set("file", file);
       const response = await request(urlFor({ kind: "upload", workspaceId, upload: kind }), { method: "POST", body: form }, signal);

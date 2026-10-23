@@ -129,7 +129,7 @@ try {
     assert.equal(await page.locator(".ui-as-board__card").count(), 3);
   });
   await run("Settings invite role and Appearance travel with their forms", async () => {
-    await nav("Settings"); await page.getByRole("tab", { name: "Members", exact: true }).click(); await page.waitForTimeout(500);
+    await nav("Usage"); await page.getByRole("tab", { name: "Members", exact: true }).click(); await page.waitForTimeout(500);
     await page.getByRole("button", { name: "Invite", exact: true }).click(); await page.locator("dialog[open]").waitFor(); await noSelects("Invite dialog");
     await page.getByLabel("Email address").fill("qa-viewer@example.com");
     await box("Role").click(); await page.getByRole("option", { name: "Viewer", exact: true }).click(); await page.waitForTimeout(300);
@@ -228,7 +228,7 @@ try {
     assert.ok(await page.getByText("Folder note").first().isVisible());
   });
   await run("no native <select> remains anywhere in the workspace screens", async () => {
-    for (const name of ["Home", "Companies", "Contacts", "Deals", "Reports", "Run", "Mapping", "Invoice", "Settings"]) { await nav(name); await noSelects(name); }
+    for (const name of ["Home", "Companies", "Contacts", "Deals", "Reports", "Run", "Mapping", "Invoice", "Usage", "Settings"]) { await nav(name); await noSelects(name); }
   });
   assert.deepEqual(errors, []);
 } finally {

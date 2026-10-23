@@ -222,7 +222,7 @@ try {
     assert.match(await crumbs.innerText(), /Shared name/);
   });
   await run("existing Reports, Run, Settings and Companies navigation", async () => {
-    for (const [name, selector] of [["Reports", ".ui-an"], ["Run", ".ui-ar"], ["Settings", ".ui-sb"], ["Companies", ".ui-as-crm"]]) {
+    for (const [name, selector] of [["Reports", ".ui-an"], ["Run", ".ui-ar"], ["Usage", ".ui-sb"], ["Settings", ".sc-frame"], ["Companies", ".ui-as-crm"]]) {
       await goToSection(page, name, 300);
       if (name === "Reports") await page.getByText("Revenue", { exact: true }).first().waitFor();
       else await page.locator(selector).first().waitFor();

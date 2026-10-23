@@ -13,6 +13,7 @@ import type { BillingState } from "./affectui-settings/SettingsBilling";
 import { parseFileLibrary } from "./affectui-files/files-model";
 import type { FileLibrary } from "./affectui-files/files-model";
 import type { DemoApiKey, GeneralValue, SettingsMember } from "./affectui-settings/SettingsTabs";
+import type { SettingsValues } from "./settings-command/settings-model";
 
 /**
  * Every piece of workspace data that outlives a page load, in one place. Each entry is a seam to the backend:
@@ -67,7 +68,9 @@ export const resources = {
     name: "agent-run", scope: "workspace", storage: "backend", live: true, parse: raw => isRunSnapshot(raw) ? raw : undefined,
     signature: run => JSON.stringify([run.phase, run.activeId, run.steps.map(step => [step.id, step.title, run.states[step.id]?.status]), run.approvals]),
   }),
-  // Settings. API key secrets are never sent to or read from a backend: it returns metadata, and the secret once, when a key is created.
+  // Settings page (settings-command): the saved copy of the page's values; theme and the workspace name live in `preferences` and `workspaces`.
+  commandSettings: defineResource<SettingsValues>({ name: "command-settings", scope: "workspace", storage: "backend", parse: isObject }),
+  // Usage (agent usage, plan and API keys). API key secrets are never sent to or read from a backend: it returns metadata, and the secret once, when a key is created.
   settingsGeneral: defineResource<GeneralValue>({ name: "settings-general", scope: "workspace", storage: "backend", parse: isObject }),
   settingsMembers: defineResource<SettingsMember[]>({ name: "settings-members", scope: "workspace", storage: "backend", collection: true, empty: [], parse: isArray }),
   settingsBilling: defineResource<BillingState>({ name: "settings-billing", scope: "workspace", storage: "backend", parse: isObject }),

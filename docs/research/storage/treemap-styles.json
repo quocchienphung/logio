@@ -1,0 +1,6893 @@
+[
+  {
+    "tag": "FIGURE",
+    "cls": "treemap_figure__c_hPJ",
+    "rect": [
+      403.59375,
+      507.5,
+      618.8125,
+      492.796875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "12px",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_bar__XiDYU",
+    "rect": [
+      403.59375,
+      507.5,
+      618.8125,
+      32
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "12px",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "NAV",
+    "cls": "treemap_crumbs__6m0Zx",
+    "rect": [
+      399.59375,
+      507.5,
+      76.953125,
+      32
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "OL",
+    "cls": "treemap_crumbList__8PGhg",
+    "rect": [
+      399.59375,
+      507.5,
+      76.953125,
+      32
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "LI",
+    "cls": "treemap_crumb___kw0W",
+    "rect": [
+      399.59375,
+      513.703125,
+      76.953125,
+      19.59375
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_crumbCurrent__TBsNw",
+    "text": "All regions",
+    "rect": [
+      399.59375,
+      513.703125,
+      76.953125,
+      19.59375
+    ],
+    "font": "500 14px / 19.6px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px 4px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "P",
+    "cls": "treemap_total__Ge1tV",
+    "rect": [
+      970.5625,
+      513.703125,
+      51.84375,
+      19.59375
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_totalValue__3PFtP",
+    "text": "$44.5M",
+    "rect": [
+      970.5625,
+      513.703125,
+      51.84375,
+      19.59375
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_stage__mRjko",
+    "rect": [
+      403.59375,
+      551.5,
+      618.8125,
+      420
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "12px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      52.53125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.0128258 -0.0352385)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      36.53125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$4.0M",
+    "rect": [
+      411.59375,
+      574.5,
+      36.53125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.0128258 -0.0352385)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$7.0M",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8488 -0.0184691 -0.0507434)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$7.4M",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      408.59375,
+      575.5,
+      287.3125,
+      336.53125
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.0128258 -0.0352385)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 5, 24)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "United States",
+    "rect": [
+      415.59375,
+      580.5,
+      273.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$18.4M",
+    "rect": [
+      415.59375,
+      597.5,
+      273.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.0128258 -0.0352385)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$517K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.0128258 -0.0352385)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$893K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.0128258 -0.0352385)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$940K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      408.59375,
+      914.0400390625,
+      227.6875,
+      52.453125
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.0128258 -0.0352385)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 5, 362.54)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Canada",
+    "rect": [
+      415.59375,
+      919.0400390625,
+      213.6875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$2.4M",
+    "rect": [
+      415.59375,
+      936.0400390625,
+      213.6875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8488 -0.0184691 -0.0507434)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$134K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8488 -0.0184691 -0.0507434)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$232K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0241124 -0.0662483)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$244K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      638.2937622070312,
+      914.0400390625,
+      57.609375,
+      52.453125
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8488 -0.0184691 -0.0507434)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 234.7, 362.54)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Mexico",
+    "rect": [
+      645.2937622070312,
+      919.0400390625,
+      43.609375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$610K",
+    "rect": [
+      645.2937622070312,
+      936.0400390625,
+      43.609375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      404.59375,
+      552.5,
+      295.3125,
+      418
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.9622 -0.00461727 -0.0126858)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "8px",
+    "gap": "8px",
+    "padding": "3px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 1, 1)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "North America",
+    "rect": [
+      412.59375,
+      555.5,
+      81.4375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$21.4M",
+    "rect": [
+      647.75,
+      555.5,
+      44.15625,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$906K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.6M",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.6M",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      705.9137573242188,
+      575.5,
+      176.796875,
+      115.40625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 302.32, 24)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Germany",
+    "rect": [
+      712.9137573242188,
+      580.5,
+      162.796875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$4.1M",
+    "rect": [
+      712.9137573242188,
+      597.5,
+      162.796875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.923 0.0160083 -0.0212437)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$849K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.5M",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.5M",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      705.9137573242188,
+      692.9199829101562,
+      176.796875,
+      108
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 302.32, 141.42)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "United Kingdom",
+    "rect": [
+      712.9137573242188,
+      697.9199829101562,
+      162.796875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$3.9M",
+    "rect": [
+      712.9137573242188,
+      714.9199829101562,
+      162.796875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$493K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$851K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$896K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      884.7137451171875,
+      575.5,
+      132.875,
+      82.625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 481.12, 24)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "France",
+    "rect": [
+      891.7137451171875,
+      580.5,
+      118.875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$2.2M",
+    "rect": [
+      891.7137451171875,
+      597.5,
+      118.875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$288K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$498K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$524K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      958.4537353515625,
+      660.1300048828125,
+      59.125,
+      107.171875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 554.86, 108.63)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Netherlands",
+    "rect": [
+      965.4537353515625,
+      665.1300048828125,
+      45.125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.3M",
+    "rect": [
+      965.4537353515625,
+      682.1300048828125,
+      45.125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$348K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$600K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$632K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      884.7137451171875,
+      660.1300048828125,
+      71.734375,
+      107.171875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8625 0.0285862 -0.0379352)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 481.12, 108.63)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Nordics",
+    "rect": [
+      891.7137451171875,
+      665.1300048828125,
+      57.734375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.6M",
+    "rect": [
+      891.7137451171875,
+      682.1300048828125,
+      57.734375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$196K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$338K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$356K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      884.7137451171875,
+      769.3099975585938,
+      132.875,
+      31.609375
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.802 0.0411642 -0.0546267)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 481.12, 217.81)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Spain",
+    "rect": [
+      891.7137451171875,
+      774.3099975585938,
+      118.875,
+      10.3125
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$890K",
+    "rect": [
+      891.7137451171875,
+      785.6224975585938,
+      118.875,
+      10.296875
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      701.9137573242188,
+      552.5,
+      319.671875,
+      252.4375
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.9505 0.010291 -0.0136567)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "8px",
+    "gap": "8px",
+    "padding": "3px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 298.32, 1)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Europe",
+    "rect": [
+      709.9137573242188,
+      555.5,
+      39.625,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$14.0M",
+    "rect": [
+      969.4293823242188,
+      555.5,
+      44.15625,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$607K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.0M",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.1M",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      705.9137573242188,
+      829.9400024414062,
+      92.296875,
+      136.546875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 302.32, 278.44)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Japan",
+    "rect": [
+      712.9137573242188,
+      834.9400024414062,
+      78.296875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$2.8M",
+    "rect": [
+      712.9137573242188,
+      851.9400024414062,
+      78.296875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.93 0.0124037 0.0432568)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$372K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.93 0.0124037 0.0432568)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$642K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.93 0.0124037 0.0432568)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$676K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      800.2137451171875,
+      829.9400024414062,
+      89.21875,
+      85.703125
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.93 0.0124037 0.0432568)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 396.62, 278.44)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Australia",
+    "rect": [
+      807.2137451171875,
+      834.9400024414062,
+      75.21875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.7M",
+    "rect": [
+      807.2137451171875,
+      851.9400024414062,
+      75.21875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8684 0.0233189 0.0813227)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$216K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8376 0.0287765 0.100356)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$372K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8376 0.0287765 0.100356)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$392K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      800.2137451171875,
+      917.6400146484375,
+      89.21875,
+      48.859375
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8376 0.0287765 0.100356)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 396.62, 366.14)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "India",
+    "rect": [
+      807.2137451171875,
+      922.6400146484375,
+      75.21875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$980K",
+    "rect": [
+      807.2137451171875,
+      939.6400146484375,
+      75.21875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.93 0.0124037 0.0432568)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$158K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$274K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$288K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      891.4337158203125,
+      904.5499877929688,
+      51.296875,
+      61.9375
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 487.84, 353.05)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Singapore",
+    "rect": [
+      898.4337158203125,
+      909.5499877929688,
+      37.296875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$720K",
+    "rect": [
+      898.4337158203125,
+      926.5499877929688,
+      37.296875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8992 0.0178613 0.0622898)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$185K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8684 0.0233189 0.0813227)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$319K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8684 0.0233189 0.0813227)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$336K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      891.4337158203125,
+      829.9400024414062,
+      51.296875,
+      72.609375
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8684 0.0233189 0.0813227)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 487.84, 278.44)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "South Korea",
+    "rect": [
+      898.4337158203125,
+      834.9400024414062,
+      37.296875,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$840K",
+    "rect": [
+      898.4337158203125,
+      851.9400024414062,
+      37.296875,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      701.9137573242188,
+      806.9400024414062,
+      244.8125,
+      163.546875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.9748 0.00446532 0.0155724)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "8px",
+    "gap": "8px",
+    "padding": "3px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 298.32, 255.44)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Asia Pacific",
+    "rect": [
+      709.9137573242188,
+      809.9400024414062,
+      65,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$7.0M",
+    "rect": [
+      902.1950073242188,
+      809.9400024414062,
+      36.53125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      54.3125,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0986399 -0.00344457)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      38.3125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$273K",
+    "rect": [
+      411.59375,
+      574.5,
+      38.3125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0986399 -0.00344457)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$471K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0986399 -0.00344457)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$496K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      952.7337646484375,
+      829.9400024414062,
+      64.859375,
+      79.046875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0986399 -0.00344457)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 549.14, 278.44)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Brazil",
+    "rect": [
+      959.7337646484375,
+      834.9400024414062,
+      50.859375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$1.2M",
+    "rect": [
+      959.7337646484375,
+      851.9400024414062,
+      50.859375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      46.90625,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.052468 -0.00183222)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      30.90625,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$73K",
+    "rect": [
+      411.59375,
+      574.5,
+      30.90625,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.052468 -0.00183222)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$125K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8488 -0.0755539 -0.00263839)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$132K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      952.7337646484375,
+      910.97998046875,
+      45.09375,
+      28.609375
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.052468 -0.00183222)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 549.14, 359.48)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Chile",
+    "rect": [
+      959.7337646484375,
+      915.97998046875,
+      31.09375,
+      8.8125
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$330K",
+    "rect": [
+      959.7337646484375,
+      925.79248046875,
+      31.09375,
+      8.796875
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      46.90625,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0986399 -0.00344457)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      30.90625,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$64K",
+    "rect": [
+      411.59375,
+      574.5,
+      30.90625,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0986399 -0.00344457)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$110K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.7564 -0.121726 -0.00425075)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$116K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      952.7337646484375,
+      941.5999755859375,
+      45.09375,
+      24.890625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.8026 -0.0986399 -0.00344457)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 549.14, 390.1)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Colombia",
+    "rect": [
+      959.7337646484375,
+      946.5999755859375,
+      31.09375,
+      6.953125
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$290K",
+    "rect": [
+      959.7337646484375,
+      954.5531005859375,
+      31.09375,
+      6.9375
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      46.90625,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.9412 -0.0293821 -0.00102604)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Team",
+    "rect": [
+      411.59375,
+      557.5,
+      30.90625,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$57K",
+    "rect": [
+      411.59375,
+      574.5,
+      30.90625,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      66.5,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.9412 -0.0293821 -0.00102604)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Business",
+    "rect": [
+      411.59375,
+      557.5,
+      50.5,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$99K",
+    "rect": [
+      411.59375,
+      574.5,
+      50.5,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      403.59375,
+      551.5,
+      73.359375,
+      45
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.895 -0.052468 -0.00183222)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "6px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Enterprise",
+    "rect": [
+      411.59375,
+      557.5,
+      57.359375,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$104K",
+    "rect": [
+      411.59375,
+      574.5,
+      57.359375,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      999.84375,
+      910.97998046875,
+      17.75,
+      55.515625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.9412 -0.0293821 -0.00102604)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "6px",
+    "gap": "1px",
+    "padding": "5px 7px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 596.25, 359.48)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Argentina",
+    "rect": [
+      1006.84375,
+      915.97998046875,
+      3.75,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$260K",
+    "rect": [
+      1006.84375,
+      932.97998046875,
+      3.75,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tile__NV68L",
+    "rect": [
+      948.7337646484375,
+      806.9400024414062,
+      72.859375,
+      163.546875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklab(0.9622 -0.0188885 -0.000659598)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "8px",
+    "gap": "8px",
+    "padding": "3px 8px",
+    "transition": "background-color 0.48s cubic-bezier(0.22, 1, 0.36, 1), color 0.48s cubic-bezier(0.22, 1, 0.36, 1), filter 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "matrix(1, 0, 0, 1, 545.14, 255.44)"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileLabel__EFttr",
+    "text": "Latin America",
+    "rect": [
+      956.7337646484375,
+      809.9400024414062,
+      12.328125,
+      16
+    ],
+    "font": "500 12px / 16px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_tileValue__IgOTK",
+    "text": "$2.1M",
+    "rect": [
+      977.0618896484375,
+      809.9400024414062,
+      36.53125,
+      16
+    ],
+    "font": "",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_tooltip__RJY_F",
+    "text": "",
+    "rect": [
+      406.79376220703125,
+      551.9400024414062,
+      153.5999755859375,
+      21.1199951171875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "oklch(1 0 0)",
+    "border": "1px solid oklch(0.935 0 0)",
+    "radius": "14px",
+    "gap": "2px",
+    "padding": "10px 12px",
+    "transition": "opacity 0.16s cubic-bezier(0.22, 1, 0.36, 1), scale 0.16s cubic-bezier(0.22, 1, 0.36, 1)",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_scale__ackoM",
+    "rect": [
+      403.59375,
+      983.5,
+      618.8125,
+      16.796875
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "0px",
+    "gap": "8px",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_scaleLabel__pZWB7",
+    "text": "Growth",
+    "rect": [
+      403.59375,
+      983.5,
+      40.140625,
+      16.796875
+    ],
+    "font": "",
+    "color": "oklch(0.46 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.46 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "",
+    "text": "+8%",
+    "rect": [
+      455.734375,
+      983.5,
+      26.875,
+      16.796875
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_steps__nLNQe",
+    "rect": [
+      490.609375,
+      986.890625,
+      98,
+      10
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "0px",
+    "gap": "2px",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_step__1KPxE",
+    "text": "",
+    "rect": [
+      490.609375,
+      986.890625,
+      18,
+      10
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "oklab(0.881 0 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "3px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_step__1KPxE",
+    "text": "",
+    "rect": [
+      510.609375,
+      986.890625,
+      18,
+      10
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "oklab(0.7875 0 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "3px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_step__1KPxE",
+    "text": "",
+    "rect": [
+      530.609375,
+      986.890625,
+      18,
+      10
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "oklab(0.694 0 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "3px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_step__1KPxE",
+    "text": "",
+    "rect": [
+      550.609375,
+      986.890625,
+      18,
+      10
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "oklab(0.6005 0 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "3px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "treemap_step__1KPxE",
+    "text": "",
+    "rect": [
+      570.609375,
+      986.890625,
+      18,
+      10
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "oklab(0.507 0 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "3px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "",
+    "text": "+64%",
+    "rect": [
+      596.609375,
+      983.5,
+      34.5,
+      16.796875
+    ],
+    "font": "",
+    "color": "oklch(0.59 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.59 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "P",
+    "cls": "treemap_srOnly__5KaTw",
+    "text": "All regions, $44.5M",
+    "rect": [
+      403.59375,
+      507.5,
+      1,
+      1
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "DIV",
+    "cls": "treemap_srOnly__5KaTw",
+    "rect": [
+      403.59375,
+      507.5,
+      1,
+      1
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TABLE",
+    "cls": "",
+    "rect": [
+      403.59375,
+      507.5,
+      550.234375,
+      1746.46875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "CAPTION",
+    "cls": "",
+    "text": "Annual recurring revenue",
+    "rect": [
+      403.59375,
+      507.5,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "THEAD",
+    "cls": "",
+    "rect": [
+      403.59375,
+      529.890625,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      529.890625,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Path",
+    "rect": [
+      403.59375,
+      529.890625,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Value",
+    "rect": [
+      724.859375,
+      529.890625,
+      54.984375,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Share of parent",
+    "rect": [
+      779.84375,
+      529.890625,
+      117.75,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Growth",
+    "rect": [
+      897.59375,
+      529.890625,
+      56.234375,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TBODY",
+    "cls": "",
+    "rect": [
+      403.59375,
+      552.28125,
+      550.234375,
+      1701.6875
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      552.28125,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / United States / Team",
+    "rect": [
+      403.59375,
+      552.28125,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$4.0M",
+    "rect": [
+      724.859375,
+      552.28125,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "22%",
+    "rect": [
+      779.84375,
+      552.28125,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+20%",
+    "rect": [
+      897.59375,
+      552.28125,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      574.671875,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / United States / Business",
+    "rect": [
+      403.59375,
+      574.671875,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$7.0M",
+    "rect": [
+      724.859375,
+      574.671875,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "38%",
+    "rect": [
+      779.84375,
+      574.671875,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+25%",
+    "rect": [
+      897.59375,
+      574.671875,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      597.0625,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / United States / Enterprise",
+    "rect": [
+      403.59375,
+      597.0625,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$7.4M",
+    "rect": [
+      724.859375,
+      597.0625,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "40%",
+    "rect": [
+      779.84375,
+      597.0625,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+30%",
+    "rect": [
+      897.59375,
+      597.0625,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      619.453125,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / United States",
+    "rect": [
+      403.59375,
+      619.453125,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$18.4M",
+    "rect": [
+      724.859375,
+      619.453125,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "86.1%",
+    "rect": [
+      779.84375,
+      619.453125,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+26%",
+    "rect": [
+      897.59375,
+      619.453125,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      641.84375,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Canada / Team",
+    "rect": [
+      403.59375,
+      641.84375,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$517K",
+    "rect": [
+      724.859375,
+      641.84375,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "22%",
+    "rect": [
+      779.84375,
+      641.84375,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+15%",
+    "rect": [
+      897.59375,
+      641.84375,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      664.234375,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Canada / Business",
+    "rect": [
+      403.59375,
+      664.234375,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$893K",
+    "rect": [
+      724.859375,
+      664.234375,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "38%",
+    "rect": [
+      779.84375,
+      664.234375,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+20%",
+    "rect": [
+      897.59375,
+      664.234375,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      686.625,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Canada / Enterprise",
+    "rect": [
+      403.59375,
+      686.625,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$940K",
+    "rect": [
+      724.859375,
+      686.625,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "40%",
+    "rect": [
+      779.84375,
+      686.625,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+25%",
+    "rect": [
+      897.59375,
+      686.625,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      709.015625,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Canada",
+    "rect": [
+      403.59375,
+      709.015625,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$2.4M",
+    "rect": [
+      724.859375,
+      709.015625,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "11%",
+    "rect": [
+      779.84375,
+      709.015625,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+21%",
+    "rect": [
+      897.59375,
+      709.015625,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      731.40625,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Mexico / Team",
+    "rect": [
+      403.59375,
+      731.40625,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$134K",
+    "rect": [
+      724.859375,
+      731.40625,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "22%",
+    "rect": [
+      779.84375,
+      731.40625,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+37%",
+    "rect": [
+      897.59375,
+      731.40625,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      753.796875,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Mexico / Business",
+    "rect": [
+      403.59375,
+      753.796875,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$232K",
+    "rect": [
+      724.859375,
+      753.796875,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "38%",
+    "rect": [
+      779.84375,
+      753.796875,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+42%",
+    "rect": [
+      897.59375,
+      753.796875,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      776.1875,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Mexico / Enterprise",
+    "rect": [
+      403.59375,
+      776.1875,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$244K",
+    "rect": [
+      724.859375,
+      776.1875,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "40%",
+    "rect": [
+      779.84375,
+      776.1875,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+47%",
+    "rect": [
+      897.59375,
+      776.1875,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      798.578125,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America / Mexico",
+    "rect": [
+      403.59375,
+      798.578125,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$610K",
+    "rect": [
+      724.859375,
+      798.578125,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "2.9%",
+    "rect": [
+      779.84375,
+      798.578125,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+43%",
+    "rect": [
+      897.59375,
+      798.578125,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      820.96875,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "North America",
+    "rect": [
+      403.59375,
+      820.96875,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$21.4M",
+    "rect": [
+      724.859375,
+      820.96875,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "48%",
+    "rect": [
+      779.84375,
+      820.96875,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+26%",
+    "rect": [
+      897.59375,
+      820.96875,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      843.359375,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Europe / Germany / Team",
+    "rect": [
+      403.59375,
+      843.359375,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$906K",
+    "rect": [
+      724.859375,
+      843.359375,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "22%",
+    "rect": [
+      779.84375,
+      843.359375,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+24%",
+    "rect": [
+      897.59375,
+      843.359375,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      865.75,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Europe / Germany / Business",
+    "rect": [
+      403.59375,
+      865.75,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$1.6M",
+    "rect": [
+      724.859375,
+      865.75,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "38%",
+    "rect": [
+      779.84375,
+      865.75,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+29%",
+    "rect": [
+      897.59375,
+      865.75,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      888.140625,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Europe / Germany / Enterprise",
+    "rect": [
+      403.59375,
+      888.140625,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$1.6M",
+    "rect": [
+      724.859375,
+      888.140625,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "40%",
+    "rect": [
+      779.84375,
+      888.140625,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+34%",
+    "rect": [
+      897.59375,
+      888.140625,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      910.53125,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Europe / Germany",
+    "rect": [
+      403.59375,
+      910.53125,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$4.1M",
+    "rect": [
+      724.859375,
+      910.53125,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "29.4%",
+    "rect": [
+      779.84375,
+      910.53125,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+30%",
+    "rect": [
+      897.59375,
+      910.53125,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      932.921875,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TH",
+    "cls": "",
+    "text": "Europe / United Kingdom / Team",
+    "rect": [
+      403.59375,
+      932.921875,
+      321.265625,
+      22.390625
+    ],
+    "font": "700 16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "$849K",
+    "rect": [
+      724.859375,
+      932.921875,
+      54.984375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "22%",
+    "rect": [
+      779.84375,
+      932.921875,
+      117.75,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TD",
+    "cls": "",
+    "text": "+13%",
+    "rect": [
+      897.59375,
+      932.921875,
+      56.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  },
+  {
+    "tag": "TR",
+    "cls": "",
+    "rect": [
+      403.59375,
+      955.3125,
+      550.234375,
+      22.390625
+    ],
+    "font": "16px / 22.4px inter, \"inter Fallback\", sans-serif",
+    "color": "oklch(0.15 0 0)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "0px solid oklch(0.15 0 0)",
+    "radius": "0px",
+    "gap": "normal",
+    "padding": "0px",
+    "transition": "all",
+    "transform": "none"
+  }
+]

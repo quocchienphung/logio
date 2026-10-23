@@ -4,30 +4,28 @@ import { useState } from "react";
 import { Check, ChevronDown, ImagePlus, Plus } from "lucide-react";
 import { WorkspaceDialog } from "./WorkspaceDialog";
 import { Combobox } from "../affectui-combobox/Combobox";
+import { QuickSettings } from "../settings-command/QuickSettings";
+import type { SettingsValues } from "../settings-command/settings-model";
 import { BackendError, storeFile } from "@/lib/workspace-backend";
 import { useResource, useWorkspaceBackend } from "@/lib/workspace-backend/react";
 import { resources } from "../workspace-resources";
 
 
 export interface WorkspaceProfile { name: string; email: string; role: string; avatar?: string }
-export interface WorkspacePreferences { dark: boolean; emailNotifications: boolean; desktopNotifications: boolean }
+export interface WorkspacePreferences { dark: boolean; emailNotifications: boolean; desktopNotifications: boolean; theme?: "light" | "dark" | "system" }
 export interface CustomView { id: string; name: string; layout: "table" | "board"; owner: string }
-export type EditorKind = "Profile" | "Settings" | "Help & feedback" | "Full changelog" | "Create workspace" | "New view";
+export type EditorKind = "Profile" | "Appearance & notifications" | "Help & feedback" | "Full changelog" | "Create workspace" | "New view";
 
-export function WorkspaceEditors({ kind, open, onClose, profile, setProfile, preferences, setPreferences, createWorkspace, createView, owners, notify }: {
+export function WorkspaceEditors({ kind, open, onClose, profile, setProfile, settings, onSaveSettings, onOpenSettings, createWorkspace, createView, owners, notify }: {
   kind: EditorKind; open: boolean; onClose: () => void;
   profile: WorkspaceProfile; setProfile: (profile: WorkspaceProfile) => void;
-  preferences: WorkspacePreferences; setPreferences: (preferences: WorkspacePreferences) => void;
+  settings: SettingsValues; onSaveSettings: (values: SettingsValues) => void; onOpenSettings: () => void;
   createWorkspace: (name: string) => void; createView: (view: CustomView) => void;
   owners: string[]; notify: (message: string) => void;
 }) {
   return <WorkspaceDialog open={open} title={kind} onClose={onClose} wide={kind === "Help & feedback"}>
     {kind === "Profile" && <ProfileForm key={profile.name + (open ? "open" : "closed")} profile={profile} onSave={value => { setProfile(value); onClose(); notify("Profile updated"); }} />}
-    {kind === "Settings" && <form key={open ? "settings-open" : "settings-closed"} onSubmit={event => {
-      event.preventDefault();const data=new FormData(event.currentTarget);
-      setPreferences({dark:data.get("theme")==="dark",emailNotifications:data.has("email"),desktopNotifications:data.has("desktop")});
-      onClose();notify("Workspace settings saved");
-    }}><div className="crm-field"><Combobox label="Appearance" name="theme" defaultValue={preferences.dark ? "dark" : "light"} options={[{value:"light",label:"Light"},{value:"dark",label:"Dark"}]} /></div><label className="workspace-check-field"><input type="checkbox" name="email" defaultChecked={preferences.emailNotifications} />Email notifications</label><label className="workspace-check-field"><input type="checkbox" name="desktop" defaultChecked={preferences.desktopNotifications} />In-app notifications</label><p className="workspace-muted">Preferences are saved for this browser.</p><div className="workspace-form-actions"><button className="ui-button" data-variant="primary" data-size="sm" type="submit">Save settings</button></div></form>}
+    {kind === "Appearance & notifications" && <QuickSettings key={open ? "quick-open" : "quick-closed"} values={settings} onSave={value => { onSaveSettings(value); onClose(); notify("Preferences saved"); }} onOpenAll={() => { onClose(); onOpenSettings(); }} />}
     {kind === "Create workspace" && <form onSubmit={event=>{event.preventDefault();const form=event.currentTarget;const name=String(new FormData(form).get("name")).trim();if(!name)return;createWorkspace(name);form.reset();onClose();}}><label className="crm-field">Workspace name<input name="name" placeholder="Workspace name" required maxLength={40} autoFocus /></label><p>Start with an empty company list, contacts and reports.</p><div className="workspace-form-actions"><button type="submit" className="ui-button" data-variant="primary" data-size="sm"><Plus size={14} />Create workspace</button></div></form>}
     {kind === "New view" && <form onSubmit={event=>{event.preventDefault();const form=event.currentTarget;const data=new FormData(form);const name=String(data.get("name")).trim();if(!name)return;createView({id:crypto.randomUUID(),name,layout:data.get("layout")==="board" ? "board" : "table",owner:String(data.get("owner") || "")});form.reset();onClose();}}><label className="crm-field">View name<input name="name" placeholder="My sales view" required maxLength={50} autoFocus /></label><div className="crm-field"><Combobox label="Layout" name="layout" defaultValue="table" options={[{value:"table",label:"Table"},{value:"board",label:"Board"}]} /></div><div className="crm-field"><Combobox label="Owner" name="owner" defaultValue="" options={[{value:"",label:"All owners"},...owners.map(owner=>({value:owner,label:owner}))]} /></div><div className="workspace-form-actions"><button type="submit" className="ui-button" data-variant="primary" data-size="sm">Create view</button></div></form>}
     {kind === "Help & feedback" && <HelpPanel notify={notify} />}

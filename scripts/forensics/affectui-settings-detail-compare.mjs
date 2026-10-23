@@ -7,7 +7,7 @@ const out='docs/research/affectui-settings/comparison';
 const browser=await chromium.launch({channel:'chrome'});const results=[];
 for(const viewport of [{width:1440,height:1100},{width:390,height:844}]){
   for(const state of ['invoices','yearly']){
-    for(const [label,url] of [['source','https://www.affectui.com/screens/settings-billing/full'],['local',`${base}/personalize?section=settings`]]){
+    for(const [label,url] of [['source','https://www.affectui.com/screens/settings-billing/full'],['local',`${base}/personalize?section=usage`]]){
       const page=await browser.newPage({viewport});await page.goto(url,{waitUntil:'networkidle'});await page.locator('.ui-sb').waitFor();await page.evaluate(()=>document.fonts.ready);await page.addStyleTag({content:'nextjs-portal{display:none!important}'});await page.waitForTimeout(1600);
       if(state==='yearly')await page.getByRole('radio',{name:/Yearly/}).click();
       await page.locator('.ui-as-main').evaluate(el=>el.scrollTop=el.scrollHeight);await page.mouse.move(1,1);await page.waitForTimeout(1100);

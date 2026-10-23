@@ -15,10 +15,10 @@ const tab=async name=>{await page.getByRole('tab',{name,exact:true}).click();awa
 const nav=name=>goToSection(page,name,450);
 const readDownload=async download=>{const chunks=[];for await(const chunk of await download.createReadStream())chunks.push(chunk);return Buffer.concat(chunks).toString('utf8');};
 try {
-  await page.goto(`${base}/personalize?section=settings`,{waitUntil:'networkidle'});await page.locator('.ui-sb').waitFor();await page.waitForTimeout(1400);
+  await page.goto(`${base}/personalize?section=usage`,{waitUntil:'networkidle'});await page.locator('.ui-sb').waitFor();await page.waitForTimeout(1400);
   await page.addStyleTag({content:'nextjs-portal{display:none!important}'});
   await check('Settings navigation and exact source billing baseline',async()=>{
-    assert.equal(await page.locator('.ui-as-side__item[aria-current=page]').innerText(),'Settings');
+    assert.equal(await page.locator('.ui-as-side__item[aria-current=page]').innerText(),'Usage');
     assert.equal(await page.getByRole('tab',{name:'Billing',exact:true}).getAttribute('aria-selected'),'true');
     assert.match(await page.locator('.ui-um__amount').innerText(),/34,000/);assert.equal(await page.locator('.ui-sb-tier').count(),3);assert.equal(await page.locator('.ui-sb-table tbody tr').count(),5);
   });
@@ -69,11 +69,11 @@ try {
   await check('Workspace data remains isolated; Settings user menu routes correctly',async()=>{
     await tab('Billing');await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Personal/}).click();await page.locator('.ui-sb-plan').waitFor();assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Pro/);assert.match(await page.locator('.ui-sb-pay').innerText(),/4242/);
     await openWorkspaceMenu(page);await page.getByRole('menuitemradio',{name:/Logio/}).click();await page.waitForTimeout(350);assert.match(await page.locator('.ui-sb-plan__name').innerText(),/Team/);
-    await nav('Reports');await page.locator('.ui-as-rev').waitFor();await page.locator('.ui-as-user').click();await page.getByRole('menuitem',{name:'Settings',exact:true}).click();await page.locator('.ui-sb').waitFor();
-    await nav('Companies');await page.getByRole('button',{name:'Company CRM',exact:true}).click();assert.equal(await page.locator('.ui-dt tbody tr').count(),10);await nav('Settings');
+    await nav('Reports');await page.locator('.ui-as-rev').waitFor();await page.locator('.ui-as-user').click();await page.getByRole('menuitem',{name:'Settings',exact:true}).click();await page.locator('.sc-frame').waitFor();await nav('Usage');await page.locator('.ui-sb').waitFor();
+    await nav('Companies');await page.getByRole('button',{name:'Company CRM',exact:true}).click();assert.equal(await page.locator('.ui-dt tbody tr').count(),10);await nav('Usage');
   });
   await check('Mobile drawer, invoice overflow and reduced motion',async()=>{
-    await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Open sidebar',exact:true}).click();await page.waitForTimeout(400);await nav('Settings');
+    await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Open sidebar',exact:true}).click();await page.waitForTimeout(400);await nav('Usage');
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.locator('.ui-sb-table-wrap').scrollIntoViewIfNeeded();assert.equal(await page.locator('.ui-sb-table-wrap').evaluate(el=>el.scrollWidth>el.clientWidth),true);
     await page.locator('.ui-sb-table-wrap').evaluate(el=>el.scrollLeft=el.scrollWidth);assert.equal(await page.getByRole('button',{name:'Download INV-2026-0412',exact:true}).isVisible(),true);
     await page.screenshot({path:`${out}/local-mobile-invoices.png`});await page.emulateMedia({reducedMotion:'reduce'});await tab('General');assert.equal(await page.locator('.ui-sb').evaluate(el=>getComputedStyle(el.querySelector('.ui-sb-card')).animationDuration),'1e-05s');

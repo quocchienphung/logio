@@ -1,0 +1,240 @@
+affectUI
+⌘
+K
+Library
+Docs
+Pricing
+Style
+Clean
+Components
+60
+AI Answer
+Chat Composer
+Thinking State
+Writing Assistant
+Thinking Loader
+Combobox
+Command Menu
+Date Range Picker
+Dropzone
+OTP Input
+Segmented Control
+Stepper Form
+Toaster
+Usage Meter
+Agent Cursors
+Agent Graph
+Agent Inbox
+Agent Lanes
+Agent Queue
+Agent Steering
+Agent Tree
+Autonomy Dial
+Cited Answer
+Compact Breakdown
+Context Window
+Decision Tree
+Delegate Board
+Experiment Card
+Integration Picker
+Integration Settings
+KPI Chart
+Memory Panel
+Message Actions
+Model Picker
+Permission Request
+Profile Menu
+Project Card
+Prompt Library
+Review Center
+Tips Panel
+Tool Call Card
+Trace Waterfall
+Approval Card
+Breakdown Chart
+Button
+Data Table
+Filter Menu
+Reaction Bar
+Smart Recommendation
+Agent Plan
+Billing Schedule
+Change Summary
+Comments Panel
+Email Draft
+Progress Tracker
+Comment Thread
+Inline Diff
+Setup Guide
+Decision Inbox
+Notification Stack
+Screens
+13
+App Shell Flat
+App Shell Inset
+Assistant Home
+Folders
+Folder
+Integrations
+Agent Chat
+CRM
+Analytics
+Agent Run
+Settings & Billing
+Onboarding
+Evals
+Blocks
+11
+Client Context
+Invoice & Credit Note
+Logo Marquee
+Metrics Dashboard
+Pricing Plans
+Task Board
+Testimonial Wall
+AI Workspace
+App Directory
+KPI Board
+Agent Gallery
+Illustrations
+24
+Cover Flow
+Frost Cloud
+Glow Cloud
+Glow Keyboard
+Integration Beam
+Logo Cluster
+Model Wheel
+Project Flow
+DACH Region
+Empty Calendar
+Integration Flow
+Voice Orb
+Tab Overload
+World Map Continental
+Ghosted Chat
+Lead Sourcing
+Enrichment Orbit
+Outreach Branches
+Glass Folder
+Side Folder
+Team Invite
+Layer Stack
+Agent Team
+Integration Grid
+Motion
+8
+Blur Crossfade
+Gradient Floor
+Gradient Text
+Grid Background
+Number Ticker
+Shimmer Loader
+Text Reveal
+Tilt Card
+202
+Get Pro
+Log In
+Components
+Dropzone
+Dropzone
+
+Drag files in and watch them upload – fanning documents, colored type badges, progress with time left, errors with retry.
+
+Get Pro to install
+Preview
+Code
+Copy prompt
+MCP
+Copy
+PDF
+PNG
+Drop files here or browse
+PDF, PNG, JPG and more · up to 25 MB each
+No files yet
+When to use
+Uploading documents, images or media – attachments, imports, asset libraries, onboarding
+Several files at once, where people want to see what's done, what's still running and what failed
+When not to use
+A single avatar or logo – a simple picker with a preview is lighter
+Huge uploads that run in the background for minutes – show them in a separate transfer panel
+Installation
+
+Dropzone is a Pro component.
+
+Installation is part of Pro
+Get Pro to copy the code, install it with the CLI and use it in your projects.
+Unlock with Pro
+Usage
+Usage example is part of Pro
+Get Pro
+API reference
+Dropzone
+Prop	Type	Default	Description
+accept	string[]	–	Allowed extensions, e.g. [".pdf", ".png"]; any file when left out. Other files get a row with an error
+maxSize	number	25 MB	Largest file in bytes; bigger files get a "Too large" row
+onUpload	(file: File, onProgress: (p: number) => void) => Promise<void>	–	Uploads one file and reports progress from 0 to 1; reject to mark it as failed (the message is shown, Retry calls it again). Simulated when left out
+onChange	(items: UploadItem[]) => void	–	Every change of the list: { id, name, size, status, progress, error?, file? }
+hint	string	–	Text under the title; defaults to the accepted types and the size limit
+autoplay	boolean	false	Plays a sample drop of four files – for previews and landing pages
+className	string	–	Extra class on the root
+Keyboard interactions
+Tab	Reaches the drop area, then Retry and Remove in every row
+↵	On the drop area: opens the file picker (Space works too)
+Accessibility
+The drop area is a button that opens the file picker, described by the accepted types and size
+Every row has a progress bar with its value; Retry and Remove are named after the file
+Finished, failed and rejected files are announced in a polite live region
+Motion
+Dragging files over the area fans the three little documents out, the dashed outline turns blue over a faint blue wash and the title counts the files
+Rows grow in one after another; a thin blue bar fills, a small green check pops in when a file is done, and the summary in the card's last row shimmers while uploads run
+A failed row gives a short shake and its bar turns red; removed rows fold away
+With prefers-reduced-motion everything switches instantly
+Responsive behavior
+Fills its container up to 520px; long file names are cut with an ellipsis
+Dark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme="dark"
+Related
+Chat Composer
+Chat
+Prompt composer with model picker, voice input, app connections and approval request
+AI Answer
+Chat
+Streamed answer with source cards, citation chips that preview their source, copy, regenerate, feedback and follow-ups
+Glass Folder
+Card illustrations
+Glassy blue folder with documents behind a frosted pocket that tips open on hover
+affectUI · 60 components · 13 screens · 11 blocks · 24 illustrations · 8 motion effects
+affectUI
+
+Agent-ready React UI for AI products – one file each, no dependencies.
+
+Site
+Home
+Components
+Screens
+Blocks
+Illustrations
+Motion
+Pricing
+Docs
+Introduction
+Installation
+Accessibility
+Legal & Account
+Account
+License
+Terms
+Privacy
+Refund
+Imprint
+Cookie settings
+Contact
+
+Created by Flo
+
+Cookies
+
+With your OK we use Google Analytics and the Meta pixel to see how the site is used and to measure our ads. You can change this any time under “Cookie settings” in the footer. Privacy
+
+Decline
+Accept

@@ -1,0 +1,23 @@
+{
+  "checks": [
+    "Storage sidebar belongs to Skilled and Repo",
+    "new workspace starts with real empty map and no invented uploads",
+    "review shows real extracted text before any library write",
+    "approval stores original and index",
+    "metadata and original persist after reload; guide stays dismissed",
+    "full text search finds a passage beyond metadata excerpt",
+    "duplicate content is blocked by fingerprint",
+    "DOCX real XML extraction",
+    "SQL content indexing in chosen subject",
+    "XLSX shared strings and numeric cell extraction",
+    "PDF text extraction runs on local worker",
+    "map partitions all actual uploaded subjects",
+    "treemap drilling and breadcrumb return are functional",
+    "byte-perfect ZIP export and selected bulk delete",
+    "390px and 320px responsive layout has no document overflow",
+    "implementation never requests source UI websites",
+    "browser has no runtime errors"
+  ],
+  "errors": [],
+  "sourceRequests": []
+}

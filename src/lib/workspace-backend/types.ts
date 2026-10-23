@@ -1,3 +1,5 @@
+import type { KnowledgeTransport } from "../storage/knowledge-contract.ts";
+
 /**
  * The contract between the workspace screens and whatever stores their data.
  *
@@ -12,8 +14,8 @@ export type ResourceName =
   | "companies" | "contacts" | "views" | "active-tab" | "favorites" | "news" | "checklist" | "pixel-connected" | "documents" | "folders"
   | "report-period" | "reports"
   | "run-draft" | "agent-run"
-  | "settings-general" | "settings-members" | "settings-billing" | "settings-api-keys"
-  | "mapping" | "invoice" | "file-library" | "process" | "process-run" | "skill-library" | "skill-events";
+  | "command-settings" | "settings-general" | "settings-members" | "settings-billing" | "settings-api-keys"
+  | "mapping" | "invoice" | "file-library" | "process" | "process-run" | "skill-library" | "skill-events" | "knowledge-library";
 
 /** Read-only data a screen shows but never edits (the backend computes it). */
 export type QueryName = "analytics" | "usage" | "invoices" | "plans";
@@ -68,6 +70,8 @@ export interface WorkspaceBackend {
   command?<I, O>(name: CommandName, workspaceId: string, input: I, signal?: AbortSignal): Promise<O>;
   /** Present when the backend, not the browser, advances the agent run. */
   run?: RunTransport;
+  /** Original document bytes, full text indexes, server search and deletion for Storage. */
+  knowledge?: KnowledgeTransport;
   /** Store a file and return its URL. `workspaceId` is undefined for account-level files (the profile picture). Without `upload` the file travels inside the saved JSON as a data URL. */
   upload?(workspaceId: string | undefined, kind: UploadKind, file: File, signal?: AbortSignal): Promise<{ url: string }>;
 }

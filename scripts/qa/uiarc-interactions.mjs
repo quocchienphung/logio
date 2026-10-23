@@ -63,7 +63,7 @@ try{
   await card.focus();await page.keyboard.press('Escape');await page.getByText('Denied',{exact:true}).waitFor();
  });
  await check('Workspace menus scale in, retain an inert exit, glide with the pointer and jump immediately for keyboard input',async()=>{
-  const page=await pageFor();await page.goto(`${base}/personalize?section=settings`);await page.locator('.ui-sb').waitFor();
+  const page=await pageFor();await page.goto(`${base}/personalize?section=usage`);await page.locator('.ui-sb').waitFor();
   const opening=await capture(page,'.ui-as-user-menu [data-interaction-menu]',()=>page.locator('.ui-as-user').click(),'workspace-menu-open',750);
   assert.ok(opening.some(f=>f.opacity<.8));assert.equal(opening.at(-1).opacity,1);
   const menu=page.locator('.ui-as-user-menu [data-interaction-menu]'),rows=menu.locator('.ui-as-menu__item');
@@ -73,7 +73,7 @@ try{
   await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('inert'),'');await menu.waitFor({state:'detached'});
  });
  await check('Settings menu selection remains keyboard operable after the animated exit lifecycle',async()=>{
-  const page=await pageFor();await page.goto(`${base}/personalize?section=settings`);await page.locator('.ui-sb').waitFor();await page.getByRole('tab',{name:'General',exact:true}).click();
+  const page=await pageFor();await page.goto(`${base}/personalize?section=usage`);await page.locator('.ui-sb').waitFor();await page.getByRole('tab',{name:'General',exact:true}).click();
   const trigger=page.getByRole('button',{name:'Europe (Frankfurt)',exact:true});await trigger.focus();await page.keyboard.press('ArrowDown');await page.getByRole('menu').last().waitFor();await page.keyboard.press('End');await page.keyboard.press('Enter');assert.match(await page.locator('.ui-sb').innerText(),/Asia Pacific \(Singapore\)/);
  });
  await check('Press feedback uses the observed scale and releases; popup anchors remain steady',async()=>{

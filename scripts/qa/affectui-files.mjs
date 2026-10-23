@@ -21,7 +21,7 @@ try {
   await page.goto(`${base}/personalize?section=files`); await page.locator('.files-template').first().waitFor();
   await page.addStyleTag({ content: 'nextjs-portal{display:none!important}' });
   await check('Files is owned by Agent Chat; source copy, counts, search, privacy, sorting and list view work', async () => {
-    assert.deepEqual(await page.locator('.workspace-nav-label').allInnerTexts(), ['New chat', 'Files', 'Run', 'Settings']);
+    assert.deepEqual(await page.locator('.workspace-nav-label').allInnerTexts(), ['New chat', 'Files', 'Run', 'Usage', 'Settings']);
     assert.equal(await page.locator('.files-folder-open').count(), 4); assert.equal(await page.locator('.files-template').count(), 4);
     await page.getByRole('tab', { name: 'Shared', exact: true }).click(); assert.equal(await page.locator('.files-folder-open').count(), 2);
     await page.getByRole('tablist', { name: 'Folder visibility' }).getByRole('tab', { name: 'All', exact: true }).click();

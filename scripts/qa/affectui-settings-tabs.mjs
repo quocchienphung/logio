@@ -17,7 +17,7 @@ page.on('pageerror', error => errors.push(error.message));
 const dialog = () => page.locator('dialog[open]');
 const check = async (name, work) => { await work(); passed.push(name); console.log(`PASS ${name}`); };
 const tab = async name => { await page.getByRole('tab', { name, exact: true }).click(); await page.waitForTimeout(400); };
-const load = async () => { await page.goto(`${base}/personalize?section=settings`, { waitUntil: 'networkidle' }); await page.locator('.ui-sb').waitFor(); await page.addStyleTag({ content: 'nextjs-portal{display:none!important}' }); };
+const load = async () => { await page.goto(`${base}/personalize?section=usage`, { waitUntil: 'networkidle' }); await page.locator('.ui-sb').waitFor(); await page.addStyleTag({ content: 'nextjs-portal{display:none!important}' }); };
 try {
   if (!process.argv.includes('--compare-only')) {
     await load(); await tab('General');
@@ -113,7 +113,7 @@ try {
       const mobile = await mobileContext.newPage();
       mobile.on('pageerror', error => errors.push(error.message));
       try {
-        await mobile.goto(`${base}/personalize?section=settings&settings-tab=general`, { waitUntil: 'networkidle' });
+        await mobile.goto(`${base}/personalize?section=usage&settings-tab=general`, { waitUntil: 'networkidle' });
         await mobile.getByRole('button', { name: 'Europe (Frankfurt)', exact: true }).tap();
         await mobile.getByRole('menuitemradio', { name: 'Asia Pacific (Singapore)', exact: true }).tap();
         assert.equal(await mobile.locator('.ui-sb-form').evaluate(element => getComputedStyle(element).animationName), 'none');
@@ -135,7 +135,7 @@ try {
     for (const name of ['General', 'Members', 'API keys']) {
       const slug = name.toLowerCase().replaceAll(' ', '-');
       const shots = [];
-      for (const [label, url] of [['source', 'https://www.affectui.com/screens/settings-billing/full'], ['local', `${base}/personalize?section=settings`]]) {
+      for (const [label, url] of [['source', 'https://www.affectui.com/screens/settings-billing/full'], ['local', `${base}/personalize?section=usage`]]) {
         const sample = await browser.newPage({ viewport });
         await sample.goto(url, { waitUntil: 'networkidle' });
         await sample.getByRole('tab', { name, exact: true }).click();

@@ -14,7 +14,7 @@ const check = async (name, run) => {
   catch (error) { results.push({ name, ok: false, error: String(error.message).split('\n').slice(0, 4).join(' | ') }); console.log('FAIL', name, '\n   ', String(error.message).split('\n').slice(0, 4).join('\n    ')); }
 };
 const browser = await chromium.launch({ channel: 'chrome' });
-const sections = { process: 'canvas', tracing: 'trace', mapping: 'canvas', files: 'files', home: 'home', reports: 'reports', invoice: 'invoice', settings: 'settings', 'new-chat': 'chat', run: 'run', contacts: 'table', companies: 'table' };
+const sections = { process: 'canvas', tracing: 'trace', mapping: 'canvas', files: 'files', home: 'home', reports: 'reports', invoice: 'invoice', usage: 'settings', settings: 'preferences', 'new-chat': 'chat', run: 'run', contacts: 'table', companies: 'table' };
 
 await check('The server draws the skeleton of the page the address names, and never the Companies page (a reload used to flash it first)', async () => {
   for (const [section, kind] of Object.entries(sections)) {

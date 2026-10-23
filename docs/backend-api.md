@@ -67,10 +67,11 @@ Saving: edits appear immediately and are sent after `debounceMs` of quiet; one s
 | `reports` | workspace, collection | Saved reports | `SavedReport[]` (`Analytics.tsx`) |
 | `run-draft` | workspace | Run, inline draft | `DraftState` (`RunDraft.tsx`), saved after 800 ms |
 | `agent-run` | workspace, **live** | Run | `RunSnapshot` (`run-types.ts`) |
-| `settings-general` | workspace | Settings → General | `{region, logo}` |
-| `settings-members` | workspace, collection | Settings → Members | `SettingsMember[]` |
-| `settings-billing` | workspace | Settings → Billing | `BillingState` (`SettingsBilling.tsx`) |
-| `settings-api-keys` | workspace, collection, **secret `value`** | Settings → API keys | `{id, name, prefix, suffix, created, lastUsed}[]` |
+| `command-settings` | workspace | Settings page (`/personalize?section=settings`) | `SettingsValues` (`settings-command/settings-model.ts`); the theme is also kept in `preferences.theme` and the workspace name in `workspaces` |
+| `settings-general` | workspace | Usage → General | `{region, logo}` |
+| `settings-members` | workspace, collection | Usage → Members | `SettingsMember[]` |
+| `settings-billing` | workspace | Usage → Billing | `BillingState` (`SettingsBilling.tsx`) |
+| `settings-api-keys` | workspace, collection, **secret `value`** | Usage → API keys | `{id, name, prefix, suffix, created, lastUsed}[]` |
 | `mapping` | workspace | Mapping | `MappingData` (`version: 1`; `mapping-types.ts`), saved after 350 ms with `commands` |
 | `invoice` | workspace | Invoice | `InvoiceLibrary` (`version: 2`; `invoice-model.ts`; a document may carry an optional `stamp: { kind: "paid"|"received"|"approved"|"due", date: "yyyy-mm-dd", ink: "red"|"blue"|"green"|"violet"|"black" }`), with v1 migration; see `docs/research/invoice-credit/api-contract.md` |
 
@@ -110,7 +111,8 @@ This app can itself be the REST backend described above, with files on the machi
 | `GET/PUT /account/{name}`, `GET/PUT /workspaces/{id}/{name}` | One JSON file per resource under `LOGIO_DATA_DIR` (default `./.logio-data`). Names match `[a-z0-9-]{1,48}`, workspace ids `[A-Za-z0-9_-]{1,128}`. A version is a hash of the stored value (also sent as `ETag`); `If-None-Match` answers `304`, a stale `If-Match` answers `412`, a missing resource `204`. Writes are atomic (temp file + rename) and serialised per file. Body limit 24 MiB. |
 | `POST /workspaces/{id}/commands/skill.transfer` | Validates the whole bundle (hashes, byte counts, safe paths, same workspace), writes it to `LOGIO_AGENT_SKILLS_DIR/<agent>/` (default `<data>/agents/<agent>`) with `SKILL.md` + `LOGIO.md` per skill, and returns the receipt the page verifies. `LOGIO_AGENTS` (comma separated) limits agent ids. The receipt means the files were written; it does not mean a model loaded them. Nothing is executed. |
 | `GET /health` | `{data:{ok, store:{writable,dir}, agents:{dir,restricted}, auth:{tokenRequired}}}` (shown in the Repo page's Home server card). |
-| queries, uploads, other commands, `agent-run/actions` | Not served (`404`): the page uses its built-in samples and keeps files inside the saved JSON as `data:` URLs. |
+| `PUT/GET/DELETE /workspaces/{id}/storage/...` | Storage originals, full text indexes, authenticated downloads and server search; see the Storage API contract. |
+| queries, generic uploads, other commands, `agent-run/actions` | Not served (`404`): the page uses its built-in samples and keeps files inside the saved JSON as `data:` URLs. |
 
 Access: with `LOGIO_API_TOKEN` set every request needs `Authorization: Bearer <token>`. Without it only requests addressed to this machine or a private name (`localhost`, `127.x`, `10.x`, `192.168.x`, `172.16-31.x`, `*.local`, `*.lan`, `*.home`, `*.internal`) or a host in `LOGIO_ALLOWED_HOSTS` are served; anything else gets `403`. Browser writes must have an `Origin` equal to the request's `Host`. Switching a workspace from the browser backend to this one does not copy existing browser data. See `.env.example`.
 
@@ -172,3 +174,14 @@ A block's JSON includes `role` (`coordinator, planner, creator, coder, qa, revie
 # Files / Agent Chat
 
 Files adds the `file-library` workspace resource and reuses `folders` and `uploads/document`. See [the Files API contract](research/affectui-files/api-contract.md) for JSON shapes, signed download URLs, upload/auth behavior and cross-resource boundaries.
+
+
+### Storage knowledge library
+
+Storage has a complete original/index API as well as the `knowledge-library` metadata resource. Read [Storage API contract](research/storage/api-contract.md) for request/response types, setup, authentication and write/delete ordering.
+
+`knowledge-library` is `{ version: 1, onboarded: boolean, documents: StorageDocument[] }`; metadata uses the normal GET/PUT resource, ETags, validation and visible live polling. With a remote backend, `WorkspaceBackend.knowledge` stores originals and full indexes, serves authenticated downloads and full-text search, and deletes server copies. The default browser backend still uses IndexedDB. A clean second device can read/search/download server documents without a local cache.
+
+Routes under `{base}/workspaces/{id}/storage`: `PUT /documents/{documentId}` (multipart file/text/sha256), `GET /documents/{documentId}/index`, `GET /documents/{documentId}/original`, `GET /search?q=...`, `DELETE /documents/{documentId}`. The built-in `/api/workspace` server implements every route, using the same token/LAN guard and Origin check. Originals and index files persist below `LOGIO_DATA_DIR/workspaces/{id}/storage/`. Upload receipts are checked against actual SHA-256 and byte size; metadata is read back before completion. Delete metadata before deleting its original; a referenced original returns409, and failed deletion can be retried.
+
+Production Docker builds accept `NEXT_PUBLIC_WORKSPACE_API_URL` as a build argument; Docker Compose forwards it and mounts named data volumes. See `.env.example` and the Storage contract. No UIArc or affectUI service is invoked.

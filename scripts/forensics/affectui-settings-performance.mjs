@@ -9,7 +9,7 @@ const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try {
   await page.goto(`${base}/personalize`,{waitUntil:'networkidle'});
   const before=await page.evaluate(()=>performance.getEntriesByType('resource').filter(r=>r.initiatorType==='script').map(r=>r.name));
-  await page.locator('.workspace-nav-label').getByText('Settings',{exact:true}).click();await page.locator('.ui-sb').waitFor();await page.waitForTimeout(2200);
+  await page.locator('.workspace-nav-label').getByText('Usage',{exact:true}).click();await page.locator('.ui-sb').waitFor();await page.waitForTimeout(2200);
   const lazy=await page.evaluate(before=>performance.getEntriesByType('resource').filter(r=>r.initiatorType==='script'&&!before.includes(r.name)).map(r=>({file:r.name.split('/').at(-1),encodedBytes:r.encodedBodySize,decodedBytes:r.decodedBodySize})),before);
   assert.ok(lazy.length>0,'Settings has JavaScript chunks loaded only on navigation');
   await page.evaluate(()=>{

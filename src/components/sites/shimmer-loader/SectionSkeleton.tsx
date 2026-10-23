@@ -11,10 +11,10 @@ import "./shimmer-loader.css";
  */
 export function SectionSkeleton({ section, immediate = false, label }: { section: string; immediate?: boolean; label?: string }) {
   const kind = skeletonKindOf(section);
-  return <div className={`shm-page shm-page--${kind}${kind === "canvas" ? "" : " workspace-page"}`} data-immediate={immediate ? "" : undefined} data-kind={kind} role="status" aria-busy="true" aria-live="polite" style={kind === "canvas" ? { height: "100%", gap: 0 } : undefined}>
+  return <div className={`shm-page shm-page--${kind}${kind === "canvas" || kind === "preferences" ? "" : " workspace-page"}`} data-immediate={immediate ? "" : undefined} data-kind={kind} role="status" aria-busy="true" aria-live="polite" style={kind === "canvas" ? { height: "100%", gap: 0 } : undefined}>
     <span className="shm-sr">{label ?? loadingLabel(section)}</span>
     {kind === "home" ? <Home /> : kind === "table" ? <Table /> : kind === "reports" ? <Reports /> : kind === "chat" ? <Chat /> : kind === "files" ? <Files /> : kind === "run" ? <Run />
-      : kind === "canvas" ? <Canvas text={label ?? loadingLabel(section)} /> : kind === "trace" ? <Trace /> : kind === "invoice" ? <Invoice /> : <Settings />}
+      : kind === "canvas" ? <Canvas text={label ?? loadingLabel(section)} /> : kind === "trace" ? <Trace /> : kind === "invoice" ? <Invoice /> : kind === "preferences" ? <Preferences /> : <Settings />}
   </div>;
 }
 
@@ -123,6 +123,18 @@ function Invoice() {
     <div className="shm-table">{[0, 1, 2, 3].map(index => <div className="shm-row" key={index}><Skeleton width="70%" height={11} /><Skeleton width={40} height={11} /><Skeleton width={60} height={11} /></div>)}</div>
     <div style={{ display: "grid", justifyItems: "end", gap: 8 }}><Skeleton width={160} height={12} /><Skeleton width={200} height={20} radius={5} /></div>
   </div></div>;
+}
+
+/** The Settings page: its header with the search field, a navigation column and rows of a label, a hint and a control. */
+function Preferences() {
+  return <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 208px) minmax(0, 1fr)", gridTemplateRows: "56px minmax(0, 1fr)", height: "100%", minHeight: 420 }}>
+    <div className="shm-row" style={{ gridColumn: "1 / -1", justifyContent: "space-between", padding: "0 12px 0 20px", borderBottom: ".5px solid rgba(128,128,128,.2)" }}><Skeleton width={64} height={14} /><Skeleton width={300} height={34} radius={10} /></div>
+    <div className="shm-col" style={{ padding: "12px 8px", gap: 10, borderRight: ".5px solid rgba(128,128,128,.2)" }}>{[0, 1, 2, 3, 4, 5].map(index => <Skeleton key={index} height={28} radius={8} />)}</div>
+    <div className="shm-col" style={{ padding: "28px 32px", gap: 22, maxWidth: 684 }}>
+      <div className="shm-col"><Skeleton width={90} height={14} /><Skeleton width="70%" height={11} /></div>
+      {[0, 1, 2, 3, 4].map(index => <div className="shm-row" key={index} style={{ justifyContent: "space-between", gap: 24 }}><div className="shm-col" style={{ flex: 1 }}><Skeleton width={`${34 + (index * 9) % 30}%`} height={12} /><Skeleton width="70%" height={10} /></div><Skeleton width={index % 2 ? 42 : 200} height={index % 2 ? 24 : 32} radius={index % 2 ? 12 : 9} /></div>)}
+    </div>
+  </div>;
 }
 
 function Settings() {

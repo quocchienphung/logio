@@ -11,5 +11,6 @@ EXPOSE 3000
 
 ENV NODE_ENV=development
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV LOGIO_DATA_DIR=/srv/logio-data
 
 CMD ["npm", "run", "dev"]
