@@ -39,7 +39,7 @@ export function S03BuildCustomWorkflows() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/payment-links/api" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_explore_docs">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payment-links/api" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_explore_docs">
                           {"Explore the docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -212,7 +212,7 @@ export function S03BuildCustomWorkflows() {
                       <div className="Copy__body">
                         <p>
                           {"Use our API with "}
-                          <a className="Link" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Connect"}
                           </a>
                           {" to build Payment Links into your product offering, enabling your customers to create payment links directly from their dashboard."}

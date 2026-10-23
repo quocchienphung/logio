@@ -1,0 +1,61 @@
+{
+  "results": [
+    {
+      "name": "single choice: click opens, arrows + Enter pick, Esc and Tab close, type-ahead jumps",
+      "pass": true
+    },
+    {
+      "name": "filter by owner narrows the board; the board card stage picker moves a deal",
+      "pass": true
+    },
+    {
+      "name": "searchable list: accent-insensitive filter, highlighted matches, empty state, first match active",
+      "pass": true
+    },
+    {
+      "name": "multiple choice: chips, +N, backspace removes, footer count, form value",
+      "pass": true
+    },
+    {
+      "name": "mapping project and task fields use the same control with status and health dots",
+      "pass": true
+    },
+    {
+      "name": "the list sits above a modal dialog; Esc closes the list before the dialog; the pick submits with the form",
+      "pass": true
+    },
+    {
+      "name": "Settings invite role and Appearance travel with their forms",
+      "pass": true
+    },
+    {
+      "name": "dark theme: field, list, highlight and text use the dark palette",
+      "pass": true
+    },
+    {
+      "name": "motion: the list eases in, fades out and unmounts, the highlight glides, the chevron turns",
+      "pass": true
+    },
+    {
+      "name": "small viewport: the list flips above the field and stays inside the window",
+      "pass": true
+    },
+    {
+      "name": "reduced motion: no animations run when the list opens",
+      "pass": true
+    },
+    {
+      "name": "touch screens: 44px rows, 16px text, the list fits the field width",
+      "pass": true
+    },
+    {
+      "name": "document dialog: the Folder choice moves the document into the folder",
+      "pass": true
+    },
+    {
+      "name": "no native <select> remains anywhere in the workspace screens",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

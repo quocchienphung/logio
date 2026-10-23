@@ -1,0 +1,72 @@
+{
+  "base": "http://localhost:3000",
+  "date": "2026-10-21T13:07:17.776Z",
+  "results": [
+    {
+      "name": "Desktop Guide me opens the intro and preserves the direct workspace URL",
+      "ok": true
+    },
+    {
+      "name": "Five real rendering stages progress from blank paper through strokes, blueprint, color and the finished painting",
+      "ok": true
+    },
+    {
+      "name": "Pause freezes the clock, Resume advances it, Replay starts again and the timeline is keyboard accessible",
+      "ok": true
+    },
+    {
+      "name": "All six named artists can be followed using accessible pressed state",
+      "ok": true
+    },
+    {
+      "name": "The writer types the painting biography and the researcher visibly corrects the date",
+      "ok": true
+    },
+    {
+      "name": "Desktop composition fits the screen and the final artwork credits identify June 1889",
+      "ok": true
+    },
+    {
+      "name": "A 1280×800 laptop shows the complete painting and playback controls together",
+      "ok": true
+    },
+    {
+      "name": "Phone 390px keeps artwork, controls and Guide me usable without horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "Phone 320px keeps artwork, controls and Guide me usable without horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "Mobile homepage Guide me also points to the intro",
+      "ok": true
+    },
+    {
+      "name": "Final hold automatically enters the workspace and replaces the intro in browser history",
+      "ok": true
+    },
+    {
+      "name": "Uninterrupted autoplay reaches every painting phase near wall-clock time, then enters the workspace",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion immediately shows final art and waits for explicit navigation, including after Replay",
+      "ok": true
+    },
+    {
+      "name": "An artwork download failure exposes Retry artwork and Skip intro, and retry recovers",
+      "ok": true
+    },
+    {
+      "name": "WebKit renders the same interactive intro with distinct sketch and final pixels",
+      "ok": true
+    },
+    {
+      "name": "No browser runtime errors occur",
+      "ok": true
+    }
+  ],
+  "errors": [],
+  "externalOrigins": []
+}

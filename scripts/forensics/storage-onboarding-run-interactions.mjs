@@ -1,0 +1,5 @@
+import fs from 'node:fs/promises'; import {chromium} from 'playwright';
+const out='docs/research/storage/onboarding-run'; const browser=await chromium.launch({channel:'chrome'}); const page=await browser.newPage({viewport:{width:1440,height:1000}}); await page.goto('https://uiarc.dev/components/blocks/agent-run',{waitUntil:'domcontentloaded'});const root=page.locator('[class*="agent-run_root"]').first();await root.waitFor();await page.waitForTimeout(8000);await root.scrollIntoViewIfNeeded();
+await root.getByRole('button',{name:/Planned the change/}).click();await page.waitForTimeout(500);await root.screenshot({path:`${out}/agent-run-disclosure.png`});await fs.writeFile(`${out}/agent-run-disclosure.txt`,await root.innerText());await root.getByRole('button',{name:/Planned the change/}).click();
+await root.getByRole('button',{name:'Approve',exact:true}).click();await page.waitForTimeout(6000);await root.screenshot({path:`${out}/agent-run-approved.png`});await fs.writeFile(`${out}/agent-run-approved.txt`,await root.innerText());
+await browser.close();

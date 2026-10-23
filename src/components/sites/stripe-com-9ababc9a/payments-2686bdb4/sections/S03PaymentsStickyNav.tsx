@@ -34,7 +34,7 @@ export function S03PaymentsStickyNav() {
                 </a>
               </li>
               <li className="PaymentsStickyNav__item PaymentsStickyNav__item--mobileCTA">
-                <a className="CtaButton variant--Button CtaButton--arrow PaymentsStickyNav__mobileCtaButton" href="https://dashboard.stripe.com/register/payments" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="fixed_nav__start_now">
+                <a className="CtaButton variant--Button CtaButton--arrow PaymentsStickyNav__mobileCtaButton" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="fixed_nav__start_now">
                   {"Start now"}
                   <span className="nobr">
                     <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -48,7 +48,7 @@ export function S03PaymentsStickyNav() {
               </li>
             </ul>
           </div>
-          <a className="CtaButton variant--Button CtaButton--arrow PaymentsStickyNav__ctaButton" href="https://dashboard.stripe.com/register/payments" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="fixed_nav__start_now">
+          <a className="CtaButton variant--Button CtaButton--arrow PaymentsStickyNav__ctaButton" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="fixed_nav__start_now">
             {"Start now"}
             <span className="nobr">
               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

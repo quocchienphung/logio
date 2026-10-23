@@ -1,0 +1,48 @@
+[
+ {
+  "at": 0,
+  "rootClass": "ui-nsc",
+  "text": "NewDark mode is hereEvery screen now follows your system theme – or pick one yourself in settings.Try itNoticeScheduled maintenanceWe'll be offline on Sunday from 02:00 to 03:00 UTC. Your data stays safe.View statusInviteMara invited you to Design OpsJoin the workspace to see shared projects, files and comments.Accept invite",
+  "items": [
+   {
+    "cls": "ui-nsc__card",
+    "text": "NewDark mode is hereEvery screen now follows your system theme – or pick one yourself in settings.Try it",
+    "box": [
+     654,
+     494,
+     380,
+     170
+    ],
+    "data": {
+     "data-depth": "0"
+    }
+   },
+   {
+    "cls": "ui-nsc__card",
+    "text": "NoticeScheduled maintenanceWe'll be offline on Sunday from 02:00 to 03:00 UTC. Your data stays safe.View status",
+    "box": [
+     664,
+     515,
+     361,
+     162
+    ],
+    "data": {
+     "data-depth": "1"
+    }
+   },
+   {
+    "cls": "ui-nsc__card",
+    "text": "InviteMara invited you to Design OpsJoin the workspace to see shared projects, files and comments.Accept invite",
+    "box": [
+     673,
+     535,
+     342,
+     153
+    ],
+    "data": {
+     "data-depth": "2"
+    }
+   }
+  ]
+ }
+]

@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "Target and metric use custom menus, with no native select",
+    "Current target is announced as checked",
+    "Keyboard selection changes target and closes menu",
+    "Selection restores trigger focus",
+    "Menu uses the observed 16px popup radius",
+    "Escape closes without changing target",
+    "Click outside closes menu",
+    "GitHub action focuses the URL field",
+    "Invalid URL error is beside the composer",
+    "Local validation does not fabricate failed network measurements",
+    "Repository URL discovers choices instead of failing",
+    "Discovered skills can be searched",
+    "Chosen repository skill imports into the selected target",
+    "Imported card starts expanded",
+    "Collapsed details stay mounted and inert",
+    "Reopening restores captured content",
+    "Metric picker selection changes its value",
+    "Mobile popup stays inside viewport",
+    "Mobile page has no horizontal overflow",
+    "Small 320px layout fits without horizontal overflow",
+    "Interaction workflow has no runtime errors"
+  ],
+  "errors": []
+}

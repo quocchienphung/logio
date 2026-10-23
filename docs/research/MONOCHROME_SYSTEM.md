@@ -29,3 +29,14 @@ There is no page-level `filter: grayscale()`. Every layer is remapped at its sou
 The developers-section wave uses the reference shader's `clamp(0.0, 1.0, v_clipPosition.z * 6.0)`
 (arguments in the reference order). SwiftShader (headless Chromium) resolves it to a full fade, so the
 wave is invisible in headless screenshots; real GPUs render it. Left as in the reference on purpose.
+
+## Overrides must keep the reference's conditions
+
+`mono.css` and `overrides.css` are unlayered, so every declaration in them beats the (layered) reference rules at
+**every** viewport. A colour remap of a rule the reference only applies under a media query therefore has to sit
+under the same query, otherwise it switches that rule's styling on elsewhere. This happened with
+`.hds-navigation-menu__overlay`: the reference blurs the page behind a menu with a transparent gradient only at
+`min-width: 940px`, while on phones the open menu sits on an opaque white overlay; the unconditional remap made
+the phone overlay transparent and the page showed through the open menu. Run
+`node scripts/forensics/mobile/mono-audit.mjs` after touching either file: it lists unconditional overrides of
+selectors the reference only styles conditionally.

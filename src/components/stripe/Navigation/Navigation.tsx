@@ -20,13 +20,15 @@ import {
 } from "@/components/stripe/icons";
 import { MegaMenuContent } from "./MegaMenu";
 import { MENUS, type Menu } from "./menus";
+import { interactionMotion } from "@/components/interaction/motion-tokens";
 
 type MenuId = Menu["id"];
 type Status = "initial" | "open" | "close";
 
-const OPEN_DELAY = 100;
+// Menus open on the first hover frame; the close delay alone keeps passing pointers from flickering them.
+const OPEN_DELAY = 0;
 const CLOSE_DELAY = 150;
-const CLOSE_ANIM = 300; // --navigation-duration-slow
+const CLOSE_ANIM = interactionMotion.exit;
 const MOBILE_QUERY = "(max-width: 939px)";
 
 /**
@@ -148,7 +150,7 @@ function NavigationMenu() {
         );
         setLeaving(active);
         clear("leave");
-        timers.current.leave = window.setTimeout(() => setLeaving(null), 500);
+        timers.current.leave = window.setTimeout(() => setLeaving(null), interactionMotion.spring);
       } else {
         setDirection(undefined);
       }
@@ -162,7 +164,8 @@ function NavigationMenu() {
   const scheduleOpen = (id: MenuId) => {
     if (mobile) return;
     clear("open");
-    timers.current.open = window.setTimeout(() => open(id), OPEN_DELAY);
+    if (OPEN_DELAY === 0) open(id);
+    else timers.current.open = window.setTimeout(() => open(id), OPEN_DELAY);
   };
 
   const close = useCallback(() => {
@@ -204,12 +207,10 @@ function NavigationMenu() {
     setPopupStatus("initial");
   };
 
-  // initial → open on the next frame so the clip-path/opacity transitions run
+  // initial → open on the next frame so the open transition starts from the initial styles
   useLayoutEffect(() => {
     if (popupStatus !== "initial") return;
-    let raf = requestAnimationFrame(() => {
-      raf = requestAnimationFrame(() => setPopupStatus("open"));
-    });
+    const raf = requestAnimationFrame(() => setPopupStatus("open"));
     return () => cancelAnimationFrame(raf);
   }, [popupStatus]);
 
@@ -332,7 +333,7 @@ function NavigationMenu() {
         <li className="hds-navigation-menu__item navigation-item navigation-item--desktop-only navigation-item--guide-me">
           <a
             className="hds-button hds-navigation-menu__trigger hds-button--transparent"
-            href="/personalize"
+            href="/guide"
             onMouseEnter={scheduleClose}
           >
             <SparkleIcon />
@@ -342,7 +343,7 @@ function NavigationMenu() {
         <li className="hds-navigation-menu__item navigation-item navigation-item__sign-in--mobile">
           <a
             className="hds-button hds-navigation-menu__trigger hds-button--transparent"
-            href="https://dashboard.stripe.com/login"
+            href="/login"
           >
             Sign in
           </a>
@@ -354,17 +355,17 @@ function NavigationMenu() {
           id="navigation-personalize-mobile"
         >
           <strong className="hds-text hds-text--sm hds-text--emphasized">
-            Not sure where to start?
+            Company CRM
           </strong>{" "}
-          Tell us about your business to get personalized Stripe product
-          recommendations.
+          Manage companies, explore your pipeline and organize your sales workspace.
         </span>
         <a
           className="hds-link hds-link--callout"
-          href="/personalize"
+          href="/guide"
           aria-describedby="navigation-personalize-mobile"
+          aria-label="Guide me"
         >
-          Find what&apos;s right for you
+          <SparkleIcon /> Guide me
           <LinkArrow />
         </a>
       </div>
@@ -380,7 +381,7 @@ function NavigationMenu() {
         <div className="hds-button-group">
           <a
             className="hds-button hds-button--primary"
-            href="https://dashboard.stripe.com/register"
+            href="/signup"
           >
             Start now
             <ButtonArrow />
@@ -482,7 +483,7 @@ function NavigationMenu() {
             <li className="hds-navigation-menu__item navigation-item">
               <a
                 className="hds-button navigation-cta-button navigation-item__sign-in hds-button--secondary-on-quiet hds-button--compact"
-                href="https://dashboard.stripe.com/login"
+                href="/login"
                 aria-label="Sign in"
                 onMouseEnter={scheduleClose}
               >
@@ -580,6 +581,7 @@ function NavigationMenu() {
                 <nav
                   className="hds-navigation-menu__popup"
                   data-status={popupStatus ?? undefined}
+                  inert={popupStatus === "close"}
                   data-activation-direction={mobile ? undefined : direction}
                   id={
                     active

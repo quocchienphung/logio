@@ -92,7 +92,7 @@ export function S07ChowNowUncoversNewGrowth() {
                                           {", Director, GTM Analytics and Data Science, ChowNow "}
                                         </footer>
                                       </blockquote>
-                                      <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/chownow" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="chow_now_customers_cta">
+                                      <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/chownow" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="chow_now_customers_cta">
                                         {"Read the full ChowNow story"}
                                         <span className="nobr">
                                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -183,7 +183,7 @@ export function S07ChowNowUncoversNewGrowth() {
                                           {", Senior Director, Head of Data, Lime "}
                                         </footer>
                                       </blockquote>
-                                      <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/lime" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="customer_lime_cta">
+                                      <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/lime" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="customer_lime_cta">
                                         {"Read the full Lime story"}
                                         <span className="nobr">
                                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

@@ -1,0 +1,7 @@
+{
+  "checks": 7,
+  "queuedReadings": 1,
+  "historicalPops": false,
+  "settledDrawLoopSleeps": true,
+  "reducedMotionStatic": true
+}

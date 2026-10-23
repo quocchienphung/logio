@@ -50,7 +50,7 @@ export function S06EasytouseSchema() {
                       <div className="Copy__body">
                         <p>
                           {"Quick sidebar access to a full map of the structure of your data stored in Stripe (including any "}
-                          <a className="Link" href="https://stripe.com/docs/payments/charges-api#storing-information-in-metadata" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/charges-api" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"additional metadata"}
                           </a>
                           {" you send us) makes it easy to combine all the relevant data needed from across Stripe’s products—payments, payouts, customers, subscriptions, refunds, and more."}
@@ -214,7 +214,7 @@ export function S06EasytouseSchema() {
                       <div className="SigmaSchemaTable__caption">
                         <h1 className="CopyTitle CopyTitle--variantDetail SigmaSchemaTable__captionTitle">
                           {"Preview the "}
-                          <a className="Link" href="https://dashboard.stripe.com/stripe-schema" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="stripe_data_at__full_schema">
+                          <a className="Link" href="/unavailable/stripe/dashboard.stripe.com/stripe-schema" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="stripe_data_at__full_schema">
                             {"full schema"}
                           </a>
                         </h1>

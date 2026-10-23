@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "name": "authenticated save sends library, command, If-Match and reloads server data",
+      "pass": true
+    },
+    {
+      "name": "save failure retains edits and never reports successful issue",
+      "pass": true
+    },
+    {
+      "name": "revision conflicts block overwrites and offer explicit reload",
+      "pass": true
+    },
+    {
+      "name": "load errors show retry instead of invented invoice data",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

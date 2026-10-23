@@ -1,0 +1,663 @@
+{
+  "date": "2026-10-21T18:45:29.220Z",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "White workspace frames the painting and its surrounding document without extra titles",
+      "ok": true
+    },
+    {
+      "name": "One continuous color pass builds the painting over fifteen seconds",
+      "ok": true
+    },
+    {
+      "name": "Paint appears along actual cursor trajectories and stays absent ahead of the wands",
+      "ok": true
+    },
+    {
+      "name": "Autoplay opens browse at fifteen seconds and replaces the intro history entry",
+      "ok": true
+    },
+    {
+      "name": "Writers type, revise and follow their actual text carets, including after mobile reflow",
+      "ok": true
+    },
+    {
+      "name": "Provider presence follows the chosen agent and dims its teammates",
+      "ok": true
+    },
+    {
+      "name": "Comment popups stream in, collapse to pins and reopen on hover",
+      "ok": true
+    },
+    {
+      "name": "Reading and replying pauses the intro; Escape closes only the popup and resumes it",
+      "ok": true
+    },
+    {
+      "name": "Popup replies stay local and the check button resolves its comment",
+      "ok": true
+    },
+    {
+      "name": "Popup windows fit phones and small landscape screens and remain touch operable",
+      "ok": true
+    },
+    {
+      "name": "Painter tips travel steadily through the old phase boundaries, without teleporting",
+      "ok": true
+    },
+    {
+      "name": "All four popups stay visible and interactive in their own rail, without covering the document",
+      "ok": true
+    },
+    {
+      "name": "The frame maker traces a progressively gilded frame at desktop and phone sizes",
+      "ok": true
+    },
+    {
+      "name": "An old pin replaces the active popup; moving to Reply keeps it open without stacking cards",
+      "ok": true
+    },
+    {
+      "name": "Phone, small phone, tablet, wide desktop and landscape keep all content within the white workspace",
+      "ok": true
+    },
+    {
+      "name": "Resizing during painting redraws its current reveal correctly",
+      "ok": true
+    },
+    {
+      "name": "Keyboard pause/resume and Escape work without visible controls",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion shows finished art without cursors, then continues at fifteen seconds",
+      "ok": true
+    },
+    {
+      "name": "An asset failure allows retry and recovery",
+      "ok": true
+    },
+    {
+      "name": "Homepage desktop/mobile Guide me links enter this intro; direct browse bypasses it",
+      "ok": true
+    },
+    {
+      "name": "WebKit paints distinct early and final pixels with the same document layout",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors or external runtime service requests occur",
+      "ok": true
+    }
+  ],
+  "evidence": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "root": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 900
+      },
+      "canvas": {
+        "x": 454.21875,
+        "y": 183.453125,
+        "w": 531.546875,
+        "h": 421.078125
+      },
+      "sheet": {
+        "x": 160,
+        "y": 82.453125,
+        "w": 1120,
+        "h": 735.078125
+      },
+      "background": "rgb(255, 255, 255)",
+      "scrollWidth": 1440,
+      "scrollHeight": 900
+    },
+    "blank": {
+      "white": 1,
+      "color": 0,
+      "hash": 2935690304,
+      "width": 532,
+      "height": 421
+    },
+    "finalDifference": {
+      "mean": 0,
+      "wrongFraction": 0
+    },
+    "stages": [
+      {
+        "time": 880,
+        "phase": "color",
+        "white": 0.9935064935064936,
+        "color": 0.0012987012987012987,
+        "hash": 3075278979,
+        "width": 532,
+        "height": 421
+      },
+      {
+        "time": 3680,
+        "phase": "color",
+        "white": 0.6642857142857143,
+        "color": 0.16363636363636364,
+        "hash": 2576800779,
+        "width": 532,
+        "height": 421
+      },
+      {
+        "time": 7376,
+        "phase": "color",
+        "white": 0.262987012987013,
+        "color": 0.38376623376623376,
+        "hash": 4243623080,
+        "width": 532,
+        "height": 421
+      },
+      {
+        "time": 10784,
+        "phase": "color",
+        "white": 0.003896103896103896,
+        "color": 0.475974025974026,
+        "hash": 2616840877,
+        "width": 532,
+        "height": 421
+      },
+      {
+        "time": 13984,
+        "phase": "final",
+        "white": 0,
+        "color": 0.4779220779220779,
+        "hash": 2345930866,
+        "width": 532,
+        "height": 421
+      }
+    ],
+    "wandCorrelation": {
+      "changed": 78,
+      "near": 78,
+      "fraction": 1,
+      "farUntouched": 2301
+    },
+    "autoplayMs": 15293.29999999702,
+    "history": [
+      "http://localhost:3000/personalize?browse=1"
+    ],
+    "cursorSpeedPxPerMs": {
+      "median": 0.2972904074601299,
+      "maximum": 0.30984669012701466
+    },
+    "commentLayouts": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 555,
+          "y": 671.53125,
+          "right": 885,
+          "bottom": 796.53125
+        },
+        "documentBottom": 660.53125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 555,
+          "y": 671.53125,
+          "right": 885,
+          "bottom": 796.53125
+        },
+        "documentBottom": 660.53125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 555,
+          "y": 671.53125,
+          "right": 885,
+          "bottom": 796.53125
+        },
+        "documentBottom": 660.53125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 555,
+          "y": 671.53125,
+          "right": 885,
+          "bottom": 796.53125
+        },
+        "documentBottom": 660.53125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 30,
+          "y": 638.8125,
+          "right": 360,
+          "bottom": 763.8125
+        },
+        "documentBottom": 629.8125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 30,
+          "y": 638.8125,
+          "right": 360,
+          "bottom": 763.8125
+        },
+        "documentBottom": 629.8125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 30,
+          "y": 638.8125,
+          "right": 360,
+          "bottom": 763.8125
+        },
+        "documentBottom": 629.8125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 30,
+          "y": 638.8125,
+          "right": 360,
+          "bottom": 763.8125
+        },
+        "documentBottom": 629.8125,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 27,
+          "y": 413,
+          "right": 293,
+          "bottom": 516
+        },
+        "documentBottom": 407,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 27,
+          "y": 413,
+          "right": 293,
+          "bottom": 516
+        },
+        "documentBottom": 407,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 27,
+          "y": 413,
+          "right": 293,
+          "bottom": 516
+        },
+        "documentBottom": 407,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 27,
+          "y": 413,
+          "right": 293,
+          "bottom": 516
+        },
+        "documentBottom": 407,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 257,
+          "y": 235,
+          "right": 587,
+          "bottom": 338
+        },
+        "documentBottom": 229,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 257,
+          "y": 235,
+          "right": 587,
+          "bottom": 338
+        },
+        "documentBottom": 229,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 257,
+          "y": 235,
+          "right": 587,
+          "bottom": 338
+        },
+        "documentBottom": 229,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 257,
+          "y": 235,
+          "right": 587,
+          "bottom": 338
+        },
+        "documentBottom": 229,
+        "replyUncovered": true
+      }
+    ],
+    "framing": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 3000,
+        "paintedFraction": 0.16111111111111112,
+        "progress": 0.1531
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 6500,
+        "paintedFraction": 0.46111111111111114,
+        "progress": 0.4552
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 10500,
+        "paintedFraction": 0.8055555555555556,
+        "progress": 0.8
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 13200,
+        "paintedFraction": 1,
+        "progress": 1
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 3000,
+        "paintedFraction": 0.16111111111111112,
+        "progress": 0.1531
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 6500,
+        "paintedFraction": 0.46111111111111114,
+        "progress": 0.4552
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 10500,
+        "paintedFraction": 0.8055555555555556,
+        "progress": 0.8
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 13200,
+        "paintedFraction": 1,
+        "progress": 1
+      }
+    ],
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        "canvas": {
+          "x": 57,
+          "y": 114.171875,
+          "w": 276,
+          "h": 218.640625
+        },
+        "sheet": {
+          "x": 12,
+          "y": 37.171875,
+          "w": 366,
+          "h": 769.640625
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 390,
+        "scrollHeight": 844
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 568
+        },
+        "canvas": {
+          "x": 65,
+          "y": 77,
+          "w": 190,
+          "h": 150.515625
+        },
+        "sheet": {
+          "x": 10,
+          "y": 10,
+          "w": 300,
+          "h": 548
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 320,
+        "scrollHeight": 568
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 1024
+        },
+        "canvas": {
+          "x": 228,
+          "y": 207.421875,
+          "w": 312,
+          "h": 247.15625
+        },
+        "sheet": {
+          "x": 74,
+          "y": 124.421875,
+          "w": 620,
+          "h": 775.15625
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 768,
+        "scrollHeight": 1024
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "canvas": {
+          "x": 394.90625,
+          "y": 149.84375,
+          "w": 490.171875,
+          "h": 388.296875
+        },
+        "sheet": {
+          "x": 130,
+          "y": 64.84375,
+          "w": 1020,
+          "h": 670.296875
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 1280,
+        "scrollHeight": 800
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080
+        },
+        "canvas": {
+          "x": 694.21875,
+          "y": 273.453125,
+          "w": 531.546875,
+          "h": 421.078125
+        },
+        "sheet": {
+          "x": 400,
+          "y": 172.453125,
+          "w": 1120,
+          "h": 735.078125
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 1920,
+        "scrollHeight": 1080
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 844,
+          "h": 390
+        },
+        "canvas": {
+          "x": 326.984375,
+          "y": 77,
+          "w": 190,
+          "h": 150.515625
+        },
+        "sheet": {
+          "x": 10,
+          "y": 10,
+          "w": 824,
+          "h": 370
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 844,
+        "scrollHeight": 390
+      }
+    ]
+  },
+  "errors": [],
+  "externalOrigins": []
+}

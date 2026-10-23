@@ -66,7 +66,7 @@ export function S03WhatsIncluded() {
                           <div className="Copy__body">
                             <p>
                               {"Automatically translate all your Stripe transactions and billing terms into journal entries that map directly to your general ledger accounts. Plus, "}
-                              <a className="Link" href="https://stripe.com/docs/revenue-recognition/data-import" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                              <a className="Link" href="/unavailable/stripe/stripe.com/docs/revenue-recognition/data-import" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                 {"import non-Stripe data"}
                               </a>
                               {" from the Dashboard."}
@@ -139,11 +139,11 @@ export function S03WhatsIncluded() {
                           <div className="Copy__body">
                             <p>
                               {"Create and automate "}
-                              <a className="Link" href="https://stripe.com/docs/revenue-recognition/rules" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                              <a className="Link" href="/unavailable/stripe/stripe.com/docs/revenue-recognition/rules" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                 {"custom rules"}
                               </a>
                               {" to recognize revenue in line with your performance obligations, and "}
-                              <a className="Link" href="https://docs.stripe.com/revenue-recognition/chart-of-accounts" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                              <a className="Link" href="/unavailable/stripe/docs.stripe.com/revenue-recognition/chart-of-accounts" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                 {"map"}
                               </a>
                               {" it to your general ledger accounts."}
@@ -180,7 +180,7 @@ export function S03WhatsIncluded() {
                           <div className="Copy__body">
                             <p>
                               {"Close your books faster, and reduce manual spreadsheets by using traceable journal entries and "}
-                              <a className="Link" href="https://docs.stripe.com/revenue-recognition/reports" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                              <a className="Link" href="/unavailable/stripe/docs.stripe.com/revenue-recognition/reports" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                 {"accounting reports"}
                               </a>
                               {" that are always ready to use."}
@@ -210,15 +210,15 @@ export function S03WhatsIncluded() {
                             <div className="CopyBody CopyBody--variantDetail CopyBody--anchored">
                               <p>
                                 {"You can "}
-                                <a className="Link" href="https://docs.stripe.com/revenue-recognition/data-import" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/docs.stripe.com/revenue-recognition/data-import" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"import"}
                                 </a>
                                 {" other transactions via CSV files for a unified revenue view. Sync "}
-                                <a className="Link" href="https://docs.stripe.com/revenue-recognition/data-import/apple-app-store" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/docs.stripe.com/revenue-recognition/data-import/apple-app-store" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Apple App Store"}
                                 </a>
                                 {" and "}
-                                <a className="Link" href="https://docs.stripe.com/revenue-recognition/data-import/google-play" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/docs.stripe.com/revenue-recognition/data-import/google-play" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Google Play"}
                                 </a>
                                 {" data with Revenue Recognition to automate accounting for in-app purchases."}
@@ -1365,7 +1365,7 @@ export function S03WhatsIncluded() {
                   <div className="Copy__body">
                     <p>
                       {"Eliminate manual accounting for new pricing strategies. Stripe Revenue Recognition automatically calculates revenue allocations for all "}
-                      <a className="Link" href="https://stripe.com/billing/features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/stripe.com/billing/features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"Stripe billing models"}
                       </a>
                       {", including pay-as-you-go and metered models—no code needed."}

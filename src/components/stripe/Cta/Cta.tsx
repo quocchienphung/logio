@@ -25,7 +25,7 @@ export function Cta() {
             <div className="hds-button-group">
               <a
                 className="hds-button hds-button--primary"
-                href="https://dashboard.stripe.com/register"
+                href="/signup"
                 data-analytics-label="ready_to_get__start_now"
               >
                 {"Start now"}
@@ -230,7 +230,7 @@ export function Cta() {
                 <div className="feature-detail__footer">
                   <a
                     className="hds-link hds-link--callout"
-                    href="https://docs.stripe.com/get-started"
+                    href="/unavailable/stripe/docs.stripe.com/get-started"
                     data-analytics-label="ready_to_get__api_reference"
                   >
                     {"Integration options"}

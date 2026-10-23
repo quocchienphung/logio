@@ -72,14 +72,14 @@ export function S00BillingHero() {
                       </li>
                       <li className="hero-subnav-dropdown-list-item">
                         <span className="hds-text hds-text--sm">
-                          <a className="hds-link hero-subnav-dropdown-list-item__link" href="https://stripe.com/billing/pricing" data-analytics-label="hero__top_nav__pricing__subscriptions">
+                          <a className="hds-link hero-subnav-dropdown-list-item__link" href="/unavailable/stripe/stripe.com/billing/pricing" data-analytics-label="hero__top_nav__pricing__subscriptions">
                             {"Subscriptions"}
                           </a>
                         </span>
                       </li>
                       <li className="hero-subnav-dropdown-list-item">
                         <span className="hds-text hds-text--sm">
-                          <a className="hds-link hero-subnav-dropdown-list-item__link" href="https://stripe.com/invoicing/pricing" data-analytics-label="hero__top_nav__pricing__invoicing">
+                          <a className="hds-link hero-subnav-dropdown-list-item__link" href="/unavailable/stripe/stripe.com/invoicing/pricing" data-analytics-label="hero__top_nav__pricing__invoicing">
                             {"Invoicing"}
                           </a>
                         </span>
@@ -93,7 +93,7 @@ export function S00BillingHero() {
               <ul className="hero-subnav-items">
                 <li className="hero-subnav-item">
                   <span className="hds-text hds-text--sm">
-                    <a className="hds-link hero-subnav-item__link" href="https://docs.stripe.com/billing" data-analytics-label="hero__top_nav__docs">
+                    <a className="hds-link hero-subnav-item__link" href="/unavailable/stripe/docs.stripe.com/billing" data-analytics-label="hero__top_nav__docs">
                       {"Docs"}
                       <span className="hero-subnav-item__icon-end">
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon" aria-hidden="true">
@@ -180,14 +180,14 @@ export function S00BillingHero() {
                           </li>
                           <li className="hero-subnav-dropdown-list-item">
                             <span className="hds-text hds-text--sm">
-                              <a className="hds-link hero-subnav-dropdown-list-item__link" href="https://stripe.com/billing/pricing" data-analytics-label="hero__top_nav__pricing__subscriptions">
+                              <a className="hds-link hero-subnav-dropdown-list-item__link" href="/unavailable/stripe/stripe.com/billing/pricing" data-analytics-label="hero__top_nav__pricing__subscriptions">
                                 {"Subscriptions"}
                               </a>
                             </span>
                           </li>
                           <li className="hero-subnav-dropdown-list-item">
                             <span className="hds-text hds-text--sm">
-                              <a className="hds-link hero-subnav-dropdown-list-item__link" href="https://stripe.com/invoicing/pricing" data-analytics-label="hero__top_nav__pricing__invoicing">
+                              <a className="hds-link hero-subnav-dropdown-list-item__link" href="/unavailable/stripe/stripe.com/invoicing/pricing" data-analytics-label="hero__top_nav__pricing__invoicing">
                                 {"Invoicing"}
                               </a>
                             </span>
@@ -201,7 +201,7 @@ export function S00BillingHero() {
                   <ul className="hero-subnav-items">
                     <li className="hero-subnav-item">
                       <span className="hds-text hds-text--sm">
-                        <a className="hds-link hero-subnav-item__link" href="https://docs.stripe.com/billing" data-analytics-label="hero__top_nav__docs">
+                        <a className="hds-link hero-subnav-item__link" href="/unavailable/stripe/docs.stripe.com/billing" data-analytics-label="hero__top_nav__docs">
                           {"Docs"}
                           <span className="hero-subnav-item__icon-end">
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon" aria-hidden="true">
@@ -213,7 +213,7 @@ export function S00BillingHero() {
                     </li>
                   </ul>
                   <div className="hds-button-group">
-                    <a className="hds-button hds-button--primary hds-button--compact" href="https://dashboard.stripe.com/register/billing" data-analytics-label="hero__sticky_sub_nav__start_now">
+                    <a className="hds-button hds-button--primary hds-button--compact" href="/signup" data-analytics-label="hero__sticky_sub_nav__start_now">
                       {"Start now"}
                       <span className="hds-nowrap-svg">
                         <svg className="hds-icon hds-icon-hover-arrow" width="5" height="8" fill="none" viewBox="0 0.5 5 8">
@@ -251,7 +251,7 @@ export function S00BillingHero() {
             </h1>
             <div className="billing-hero__ctas">
               <div className="hds-button-group">
-                <a className="hds-button hds-button--primary" href="https://dashboard.stripe.com/register/billing" data-analytics-label="hero__start_now">
+                <a className="hds-button hds-button--primary" href="/signup" data-analytics-label="hero__start_now">
                   {"Start now"}
                   <span className="hds-nowrap-svg">
                     <svg className="hds-icon hds-icon-hover-arrow" width="5" height="8" fill="none" viewBox="0 0.5 5 8">
@@ -269,7 +269,7 @@ export function S00BillingHero() {
                     </svg>
                   </span>
                 </a>
-                <a className="hds-button hds-button--secondary" href="https://stripe.com/contact/sales" data-analytics-label="hero__contact_sales">
+                <a className="hds-button hds-button--secondary" href="/unavailable/stripe/stripe.com/contact/sales" data-analytics-label="hero__contact_sales">
                   {"Contact sales"}
                 </a>
               </div>

@@ -1,0 +1,12 @@
+{
+  "passed": [
+    "The floor is the page background: two layers, behind the stage, covering the page, never catching the pointer",
+    "The contour morphs as five sine waves with a 3 s period; the light layer is the same shape at 0.8427 scale; drift runs on its own 2.5 s beat",
+    "One rAF loop drives it; it pauses when the floor leaves the screen and resumes without a jump",
+    "Reduced motion: the floor holds the preview still pose and nothing animates",
+    "It scales with the page width and stays anchored at the bottom in every orientation and size, with no overflow",
+    "The selector still works on the floor: hover, the live card, clicks on the bare floor; nothing leaves localhost"
+  ],
+  "errors": [],
+  "external": []
+}

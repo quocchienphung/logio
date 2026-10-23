@@ -1,0 +1,529 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+126
+Buttons
+10
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+New
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+7
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+New
+Sliders
+3
+Slider
+Elastic slider
+Range histogram slider
+New
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+4
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+7
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Messages
+5
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+New
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+3
+Card
+Metric card
+Empty state
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Pro
+Sunburst
+Sankey flow
+Funnel chart
+Radar chart
+Realtime stream
+Race bar chart
+Data grid
+Tables
+6
+Sortable data table
+Tree view
+Reorderable list
+New
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+103
+Special components
+54
+Docks and tabs
+6
+Pro
+Share sheet
+Action morph
+Morph nav
+Dock
+Liquid tab bar
+Orbit menu
+Glass
+4
+Pro
+Glass menu
+Glass segmented
+Glass card
+Glass tab bar
+Surfaces
+5
+Pro
+Sheet stack
+Wallet stack
+Control center
+Holo card
+Link unfurl
+Galleries
+4
+Pro
+Product gallery
+Lightbox gallery
+Photo grid
+Cover flow
+Audio and video
+3
+Pro
+Voice orb
+Now playing
+Voice recorder
+Data
+4
+Pro
+Booking pill
+Activity rings
+Time dial
+Date reel
+Type
+4
+Keycap keyboard
+Pro
+Slot text
+Sand text
+Pro
+Typewriter terminal
+Pro
+Loaders
+4
+Pro
+Stretch refresh
+Morph loader
+Skeleton morph
+Black hole
+Playful
+3
+Pro
+Sticker peel
+Page curl
+Orbit logos
+Cursor
+3
+Pro
+Dot grid
+Gravity well
+Ink fluid
+AI
+5
+Pro
+Agent status
+New
+Tool call
+New
+Agent plan
+New
+Agent timeline
+New
+Context window
+New
+Illustrations
+9
+Pro
+Data flow
+Payment flow
+Multi-region failover
+Vector search
+Agent loop
+New
+Mixture of experts
+New
+Speculative decoding
+New
+Prompt cache
+New
+Reasoning tree
+New
+What’s new
+31 new
+Components
+Orbit menu
+Orbit menu
+Pro
+
+Hold a button and its actions orbit out, ready to pick with a drag.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Hut below Śnieżka
+
+Olivia Bennett, Karkonosze, Poland
+
+128 likes, not in an album
+Photo actions
+
+Press the button and drag to an action, or click it to keep the actions open.
+
+Reset photo
+When to use
+Three to six quick actions on one object, such as a note or photo.
+Touch-first surfaces where press, drag, and release should fire an action in one gesture.
+When not to use
+Use dropdown-menu or context-menu for longer or text-heavy lists.
+Use dock for tools that stay selected.
+Use action-button for a single action.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Orbit menu is part of Arc Pro
+Pro
+
+The preview is open to everyone. Pro members get the source, the install command, and updates for every Pro component.
+
+Get Arc Pro
+Sign in
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { OrbitMenu } from "@/components/arc/orbit-menu/orbit-menu";
+2
+import { Pin, Share2, Trash2 } from "lucide-react";
+3
+ 
+4
+export function NoteActions({ onAction }: { onAction: (id: string) => void }) {
+5
+  return (
+6
+    <OrbitMenu
+7
+      label="Note actions"
+8
+      onAction={onAction}
+9
+      actions={[
+10
+        { id: "pin", label: "Pin", icon: <Pin size={18} />, done: "Pinned" },
+11
+        { id: "share", label: "Share", icon: <Share2 size={18} /> },
+12
+        { id: "delete", label: "Delete", icon: <Trash2 size={18} />, tone: "danger" },
+13
+      ]}
+14
+    />
+15
+  );
+16
+}
+API reference
+OrbitMenu
+
+A round button that bursts into an arc of actions. Press, drag onto an action, and release to fire it, or tap to keep the arc open and tap again to close it.
+
+Prop
+Type
+Default
+Description
+actions
+Required
+{ id: string; label: string; icon: ReactNode; done?: string; tone?: "neutral" | "danger" }[]
+–
+Three to six actions. done is the short confirmation shown after firing and defaults to the label.
+onAction
+Required
+(id: string) => void
+–
+Called with the fired action's id.
+label
+string
+"Actions"
+Accessible name of the button and menu, also shown while the arc is open and nothing is targeted.
+radius
+number
+104
+Distance from the button center to each action, in px.
+spread
+number
+150
+Degrees the arc spans.
+direction
+number
+-90
+Degrees the arc opens toward: -90 up, 0 right, 90 down, 180 left.
+disabled
+boolean
+false
+Disables the trigger and closes the arc.
+announce
+boolean
+true
+Announces confirmations in a polite status region.
+onOpenChange
+(open: boolean) => void
+–
+Called when the arc opens or closes.
+className
+string
+–
+Class on the root element.
+Keyboard interactions
+Arrow keys
+On the trigger, open the arc and focus the first action (Arrow Up focuses the last). On an action, move around the arc.
+Home
+or
+End
+Focus the first or last action.
+Enter
+or
+Space
+Fire the focused action. On the trigger, open the arc and focus the first action, or close it if open.
+Escape
+Close the arc and return focus to the trigger.
+Tab
+Close the arc and move on.
+Accessibility
+The trigger has aria-haspopup="menu", aria-expanded, and aria-controls; actions are role="menuitem" buttons named by their label.
+The closed menu is inert, and a roving tabindex keeps one action in the tab order.
+Confirmations such as "Pinned" are read from a role="status" region when announce is on.
+Motion
+Actions swirl out along the arc in reading order and fold back in reverse; a lens glides between targeted actions and nearby actions lean toward the pointer.
+The trigger glyph morphs between ellipsis, close, and check, and a label pill springs to fit its text. It names the targeted action, shows Release to cancel when a drag leaves the arc, and shows the done text for about 1.4 seconds after firing.
+Targeting goes by angle, like a pie menu: the pointer only has to head toward an action, outside a 34px dead zone around the trigger. Releasing off the arc, or a hold without a drag, folds it away without firing.
+Reduced motion drops the swirl, blur, and magnet pull, leaving short fades and instant position changes.
+Responsive behavior
+The arc is 104px from the trigger by default and is not clamped to the viewport; set direction and radius so it opens into free space.
+Trigger and actions use touch-action none so drag-to-select works on touch; pointer magnet effects skip touch.
+Performance
+The open trigger and the label pill use backdrop blur, removed under prefers-reduced-transparency. Actions use a near solid material, so six moving items never stack blurs.
+The closed menu stays mounted but inert; with six actions the cost is small.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for three to six quick actions on one object (a note, a photo) where a dropdown is too heavy and a toolbar too loud. Use dropdown-menu or context-menu for longer or text-heavy lists.
+Give each action a done string for the confirmation pill, mark destructive actions tone="danger", and set direction so the arc opens into free space.
+/components/orbit-menu/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Dropdown menu
+Component
+A focused list of actions anchored to a trigger.
+Context menu
+Component
+Secondary actions kept close to the selected object.
+Action button
+Component
+A compact button for frequent toolbar actions.
+Dock
+Pro
+Component
+A floating tool dock with a gliding label, a springy selection, and trays that grow out of it.
+Previous
+Liquid tab bar
+Next
+Glass menu
+Arc · 183 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Orbit menu is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

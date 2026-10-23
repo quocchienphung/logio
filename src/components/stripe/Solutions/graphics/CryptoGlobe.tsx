@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { onTransitionSettled, runHeavy, transitionPlaying } from "@/lib/pageSettled";
 
 const FALLBACK = "/stripe/money-movement-fallback_2x-w894-1283768c.webp";
 const UI_POOL_SIZE = 5;
@@ -28,7 +29,7 @@ export function CryptoGlobe() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let intersecting = false;
     const syncPaused = () => {
-      if (renderer) renderer.paused = !intersecting || document.hidden || reduced.matches;
+      if (renderer) renderer.paused = !intersecting || document.hidden || reduced.matches || transitionPlaying();
     };
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -39,6 +40,7 @@ export function CryptoGlobe() {
     );
     io.observe(root);
     document.addEventListener("visibilitychange", syncPaused);
+    const offSettled = onTransitionSettled(syncPaused);
 
     // Debounced resize (reference: 150ms).
     let resizeTimer: number | undefined;
@@ -56,23 +58,25 @@ export function CryptoGlobe() {
     hoverRoot?.addEventListener("pointerleave", onLeave);
 
     import("./globe/GlobeRenderer")
-      .then(({ GlobeRenderer }) => {
-        if (disposed) return;
-        try {
-          renderer = new GlobeRenderer(canvas, { uiPool, position: { y: -1 } });
-          const rect = root.getBoundingClientRect();
-          renderer.setSize(rect.width, rect.height);
-          renderer.paused = true;
-          renderer.initScene();
-          renderer.onLoad(() => {
-            if (disposed) return;
-            setLoaded(true);
-            syncPaused();
-          });
-        } catch {
-          setWebgl(false);
-        }
-      })
+      .then(({ GlobeRenderer }) =>
+        runHeavy(() => {
+          if (disposed) return;
+          try {
+            renderer = new GlobeRenderer(canvas, { uiPool, position: { y: -1 } });
+            const rect = root.getBoundingClientRect();
+            renderer.setSize(rect.width, rect.height);
+            renderer.paused = true;
+            renderer.initScene();
+            renderer.onLoad(() => {
+              if (disposed) return;
+              setLoaded(true);
+              syncPaused();
+            });
+          } catch {
+            setWebgl(false);
+          }
+        }),
+      )
       .catch(() => setWebgl(false));
 
     return () => {
@@ -81,6 +85,7 @@ export function CryptoGlobe() {
       ro.disconnect();
       window.clearTimeout(resizeTimer);
       document.removeEventListener("visibilitychange", syncPaused);
+      offSettled();
       hoverRoot?.removeEventListener("pointerenter", onEnter);
       hoverRoot?.removeEventListener("pointerleave", onLeave);
       renderer?.dispose();

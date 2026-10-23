@@ -1,0 +1,569 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+126
+Buttons
+10
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+New
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+7
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+New
+Sliders
+3
+Slider
+Elastic slider
+Range histogram slider
+New
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+4
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+7
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Messages
+5
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+New
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+3
+Card
+Metric card
+Empty state
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Pro
+Sunburst
+Sankey flow
+Funnel chart
+Radar chart
+Realtime stream
+Race bar chart
+Data grid
+Tables
+6
+Sortable data table
+Tree view
+Reorderable list
+New
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+103
+Special components
+54
+What’s new
+31 new
+Components
+Treemap
+Treemap
+
+A squarified treemap: click to drill and the tiles grow to fill the view, with a breadcrumb back and metrics that morph every tile.
+
+$
+pnpm dlx shadcn@latest add @uiarc/treemap
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Book of business
+
+By region, country, and plan
+
+ARR
+Customers
+Growth
+Retention
+All regions
+
+$44.5M
+
+United States
+$18.4M
+Canada
+$2.4M
+Mexico
+$610K
+North America
+$21.4M
+Germany
+$4.1M
+United Kingdom
+$3.9M
+France
+$2.2M
+Netherlands
+$1.3M
+Nordics
+$1.6M
+Spain
+$890K
+Europe
+$14.0M
+Japan
+$2.8M
+Australia
+$1.7M
+India
+$980K
+Singapore
+$720K
+South Korea
+$840K
+Asia Pacific
+$7.0M
+Brazil
+$1.2M
+Chile
+$330K
+Colombia
+$290K
+Argentina
+$260K
+Latin America
+$2.1M
+Growth
++8%
++64%
+
+All regions, $44.5M
+
+Annual recurring revenue
+Path	Value	Share of parent	Growth
+North America / United States / Team	$4.0M	22%	+20%
+North America / United States / Business	$7.0M	38%	+25%
+North America / United States / Enterprise	$7.4M	40%	+30%
+North America / United States	$18.4M	86.1%	+26%
+North America / Canada / Team	$517K	22%	+15%
+North America / Canada / Business	$893K	38%	+20%
+North America / Canada / Enterprise	$940K	40%	+25%
+North America / Canada	$2.4M	11%	+21%
+North America / Mexico / Team	$134K	22%	+37%
+North America / Mexico / Business	$232K	38%	+42%
+North America / Mexico / Enterprise	$244K	40%	+47%
+North America / Mexico	$610K	2.9%	+43%
+North America	$21.4M	48%	+26%
+Europe / Germany / Team	$906K	22%	+24%
+Europe / Germany / Business	$1.6M	38%	+29%
+Europe / Germany / Enterprise	$1.6M	40%	+34%
+Europe / Germany	$4.1M	29.4%	+30%
+Europe / United Kingdom / Team	$849K	22%	+13%
+Europe / United Kingdom / Business	$1.5M	38%	+18%
+Europe / United Kingdom / Enterprise	$1.5M	40%	+23%
+Europe / United Kingdom	$3.9M	27.6%	+19%
+Europe / France / Team	$493K	22%	+18%
+Europe / France / Business	$851K	38%	+23%
+Europe / France / Enterprise	$896K	40%	+28%
+Europe / France	$2.2M	16%	+24%
+Europe / Netherlands / Team	$288K	22%	+27%
+Europe / Netherlands / Business	$498K	38%	+32%
+Europe / Netherlands / Enterprise	$524K	40%	+37%
+Europe / Netherlands	$1.3M	9.4%	+33%
+Europe / Nordics / Team	$348K	22%	+22%
+Europe / Nordics / Business	$600K	38%	+27%
+Europe / Nordics / Enterprise	$632K	40%	+32%
+Europe / Nordics	$1.6M	11.3%	+28%
+Europe / Spain / Team	$196K	22%	+32%
+Europe / Spain / Business	$338K	38%	+37%
+Europe / Spain / Enterprise	$356K	40%	+42%
+Europe / Spain	$890K	6.4%	+38%
+Europe	$14.0M	31.5%	+26%
+Asia Pacific / Japan / Team	$607K	22%	+29%
+Asia Pacific / Japan / Business	$1.0M	38%	+34%
+Asia Pacific / Japan / Enterprise	$1.1M	40%	+39%
+Asia Pacific / Japan	$2.8M	39.5%	+35%
+Asia Pacific / Australia / Team	$372K	22%	+17%
+Asia Pacific / Australia / Business	$642K	38%	+22%
+Asia Pacific / Australia / Enterprise	$676K	40%	+27%
+Asia Pacific / Australia	$1.7M	24.2%	+23%
+Asia Pacific / India / Team	$216K	22%	+54%
+Asia Pacific / India / Business	$372K	38%	+59%
+Asia Pacific / India / Enterprise	$392K	40%	+64%
+Asia Pacific / India	$980K	14%	+60%
+Asia Pacific / Singapore / Team	$158K	22%	+25%
+Asia Pacific / Singapore / Business	$274K	38%	+30%
+Asia Pacific / Singapore / Enterprise	$288K	40%	+35%
+Asia Pacific / Singapore	$720K	10.3%	+31%
+Asia Pacific / South Korea / Team	$185K	22%	+41%
+Asia Pacific / South Korea / Business	$319K	38%	+46%
+Asia Pacific / South Korea / Enterprise	$336K	40%	+51%
+Asia Pacific / South Korea	$840K	12%	+47%
+Asia Pacific	$7.0M	15.7%	+37%
+Latin America / Brazil / Team	$273K	22%	+45%
+Latin America / Brazil / Business	$471K	38%	+50%
+Latin America / Brazil / Enterprise	$496K	40%	+55%
+Latin America / Brazil	$1.2M	58.5%	+51%
+Latin America / Chile / Team	$73K	22%	+23%
+Latin America / Chile / Business	$125K	38%	+28%
+Latin America / Chile / Enterprise	$132K	40%	+33%
+Latin America / Chile	$330K	15.6%	+29%
+Latin America / Colombia / Team	$64K	22%	+48%
+Latin America / Colombia / Business	$110K	38%	+53%
+Latin America / Colombia / Enterprise	$116K	40%	+58%
+Latin America / Colombia	$290K	13.7%	+54%
+Latin America / Argentina / Team	$57K	22%	+8%
+Latin America / Argentina / Business	$99K	38%	+13%
+Latin America / Argentina / Enterprise	$104K	40%	+18%
+Latin America / Argentina	$260K	12.3%	+14%
+Latin America	$2.1M	4.8%	+43%
+When to use
+Many parts where the biggest ones matter and people drill for detail.
+Showing size and a second measure at once.
+When not to use
+Use bar-chart when exact comparisons between similar values matter.
+Use sunburst when the depth of the hierarchy is the story.
+Installation
+
+Add Treemap with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/treemap
+pnpm dlx shadcn@latest add @uiarc/treemap
+
+Adds the component and its local dependencies, and installs motion. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/treemap.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { Treemap } from "@/components/arc/treemap/treemap";
+2
+ 
+3
+const data = {
+4
+  id: "all", label: "All regions",
+5
+  children: [
+6
+    { id: "na", label: "North America", children: [{ id: "us", label: "United States", value: 18400, color: 24 }, { id: "ca", label: "Canada", value: 2350, color: 19 }] },
+7
+    { id: "eu", label: "Europe", children: [{ id: "de", label: "Germany", value: 4120, color: 28 }] },
+8
+  ],
+9
+};
+10
+ 
+11
+export function Revenue() {
+12
+  return <Treemap data={data} label="ARR" colorLabel="Growth" formatColor={value => `+${value}%`} />;
+13
+}
+API reference
+Treemap
+
+A squarified treemap of a hierarchy. Click a branch and its tile grows to fill the view while its children open inside; the breadcrumb zooms back out. Switching the size or shading measure morphs every tile.
+
+Prop
+Type
+Default
+Description
+data
+Required
+TreemapNode
+–
+The root: { id, label, value?, color?, children? }. A branch's value is the sum of its children.
+label
+Required
+string
+–
+What the whole is. Names the chart for assistive technology.
+formatValue
+(value: number) => string
+–
+Formats sizes on tiles, the total, and the tooltip.
+colorLabel
+string
+–
+Names the shading measure, such as "Growth". Tiles take the hue of their top level branch and deepen with the measure. Leave it out for one depth.
+formatColor
+(value: number) => string
+–
+Formats the shading measure.
+colorDomain
+[number, number]
+–
+Range of the shading measure. Defaults to the range of the leaves.
+focus
+string
+–
+Controlled id of the node that fills the view.
+defaultFocus
+string
+–
+Initial focus when uncontrolled. Defaults to the root.
+onFocusChange
+(id: string) => void
+–
+Called when people drill in or out.
+height
+number
+420
+Height of the tiles in pixels.
+emptyLabel
+string
+"No data yet"
+Shown when every value is zero.
+className
+string
+–
+Extra class on the root figure.
+Keyboard interactions
+Arrow keys
+Move to the nearest top level tile in that direction.
+Home
+or
+End
+Move to the first or last tile.
+Enter
+or
+Space
+Zooms into the tile in focus.
+Escape
+or
+Backspace
+Zooms out one level.
+Accessibility
+The tiles form a focusable group with a description of its keys; the breadcrumb is a nav with aria-current on the current level.
+The tile in focus is announced with its path, value, share of parent, and shading measure through a polite live region.
+A visually hidden table lists every node's path, value, share, and measure.
+Motion
+Drilling in carries every tile through one affine zoom: the chosen tile grows to fill the view, its siblings fly outward, and its children open inside it.
+Zooming out reverses the same path, so each level shrinks back into the tile it came from.
+Changing a measure re-lays out the same ids, so tiles resize and recolor in place; totals roll and breadcrumbs slide.
+Text never scales: tiles are sized each frame and labels appear only where they fit. Reduced motion places tiles immediately.
+Responsive behavior
+The layout squarifies to the measured width, so tiles stay close to square on any screen; headers and labels hide where they would not fit.
+Tap a tile to read it, tap a branch to drill in.
+Performance
+Layouts are computed per focus; animation interpolates rects and writes transforms and sizes directly. Comfortable up to a few hundred nodes.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Choose it for part-to-whole across a hierarchy with many leaves, such as revenue by region, country, and plan.
+Give nodes stable ids so switching the size measure morphs rather than rebuilds.
+The shading measure should be a magnitude (growth, margin), not identity; identity comes from the top level hue.
+Colors come from the shared --series-1 to --series-4 tokens in foundation.css: series 1 is the accent itself and series 2 to 4 rotate its hue, validated all-pairs for color vision deficiency across every accent in light and dark. Override the tokens on any ancestor to rebrand.
+/components/treemap/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Sunburst
+Pro
+Component
+A hierarchy in rings: click a segment and every arc swings around it as the new centre, with a breadcrumb back and a rolling total.
+Donut chart
+Component
+A donut whose arcs morph between datasets, with the active value rolling into the center.
+Bar chart
+Component
+Compare one measure across days and scrub any bar for its value.
+Waffle chart
+Component
+A ten by ten unit chart where every cell is one percent, and cells fly to their new group when the data changes.
+Previous
+Ridgeline
+Next
+Split bar
+Arc · 183 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+66 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

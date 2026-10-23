@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { onTransitionSettled, runHeavy, transitionPlaying } from "@/lib/pageSettled";
 
 const FALLBACK = "/stripe/card-placeholder_2x-w894-e383a280-mono.webp";
 
@@ -24,7 +25,7 @@ export function IssuingCardGraphic() {
     let intersecting = false;
     const syncPaused = () => {
       if (renderer)
-        renderer.paused = !intersecting || document.hidden || reduced.matches;
+        renderer.paused = !intersecting || document.hidden || reduced.matches || transitionPlaying();
     };
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -35,29 +36,33 @@ export function IssuingCardGraphic() {
     );
     io.observe(root);
     document.addEventListener("visibilitychange", syncPaused);
+    const offSettled = onTransitionSettled(syncPaused);
 
     import("./issuing/IssuingCardRenderer")
-      .then(async ({ IssuingCardRenderer }) => {
-        if (disposed) return;
-        try {
-          renderer = new IssuingCardRenderer(
-            canvas,
-            root.closest<HTMLElement>("[data-bento-card-root]"),
-          );
-          await renderer.init();
+      .then(({ IssuingCardRenderer }) =>
+        runHeavy(async () => {
           if (disposed) return;
-          syncPaused();
-          if (renderer.paused) renderer.drawOnce();
-        } catch {
-          setWebgl(false);
-        }
-      })
+          try {
+            renderer = new IssuingCardRenderer(
+              canvas,
+              root.closest<HTMLElement>("[data-bento-card-root]"),
+            );
+            await renderer.init();
+            if (disposed) return;
+            syncPaused();
+            if (renderer.paused) renderer.drawOnce();
+          } catch {
+            setWebgl(false);
+          }
+        }),
+      )
       .catch(() => setWebgl(false));
 
     return () => {
       disposed = true;
       io.disconnect();
       document.removeEventListener("visibilitychange", syncPaused);
+      offSettled();
       renderer?.dispose();
     };
   }, []);

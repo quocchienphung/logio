@@ -1,0 +1,154 @@
+{
+ "language": [
+  {
+   "text": "English (US)",
+   "selected": "false"
+  },
+  {
+   "text": "English (UK)",
+   "selected": "true"
+  },
+  {
+   "text": "Deutsch",
+   "selected": "false"
+  },
+  {
+   "text": "Français",
+   "selected": "false"
+  },
+  {
+   "text": "Português",
+   "selected": "false"
+  },
+  {
+   "text": "日本語",
+   "selected": "false"
+  }
+ ],
+ "timezone": [
+  {
+   "text": "Lisbon (GMT+1)",
+   "selected": "true"
+  },
+  {
+   "text": "London (GMT+1)",
+   "selected": "false"
+  },
+  {
+   "text": "Berlin (GMT+2)",
+   "selected": "false"
+  },
+  {
+   "text": "New York (GMT-4)",
+   "selected": "false"
+  },
+  {
+   "text": "San Francisco (GMT-7)",
+   "selected": "false"
+  },
+  {
+   "text": "Tokyo (GMT+9)",
+   "selected": "false"
+  }
+ ],
+ "font-size": [
+  {
+   "text": "Small",
+   "selected": "false"
+  },
+  {
+   "text": "Default",
+   "selected": "true"
+  },
+  {
+   "text": "Large",
+   "selected": "false"
+  }
+ ],
+ "email-cadence": [
+  {
+   "text": "Right away",
+   "selected": "false"
+  },
+  {
+   "text": "Hourly digest",
+   "selected": "true"
+  },
+  {
+   "text": "Daily digest",
+   "selected": "false"
+  },
+  {
+   "text": "Never",
+   "selected": "false"
+  }
+ ],
+ "session-length": [
+  {
+   "text": "1 hour",
+   "selected": "false"
+  },
+  {
+   "text": "8 hours",
+   "selected": "false"
+  },
+  {
+   "text": "24 hours",
+   "selected": "true"
+  },
+  {
+   "text": "7 days",
+   "selected": "false"
+  },
+  {
+   "text": "30 days",
+   "selected": "false"
+  }
+ ],
+ "audit-retention": [
+  {
+   "text": "90 days",
+   "selected": "false"
+  },
+  {
+   "text": "1 year",
+   "selected": "true"
+  },
+  {
+   "text": "2 years",
+   "selected": "false"
+  }
+ ],
+ "default-role": [
+  {
+   "text": "Viewer",
+   "selected": "false"
+  },
+  {
+   "text": "Member",
+   "selected": "true"
+  },
+  {
+   "text": "Admin",
+   "selected": "false"
+  }
+ ],
+ "currency": [
+  {
+   "text": "Euro (EUR)",
+   "selected": "true"
+  },
+  {
+   "text": "US dollar (USD)",
+   "selected": "false"
+  },
+  {
+   "text": "Pound sterling (GBP)",
+   "selected": "false"
+  },
+  {
+   "text": "Swiss franc (CHF)",
+   "selected": "false"
+  }
+ ]
+}

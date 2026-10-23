@@ -47,7 +47,7 @@ export function S06UseCases() {
                           </p>
                         </div>
                         <footer className="Copy__footer">
-                          <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/tax" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="tax_automation__reduce_risk__see_the_docs">
+                          <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/tax" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="tax_automation__reduce_risk__see_the_docs">
                             {"See the docs"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -117,7 +117,7 @@ export function S06UseCases() {
                           </p>
                         </div>
                         <footer className="Copy__footer">
-                          <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/tax/connect" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="tax_automation__simplify_taxes__see_the_docs">
+                          <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/tax/connect" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="tax_automation__simplify_taxes__see_the_docs">
                             {"See the docs"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

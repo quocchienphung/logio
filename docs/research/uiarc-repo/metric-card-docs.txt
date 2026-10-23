@@ -1,0 +1,161 @@
+Components
+Metric card
+Metric card
+
+A compact summary for a number that needs context.
+
+$
+pnpm dlx shadcn@latest add @uiarc/metric-card
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Weekly active users
++18.4%
+2,486
+2
+,
+4
+8
+6
+
+Compared with the last 7 days
+
+7D
+30D
+90D
+When to use
+A single plain number with odometer style rolling digits, such as uptime or orders.
+Numbers that update live and should roll in the direction they moved.
+When not to use
+Use stat-card for preformatted strings, trend arrows, tones, and icons.
+Use sparkline when the trend over time matters more than the latest value.
+Use animated-counter for a number without a card around it.
+Installation
+
+Add Metric card with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/metric-card
+pnpm dlx shadcn@latest add @uiarc/metric-card
+
+Adds the component and its local dependencies, and installs motion. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/metric-card.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { MetricCard } from "@/components/arc/metric-card/metric-card";
+2
+ 
+3
+export function Uptime() {
+4
+  return <MetricCard label="Uptime" value={99.9} suffix="%" context="Last 30 days" change="+0.2%" />;
+5
+}
+API reference
+MetricCard
+
+A compact card with a label, an odometer style number, context line, and optional change chip.
+
+Prop
+Type
+Default
+Description
+label
+Required
+string
+–
+What is measured.
+value
+Required
+number
+–
+The number. Rolls up from zero on first view, then between values.
+suffix
+string
+–
+Text after the number, such as "%" or " ms".
+context
+Required
+string
+–
+Line under the number, such as "vs last week".
+change
+string
+–
+Chip in the top corner, such as "+12%". Omit to hide it.
+Accessibility
+Renders an article; the number is read as plain text through a visually hidden copy.
+The change chip is plain text, so write the direction into it (+ or -) rather than relying on color.
+It does not announce updates; wrap it in a live region if values change while people watch.
+Motion
+The value uses animated-counter: digits roll on view and turn the way the number moved.
+Label, context, and change copy roll in from the direction the number moved, and the chip width springs.
+Reduced motion jumps the digits and swaps copy with a quick fade.
+Responsive behavior
+Below 380px the padding tightens and the change chip wraps under the label instead of crowding it.
+Copy lines stay on one line and clip, so keep label and context short.
+Performance
+Digits roll with animated-counter and a ResizeObserver drives the chip width spring; a dashboard row of cards is fine.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use when the value is a plain number and you want the rolling digits. Use stat-card for preformatted strings, trend arrows, tones, and icons.
+value must be a number; put units in suffix and formatting-free context in context.
+/components/metric-card/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Animated counter
+Component
+Give changing totals a clear sense of movement.
+Sparkline
+Component
+Show a compact trend beside a value.
+Gauge
+Component
+Show a value against a known range.
+Previous
+Card
+Next
+Empty state
+Arc · 182 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

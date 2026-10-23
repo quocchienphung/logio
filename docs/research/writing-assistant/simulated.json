@@ -1,0 +1,323 @@
+{
+  "natural": [
+    {
+      "t": 0,
+      "v": "",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 262,
+      "v": "Write",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 432,
+      "v": "Write a",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 602,
+      "v": "Write a friendly",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 772,
+      "v": "Write a friendly reminder",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 942,
+      "v": "Write a friendly reminder that",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1112,
+      "v": "Write a friendly reminder that the",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1283,
+      "v": "Write a friendly reminder that the report",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1446,
+      "v": "Write a friendly reminder that the report is",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1615,
+      "v": "Write a friendly reminder that the report is due",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1785,
+      "v": "Write a friendly reminder that the report is due on",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1962,
+      "v": "Write a friendly reminder that the report is due on Friday",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 2630,
+      "v": "Write a friendly reminder that the report is due on Friday",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 3084,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Writing…"
+    },
+    {
+      "t": 3782,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Hi team, just a friendly nudge"
+    },
+    {
+      "t": 3825,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Hi"
+    },
+    {
+      "t": 3862,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Hi team,"
+    },
+    {
+      "t": 3904,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Hi team, just"
+    },
+    {
+      "t": 3940,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Hi team, just a"
+    },
+    {
+      "t": 3977,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Hi team, just a friendly"
+    },
+    {
+      "t": 4017,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Hi team, just a friendly nudge"
+    }
+  ],
+  "stop": [
+    {
+      "t": 0,
+      "v": "Write a friendly reminder that",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 177,
+      "v": "Write a friendly reminder that the",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 341,
+      "v": "Write a friendly reminder that the report",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 517,
+      "v": "Write a friendly reminder that the report is",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 687,
+      "v": "Write a friendly reminder that the report is due",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 857,
+      "v": "Write a friendly reminder that the report is due on",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1027,
+      "v": "Write a friendly reminder that the report is due on Friday",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 1695,
+      "v": "Write a friendly reminder that the report is due on Friday",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 2150,
+      "v": "",
+      "ph": "Ask anything…",
+      "p": "false",
+      "md": true,
+      "n": 2,
+      "last": "Writing…"
+    }
+  ],
+  "typedThenMic": [
+    {
+      "t": 0,
+      "v": "",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 259,
+      "v": "Write",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 429,
+      "v": "Write a",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 599,
+      "v": "Write a friendly",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    },
+    {
+      "t": 769,
+      "v": "Write a friendly reminder",
+      "ph": "Listening…",
+      "p": "true",
+      "md": false,
+      "n": 0,
+      "last": ""
+    }
+  ]
+}

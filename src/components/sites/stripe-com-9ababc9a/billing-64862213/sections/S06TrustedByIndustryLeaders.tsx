@@ -32,7 +32,7 @@ export function S06TrustedByIndustryLeaders() {
             <ul role="list" className="carousel__scroller case-study-carousel__scroller">
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "0" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/atlassian" data-analytics-label="billing__customer_story__atlassian">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/atlassian" data-analytics-label="billing__customer_story__atlassian">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Atlassian-93ab6f7489.webp 1x, /sites/stripe-com-9ababc9a/products/Atlassian-9092638e3f.webp 2x" />
@@ -80,7 +80,7 @@ export function S06TrustedByIndustryLeaders() {
               </li>
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "1" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/intercom" data-analytics-label="billing__customer_story__intercom">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/intercom" data-analytics-label="billing__customer_story__intercom">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Intercom-059e24595b.webp 1x, /sites/stripe-com-9ababc9a/products/Intercom-96e9f3a28d.webp 2x" />
@@ -128,7 +128,7 @@ export function S06TrustedByIndustryLeaders() {
               </li>
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "2" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/fox-sports-mexico" data-analytics-label="billing__customer_story__fox_sports">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/fox-sports-mexico" data-analytics-label="billing__customer_story__fox_sports">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Fox_Sports-f654bf5eaf.webp 1x, /sites/stripe-com-9ababc9a/products/Fox_Sports-38aeaee581.webp 2x" />

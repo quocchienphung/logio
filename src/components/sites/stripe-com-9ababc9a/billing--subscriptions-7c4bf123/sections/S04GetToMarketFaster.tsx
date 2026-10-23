@@ -95,11 +95,11 @@ export function S04GetToMarketFaster() {
                     </h3>
                     <p className="hds-text hds-text--md hds-text--soft">
                       {"Or, program "}
-                      <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/billing/scripts" data-analytics-label="get_to_market__custom_billing_logic">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/billing/scripts" data-analytics-label="get_to_market__custom_billing_logic">
                         {"custom billing logic"}
                       </a>
                       {" directly into Stripe, no extra infrastructure needed. "}
-                      <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/clickfunnels" data-analytics-label="get_to_market__clickfunnels">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/clickfunnels" data-analytics-label="get_to_market__clickfunnels">
                         {"ClickFunnels"}
                       </a>
                       {" saved $1M annually in engineering costs."}
@@ -244,11 +244,11 @@ export function S04GetToMarketFaster() {
                     </h3>
                     <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                       {"Go to market with 15+ built-in "}
-                      <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/products-prices/pricing-models" data-analytics-label="get_to_market__pricing_models">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/products-prices/pricing-models" data-analytics-label="get_to_market__pricing_models">
                         {"models"}
                       </a>
                       {", including flat-rate, per-seat, tiered, and more. "}
-                      <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/figma" data-analytics-label="get_to_market__figma">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/figma" data-analytics-label="get_to_market__figma">
                         {"Figma"}
                       </a>
                       {" doubled its product suite and overhauled its billing model with Stripe."}
@@ -329,7 +329,7 @@ export function S04GetToMarketFaster() {
                     </h3>
                     <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                       {"Convert customers with built-in features like coupons, free and paid trials, and prorations. "}
-                      <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/cursor" data-analytics-label="get_to_market__cursor">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/cursor" data-analytics-label="get_to_market__cursor">
                         {"Cursor"}
                       </a>
                       {" generated billions in recurring revenue using Stripe Billing's tools."}
@@ -358,7 +358,7 @@ export function S04GetToMarketFaster() {
                     </p>
                     <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                       {"Localize instantly with automated "}
-                      <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/payments/currencies/localize-prices/adaptive-pricing" data-analytics-label="expand_globally_with__adaptive_pricing">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/payments/currencies/localize-prices/adaptive-pricing" data-analytics-label="expand_globally_with__adaptive_pricing">
                         {"Adaptive Pricing"}
                       </a>
                       {", and let customers use their preferred payment method in 35+ languages."}
@@ -370,7 +370,7 @@ export function S04GetToMarketFaster() {
                     </p>
                     <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                       {"Offer "}
-                      <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/billing/subscriptions/third-party-payment-processing" data-analytics-label="expand_globally_with__preferred_payment_methods">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/billing/subscriptions/third-party-payment-processing" data-analytics-label="expand_globally_with__preferred_payment_methods">
                         {"preferred payment methods"}
                       </a>
                       {" in different markets and unify reporting across your processors."}
@@ -390,11 +390,11 @@ export function S04GetToMarketFaster() {
                     </p>
                     <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                       {"Take advantage of ready-to-use "}
-                      <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/invoicing/invoice-rendering-template" data-analytics-label="expand_globally_with__invoice_templates">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/invoicing/invoice-rendering-template" data-analytics-label="expand_globally_with__invoice_templates">
                         {"invoice templates"}
                       </a>
                       {" and third party "}
-                      <a className="hds-link hds-link--secondary" href="https://stripe.com/guides/send-e-invoices-on-stripe-billing-through-app-marketplace-partners" data-analytics-label="expand_globally_with__invoicing_partner_integrations">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/guides/send-e-invoices-on-stripe-billing-through-app-marketplace-partners" data-analytics-label="expand_globally_with__invoicing_partner_integrations">
                         {"e-invoicing partner integrations"}
                       </a>
                       {"."}
@@ -658,7 +658,7 @@ export function S04GetToMarketFaster() {
                     <p className="hds-text hds-chippy__text hds-text--md" id=":Rk6ur6l6:">
                       {"Atlassian manages over 200,000 subscriptions on Stripe Billing."}
                     </p>
-                    <a className="hds-link hds-chippy__link hds-link--callout" aria-describedby=":Rk6ur6l6:" href="https://stripe.com/customers/atlassian" data-analytics-label="atlassian__read_more">
+                    <a className="hds-link hds-chippy__link hds-link--callout" aria-describedby=":Rk6ur6l6:" href="/unavailable/stripe/stripe.com/customers/atlassian" data-analytics-label="atlassian__read_more">
                       <span className="hds-chippy__link-content">
                         {"Read more"}
                         <span className="hds-nowrap-svg">
@@ -693,7 +693,7 @@ export function S04GetToMarketFaster() {
                     <p className="hds-text hds-chippy__text hds-text--md" id=":R146ur6l6:">
                       {"Eviden launches a new SaaS platform in 40+ markets, supporting 100+ local payment methods."}
                     </p>
-                    <a className="hds-link hds-chippy__link hds-link--callout" aria-describedby=":R146ur6l6:" href="https://stripe.com/customers/eviden" data-analytics-label="eviden__read_more">
+                    <a className="hds-link hds-chippy__link hds-link--callout" aria-describedby=":R146ur6l6:" href="/unavailable/stripe/stripe.com/customers/eviden" data-analytics-label="eviden__read_more">
                       <span className="hds-chippy__link-content">
                         {"Read more"}
                         <span className="hds-nowrap-svg">
@@ -942,7 +942,7 @@ export function S04GetToMarketFaster() {
                     </h4>
                     <p className="hds-text hds-text--md hds-text--soft">
                       {"Automated tools like "}
-                      <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/billing/revenue-recovery/smart-retries#smart-retries" data-analytics-label="recover_revenue_with__smart_retries">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/billing/revenue-recovery/smart-retries" data-analytics-label="recover_revenue_with__smart_retries">
                         {"Smart Retries"}
                       </a>
                       {" and card account updater help businesses recover 55% of failed payments on average."}

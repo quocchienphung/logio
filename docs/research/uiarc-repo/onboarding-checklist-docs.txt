@@ -1,0 +1,219 @@
+Components
+Onboarding checklist
+Onboarding checklist
+
+Guide a new workspace through setup, one step at a time.
+
+$
+pnpm dlx shadcn@latest add @uiarc/onboarding-checklist
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Set up Northwind
+Set up Northwind
+
+1 of 4 done
+1
+ of 4 done
+
+Hide
+Hide checklist
+Invite your team
+
+Priya and Jonas are waiting.
+
+Send invites
+Connect GitHub
+Turn on two-factor sign-in
+1 completed
+1
+ completed
+Reset demo
+When to use
+A one-time getting-started card with three to eight loosely ordered steps.
+Setup steps that run async actions, like Connect GitHub, and check off when they resolve.
+Checklists people can hide and come back to, with state persisted through callbacks.
+When not to use
+Use stepper when the order is strict and steps map to screens.
+Use multi-step-form when every step collects form input.
+Use accordion for plain collapsible content without completion.
+Installation
+
+Add Onboarding checklist with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/onboarding-checklist
+pnpm dlx shadcn@latest add @uiarc/onboarding-checklist
+
+Adds the component and its local dependencies, and installs motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/onboarding-checklist.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { OnboardingChecklist } from "@/components/arc/onboarding-checklist/onboarding-checklist";
+2
+ 
+3
+export function GettingStarted() {
+4
+  return (
+5
+    <OnboardingChecklist
+6
+      title="Set up your workspace"
+7
+      defaultCompleted={savedIds}
+8
+      onCompletedChange={saveIds}
+9
+      steps={[
+10
+        { id: "invite", title: "Invite your team", actionLabel: "Invite", onAction: openInvite },
+11
+        { id: "connect", title: "Connect GitHub", description: "Sync issues and PRs.", actionLabel: "Connect", onAction: connectGithub },
+12
+        { id: "profile", title: "Add a profile photo" },
+13
+      ]}
+14
+    />
+15
+  );
+16
+}
+API reference
+OnboardingChecklist
+
+A getting-started card with a progress ring, expandable steps with actions, and a folding completed group.
+
+Prop
+Type
+Default
+Description
+title
+Required
+string
+–
+Card title while steps remain.
+steps
+Required
+{ id: string; title: string; description?: string; actionLabel?: string; onAction?: () => void | Promise<void> }[]
+–
+Steps in order. onAction resolving checks the step; throwing an Error keeps it open and shows the message.
+doneTitle
+string
+"You’re all set"
+Title once every step is done.
+defaultCompleted
+string[]
+[]
+Step ids that start completed.
+onCompletedChange
+(completed: string[]) => void
+–
+Called with completed ids in step order whenever they change.
+defaultHidden
+boolean
+false
+Starts with the body collapsed.
+onHiddenChange
+(hidden: boolean) => void
+–
+Called when the Hide or Show toggle is used.
+className
+string
+–
+Class on the card.
+Keyboard interactions
+ArrowDown
+or
+ArrowUp
+Moves between step titles.
+Home
+or
+End
+Jumps to the first or last step title.
+Enter
+or
+Space
+Expands a step, toggles its checkbox, or runs its action.
+Accessibility
+Each step has a role="checkbox" button with aria-checked, and a title button with aria-expanded controlling a labelled region.
+The ring is role="progressbar" with aria-valuetext like "3 of 5 steps done"; progress and errors are announced via role="status" and role="alert".
+When a focused step finishes, focus moves to the next step's action; leaving rows and the hidden body are inert.
+Motion
+Checks fill from the center and draw their tick; after 720ms the finished step folds into the completed group while the ring and count roll forward.
+Rows and panels open and close on a non-overshooting spring; the title morphs to doneTitle and a tick draws in the ring at 100%.
+Reduced motion removes height and scale animation and keeps short fades.
+Responsive behavior
+The card is a container query context; below 380px the Hide button collapses to an icon.
+Step titles and checkboxes keep 40px targets, and the completed group toggle is 44px tall.
+Performance
+Steps are not virtualized; the component is built for short lists.
+Each finished step waits 720ms on a timer before folding into the completed group.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for a short, one-time setup of three to eight loosely ordered steps. Use stepper when the order is strict and steps map to screens.
+Make onAction async and throw an Error with a readable message on failure. Persist onCompletedChange and onHiddenChange to restore state via the default props.
+/components/onboarding-checklist/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Stepper
+Component
+Show where a person is in a multi-step flow and what is done.
+Progress
+Component
+Show how much of a known task is complete.
+Accordion
+Component
+Progressively reveal supporting information in place.
+Checkbox
+Component
+A binary choice with a precise, legible state.
+Previous
+Usage meter
+Next
+Avatar
+Arc · 182 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

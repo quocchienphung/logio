@@ -1,0 +1,62 @@
+{
+  "results": [
+    {
+      "name": "Invoice is the only page of the Sales group and starts with generic content and the right totals",
+      "pass": true
+    },
+    {
+      "name": "totals follow every edit and roll: the new figure slides in from below when it grows and from above when it shrinks",
+      "pass": true
+    },
+    {
+      "name": "number fields count what is typed and tidy up on blur: clamps, whole quantities, cents",
+      "pass": true
+    },
+    {
+      "name": "add line: height eases open, focus goes to the new description, defaults are 1 × 0.00; remove: focus goes to Add line item and lines renumber",
+      "pass": true
+    },
+    {
+      "name": "saving needs a description on every line: the message is announced and focus goes to the empty one",
+      "pass": true
+    },
+    {
+      "name": "save draft: busy spinner, then Saved with a check; the draft is stored; editing returns the button to Save draft",
+      "pass": true
+    },
+    {
+      "name": "the saved draft comes back after a reload; unsaved edits do not",
+      "pass": true
+    },
+    {
+      "name": "header, parties, dates, note and tax are editable and stay in sync",
+      "pass": true
+    },
+    {
+      "name": "keyboard: Tab walks description, quantity, rate and remove; Enter in a field does not add or submit",
+      "pass": true
+    },
+    {
+      "name": "responsive: wide, narrow and phone layouts follow the width of the panel; no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "dark theme uses the dark palette",
+      "pass": true
+    },
+    {
+      "name": "reduced motion: lines and figures swap without lingering copies",
+      "pass": true
+    },
+    {
+      "name": "touch: add, edit and save work on a phone",
+      "pass": true
+    },
+    {
+      "name": "nothing leaves localhost and the source has no remote calls",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "outbound": []
+}

@@ -1,0 +1,465 @@
+{
+  "box": {
+    "w": 380,
+    "h": 401
+  },
+  "hasSpeech": true,
+  "welcomeHtml": "<div class=\"ui-wac\"><header class=\"ui-wac__head\"><div class=\"ui-wac__id\"><h3 class=\"ui-wac__name\"><svg class=\"ui-wac__mark\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><defs><linearGradient id=\"ui-wac_r_1_\" x1=\"2\" y1=\"2\" x2=\"14\" y2=\"14\" gradientUnits=\"userSpaceOnUse\"><stop stop-color=\"var(--ui-wac-pink)\"></stop><stop offset=\"0.5\" stop-color=\"var(--ui-wac-violet)\"></stop><stop offset=\"1\" stop-color=\"var(--ui-wac-blue)\"></stop></linearGradient></defs><path fill=\"url(#ui-wac_r_1_)\" d=\"M8 1.5c.3 2.9 1.6 4.2 4.5 4.5-2.9.3-4.2 1.6-4.5 4.5-.3-2.9-1.6-4.2-4.5-4.5 2.9-.3 4.2-1.6 4.5-4.5Z\"></path><path fill=\"url(#ui-wac_r_1_)\" d=\"M12.25 10c.13 1.3.7 1.87 2 2-1.3.13-1.87.7-2 2-.13-1.3-.7-1.87-2-2 1.3-.13 1.87-.7 2-2Z\"></path></svg>Quill</h3><p class=\"ui-wac__tagline\">Your writing companion.</p></div><button type=\"button\" class=\"ui-wac__new\" aria-label=\"New chat\" tabindex=\"-1\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"></path></svg></button></header><div class=\"ui-wac__body\"><div class=\"ui-wac__glow\" aria-hidden=\"true\"><span class=\"ui-wac__blob ui-wac__blob--pink\"></span><span class=\"ui-wac__blob ui-wac__blob--violet\"></span><span class=\"ui-wac__blob ui-wac__blob--blue\"></span></div><div class=\"ui-wac__content\"><div class=\"ui-wac__welcome\"><p class=\"ui-wac__greeting\">What should we write?</p><div class=\"ui-wac__chips\"><button type=\"button\" class=\"ui-wac__chip\">Polish my email</button><button type=\"button\" class=\"ui-wac__chip\">Make it shorter</button><button type=\"button\" class=\"ui-wac__chip\">Fix the tone</button><button type=\"button\" class=\"ui-wac__chip\">Draft a reply</button></div></div></div><form class=\"ui-wac__row\"><div class=\"ui-wac__field\"><textarea rows=\"1\" placeholder=\"Ask anything…\" aria-label=\"Message\" style=\"height: 28px;\"></textarea></div><button type=\"button\" class=\"ui-wac__mic\" aria-pressed=\"false\" aria-label=\"Dictate\"><span class=\"ui-wac__pulse\" aria-hidden=\"true\"></span><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3.5a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0v-5a3 3 0 0 1 3-3ZM6 11.5a6 6 0 0 0 12 0M12 17.5v3\"></path></svg></button></form></div></div>",
+  "typedRow": "<form class=\"ui-wac__row\"><div class=\"ui-wac__field\"><textarea rows=\"1\" placeholder=\"Ask anything…\" aria-label=\"Message\" style=\"height: 28px;\">Make this email sound warmer</textarea></div><button type=\"button\" class=\"ui-wac__mic\" aria-pressed=\"false\" aria-label=\"Dictate\"><span class=\"ui-wac__pulse\" aria-hidden=\"true\"></span><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3.5a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0v-5a3 3 0 0 1 3-3ZM6 11.5a6 6 0 0 0 12 0M12 17.5v3\"></path></svg></button><button type=\"submit\" class=\"ui-wac__send\" aria-label=\"Send\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 19V5.5M6 11c0 0 4.4-6 6-6s6 6 6 6\"></path></svg></button></form>",
+  "textareaGrowH": 88,
+  "frames": [
+    {
+      "t": 10,
+      "text": "Make this email sound warmer\n\nWriting…",
+      "chat": true
+    },
+    {
+      "t": 150,
+      "text": "Make this email sound warmer\n\nWriting…",
+      "chat": true
+    },
+    {
+      "t": 288,
+      "text": "Make this email sound warmer\n\nWriting…",
+      "chat": true
+    },
+    {
+      "t": 521,
+      "text": "Make this email sound warmer\n\nWriting…",
+      "chat": true
+    },
+    {
+      "t": 661,
+      "text": "Make this email sound warmer\n\nWriting…",
+      "chat": true
+    },
+    {
+      "t": 801,
+      "text": "Make this email sound warmer\n\nI fixed",
+      "chat": true
+    },
+    {
+      "t": 939,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the",
+      "chat": true
+    },
+    {
+      "t": 1077,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph",
+      "chat": true
+    },
+    {
+      "t": 1217,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main",
+      "chat": true
+    },
+    {
+      "t": 1433,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so",
+      "chat": true
+    },
+    {
+      "t": 1572,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first",
+      "chat": true
+    },
+    {
+      "t": 1711,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 1850,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 1991,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 2129,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 2269,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 2407,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 2548,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 2688,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 2829,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 2969,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 3110,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 3249,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 3388,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 3528,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 3670,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 3807,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 3947,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 4086,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 4213,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 4350,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 4486,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 4626,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 4765,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 4906,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 5046,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 5183,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 5321,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 5461,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    },
+    {
+      "t": 5601,
+      "text": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+      "chat": true
+    }
+  ],
+  "doneHtml": "<div class=\"ui-wac__body\"><div class=\"ui-wac__glow\" aria-hidden=\"true\"><span class=\"ui-wac__blob ui-wac__blob--pink\"></span><span class=\"ui-wac__blob ui-wac__blob--violet\"></span><span class=\"ui-wac__blob ui-wac__blob--blue\"></span></div><div class=\"ui-wac__content\"><div class=\"ui-wac__messages\" aria-live=\"polite\"><p class=\"ui-wac__msg ui-wac__msg--user\">Make this email sound warmer</p><p class=\"ui-wac__msg ui-wac__msg--assistant\">I fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.</p></div></div><form class=\"ui-wac__row\"><div class=\"ui-wac__field\"><textarea rows=\"1\" placeholder=\"Ask anything…\" aria-label=\"Message\" style=\"height: 28px;\"></textarea></div><button type=\"button\" class=\"ui-wac__mic\" aria-pressed=\"false\" aria-label=\"Dictate\"><span class=\"ui-wac__pulse\" aria-hidden=\"true\"></span><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3.5a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0v-5a3 3 0 0 1 3-3ZM6 11.5a6 6 0 0 0 12 0M12 17.5v3\"></path></svg></button></form></div>",
+  "doneText": "Make this email sound warmer\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+  "afterNewHasChat": false,
+  "chipReplies": {
+    "Polish my email": "Polish my email\n\nI fixed two typos, split the long second paragraph and moved your main ask to the first line, so it's the first thing they read.",
+    "Make it shorter": "Make it shorter\n\nHere's a tighter version: “Thanks for the quick turnaround – the new draft reads much better. Let's ship it Friday.”",
+    "Fix the tone": "Fix the tone\n\nI softened the opening and swapped the direct ask for a question, so it sounds friendly but still clear about the deadline.",
+    "Draft a reply": "Draft a reply\n\nHi Sam, thanks for the update! Thursday works for me – I'll bring the revised numbers so we can decide on the spot."
+  },
+  "listeningRow": "<form class=\"ui-wac__row\"><div class=\"ui-wac__field\" data-listening=\"\"><textarea rows=\"1\" placeholder=\"Listening…\" aria-label=\"Message\" style=\"height: 28px;\" readonly=\"\">Write a friendly</textarea></div><button type=\"button\" class=\"ui-wac__mic\" aria-pressed=\"true\" aria-label=\"Stop dictation\" data-listening=\"\"><span class=\"ui-wac__pulse\" aria-hidden=\"true\"></span><span class=\"ui-wac__wave\" aria-hidden=\"true\"><i></i><i></i><i></i></span></button></form>",
+  "dictation": [
+    {
+      "t": 0,
+      "value": "Write a friendly",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 269,
+      "value": "Write a friendly reminder",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 531,
+      "value": "Write a friendly reminder that the",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 793,
+      "value": "Write a friendly reminder that the report",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 1058,
+      "value": "Write a friendly reminder that the report is due",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 1322,
+      "value": "Write a friendly reminder that the report is due on",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 1584,
+      "value": "Write a friendly reminder that the report is due on Friday",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 1846,
+      "value": "Write a friendly reminder that the report is due on Friday",
+      "pressed": "true",
+      "label": "Stop dictation"
+    },
+    {
+      "t": 2111,
+      "value": "Write a friendly reminder that the report is due on Friday",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 2376,
+      "value": "Write a friendly reminder that the report is due on Friday",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 2640,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 3013,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 3273,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 3539,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 3801,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 4064,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 4330,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 4595,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 4857,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 5120,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 5385,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 5647,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 5910,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 6174,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 6436,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 6701,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 6964,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 7227,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 7492,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 7755,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 8019,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 8284,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 8546,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 8811,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 9075,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 9339,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 9605,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 9867,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 10130,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    },
+    {
+      "t": 10395,
+      "value": "",
+      "pressed": "false",
+      "label": "Dictate"
+    }
+  ],
+  "afterDictationText": "Write a friendly reminder that the report is due on Friday\n\nHi team, just a friendly nudge: the report is due this Friday. If anything is holding you up, let me know today and we'll sort it out together. Thanks!"
+}

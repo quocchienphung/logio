@@ -32,7 +32,7 @@ export function S06TrustedByIndustryLeaders() {
             <ul role="list" className="carousel__scroller case-study-carousel__scroller">
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "0" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/anthropic" data-analytics-label="customer_story__anthropic">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/anthropic" data-analytics-label="customer_story__anthropic">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Anthropic-ca00bbf58f.webp 1x, /sites/stripe-com-9ababc9a/products/Anthropic-a16b81b9ee.webp 2x" />
@@ -80,7 +80,7 @@ export function S06TrustedByIndustryLeaders() {
               </li>
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "1" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/figma" data-analytics-label="customer_story__figma">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/figma" data-analytics-label="customer_story__figma">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Figma-81e43e7d4d.webp 1x, /sites/stripe-com-9ababc9a/products/Figma-9bd909d083.webp 2x" />
@@ -124,7 +124,7 @@ export function S06TrustedByIndustryLeaders() {
               </li>
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "2" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/mindvalley" data-analytics-label="customer_story__mindvalley">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/mindvalley" data-analytics-label="customer_story__mindvalley">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Mindvalley-1c7ca46733.webp 1x, /sites/stripe-com-9ababc9a/products/Mindvalley-d2b3652022.webp 2x" />
@@ -164,7 +164,7 @@ export function S06TrustedByIndustryLeaders() {
               </li>
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "3" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/beautiful.ai" data-analytics-label="customer_story__beautifulai">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/beautiful.ai" data-analytics-label="customer_story__beautifulai">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/beautiful_ai-392f813342.webp 1x, /sites/stripe-com-9ababc9a/products/beautiful_ai-c69b79cd30.webp 2x" />
@@ -206,7 +206,7 @@ export function S06TrustedByIndustryLeaders() {
               </li>
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "4" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/eight-sleep" data-analytics-label="customer_story__eight_sleep">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/eight-sleep" data-analytics-label="customer_story__eight_sleep">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/Eight_Sleep-b6707b6dfd.webp 1x, /sites/stripe-com-9ababc9a/products/Eight_Sleep-70d60cd2ef.webp 2x" />
@@ -256,7 +256,7 @@ export function S06TrustedByIndustryLeaders() {
               </li>
               <li className="carousel__item case-study-carousel__item" style={{ "--carousel-item-index": "5" }}>
                 <div className="carousel__inner case-study-carousel__inner">
-                  <a className="case-study-card" href="https://stripe.com/customers/chownow" data-analytics-label="customer_story__chownow">
+                  <a className="case-study-card" href="/unavailable/stripe/stripe.com/customers/chownow" data-analytics-label="customer_story__chownow">
                     <div className="case-study-card__media">
                       <picture>
                         <source type="image/webp" srcSet="/sites/stripe-com-9ababc9a/products/ChowNow-b789043f87.webp 1x, /sites/stripe-com-9ababc9a/products/ChowNow-646834c3ef.webp 2x" />

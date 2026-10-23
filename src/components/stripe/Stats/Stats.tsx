@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import { MenuListSurface } from "@/components/interaction/MenuSurface";
 import { DataViz } from "./DataViz";
 import { TimeOfDayIcon } from "./TimeOfDayIcon";
 
@@ -48,7 +50,7 @@ const STATS = [
     id: "historical-uptime",
     value: "99.999%",
     description: "historical uptime for Stripe services",
-    link: { href: "https://status.stripe.com", text: "historical uptime" },
+    link: { href: "/unavailable/stripe/status.stripe.com/", text: "historical uptime" },
     rest: " for Stripe services",
   },
   {
@@ -70,6 +72,7 @@ export function Stats() {
   const [desktop, setDesktop] = useState(true);
   const [transitioning, setTransitioning] = useState(false);
   const controlsRef = useRef<HTMLDivElement>(null);
+  const menuId = useId();
   // Reference: non-desktop viewports always render the night (dark) theme.
   const effectiveTimeOfDay: TimeOfDay = desktop ? timeOfDay : "night";
   const dark = effectiveTimeOfDay === "night";
@@ -208,7 +211,16 @@ export function Stats() {
         {/* Reference mounts the controls + data-viz only once the (desktop-only) spacer is in view. */}
         <div className="stats-section__stats-spacer">
           {desktop ? (
-            <div className="stats-section__controls" ref={controlsRef}>
+            <div className="stats-section__controls" ref={controlsRef} onKeyDown={event => {
+              const trigger = controlsRef.current?.querySelector<HTMLButtonElement>('.time-of-day-select__trigger');
+              if (event.key === "Escape") { setMenuOpen(false); trigger?.focus(); return; }
+              if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+              event.preventDefault();
+              if (!menuOpen) { setMenuOpen(true); requestAnimationFrame(() => controlsRef.current?.querySelector<HTMLElement>('[role="option"]')?.focus()); return; }
+              const options = [...event.currentTarget.querySelectorAll<HTMLElement>('[role="option"]')];
+              const at = options.indexOf(document.activeElement as HTMLElement);
+              options[event.key === "Home" ? 0 : event.key === "End" ? options.length - 1 : (at + (event.key === "ArrowDown" ? 1 : -1) + options.length) % options.length]?.focus();
+            }}>
               <button
                 type="button"
                 className="time-of-day-select__trigger"
@@ -216,13 +228,15 @@ export function Stats() {
                 aria-expanded={menuOpen}
                 aria-label={`${LABELS[timeOfDay]}. Choose a time of day`}
                 aria-haspopup="listbox"
+                aria-controls={menuOpen ? menuId : undefined}
                 role="combobox"
                 onClick={() => setMenuOpen((v) => !v)}
               >
                 <TimeOfDayIcon />
               </button>
-              {menuOpen ? (
-                <ul
+              <AnimatePresence>{menuOpen ? (
+                <MenuListSurface
+                  id={menuId}
                   className="time-of-day-select__menu"
                   role="listbox"
                   aria-label="Time of day"
@@ -231,12 +245,15 @@ export function Stats() {
                     <li
                       key={t}
                       role="option"
+                      tabIndex={-1}
                       aria-selected={t === timeOfDay}
                       className={`time-of-day-select__option${t === timeOfDay ? " time-of-day-select__option--selected" : ""}`}
                       onClick={() => {
                         changeTimeOfDay(t);
                         setMenuOpen(false);
+                        controlsRef.current?.querySelector<HTMLButtonElement>('.time-of-day-select__trigger')?.focus();
                       }}
+                      onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.currentTarget.click(); } }}
                     >
                       <span
                         className="time-of-day-select__option-icon"
@@ -247,8 +264,8 @@ export function Stats() {
                       {LABELS[t]}
                     </li>
                   ))}
-                </ul>
-              ) : null}
+                </MenuListSurface>
+              ) : null}</AnimatePresence>
             </div>
           ) : null}
           {desktop ? (

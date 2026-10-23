@@ -38,7 +38,7 @@ export function S01BuiltIntoStripe() {
                           <div className="Copy__body">
                             <p>
                               {"As your business grows, accounting for revenue can quickly become tedious and error-prone. We built a "}
-                              <a className="Link" href="https://stripe.com/guides/introduction-to-revenue-recognition" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                              <a className="Link" href="/unavailable/stripe/stripe.com/guides/introduction-to-revenue-recognition" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                 {"revenue recognition"}
                               </a>
                               {" solution directly into Stripe, so you can automate GAAP accrual accounting for your transactions and billing terms."}

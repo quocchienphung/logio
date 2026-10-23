@@ -1,0 +1,87 @@
+{
+  "durability": {
+    "status": "Needs attention",
+    "documentsBefore": 1,
+    "metadata": [
+      {
+        "version": 1,
+        "onboarded": true,
+        "documents": []
+      }
+    ],
+    "recoveryStatus": "Complete",
+    "documentsAfterRecovery": 1,
+    "failedDeleteVaultKeys": [
+      "acme:889830b3-13ef-4647-bed2-8af7ea2a73e0"
+    ],
+    "failedDeleteMetadata": [
+      1
+    ],
+    "recoveredDeleteVaultKeys": []
+  },
+  "stop": {
+    "text": "Process 1 document\nRetry\nLocal document engine\nStopped\nReceive documents\n1 file\nValidate & fingerprint\nRead document content\nOrganize & refine\nBuild searchable index\nReview & store\nProcessing stopped. You can retry this batch.\n17%\nStopped. Processing stopped. You can retry this batch.",
+    "spinners": 0
+  },
+  "map": {
+    "rows": [
+      {
+        "opacity": "1",
+        "transform": "none"
+      },
+      {
+        "opacity": "1",
+        "transform": "none"
+      },
+      {
+        "opacity": "1",
+        "transform": "none"
+      },
+      {
+        "opacity": "1",
+        "transform": "none"
+      },
+      {
+        "opacity": "1",
+        "transform": "none"
+      },
+      {
+        "opacity": "1",
+        "transform": "none"
+      }
+    ],
+    "root": [
+      "Finance2 files",
+      "MD1 file",
+      "TXT1 file",
+      "SQL2 files",
+      "SQL2 files",
+      "Banking1 file",
+      "TXT1 file",
+      "Data1 file",
+      "CSV1 file"
+    ],
+    "zoom": [
+      {
+        "label": "MD, 1 file, 50%, open region",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 1, 1)"
+      },
+      {
+        "label": "finance-b.md, 1 file, 50%, open document",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 5, 25)"
+      },
+      {
+        "label": "TXT, 1 file, 50%, open region",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 353, 1)"
+      },
+      {
+        "label": "finance-a.txt, 1 file, 50%, open document",
+        "opacity": "1",
+        "transform": "matrix(1, 0, 0, 1, 357, 25)"
+      }
+    ]
+  }
+}

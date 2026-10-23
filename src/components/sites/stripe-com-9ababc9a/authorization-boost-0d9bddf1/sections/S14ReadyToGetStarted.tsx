@@ -37,7 +37,7 @@ export function S14ReadyToGetStarted() {
                       </div>
                       <footer className="Copy__footer">
                         <div className="CtaGroup CtaGroup--inline">
-                          <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Payments authorization contact sales">
+                          <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Payments authorization contact sales">
                             {"Contact sales"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -49,7 +49,7 @@ export function S14ReadyToGetStarted() {
                             </span>
                           </a>
                           {" "}
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/analytics/authorization-boost" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_boost_ready_to_get_started_explore_the_docs">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/analytics/authorization-boost" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_boost_ready_to_get_started_explore_the_docs">
                             {"Explore the docs"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -93,7 +93,7 @@ export function S14ReadyToGetStarted() {
                             </p>
                           </div>
                           <footer className="Copy__footer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/payments/ai" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="ready_to_get_started_explore_ai_at_stripe">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/payments/ai" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="ready_to_get_started_explore_ai_at_stripe">
                               {"Explore AI at Stripe"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

@@ -1,0 +1,205 @@
+{
+  "date": "2026-10-21T13:19:33.553Z",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "The intro contains only edge-to-edge art and agent cursors",
+      "ok": true
+    },
+    {
+      "name": "Blank, sketch, blueprint, localized color and final appear within five seconds",
+      "ok": true
+    },
+    {
+      "name": "Paint appears along actual cursor trajectories and stays absent ahead of the wands",
+      "ok": true
+    },
+    {
+      "name": "Autoplay opens browse at five seconds and replaces the intro history entry",
+      "ok": true
+    },
+    {
+      "name": "Phone, small phone and laptop all keep the art fullscreen without overflow",
+      "ok": true
+    },
+    {
+      "name": "Resizing during painting redraws its current reveal correctly",
+      "ok": true
+    },
+    {
+      "name": "Keyboard pause/resume and Escape work without visible controls",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion shows finished art without cursors, then continues at five seconds",
+      "ok": true
+    },
+    {
+      "name": "An asset failure allows retry and recovery",
+      "ok": true
+    },
+    {
+      "name": "Homepage desktop/mobile Guide me links enter this intro; direct browse bypasses it",
+      "ok": false,
+      "error": "locator.getAttribute: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"/guide\"]:visible').filter({ hasText: 'Guide me' }).first()\u001b[22m\n"
+    },
+    {
+      "name": "WebKit paints distinct sketch and final pixels with the same fullscreen layout",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors or external runtime service requests occur",
+      "ok": true
+    }
+  ],
+  "evidence": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "root": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 900
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 900
+      },
+      "scrollWidth": 1440,
+      "scrollHeight": 900,
+      "oldChrome": 0
+    },
+    "blank": {
+      "white": 1,
+      "color": 0,
+      "hash": 3289921152,
+      "width": 1440,
+      "height": 900
+    },
+    "finalDifference": {
+      "mean": 0,
+      "wrongFraction": 0
+    },
+    "stages": [
+      {
+        "time": 672,
+        "phase": "sketch",
+        "white": 0.5227777777777778,
+        "color": 0,
+        "hash": 1195739752,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "time": 1424,
+        "phase": "blueprint",
+        "white": 0.09144444444444444,
+        "color": 0.1748888888888889,
+        "hash": 654036907,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "time": 2080,
+        "phase": "color",
+        "white": 0.07477777777777778,
+        "color": 0.255,
+        "hash": 1178768748,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "time": 3072,
+        "phase": "color",
+        "white": 0.029666666666666668,
+        "color": 0.45911111111111114,
+        "hash": 3459658412,
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "time": 4576,
+        "phase": "final",
+        "white": 0,
+        "color": 0.5093333333333333,
+        "hash": 3143389438,
+        "width": 1440,
+        "height": 900
+      }
+    ],
+    "wandCorrelation": {
+      "changed": 692,
+      "near": 692,
+      "fraction": 1,
+      "farUntouched": 1825
+    },
+    "autoplayMs": 5163,
+    "history": [
+      "http://localhost:3000/personalize?browse=1"
+    ],
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        "scrollWidth": 390,
+        "scrollHeight": 844,
+        "oldChrome": 0
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 568
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 568
+        },
+        "scrollWidth": 320,
+        "scrollHeight": 568,
+        "oldChrome": 0
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "scrollWidth": 1280,
+        "scrollHeight": 800,
+        "oldChrome": 0
+      }
+    ]
+  },
+  "errors": [],
+  "externalOrigins": []
+}

@@ -1,0 +1,110 @@
+151
+Get Pro
+Log In
+Components
+Agent Tree
+Agent Tree
+
+Who started whom – an orchestrator and its sub-agents as a live tree, with status, cost and time on every card, costs rolling up each branch, and branches that fold to one line.
+
+Get Pro to install
+Preview
+Code
+Copy prompt
+MCP
+Copy
+Agents
+1 agent
+1 running
+$0.07
+Orchestrator
+Opus 5.5
+Running
+
+Launch the new pricing page by Friday
+
+$0.07 · 6s
+When to use
+Multi-agent runs where an orchestrator hands parts of a job to sub-agents – and those start their own
+Seeing at a glance which branch is still running, which one waits for you and which one is expensive
+A run overview next to a chat or a log – click a card to open what that agent did
+When not to use
+When things happened, in time order – use Agent Lanes
+One agent's steps – use Agent Plan or Agent Steering
+Handing tasks to agents yourself – use Delegate Board
+Installation
+
+Agent Tree is a Pro component.
+
+Installation is part of Pro
+Get Pro to copy the code, install it with the CLI and use it in your projects.
+Unlock with Pro
+Usage
+Usage example is part of Pro
+Get Pro
+Examples
+Fold finished branches
+This example is part of Pro
+Get Pro
+Credits instead of dollars
+This example is part of Pro
+Get Pro
+API reference
+AgentTree
+Prop	Type	Default	Description
+root	TreeAgent	–	{ id, name, task, model?, avatar?, tools?, status, ask?, error?, cost?, started?, ended?, children? } – the whole tree, rebuilt as the run goes on; tools are small marks shown as overlapping tiles before the task
+status	"queued" | "running" | "waiting" | "done" | "failed" | "stopped"	–	Per agent – "waiting" reads "Needs you"; queued and stopped agents and their connectors are muted
+cost	number	–	Per agent, its own cost – a card with children shows the whole branch
+collapsed / defaultCollapsed	string[]	[]	Ids of folded branches, controlled or uncontrolled
+onCollapsedChange	(collapsed: string[]) => void	–	A branch was folded or opened
+ask / error	string	–	Per agent – what a waiting agent needs you to decide, and what went wrong for a failed one; shown in the window behind "needs you" and "failed"
+onResolve	(agent, action: "approve" | "reject" | "retry" | "dismiss") => void	–	An answer from that window – update the agent's status in your data
+onSelect	(agent: TreeAgent) => void	–	A click on a card – makes the cards clickable
+now	number	Date.now()	The clock for running times – without it the tree ticks every second while an agent runs
+formatCost	(amount: number) => string	dollars, e.g. "$0.42"	Formats every cost
+title	string	"Agents"	Heading of the bar
+className	string	–	Extra class on the root
+Keyboard interactions
+Tab	Moves between the fold buttons – and the cards, when onSelect is set
+Enter	On a card: selects it (onSelect)
+Enter or Space	Folds or opens the focused branch
+Accessibility
+The tree is a tree with groups; every agent is a treeitem labelled with its name and status, aria-expanded on branches
+Fold buttons name what they do, e.g. "Show 2 sub-agents of Researcher"
+"needs you" and "failed" are buttons with aria-expanded; their window is a dialog, the first answer is focused and Esc closes it
+The totals in the bar – agents, running, needs you, failed, cost – are announced politely when they change
+Motion
+A new agent's connector draws itself from the parent's dot, then the card rises in; several new agents rise one after another
+When the tree changes, every card glides to its new place and the connectors follow frame by frame
+Agents that leave – a folded branch, removed data – fade out a beat apart, bottom first, while their connectors pull back into the parent
+Status glyphs: a spinning loader while running, a check when done, a warning triangle when failed, a clock when it needs you
+Costs that still climb – a running agent, a branch with one, the total – carry a light shimmer that runs over the amount
+With prefers-reduced-motion everything appears at once
+Responsive behavior
+From 560px the first level sits side by side under the root, deeper levels hang below their parent – every card has the same width
+Narrower, every level is indented under its parent and the connectors run down the left; the cards shrink together so the deepest level still fits
+The connectors are measured from the cards, so any width or zoom works
+Dark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme="dark"
+Notes for AI
+
+Give your coding assistant this summary instead of screenshots.
+
+Pass the whole tree every time something changes – ids keep the cards in place, new ids grow in with a drawn connector
+cost is the agent's own spend; the component adds the children up, so don't pre-sum it
+A failed agent that gets retried is a new child with its own id – keep the failed one, it tells the story
+The connector color is --ui-agtc-link (#82bcff), the soft blue of the Project Flow illustration
+The chevron is Hugeicons Free (MIT) – keep the credit comment when you copy the file
+Related
+Agent Lanes
+Agents
+Where every agent is right now – a live timeline with a lane per agent, tasks growing into “now”, hand-offs drawn between agents and approvals right on the block
+Agent Plan
+Agents
+An agent's step-by-step plan to review before it runs – rename, drag to reorder, remove or add steps, then watch each one run with live timers and retry from a failed step
+Delegate Board
+Agents
+Hand work to your agents by dragging it onto them – each agent previews its new “busy until” time, or switch to Auto and every new task goes to whoever is free first
+Agent Steering
+Agents
+Steer an agent while it works – queue a note for the next step and watch it glide into the plan when the agent picks it up, or interrupt right away
+affectUI · 56 components · 13 screens · 11 blocks · 24 illustrations · 8 motion effects

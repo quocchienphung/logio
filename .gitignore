@@ -60,3 +60,6 @@ temp/
 
 # Agent worktrees
 .claude/worktrees/
+
+# Home-server data written by /api/workspace
+.logio-data/

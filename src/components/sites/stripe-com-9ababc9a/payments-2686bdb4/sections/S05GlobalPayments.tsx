@@ -37,7 +37,7 @@ export function S05GlobalPayments() {
                     </p>
                   </div>
                   <footer className="Copy__footer">
-                    <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/use-cases/global-businesses" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="global_payments_learn-more">
+                    <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/use-cases/global-businesses" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="global_payments_learn-more">
                       {"Learn more about global payments"}
                       <span className="nobr">
                         <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -101,7 +101,7 @@ export function S05GlobalPayments() {
                       <div className="Copy__body">
                         <p>
                           {"Improve conversion by presenting in local currencies using the latest exchange rate with "}
-                          <a className="Link" href="https://docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Adaptive Pricing"}
                           </a>
                           {"."}
@@ -140,7 +140,7 @@ export function S05GlobalPayments() {
                       <div className="Copy__body">
                         <p>
                           {"Reduce costs when managing multiple currencies by settling and paying out funds with "}
-                          <a className="Link" href="https://docs.stripe.com/payouts/multicurrency-settlement" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payouts/multicurrency-settlement" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"multi-currency settlement."}
                           </a>
                         </p>

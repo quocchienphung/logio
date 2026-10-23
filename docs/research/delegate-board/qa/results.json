@@ -1,0 +1,230 @@
+{
+  "base": "http://localhost:3000",
+  "checks": [
+    {
+      "name": "every agent avatar is a real logo tile",
+      "ok": true
+    },
+    {
+      "name": "tasks show the tool logos in order",
+      "ok": true
+    },
+    {
+      "name": "a waiting chip shows its tool logo",
+      "ok": true
+    },
+    {
+      "name": "Gemini gradient is defined once",
+      "ok": true
+    },
+    {
+      "name": "agents carry their model names from the app's model list",
+      "ok": true
+    },
+    {
+      "name": "black marks turn white in dark mode",
+      "ok": true
+    },
+    {
+      "name": "320x640 phone: card is 380:401 and nothing overflows",
+      "ok": true
+    },
+    {
+      "name": "320x640 phone: edges align (right edge, column heads, row pitch, insets)",
+      "ok": true
+    },
+    {
+      "name": "320x640 phone: no label is cut off, every logo fits its box and the cards share one height",
+      "ok": true
+    },
+    {
+      "name": "320x640 phone: fully loaded queues still fit",
+      "ok": true
+    },
+    {
+      "name": "390x844 phone: card is 380:401 and nothing overflows",
+      "ok": true
+    },
+    {
+      "name": "390x844 phone: edges align (right edge, column heads, row pitch, insets)",
+      "ok": true
+    },
+    {
+      "name": "390x844 phone: no label is cut off, every logo fits its box and the cards share one height",
+      "ok": true
+    },
+    {
+      "name": "390x844 phone: fully loaded queues still fit",
+      "ok": true
+    },
+    {
+      "name": "844x390 phone landscape: card is 380:401 and nothing overflows",
+      "ok": true
+    },
+    {
+      "name": "844x390 phone landscape: edges align (right edge, column heads, row pitch, insets)",
+      "ok": true
+    },
+    {
+      "name": "844x390 phone landscape: no label is cut off, every logo fits its box and the cards share one height",
+      "ok": true
+    },
+    {
+      "name": "844x390 phone landscape: fully loaded queues still fit",
+      "ok": true
+    },
+    {
+      "name": "768x1024 tablet: card is 380:401 and nothing overflows",
+      "ok": true
+    },
+    {
+      "name": "768x1024 tablet: edges align (right edge, column heads, row pitch, insets)",
+      "ok": true
+    },
+    {
+      "name": "768x1024 tablet: no label is cut off, every logo fits its box and the cards share one height",
+      "ok": true
+    },
+    {
+      "name": "768x1024 tablet: fully loaded queues still fit",
+      "ok": true
+    },
+    {
+      "name": "1440x900 laptop: card is 380:401 and nothing overflows",
+      "ok": true
+    },
+    {
+      "name": "1440x900 laptop: edges align (right edge, column heads, row pitch, insets)",
+      "ok": true
+    },
+    {
+      "name": "1440x900 laptop: no label is cut off, every logo fits its box and the cards share one height",
+      "ok": true
+    },
+    {
+      "name": "1440x900 laptop: fully loaded queues still fit",
+      "ok": true
+    },
+    {
+      "name": "1920x1080 wide: card is 380:401 and nothing overflows",
+      "ok": true
+    },
+    {
+      "name": "1920x1080 wide: edges align (right edge, column heads, row pitch, insets)",
+      "ok": true
+    },
+    {
+      "name": "1920x1080 wide: no label is cut off, every logo fits its box and the cards share one height",
+      "ok": true
+    },
+    {
+      "name": "1920x1080 wide: fully loaded queues still fit",
+      "ok": true
+    },
+    {
+      "name": "initial",
+      "ok": true
+    },
+    {
+      "name": "below slop no drag",
+      "ok": true
+    },
+    {
+      "name": "ghost + target + preview while dragging",
+      "ok": true
+    },
+    {
+      "name": "drop hands over",
+      "ok": true
+    },
+    {
+      "name": "chip dropped on pile unassigns",
+      "ok": true
+    },
+    {
+      "name": "drop outside the board keeps it",
+      "ok": true
+    },
+    {
+      "name": "Esc cancels drag",
+      "ok": true
+    },
+    {
+      "name": "queue past the limit shows +N",
+      "ok": true
+    },
+    {
+      "name": "tooltip lists the rest with logos and stays inside the card",
+      "ok": true
+    },
+    {
+      "name": "Enter picks up and previews the first agent",
+      "ok": true
+    },
+    {
+      "name": "arrows move the highlight",
+      "ok": true
+    },
+    {
+      "name": "Esc puts it back",
+      "ok": true
+    },
+    {
+      "name": "Enter hands over to the chosen agent, focus follows",
+      "ok": true
+    },
+    {
+      "name": "number key hands over at once",
+      "ok": true
+    },
+    {
+      "name": "0 returns it to Unassigned",
+      "ok": true
+    },
+    {
+      "name": "auto is a switch",
+      "ok": true
+    },
+    {
+      "name": "auto hands tasks over about one a second",
+      "ok": true
+    },
+    {
+      "name": "auto empties the pile to whoever is free first",
+      "ok": true
+    },
+    {
+      "name": "empty note",
+      "ok": true
+    },
+    {
+      "name": "touch drag hands a task over (no swipe, no scroll)",
+      "ok": true
+    },
+    {
+      "name": "touch drag to a second agent",
+      "ok": true
+    },
+    {
+      "name": "touch fills a queue past the limit",
+      "ok": true
+    },
+    {
+      "name": "tapping +N opens its list",
+      "ok": true
+    },
+    {
+      "name": "tapping elsewhere closes it",
+      "ok": true
+    },
+    {
+      "name": "coarse pointers keep the layout (bar stays 53, hit area grows)",
+      "ok": true
+    },
+    {
+      "name": "horizontal swipe outside the board still changes group",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

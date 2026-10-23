@@ -48,7 +48,7 @@ export function S06LifecycleManagement() {
                       <div className="Copy__body">
                         <p>
                           {"Stripe’s AI determines when to retry a transaction using a "}
-                          <a className="Link" href="https://stripe.com/guides/understanding-benefits-of-network-tokens" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/guides/understanding-benefits-of-network-tokens" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"network token"}
                           </a>
                           {" versus the primary account number to improve acceptance rates. Businesses can use Stripe to provision tokens or bring external tokens for processing."}

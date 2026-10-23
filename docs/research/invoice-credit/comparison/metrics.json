@@ -1,0 +1,58 @@
+[
+  {
+    "width": 760,
+    "state": "invoice",
+    "sourceHeight": 950,
+    "localHeight": 950,
+    "differentPercent": 0.129
+  },
+  {
+    "width": 760,
+    "state": "credit",
+    "sourceHeight": 950,
+    "localHeight": 950,
+    "differentPercent": 0.233
+  },
+  {
+    "width": 620,
+    "state": "invoice",
+    "sourceHeight": 950,
+    "localHeight": 950,
+    "differentPercent": 0.158
+  },
+  {
+    "width": 620,
+    "state": "credit",
+    "sourceHeight": 950,
+    "localHeight": 950,
+    "differentPercent": 0.286
+  },
+  {
+    "width": 390,
+    "state": "invoice",
+    "sourceHeight": 1102,
+    "localHeight": 1102,
+    "differentPercent": 0.217
+  },
+  {
+    "width": 390,
+    "state": "credit",
+    "sourceHeight": 1102,
+    "localHeight": 1102,
+    "differentPercent": 0.392
+  },
+  {
+    "width": 320,
+    "state": "invoice",
+    "sourceHeight": 1120,
+    "localHeight": 1120,
+    "differentPercent": 0.314
+  },
+  {
+    "width": 320,
+    "state": "credit",
+    "sourceHeight": 1120,
+    "localHeight": 1120,
+    "differentPercent": 0.47
+  }
+]

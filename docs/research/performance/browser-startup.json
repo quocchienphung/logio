@@ -1,0 +1,807 @@
+{
+  "base": "http://localhost:3100",
+  "environment": "Chrome headless on this machine, production build, 1440x1000, DPR 1, no CPU/network throttle; rAF intervals are not presented-frame FPS. Fresh contexts per sample; OS shader and asset caches may be warm. Two runs per variant are diagnostic, not a stable benchmark.",
+  "results": [
+    {
+      "variant": "full",
+      "responseStartMs": 10.20000000006985,
+      "domContentLoadedMs": 571,
+      "measuredUntilMs": 5605.20000000007,
+      "tasksTotalMs": 1390,
+      "blockingOver50Ms": 790,
+      "worstTaskMs": 260,
+      "framesOver33ms": 19,
+      "contexts": [
+        {
+          "className": "developers-wave-animation__canvas",
+          "start": 1006.8000000000466,
+          "ms": 20.599999999976717
+        },
+        {
+          "className": "hero-wave-animation__canvas",
+          "start": 1194.1000000000931,
+          "ms": 11.899999999906868
+        },
+        {
+          "className": "issuing-graphic__background-canvas",
+          "start": 1497.6000000000931,
+          "ms": 104.69999999995343
+        },
+        {
+          "className": "agentic-graphic__background-canvas",
+          "start": 2128.8000000000466,
+          "ms": 28.400000000023283
+        },
+        {
+          "className": "globe__canvas",
+          "start": 2278.600000000093,
+          "ms": 31.899999999906868
+        },
+        {
+          "className": "data-viz__canvas",
+          "start": 2486.3000000000466,
+          "ms": 19.900000000023283
+        }
+      ],
+      "longTasks": [
+        {
+          "at": 59.40000000002328,
+          "ms": 190
+        },
+        {
+          "at": 279.5,
+          "ms": 173
+        },
+        {
+          "at": 472.20000000006985,
+          "ms": 64
+        },
+        {
+          "at": 584.6000000000931,
+          "ms": 52
+        },
+        {
+          "at": 688.5,
+          "ms": 91
+        },
+        {
+          "at": 1232.8000000000466,
+          "ms": 67
+        },
+        {
+          "at": 1497.1000000000931,
+          "ms": 125
+        },
+        {
+          "at": 1816,
+          "ms": 260
+        },
+        {
+          "at": 2277.8000000000466,
+          "ms": 55
+        },
+        {
+          "at": 2342.100000000093,
+          "ms": 117
+        },
+        {
+          "at": 2553.5,
+          "ms": 64
+        },
+        {
+          "at": 2621.5,
+          "ms": 132
+        }
+      ],
+      "loafs": [
+        {
+          "at": 25.400000000023283,
+          "ms": 227.90000000002328,
+          "styleLayoutMs": 2.199999999953434,
+          "scripts": [
+            {
+              "ms": 187.09999999997672,
+              "invoker": "http://localhost:3100/",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 254.10000000009313,
+          "ms": 192.59999999997672,
+          "styleLayoutMs": 167.09999999997672,
+          "scripts": [
+            {
+              "ms": 13.800000000046566,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 453.10000000009313,
+          "ms": 81.39999999990687,
+          "styleLayoutMs": 62.09999999997672,
+          "scripts": [
+            {
+              "ms": 5.099999999976717,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 537,
+          "ms": 266.30000000004657,
+          "styleLayoutMs": 20.400000000023283,
+          "scripts": [
+            {
+              "ms": 30.20000000006985,
+              "invoker": "http://localhost:3100/_next/static/chunks/1fmybq-j0e2qu.js",
+              "function": "",
+              "source": "/_next/static/chunks/1fmybq-j0e2qu.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5.400000000023283,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 7.899999999906868,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 11,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5.900000000023283,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5.699999999953434,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 91.80000000004657,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 66.2
+            }
+          ]
+        },
+        {
+          "at": 1040.6000000000931,
+          "ms": 57.39999999990687,
+          "styleLayoutMs": 3.3999999999068677,
+          "scripts": [
+            {
+              "ms": 47.89999999990687,
+              "invoker": "IMG[src=\"/stripe/palette-a288e2dc.webp\"].onload",
+              "function": "o",
+              "source": "/_next/static/chunks/1r__86-k3xlqz.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1231.5,
+          "ms": 71.5,
+          "styleLayoutMs": 2.599999999976717,
+          "scripts": [
+            {
+              "ms": 67.09999999997672,
+              "invoker": "IMG[src=\"/stripe/palette-411be97f.webp\"].onload",
+              "function": "o",
+              "source": "/_next/static/chunks/1r__86-k3xlqz.js",
+              "forcedLayoutMs": 0.3
+            }
+          ]
+        },
+        {
+          "at": 1433.8000000000466,
+          "ms": 52,
+          "styleLayoutMs": 1.099999999976717,
+          "scripts": [
+            {
+              "ms": 35.20000000006985,
+              "invoker": "FrameRequestCallback",
+              "function": "t",
+              "source": "/_next/static/chunks/2nlgm5ur2dx8l.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1496.9000000000233,
+          "ms": 128.09999999997672,
+          "styleLayoutMs": 2.099999999976717,
+          "scripts": [
+            {
+              "ms": 125,
+              "invoker": "IdleRequestCallback",
+              "function": "",
+              "source": "/_next/static/chunks/2xdikpnt5xuaq.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1628.4000000000233,
+          "ms": 53.70000000006985,
+          "styleLayoutMs": 2.1000000000931323,
+          "scripts": [
+            {
+              "ms": 48.29999999993015,
+              "invoker": "IMG[src=\"/stripe/issuing_card_bg-4817f5b5.webp\"].onload",
+              "function": "o",
+              "source": "/_next/static/chunks/1r__86-k3xlqz.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1726.7000000000698,
+          "ms": 60.79999999993015,
+          "styleLayoutMs": 2.5,
+          "scripts": []
+        },
+        {
+          "at": 1815.9000000000233,
+          "ms": 262.80000000004657,
+          "styleLayoutMs": 1.599999999976717,
+          "scripts": [
+            {
+              "ms": 260,
+              "invoker": "TimerHandler:setTimeout",
+              "function": "n",
+              "source": "/_next/static/chunks/1r__86-k3xlqz.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 2277.8000000000466,
+          "ms": 56.699999999953434,
+          "styleLayoutMs": 1.099999999976717,
+          "scripts": [
+            {
+              "ms": 55,
+              "invoker": "IdleRequestCallback",
+              "function": "",
+              "source": "/_next/static/chunks/2xdikpnt5xuaq.js",
+              "forcedLayoutMs": 0.2
+            }
+          ]
+        },
+        {
+          "at": 2341.9000000000233,
+          "ms": 118.70000000006985,
+          "styleLayoutMs": 0.6000000000931323,
+          "scripts": [
+            {
+              "ms": 117.5,
+              "invoker": "IMG[src=\"/stripe/map_dots-96ddc62d.png\"].onload",
+              "function": "",
+              "source": "/_next/static/chunks/1tvb3c10_acqx.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 2549,
+          "ms": 206.30000000004657,
+          "styleLayoutMs": 0.5999999999767169,
+          "scripts": [
+            {
+              "ms": 64.5,
+              "invoker": "IMG[src=\"/stripe/annual-letter-desktop-w1732-bb1a072f-mono.webp\"].onload",
+              "function": "",
+              "source": "/_next/static/chunks/2g8z4kugsholg.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        }
+      ],
+      "cpu": {
+        "LayoutDuration": 0.21367,
+        "RecalcStyleDuration": 0.334735,
+        "ScriptDuration": 0.73114,
+        "TaskDuration": 3.417831
+      }
+    },
+    {
+      "variant": "no-webgl",
+      "responseStartMs": 11.199999999953434,
+      "domContentLoadedMs": 441.0999999999767,
+      "measuredUntilMs": 5457.800000000047,
+      "tasksTotalMs": 425,
+      "blockingOver50Ms": 175,
+      "worstTaskMs": 139,
+      "framesOver33ms": 8,
+      "contexts": [],
+      "longTasks": [
+        {
+          "at": 91.59999999997672,
+          "ms": 139
+        },
+        {
+          "at": 248.90000000002328,
+          "ms": 69
+        },
+        {
+          "at": 355.19999999995343,
+          "ms": 80
+        },
+        {
+          "at": 492.69999999995343,
+          "ms": 71
+        },
+        {
+          "at": 933.3000000000466,
+          "ms": 66
+        }
+      ],
+      "loafs": [
+        {
+          "at": 23.099999999976717,
+          "ms": 202.09999999997672,
+          "styleLayoutMs": 132.79999999993015,
+          "scripts": [
+            {
+              "ms": 29,
+              "invoker": "http://localhost:3100/",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 6.600000000093132,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 230.80000000004657,
+          "ms": 84.59999999997672,
+          "styleLayoutMs": 66.30000000004657,
+          "scripts": [
+            {
+              "ms": 5.200000000069849,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 317.9000000000233,
+          "ms": 112.19999999995343,
+          "styleLayoutMs": 74.40000000002328,
+          "scripts": [
+            {
+              "ms": 25.599999999976717,
+              "invoker": "http://localhost:3100/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "function": "",
+              "source": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5.800000000046566,
+              "invoker": "http://localhost:3100/",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 492.69999999995343,
+          "ms": 88.90000000002328,
+          "styleLayoutMs": 16,
+          "scripts": [
+            {
+              "ms": 71.30000000004657,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 45.5
+            }
+          ]
+        },
+        {
+          "at": 930,
+          "ms": 92.5,
+          "styleLayoutMs": 2.300000000046566,
+          "scripts": [
+            {
+              "ms": 66.59999999997672,
+              "invoker": "IMG[src=\"/stripe/annual-letter-desktop-w1732-bb1a072f-mono.webp\"].onload",
+              "function": "",
+              "source": "/_next/static/chunks/2g8z4kugsholg.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        }
+      ],
+      "cpu": {
+        "LayoutDuration": 0.191154,
+        "RecalcStyleDuration": 0.486832,
+        "ScriptDuration": 0.333809,
+        "TaskDuration": 2.598035
+      }
+    },
+    {
+      "variant": "full",
+      "responseStartMs": 9.099999999976717,
+      "domContentLoadedMs": 459.9000000000233,
+      "measuredUntilMs": 5471.599999999977,
+      "tasksTotalMs": 722,
+      "blockingOver50Ms": 272,
+      "worstTaskMs": 152,
+      "framesOver33ms": 17,
+      "contexts": [
+        {
+          "className": "developers-wave-animation__canvas",
+          "start": 726.6999999999534,
+          "ms": 18.099999999976717
+        },
+        {
+          "className": "hero-wave-animation__canvas",
+          "start": 846.7999999999302,
+          "ms": 7.600000000093132
+        },
+        {
+          "className": "agentic-graphic__background-canvas",
+          "start": 998.9000000000233,
+          "ms": 47.89999999990687
+        },
+        {
+          "className": "issuing-graphic__background-canvas",
+          "start": 1161.0999999999767,
+          "ms": 23.800000000046566
+        },
+        {
+          "className": "globe__canvas",
+          "start": 1355.5999999999767,
+          "ms": 17.400000000023283
+        },
+        {
+          "className": "data-viz__canvas",
+          "start": 1538.4000000000233,
+          "ms": 28.5
+        }
+      ],
+      "longTasks": [
+        {
+          "at": 95,
+          "ms": 152
+        },
+        {
+          "at": 265.29999999993015,
+          "ms": 75
+        },
+        {
+          "at": 372.0999999999767,
+          "ms": 82
+        },
+        {
+          "at": 517.2999999999302,
+          "ms": 68
+        },
+        {
+          "at": 866.0999999999767,
+          "ms": 56
+        },
+        {
+          "at": 998.5,
+          "ms": 56
+        },
+        {
+          "at": 1254.2999999999302,
+          "ms": 89
+        },
+        {
+          "at": 1403.6999999999534,
+          "ms": 82
+        },
+        {
+          "at": 1592.4000000000233,
+          "ms": 62
+        }
+      ],
+      "loafs": [
+        {
+          "at": 22.099999999976717,
+          "ms": 219,
+          "styleLayoutMs": 145,
+          "scripts": [
+            {
+              "ms": 28,
+              "invoker": "http://localhost:3100/",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 8.199999999953434,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 247.79999999993015,
+          "ms": 90.40000000002328,
+          "styleLayoutMs": 72.69999999995343,
+          "scripts": [
+            {
+              "ms": 5.699999999953434,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 340.4000000000233,
+          "ms": 108.29999999993015,
+          "styleLayoutMs": 76.29999999993015,
+          "scripts": [
+            {
+              "ms": 22.199999999953434,
+              "invoker": "http://localhost:3100/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "function": "",
+              "source": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 517.1999999999534,
+          "ms": 88.70000000006985,
+          "styleLayoutMs": 16.70000000006985,
+          "scripts": [
+            {
+              "ms": 68.10000000009313,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 42.8
+            }
+          ]
+        },
+        {
+          "at": 865.0999999999767,
+          "ms": 60.800000000046566,
+          "styleLayoutMs": 2.900000000023283,
+          "scripts": [
+            {
+              "ms": 56.40000000002328,
+              "invoker": "IMG[src=\"/stripe/palette-411be97f.webp\"].onload",
+              "function": "o",
+              "source": "/_next/static/chunks/1r__86-k3xlqz.js",
+              "forcedLayoutMs": 0.2
+            }
+          ]
+        },
+        {
+          "at": 997.9000000000233,
+          "ms": 62.29999999993015,
+          "styleLayoutMs": 4.199999999953434,
+          "scripts": [
+            {
+              "ms": 56.79999999993015,
+              "invoker": "IdleRequestCallback",
+              "function": "",
+              "source": "/_next/static/chunks/2xdikpnt5xuaq.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1251.9000000000233,
+          "ms": 93.59999999997672,
+          "styleLayoutMs": 0.9000000000232831,
+          "scripts": [
+            {
+              "ms": 89.80000000004657,
+              "invoker": "TimerHandler:setTimeout",
+              "function": "n",
+              "source": "/_next/static/chunks/1r__86-k3xlqz.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1403.2999999999302,
+          "ms": 85.5,
+          "styleLayoutMs": 1.5,
+          "scripts": [
+            {
+              "ms": 82.5,
+              "invoker": "IMG[src=\"/stripe/map_dots-96ddc62d.png\"].onload",
+              "function": "",
+              "source": "/_next/static/chunks/1tvb3c10_acqx.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 1587.5,
+          "ms": 74.09999999997672,
+          "styleLayoutMs": 1.900000000023283,
+          "scripts": [
+            {
+              "ms": 62.5,
+              "invoker": "IMG[src=\"/stripe/annual-letter-desktop-w1732-bb1a072f-mono.webp\"].onload",
+              "function": "",
+              "source": "/_next/static/chunks/2g8z4kugsholg.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        }
+      ],
+      "cpu": {
+        "LayoutDuration": 0.199578,
+        "RecalcStyleDuration": 0.338557,
+        "ScriptDuration": 0.535273,
+        "TaskDuration": 2.993399
+      }
+    },
+    {
+      "variant": "no-webgl",
+      "responseStartMs": 8.900000000023283,
+      "domContentLoadedMs": 457.9000000000233,
+      "measuredUntilMs": 5479.900000000023,
+      "tasksTotalMs": 418,
+      "blockingOver50Ms": 168,
+      "worstTaskMs": 138,
+      "framesOver33ms": 7,
+      "contexts": [],
+      "longTasks": [
+        {
+          "at": 107.70000000006985,
+          "ms": 138
+        },
+        {
+          "at": 262.4000000000233,
+          "ms": 68
+        },
+        {
+          "at": 363.20000000006985,
+          "ms": 88
+        },
+        {
+          "at": 534.4000000000233,
+          "ms": 69
+        },
+        {
+          "at": 934,
+          "ms": 55
+        }
+      ],
+      "loafs": [
+        {
+          "at": 23,
+          "ms": 215.70000000006985,
+          "styleLayoutMs": 130.40000000002328,
+          "scripts": [
+            {
+              "ms": 39.39999999990687,
+              "invoker": "http://localhost:3100/",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 7.800000000046566,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 245.90000000002328,
+          "ms": 82.5,
+          "styleLayoutMs": 65.90000000002328,
+          "scripts": [
+            {
+              "ms": 5.799999999930151,
+              "invoker": "MutationCallback",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 331,
+          "ms": 110.90000000002328,
+          "styleLayoutMs": 78.40000000002328,
+          "scripts": [
+            {
+              "ms": 22,
+              "invoker": "http://localhost:3100/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "function": "",
+              "source": "/_next/static/chunks/3s6nzrbk-8mnv.js",
+              "forcedLayoutMs": 0
+            },
+            {
+              "ms": 5.099999999976717,
+              "invoker": "http://localhost:3100/",
+              "function": "",
+              "source": "/",
+              "forcedLayoutMs": 0
+            }
+          ]
+        },
+        {
+          "at": 534.4000000000233,
+          "ms": 88.09999999997672,
+          "styleLayoutMs": 15.400000000023283,
+          "scripts": [
+            {
+              "ms": 69.30000000004657,
+              "invoker": "MessagePort.onmessage",
+              "function": "O",
+              "source": "/_next/static/chunks/3fcuou0n2x1yt.js",
+              "forcedLayoutMs": 43.9
+            }
+          ]
+        },
+        {
+          "at": 931.7000000000698,
+          "ms": 66.09999999997672,
+          "styleLayoutMs": 3.599999999976717,
+          "scripts": [
+            {
+              "ms": 55.800000000046566,
+              "invoker": "IMG[src=\"/stripe/annual-letter-desktop-w1732-bb1a072f-mono.webp\"].onload",
+              "function": "",
+              "source": "/_next/static/chunks/2g8z4kugsholg.js",
+              "forcedLayoutMs": 0
+            }
+          ]
+        }
+      ],
+      "cpu": {
+        "LayoutDuration": 0.191504,
+        "RecalcStyleDuration": 0.463018,
+        "ScriptDuration": 0.358856,
+        "TaskDuration": 2.591648
+      }
+    }
+  ]
+}

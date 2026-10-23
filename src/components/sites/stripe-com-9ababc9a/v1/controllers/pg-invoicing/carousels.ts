@@ -3,6 +3,7 @@
 //   InvoicingGlobalCarousel ...... v1-GlobalCarousel-5V6IRXVF.js
 //   BillingInvoicingDemoButton ... v1-InvoicingDemoButton-MAND27CL.js
 import type { Controller } from "../types";
+import { normalizeStripeNavigation } from "@/lib/stripe-navigation";
 import { childControllers, listen, onPageVisibility, target, targetList } from "../lib";
 import { Clock, scrollObserver } from "../pg-tax/motion";
 import { segmentedControlApi } from "../pg-tax/localizationGraphic";
@@ -121,6 +122,6 @@ export const BillingInvoicingDemoButton: Controller = (el) => {
   const url = el.dataset.submissionUrl;
   if (!button || !url) return;
   return listen(button, "click", () => {
-    window.open(url, "invoice");
+    window.open(normalizeStripeNavigation(url), "invoice", "noopener,noreferrer");
   });
 };

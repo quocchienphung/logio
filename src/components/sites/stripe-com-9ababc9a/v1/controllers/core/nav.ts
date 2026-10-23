@@ -11,8 +11,12 @@
 import type { Controller } from "../types";
 import { getApi, listen, prefersReducedMotion, target, targetList } from "../lib";
 import { clamp, disableAmbientAnimations, easeInOutCubic, exposeCore } from "./util";
+import { animateMenu, wireMenuHighlight } from "@/components/interaction/menu-motion";
 
+// Writing an attribute (even to the value it already has) invalidates style for every selector on it, and
+// these run on each scroll event: only write actual changes.
 const setFlag = (el: HTMLElement, key: string, on: boolean) => {
+  if (on === key in el.dataset) return;
   if (on) el.dataset[key] = "";
   else delete el.dataset[key];
 };
@@ -20,7 +24,11 @@ const setFlag = (el: HTMLElement, key: string, on: boolean) => {
 // ---- StickyNav ----------------------------------------------------------------------------------
 export const StickyNav: Controller = (el) => {
   const parent = el.parentElement;
-  const updateHeight = () => parent?.style.setProperty("--stickyNavHeight", `${el.getBoundingClientRect().height}px`);
+  // custom properties inherit through the whole section below: only set them when they change
+  const setVar = (target: HTMLElement | null, name: string, value: string) => {
+    if (target && target.style.getPropertyValue(name) !== value) target.style.setProperty(name, value);
+  };
+  const updateHeight = () => setVar(parent, "--stickyNavHeight", `${el.getBoundingClientRect().height}px`);
   const onScroll = () => {
     const top = Math.floor(el.getBoundingClientRect().top);
     setFlag(el, "stickyBefore", top > 0);
@@ -30,7 +38,7 @@ export const StickyNav: Controller = (el) => {
   const onResize = () => {
     onScroll();
     updateHeight();
-    el.style.setProperty("--viewportFullWidth", String(document.documentElement.clientWidth));
+    setVar(el, "--viewportFullWidth", String(document.documentElement.clientWidth));
   };
   const offScroll = listen(window, "scroll", onScroll);
   const offResize = listen(window, "resize", onResize);
@@ -306,6 +314,10 @@ export const ProductNavDropdownItem: Controller = (el) => {
   const trigger = target<HTMLButtonElement>(el, "ProductNavDropdownItem", "trigger");
   const panel = target(el, "ProductNavDropdownItem", "panel");
   if (!trigger || !panel) return;
+  panel.dataset.interactionMenu = "";
+  panel.querySelectorAll("a").forEach(link => link.setAttribute("data-menu-item", ""));
+  const unhighlight = wireMenuHighlight(panel);
+  let panelAnimation: ReturnType<typeof animateMenu> | undefined;
   const nav = el.closest<HTMLElement>(".ProductNav");
   const track = el.closest<HTMLElement>(".HorizontalOverflowContainer__track");
   let isOpen = false;
@@ -362,6 +374,8 @@ export const ProductNavDropdownItem: Controller = (el) => {
     panel.removeAttribute("hidden");
     panel.inert = false;
     updatePosition();
+    panelAnimation?.cancel();
+    panelAnimation = animateMenu(panel, true);
     trigger.setAttribute("aria-expanded", "true");
     isOpen = true;
     const offs = [
@@ -383,6 +397,16 @@ export const ProductNavDropdownItem: Controller = (el) => {
     trigger!.setAttribute("aria-expanded", "false");
     panel!.inert = true;
     panel!.classList.add(PNDI_CLOSING);
+    const style = getComputedStyle(panel!);
+    const from = { opacity: style.opacity, transform: style.transform };
+    panelAnimation?.cancel();
+    const animation = animateMenu(panel!, false, "bottom", from);
+    panelAnimation = animation;
+    void animation.finished.then(() => {
+      if (isOpen || panelAnimation !== animation) return;
+      panel!.setAttribute("hidden", ""); panel!.classList.remove(PNDI_CLOSING);
+      animation.cancel();
+    }, () => {});
   }
   function handleDocumentPointerDown(e: Event) {
     if (!contains(e.target)) close();
@@ -391,11 +415,6 @@ export const ProductNavDropdownItem: Controller = (el) => {
     const fe = e as FocusEvent;
     if (contains(fe.target) && !contains(fe.relatedTarget)) close();
   }
-  const handlePanelFadeOut = (e: TransitionEvent) => {
-    if (e.target !== panel || e.propertyName !== "opacity" || isOpen) return;
-    panel.classList.remove(PNDI_CLOSING);
-    panel.setAttribute("hidden", "");
-  };
   const handlePointerEnter = (e: PointerEvent) => {
     if (e.pointerType === "mouse") open();
   };
@@ -491,7 +510,6 @@ export const ProductNavDropdownItem: Controller = (el) => {
   const offs = [
     listen(trigger, "click", handleTriggerClick),
     listen(panel, "click", handlePanelClick),
-    listen(panel, "transitionend", handlePanelFadeOut),
     listen(document, "keydown", handleKeyDown),
     listen(el, "pointerenter", handlePointerEnter),
     listen(el, "pointerleave", handlePointerLeave),
@@ -503,5 +521,7 @@ export const ProductNavDropdownItem: Controller = (el) => {
     clearHoverClose();
     removeOpenListeners();
     returnPanel();
+    panelAnimation?.cancel(); unhighlight(); panel.removeAttribute("data-interaction-menu");
+    panel.querySelectorAll("[data-menu-item]").forEach(link => link.removeAttribute("data-menu-item"));
   };
 };

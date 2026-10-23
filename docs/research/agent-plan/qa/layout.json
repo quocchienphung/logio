@@ -1,0 +1,65 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "card": "384x405",
+    "textPx": 13.9,
+    "listScrolls": true
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "card": "384x405",
+    "textPx": 13.9,
+    "listScrolls": true
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "card": "366x386",
+    "textPx": 13.2,
+    "listScrolls": true
+  },
+  {
+    "width": 768,
+    "height": 1024,
+    "card": "418x441",
+    "textPx": 15.1,
+    "listScrolls": true
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "card": "320x338",
+    "textPx": 11.6,
+    "listScrolls": true
+  },
+  {
+    "width": 667,
+    "height": 375,
+    "card": "320x338",
+    "textPx": 11.6,
+    "listScrolls": true
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "card": "349x368",
+    "textPx": 12.6,
+    "listScrolls": true
+  },
+  {
+    "width": 360,
+    "height": 740,
+    "card": "320x337",
+    "textPx": 11.5,
+    "listScrolls": true
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "card": "281x296",
+    "textPx": 10.1,
+    "listScrolls": true
+  }
+]

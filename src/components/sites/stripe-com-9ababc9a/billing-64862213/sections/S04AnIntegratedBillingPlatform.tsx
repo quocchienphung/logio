@@ -266,7 +266,7 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"Launch prebuilt pricing models in a few clicks, or program "}
-                            <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/billing/scripts" data-analytics-label="launch_new_pricing__custom_billing_logic">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/billing/scripts" data-analytics-label="launch_new_pricing__custom_billing_logic">
                               {"custom billing logic"}
                             </a>
                             {" with minimal overhead. Gartner ranked Stripe as a "}
@@ -284,11 +284,11 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"Go to market with 15+ built-in "}
-                            <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/products-prices/pricing-models" data-analytics-label="launch_new_pricing__models">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/products-prices/pricing-models" data-analytics-label="launch_new_pricing__models">
                               {"models"}
                             </a>
                             {", including flat rate, per seat, tiered, and more. "}
-                            <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/figma" data-analytics-label="launch_new_pricing__figma">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/figma" data-analytics-label="launch_new_pricing__figma">
                               {"Figma"}
                             </a>
                             {" doubled its product suite and overhauled its billing model on Stripe."}
@@ -302,7 +302,7 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"Package products into plans, bundles, and add-ons, and adjust pricing as you go. "}
-                            <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/airwallet" data-analytics-label="launch_new_pricing__airwallet">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/airwallet" data-analytics-label="launch_new_pricing__airwallet">
                               {"Airwallet"}
                             </a>
                             {" took two weeks to implement a new subscription model and increased revenue by 30%."}
@@ -552,7 +552,7 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"AI-powered "}
-                            <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/billing/revenue-recovery/smart-retries#smart-retries" data-analytics-label="retain_more_revenue__smart_retries">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/billing/revenue-recovery/smart-retries" data-analytics-label="retain_more_revenue__smart_retries">
                               {"Smart Retries"}
                             </a>
                             {", card account updater, and cancellation surveys work together to keep revenue flowing. Businesses using Stripe recover 55% of failed payments on average."}
@@ -566,7 +566,7 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"Customize dunning flows with email alerts for failed transactions and expiring payment methods. "}
-                            <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/retool" data-analytics-label="retain_more_revenue__retool">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/retool" data-analytics-label="retain_more_revenue__retool">
                               {"Retool"}
                             </a>
                             {" recovered $600K in failed payments with Stripe."}
@@ -804,7 +804,7 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"Help customers self-serve with Stripe-hosted invoice pages and prebuilt customer portals. "}
-                            <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/clickfunnels" data-analytics-label="monetize_with_fewer__clickfunnels">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/clickfunnels" data-analytics-label="monetize_with_fewer__clickfunnels">
                               {"ClickFunnels"}
                             </a>
                             {" saved $1M annually in engineering costs."}
@@ -1135,7 +1135,7 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"Stripe’s APIs are built for flexibility and modularity—add currencies, payment methods, or regions with minimal work. With Stripe, "}
-                            <a className="hds-link hds-link--secondary" href="https://stripe.com/customers/eviden" data-analytics-label="scale_into_new__eviden">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/customers/eviden" data-analytics-label="scale_into_new__eviden">
                               {"Eviden"}
                             </a>
                             {" launched a new SaaS platform in 40+ markets."}
@@ -1149,7 +1149,7 @@ export function S04AnIntegratedBillingPlatform() {
                           </h4>
                           <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                             {"Adjust product or service offerings for local markets. Built-in "}
-                            <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/payments/currencies/localize-prices/adaptive-pricing" data-analytics-label="scale_into_new__adaptive_pricing">
+                            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/payments/currencies/localize-prices/adaptive-pricing" data-analytics-label="scale_into_new__adaptive_pricing">
                               {"Adaptive Pricing"}
                             </a>
                             {" can increase lifetime value by 18% on average."}

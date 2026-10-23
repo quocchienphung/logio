@@ -51,7 +51,7 @@ export function S07ForEnterprise() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/terminal#stripe-terminal-pos-integrations" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="future_proof_your__hundreds_of_third__more_integrations">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/terminal" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="future_proof_your__hundreds_of_third__more_integrations">
                           {"More integrations"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -132,11 +132,11 @@ export function S07ForEnterprise() {
                       <div className="Copy__body">
                         <p>
                           {"Benefit from Stripe’s "}
-                          <a className="Link" href="https://status.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/status.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"industry-leading reliability"}
                           </a>
                           {", and process transactions with point-to-point or end-to-end "}
-                          <a className="Link" href="https://support.stripe.com/questions/stripe-terminal-encryption-e2ee-vs-p2pe" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/support.stripe.com/questions/stripe-terminal-encryption-e2ee-vs-p2pe" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"encrypted solutions."}
                           </a>
                         </p>
@@ -245,7 +245,7 @@ export function S07ForEnterprise() {
                       <div className="Copy__body">
                         <p>
                           {"Easily combine Stripe’s payments capabilities with supported "}
-                          <a className="Link" href="https://docs.stripe.com/terminal#stripe-terminal-pos-integrations" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/terminal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"POS, credit card readers, gift card flows, and more."}
                           </a>
                         </p>

@@ -1,0 +1,597 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>ascii-reveal</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <meta name="description" content="A loading effect for React that decodes text, images and cards into place through a character grid.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+    <script type="module" crossorigin="" src="./assets/index-DSarlY7x.js"></script>
+    <link rel="stylesheet" crossorigin="" href="./assets/index-B6wWFduE.css">
+  <style data-ascii-reveal="">
+[data-ar-t]{-webkit-text-fill-color:transparent!important;text-shadow:none!important;text-decoration-color:transparent!important}
+[data-ar-m],[data-ar-s],[data-ar-f]{opacity:var(--ar-o,0)!important}
+[data-ar-pending]{visibility:hidden}
+.ar-overlay{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:visible}
+.ar-overlay>canvas{position:absolute;pointer-events:none;display:block}</style></head>
+  <body>
+    <div id="root"><canvas class="backdrop" aria-hidden="true" width="1440" height="900"></canvas><div class="page"><div class="frame" style="position: relative;"><nav class="sec nav" aria-label="Project"><div class="brand"><span class="mark" aria-hidden="true"></span>ascii-reveal</div><div class="nav-right"><span class="badge">v0.3 · open source</span><a class="gh-pill" href="https://github.com/quanhoangindex/ascii-reveal" target="_blank" rel="noreferrer" data-ascii="fade" aria-label="ascii-reveal on GitHub" style=""><svg class="gh-icon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg><span>GitHub</span></a></div></nav><section class="sec hero" aria-label="Introduction"><div class="hero-copy"><span class="pill"><b>New</b>A loading effect for React</span><h1>Your skeleton loader is boring us to death.</h1><p class="lede">Nobody has ever enjoyed a pulsing gray rectangle. ascii-reveal decodes your real content into place, glyph by glyph, so the wait looks like something is actually happening.</p><div class="actions"><button class="cta" type="button" data-ascii="fade" style="">See it in action <span aria-hidden="true">↓</span></button><button class="copy" type="button" aria-label="Copy install command" data-ascii="fade" style=""><span><span class="d">$</span> npm i ascii-reveal</span><em>Copy</em></button></div></div><div class="hero-art"><img class="hero-glow" src="images/hero-glow.webp" alt="" aria-hidden="true" decoding="async" style=""><img src="images/hero-figure.png" alt="" class="media hero-img" decoding="async" style=""></div></section><div class="card-zone"><div class="sec toolbar" role="group" aria-label="Animation controls" data-ascii="skip"><div class="group"><span class="glabel">Preset</span><div class="seg" role="group" aria-label="Preset"><button type="button" aria-pressed="true">Decode</button><button type="button" aria-pressed="false">Dither</button><button type="button" aria-pressed="false">Terminal</button><button type="button" aria-pressed="false">Blueprint</button></div></div><div class="group"><span class="glabel">Wave from</span><div class="seg" role="group" aria-label="Wave origin"><button type="button" aria-pressed="true">Center</button><button type="button" aria-pressed="false">Corner</button><button type="button" aria-pressed="false">Cursor</button></div></div><div class="group"><label class="glabel" for="speed">Speed</label><input type="range" id="speed" min="0.4" max="2" step="0.1" value="1" style=""><span class="speedval">1.0×</span></div><button type="button" class="cta">Replay <kbd>R</kbd></button></div><section class="sec demo" aria-label="Demo cards"><div class="demo-head"><p>Click a card to replay it from that point</p><p>Redeploy runs the loading → loaded cycle</p></div><main class="grid"><article class="card" data-ascii="surface" tabindex="0" aria-label="Profile card" style=""><div class="row"><img src="images/avatar.png" alt="" class="media avatar" decoding="async" style=""><div class="grow"><p class="title">Quan Hoang</p><p class="small muted">Designer &amp; UX/UI Engineer</p></div></div><p class="body">Designs and builds interfaces where motion explains state. Currently making ascii-reveal, an open-source loading effect for React.</p><div class="row hair" style="padding-top: 12px;"><span class="tiny mono muted grow">2026</span><span class="chip" data-ascii="fade" style="">Building in public</span></div><div class="row" style="margin-top: auto;"><button class="btn primary grow" type="button" data-ascii="fade" style="">Say hello</button><button class="btn grow" type="button" data-ascii="fade" style="">View work</button></div></article><article class="card" data-ascii="surface" tabindex="0" aria-label="Product card" style=""><img src="images/print.png" alt="" class="media photo" decoding="async" style=""><div class="row between" style="align-items: baseline;"><p class="title">Aura No. 3</p><p class="title mono">€120.00</p></div><p class="small muted" style="margin-top: -8px;">Giclée print · 50 × 70 cm · edition of 40</p><button class="btn primary full" type="button" data-ascii="fade" style="">Add to cart</button></article><article class="card" data-ascii="surface" tabindex="0" aria-label="Stats card" style=""><div class="row between"><p class="eyebrow">Weekly active users</p><span class="chip" data-ascii="fade" style="">+8.2%</span></div><p class="big">12,480</p><p class="small muted" style="margin-top: -8px;">vs 11,530 the week before</p><div style="margin-top: auto; display: flex; flex-direction: column; gap: 6px;"><canvas class="media chart" aria-hidden="true" width="304" height="190"></canvas><div class="axis"><span>Oct 7</span><span>Oct 20</span></div></div></article><article class="card" data-ascii="surface" tabindex="0" aria-label="Article card"><p class="eyebrow">Field notes · 6 min read</p><h2 class="headline">Loaders should resolve, not disappear</h2><p class="body">A spinner asks people to wait. A reveal shows them what they are waiting for. When content decodes in its final position, the layout never jumps and the eye already knows where to look.</p><div class="row between hair" style="padding-top: 12px; margin-top: auto;"><span class="tiny mono muted">Oct 18, 2026</span><span class="tiny mono muted">Read →</span></div></article><article class="card" data-ascii="surface" tabindex="0" aria-label="Code card"><div class="row between"><p class="eyebrow">Usage</p><span class="tiny mono muted">App.tsx</span></div><div class="code"><span class="ln"><span class="kw">import</span> { AsciiReveal } <span class="kw">from</span> <span class="str">"ascii-reveal"</span>;</span><span class="ln"> </span><span class="ln"><span class="pn">&lt;</span><span class="tag">AsciiReveal</span> <span class="attr">preset</span>=<span class="str">"decode"</span><span class="pn">&gt;</span></span><span class="ln">  <span class="pn">&lt;</span><span class="tag">ProfileCard</span> <span class="pn">/&gt;</span></span><span class="ln">  <span class="pn">&lt;</span><span class="tag">Gallery</span> <span class="attr">items</span>={prints} <span class="pn">/&gt;</span></span><span class="ln"><span class="pn">&lt;/</span><span class="tag">AsciiReveal</span><span class="pn">&gt;</span></span></div><p class="small muted">Wrap any subtree. Text, images and canvases inside it reveal in one wave.</p></article><article class="card" data-ascii="surface" tabindex="0" aria-label="Deploy status card"><div class="stack" style="position: relative;"><div class="row between"><p class="eyebrow">Production deploy</p><span class="chip" data-ascii="fade" style=""><span data-swap="true">● Ready</span></span></div><dl class="rows"><dt>Commit</dt><dd class="mono" data-swap="true">a3f9c21 · fix hydration flash</dd><dt>Region</dt><dd class="mono" data-swap="true">eu-north-1</dd><dt>p95</dt><dd class="mono" data-swap="true">84 ms</dd><dt>Cache hit</dt><dd class="mono" data-swap="true">97.3%</dd></dl><button class="btn primary full" type="button" data-ascii="fade" style="margin-top: auto;">Redeploy</button><div class="ar-overlay" aria-hidden="true"></div></div></article></main></section></div><section class="sec compare" id="skeleton" aria-label="Loading states"><header class="cmp-head"><p class="eyebrow" data-ar-t="">Loading states</p><h2 data-ar-t=""><span class="aura" data-ar-t="">+1000 aura</span><br>per loading state.</h2></header><div class="cmp-tabs" role="tablist" aria-label="Loading mode"><button role="tab" type="button" aria-selected="true" class="cmp-tab" data-ar-t="">Skeleton + reveal</button><button role="tab" type="button" aria-selected="false" class="cmp-tab" data-ar-t="">Skeleton only</button></div><div class="cmp-bar" role="group" aria-label="Demo controls"><div class="group"><span class="glabel" data-ar-t="">Skeleton</span><div class="seg" role="group" aria-label="Skeleton style"><button type="button" aria-pressed="true" data-ar-t="">Dither</button><button type="button" aria-pressed="false" data-ar-t="">Scan</button><button type="button" aria-pressed="false" data-ar-t="">Braille</button><button type="button" aria-pressed="false" data-ar-t="">Terminal</button></div></div><div class="group"><span class="glabel" data-ar-t="">Reveal</span><div class="seg" role="group" aria-label="Reveal preset"><button type="button" aria-pressed="true" data-ar-t="">Decode</button><button type="button" aria-pressed="false" data-ar-t="">Dither</button><button type="button" aria-pressed="false" data-ar-t="">Terminal</button><button type="button" aria-pressed="false" data-ar-t="">Blueprint</button></div></div><div class="cmp-status"><span class="tier-time" aria-live="polite" data-ar-t="">waiting</span><button class="cta" type="button" data-ar-t="">↻ Reload</button></div></div><div class="bento" role="tabpanel"><div class="slot slot-profile"><div class="slot-fill" aria-busy="true" style="position: relative;"><div class="dcard" aria-hidden="true"><div class="dc-cover"><span class="ars ars-dither dc-fill" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="--ars-d: 0.00s;"><span class="ars-base">░░▒░░▒░░░░▒░░░░░░▒░░░░░░░░▒░▒░░░░░▒░░░░░░▒░░▒▒░░░░░░░░▒░░░░░░░▒░░░░░░░░░░░░░░▒▒░▒░░░░░░░░░░▒▒░░▒░░░░▒░▒▒░▒░░░░░░░░░░░░░░
+░░░░░░░░▒░░░▒▒▒░░░▒░░░░░░░░░▒░░░▒▒░░▒▒░░░░░▒░▒░░▒░░░░░░░░░░░▒░░░░░░░▒▒░░░░░░▒░▒▒▒░░▒░░░░▒░░░░░░░░░░░░░▒░▒░░░▒▒░▒▒▒░▒░░░░
+░░░░░░▒░░░░▒░░▒▒▒░░▒░▒░░░░░▒░░░▒░░░▒░░░░▒▒░░░▒░░░░░░▒▒░░▒░▒▒░▒░░░░▒░░▒░▒░░░░░░░░░░▒▒░░▒░░░░░░░░░░░░░░░░▒░░░░░░░░░▒░░▒░░░
+░░░░▒░░░░░░░░░▒░░░░▒▒░▒▒░░░▒░░░▒░░▒░░░░░▒░▒░▒▒░░▒░░░░░░░░░░▒░░░░▒░░░▒░▒▒░░░░░░▒░░▒▒░░░░░░░▒░░░▒░░░▒░░░▒░░▒░░░░▒░░░▒░░░░▒
+░░░░░░░░░░░░░░░░▒░░░░▒░░▒░░▒░░▒░░░░▒▒░░░░░░░░░░▒░░░░░░░░░▒░▒░░░▒░░▒░░░▒░░░░▒▒░░░▒░░▒░▒░░░▒▒▒▒░░░░░░▒▒░░░░░▒░░░░░░▒░░░▒░░
+░░░░░░░░░░░▒▒░░▒░░░░▒░░▒░░▒░░▒▒░░░░▒▒░░░░░░░░░░░░░░░▒░▒░░▒░░░▒▒░▒░░░░░░░░▒░░░░░▒▒░░░░░░░░░░░░░░░░░░░▒▒░░░▒░░░░░▒░▒▒▒░░░░
+▒▒░▒▒░░░░░░░░░▒░░▒░▒▒▒░░░░░░░░░░░░▒▒▒░░▒░░░░▒░░░░░░░░░▒▒▒░░░░░░░░░▒░░░░░░░▒░░░░░░░░▒░░░░░▒░░░░▒░░░░░▒░░▒▒░░░▒░░▒░░░▒▒░░░
+░▒░░░░░▒░░░▒░░░░▒▒░░▒░░░░░░▒░░░░░░░▒░░░░░░░░░░░░░░░░░▒░░░░▒░▒░░▒░▒░▒░▒▒░░▒▒░░░░░▒░░░░░▒░░░▒░░░░░░░░░░░░░░░░░░░░▒░▒▒░░░░░
+░░▒░▒░▒▒░▒▒▒▒░░▒░▒░░░▒░░░░░░░░░░░░░░░░░░░▒░░░░░░▒░░░░░░░▒░▒░▒░░▒░░░░░▒░░░░░░░░░▒░░░░░░░░░░░▒░░░░░░░░▒░░░░░░░▒░░░░░░▒░▒░░
+░░░░░░░░░░░▒░░▒▒░░░▒░░▒░▒░░░░░░░░░░░▒░░░░▒░░░░░▒░▒░░▒░░░▒▒░▒░▒░░░░░▒▒▒▒▒▒░░░▒░░░░░░░░░░░░░░▒░░░░░░░░░░░░▒░░░░░░▒░▒░░▒░░▒
+░░░░░░░░░▒▒░░░░▒▒▒░░░▒░░▒░░░░░▒░░░▒░▒▒░▒▒░▒░▒░░░░░░░░▒░░▒░▒░░░░▒░░░░░░░░░░▒░▒░░▒░░░░░░░▒░░░░░░░░░░▒░░░░░░░░▒░▒░░▒▒░░░░░░
+░░░░░▒░░░░░▒░▒▒░░░░░░░░░░░░▒░░░░░░▒▒▒▒░▒▒░░░░░▒▒▒░▒░▒░░▒░░░░░░░░░░░░░░░░░▒░▒░▒░▒░░▒▒░▒░░░░░░░▒░░▒░░░░▒░░░░░▒░░░▒░░░░░░░▒
+░░░░░░░░░░░░▒▒░▒░░░░░▒░░░░░░░▒░▒░▒░░▒░░░░░▒░░░░░▒░░░░░▒░▒░░░░░░░░░░░▒░▒░▒░░░░░░░░░░░░░░░░▒░░░░▒░░░░░▒▒░▒░░░░░░░▒░░░░▒░░░
+░░░░░░░░░░░░▒░░░░▒░▒▒▒░░░░░▒░░░░▒░░▒░░░░▒▒░░░░░▒░░░░░░░░░░░░░░░░░░░▒░░░░▒▒▒░░▒▒░░░░░░░▒▒░░░░░░▒░░░░░░▒░░▒░░▒░░▒░░░░░░░░▒
+░░▒░▒░░░░▒░░░▒▒▒▒░░░░░░░░░░░░░░░░░▒▒░░░░░░░░░░░▒▒▒░▒░▒░░░░▒▒░▒░▒▒░░░░▒░░░▒░░░░░░░░░░░░░░░░░░▒░▒░▒░▒▒░░░░░▒░░░░░▒░░░░░░▒▒
+░░░░░░▒░░░░░░░░░▒░░▒░░░░▒░░░░░░░░░░░░░▒░▒░░▒░░░░░░░░░░░░░░▒░░░░▒░░▒░▒░░▒░░░▒░░▒░▒░░▒░░▒░░░░░▒░▒░▒░░░░░░░░▒░░▒░▒▒░░▒░░▒░░
+▒░░░░▒░░░░░▒░░▒░░░▒░░░░░░▒▒░░░░░░░░░░░░░░░░░░░▒░▒▒▒▒░░░░░░░░▒░▒▒▒░▒▒░░░░░░▒░░░░░░░░░░░░░░░▒░░░░░░░░░░░░░░░░░▒░░░░▒▒░░░▒░
+░░░▒▒░░░░░░░░░▒░░░░░░░░▒░▒░░▒░░░░░░▒░▒░▒▒░░▒░░░▒░░░░▒░▒░░▒░░▒░░░░░░░░░▒▒░░░▒░░░▒░░░░░░▒░░░░░░░░░▒░░░▒▒░░░░░▒░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░▒░░▒░░░░░░▒░░▒░▒░░▒░▒▒▒▒░░▒░░░▒▒░▒░░░░▒░░░▒▒▒░░▒░░░░▒░░░░▒░▒░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░▒░░░░▒░░░░░▒░
+░░░░░░▒░░░░▒░░░░░░▒░▒▒░░░░░░░░░░░░░░░▒▒░▒░░░▒░░▒░░░░░░░░░░░░▒░░▒▒░░░░░░░░░░░░▒░░░░░░░░░░░▒░░▒▒▒▒░░░░░▒░░░░░░▒▒░░░░░░░░▒░
+░▒▒░░░▒░░▒░░░░░░▒░░░░░░░░░░░░▒░░░░░░░░▒░▒░░░░░▒░░▒░░░░░░░░░░░░░░░░░▒▒░▒░▒░░▒░░░░░░░░░░▒░▒░▒▒░░░░░░▒░░░░░░░▒░░░░░▒░░░░░░░
+░░░░░▒▒░░░░░░░▒░░░░░▒▒▒░▒░░░░░░░░▒▒░░▒▒░░░░░░░░▒░░░▒░▒░░░░░░▒░░░▒░▒░░░▒░░░▒░░▒▒░▒░░░░░▒▒░░░░░░▒░░░░░░▒▒░▒░░▒░░░░▒░░▒░░░▒
+░░░░░░░▒░░▒▒░▒░░▒░░░▒░░░▒░░░░▒░░░░░░░░▒░░░░░░░░░▒░░░▒▒▒░░░░░░░░░░░░░░▒░░░▒▒▒░░░░░░░▒▒░▒▒░░▒▒▒░░░▒░░░░░░▒░▒░▒▒░░░░▒░░░░░░
+░░░░░▒▒░▒░░░░░░░░▒░░░░░░░░░░░▒░░░░▒░▒░░▒░░▒░░▒░░░▒░░░░░░░░░░░░░░░▒░░░▒░░░░░░░░░░░▒░▒░░░░░░▒░░▒░░░░░░░░▒░░▒░▒░▒░▒░░░░▒▒░░
+░░░░░░░░░░░░░░░░▒░░▒░░▒░░░░░░▒░░▒░░░▒░░░░▒░▒▒▒░░░░░▒░░░░░░░▒░▒▒░▒▒▒░░░░░▒░░░▒░░░░▒░░░░░░░▒░░▒░▒░▒░░░░░░▒░░░░░░▒▒░░░░░░░░
+░▒░▒░░░░░░░░▒░░░░░░░▒░░░░▒░░░░░░░▒░▒░▒░░░░░▒░░▒░░░▒░░░▒░░▒░░░░░░▒░░▒░░░░░░░░░░░▒░░▒░░░░▒░░░▒░░░░▒▒▒▒▒▒░░░░░░░▒░░▒░░░░░░░</span><span class="ars-wave">▒▓▓▒▓█▓█▓▓▒▒▓█▓▒▒▓▒█▒█▓▓▒▓▓▓▓▓█▓▓▓▓▒█▓█▓▓█▒▓▓▓▓▒▓▓▓█▓█▓▓▒█▒█▓▒▓▓▒▓▓▓▓█▓▒▓▓▓▒▓▒█▒▒█▓██▓▓▓▓▓▒▒▓▓█▓▓▒▓▓▓█▒▒▒▓▓▓▓▒█▒▒▓▓▓▒▓█▓
+▓▒██▓▒▒▒▓▓▓▓▒▓▒▓▓▒▒▒▓▓▒█▒█▒▒▓▓▓▒▓▓▒▓▒▓▓▓▓▒▓▒▓▒▓▒▒▓▒▓██▒▒█▓▒▒▒▒▓▒▒▓▒▒▓▓▓▓██▓▒▒▓█▒▓▒▓▒▓▒▒▒▓▓▓▒█▓▓██▓▓▓▓▓██▒▒▒▒▒▓▓██▓▓█▓▒▓▒
+▒▒▓▓██▒▓█▓▒▓█▒▒██▒▓▓▓▓▒▓▓▓▒▓▓██▒▓▓█▓▓▓▓▒▓██▓▓▒▓▓▒▓▓▒▒▓▓▒▓▒█▒▓▓▒▒▓▓▓▓▓█▓▓▒▓▓▒▒▒▓▒▓▓▒▓▓▓▓▓▓▒▒█▓▒▓▒▓█▓▓▓▓▓▓▒▒▓██▒▓▒▓▓▒▒▓▓█▒
+▒▓▓▓▓▒▓▓▓▓▒▓▒▓▓▓▓▒▒▒▓▓▓▒▒▓▓▓▓█▓▓▒▓▓▓▒▓█▒▒█▓▓▓█▓██▓▓▒▓█▓█▓▒▒▓▓▓▓▒█▓▒██▓▒██▓▓▓▓█▓▓▓▒▒▒▓▓█▓█▒█▓▒▒▓▒█▒▓▒▓▒▓▒▓▓▓▒▓█▒▓▒██▓▒▓▒█
+█▓▓▓▓█▓▓▒███▒▒█▓▓▒▓█▒▓▒▓▓▓▒▒▒▓▓▒█▓▒▓▓▓▒▓█▓▓▒█▓▒█▒▒▒▓██▒▓▓▒▓█▒▒▒▒▓▓▓▓▓█▓█▓▒▒▓▒▒▒▒▒█▓▒▒▒▓▓▒▓▓▓▓▒▒▓▓▓▓▓▓▓▓▒▒█▒▓█▓▓█▓▓▓▓▓▒▓█
+▓█▓▒▓▓█▓▓▓▓▓█▓▓█▓▒▒▒▒█▓▒▓▒▒▒▒▓▓▓▓▓▒▓▒▒▓▒▒▓██▓▒▓▓▒▓▒▒▓▓█▓▓▒▒▓▒▒▒▒▓▒█▒▓█▒▒▒▒██▓▒▓▓▒▓▓▓▓▓▒▓▒█▓▒▓▒▒▒▓▒▒▒▓▓▒▓█▒▓█▓▒▒▓█▓█▓▓██▓
+▓▒█▓▓▒█▓█▒█▓▓▓▓█▓█▒▒██▒▒▒▒▒▒▒▒▒▒▒▒▓█▓▓█▓█▓▓▒▓▓▒▓▓▓▒▓█▓█▓▓▒▓█▓▒▓▒▓█▓█▓▒▓██▓▒▓▒▓▓▓▓▓▒▓▒▒▓███▓▒▓▓█▓█▓▒▓█▒▓▓▒▓█▓▒█▓▓█▓█▓▓▓▒▒
+█▒▓▓▒█▓▒██▓▓▓▓▒▒▓▒▓▒██▓▓▓▓▓▒▒▓▓▓▓█▒█▒█▓█▒▒▓▓▓▒▓▓▓▒▒▒▓▓█▓▒█▒█▓▓▒▒▒▓▓▓▒█▓█▓▒▒▒▒▓▓▒▓▓▓▒▒█▓▒█▓▒▓██▓▓▓██▒▒▓▒▓▒▓▓█▒▓▓▒▓▓▓▓▓▒█▓
+▒▓█▓▓▓▒▒█▓█▒▓▓▒▒▓▒▓▓▓▒▒▒▓▓▒▓▓▓█▒█▓█▒▓█▒▓▓▓█▒▓▓▓▓▓▓▓▓▓▓▒▒▒▒▓▒██▒▓██▓▓▒▓▒▓▓▓█▒▓▒▒▓▒▓▒▓▓▒▓▓▓▓▓▓▓▓▓▒█▒▓▓██▒▓▒▒▒▒▓▓▓▓█▒█▓▓▒▒▒
+▓▓▓▓▒▓▓▓▒▓▓▓▓▓▓▓█▓▓█▓▒▒▓▓▓▓▓▓▓▒▒▒▒▓▓▓█▓▓▒▒▓▓▓█▓▒▓▓█▒█▒▒▒█▓▒▓█▓▒▓▓▓▓▒▒▒▒▒▓█▒█▓▒█▓▒▓▓▒▓▓▓▓▒▒▓▒▒▓▒▓▓▒▓▒▒▓█▓█▓▓▓▒▓▓██▒▒▓▓▓██
+▒▓██▒▓▓▓▓▒█▓▒▒▓▒▓█▒▓█▓▒▓▓▓█▓▒▓▓▒▓▒█▒▓▒█▒▓▓▓▓█▓▒███▒██▒█▓▓▓▓▒▓██▒▓▓▒▓██▒▒▓▓▒▓▓▓▒▓▒▒█▓▓▒▒▓▒▓▒█▓▒▒▓█▓█▓▒▓▓▒▓▒▓▒▓▓▓▓▓▓▓█▓▓▒█
+▒▒▓▒▒▓▓▓▓▓▒▓██▓▒▓█▓▒█▓██▓▓█▓█▓▓▒▒█▓▓▒▓▒▓▒▒▓█▒▒▓▓▓▒▒▓█▓▓▒▒▒▓██▒█▓▒▒▓▓▓▓▓▒▓▒▓▒▓▓██▓▓▒▓█▓▓█▓▓▓▓▒▓▓▓█▓▒▓▓▓█▓█▒▓▓▒▓▒▓▒█▒█▒▒█▓
+▓▒▓▒▓█▓▓█▓▓▓█▒█▒▒▓▓▒▓▓▓▓▓▓▓█▓▓▓▓▓▓▒▓█▓▓▓▓▓▓▓█▒█▓▓▓▓▒▓▓█▓▒▒▒▓▒▒▓▓▒▓▒▓▓▓▒█▒▒▒▒▓▓██▓█▓▓▓▓▓▒█▓▒▓▒██▒▒▓▒▒▓▓█▓▒▓▓▓▒▓█▓▓▒▓█▓▓▓▓
+▒▓▓▓█▒▒▒▓▓▓▓▒▓▒▒▒▒▓▒▓▒▒▓█▓▓▓▓▓▓▒▓▒▓▓▓▓▓█▓█▓▒▒▓▒█▒▓▓▓▓▒▒▓▓▒▒▒▓▓▓█▓▒▓▓▒▓▓▒▓█▓▒▒▓▒█▓▓▓▓▓█▒▒▓▓▓▓▒▒▓▓▓▓▒▓██▓▓▓▓▒▓█▓▓▓▓▓▓▒▒▒▓▒
+▓▒▓▓█▓▓█▒▓██▓▓▓█▒▒▓▓▒▓▓▓▒█▒▒▓▒▓▓▓▓▓▓▓▓▒▓▒▒▓██▒▓█▓▓▓█▓▓█▓▓█▓▓▓▒▒▓▒▓▓▓▒███▓▓▒▒▓▒▓▒██▓▒█▒▒▓▓▓▒▓▒▒▒█▓▒▓▓▓▓▓▓▒▓██▓▓▓▓▓▓▒▓▓▓▓█
+▒▓▓▒▓▓▒▓▓▓▒▓▓█▓▒█▓▓▓▒▓▓▒▓▓▓▓▓▒▓▒▓▓▓▓▒▓▒▓▓▓▓█▓▓▓▒▓▓█▒▒▓▓█▒▒▒▓▓▓▓▓▒█▓█▒▒▓▓▒█▒▓█▓▓▓▓▓▒█▓▒▓▒▒▓▓▓▓█▓▒█▓▓▓▓▓▓▒▓▒▓▒▓▒▓▓▓█▓▓▓▓▓▓
+▒▒█▒▓▒▓▓▓▓▓█▓▒█▒▓▓▓▒▓▓▒▒▓██▓████▒▓▒▒█▓▒▒█▒▒▓█▒▒▓█▒▒▒▒▒▓▓▓█▓█▒▓█▓▓█▓▓▒▒▓▒▓▒▒▒▒█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▒▓▓█▓▒▒▓▓▒▓▒▓▓▒▓▒▓▓▓▓▓▓▓▒
+█▓▓▓▓█▓▓██▓▓▒▒▓▓▒▓▓▓▒▒▓█▓█▓▓▓▓▒▒▒█▓▓▓▓▒█▒▓█▒▓█▒▓▒▓▓█▓▓██▓▓▓▒▓▓█▓▓▒▓▓▒▒▓▒█▒▒█▓▓▓▓▓▓█▓▒▓▓▓▓▒▒▓▓▒▒▒█▒▓▓▓▒▒▓█▒▒▓▓▓▒▓▒▓█▓▒▓█▓
+▓▓▓██▓█▓▓▒▒▓▒▓▒█▓█▓███▒▓▓▓▒▒▓▓█▒▓▓▓██▓█▒▒▒▒█▒▓▓▓▓█▓██▓█▓▓▓██▓▓▓▓▒▓▒▓▓█▓▓█▓▓█▓▓▓▒▓▓██▓▓█▒▒██▒▒▓▓▓▓▓▓▓█▒▒▓▓▓▓▓▓▓▒▓▓▓▓█▓▒█▒
+▓▓▓▒█▓▓▒▓▓█▓▓▒▓▓▓█▓▓▓▓▓▓█▓▒▓▓▒▒▓▓▒▓▓█▓█▒▓▓▒▒▒█▓▓▒▓██▓▓▓▓▓▓▓▓▒▓▓▓▓▓▒▓▓█▓▓▓▒▓▒▓█▒▒█▓▒▓▒▒█▓▓▒▒▓▒▓▓▒▓▓▒▒▓▒▓▒▓▓▒█▓▓▒▒▓▒▒▓▓█▓▓
+▓▒█▓▓▒▓▒▒▓▓▓▒▒▓▒▓▒▓▓▓▓▓▓▒▒▒▓▒█▓▓▒██▓▓▓▒▒▒▒▒▓█▓▓▒▓▓▒█▓▒▓▓▓█▒▒▒▒██▓▒█▓▒▓▒▓█▒▓▒▓▓▒█▒▒▓▓▒▓▓▓▓▒▓▓▓▓▓▓▓▓▓▒▓▒▓▓█▒▓▓▓▓▒▓▒▓▓▓▓▓▒▓
+█▓█▓▓▒▒▒▒▓██▓▓▒▓▒▒▒▒▒▒▓▒▓▓██▓▓▒▓▓▓███▓▓▓▓▓▓▓█▓▓▓▓▓█▓▓▓▒█▒▓▓▓▓▓██▓▓▓▓▒▓▒▓▓▒▓▓█▓▒▓█▒█▒▓▓▓▓▒▓█▓▒▒▓█▓█▒██▒▒▒█▓▒█▓▒▓▒▒▓▒▓▓▒▓▓
+▓▒▓▓▓▓▒██▒▓▓▓▓▓▓▒▒▒█▒▒▓▓▒▓▒▒▒▓▓▓▒▒▓▓▒▓▒▓▓▒█▒▓▒▓█▓█▓▓██▒▒██▒▓▒▒▓▒▓▓▒▓▒▓█▓▓▓▒▓▓▓█▒▓▓▒▓▓█▓▓▓▓▒▓▒▒▓█▒▒▒▓▒█▒▒▒▒▓▓▓▓▓▒▒▓▒▒█▒▓█
+█▒▓███▓▒▓▓█▓▒▒▒▒▒▒█▒▓▒▓▓█▓▓▓▓▓▓▓█▓█▓▒██▓▓▓▒█▒█▓█▓▓▒▒▒▓█▓▒▓▓█▓▓▒▒▒▓▒▓▒█▓██▒▓▓▓▒█▒▒█▓▓▒▓▒▒▓▓██▒▒▒▓▓▓▓███▓▓▓▓▓▒▒▓▓▓▓▒▓▒▒▓▒▓
+▓▒▓▓▓▒▒▒▓▓▓▓▓▓▓▒▒▓▓▓▓▓▒▒▒▒▓▓█▓▒▒▒▒▒▒▓▓▓█▓▓▒▓▒▒▓▓▓▒█▒▒▒▒▓██▒▒▓▓▒▓██▓█▓▓▓█▒▓▒▓▒▓▓▒▓▒█▒▓▓▓▓█▒▓█▓▒▓▓█▒▓▓▓▓▒▓█▓▒▓▓▓▒▓▒▒█▓▓█▓▓
+▒▓▓▓█▓▓█▓█▒▒▓▓▓▓▒▓▒▓▒▓▓▓███▓▒▒▓▒▓▓▒▒█▓▓▒▓▒▒▓▒▓█▓▒█▓█▓▓▒█▓▒▒▒▓█▓▒▓▒▒▓▓▒▒▓▓▒██▓▓▒▓███▓▓▓▒▒▒▓▓▓▒▒▓██▓▓█▓▒▓▒▒▒▒▒▓▓██▓▒▓▓█▒▒▓</span><span class="ars-wave">▒▓█▓▓▓▓▓▓▓▓█▓▓█▓▒▓██▓▒█▒▓█▓▒▒██▒██▒▓▓▓█▓▓▓▓▓███▓▒▓▓▓▓▒█▒▒▓▓▒▒█▓█▓▒▓▒██▓▓▒▓▒▓▓▓▒▓▒▓▓▓▓▓▒▓██▒▓▒▓▒▓█▓▒█▓▓▓▓▓▓▓▓█▓▓█▓▒▓▓▒▓▓▓
+▓▓▓▒▓▒▓▓▒▒▒▓▓▒██▓▓▓▒▓▒▓▓█▒█▓█▒█▓▓▒▓▒▒█▒▓▓▓▒▓▓▓▒▓▒▒█▓▓█▓▓▒▓▓█▓▓▒▓▓▓▓█▓▒▓▓▓▓▓▓▓▒█▒▓▓█▓▓▓▒▓▒▒██▓▒▓▒▒█▒▓▓▓▓▓█▓▓▒▓▒▓▓▓▓▓█▒▒▓▒
+█▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▒▓▓▓▓▒▓█▓▓▒▓▓█▒▓▓▒▓▓▓▓▒▒▓▓▒▓██▓▒▒▓▓▓▒▓▓█▓▒▓▓▓▓▓█▓▓▓▒▓▓▒▒██▓█▓▒▓▒▒▓█▒▒▒▓▓▓▒▒▒▒▒█▓▓▓▓▒▓▓█▓▓██▓▓▓▓▓▒▓▓
+▒▓▓▓▓▒▒▒▒▓▓▒▒▓▓▒▒██▓▒▓▓▒▒▒█▓▒▓█▒▓▓▓▓▓▓▓▓▓▒▓▒▓▓▓▒▒▒▓▒█▓▓█▓▒▓▓▒▓▓▓█▓▒▓█▒▒█▓▒▒▓▓█▓▓▓█▒▓▒▒█▒▒▓▒▓▓█▓███▓█▓▓▒▒▒▓▒▒▒██▓▓▓▓█▓▓▓▓
+▒▒▓▒▓▓▒▒▓▓▓▓▓▓▓▓▒▒▓▒▒▒▒▓▒██▒██▓▒▓██▓▓▓▒▓▓▓▓▓▓▒▒▓▓▓█▓▓▓▓█▓█▓█▒▒▓▓▓▒▓▓▒▓▓▒▓▓▓▓█▒▓▓▓▒▓▒▓▓▓▒▒▓▓▒█▓▓▓▓▓▓▓▓▒▒▓▒▓▓▓▒▓█▒▒▒▓▓▒▓▓▓
+▓▓██▓▓██▒▓▓▓▒▓▒▒▒▓█▒▒▒▓▓▓▒██▒▓▓▓▓▓▒▓▓▓▒▒█▓▓▒▓▒▓█▓▒▒▓▒▒█▓▒█▓▒▓▓▒▓▒▒▓▓▓▒▓███▓▒▒▓▒▓▒▓▒▒▓▓▒▓▓▓▒▓▒▓▒▒▓▓▓▓▓▓▓▒▓▒▒▓▒▓▒▓▓▓▓▒▓▓▒▒
+▓▓▒▒█▓▒▓▒▓▓█▒▒▒█▒▓▓▓▓▒▒█▓▓▒▓▓█▓▓▓▓▓▒█▓▒█▓▒▓█▒▓▒▓▓▓▓█▒██▓▓▓▓▓▒▓▒▒▒▓▒▓█▓▒▒▓▓▓▒▓▓▓▓▓▒▓█▒▓██▓▓██▓▒▓▓▓▒█▒▓▒▒▒▓▒▒▓▓▓█▒▒▓█▓▓▒▓▒
+▓▓▓▓▒▒▓▒█▒▓▒▓▓▓▒▓█▓▒█▓▒██▓██▒▓██▒▓▓▒█▓▓▒▒▓▓▓▒▓▒▒▓▒▒▓▓▓▒▒█▓█▓▓▒▓█▓▓██▒▒▒▓▓▓▓▓▓▒▒▓▓▒▓█▒█▓▓▓▓▒▓▓▓▓▓█▓█▓▒▓▒▓▓▓▓▒▒█▓▓▒▒▒▒▒▓▓▓
+▓▓▒▒▓▓▓▓▓▓▓▒▓▓██▓▓▒█▒▓▓█▓█▒▓▓▓▓▓▒▓▓▒▓▓▓██▒▒▓▓▓▓█▒▒▓▓▒▒██▓▓▓▓▓▒▓▓▓▓▒▒▒▓█▓▓▓▓▒█▒▒▓▓▓▒▒▓▒▓█▓▒██▓▓▓█▓▓▒▒▒▒▒▒█▓▓▒█▓▒▓▒▒▓▓▓█▒▓
+▓▓▓▒██▓▓▓▓█▒▒▒▓▓▓▓▓██▓▒▓█▒▓▒▓▒▒▒▓▒▓▓▓▒█▓▓▓▓▓██▓▒▒▓▓▒▓▒▓▓▓█▒█▓▓█▒▒██▒█▒▓▓▓▒▓▓▒▓▒▒▓▓▒▓█▓▓▓▓█▒█▓▓█▒▓▒▒▓▓▓▓▓▓▓▓▓█▒▒▒▓▓▓▓▓▓▓▒
+█▓█▓▒▓▓█▓▓▒▒▓▓▓▓▒▒▓█▒█▓█▒▓▓██▓▒▒▓▓▓▓█▓▓▒█▓█▓▒█▓▒▓▒▒█▒█▒▒▒▓▒▒▒▒▓▒▓▓█▒▓▒█▒▓▒▓▓▓▓▒▒▒█▒▓▓▓▓▓▒▒▒▓██▒█▓▓▓▒▓▓▒▒▓▓██▓█▒▓▒▓▒▒▓▓▓▓
+█▓▒▒█▒▓▒▒▒▓▓▒▓█▒▓▒▓█▓▓▒▓▒▓▓▓▓▒▓▒█▓▒▒▒▓▒▒▒▓▓█▓▓▒▓▒▓▒▒▒▓▓▒▒▓▓▓▓▓▒█▓▓▓▓▒▒▒▓▓▒█▒▓█▓▒█▓▓▓▓▓▓▓▓▒▓█▓▓▒▒▓▓▓▓▓▒▓▓▒▒██▒▓█▓██▓▒▓▓█▒
+▓▓█▓▒▓▓▒▓▓▓▓▓▓▓▓▓▒▓█▓▓▒▓▓▒▓▒▓█▒▒▓▓▒▓▒▒▒▓▓▓▓▒▓▓▓▓▒▒▓█▒▓█▒▒█▒▒█▒█▒▓▒▓▓▓▒▓▓▒▓▓██▓▓▓▓▓█▓▓▒▓▓▓▓▒█▓▓▓█▓▒▒███▓▓██▒▓▒▓█▓▒▓▒▒▓▓█▓
+▒▓▓██▓▓▓█▓▓▓▒▓▒▒▓▓▓▓▓▓▓▓█▒▓▓▓▓▓▓▒█▒█▒▓▓▓█▓▒▒▓▓▓▒▓▓█▓█▒▓▒▒▒▓▓▓█▓▒██▒▒▒█▒▓▓▓▒▓▓▓▒██▒▒▒▓▓▓▒▒▓█▓█▒▓▓▓██▓▓▓▒▒▒▒▒▓▓▓▓█▒▒█▒█▓▓▓
+▓█▓▓▓▒▓▓▒▓▓▓▓▒▓▓▒▒██▒█▒▓▓▓██▓▓▓▒▒█▓▒▓▓▓▓█▓▓▓▒▓▒▓▓▒█▓█▓▒▓█▒▓▓▒█▒▓▓▒▒▓▓█▓▒▒█▓▓▓▓▓█▓█▒▓▒█▒▓▓▓█▒▓▓▓▓▓▓▓▓▒▓▒▓▓▓▒▓▓▒▓▓▓▓▓▓▓█▓▒
+▓▓█▓▒▓█▒▓▒▓▒▓▒▒▓█▓▓▒▒▓▒▓▓█▓▓▒▒▓██▓▓▒▓▓█▓█▓▓██▓▓▒▒▒█▒▓▒▓█▓▓▓▓▓▒▒▒▓▒▓▒▓▒▒▓▓▓▒▓▓▒▓▓█▒▓▒▓▓▓▓▓██▒▒▓▓▓█▒█▓▒▓▒▓▓▓█▒▒▓▓▓▓▓▒▒▒▓▓▒
+▒▓▓▒▓▒█▒▓▒▓▓██▒█▒▓█▓█▓▓█▒▓▓▒▒▓▓▓▓▓▓▒▓█▓▓▓▓▓▓▒▓▒▓▓▒▒▓▓▓▓▓▓▓▓█▒█▓▓█▒▓▓█▒▓██▓▓▓█▒▓▓▓▒▓███▒▒▓▓█▓█▓█▓▒▓▒▒█▒▓▓▒▓█▓▓▒▓▒▓▒▒▓██▓▒
+▒▒▒▒█▓▓▓▓▒▓▒▒▓▓▓▓▓▓█▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▒▓▒█▓█▒▓▓█▓█▒▒▓▓▓▓▒▓▒▒▒▓█▓▒▒▓▓▒▒▓▒▓▓▓▓▓▒▒▓▓▒▓▒▓▓▒▒▒▒█▓█▒▒▓▓▓▓██▓▓▓▓███▓▒▓█▓▓▓▓▒▓▒█
+██▒██▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓▓█▓██▓▓▓▒█▒▓▒▒▓▒▓█▒██▓█▓███▓▓▓▓▓▓▓▒▓██▓▓▒▒▓▒▒▓▓▓▓█▒▒▒▓▓██▓▒▓▓▓▓▓█▓▓▓▒▒▓█▒▒▒█▓▓▓▓▓▒▒▓█▓▓█▓▓▒█▓█▒▒▓█▓
+█▓▒▒▒██▓▓█▒▒▓▓▓▓█▓▒▓▓▒▓▓█▒▓▒▓▓█▓▒▓▒█▒▓▓▒█▒█▒▓▓██▒▓▓▒▒███▓▓▓█▓█▓█▓▒▒▒█▒█▒▒▒▓▒▓▒▒▓███▒▒▓▓▓█▓▒▒▓█▒▒▓▓▓▓▓▓█▒▓▓▓▓██▓▒▓▒▓█▒██▒
+█▒▓▓▒█▓▓▒▓▒█▒▓██▓█▒█▒▒▓▓███▓▓█▓▓█▓▓▒▒▒▓▓▓▒█▓▓▒██▒██▒▓▓▓▒▒▓█▓▓▒▓▓▓▓▓▒▒█▓▒▒▓▓▒▓█▓▓▒▓▒▒▓▓█▓▒▒▒▒▒▓▒▓▒▓▒▓▒▓▒▓▒▓▒▒▒▓▒▒▓▓█▒▒▓▓█
+▓▓▓▓█▒▒▓▓▒▓▒▒▓▓▒█▒▒▓█▒█▓▒▒▓▒▓▓█▓██▒▒▒▒▒▓█▓▒▓▓▓█▒▓▒▒▓▒▒▒▒▒▓██▓█▓▒▒▒▒▓▓▒▓▒▓▓▓▓▓▒▓▓██▓▒█▒█▓▓▓▒▒▓▓▓▓▒▓▒▓█▓▓▒▓▒▓▓▓█▓▓█▓▒▓▓▒▒▓
+█▓▓▓▒██▓▒▓▓▒▒▒█▓▒██▓▓█▒▒▓▒▒▓▓▒▒▓▒██▓▓█▒▒█▓▓██▒▒▓▓▓▒▓▓█▓▓▓▓▒▒▓▓▓▓▒█▓▓▓▒▓▓▒▒▒▒▓▒▓▒█▓▒▓▓▒▓▒▓▓█▒█▓█▓▓▓▒▒▒▓██▓▓█▒█▓▓▓▓▒█▒▓▒▓▓
+▓▓▓██▒▓▓▒█▒▓▓▓▓▓█▓█▒▒▓▓▓▓▓▓▓█▓▓█▒█▒▓█▓▓█▓███▓▓▓▒▓▓▒█▒▒▒▓▓▒▒▓▒▓▒█▓▓▒▒▒▓▒▒▓▒▒▓▓▒▒▓▓▓▓▒█▓▒▓▓▓▓▒█▒▓▓▓▓▒▓▓█▒▒█▓▓▒▓█▓▒▓▓█▒▒▓▓▒
+▒▓█▓▓▓▒▒▓▓▓██▒▓▒▓▓▒▒▓▓█▒▒▒▒▓▒▓█▒▒█▒█▒▒▓▒▒▓▓▒██▓▓▒▓▒▓▒▒█▒▓█▓▒▓▓█▓▓▓▒▓▓▓█▒▒█▓█▓▒▒▓█▒▓▓▓▓▓█▒▓█▓█▒██▓▓▒▓█▓▓▒▒▒▒▒▒▒▓▒▓▓▓█▒▒▒▓
+▒█▒▓███▓▒█▒▓▓▒█▓▓▒█▓▓▒▓▓█▓█▓▓▒▓█▒▒▒▒█▒█▓█▓█▒▒▓▒▓▓█▓▓█▒▒▒▓█▓▓▓█▓▓▓▒▓▓▒▓▓▒▒▒▒▓█▒▓█▓▓▓█▓▒██▓██▒▓▓█▓▒▒▓▓██▒▓▒▒▒▓▓▒█▒▒▒▓▒▓▓▓▒</span></span></span></div><div class="dc-body"><div class="dc-head"><span class="dc-avatar dc-avatar-skel"><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="width: 100%; height: 100%; --ars-radius: 50%; --ars-d: 0.00s;"><span class="ars-base">░░▒▒▒░░░░░░░░░░░░▒▒░░░░░░░▒░▒░░░░░▒░▒░░▒░░░░░░▒░▒▒░░░░▒░▒▒░░▒▒░▒░░░░░░▒░░░▒░▒▒░░░░░▒░░░░░▒░░░░░░░░▒░░░░░░░░▒░░░░░░░░░▒░░
+░░░░░▒░░░░▒░░░░░░░░▒▒▒░░░░░░░░░░░▒▒░░░░░▒░▒░▒░░░▒░▒░░░░░░▒▒░░▒░░░▒░░░░░░░░▒░░░░░░░░▒░▒░░░░░░░░░░░░░░░░░▒▒▒░░░░░░░░░░▒▒░░
+▒░░░░░░░░▒░░░░░▒▒▒░░░▒░░░░░░░▒░░░░░░░░░░░▒░░░░░░░░░░░░░▒░░░░░░▒░░▒░░░░░░░▒░░░░░░░░▒░░░░▒░░░▒░░░░▒░░░░░░░░▒▒▒▒░░▒░░▒░▒▒░▒
+░░░░░░░░░░░▒░░░░░▒▒░░░░░░▒░▒░░░░░░▒░▒░░░░░░░▒░▒░░▒░░▒░░░░░░░░░░░▒░▒░░░░░▒▒░░░░░░░░░░▒░░░░░░░▒░░░░░░░░░░░░░░▒░░░░▒░▒░▒░▒░
+░▒░▒░░░░░░▒▒░░▒▒░▒░▒▒░░▒░░░▒░░░▒▒░░▒░░░░▒░░░▒░░░░░▒░▒░▒░░▒░▒░░░░▒▒▒▒░▒░▒░░░░░░░░░░▒▒▒░░░░▒▒░░░░░░░░░▒░░░▒░▒░░░░░░░░░░░░░</span><span class="ars-wave">▓▓▓▒▒▓▓█▓█▓▓▓█▓▓█▒█▓█▒██▓▓▓▒▓██▓▒█▒▓▓▓▓▒▓█▓▒▒▓▓▒▓▓▓▓▓██▓▒▓▓▒█▓█▓▓▓▒▒▓▒▓▓▓█▓▓▓▒▓▒█▓▒█▓▒▓▓▒▓▒▓▒▓▒█▓▓▒▓▓▒▒█▒▓▒▒█▓▒█▓▓▒▒██▓▒
+▓▓▓▓▓█▓▒▒▓▓▓▒▒▒▒▓▓▓▓▓▓▒▓▒▓▒▓█▓▓▒█▓▓██▒█▓▓▓▓▒▒▓█▓▓▓▒▓▒▒█▓▒▓█▒▒▒▒▓▒▒█▓█▓▓█▒▓█▓▒▓█▒▒▓▒█▓▒█▓▓▓▓▓▒█▓▒▒▓▒▓▓▓▒█▒▓▓▓▒██▓▓▒▒▓▓▓█▒
+▓█▓▒▓▓▓▓█▓▓█▒█▓█▓▒█▓▒▓▒▓▓██▒▒▓▒██▓▓▓▓▒▒▓▒██▓▒▓▓▓▒▓▒▓▓▓▓▓▓█▓██▒▒▒█▓▓▓▓▒█▒▓▒▓▒▓▓▓▒▓▒▒▓▓█▓▒█▒██▓▓▓▒▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓██▒▓▓█▒
+▒█▓▒▒▓▓▒▓▓▓▒▒▓▒█▒▒▒▒▓▒▒▒▓▒▓▓█▓▓▒▓▓▒▓▓▒█▒▒▒▓▓▒▓▓▓▒▓▒▓▒▒▓▒▓▓▒▒▓▒▓▓▓█▓▒█▒▒▒▒▓▒▓▒▓▓▓▒▓▒▓▓▒▓▒▓▓▓▓▓▓██▓▓▒▓█▓█▒▒▒▓▓▒▓▓▓▒▓▓▓▓▓▒▒
+▒▓▓▓█▓▒▓█▒█▒▓▓▓▒▓█▒▒▓▒▓▒▓▓▓▓█▓▓▒▒▓▒▓██▓▓▒▓▓▓█▓█▓▒█▓▓▓▓▓▓▓▒▒▓▓█▓▓▓▓▓▒█▓▓▓▓▒▓▓▓█▓▓▓▒▓▓▓▓▓▓█▓▒▒█▓▒▓▓▓▓▓▒▒▒▓▒█▒▒▒▒▓▓▓█▒█▓▓▓▓</span><span class="ars-wave">▒▒▓▓▒█▒▓▓▓▓▒█▓█▓▓█▓█▓▒▓█▓▒▒▓█▓▓▓▓▓▓▓▓▓█▒▒▒▒▒▓▓▓▓▒▓▓▓▒▓▓▓█▓█▓▓██▓▓▒▒▓█▓▓█▒▓▒▓▓▓▓▓▒▒▓▒▒▓▒▒▒▒▓▓▓▓▓▒▒▒▓▓██▒▒█▓▒█▓▓▒▓▒▒▓█▓▓▒█
+▓▓▒▓▓▓▒▓▒█▓▒█▒▓▒█▓█▒▒▓▒▒▓▓▓▒▒▓▓▒▒▒▓▒▓▓▓▓█▒█▓▒▒▓█▒▒█▓▓▒▓█▓▓▓▓█▓█▒▒▓▓▓▒▒▒▒▒▒▓▓▒▓▓▓█▓▒█▓▓▒▓▒▒▓▒▒▒▓█▒▓▓▓▓▒▓█▓▓▓█▒▒▒█▓▒▓█▓▒▓█
+▓▒█▓█▒▓█▓▓▓▒▓▓█▓▒▒▓▒▒▒▓▒▒▓▓▓█▒█▓▓█▓▓▓▒▒█▓▒▓▒▓▒█▒▒▓█▓▓█▓▓██▒▓▓▓▓█▒█▒▓▒█▓▓▓▓▓▓▓▒██▒█▒▓▓▒█▓▒▒▓▓▓▓▓▒▓▒▓▓▓▒█▓▒▓▓██▓▒▒██▓▒▒▓▓█
+▒▓▓▒▓▓▓▓█▓█▓▒▓▒█▓█▒█▓▒▓▓▓█▓▒█▒▒▓▓▒▓▓▓▓▓▓▓▓▒▓█▒▓█▓▓▒▓▒▓█▓▓▓▓▓▒▓█▒▓▒▓▒▓▒▓▓▓▒▓▓▓▓▒▓█▓▓▓▒▒▓█▓▓▒▓█▓▓█▓█▓▓▓▒▒▒▓█▒▓▒██▓▓▓▓▓▒▓▓▒
+▒▓█▒▓▓▒██▒██▓▓█▒▒▓▓▓▒▓▓▒▒▒▓▒▓▓▒▓█▓██▓█▒▒▒█▒▓▓█▒▒▒▓▓██▓▓▓▓▓▓▓▓▓▒█▒█▒▓▓▒▒██▓▓▒█▓▒▓▓▓▒▓▒▓▒▒▒█▒▒▒▒▒▓▓▓▒█▓▒▓▓█▓▓▒▒▓▓▓▓▓▓▒▒▓▒█</span></span></span></span><span class="ars ars-dither dc-btn-sk" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="width: 72px; height: 30px; --ars-d: 0.00s;"><span class="ars-base">░░░▒░▒▒░░░░░░░░░░░░▒░░░░▒░░░░░░▒▒░░░░░░░░░░░░▒░░▒░░▒▒░░░░░▒▒▒░░▒░░░▒░▒▒▒░░▒▒▒░░░░░▒░░▒░░░▒░░▒▒░░░▒░▒░░▒░▒░░░░░░▒░░░░░░░░
+░░░░░▒░░░░░░░░▒▒░░░░░▒░░░░░░░░▒░░░▒▒▒░░░░░░░░▒░▒░░░░▒░░░▒░░░░░░░▒░░░▒░░▒▒▒░░░░░░░░░░░░▒░░░░▒░▒░░░░░░░▒░▒░░▒░▒░░░░░░░░░░▒</span><span class="ars-wave">▒▒▒█▓▒█▓▓█▓▒▓▓▓▒▓▒▒▒▓██▓▓▒▓▒▓▒▓▓▓█▒▓▓▓▒▓█▓▒▓▒▒▓▓▓▒▓▒▓██▓█▓▓▒█▓▓▓▓▓██▒▓▓▓█▓▓▒▓▒▒██▒▒██▒█▒▓▒█▒▒▓▒█▒▒▓▓▒▓▒▓▒▓▒▒▓▒▓█▓▓▓▓▓█▓▓
+▓▓█▒███▒▓▒▓▒▓█▓▒█▓▓▓█▒██▒▓▒▓▓▒▓▓▓█▓▓▓▓█▒█▒▓██▒▓▓▒█▓▓█▒██▓▒▒▓▓▒▓▓▓▒▓▒▒▒█▒▒▓▓▒█▒▒▓▒▒█▓▓▓▓██▓█▓▓▓█▒█▓▓██▒█▓▒▒▓▒▓▓█▒▓▓▓▓▓▓▓▓</span><span class="ars-wave">▓▒▓▓▒▓▒▓▒▓▓▓▓▒▓▓▓▓▓▓█▓▒▒▓▒▓▓█▓▒▓▒█▓▒█▒█▓▓▓▓▒▒█▓▓▓▓▓▓▒█▓▓▓▓█▓▓▓▒▓▒▓▒▒█▓▒▒▓▒▓█▓▒▓▓▓▓▓█▓▒█▓▒▓▒█▓▓▒▒▒▓█▒▒▓▓▓▓█▓▒▒▓▓▒▓▓█▒▓▓▓▓
+▓▒▒▒▒█▓▓█▒▒▓▓▓▓█▓▓▒█▒▓▓█▓▓▒▒▓▓█▒█▒▓▓▓▒█▒▓█▓█▒▓▒█▒█▒█▓▒▓▓▓█▓▓▓▒▒▓▓█▓▒▓▒▒▒▓██▓▓▒▒▓▒▒▓▓█▒▒██▓█▒▓█▓▓▓▓▒▒▒▓▒█▓█▒▒▓▓▓▒█▒▓█▒▒██</span></span></span></div><div class="dc-id"><span class="ars ars-dither dc-skel-id" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 55%; --ars-d: 0.00s;"><span class="ars-base">░▒░▒░▒░░▒▒░░░▒▒░░░░▒░░░░░▒░▒▒░▒░░░░░░░░▒░░░░░▒░░▒░░▒░░░▒░░░░░░░░░░░░░░░░░▒▒░░░░░▒░▒░▒░░░░░▒░░░░░░▒▒░░░░░▒░░▒▒▒░▒▒░░▒░░▒▒░░░▒▒░▒▒░░▒░▒▒░░░▒░░▒░░░░░▒░░░░▒▒░░░░░▒░</span><span class="ars-wave">▓█▒▒▒▒▓█▓▒███▓▒▓▓▒▓▓▓▓▓▒▒▒▒▓▒▒█▓▓▓▓▒▒█▓▒▒▓▒▓▒▓▓▒█▒▓▓▓▒█▓▓▓▓▒▓▒▓▒▓▓▓█▓▒█▓▓▓▓▒▓▒▓█▓███▒▓█▓▓▒▓▓▓█▓▓██▓▓▒▓▓▒▓▒▒▒▒▒▓█▓▓▓▒▓▒▒▓▒▓▓▓▒▒▒▓▓▓█▓█▓▒▓▓▓▒▓███▓▓▒▓▓█▓▓▒▒▒▒▓▓█▒▓</span><span class="ars-wave">▓▒▓█▒▓▒▓▒▓▓▒▓▓▒▓▒▒▓▒▓▓▓▒▒▒▒▒▒▓▓█▓▓█▓▓▓▓▓▒▒▒▓▒▓█▓▓▒▓▓▒▒▓▓▓▓▓▓▓█▒▒▓▓▓▓▒▓█▒█▓▓▒█▓▓█▓▒▒█▓▓▓▓▒▓▓▓▓▒▒▓▓▒▒▒▓▓▒▒▓▓▒▓▓▒██▒▓▓▓▒▓█▒▒▓█▒▓▓▒▓▓▓▒▒▓█▓▒▒███▓▒▓▒▒▓▓█▓▒▓█▒▓▓▒▒▒▓▒</span></span><span class="ars-line" style="width: 40%; --ars-d: 0.09s;"><span class="ars-base">▒░▒░▒░░░░░░░░░▒░▒░░░░▒▒░░░░▒░░░░░▒░░▒░▒░░░▒░▒░░▒▒░▒░░░▒░▒▒▒▒░░░░░░░░░░▒░░░░░░░▒░░░░▒░░░░░▒▒░░░░░░▒░░░░▒░░▒░░░░▒░░░░░░▒▒░▒▒░░░▒░▒▒▒▒░░░░░░░░░░░░░░░▒░░▒▒░░░▒░░░░▒</span><span class="ars-wave">▓▒████▒▓▓▒▒▓▒▓▒██▓▓▒▒▓▒▓▓▓▒█▓▓█▒▓▒▓▓▓▒▓▒▓▒█▓▒▓▒▓▒▒▓▓▓█▓▒▒▓█▒▓▓█▓▓▒▒█▓▓▓▓█▒▓▒▒▒▓▒█▓▒▓▓▓▓▓▒▒▒█▓▒▓▒█▓▒▓▓▓▓█▓██▒▒▒▓▓▓▓▓▒▓▓▓▓▒▒▒█▓▓▒▓▓▒▓▓▓█▒▓▓▒▒▒▒▒▓▓▓▓▓▒▒▓▓▒▒▒▒█▓▒▒▒</span><span class="ars-wave">▒▓▓█▒▓▓█▒▓█▓▒▓▒▓▓▓▒▓▓▓▓█▓▒▓▓▓██▒██▓▒▓█▓█▓▒▒▒▒▓▓▓▓▒█▓▒▒▓▓▓▓█▓▓▓█▒▓██▒▓▓▓▓▓▓█▒▒▓▓▓▓▓▓▒▓▓▓▒▓▓▓▒▓█▓▓▓▒▓▓▓▒▒▓▓▓▓▓▒▓▒▓▒██▓█▒▓▒▒▓▓▒█▓▒▒▓▒▓█▒▓▒▓▓▓▓██▓▓▒▒▒▓▒▓▓▒█▒▓▓▓▓▓▒█</span></span></span></div><div class="dc-stats"><div><span class="ars ars-dither dc-skel-stat" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 60%; --ars-d: 0.00s;"><span class="ars-base">░▒░░░░░░▒░░░░▒░░░░░░░░░░░░░░▒░▒░░░▒░▒░░░░░▒▒░░░░░▒▒░░░░░▒▒▒░░░▒░░░░░▒░░░▒▒░░░▒▒▒░▒░░░░▒░░░░░░▒▒░░░░░░▒░░░░░░░▒░░░░░░░▒░░▒░░▒░░░░░▒░░░▒░░▒░░░░░░░▒▒▒░░░░░░▒░░░░▒░</span><span class="ars-wave">▓█▓▓▓▓▒▓▓▒▒▓▓▓▓▓▓▓▓▒▓▒▓▒▒▒▓▓█▓█▒▓▓▓▓▓█▒▓▒█▓▒▓▓▓█▓▓▒▒▓▒▓▓█▒▓▒▓▒▒▓▓█▒█▒██▓▓▓█▓▒▒▓▓▒▒▓▒█▓██▒█▓▓▓▓▓▓▒▒▓▒█▒▓▓▓▓▒█▓▒▓▓▒▓█▓▓▒▒▓▓▓▓▒▒▓▓▓▓▓▒▓█▒▒▓█▒▒▓█▓▓▓▓█▓▓██▒▓▓█▒▓▒▓▓▓</span><span class="ars-wave">▓▓▓▓▓██▓▓▒▓▒▒▒▒▓▓▓▓▒▒▓▒▓▒▓▓▓▓█▒▓▓▓█▒▒▒▓▒▒█▓▒▓█▓▒██▓▓▓▓▓▒▓▒▒▒▒▒▒▒▒▓█▓▒█▒▒▓▓▒▓▓▓▓▓▓▓█▓██▓▒▒▒▓▒▓▓█▓▒▓▒▓▓▓█▒▒▓▒▒▒▓▓▓▓▓▒█▓▒▒▒▓▒▒█▒▓█▒▒▓██▒▓▓▓▒▒▒▓▓▓█▓▓█▒▓█▒▓▓▒██▓▒▓▓▒</span></span><span class="ars-line" style="width: 45%; --ars-d: 0.09s;"><span class="ars-base">░░░░░░░░░░░▒░░░░▒▒░░░░░░▒░▒▒░░░░░▒▒▒░▒▒░▒░░░░░░░░░░░░▒░░░░░░░▒░░░░░░▒░░░░░░▒░░░▒░░▒░░░░░░░░░░░▒░░░░░░░▒░░░▒░░▒▒░░░▒░░░░░░░░░░░░░▒░░░░▒░░░░░░░░▒▒░░░░░▒░░░░░░░░░░</span><span class="ars-wave">▓█▒▒██▓█▓▒▓▓█▒▓▒▓▒▒▓▒▓▒▒▓▒▓█▓▓▒▓▓▓▓▒▒█▓██▓▒▓██▒▒▒▒█▓▒█▒▒▓█▓▓▒█▓▓█▓▓▓▒█▓▓▓▒▓▓▓▓▓▓▒▓▒▒█▒▒█▒▓█▒▒▓▒▓▒▓█▓█▓▓▒▓▒▓██▓█▒██▒▓▓██▒▓█▒▒▒██▓▓█▓█▒▓█▒▓▓▓█▒█▒▓▒▒▓▓▓▓▓▒▓▓▓▒▓▒▓▒</span><span class="ars-wave">▓▓▒▓▓▒▓▓▒▒▒▒▓▒█▒▓▓▓▓▓▓▓▒▓▒███████▒█▓▓█▒█▓▒▒▒▓█▒▒▒▓▓▓▓▓▓▓▒▓▓▓▒▓▒▒█▓▒▓▒▓▒▓▓▓▓▓▒█▒▓▒▓▓▓▒▒█▓▓█▒▓▓▒▒▒▓▒▓▓▓▒▓▓▒▓▓▓▓▒▓▓▒██▒▓▒█▒▒▓▒▓▒▓▓▒▓▒▓█▓▓▓▓▓▓▓▒█▓▒▓▒▒▒▓▒▓▓▓▒▓▒▓█▓██</span></span></span></div><div><span class="ars ars-dither dc-skel-stat" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 60%; --ars-d: 0.00s;"><span class="ars-base">░░▒▒░░░░░░▒░▒░░░░░░▒░▒░░░░░░░░░░▒░░▒░░▒░░▒░░░░░░░▒░░░░░░░░░░░░░░░░░░░░░░░░▒░░░░░░░░░▒░░░░░░░░▒░░▒░░░░░░▒░░░░░░░░░░▒░░░▒░▒░░░░░░░░░░░░░░░░░░░░░░░░▒░░░░▒░░░░░░░░░</span><span class="ars-wave">█▓▓▓▒█▓▓▓▒▒█▓▓▓▓▒▒█▒▒▓▓█▒▓██▓▓▒██▓▒▒▓▓█▓▒▓▓█▒▓█▒▒▒▒▒█▒▓▒▓▒▒█▒▓▓█▓▓▒█▓▓▓█▒▒▒▓▓▓▓▒▒▒▓█▒▓▓▓▓█▒▒█▓▒▒▒█▓▒▒▓▒▓█▒▒▓█▓▓▒▓█▓▓▓▓▒▓▒▓▒▓█▓▒█▒▒▓▓▓█▓▒▒▓▒▓███▓▒▓▒▒▓██▒█▒▓▒▓▓▒█</span><span class="ars-wave">▓▒▓▓▒█▓▓▓▓▒▓█▒▓▓▓▓▓▓▓█▓▓▓█▒▒▓█▒▓█▒▒▒█▓▓█▓▒▒▓▒▓▒█▒▓▒▓▓▒▓█▓▓▓▒▓▓▒▓▒▓▓▓██▓▓▓▒▓▓▒▓▒▒▒▓▒▓▒▓▓█▓▓▓▒▒▓▓▓▒▓▓█▓▓▓▒▒▓▓▓█▓▒▓▓▓▓▓▓▓▒▒▓▒▓▒██▒▒▒▓▒▓▓▓▓█▒▓▓▓▓▓▓█▒▓▒▓▒▓▓█▓▓▒▒▒▒▒▓</span></span><span class="ars-line" style="width: 45%; --ars-d: 0.09s;"><span class="ars-base">▒░░▒░░░░░░░░░░░░░░▒▒░░░▒░░░▒░░░░░░░░▒░░░░░░░░▒░░░░░░▒▒░░▒░░░▒░░░▒░░░░░░▒░░▒░░░░░▒░░▒▒░░░░▒░▒░░░▒▒░░░░░░░░░░▒░▒░▒░▒░░░░░▒░▒░░░▒░▒░░░░░░▒░░░▒░░░░░▒░░░░░░░░░▒░░░▒▒</span><span class="ars-wave">▓▓▓▓█▒█▒▓▓▓▓▒█▓▓▓▒██▓██▒▓▓▓▒▒▓▒▓▒▓▓▓▓▓▒▓▓▓▓▓█▒▒▒▒▓▓▓▒██▓▒▒▓██▓█▒▒▒▒▓▓▒▒█▒▓▒▒█▒▓▓▒▓▓▓▓▒▒▒▓▒▓▓▓▒▓▓▓▓▒▓█▓▓▒▒▓▓▒▒▓▓▒▒▓▒▓▓▒█▒█▓▒▓▓███▓▓▓▓▒▓▒▒▒▒▓▓▒▓▓▒▓▒▓▓▒▓▒▓▓▓▓▒▒▒▓▒</span><span class="ars-wave">▒█▒▒▓▒▓▓▓▓▓▓▓▒▒▒▒▒▓▒▓▒▒▒▓▒▓▒▒▓█▓█▒▓▓▓▒▓▒▓▓▒█▒█▓▓▓██▒▒▓▒▒▓▓▒▓▒▓▓█▓▓█▓▓▒▓▓▓▓▓▓▒▓▓▓▒█▓▓▒▓▓▒▓▓█▓▓▒▓▓▓▒▓█▓▓▓▓▓▓▒▓▒▓▒██▓▓▓▓▒▓▒▒▒▒█▓▓██▓▒▓▒▒▓▒▒▓█▒▒██▓▓▓▒▒▓▓▓█▓▓▒▒▓▓▓▓█</span></span></span></div><div><span class="ars ars-dither dc-skel-stat" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 60%; --ars-d: 0.00s;"><span class="ars-base">▒▒░▒░░▒░░░░▒▒░▒░░░░░░░░▒░▒░▒░▒░░░▒░░░▒░░░░░░▒▒░▒░░░░▒▒░░░░░░░▒░▒▒▒░░▒░░░▒░░░░░░░░░░▒░░▒▒░░▒░▒░░░░▒░░░░░▒▒░▒░░░░░░░▒░░░░▒░░░░░░▒▒░░▒░░▒▒░░░░░░░▒░░░▒░▒░░░▒▒░░░▒░░</span><span class="ars-wave">▓▓▒▒▓▒▒▓██▓███▒█▓▓▓▒▒▒▓███▓▓▒▓█▒▒▓█▒▓▓▓▒▓▒▓▓█▒▒▓▓▓▒▒▓███▓▒▒█▒▒▓▓█▓█▒▓▓▓▒▓█▒▒▓▓▒▓▒▓▒█▒▓▒▓▓▒▓▓▓▒█▓▓▒▓▓▓▒█▒▓▓▓█▒█▒▒▓▒▓▓▓█▒▓▓▓▒▒▒█▓▓▓▓▓▓▒█▓▓█▓▓█▓▓▓▓▓▒▓▓▒▓▓█▒▓▓▒▓▓▒▒</span><span class="ars-wave">▓▒▓██▓▓▓▒█▓▒▒█▓▓██▓▒█▒▓▓█▓▒▒▒█▓▓▓█▓▓▒▓▓██▓▓▒▒▓▓▒▒▒▓▓█▓█▓▓▓▒▓█▓▓▓▒▒█▓▓▓█▒▒▓▓█▓▓▓▒▓▓▓▒▒▒▓▓▒▓▓▒▒▓▒▓▓▒▓▓▓▓▒██▓▓▓▓▒▒▓▒▒▓▓▒▒█▓▒▒▒▓▓█▓██▓▓▓▓▓▓▓▒▓▓▓▓▒▒██▓█▒██▓█▒▓▓▓▓▓█▒</span></span><span class="ars-line" style="width: 45%; --ars-d: 0.09s;"><span class="ars-base">▒░░░░░▒░░░░░░▒░░░▒▒░░░░░░░░░░▒░░░░▒░░▒░░░░░░▒░▒░░░░░▒░░▒░░░░▒▒░░░░░▒░░░▒▒░░░░░░░▒▒░░░░░▒░░░░▒░░▒▒░░░▒░░░▒░░░░▒░▒░░░▒░░░▒▒▒░▒░▒░░░░░░░░░▒░░░░░░▒░░░░▒░░░░░▒░▒░░░░</span><span class="ars-wave">▒▓▓▓▓█▒▒▓▓▓▒▓▓▒▓█▓▓▓▓▓█▒▓▒▓▓▓▒█▓▒▓▒▒█▒▓▒▒▒▒▒▓▒▓▓█▓█▒▒▓█▒▓▒▒▓▒▓▒▓██▒▓▓▓▓▒▒▒▒▒▓▒█▓▓█▓▓▒█▒▒▓▓▒▒▓▓▓▓▓▓▓▓█▓▓▓▓▓▒██▓▓▓▒▒▒▓▒▒▓▓▓▓▓█▓▒▓▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓██▓▓▓▓▓▓█▓▓▓▓▓▒▓▒▓</span><span class="ars-wave">▒▓▒▓▒▓▒▓▓█▒▓▒▓▒▓▓▓▓▒▓▓▒▓▒█▒▒▓▓▓▓▓▓▒█▓▓█▒▒█▓▓█▒▓█▒▓▓▒▒█▒▒▓▒▒█▓▒██▓▓▒▓▒▒▓▓▓▒██▓▓▓▓▒▓▓▒▓▒▓▓▒▓▓▓▓▒▒█▓▒█▓▓▓▒▓▒▓▒█▒█▒▓▓█▒▓▒▓▒▓▓█▒▓█▓▒▒▓▓▓▒▒▓▓▓▓███▒▓█▓▓▒▓▓▓▓▒███▒▓▓█▓▓</span></span></span></div></div></div></div><div class="ar-overlay" aria-hidden="true"></div></div></div><div class="slot slot-player"><div class="slot-fill" aria-busy="true" style="position: relative;"><div class="dcard np"><div class="np-art"><span class="ars ars-dither dc-fill" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="--ars-d: 0.00s;"><span class="ars-base">▒░▒░░░▒▒░░▒░▒░░░░▒▒▒░░▒░░░░▒░░░░░░░░░▒░░░░░░░░▒░▒░░░░▒░▒▒▒░▒░▒░░░░░░░░░░░░░░░▒░░░░▒░▒▒░░▒░░░▒▒░▒░░▒░▒░░▒░░░░░░░░░░░░░░░░
+▒▒▒░░░░░░░▒░▒░░░░▒░░▒░░▒▒░░░▒░░░░░░░░▒░░░▒░░░░░▒▒▒░▒░░░░▒▒░░░░░░░░░░░▒░░░░░░░░░▒░░░░░▒▒░░▒░░▒▒░▒░░░░░░░░░░▒░░░▒░▒░░▒░░░░
+░▒░░░▒░░▒░░░░░▒░░░░░▒▒░░░░░░▒░▒░░░░░▒░░░░░▒░░░░▒▒░░░░░▒░░░░░░▒░░░░░░░░░░░▒░░░▒░░░▒░░░░░░░░░▒░░░▒░░░▒░░▒░▒▒░░▒▒░░░░░░░░░░
+░░▒░▒░░▒░░▒░░░░░░░░░▒░░░░░░▒▒░░▒░░▒░░░░▒░▒░░▒▒▒▒░░░░▒▒░░░░░░▒░░▒░░░▒░▒░░░░░░▒░░▒░░░▒░▒░░░░░░▒░░░░░▒░▒░░░░░░░▒▒░░░░░░░▒░░
+▒░░░░░▒░░░░░▒░░▒▒▒░▒░░░░░░░░▒░░░░░░░░░░░▒░░░░░▒░░▒░░░░░░▒░░░▒░░░░▒░░░▒░░░░▒░░░▒░░░▒░░▒▒▒░░░▒░▒░░░░░░░▒▒░░░▒░░▒░░░░▒▒░░░░
+░▒▒░▒░░░░░░░░▒░░░░░░░░░░░▒░░░░░░▒▒░░░░░░░░░░░░▒▒░░▒░░░░░▒▒░▒░░░░░░▒░░░░░▒░░▒░▒░░░░░▒░▒░░░░▒░░▒▒▒▒▒░░░▒░▒▒░░▒▒▒░░░▒▒░▒░░░
+░░░░░▒░░░░░░░░░▒░░▒░░░░░░░░░▒░░░░░░░▒▒░░░░░░▒▒░░░░▒░░░░░▒▒░▒░▒░░░▒░░░░░░▒░░▒░░░░░▒▒░░░░▒░░░▒▒▒░░░░▒▒░░░░░▒▒▒░░░░▒░░░░░░░
+░░▒▒░░░░░▒░▒▒░░░░░▒░░░░░▒░░░░░░▒░▒▒░░▒░░░▒░░▒░░▒░░░░░▒░░░░░░░░░░░░░░░░░░░░░░░░░▒░░▒░▒░░▒░░░░░░░░░░▒░░░░▒░░░░▒▒░░░▒▒░░░▒░
+░░░░░░░░░░░░░░░░░░░░░░▒▒░░░▒░░▒▒░░░░░░░░░░░░░░░░░▒░░▒▒░░░░░░▒░░░░▒░░░░░░░░░░░░░░▒░▒░░░░░▒░░░░░░░░░░░▒░▒░░░░░▒▒░░░░░░░░░▒</span><span class="ars-wave">▒▓▓▓█▓▒▒▓▓▒▒▓▓▒▒▓▓▒▒▒▒▓▓▓█▓▒▓▒█▒▒▓▒█▒▒▓▓▓▓█▒▓▓▓▓▒▓▓▓▒▓▒▒▓▓▓▓▓▓▒▓▓██▓█▒▓▓▒▓▒▒▓▓▓▒▒▓▓▓▒▓▒▓▓▒▓▒▒█▓█▓▓▓▒▒▓▓▓▓▒▓▓▒▓█▒▒▒▒▒█▒▒▓
+▓▓█▓▓▒▓▓▓▓▓██▓▒▒██▓▒▓█▒▒▓█▒▒▒▓▓▓▒▒▓▓█▓▓▓▓▒▓█▓█▓▓▒▒▒█▓██▒█▓▓▒▒▓▓▒▓▒▓▓█▒█▓▓▒█▓▓█▓▒▓▒▓▓▒▓▒█▓▓▓▓▒▓▒▓▓▓▓▓▓█▓▓█▒▓█▓▒▒▓▒▓█▓▓▓█▓
+▓▓▒▒▓▒▒█▓▒▓▓▓▒████▒▓█▓▓▓▓▓▒▒▒▓▒▒██▒▒▓▒█▓█▓▓▒▒▓▒▓█▒▓▒▒▒▒▓█▓▒▓▓█▓▒▒▓█▓▒█▓▒▒▓▓▓▒▓▓█▓▒▓▓▒▓▒▒▒▓▒▒▒▓▒▓▓▒▒▓█▓▒▓▒▓▓▓▓▓▒▓▓▒▒▓█▒▒▓
+▓▒▒▓▒▓▓█▒▒▓█▓▒▓▓▓▓▓▓▓▓▓▒▓▓▒█▒▓▒▒▓▒▓▓▓▓▓▓▓▒▓▓█▓▓▓▓██▓▓▓▒▓▓█▓▒█▒▓▒▓▒▒▓▓▓▒▒▓▒▒▓▓▒▓▒▓▒▓▒▓▒▒▒▓▒▒█▓▓█▓▒▒▒▒▓▓▓▓▒▓▒▒▓▓█▒▓▓▒▓▓▓▒▓
+▓▓▓▓█▓▒▓▓▓▓▒▓▓▒▓▒▓▒▒▓▒▓▓▒▒▒▒▓▓▒▓▓▒▒▓▒▓▓▓█▒▓▓▓▓▒▓▒▒█▒█▒▓▓▒▒▓▒▓▓█▓▒▓▒▓▒█▓█▒▓▒▓▓▒▒█▒▓▓▓██▓▓▓█▓▓▒▓▓▓▓▓▒▒█▒▓▓█▓▓▒▓▓▓▒▒▓▒▓▒▒▓▓
+▒▓█▓▓▒▒▒▓▓▓▓▓▓██▓▒▓▒▓▓▓█▓▓▓▒▓▒▓▓█▓█▒▒▓██▒▓▓█▓▓▒▓▓▓▒▓█▓█▓▒▒▓▓▓▒▒█▓▒▒▓▓█▒█▓█▓▓▒▒█▒█▓▓▓█▒█▒▓██▓▓▒██▓▓▓▒▒▓▓▓▓▒█▓█▓▒▒▒▓▓▓▓▒▓▒
+▓▒▓▓▓▓▒▓▒▓▓▓▓▓▒▒▒▒▓▓▓█▓▓▓▓▓▓▒▓█▓▒█▒▓▒█▓▓▓▒▓▓██▒█▒█▒▓▓█▓▓▒▒▓▓▒█▓▒██▒▓▒▓▓▒▒▓█▓▓▓█▒▒▒▓▓▓█▓▒▓▒▓▓█▓▒▒▒▓▓▓█▓▒▓▓▒▒█▒▒▓▓▓██▓▓▓▓▓
+▒▓▒▓▓▒▓▓▓▒▓▓▓▓▓▒▓█▓▓▓▒▒▓▓▓▒▒▓▓▓▒█▓▓█▓▓▓▓▓█▒█▓▓▒▓▒▓▓▒▓▓█▓▓▓█▓▓▒▓▓█▓▒█▓▒▓▒▓▓▓▒▒▒█▒▓▒▓█▒▒▓▒▒▓▓▒▒▓▒█▒▓▓█▓▒▓▒▒▓▓▓▓▓▒▓▒▒█▒█▒▓▒
+█▒█▓▓▒█▓▒▓▒███▒▒▒▒▓█▓█▓▒▒▒▒▓▒▓▓▓▒▓▒▒▓▓▓▒██▒▓█▓▒▓█▒▒▓▓▓▒█▓█▒▒▓▓▓▓▒▒▒▓▒▒▓▓▓▒▓█▓▓▓█▓█▓▒▓█▒▒▓▒▒▒▓█▒▓▓▓▒▒▓█▓▓▒▓█▓▒█▓▒▒▒█▒▓▒▓▓</span><span class="ars-wave">█▒█▒▓▓▒▓▓▓▒▓▒▓▓▒█▓█▒▓▒▓▓▒▒█▒█▒▒▓▓▓█▓▒▒▓▒▒▒█▓▓▒█▓▒▓▓▓█▓▒▒▓▓▒▓▒▓▒▒▓▒▒▓▓▓▓▓█▓▒▓▒▓▓▒█▒▓▒▒▒▒▓▒█▓▒▓▓▓▒▓▓▓▓▒▒▒▓▓▓▒▓█▓█▓▒▒▒█▓▒▒▓
+▓▒▓█▒█▓▓▒▓█▓▓▓▓▓▒▓█▓▒█▓▒▒▓▒▓▓▓▒█▒▓▓▓▓▒██▓▒▒▒▓▒▒▒██▓█▓███▓▓▓▓▓▒▓█▒▓▓▒███▓▒█▒▒▒▓▒▓█▒▓█▒▓█▓▒▒▓▓▓▓▓▓▒▓███▒▒█▒▒▒▓▓▓▓▒▒▒▓▓▓▒█▒
+▓▒▓▒▓▓▓█▓▓▓▓▓▒▒▓▓▒▓▒▓▓██▓█▓█▒▓▓▒▒▓██▓▓▓▓▒▓▓▓▒▓▓▓▓▓▓▒▓▓▓▓▓▓▓▒▓▒▓▓▓▓▓▒▒▒▓█▓▒▓▒▓▓▒▒▓▓▓▓▒▒▒▓█▓▓▓▓▓▓▓▒▓▓▓▒▓█▒▒▒█▓▒█▓▓▓▓▓▓▓▓▒▒
+▓▓▓▓▒▒▒▓▓█▓▒▒█▒▓▒▓▒▒█▓▓▒▓▓▒▒▓▓▓▒▓▓▒▓█▓▒▓█▒▓▓▓█▓▓█▓▒█▓▒▓▒▒█▓▓▓█▓▒▓▓█▒▓▒▓▓▓▓▓▓▒▒▓▓█▒▓▓▒▒▓▓▓▓█▓▓▓█▓▓▓▓▓▓█▒▓▓▓▓█▓▓▒█▒▓▓▓▒▒▒▓
+▓▒▒▓▒▓▓▓▓▒▓█▓▒▓▓▓▒▒▓▓▓▓█▓▒▓▓▓▒▒▓▒▒▓█▒▒▓▓▓▓█▓█▒▓▓▓▓▒▓▒▒▒██▒▒██▓▒██▓▓▓▓▒▓▓█▓█▒█▓█▓▓▓▓▒▓▒▓▓▒▒▓▓▓▒█▒▒█▓▒▒▓▓▓▓▓▓▓▓█▓▒▒█▒▓▓█▓▓
+▒▓▒▓▓▓▒▓▓▒▓▓▒▓█▓▒▒█▓▓█▒██▓▒▓▓█▓█▓▓▒▒▓▓▓▒▓▓▒▒▓▓▒▓▒▓▓█▓▓▒█▒▒▓▓▒▓▓▓▓▒▓▒▓▒▒▓██▒█▒▓▓▒█▓▓▓█▓▒▓▒▒█▓▓▒▒▓▓▓▓▓▓▒▓▓▓▒▓█▒██▓▓██▒█▓▓▓
+▓▒█▓▒▓▓█▓▓█▒▓█▓▓▓▓▒▒▒▒▒▒▓▓▓▓▒▒▓▓▓█▓▒█▓▓▒▓█▓▒▒▓▓▒▓▒▓▓█▒▓▒▒▓▒▓▒█▒▒▓▓▓▒▓▓▒▓▒▒▓█▓▓▓▒▒▓▒█▓▒▓█▒▓▓▓█▒▓▓▒▓▓▒▓▓▒█▒▓█▓█▒▒▒▓▒▓▓▓▓▓█
+▓▓▒▓▒▓▒██▓▓█▒▓▓█▒█▓▒▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒█▓▒▒███▒▓▒█▒▓▒▒▓▒██▓▒▓▒█▒▒▓▓██▒▓▒▓▒▒▓▒▒▒▓▒▒▒█▒▓▓▓▒▒█▓▓▒▒█▓██▒▒▓▓█▒▒▓▒▒▒▒▒▒▒▒▓█▒▓▓▒
+▒▒▓▓▓▓▓▓██▓▓▓▒▓▒▒▓█▒▓▓▒█▒▓▓█▓▒▓▓▒▒▒▓▒▓▓▒▒▓▒▓█▓█▓█▓▓▓▓▓▓▓▒█▒▓▓▒▓▓▓▓▓▓▒▒▓▓▒▓▓▓▓▒▓▓▒▓▓█▓▓▓▓▒▒▓▒▒▒▓▓▒█▓▓▓▒▓█▓▒██▒▒▓▓▒▓▒▒▓▒▓▓</span></span></span></div><div class="np-main"><p class="np-label" data-ar-t="">Now playing</p><div class="np-id"><span class="ars ars-dither np-skel" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 70%; --ars-d: 0.00s;"><span class="ars-base">░░░▒▒▒░▒░░▒░▒░░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░▒░░▒░░░▒░░▒░▒░░░░░░░░░░░░░░░▒░░░░░░▒░▒░░▒░▒▒░░░░░░░░▒▒░░░░░░░░▒▒▒░░░░░░░░░▒▒░░▒░▒░░░▒▒░░░▒▒░░▒░░░░░░░░▒▒░▒░░▒░░░░</span><span class="ars-wave">█▒▒▓▒▒▓▓▓▒▓█▓█▓▒▓▓▓▒█▒▓▓██▒████▒▓█▓▒▓██▓█▒▓▒▓▓▓█▒▒▓▓▓▓▓██▒███▓▓▒▓▓▓▓▒▒▒█▓█▒▓█▓█▓▒█▒▒▒▒▒█▓▓▓█▓▒▒▓▒▒█▒▒█▒▒█▓▓▒▒▒█▓▒▒▓▓▓▒▓▓▓▒▓▒▓▒▒▓▒███▒▓▓▒▓▓▒▓▓▓▓█▒▓▒▒▓█▒▓▓▓▒██▒▒█</span><span class="ars-wave">▒▓▒█▓▓▓█▒▓▓▒▒▒▒▒█▒▒▓█▒▓▓▒▓▓▓▒▓▓▒▒▓▓▓▓▓▓█▓▒██▒▓▓▒█▒▓▒▓▒▓▓▓▓▓▒▒▓█▓▓▓▓▓▓▒▒▓▒█▒▒█▒▓▒▒▓▓▒█▒▒█▒▓▒▒██▒█▓▒▒█▒█▓▓▓▓█▒▓▒▒▓▓▒▒▒▒▒▒▓▓▓▓▓▒▓▒▓▓█▓▒▒▓▓█▓▒▒▓▓▓▒▓▓▒▒▓█▓▓█▓█▒██▓██</span></span><span class="ars-line" style="width: 45%; --ars-d: 0.09s;"><span class="ars-base">░░░░░░░░░░░░▒░▒░░░░░▒▒░░▒░░░░░░░░░░░░░░░▒░▒░░░░░▒░▒░░░░░░░▒░▒░░░▒░░░░▒░░░▒░░░░░░░░░▒▒░░▒░░░░░░▒░░░▒░▒▒░▒░░░░░░▒▒░░▒▒▒▒▒▒░░░░▒▒░░░░░▒▒░░░▒▒░░▒▒░░░░░▒░░░░░░░░░░░░</span><span class="ars-wave">▓▒▒▓▓▓▓▒▓▓▒▓▓█▒▓▒▓▓▓▓▓▓▓▓▒▒▓▓▒▒██▓▒█▓▓█▓▓▒▒██▓▒██▓▒█▒▒▓▒▓█▒▒█▓▓▓▓█▓▒▓▒▒▓█▓▓▒▓█▓▒▓▒▒▒▓▓█▓▓▓▒▒▓▒▓██▓▓█▓▓█▓▓▒▒█▓▓▒▒▓▓▒█▓▒▓▓▓▓▒▓▓▓█▓▓██▒▒▓█▒▓▒▓█▓▓██▒▓▓█▓▒▓▓▓▒▒▒█▒▓▓</span><span class="ars-wave">▓▒▓▓▒▒▒█▒▒▒▒▓▓▒▒▓▒█▓▒▒█▓▓▓▓▓▓▓█▓█▓▓▒▓▓▓▒▒▓▓█▓▓▓▓▓█▓▓███▒▓▓▓▓▓▒▒▓▒▒▒▓▓▒▓▓▓▓▓▓▓▓█▒▓█▓▒█▓▒▒▒▓▓▓▒▓▓▓█▒█▓█▓▒▓▓▒▓█▒▓▓▓▓▒▓█▓▓▓▓▒▓▒▓▒▓▓▒▓▓▓█▒▒▓▓▓▒▒▓█▒█▒▒█▒█▒▓▓▓▓▓▒▓█▓▒▓</span></span></span></div><span class="ars ars-dither np-bar-sk" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 100%; --ars-d: 0.00s;"><span class="ars-base">▒░▒░░░░░░░░░░░░░░░▒░░░░░░▒░░░░▒▒░▒░░░░░▒▒░░░░▒░░▒░░▒░░░░░▒▒░░░░░░▒░░░░░▒▒░▒░▒░░░░░░░░░░░▒░▒░░░▒░▒░░░░░░░░░░░▒░░░░▒░░░▒░░░▒░░░░▒░░░▒░▒▒░░░░▒░▒░▒░░░▒░▒░▒▒░░░░▒░▒░</span><span class="ars-wave">▒███▒▓▓▓▒▓█▒▓▓▒█▓▓▓▓▒▒▒█▒▓▒█▒▓█▒▓█▓▒▓▒███▓▓▒▒▒▒▒▓▓▓▓█▓█▒▓▒▓▓▓▓▒▓▓▓▒▓▒▓▓▒▒▓▓▓▒▓▓▒▒█▓▓█▓▒▓▒▓▒▓▓▒▓▒▓▓▓▒▒▒▒█▓▒▓▒▒▓▒▒▓▓▓█▓▒▒▓▓▓█▒▓▓▒▓▒▒▓▒▒▓█▒▓▓▒▓▒█▓▓▒▒▓██▓▓▒▓█▓▓▓█▒▓</span><span class="ars-wave">▒▓▓▒▓██▓▒▓█▒▒▓▓▒▓▓▓▒▓█▒▓▓█▒█▒▒█▓▒▒█▒▓▓▓▓▒▓▒▓▒▒██▓▓▓▒▓▒█▓▓▒▓▓▓█▓█▓▓▓█▓█▓▒▓█▒▓▒█▓▓▒▓▓▓▓▒▓▒██▓▓▓▓▒▓▓█▓▓▒▓▒▓█▒▓▓▒▓█▓█▒▓▓▓█▓▒▓▓█▓█▒▓▒▓▓▒█▓▒▓▒█▓▒▓▓██▓▓█▓▓▓▒▒▒▓▒▓▓▒▒▓▓</span></span></span><div class="np-times"><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 28px; --ars-d: 0.00s;"><span class="ars-base">░░░░░░░░░░░░░░░░░░░▒░▒░▒░░▒░░░░░▒░░▒░░▒░░▒░▒▒░░░░░░░░▒░▒░░▒░░▒░░░▒░░░▒░▒░░░▒░▒▒░▒░░▒▒▒▒░▒░░▒░░░░░░░▒░░░▒░░▒▒░▒░░░░▒▒░░░▒░░░░░░▒░░░░░▒▒░░▒░▒░░░░░░▒░░░░▒░░░░░░░░░</span><span class="ars-wave">▓█▒▓▒█▓█▒▒▓▒▒▓▒█▒██▒▓▓▓███▓▓█▒█▒█▓▓▓▓█▒▒▓▓▓▓▒█▒▓▓█▒▒▓▓▒█▓█▓▒▓▒▒▒█▓▓▒▒▒▒▓▒▓▓▒█▓▓▒▓█▒▒▒▓█▓▓█▒▓▓▓▓▓▒▓▒▒▓▓▓▓▒▓█▒▒▓▒▓▒▒▒▓█▒▒▓▒▓▒▓▓▒▓▓▓▓▒▓▒▒▓█▒▓▒▓▒▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓▓▒█▒</span><span class="ars-wave">▓▒▒▓█▒▒▓▒▓▒▓▒▓▓▒▒▒▓███▓▓▒▓██▓▓▓█▓▓▓▓█▒▓▓▒▓▒▒▒▒▒▓▓▒▒▒▒█▓█▓▓▒▒▓▓▒▓█▓▓▓▓█▓▒▓▓█▒▓▒▒▓▒█▓▓▓▒▓▓▒▒▒▒▓▒▒▒█▒▓▒▓▓▓▓▒▓▓██▒▓▓▓█▓█▓██▓▒██▒▒██▓▒▓▓█▓▓▒▒▒▓▓▓▒▓█▒▓▓█▒▓▒▒█▓▓█▒▓▓▒▒</span></span></span><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 28px; --ars-d: 0.00s;"><span class="ars-base">░░░▒░░░░░░░░░░▒░░░░░░░▒░▒░░░░░▒░▒░▒░░░░░░░▒░░░░░░▒░░▒▒░░▒░▒░░░░░▒░░▒░▒░▒░░░░░░░▒░░░░░░▒▒▒░░▒░▒░▒▒▒░░░▒▒░▒░░▒░░░░░░░░░▒░░░░░░░▒░░░░░░▒░░░░▒▒░░░░░░░▒░░░░▒▒░▒░░░░░</span><span class="ars-wave">▓▓███▓▒█▒▓▓▒▓▓▓▒▓▒▓▓▓█▒▒▓▓█▒▓█▓▓██▒▓▓▓▓▒▒▓▓█▓▓▓▒▓▓▒▒▒▒▓█▓▒▓▓▓▒▓█▒█▓▓▒▒▒▓▒▓▓▓▓▓▓▒▓▒▒▒▒▓▒▒▒▒▓██▒▒▒▓█▒▓█▓▒▒█▓▒█▓█▒▒▓▓██▓▓█▒▓▒▒█▓█▓▓▒▒▒██▓▓██▒▓▒▓▓█▒█▓▓▓▓▒▓▒█▓▓▒▒▓▓█</span><span class="ars-wave">▓▓▓▒▓▒▒█▒█▒▒▓█▓██▓▓▓▒▓▒▓▓█▓█▓▓████▒▓▓▓▓▓▒▓▒▓█▓█▒▒▒▒▒█▓▓█▓▓▓▓▒▒▓▓▓▒▒█▒▒▒▓▒▒▒▒▓▓█▒▒▒▒▒█▒▓▓▒▓███▓▓█▓▒▒▒▓▒▓▒█▒▓▓▓▓▓▒▓█▓▒▒▓▓▒▒▓▓▓▒▓▓▓█▓▓▒▓▒█▒▒▓▒▒▓▓▒▒▒▓█▓▒▓█▒▓▓▓▓█▓██</span></span></span></div><div class="np-ctrl" aria-hidden="true"><span class="ars ars-dither np-ic-sk" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="width: 14px; height: 12px; --ars-d: 0.00s;"><span class="ars-base">░░░▒░▒▒░░░░░░░▒░░░▒░░░░░░░░░░░░░░░░▒░▒░░▒░░░▒░░░▒░░░░░░░░░░░▒▒▒░░░░░░░░░░░▒░░▒▒░░░░▒░░░░░░▒▒░▒░░░░▒░░░░░░░░▒░░▒░▒░░▒▒░▒▒</span><span class="ars-wave">█▓▒█▒▓▓▓▒▒▓▒▒▓▓▓██▒▓▓▒▓▒▒██▓▓█▓▓▓▒▓█▓▒██▓▒▓▒▒▒▓▓██▓▓▒█▓▓██▒▓▓▓▓█▒▒▒██▓▓▓▓▓▒▓███▓▓▒▓▒▒▓▒▒▒▒▒▒▓▒▒▓█▓▓█▓▒▓▓▓▒▒▓▒█▓▒█▓▓▒██▒▓</span><span class="ars-wave">▓▓▓▓▓▓█▓▒▒▒█▒▒█▓▓▓█▓▓▓▓▓▓▓▓▓█▓▓▓▓▒▓▓▓██▓▓▓▒█▓▒▓▓▓▒▓▒▒▓▓▒▒▓▒▒▓█▒█▓█▒▓▓█▒▓▒▓▓▓█▓▓██▓▓▓█▒▓▒██▓▒▓▓▓██▓▓▒█▓▒█▓▒▓█▒▓▓▒▓▓▓▒███▓</span></span></span><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="width: 32px; height: 32px; --ars-radius: 50%; --ars-d: 0.00s;"><span class="ars-base">░░▒░░░▒░░░░░▒▒░▒▒░░░▒░░░▒░▒░░░░░░░░▒░░░░▒░░░░░▒░░░░░▒░░░░░░░▒░░░░░░░░▒▒▒░▒░░░░░▒░░░░▒░░░░░▒░░░░░▒░░░░▒░▒▒░▒░░░░░░░░░░░░░
+░░░░░▒░░▒░░░░░░░▒░░░░░░░░░░░▒░░░░░░▒░░▒▒░░░░▒▒░░░▒░░░░░░░▒░▒▒▒▒░░▒░░▒░░░▒▒░░▒▒▒░░░░░░░░░░░▒░░▒░▒░░░░░░░░░░░▒▒▒░░░░░░░░░░
+░░░░░░░░░▒░░░░▒░░▒░░▒░░▒░▒▒░░░░░░░░░░░░░░░░░░▒░░░░░░░░▒░░░░░▒░░░░░░▒░░▒▒░░░░░░▒░░░░░░░░▒░▒▒░░░░▒░░▒░░▒▒░░▒░░░░░░░░░░░░░░</span><span class="ars-wave">▒▓▒▓▓█▓▓▓▒▓▓▒▒▓█▓▓▓▒▓▒▓▓▓█▓▓▓▓▒▒▓▒▒▓███▒█▒▒▓██▓▓▓▒█▓▓▓▓▓▒▓▒▒▓▓▓▓█▓█▓▓█▒█▒▓▒▓▒▓▒▓▓▓▓█▓██▓▓█▒▓▓▓█▓█▓▓█▓▒▓▓▒▒▒▓▒▓▓▒█▒█▒▒▒█▓
+█▓█▒█▒▒▒▒█▓████▓▓▓▒▒▓▓▓▓█▒▒█▒██▓▒▓▓▓▓▓▓██▓▒█▓▓▒▓▒▒▒▓█▒▓█▒▓█▓▒▒▒█▒▓█▓█▒█▒▓█▒▓█▓▓▒▓▒▒▓▓▓██▒▒▓▓▓█▓▒▓▒▒▓▒▓▓██▒▒▒▓▒▓▒▒▒▓▒▒▓▒█
+▓▓▓▒▒▓▓▓▓█▓▒▒▒▓█▓▓█▒▒▓▓▒▓▒▓▒▓▒▓▒▒██▓██▓▓▓▒▓▒▒▓▓▒▒▓▒▒▓▒▒▓▓██▒▓▒▒▓█▓▓▒▒▒▒▓▓▒▓▒▓▒▒▓▓▓▓▒▓▓▒▓▓▓▓▓▓▒▓▓▒▓▓▓▓▓▓▒▒▓▒▓▓█▒▓█▒▓▓█▒▓▒</span><span class="ars-wave">▒▓▒▓▒▓▓█▒▒▒█▓▒▓█▓████▓▒▓█▓▓▓▓▒▓▒▒▓▒█▓▓▒▓▓▓▓▓█▓▒▒▓▒▓▓███▓▒▓▓█▓█▓▒▓▓▒▒▒▓▒▓▓▓██▒▓▒██▒▓▒▒▒▓█▓▓▒█▒▓▓▒▓██▒▓▓▓▓▓▓█▓▒▒█▒▓▓█▒▓▒▓▒
+▓▓▓▒▓█▒▓▓▒▓█▒▓▒██▒▒▓▓▒█▒▓▓▒▓▓▒▓█▒▓█▒▓▓█▓▒▓▓▓▓▓▒▓▓▓▒▓▓█▓▓▓▒▓▓▓▓▒█▒▒▓▓█▓▓▒▒▓▓▒▓██▓▓▓▒█▒▒▓▓█▓▒▒▓▓▓█▓▒█▓▓▒▒█▓▒▓█▒▓▓▓▓▓█▒▓██▓
+▓▓▓▓▓▓▓▒█▓▓▓▒▓█▓▒█▓▓▓▒▓▒▒▓▓█▒▒▓█▒▓▓▓▓█▒█▓▓▓█▓▓▒▓▒▒██▓▓█▓▓▒▓▓▓█▓█▒▓▒▒▒█▓▒▒▒▓██▓██▓▓▓▒▒▒▓█▓█▓█▓▒▒▒▓▒▓▓▓▒▓▓▓▒▓█▒██▓▓▓▒▒▓▓█▒</span></span></span><span class="ars ars-dither np-ic-sk" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="width: 14px; height: 12px; --ars-d: 0.00s;"><span class="ars-base">░░▒▒░░░░░░▒░▒░░░░░░▒░▒░░░░░░░░░░▒░░▒░░▒░░▒░░░░░░░▒░░░░░░░░░░░░░░░░░░░░░░░░▒░░░░░░░░░▒░░░░░░░░▒░░▒░░░░░░▒░░░░░░░░░░▒░░░▒░</span><span class="ars-wave">█▓▓▓▒█▓▓▓▒▒█▓▓▓▓▒▒█▒▒▓▓█▒▓██▓▓▒██▓▒▒▓▓█▓▒▓▓█▒▓█▒▒▒▒▒█▒▓▒▓▒▒█▒▓▓█▓▓▒█▓▓▓█▒▒▒▓▓▓▓▒▒▒▓█▒▓▓▓▓█▒▒█▓▒▒▒█▓▒▒▓▒▓█▒▒▓█▓▓▒▓█▓▓▓▓▒▓</span><span class="ars-wave">▓▒▓▓▒█▓▓▓▓▒▓█▒▓▓▓▓▓▓▓█▓▓▓█▒▒▓█▒▓█▒▒▒█▓▓█▓▒▒▓▒▓▒█▒▓▒▓▓▒▓█▓▓▓▒▓▓▒▓▒▓▓▓██▓▓▓▒▓▓▒▓▒▒▒▓▒▓▒▓▓█▓▓▓▒▒▓▓▓▒▓▓█▓▓▓▒▒▓▓▓█▓▒▓▓▓▓▓▓▓▒▒</span></span></span></div></div></div><div class="ar-overlay" aria-hidden="true"></div></div></div><div class="slot slot-story"><div class="slot-fill" aria-busy="true" style="position: relative;"><div class="dcard story is-loading"><span class="ars ars-dither st-bg st-bg-sk" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="--ars-d: 0.00s;"><span class="ars-base">░░░▒░░░▒░░▒░░░░░░▒░░░▒░░▒▒░░░▒░░░░░░░░░░░▒░░░░▒░░░▒░░░░▒░▒░░░░░░░░░▒░░░▒░░░░▒▒▒░░░░░░▒░░▒░░░░░░▒░░░░▒░░▒░░░▒░░▒░░░░░░░░░
+░░░░░░░░░░░░▒░░░░░░░▒░░░░░░░▒░░░░▒░░▒▒░▒▒░░░░░░░░▒░▒▒░░▒▒░░░▒░░░░░░░▒░░▒░░▒▒░░░░░▒░░░▒░▒▒░░░░░░░░░░░░░░▒░░░░▒░░▒░░░░▒░░░
+░▒░▒░░░░░░▒░░░░░░░░▒▒░░░░░░░░░░░░░░░▒░░░░░▒░░░▒▒▒░░▒░░░░▒░░▒▒▒░░░░░░░░░░▒░░░▒░▒░░░░▒░░░░░▒░░░░░░▒░░░▒░▒░░░▒░░▒░▒░░▒░░░░░
+░░░░░▒░░▒░░░░▒░░░▒░▒░░░░░░░░▒░▒░▒░░▒░░░░░░░░░░░░▒░░▒░░░▒░░░▒░░▒░▒░░▒░░░░▒░░░░░░░░░░░░░▒░░░▒▒░░░░░░░░░░▒░░░░░░░▒▒░░░░░░░▒
+░░▒░░░▒░▒░░░░░▒░░░░░░▒░░▒░▒▒░░▒░░▒░░▒░░░░░░░░░░░░▒░░░░░▒░▒░░░░░░▒░░░▒░░▒▒░░░░░░▒▒░░░░▒░░░▒░░░░░▒▒░░░░░░░░░░░░▒░░▒░▒▒░░▒░
+░░▒░░░▒░░░▒░░░░░▒▒░▒▒░▒░░░░░░░░░░░░░░░▒░▒░░░▒░▒░▒░░░░░░░░░▒░░▒▒░░░░░░▒░░░░░▒░░░░░░░░▒░░░░░░▒▒▒░░░░░░░░░▒░░▒░░░▒░░▒▒░░▒░▒
+▒░▒░▒▒░▒░░░░░░░░▒░░░░▒░░░░░░░░░░░░░░░░░░░░▒░░░▒░░░░▒░░░░░░░░░▒░░░░░░░░░░░░░▒░░▒░░░▒░░▒░▒░▒░▒░░░░░░░░▒░░░░▒░▒░░░░░░░░░░▒░
+▒▒▒▒░▒░░▒░░░▒░▒░▒░░░▒░▒░░░░▒░░▒░▒░░░▒▒░░▒░░░▒░░░▒░░░░░▒░░▒▒░▒░▒░░░░▒░░░░░░░▒░░░░░░░░▒░░░░░░░▒░▒▒░░░░░░░▒░░░░▒░░░░░░░░▒░░
+░░░░░░░░░░░░░░░░░░▒░░░░░▒▒░░▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒░░░░░░░░░░▒▒░░░░░░░▒░▒▒░░░▒░░░▒░▒░▒░░░▒░░░░░░░▒░░▒▒░░
+░░▒░▒░░░▒░░░░░░░░░▒░▒▒░▒░░░░░░░░░▒░░░▒░░░▒░▒▒▒░░░░░░▒░░░░░▒░░▒░░▒▒▒░░░░░░░▒░░░░░░▒░░░░▒▒░▒▒▒░▒░░░░▒░░░▒░░▒░░░░░▒░░░▒░░▒░
+▒░▒░░▒░░░░░▒░░░░▒░░░░▒░░░▒▒░▒░░░▒░░░▒░░░░░░▒░░▒▒░░░░▒░▒▒░░░▒▒░▒░░░░▒░░░░░▒░░░░░░▒░░░▒▒░░░░░░░▒░░░░▒░░▒░░░▒░░░░░▒░▒▒▒░▒░▒
+░░░░░░░░░░░░░▒▒░░░░░░░▒▒░░░░░░░░░░░▒░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░░░▒░░░░░░░░░░░░░▒▒░▒░░░▒░░▒░░░░░░░▒░░░░░░░░▒░░░░░▒░░░▒░
+░░░░▒▒░░░░░░░▒░░▒░▒░░░░░░▒░░░░░▒░░░░▒░▒▒▒░░░▒▒░▒░░▒░░░░░▒░░▒▒░░░░░░░░▒░▒░░░░░░░░░▒░░░░░░░░▒░░▒░░░░░▒▒░▒░░░░░▒░░░▒░░░░░▒░
+░░░░░▒░▒░░░░░░░░░░░▒░░▒░▒░░░▒░░▒▒▒░▒▒▒░░░░▒░░░░░░▒░░░░▒░▒░▒░░░░░░░░░░░░░░░▒▒░░▒░░▒▒▒░░░▒░░░░░░▒░░▒░░░░░░░░░░░░░░░▒░░░░▒░
+░▒░░░░▒▒░░░░░░▒░░░░░░▒░░░░▒░░░▒░░░▒░░░░░░░░░▒░░▒░░░░░▒▒░░░▒░░▒░░░░░░░░▒▒░░░░░░▒░▒░░░░░░░░░░░░░▒░░░▒▒░░▒░░░░░░░░░▒░░░░▒░░
+▒░▒░░▒░░░░░░░░░░░░▒░░░░░░░░░░░░░░▒░░░░░░░▒▒░░░▒▒░▒▒░░░▒░▒░░░░░▒░░▒▒░░░░░░░▒▒░░░░░░░░░▒░░░░░░░░░░░░░░░░▒░░░▒░░░░░░░░░▒░░░
+▒▒░░▒░░░░░░░▒▒░░▒▒░░░░▒░▒▒░░░▒░░░░▒░▒░░░▒░░░░░░░▒░░░░░▒░░░░░░░░░░░░░░▒░▒░░░░░░░░░▒▒░▒░░░▒▒░░░░▒░░░░░░░░▒░▒░░▒░▒░░░▒░▒░░▒
+░░░░░░░▒░░░░▒░░▒░░░░░▒░░░▒░░░░░░░░░░░░▒░░░░▒▒▒░░░░░░░░▒▒░░░░░░▒░▒▒░░░░▒▒░░░░░░░░░░▒░░░░▒▒░▒▒░▒░▒░░░▒░░░░▒▒▒░░▒░░░░░▒░░▒▒
+░░░▒░░░░░░░▒░▒░░▒░░░░░░░░░▒░▒▒░░▒▒░▒░░░░▒░░░▒▒░░░░░▒░░░▒░▒░░░░░░░░░░░░░▒░░▒░░░░░░░░░░▒░░░░░░░░▒░░░░░░░░░░▒░░░░░░░▒░░░░░▒
+░░▒░░▒░░▒▒░░░░░░░░░░░░░░▒░░▒░▒░▒░░░░░░░░░░▒░░░░░░░░░░░░░▒░░░░▒▒░░░▒▒▒░▒░░▒░▒░░▒▒░░░▒░░░░░░▒░░░░░░▒▒░▒▒░░▒▒▒░░░░▒░░▒░░░░░
+░▒░░░░░░░░░░▒░░░░░░▒░░░░░░░▒▒░░░░▒▒░░░░░░▒▒░░▒▒▒░░░░░░░░░░░▒▒░░░░▒░░░░░░░░░░░░░▒░░░░░░░░░░▒░░░░▒░░▒░▒░░▒░░░▒░░░░░░▒░░░░░
+░▒▒░░▒▒░░▒░░░░░░░░░░▒░░░▒░░▒░░░░░░░░░▒░░░▒░░▒▒▒░░▒░▒░░░░░░░░░░░▒░░░▒░▒▒▒░▒▒░░░▒▒░░░▒░░▒░░░░░░░░░░░░░░░░▒░▒▒░░░▒░▒░░▒░░░░
+▒░▒░▒▒░▒▒░░▒░▒░░▒░▒▒░░░░░░░░░░░▒░░░░░░▒▒░░░░░░░░░░░░░░░░▒▒░░░░░░▒░░░░░░░░▒░░░░░░░░▒░░░░░▒░░░░░▒░░▒░░░░░░░▒░░░░▒░▒▒░▒░░░░
+▒░░░░▒░░▒░░▒░░░░▒░▒▒░▒░▒░░░░░░░▒░░░░░▒▒░▒░░▒▒░▒▒▒▒░░░░░▒▒░░░▒░░░░░░░▒░░░░▒░░░▒░░░░░░░▒░░░░░░░░░░░░░░▒░░░░░░░░░░░░░░░░▒░░
+░░░░▒▒▒▒░░░░░░░▒▒░░░░░▒░░░░░▒░░░░░░░▒▒░░░░░░░░░▒░░░▒▒░░░░░░░▒░░▒░░░▒░░░░▒▒░▒▒▒░░░░░▒░▒░░░░░░░░░░░░▒▒░▒░░░▒░░░░░░▒░░░░░░░
+░▒▒░▒░░▒░░░░░░░▒░░░▒░▒▒░░░░▒▒░░░░▒░░▒░░▒░░░░▒░░░░░▒░▒░░░░░░░░░░▒░░░░░░▒░▒░░░▒░░░░▒░░░░▒▒░░▒▒▒░░░░░░▒░▒░░░░░▒░░░░░░░░▒░░░
+░░░░▒░░░▒▒░░░░░░░░▒░░▒▒░░░░░▒░░░░░░░░▒░░░░░░░░░░▒░░░▒░░░░░░░░░▒▒░▒░░▒░▒░░░▒░░░░▒░░░▒░░░░░▒▒▒░░░▒░▒░░▒░▒░░░░░░▒░░░░░░░░▒░
+▒░░░░░░░░░░░░▒░▒░▒░░▒▒░░▒░░▒░░░▒░░░░░░░▒░▒░░░░░░░░░░░░░░░░▒▒▒▒░▒░░▒░░▒▒▒░░▒░░░░░░░▒░░░░░░░░░░▒▒░░░░░▒░▒░░░▒░░▒░▒▒▒░░▒▒░░
+▒▒░░░░░░░░░░░░░░░░░░░▒░░░░░░░░░░░▒░░░░▒░░░░▒░░░▒░░▒░▒▒░░░░░▒▒░░▒░▒▒░░░▒░░▒░░░▒░░░▒░░░░▒░▒░▒░░▒░░░░░░░░░░░░▒▒░░░░▒░░░░░░░
+░░░░▒░░░░░░▒░░░░░▒░▒░░░░░░▒░▒▒▒░░░░░░░░░░▒▒░░░░░░░▒▒░░░░░░░░░▒▒░░░░░░░░░░░░░░░░▒░▒░░▒░░░░░░░░▒░░▒▒░░▒░░░░░░░░░░░░▒░░░░░▒</span><span class="ars-wave">▓▒▓██▓▓▓▓▓▓▓▓▓▓█▓▓▒▓▒▓█▓▓▓▓▒▒█▒█▒▓▓▓▓▓▓▓▓▓▒▓▒▓▓▒▓▓▒▒▓▓▒▓▓▓▒▓▓▓▒▓▒█▒▓▓▓▒▓██▒▓█▓██▒▓▓▒▓▒▓▓▒▒█▒▓▓█▒▓▓▒▓▓█▓▒▓██▓▒▒▓▓▓▒▒▓▓▓▓▒
+█▓▓▒▒▒▓▒▒█▓▒▒▓▓▓▓▒▓█▓▓▒▒▓▓▓▓▓▓▓▒▒▓███▓▓▒▓▓▒▒▒▓▓▓██▓▒▓▒▒▒▒▓▒▒▒▓█▓▓▒█▓▓▒█▓▓█▓▒▓▒▓▒▒█▒▓▓▓▒█▒▒▓████▓▓▒▓██▓█▓▓▓▒▒██▓▓▒▒▓█▒▓▒█
+▒▓▓▒▒▒█▓▒▓▒▓▓▓▒▓▓▒▓█▓▓█▒▓▓██▒▒▒▓█▓██▓▓▒▒▒▒▓▒▓▓▓▓▓▒▓▓▓▒▒█▓▓▒▓█▓▓▓█▒▓▓▓▒▒▒▓▓█▒▒▓▓▓▒██▓▓▒█▓▓█▒▓▒▒██▒▒▒▒█▓▓▒▓▓▒▒▒▓▒▓▒▓▓▓▒▓▒▒
+▓▓▓▓▒█▓▓▓▓█▒▒▓▓▓▓▓▓▒█▓▒█▓▓▒▓▒▓▓▒▒▓▓▒▒▓▒███▓▓▒▒▒▓▒▒▓██▒▓▓▒▒▓▓▒▓▒█▓▓▓▒▓▓▒▓▓▒▓█▓▒▓▓▒▒▓▓▓▒▓▓▒▒▓▓▓▓▒▒▒▒▒▒▒██▓▒▒▓▓█▒▒▓▒▒▒▒▓▒▒█
+▒▓▓▓█▓██▒█▒▓▓▓▓█▒▓▓▒▒▓▓▓▓▒▓▓▓▒█▒▓▒▓▓▓▓█▒▓▓█▒▓▓▓███▓▓▒▓█▓▒█▓▓▓▓▒▒▓▓▓▓▒▓▓▓▓▓▒▒▓▒▒▓▒▓▓▓▓▒▒▓▓▒▓▒█▓▒█▓█▓▒▓▓█▓▒▓▒▒▓▒▓█▒▓▒▓▓▓▓▓
+▓▓▓▓█▒▓▓▓▒▓▒▓▒▒▒▓▓▓█▒█▒▓█▒▒▓█▓▓▒▓█▓▒▓▓▓▒▒▒▒▓▒▒▓▒▓█▓▓▒▒▓▓▓█▓▒▒▒▓▓███▒█▓▓▓▒█▓▓▓▓▓█▓▒▓█▒▒▓▓▓▓▓█▒▒▒█▓▒▒▓▒▒▓█▓▓▓█▓▒█▓▒▓▒▒▒▒▓▒
+▓▓▒▓▓█▓▓▓▓▓▓▓█▓▒▒█▒▓▓█▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓▒▓█▓▒▓▒▓▒▒▓▒▒▓▓▓▒▒▓█▒▓▓▓▒▒▓▒█▓▒▒▓▓▓▒▓▓▒▓▓▓█▒▒▓▓█▓█▒█▒▓▓▒▒▓▓▒▒▓▒█▓▓▓▒▒▓▓▒█▓▓▒▓▒▓▒▓▒█
+▓▒▓█▓▒▒▓▒▓▒▒▓▓▒▓▒▓██▒▒▓▒▓▓█▒▓▒▒██▓█▒▒▒▓▓▒▓▒▓▒▒▓▒▓▒▓▒██▒▒▓▓▒▒▓▓█▓▒▓▒▓▓█▓▓▒▒████▓▓▓▓▓▒▓▓▓▓▓▒▓▒▒███▓▓▒█▓▓█▓▒▓▒▒▓▒▓▒█▓▓▓▓▒▓▒
+████▓▓▒▒▓▒▓▓█▒█▓▒▓▒█▓▓▒▓█▓▒▓▒▓█▓▒▓▓█▒▓▓▓██▓▒▓▒▒▒▓▓▒▓▓▓▒█▓▓▒▒█▒██▓█▓▓▓▓▒▓▓▓▓▓▓█▓█▒▓█▒▓▒▒▓██▒▒█▓▓▓▓█▓█▓█▓▒▓▒███▒▒▒▓▓▓▒▓▓▓▒
+▓▓▓▓▓▓█▓▒▒▒█▒▒█▓▓▓█▓▓▓▓▓▓▓▓▓█▓▓▓▓▒▓▓▓██▓▓▓▒█▓▒▓▓▓▒▓▒▒▓▓▒▒▓▒▒▓█▒█▓█▒▓▓█▒▓▒▓▓▓█▓▓██▓▓▓█▒▓▒██▓▒▓▓▓██▓▓▒█▓▒█▓▒▓█▒▓▓▒▓▓▓▒███▓
+▓▓▓▓▓█▓▓▒▓▓▒▓▓▓▓▓▒▓▓▓▓▓▓▓▓██▒▓▒▓▓▓▓▒▓██▓▒▓▓▒▓▒▒█▓▒▒▒▒▓██▓▓▓▓▓█▓▒▓▓▓▓▒▒▒▓▓▓█▒▓▓▓▒▒▒▓▓▓▓▒█▒█▒▒▓▓▓▒▒▓▓▓▓▓▒█▓▒▒▓▒█▒▒█▓▒▒▓▓▓▒
+▒▓▓▓▓▒▓▓▒▒▓▓█▒▓▓▒▓██▒██▓▓▓▒▓▒▓▓▓▒▒▓▓█▓▓▒█▓▒▓▒▓▒▒▓▓▓▓▓▒▓▒▓▓▒▒█▓▒▒▓▓▓▒▓█▓▓▒▓▓▒▒▓▓▓▒▒▓▒▓▒▒▒▓▓▒▒▓▓█▒▒▓▒▒▓█▒▓▓▒▓▓█▓█▒▓▓▒▓█▓▒▓
+▓▒▒▒▒▒▓██▒▓▒▓▓▒█▒▒▓▓▒▓▒▓▒▓▒▓▒▓▓▓▒▓█▓██▓█▓▓▓█▒▓█▓▓▒▓█▒▒██▓█▓█▒▒█▒█▒█▓▒█▒▒▒█▓▒▒▓▓▒▒▒▒▒▒█▓▓▓█▓▒▒▓▓▓▓▓▓▒▒▓▒▓▓█▓▓▓█▓▓▓▒▓▓▓█▓█
+▓█▒▒█▒▒▓▓▒▓▓█▓▒▒▒█▓▓▓▒▒▒█▓▓▓▒▓▒▓▓▒█▒▒▓▒▒▓▓█▒▓▓▓▒███▒▓▓▓▓█▓▓█▒█▓▒▒█▒▓▒▓▒▓▓▓▒▓▒█▒▓▓█▓▓▓▓█▓▓▓▒▒▓▒▒▓▓▒▓▒▒█▓█▓▓█▒█▓▓▓▓▓▓▓▒▒▓▓
+▓▒▒▒▓▓██▓▓▓▒▓▓█▓▒▓▓▓▒▒▒▒▒▒▓█▓▓▒▓▓▓▓█▓▒▒▓▓█▓▓▓▒▓█▓▒▓▓█▒▒▓▓█▓▓▒▓▓▓▓▓▓▓█▒▒▓▓▒▓▓▒▒█▓▓▒▒▓▒▓▒▓▓▓█▒▒▓▓▒▒▒▓▒▓▓▓▓▓▓▓▓▒▓▓▒▓▒▓▓▓▓▓▒
+▓▒▒▒▒▓▓█▓█▓▓▓█▓▓█▓▓▓▓▓█▓▓█▓▒▒▒▓▒▓▓▓▓▓█▓▓▒█▒▒▓▒▒▒▓▓▒▒█▓▓█▓▒▒▒▒███▒▓▓▒▒█▓▒▓█▓▒▓▓█▓█▒▓▓▒▒▓▒▒▓▒█▓▒██▓▓▒▒▓▓▒▒▒▒▓▓▓█▓▒▒▓▓▒▓▒██
+▒█▓▒▒▓▒▓▒▓▒▓▓▓▓█▓▒▓▓█▓▒▓▒▓█▒▒▓▓▓▓▓▓█▒▒█▒▓▒▓▒█▓▓▓▓▒█▓▓▒▒█▓▒█▓▓▒▓▓▓▒▒▒▒▒▓▓█▓▓▓▒██▒▓█▒▒▒▒██▒▓█▒▒▒▓▒█▓▓▓▓███▓▒██▓▓▒▓██▓▓▓▓▒▓
+▓▒▓▓▓█▒▒██▓▓▓█▒█▒█▓▒▓▓▒▓▒██▓▓▓▒▒█▓▒█▓▒█▒▓▓▓▓▒█▓▒▒▓▒▓▓█▓▒▒▓▒██▓▓█▒█▓▒▓▓▓▓█▓██▒██▒█▓▓▓██▓▓▓▓▓▓█▓█▒▒▓▓███▓▓▒▓▓▓▓█▓▓▓▓▓██▒██
+▓▓▓▒▓▒██▒▓▓▓██▒██▓█▓▒▒█▓▓▒▓█▓▒█▓█▓▓▓▒▒▓▒▒█▒▓▒▓▒▒▓███▓█▓▓▓▓▓█▓▒▓█▓█▓▒▓█▒█▒█▒▓▓▒▓▓▓▓▒▒▒▓▒▒█▓▓▒▓▓▓▓▓█▓▓▓▓▓█▓▓▓▒██▒▓▓▒▒▒▓▓▒▒
+▓▓▓▒▓▓█▓▓█▓█▒▒▓▒▓▓▓▓▒▓▓▓▒▓▓█▓▓▒█▓█▓▓▓▒▓▒█▓▓▒█▓▓▒▒▓▒▓█▒▒▒▒▓▓▓▒█▓▓▒▓▒▓▓▓█▓▒▓▒▓▓▓▓▓▓▒██▓█▒▒█▒█▓▓▓▒▒▒▓▓▒█▓▓▒▒▓▓▓▓▓█▓█▓█▒▓▓▓▒
+▓▓▓▓█▓▒▓▓▒▒▒▒▓▓▓▓▓█▒▒▓▓▓▓▓▓▒▓▒▓▒▓▒▒▒█▓▓▓███▒▓▓▒▓▓▓▓█▓▓▒█▓▓▓▒▒▓▒█▓▓▒▓▒▒▒▒▒█▓▒▓▒▓▒▓▒▓▓▒▒▓▓██▒▓▒▓▒▓▒██▓█▒▓▓▒▒▒█▒▒▒▓▓▒▓▒█▓▒▓
+█▓▓▒▒▓▓██▓▓▓▓▓▓▓█▓▓▒▓▒▓█▓▒▒▓█▓▒▓▓▓█▒▒▓▓▓█▒▒▒▒▓▓▓▓▒▓▓█▒▒▓▓▒█▓▒██▒▓█▓▓▓█▓▒▓▓▒▓▒▓▓▒▓█▒▒▒█▒▒▓▓▒▓█▓▓▒▓▓▓█▓▓▓██████▒▓▓▒▒▒▓█▒█▓
+█▓█▓▒▓█▓▓▓▓█▓▓▒▓█▓▓▒▒▒▒▓▓█▓▒▓▓▒▓▒▓▓▒▓▒▓█▓▓▒▓▒▓▓▒▓▓▓▓▒▒▒▒▓▓▒▓▓▒▓▓▓▒██▓▓▓▓█▒▒▓▒▓▓▓▒▓▒█▒▒▓█▓▒▒▒▒▓▓▓█▒▓██▓▒▒▓▒▓▒█▓▓█▓▒▓▒█▒██
+▓▓▒▓█▓▓▒█▒█▓▓▓██▓▓▒▓▒▒▓▓▒█▓█▒▓▓▓▓▓▒▓▒▓█▓▓▓▒▒▓▒▓▓▓▓▓▓▓▓▒▒▒▒▒██▒▓▒▒▓▓▒█▓▓▒█▒▒██▒▒█▒█▒▓▒▓▓▒▒█▓▒▒█▒▒▓▓▒▓▒█▒▓▓▓▓▒▓▓▒▓▓█▓▓██▓▓
+█▒▓▓▒▒▓▓▓█▒▒▓▓▒▓▓█▓▒▒▓▒▓▒▓▓▓▒▓▒▒▓▓▒▒▒▓█▓▒█▒▓█▒██▓▓▒▓▒█▓▓▓▒▒█▓▒▒▒▒▓▓▓▓▒▓█▓▒▓▓▓▓▓▓█▓▒▓▓▓▓▓▒█▓▒▒▓▓▒█▓▓█▓▓█▓▓▒▒▓█▒▓▓▓▒▒▓▓▓▒▒
+▒▓▓▒▒▒▒▒▒▓▓▓▓▒█▓▒▒▒▓▒▒▒▓██▓▒▓█▓▓▓▓▒▒▒▒█▓▓▒▓▓▓▓▓▒▓▒▓▓▒▒▒▓▒▓▓▓▒▒▒▓▒▓▓▒▒▓▓▓▓█▓▓█▓▒▒▓▒▒▓▒███▓█▓▓▒▓▓▓█▓▓▒▓▓▓██▒█▓▒██▒▒▒▒█▓▓▒▒
+█▒▒▒█▓█▓█▓▒▓▒▓▒█▓▓▓█▒▓▓▒▓█▒▓▓▒█▓█▓▓▓▓▒▓▒▒▒█▓▒█▓▓█▒█▒▓▓▒▓▓▓██▒▓▓█▒▓▓▓▓▒▓▒▓▓▓▒▒▒▒▒▓▓█▒▓▓▓█▒█▒▒▒▒▒▓█▓▓▓▓▒▓▒▒▒▒▓▒▒▒█▓██▓▓▒▒▒
+▓▓▒▒█▓▓▓▒▓▓▓▓█▒▒█▒█▒▓▓▒██▓▓▒▓█▓▒▓▓█▓▓▓▓▓▒▓▓▓▓▒▒▒▒▓█▓▒▓▒▓▓▒▒▒▒▒▒▓▓▓▓█▒▓▓▒▒▒▓█▓█▓▓█▒▓▓▒█▓▓▓▒▒▓████▓▒▓█▒▓▓▒█▒██▒▓▓▒▓▒▓▒▓▓▒▓
+▓▒▒▒▓▓▓▓▒▓▒█▓▓▒▓▓█▓█▒▓▓▓▒▓▓▒▓▓█▓▒▒▓▓▓▓▓▒▓▓▓█▓█▒▒▓▓▓▓▒▒▓▓▓▓▓█▓█▒▓▓▒▓▒▓█▒▓█▒▓▒▓▒▓▒▓▓▓▓▓▒▒▓▓▒▓▓█▓▓▒▒▓█▓▓██▓▓▒▓▓█▒▓▒▓▓▒▒▓▓▓▓
+▒▓█▒▓▒█▒█▒▓▒▒▒█▒▓▓▓▓█▓▓▓█▓▒████▓▒▒▒▓▓▓▒▓▒▓▓█▓▓▓▓▓▒▓▓▒▒█▓▓▒▓▒██▓▓▓▓▓█▓█▓██▓▓█▓▒▒▓▓▓▓▒▒▓█▓▓▓▓▓▒▒▓▒▓▓▓▒▒▒▓▒▓▒▒▒▓▓▒▓▓▓▓▒▓▒▓▓</span><span class="ars-wave">▒▓▓▓▓▓▓▓█▒█▓█▒▓▒▓▒▓▒▒▒▓▒█▒▓█▓▓▓▒▓▓▓▓▓▓█▓▓▒▒▓▒▒█▓▓▓██▒▓██▓▓▓▓▒█▓▒▓▒▓▓▒▒▓█████▓█▓█▓▓▓▓▓▒▓▒▒▒▓█▒▓▓▒▒▓▓▒▒▒█▓▓▓▓▓▓▒▒▓▓█▓▓▓▒▓▓
+▒▒█▓▓▓▓▒▓█▓█▒▒▒▓▓▓▒▓▓▒█▒▓▓▒█▒▓▒▓▓█▓▓▓█▓▒▓▓█▒▓▓▓▓▒▓▒▓▓▒██▒▒▓▓▓▓█▓▓▓▓█▓▒▒▓▓▓▒▓▒▒▒▓▓▒▓▒▓▓▓▓▓▓▓▓▓█▓▓▓▒▓▒▒▓▒█▒▓███▒▓█▓█▓▓▒█▒▓
+▒▓▓▒▓▒▓▓▓██▓█▓▒▒▒▒▒▒▒▓▓▒▓▒▒▓▒▓▒█▓▓▒▒█▓▓▒▒██▓▓▓█▓▓▓▒▒█▒▓▓▒▒█▓▓▓▓▓█▓▓▓▓▓▒▒▓█▓▒▓▓▓▓█▓▓▓▓▒▒██▒▓▓▒▒▓▒▓▒▓▓▒▓▓▒▒█▓█▓▓█▓██▒▓██▓▓
+█▓▓▓▓▒▒▓▒▒▓▒▓█▓▒▒██▓▓▓▓▓▓▓▓▓▒█▓▒▒█▓▓▓▒▓▓▒▓▒▒▒█▒█▒▒█▓▒▒▒▓▒▓▒▒▒█▒█▓▓▒▓▓▓█▒▓▓████▓▒▓▓███▓█▓█▓▓█▓▓██▒▓▓▒▓▓█▓▓▓▓▓▒▒▒█▒▒█▓▓▒▓▓
+▓▒▒▒▓▒▓▒▓▓▓▓▓▓█▓▓▒▓▓▓█▓▓█▒▓▓█▓▓▓▓▓▓▒█▓▓▒▒▓▒▓█▓▓▒▓█▓▒▓▓▒▒▒▓█▓▓▓▓█▒▓█▒▒▓▒▒▒▒▓█▓▓▓▓▓▒▓▓▒▓▓▓█▓▒▒█▒▓▒▓█▓▓▒▓▓▓▓▒▓▓▒▓▓▓▓▓▓▓▓█▓▒
+▒▓▓█▓█▓▓▒▓▓▒▓▓▓▓▒▓█▒█▓▓█▒▓▒▓▓▓██▓▒▓▓█▓▓█▓▒▒▓▓▓▒▓█▓▓██▒██▓█▓▓██▓▓█▒▒▓▓▓▓▓█▓▓▒▒▒▒▓▓▓▒██▓██▒▒▒▓▓▓▓▒▓▓▓▓▓▓▒▓▓█▒██▒▓▒▒▒▓▓▓▓▓▓
+██▓▒█▓▓▓▓▒▓██▒▓█▒▓▓▓▓▓▓▓▒▒█▒▓▒▓▒▒▓▓▓▓▓▒▒▒▓▓▓▓▓▒▓▒▒█▒▒▓▓▒▒▓▓▓▒█▒██▒▓▓▓▒█▓▓▓█▓▒▓█▓▒█▒▓█▓▓█▓▓▒█▓▓█▓▓▓███▒█▓▓▒▓▓██▓██▓▓▓▒▓▓▓
+▓▓▓▓▓▒▓▒▓▒▓▓▓▒█▓▒▓▓██▓▒▒▒▒▓▒▓▒▓▓▓▓▓▓▓▓▓█▓▓▓▓▓▒▓▒▓▒█▓▓▒▓▒█▓▓▓▒▓▓▓▓▓▓▒▓▓▓▒█▒▓▒▓▓▓█▓▓▓▒▓▒█▒▓▓▓▓█▓▓▒▓▓▒▓▒▓▓▓▓▓▓▒▓▒▓█▓▓▓▓▓▓█▒
+▒▓▓▒▓▓▓▓█▓▒▒▓▓█▒▒▒▓▓▓▓▓▓▓▒▒█▓▒▓▓█▓█▓█▓█▓▓▒▒▒█▓█▓▒▓▓▒▓▓▓███▓▒▒▓▒▓▓▓█▓▒▓█▓▓▓▓▓▓▒▓▒▓▓▓▓▓▓▓█▓▒▒▒▓▒▓▓██▓▓▒▓█▓▒▒▒▓▓▓█▓▓▓▓▓▓▒▒▓
+█▓▓▓▒▒▒▓▓▒▒▒▓▒▒▓▒▓█▓▓▓▓▓▒▒█▓█▓█▒▒▓▒▒▒▒▓▒█▓▒▓█▓▒▓▒▒▓▒▒▓▓▓▒█▓▓█▓▒▒▒▓▒▒▒▓▓▓▓▒▓▓▒▒▓▓▓▓▓▒▒▒▓▓▒▓▒▓▓▓█▓█▒▓▓█▓▒▒▓▓▓▓██▓▓▓▓▓▓▒▓▓▒
+▒█▓█▒▓▓▓▓▓▓▓▓▓▓▓▒▒▓▒▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒█▒▓▒▓▓▓▒█▒▓▓▓▒▓▒▓▒▒▒█▒▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▒▒▓▒▓█▓▓██▒▓▓▒▒▒▓▓▒█▓▓▒▒▓▓▒▓▓▒▒▓▒▓▓▓▒▓▓▒▓▒▓█▓
+▓█▓▓█▒▒▓▒▒▓▒▒▒▓▒▒▒▒▓▒▒▒▓▓█▓▒▓▓▓▓▓▓▓▓██▓▓█▓▓▓▓▓▒▒▓▓▒▒▓█▒▓▓▓▒▓▓█▓▒▒▓█▓▒█▓▒█▒▓▒▓▓▓▒▓▒▓▓▓▒▒▓▓█▒▒█▓▓▓▒█▓▓▒▒▒▓█▓▓▓▒▒▓▓███▓▓▒██
+▒▓▓▒▓▓▓▒▓▓▒▒▒▓██▓▓▓█▓▓▒█▓█▒█▓▓▓▓▓▒█▓▓▓▒▓█▓▓▓█▓▓▒▒▓█▓▒▓▒▓▒▓▓▒▒▒█▓▒▓▒▓█▒▒▒▓▓▓▒▒▓▓▓▓▓▒▓▓▒▓▓█▒▒▒▒▓▒▓▓▓▒█▓█▓▒▓▒▓██▓▓▒▒▒█▓▒▓▓▓
+▒▒█▓█▓▒▓█▒▓▒█▓█▒▓▒▓▒▓▓▓▓▒█▒▒▓▓█▓▓▒▒█▒▓▒▓▒▒█▓█▒▓▓▓▒▓▓▓█▓▒▒▓▓▓█▒█▒▒█▒▓▓▒▓▒▓▒▓▓█▓▓▒█▒▒▒██▒▓▓▓▒▓██▓█▒▒▒▒██▓▓▒▒▓▓▓▒▓▓▓▒█▓███▓
+▓▓▓█▓▒▒▓▓█▒▓█▒▓▒█▓▒▓▓▓▓▓▓█▓█▓▓▓▓█▒▒▓█▒▓▓▓█▓▓█▓▓█▓▒██▓▓▓▓▒▓▒▓▓▒▓▓██▓▒▒▒▒▓█▒▓▓▓▓▓▓▒▒▓▒▒█▓▓▓▓▓▒▒▒▓█▓▒▓█▒▒▓▓▓▓▒▓▒▓▓▒▒▒▓▒▓▓██
+▓▓▓▒▒█▒▓▓█▓▓▒█▓█▓▒▒▒▓▓▓█▓▓▓▓█▒▓▒▒▒▓▓▓▓▒▓█▓▒▓▒▓▒▒▓▒▓▓▓▓▓▓▒▒█▓▒█▒▓▓▒█▓█▒█▓▒▓▓▓▒█▓▓▒█▒▓█▒▒███▓▓▓▓▒▓▓▒▓▓▓█▓▒▓▓▓▒▒█▓▒▓▒▓▒▒▓▒▓
+▓▓▓▒▒██▓▓▒▓▓▓▓▓▒▒▓▓▓▒▓▒▒▓██▓▓▒▓▓▓█▓▓▓▒▒▒▒▓▓▒▓▒▓▓▓▓▒▓█▒█▒█▓▒▓▒▒▒▓▒▒▓▓▓▓▓▒▓▓▒█▓▒▓▒▒▓▓▓▓▓▓▓███▓▒▓▓▓▓▓▒█▓▒▒█▒▓▓▒▓▓▓▓▓▓▒▒▒▒▓▓
+▓█▒▓█▒█▒▓▒█▓▓▓▒▓▓▓▓█▓▒▒█▓▓█▒██▒▓▓▓▒▓▒▒▓▒▓▓▓▓▓▒▒▓▒▒▒▒█▓▓▒▓▓▒▓▓▒▒█▓▒▓▓▒█▓▒▓▓▓▓▒▒▓▒▓▓▒█▓▒▓▓█▓▒▓▓▓▓▓▓▒▓▓▓▒▓▓▓▓▓▓▒▓█▓▓▒▓▓▒█▓█
+▓▒▒▓▓▓▓▒█▒█▓█▒▓▒▓▓▓▓▒▓▓▓▒▓▓▓▓▓▓▓▒▓▒▒█▓▒█▒█▓█▓█▓▓▓▒█▓▒█▓▓▓▓▒▒▒█▓█▒█▒▒▒▓▓▓▓▒▓█▓▓▒▒▒▓▓█▒▓██▒▓▓██▓▒█▓▒▒▒▓▒█▓▓█▓▓▒▒▒▒▓▒█▓▒▒▓▒
+█▓▓▒▒▓▒▒▓▓█▓▓█▓▓▒▓▓▓▒▒▒▓▒▓▒▓▒▓▓▓▒▓█▒██▒▓▓█▒▒█▒▒█▒█▓▓▓▓█▒▒▓█▓▒▓▓▓▓▓█▓▒█▒▒▒▒▒▓▓█▓█▓▓██▓▓▒▓▒▓▓▓▓▓▒▓▒▒▓▒▓▓▒▓█▓▓▒█▒▒▓█▓▒▒█▒▓▒
+▓▓█▒▒▓▒▓▒▒██▓▓█▓▓▒▒▒▒▒███▓▒▒▓█▒▓▒▓█▒▓▒▓▓▓▒▓█▓▓▒█▓█▓▓▓▓▓▒▒▒█▒██▒▓▓▓█▒▓▒▓▓██▓▓▓▓▓▒▓▓▓▓▒█▓▒▓▓▓▓▒▒█▒▓▒▓▓▓▒▓▒█▒▓▓█▓▒▓▓▒▓▓▓▓▓▒
+▓▒▒▒▓▓▓▓█▓▓▓▒▓██▓▓▓▓▒▒▓▓▒▒▒▓▒▓▓▓▓▒▓▒▓█▓▓▓█▓▓▓▓▒█▓▓█▒▓▓▒▒▓▓▓▓▓▓▒▓▒▓█▒▓▒▒▓▓█▓▓▓▒█▓▓▓▓▒▓▓▓▓▓█▓▓██▓▓▒██▒▒▓▒▓▒▒█▒▒█▒▓▓▓█▒▓▓▓▒
+▒▓██▓▒▒█▒█▓▓█▒▓▓▓▓▒▒▓█▒▓▓▒█▓▓▓▓▒▒▓▒▓▒▒▓▓▓▒▓█▓▓▓█▒▒▓█▓▒▒▓▓▒▓▓▓▓▒▓▓▒█▒▓▓▒▓▓▓▓▓▓▒▒▒▓█▒▓▓▒▓▒▒▒█▓▒▒▓▓█▓▓▓███▓▒██▓█▓▓▒▓█▒▓▓▓▓▓
+▓█▓▒▓█▒▒▓▓▒█▓▒▒▓▓█▒▓▒▒▓▓▓▓▓▒▓▒▒▒▒▓▒▓▒█▓▓█▓▓▓▒█▓▒▓▓▒▓▓▒▓▒▓▓▓█▓▓█▒▓▓▒▓▓▓▓▒█▓█▓▒▓▒▒███▓▒▓▒▓▓▓▓█▓▒▓▒██▓▒▒▒▓█▒█▓▓▒▒▒▓█▒▓▒▓▓▓▓
+▓▓▓▓▓▓▓█▓█▒▓▒█▓▒▓▓▓█▓▒▒▓▓▒█▓▒▒▒█▓▓██▓█▓▓▒▓▒▓▒▒█▒▓█▓▓▓█▓▒▓▓▓█▒▒▓▓█▓▒▓███▒▒▓▒▒▓▒▓▒▓▒▓▓▒▓▒▓█▒█▓▒█▒▒▓▒▒▓▓▓▒▓▒▓▒▒▓▒▒▓▒▒██▓▒▓▓
+▒▓▓▓▓▒▓▓▒▓▓▒▓▓▓▓▓██▓▓▓█▒▒▒█▓▓▒▓█▒▒▓██▓▒█▓█▒▓▒▓▒▒▒▓▒▒▓▓▓▓▒▒▓██▓▒▓▒▓▓▓▓▒▒▓▓▓▓▓▓▓▒██▓▒▓███▒▓▓▒▓▒▓▓█▓▓▓█▓▒▒▓▓██▓▓█▒▓▒▓▓▓█▓▓█
+▓█▒▓▒▓▓▒█▓▓▒▓▓▓▓▓▓▒▓▓▒▓▓▓▒▒▒▒▒▓▒▓▓▓▓█▓▓▒▓▓▓▓▓▒▓▒▓▓▒▓▓██▓▒▓▓██▒█▓▒▒▓▓▓▒▒▒▓▓▓▓▓▓█▒██▓▓█▓▓█▓▓▓▒▒█▒▓█▓▓▒▓▓▓▓▓█▒▒▒▓▓▓▒▓▓█▓▒▓▓
+▓▓▓▒▒▓▓▓▒▓▓▒▓▒▓▒▓▓▓▒▒█▓▓▓▓▒▒▒▓▓▓▒▓▓▓▓▓▓▒▒▒▓█▒▒█▓▒▓▓▒▒▓▓▒██▓▒▓▓▓▓▒▓▒█▒▒█▓█▓▓▓█▒▓▓█▒█▒▒▓█▒█▒▓▓█▓▓▓█▓▓▓▓▒▓▓▓▓▒█▓█▒▓▓▒▒▓██▓▒
+▒▓▒▒▓█▒█▓█▒▓▓▒▓▒█▓█▓██▒█▓▓▓█▒█▒▓▓▒▓▓█▒▓▓▓▓▒▒▒▓▓▓▓▓▓▓█▓▒█▓█▓▒▓▒▓▒▓▓▓▓█▓▓▓▓▓█▓▒▒▓▒▒▓▓▒▒█▒▓▓▓▓█▒▓▒█▓▓▒▓▓▒▓▓▓▓▓█▓▒▒▓▓▓▓▓▓▓▒█
+▓▓▓▒▓▓▓▒▒▓█▒▒▓▒▓▓▓▒▓▓▒▓▓▓▒▓▒▒▓▓▒▓▓▓▓▓▓▒▓▒█▓▓▓▓▒▓▒▓▓▓▓▓▒▓▒▒▒▓▒▓▓▓▒▓▓█▓▒▓▓▓▒▓▓▒███▓▒█▒▓▓▓▒▒▓▒▓▓█▓▓▓▓█▓▓▒▓▓▓▓██▓█▒▒█▓█▒██▓▒</span></span></span><div class="st-top"><span class="ars ars-dither st-logo-sk" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="width: 32px; height: 32px; --ars-d: 0.00s;"><span class="ars-base">░░▒░░░▒▒▒▒▒░▒░▒▒░░░▒░▒▒░░▒░░░░░░░░░░░▒░▒░░░░░▒▒░▒▒░░▒▒░░░░░▒░▒░░░░▒░░░░░░░░▒▒░▒░░▒▒░░░░░░░░▒░░░░▒▒░░░▒▒░░░░▒░▒░░▒▒░░▒▒░░
+░░░░░░░░░░▒▒░░░▒░░░░░▒░▒░▒░░▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒░░░▒░░░░▒░░░░░░▒░░▒░░░░░░░░░░▒░░░░▒░░░░░░▒░░░░░░░▒░░░░░░░░░░
+░░░░░▒░░░░░░░░░░▒▒▒░░░░░▒░░░░░░░▒░░░░▒▒░░░░▒░▒░░░▒░░░░░▒░▒░░░░░░░░░░░░░░░░░░░░░░░▒░░░░░▒░░░░░▒░░░░░░░░░░▒░░▒░░░░░░░░░░░░</span><span class="ars-wave">▓█▓▒██▓▓▒▓▓▓▓▓▒▓▓▓▒▓▓▓▓▓▓▒██▒▓▒▓▓▓▒█▓▒▒▓▓▓▓▓▓█▒▒▓█▓▒▒▒▓▒▒▒▒█▒▒▒▓▓▓█▒▒▒▒▒▓█▒▒▒▓▒▓▓█▓▓▒█▓▒██▓▓▓▓▓▓█▓█▓▓▒▓▒▒▒▓▓▒▒▓▓▓█▒▒▓▓▒▓
+█▒▒▒▓▓▒▓▓▓▒▒█▓▓▒▒▓▓▒▓▓▓▒▒▒▒▓▒▓▒▒█▒▓▓▓█▓▓▒▒▒▓▓▒▓▒▓▓▓▓█▒▓▓▓▒▒▒██▓▓▓▒█▒▒█▓█▒▒▓▒▓▓█▓▒█▓▓▓█▒▓▓▒▓▓█▓█▓▓▒▓▓▒▓▒▒█▒▒▒█▒▓▒▓█▓▒▓▓▓▓
+▒▓▓▓▓▓█▓▓▓▒▓█▒▒▓▓███▓▓▓▓█▒▒▒▒▓▓▓▓▓▒█▒█▒▓▒▓▓█▓▓▓▓█▒▒█▒▒▓▒▓▒▓▓▓▒▒▓▒█▓█▓▒▒█▓█▓█▓▓█▓▓█▓▒▒▒█▒▓▒█▒▒▒█▒▒█▒▒█▓█▒▓▓▓▓▓▒▒▓▒▒▓▓█▒█▒</span><span class="ars-wave">█▓▓▓▓██▓▒▓▓▓▒▓▓█▓▓▓▓▒▓█▒▓█▒▓█▒▒▒▓▓▓▒▓██▒█▒▓▓▓▓▓█▒▒▓▓▒▓█▓▓▓▓█▒▓▒▓▓█▓▓▒█▒█▓▒▓▓▒▓▓▓▓▓▒▓▓▓▒▓▓▒▓▒▒▒▓▓▒████▓█▓▒▓█▓▓█▓▒▒█▓▓█▓▓▓
+▒▒▓▓▓▒▒▒▓▒▓█▓▓▓▓▓▓▒██▓▒▓▒▓▓▒▓▓█▓█▓██▒▒▓▒▓▒▓▒▓▓▓▒▓▓▓▓▒▒▒▓▓█▒▓▓▓█▓▓▓▓▓▓█▒▒▒▓▒▓▒██▓█▓▓▓▓▓▒▓▒▓▓▓▓▓▓▒▓▒▓▓█▒█▓▒▒▓▓▒▒▓▓█▓▒▒▓█▓▒
+▓▓▒▓▓▒▓██▒▒▒▒▓▒█▓▒█▓▒▒▓█▓▓▓█▓▓▒▒▓▓█▓▓▓▓▒█▓▒▒▒▒█▓▒█▓▓▓▓▓▒█▓▓▒▓▓▒█▓▒▒▓▓▓▓▓▒▒▒██▓▓█▓▓█▒█▓▓▒█▓▒█▓▓▓▓▓▒▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▒█▓▒</span></span></span><div class="st-skel-co"><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 46%; --ars-d: 0.00s;"><span class="ars-base">░░░░░▒▒░░░░░▒░░░░░░░▒░░▒░▒░░░▒░░▒░▒░▒░▒░░░░▒░▒░░░░░░░▒░░░░░▒▒░░░▒░░░░░░▒░▒▒░░░░░░░░░░░▒▒▒░░▒▒▒░░░▒▒░▒▒░░░░░░▒▒░░░░░░░░░░░░░░░▒░░░░▒░░░░░░▒░▒░░░▒▒░▒░░░░░▒░░░░░░▒</span><span class="ars-wave">▓▓▒█▓▓▒▒▒▓▒▒▒▒▓▓█▓▓█▒▒█▒▒██▓▒▓█▓▓▓▓▒█▒▓▒▓▓▓▒▒▒▓▒▓▒▒▓▓▓▓█▓▓▒▓▓▓▓▓▓▓▒▓██▒▒▓█▓▓▒▓█▓▓▓▒▒▓▓▓█▒█▓▓▓▒▓██▒▓▒▒██▓▒▒▓▒▒▓▓▒▓▒▒▒▒█▓▒▓▓▒▓▒▒▓█▒█▓▓▒▒▒▒▓▓██▓▒▒▓▒▒▒██▓▒▒▓█▓▒▓█▓▒</span><span class="ars-wave">▒████▒▓▓▓█▓▒▒▓█▓▓▒▒▓▒▒▓▒▓▒█▓▓█▒▓▓▒▓▒▒▓█▒▓▓▓▓▒▓▓▒▒▓▒▓▒█▓▒▒▒▓▒▓▓▓▒▓▒▒▓▓▓█▓▒▓▒▒▓▒▒█▓▒▓▒▒█▓▓▓▓▒▓▒▒▓▓▒▒█▓▓▓▓▒▒▒▒▓▓▓▓▓▒▓▓▓▒▒▓▓█▒▓▓▒█▓▒▒▒▒▓▓▓▓▓▓▓█▓▒▒▓▓▒█▒█▒▒▒▓▓▓▓█▒▒██</span></span><span class="ars-line" style="width: 78%; --ars-d: 0.09s;"><span class="ars-base">░░░░░░░░▒▒░░░░▒▒░▒░░░░░░░▒░░░░░▒░░░░▒▒▒░░▒░░▒░▒░░▒░░░░░░░░░▒░▒░▒░░▒░░░░░░░░░░░░░▒░▒░░░░▒░░░░░░░▒░░░░░░░░░░░░░▒░▒░░▒▒░▒░▒░░░░░░░░░░░░░░░▒░░░░▒▒░░░░░░▒░▒░░░▒░░░░░</span><span class="ars-wave">▓▓▒▒▒█▓▒▒▓█▓▓▓▒▓▓▓█▓▓▓▓▓▒▓▒▒▒██▒▒▓▓▓▓▒▒█▓▒▓▓▓▒▓▓▒▓▓▓▒▓▓▓▓▒▓▒▓▓█▓▓▓▒▓▓█▓▒▓█▓▓▒▒▓▓▓▒▓▓▓▒▓▒█▓▒▒▓▓▓██▒██▓▓▒▓▓█▓▓▓▒▓█▓▓██▒▓▓▒▓▓█▒██▒▒▒▒▓▒▓▓▒▒▒█▓▒█▓▓█▒▒▓▒▒▒▒▓▓▓▓▓▒▓█▓</span><span class="ars-wave">▒▒█▒▓▒█▓▓█▒▓▓█▓▓▒█▓▓█▒▓▒▓█▓▓▒█▒█▒▓▒▒▓▒▓▒██▓▓█▓▒▓▒▓▒█▒▓█▒▓▓▓▒▓▓▒▓█▒▒██▒█▓▒▓█▓▒▓█▓▓▓██▓▒▒▓▓█▓▓██▓▒▒▒▓█▓█▒▓█▓▒█▒█▒▓▓█▓▒█▒▓▓█▓▓▒▓▓▓▒▓▒▓▒▓▓▓▓▓█▓▓▒▓▒▒█▓██▒▓▓▓▒▒▒▒▓▓▓▓</span></span></span></div></div><div class="st-skel-quote"><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 100%; --ars-d: 0.00s;"><span class="ars-base">▒▒░░░░░░░░▒░▒░░░░░░░░░░░░▒░░░░░▒▒░░░░░░░░░░░░░░░░▒▒░░░▒░▒░░░░▒░▒░░░░░░░░░░░░▒░▒▒░░░░▒░░░░░░░▒░▒░░░░▒░░░░░░░▒░░░░░░░░▒░░░▒▒░░░░▒░░░░░▒░▒░░░░░░░░░░░░░░░░░░░░░░░░░</span><span class="ars-wave">▒▒▓▓▓▓▓▒▓█▓█▓▓█▓▒▓▓▒█▓▓▒██▓▓█▓▓▒▓▓█▓▓▓▓▒▒▓▒██▒▓██▒▓█▒▒▓▒█▓▓▒██▓▓▒▒▒█▓▒▓▒▓▓▓▒▓█▓▒▒▓▒▓▒▓▒▓█▒▒█▓█▒█▓▒▓▓▓▒▒▓▓▓█▓▓▒▓▒▓▓▓▓▒▒▓▓▒▓▒▒▓▒▒▒▓▓▓▒█▓▓▓█▓▓▒▓▓▒██▓▓▒▒█▓▓▒▒▓▓█▓▓▓</span><span class="ars-wave">▒▒▒▒▒▓▓▓▒█▒▓▓▒▓▓▓▒▒▓▓▓▒▒▓█▓▓▒▓▓▓▓▓▓▓▒▓▒▒▓▓▒▓▓▓▒▓▒▓█▓████▒█▒▒▒▓▓▒▒█▓▒█▓▓▓▒▓█▒▓█▒▓██▒█▒▓▓▓█▓▓▓▓▓▒▓▒▓▓▓▒▓▒▓▓▓▓▓▒▒▓▓▓▒▒▓▒▓▒▓▓█▒▓▒▓▓▓▓▒▓▒▓▒▓▓▓▒▒▓▓▓▓▒▓▓▓▒▓█▓▓▓▓▓▒▒▓▓▓</span></span><span class="ars-line" style="width: 70%; --ars-d: 0.09s;"><span class="ars-base">▒░░░░░░░▒░▒░░░░░░▒░░▒░░░▒▒░░░░░░░▒░░░░░░░░░▒░░░░░░░░▒░░░▒░░░░░░▒░▒░░░░░░░░░▒▒▒░░░░░░░░▒░░▒░▒░░░░▒░▒▒░░░░▒░░░░▒░░░░▒░░░░░░░░░░░▒░░░░░▒░░░░░░░▒▒░▒░░░░▒▒░▒▒░▒▒░░░░</span><span class="ars-wave">▓▒▒▒▓▒▓▒▓▓▓▓▓▓█▓▓▒▓▓▓█▓▓█▒▓▓█▓▓▓▓▓▓▒█▓▓▒▒▓▒▓█▓▓▒▓█▓▒▓▓▒▒▒▓█▓▓▓▓█▒▓█▒▒▓▒▒▒▒▓█▓▓▓▓▓▒▓▓▒▓▓▓█▓▒▒█▒▓▒▓█▓▓▒▓▓▓▓▒▓▓▒▓▓▓▓▓▓▓▓█▓▒▒▓▓▒▒▒▒▒▓▓█▓▓█▒█▓▒▓██▒▓▒▓█▒▒▒▓▒▓█▓▓▓▓▓▓▒</span><span class="ars-wave">▓▓▓▒▓█▓██▓▒▒▓▒▓▒▒▒▓▒█▓▒▒▒▒▒▓██▓██▓▓▓▓▓▒█▒▒▓▓▓█▓█▓▒▒▒▒▓█▓█▓▒▒▒▒█▓▓▒▓▓▓▓█▓▓▓▓▓▓▒▒▒▓▓▓█▓▒▒▓▓█▒█▓█▓▒█▓█▓▓▒█▒▓▒▓▒▓█▒▓▓▓▒▒█▒▒▓▓▓██▓▓▓▒▓▒▓▓█▒█▓▓█▓▓▓█▒█▓▓▒█▓▓▒█▒▓▓█▓▒█▒</span></span></span></div><div class="st-foot"><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-block" style="width: 28px; height: 28px; --ars-radius: 50%; --ars-d: 0.00s;"><span class="ars-base">░░░▒░▒░▒░░░▒░░░░░░░░░░░░▒▒░░▒▒▒▒░░░░░░░▒░▒░▒░░░░░░▒░░▒░░░░░░░░░░░░░▒░░░░░░░░░▒░░░░░░░░░▒░░░░▒░▒░░░░░░░▒░▒░░░░░░▒░▒░░░░░░
+░░░░░▒░░░░░░░░░░░░░░░░░░░▒░░▒░░▒░░░░░░░░░░░▒░░▒░░░░░▒▒░░░▒░░░░░▒░░░░▒░░░░░▒░▒▒░░░▒░░░░▒░░░░░░▒░░░░░░░░░▒░░░░░▒░░░▒░░▒░░░
+░░░▒▒▒░▒░░░░▒░▒▒░░░░▒▒░░░░░░░░░▒░░░░▒▒▒░░░░░░▒▒░▒░░▒░░░░░░░░░░░▒▒░░░░░░░▒░░▒░░░▒░░░▒░░░▒░▒░░░░░░░▒░▒░▒░░▒░░░░░░░░░▒▒░▒░░</span><span class="ars-wave">▓▓▓█▓▒▓▓▓▓█▓▒▓▓█▒▒▒▓▒▓▒█▒██▓▒▓▓▓▒▓▓▒▓▓█▓▓▓▓▓▓▓▓▓▒▒▓█▓▒█▒█▓▒▓▒█▓▓▓▒▓▓▓▓█▒▓▓▒▒▒▓▓▓▓▓▓█▓▓▓██▓▓▓▓▒█▓▓▒▓▒▓▓▓▒▓█▒▓▓█▓▓▒█▒██▒▓▓
+▒▓▓▒▓▓▓▓▓▒▓▒▓▓█▓▒█▒▒▓▒▓▒▒▒▓▓▒█▒▓▒▒█▓▓▓▓▓▒▒█▓▓▓▒▓█▒▒▓▒▓▒▓▓▓▓▓█▓█▒▒█▓▓▓▒▒██▓▒▓▓▓▓▓▓▒██▓▓▓▓▓▓▓▒██▒▓▒▓▓▓▓▓▓▒▓▒▒▓▓▒▓▓▒▓█▒▒▓▒▒
+▒▓▓▓▓▒▓▒▓▓▓▒▓▓█▓█▓▒██▓█▒█▓▓▓▒▒▒▒▒▓█▓▒▒▓█▓▓▓▓██▒▓▓▓▒▓▒▒▒▒▒▓▒▒█▓▒▓▒▓█▓▓▓▒▒▓▓▓▓▓█▒▓▒█▒▓▒▒▒████▓▓▓▒▒▓▒▒█▓█▓▓▓▓▓█▓▒▓▒▓▓▓▓▒▓▒▓</span><span class="ars-wave">▓▒▓█▓▓▒▒▒▒▒▒█▒█▓▒▓▒█▓▓█▓▓▒█▒▒█▒▒▓█▓▓▒▓▓█▓▓▓▒█▓▓▒██▓▒▒▓▓▒▓▓█▓▓▓▓▒▒▓▓▓▓▓█▒▒▒▓▒▓▓▓▒▒▒▒▓▓▒▓▓▓▓▓█▒█▒▓▓██▒▒██▒▓▒▓▒▓▓▓█▒█▓▓▓▓▓▒
+▓▓▒▓▓▒▒▒▒▒▓▒▓██▒▓▓▓▓▓▓█▒▓▒▒▓▒▓▒▓▓▓▒█▓█▒▒▓▒▒▓▓▓▓█▒█▓██▓▓▓▓▓▓▓▒▓▓█▓█▓▓▒▒█▒█▓▓▒▓▓▓▒█▓▒▓▓▒██▓▒▓▓▓▒▓▓▒▓▓▒█▒▒▓▓▓▒▒▒▓▓█▓▓█▓▓▓█▓
+▓▒▓▓▓█▓▒▒▒▒▓▓█▒███▓▓▒▓▓▓▒▒▓▓▒▒▓▓▒▒▓▓▓▓▒▓▓▓█▓▒▓▓▓▓▓▒▒███▓▒▓▓▓▓▓▓▓▒▒▓▒▓▓▓█▓▒▓▒▓██▒▓▒▓▓▓█▒▒▓▓█▒▒▓█▒▓▓▓▓█▒▓▒▓█▒▓▒▒▓▒▓▒▓▒▒▓▓▓</span></span></span><div class="st-skel-by"><span class="ars ars-dither" data-ascii-skeleton="" aria-hidden="true"><style>
+.ars{display:block;font-family:var(--ascii-font,ui-monospace,"SF Mono",Menlo,Consolas,monospace);color:var(--ascii-skeleton,currentColor);user-select:none;pointer-events:none;--ars-base:.3;--ars-wave:.9;--ars-band:45%;--ars-speed:1.8s}
+.ars-line,.ars-block{position:relative;display:block;overflow:hidden;white-space:pre;line-height:1.3;contain:inline-size}
+.ars-line+.ars-line{margin-top:.55em}
+.ars-block{line-height:1;border-radius:var(--ars-radius,8px);background:color-mix(in srgb,currentColor 6%,transparent)}
+.ars-base{display:block;opacity:var(--ars-base)}
+.ars-wave{position:absolute;inset:0;display:block;opacity:var(--ars-wave);color:var(--ars-wave-color,currentColor);-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);mask-image:linear-gradient(90deg,transparent,#000 45%,#000 55%,transparent);-webkit-mask-size:var(--ars-band) 100%;mask-size:var(--ars-band) 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:-120% 0;mask-position:-120% 0;animation:ars-sweep var(--ars-speed) cubic-bezier(.45,.05,.55,.95) infinite,ars-a .24s steps(1,end) infinite;animation-delay:var(--ars-d,0s),0s}
+.ars-wave+.ars-wave{animation-name:ars-sweep,ars-b}
+@keyframes ars-sweep{to{-webkit-mask-position:220% 0;mask-position:220% 0}}
+@keyframes ars-a{50%{visibility:hidden}}
+@keyframes ars-b{0%{visibility:hidden}50%{visibility:visible}}
+.ars-dither{--ars-base:.22;--ars-wave:.75;--ars-band:55%}
+.ars-dither .ars-line{line-height:1;letter-spacing:-.02em}
+.ars-braille{--ars-base:.35;--ars-wave:1;--ars-band:40%}
+.ars-scan{--ars-base:.28;--ars-wave:.95;--ars-band:38%}
+.ars-terminal{--ars-base:.16;--ars-wave:1;--ars-band:35%;--ars-speed:1.5s;--ars-wave-color:var(--ascii-accent,currentColor)}
+@media (prefers-reduced-motion:reduce){.ars-wave{display:none}}</style><span class="ars-line" style="width: 55%; --ars-d: 0.00s;"><span class="ars-base">▒░░▒░░░░░▒░░░░░░▒░▒▒░░░░▒▒▒░░▒░░░▒░▒░░░░░░░░░░░▒░░░░░░░░░░░░░▒░▒░░░░░░░░▒░░░░▒░░▒▒░░░░░░░░░░░▒░░░░░░░▒░░░░░▒░▒░░▒░▒▒░░▒░░▒░▒░▒░░▒░░░░▒░░▒▒▒░▒░▒▒░░░▒░░▒▒░░░░░░░░</span><span class="ars-wave">▓▓▓▓▓██▒▓▒▓▓▓▒▒▒▒▓▒█▓█▒▒▒▓█▓▒▒█▒▒▓▓▒▓▓▒▓█▓▓▓▒▒█▒▓█▒▓▓▓██▓▒▒▓▒▓▒▒▒██▓▓▓█▓▓▓▒▓▓▓▓█▓▓▓▒▓▒▓▒▓▓▓▓▓▓▓▓▒▓▒▓▓▒▒██▓▓▒▓▓▓▒▓▓▓█▒█▓▒█▓▓▓▓▓▓▒▓█▒▓▒▓▓▓▒▒█▒▒▒▒█▒█▓▓▓▒▓█▓▓█▒▒▒█▒</span><span class="ars-wave">▒▓▓▓█▓█▓▓▓▓█▓▓▓▓▒▓▓▓▓▓▓█▒▒▓█▒█▓▓█▒▒▓▓▒█▒█▓▒▓▒▓▒█▓▒▒█▓█▒▓▒▓▓▓█▓▒▓▓▒▒▒█▒▓█▒▓▓█▒▒▓▒▒▓█▓▓▓▒▒█▒▒▒▓▓▓▓▒██▓▓▓▓▓▓█▓▓▒▓▒▒▒▓▓█▒▓▓█▒▓▓▓▓▓▓▓▒▒▓▓▓▒▓▒▓▓▓▒█▓▓▓▓▓▓▓▒▓▓▒▓██▓▓▓▓█</span></span></span></div></div></div><div class="ar-overlay" aria-hidden="true"></div></div></div></div><div class="snippet cmp-snippet"><pre class="code cmp-code"><code><span data-ar-t=""><span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">AsciiReveal</span> <span class="attr" data-ar-t="">loading</span>=<span class="expr" data-ar-t="">{!data}</span> <span class="attr" data-ar-t="">preset</span>=<span class="str" data-ar-t="">"decode"</span><span class="pn" data-ar-t="">&gt;</span>
+</span><span data-ar-t="">  {data
+</span><span data-ar-t="">    ? <span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">Profile</span> <span class="attr" data-ar-t="">data</span>=<span class="expr" data-ar-t="">{data}</span> <span class="pn" data-ar-t="">/&gt;</span>
+</span><span data-ar-t="">    : <span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">AsciiSkeleton</span> <span class="attr" data-ar-t="">variant</span>=<span class="str" data-ar-t="">"dither"</span> <span class="pn" data-ar-t="">/&gt;</span>}
+</span><span><span class="pn" data-ar-t="">&lt;/</span><span class="tag" data-ar-t="">AsciiReveal</span><span class="pn" data-ar-t="">&gt;</span>
+</span></code></pre><button type="button" class="copy-btn" data-ascii="fade" aria-label="Copy code" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Copy</button></div></section><section class="sec spooky" id="mascots" aria-label="Loading mascots"><div class="spooky-bg" aria-hidden="true" data-ascii="skip"><canvas width="1198" height="786"></canvas></div><div class="spooky-head"><div class="spooky-intro"><p class="eyebrow" data-ar-t="">New · loading mascots</p><h2 data-ar-t="">Halloween came early.</h2><p class="body" data-ar-t="">Swap the shimmer for a spider, a ghost, a pumpkin or a bat. They're drawn as ASCII while your data loads, then dissolve as it decodes in. Bring your own SVG too.</p></div><div class="spooky-actions"><div class="snippet"><pre class="code"><code data-ar-t=""><span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">AsciiReveal</span> <span class="attr" data-ar-t="">loading</span>=<span class="expr" data-ar-t="">{isLoading}</span> <span class="attr" data-ar-t="">mascot</span>=<span class="str" data-ar-t="">"spider"</span><span class="pn" data-ar-t="">&gt;</span></code></pre></div><button class="cta" type="button" data-ar-t="">Load all</button></div></div><div class="spooky-grid"><article class="card spooky-card" data-ascii="surface" data-ar-s="" style="--ar-o: 0;"><div class="stack" style="position: relative;"><p class="eyebrow" data-ar-t="">Web crawler</p><div class="spooky-body"><p class="small muted" data-swap="true" data-ar-t="">Pages indexed</p><p class="big" data-swap="true" data-ar-t="">2,333</p><p class="small muted" data-swap="true" data-ar-t="">35 new since midnight</p></div><button class="btn full" type="button" data-ascii="fade" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Load</button><p class="tiny mono muted spooky-code" data-ar-t="">mascot="spider"</p><div class="ar-overlay" aria-hidden="true"></div></div></article><article class="card spooky-card" data-ascii="surface" data-ar-s="" style="--ar-o: 0;"><div class="stack" style="position: relative;"><p class="eyebrow" data-ar-t="">Ghost sessions</p><div class="spooky-body"><p class="small muted" data-swap="true" data-ar-t="">Idle users</p><p class="big" data-swap="true" data-ar-t="">181</p><p class="small muted" data-swap="true" data-ar-t="">last seen 43 min ago</p></div><button class="btn full" type="button" data-ascii="fade" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Load</button><p class="tiny mono muted spooky-code" data-ar-t="">mascot="ghost"</p><div class="ar-overlay" aria-hidden="true"></div></div></article><article class="card spooky-card" data-ascii="surface" data-ar-s="" style="--ar-o: 0;"><div class="stack" style="position: relative;"><p class="eyebrow" data-ar-t="">Pumpkin spice index</p><div class="spooky-body"><p class="small muted" data-swap="true" data-ar-t="">Price per latte</p><p class="big" data-swap="true" data-ar-t="">€4.05</p><p class="small muted" data-swap="true" data-ar-t="">demand +51% this week</p></div><button class="btn full" type="button" data-ascii="fade" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Load</button><p class="tiny mono muted spooky-code" data-ar-t="">mascot="pumpkin"</p><div class="ar-overlay" aria-hidden="true"></div></div></article><article class="card spooky-card" data-ascii="surface" data-ar-s="" style="--ar-o: 0;"><div class="stack" style="position: relative;"><p class="eyebrow" data-ar-t="">Night traffic</p><div class="spooky-body"><p class="small muted" data-swap="true" data-ar-t="">Requests after 2 a.m.</p><p class="big" data-swap="true" data-ar-t="">20.4k</p><p class="small muted" data-swap="true" data-ar-t="">p95 73 ms</p></div><button class="btn full" type="button" data-ascii="fade" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Load</button><p class="tiny mono muted spooky-code" data-ar-t="">mascot="bat"</p><div class="ar-overlay" aria-hidden="true"></div></div></article></div></section><section class="sec usage" id="get-started" aria-label="Get started"><div class="usage-intro"><p class="eyebrow" data-ar-t="">Get started</p><h2 data-ar-t="">Use it in your project</h2><p class="body" data-ar-t="">Four steps from install to loading states. The README covers every prop, theming, and use without React.</p><a class="text-link" href="https://github.com/quanhoangindex/ascii-reveal#readme" target="_blank" rel="noreferrer" data-ar-t="">Read the docs on GitHub →</a></div><ol class="steps"><li class="step"><span class="step-n" data-ar-t="">01</span><div class="step-body"><h3 data-ar-t="">Install</h3><p class="small muted" data-ar-t="">Add the package from npm, or straight from GitHub. React 17 or newer is all it needs.</p><div class="snippet"><pre class="code"><code data-ar-t=""><span class="kw" data-ar-t="">npm</span> i ascii-reveal
+
+<span class="cm" data-ar-t=""># or straight from GitHub</span>
+<span class="kw" data-ar-t="">npm</span> i <span class="str" data-ar-t="">github:quanhoangindex/ascii-reveal</span></code></pre><button type="button" class="copy-btn" data-ascii="fade" aria-label="Copy code" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Copy</button></div></div></li><li class="step"><span class="step-n" data-ar-t="">02</span><div class="step-body"><h3 data-ar-t="">Wrap your content</h3><p class="small muted" data-ar-t="">Everything inside decodes into place when it mounts: text, images, canvases and video.</p><div class="snippet"><pre class="code"><code data-ar-t=""><span class="kw" data-ar-t="">import</span> <span class="expr" data-ar-t="">{ AsciiReveal }</span> <span class="kw" data-ar-t="">from</span> <span class="str" data-ar-t="">'ascii-reveal'</span>;
+
+<span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">AsciiReveal</span> <span class="attr" data-ar-t="">preset</span>=<span class="str" data-ar-t="">"decode"</span><span class="pn" data-ar-t="">&gt;</span>
+  <span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">YourPage</span> <span class="pn" data-ar-t="">/&gt;</span>
+<span class="pn" data-ar-t="">&lt;/</span><span class="tag" data-ar-t="">AsciiReveal</span><span class="pn" data-ar-t="">&gt;</span></code></pre><button type="button" class="copy-btn" data-ascii="fade" aria-label="Copy code" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Copy</button></div></div></li><li class="step"><span class="step-n" data-ar-t="">03</span><div class="step-body"><h3 data-ar-t="">Mark the pieces</h3><p class="small muted" data-ar-t="">Optional attributes for cards, buttons, and anything that should stay untouched.</p><div class="snippet"><pre class="code"><code data-ar-t=""><span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">article</span> <span class="attr" data-ar-t="">data-ascii</span>=<span class="str" data-ar-t="">"surface"</span><span class="pn" data-ar-t="">&gt;</span>…<span class="pn" data-ar-t="">&lt;/</span><span class="tag" data-ar-t="">article</span><span class="pn" data-ar-t="">&gt;</span>
+<span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">button</span> <span class="attr" data-ar-t="">data-ascii</span>=<span class="str" data-ar-t="">"fade"</span><span class="pn" data-ar-t="">&gt;</span>Buy<span class="pn" data-ar-t="">&lt;/</span><span class="tag" data-ar-t="">button</span><span class="pn" data-ar-t="">&gt;</span>
+<span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">nav</span> <span class="attr" data-ar-t="">data-ascii</span>=<span class="str" data-ar-t="">"skip"</span><span class="pn" data-ar-t="">&gt;</span>…<span class="pn" data-ar-t="">&lt;/</span><span class="tag" data-ar-t="">nav</span><span class="pn" data-ar-t="">&gt;</span></code></pre><button type="button" class="copy-btn" data-ascii="fade" aria-label="Copy code" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Copy</button></div></div></li><li class="step"><span class="step-n" data-ar-t="">04</span><div class="step-body"><h3 data-ar-t="">Show loading states</h3><p class="small muted" data-ar-t="">An ASCII skeleton paints instantly while data loads, then the real content decodes in. Use AsciiSkeleton on its own if you only want the placeholder.</p><div class="snippet"><pre class="code"><code data-ar-t=""><span class="kw" data-ar-t="">import</span> <span class="expr" data-ar-t="">{ AsciiReveal, AsciiSkeleton }</span> <span class="kw" data-ar-t="">from</span> <span class="str" data-ar-t="">'ascii-reveal'</span>;
+
+<span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">AsciiReveal</span> <span class="attr" data-ar-t="">loading</span>=<span class="expr" data-ar-t="">{!data}</span><span class="pn" data-ar-t="">&gt;</span>
+  {data
+    ? <span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">Stats</span> <span class="attr" data-ar-t="">data</span>=<span class="expr" data-ar-t="">{data}</span> <span class="pn" data-ar-t="">/&gt;</span>
+    : <span class="pn" data-ar-t="">&lt;</span><span class="tag" data-ar-t="">AsciiSkeleton</span> <span class="attr" data-ar-t="">variant</span>=<span class="str" data-ar-t="">"dither"</span> <span class="pn" data-ar-t="">/&gt;</span>}
+<span class="pn" data-ar-t="">&lt;/</span><span class="tag" data-ar-t="">AsciiReveal</span><span class="pn" data-ar-t="">&gt;</span></code></pre><button type="button" class="copy-btn" data-ascii="fade" aria-label="Copy code" data-ar-f="" data-ar-t="" style="--ar-o: 0;">Copy</button></div></div></li></ol></section><footer class="foot" data-ascii="skip"><span class="credit">Made by <a href="https://github.com/quanhoangindex" target="_blank" rel="noreferrer">Quan Hoang</a> · MIT licensed · ~15 KB gzipped</span><div class="seg" role="group" aria-label="Theme"><button type="button" aria-pressed="true">System</button><button type="button" aria-pressed="false">Light</button><button type="button" aria-pressed="false">Dark</button></div></footer><div class="ar-overlay" aria-hidden="true"></div></div></div></div>
+  
+
+</body></html>

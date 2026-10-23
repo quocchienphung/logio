@@ -1,0 +1,142 @@
+{
+  "passed": [
+    "General edits, keyboard region selection and discard",
+    "General name, logo upload and region persist and sidebar updates",
+    "Member roles support keyboard and outside dismissal",
+    "Local invitation validates duplicates and persists pending member",
+    "Member removal requires confirmation and frees seat",
+    "Seed copy gives clearly synthetic demo key and create uses crypto value",
+    "Key rename and revocation persist",
+    "New workspace state has no borrowed API keys",
+    "Mobile touch menus and dialogs remain usable with reduced motion"
+  ],
+  "errors": [],
+  "comparisons": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "tab": "General",
+      "contentDiffPercent": null,
+      "sourceBody": {
+        "x": 320,
+        "y": 189,
+        "width": 1040,
+        "height": 299.15625
+      },
+      "localBody": {
+        "x": 306,
+        "y": 189,
+        "width": 1040,
+        "height": 299.15625
+      },
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "tab": "Members",
+      "contentDiffPercent": null,
+      "sourceBody": {
+        "x": 320,
+        "y": 189,
+        "width": 1040,
+        "height": 405
+      },
+      "localBody": {
+        "x": 306,
+        "y": 189,
+        "width": 1040,
+        "height": 405
+      },
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "tab": "API keys",
+      "contentDiffPercent": null,
+      "sourceBody": {
+        "x": 320,
+        "y": 189,
+        "width": 1040,
+        "height": 285
+      },
+      "localBody": {
+        "x": 306,
+        "y": 189,
+        "width": 1040,
+        "height": 285
+      },
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tab": "General",
+      "contentDiffPercent": null,
+      "sourceBody": {
+        "x": 23,
+        "y": 207,
+        "width": 344,
+        "height": 450.734375
+      },
+      "localBody": {
+        "x": 57,
+        "y": 207,
+        "width": 310,
+        "height": 467.734375
+      },
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tab": "Members",
+      "contentDiffPercent": null,
+      "sourceBody": {
+        "x": 23,
+        "y": 207,
+        "width": 344,
+        "height": 405
+      },
+      "localBody": {
+        "x": 57,
+        "y": 207,
+        "width": 310,
+        "height": 405
+      },
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tab": "API keys",
+      "contentDiffPercent": null,
+      "sourceBody": {
+        "x": 23,
+        "y": 207,
+        "width": 344,
+        "height": 352
+      },
+      "localBody": {
+        "x": 57,
+        "y": 207,
+        "width": 310,
+        "height": 352
+      },
+      "overflow": false
+    }
+  ]
+}

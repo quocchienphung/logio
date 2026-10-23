@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-22T09:23:06.912Z",
+  "base": "http://localhost:3000",
+  "passed": [
+    "Repo sits directly under Skilled in the sidebar",
+    "The terrain left Skilled",
+    "Skilled shows four metric cards and the timeline",
+    "No catalog of skill sources is left in Skilled",
+    "Timeline row expands with its measured detail",
+    "Period control switches the window",
+    "Repo shows the Activity terrain and nothing else",
+    "Terrain controls work on Repo",
+    "Repo survives a reload",
+    "Mobile Repo has no horizontal overflow",
+    "Mobile Skilled has no horizontal overflow",
+    "Health reports the data folder and access mode",
+    "PUT stores a resource and returns a version",
+    "Unchanged resource answers 304",
+    "A stale If-Match is refused with 412",
+    "A missing resource answers 204",
+    "Path tricks are refused",
+    "A cross-site write is refused",
+    "skill.transfer writes the files and returns a matching receipt",
+    "The skill was saved by the server, not the browser",
+    "It loads back from the server after a reload",
+    "No browser runtime errors"
+  ]
+}

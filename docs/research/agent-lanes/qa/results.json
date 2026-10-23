@@ -1,0 +1,16 @@
+{
+  "passed": [
+    "CRM photo is replaced by four real lanes with all three provider logos",
+    "Task clicks show their observed summaries, never open the CRM workspace",
+    "Decision focuses Approve; Escape closes it and returns focus to its block",
+    "Reject freezes a failed block and removes its Needs you flag and count",
+    "Approve resumes the same task; its local decision survives subsequent clock ticks",
+    "Roving group focus lets Tab enter CRM task controls and Enter opens details",
+    "Reduced motion leaves the timeline still; active changes preserve approval state",
+    "Desktop, tablet, portrait and landscape keep the preview, icons and decision within bounds",
+    "The observed timed handoff completes Writer at 8 seconds and creates Reviewer work",
+    "Touch controls work in Chromium and WebKit without navigating the frame"
+  ],
+  "errors": [],
+  "external": []
+}

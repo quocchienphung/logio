@@ -1,0 +1,233 @@
+affectUI
+⌘
+K
+Library
+Docs
+Pricing
+Style
+Clean
+Components
+54
+AI Answer
+Chat Composer
+Thinking State
+Writing Assistant
+Thinking Loader
+Combobox
+Command Menu
+Date Range Picker
+Dropzone
+OTP Input
+Segmented Control
+Stepper Form
+Toaster
+Usage Meter
+Agent Inbox
+Agent Lanes
+Agent Steering
+Agent Tree
+Autonomy Dial
+Cited Answer
+Compact Breakdown
+Context Window
+Delegate Board
+Experiment Card
+Integration Picker
+Integration Settings
+KPI Chart
+Memory Panel
+Message Actions
+Model Picker
+Permission Request
+Profile Menu
+Project Card
+Prompt Library
+Tips Panel
+Tool Call Card
+Approval Card
+Breakdown Chart
+Button
+Data Table
+Filter Menu
+Reaction Bar
+Smart Recommendation
+Agent Plan
+Billing Schedule
+Change Summary
+Comments Panel
+Email Draft
+Progress Tracker
+Comment Thread
+Inline Diff
+Setup Guide
+Decision Inbox
+Notification Stack
+Screens
+13
+App Shell Flat
+App Shell Inset
+Assistant Home
+Folders
+Folder
+Integrations
+Agent Chat
+CRM
+Analytics
+Agent Run
+Settings & Billing
+Onboarding
+Evals
+Blocks
+11
+Client Context
+Invoice & Credit Note
+Logo Marquee
+Metrics Dashboard
+Pricing Plans
+Task Board
+Testimonial Wall
+AI Workspace
+App Directory
+KPI Board
+Agent Gallery
+Illustrations
+24
+Cover Flow
+Frost Cloud
+Glow Cloud
+Glow Keyboard
+Integration Beam
+Logo Cluster
+Model Wheel
+Project Flow
+DACH Region
+Empty Calendar
+Integration Flow
+Voice Orb
+Tab Overload
+World Map Continental
+Ghosted Chat
+Lead Sourcing
+Enrichment Orbit
+Outreach Branches
+Glass Folder
+Side Folder
+Team Invite
+Layer Stack
+Agent Team
+Integration Grid
+Motion
+8
+Blur Crossfade
+Gradient Floor
+Gradient Text
+Grid Background
+Number Ticker
+Shimmer Loader
+Text Reveal
+Tilt Card
+124
+Get Pro
+Log In
+Components
+Writing Assistant
+Writing Assistant
+
+AI chat card with a soft gradient glow, suggestions, streaming replies and live voice dictation.
+
+Get Pro to install
+Preview
+Code
+Copy prompt
+MCP
+Copy
+Quill
+
+Your writing companion.
+
+What should we write?
+
+Polish my email
+Make it shorter
+Fix the tone
+Draft a reply
+When to use
+A small AI helper inside an editor, CRM or sidebar – rewrite, shorten, translate or draft
+Landing pages that should show an assistant you can actually try, including voice input
+When not to use
+Long conversations with files, tools and model settings – use the Chat Composer or the AI Workspace block
+When you can't send voice to the browser's speech service – set speech="simulate" or hide the mic
+Installation
+
+Writing Assistant is a Pro component.
+
+Installation is part of Pro
+Get Pro to copy the code, install it with the CLI and use it in your projects.
+Unlock with Pro
+Usage
+Usage example is part of Pro
+Get Pro
+API reference
+WritingAssistant
+Prop	Type	Default	Description
+name	string	"Quill"	Assistant name on top
+tagline	string	"Your writing companion."	Line under the name
+greeting	string	"What should we write?"	Line on the welcome screen
+suggestions	string[]	–	Chips that send themselves as a message
+placeholder	string	"Ask anything…"	Placeholder of the prompt field
+respond	(message) => string | Promise<string>	–	Your answer for a message; a sample writer is used by default
+speech	"auto" | "simulate"	"auto"	auto uses the browser's speech recognition when available, simulate always plays a sample take
+dictation	string	–	Sentence used for simulated dictation
+className	string	–	Extra class on the root
+Keyboard interactions
+Enter	Sends what's in the prompt field
+Shift or Enter	Starts a new line – the field grows up to four lines, then scrolls
+Tab	Moves through the suggestions, the field, the mic, Send and New chat
+Accessibility
+The mic is a toggle button with aria-pressed and a label that says what it does next
+New messages are announced politely; the Writing… line carries a label
+Everything works with the keyboard; dictation is optional
+Motion
+A faint glow in the classic pink-violet-blue drifts behind the welcome line and quiets down once you chat; the welcome view hands over to the chat with a short rise
+While listening, the mic turns into a light blue tile with three calm bars and a soft ring breathing outwards; words appear live in the field
+When you stop speaking, the finished sentence moves into the chat as your message; a shimmering Writing… line holds the place, then the reply streams in word by word
+With prefers-reduced-motion the glow and the shimmer stand still and replies appear at once
+Responsive behavior
+One white card that fills its container up to 380px wide; the prompt, mic and send lie right at the bottom of the card
+Dictation uses the Web Speech API (Chrome, Edge, Safari) with the page language; elsewhere a short simulated take plays
+Dark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme="dark"
+affectUI · 54 components · 13 screens · 11 blocks · 24 illustrations · 8 motion effects
+affectUI
+
+Agent-ready React UI for AI products – one file each, no dependencies.
+
+Site
+Home
+Components
+Screens
+Blocks
+Illustrations
+Motion
+Pricing
+Docs
+Introduction
+Installation
+Accessibility
+Legal & Account
+Account
+License
+Terms
+Privacy
+Refund
+Imprint
+Cookie settings
+Contact
+
+Created by Flo
+
+Cookies
+
+With your OK we use Google Analytics and the Meta pixel to see how the site is used and to measure our ads. You can change this any time under “Cookie settings” in the footer. Privacy
+
+Decline
+Accept

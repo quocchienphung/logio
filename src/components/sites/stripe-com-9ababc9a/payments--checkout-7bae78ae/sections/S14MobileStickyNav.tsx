@@ -5,7 +5,7 @@ export function S14MobileStickyNav() {
   return (
     <div className="MobileStickyNav theme--Light flavor--Twilight accent--Purple" data-js-controller="MobileStickyNav">
       <div className="MobileStickyNav__container" data-js-target="MobileStickyNav.container">
-        <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register/checkout" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sticky_nav__start_now">
+        <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sticky_nav__start_now">
           {"Start now"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

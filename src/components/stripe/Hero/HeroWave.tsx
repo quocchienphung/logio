@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { onTransitionSettled, pageSettled, runHeavy, transitionPlaying } from "@/lib/pageSettled";
 import { WAVE_DESKTOP, WAVE_MOBILE, WAVE_TABLET } from "./wave/config";
 
 const FALLBACK = {
@@ -41,7 +42,7 @@ export function HeroWave() {
     let intersecting = false;
     const syncPaused = () => {
       if (!renderer) return;
-      const shouldPause = !intersecting || document.hidden || reduced.matches;
+      const shouldPause = !intersecting || document.hidden || reduced.matches || transitionPlaying();
       renderer.paused = shouldPause;
     };
     const io = new IntersectionObserver(
@@ -53,37 +54,43 @@ export function HeroWave() {
     );
     io.observe(root);
     document.addEventListener("visibilitychange", syncPaused);
+    const offSettled = onTransitionSettled(syncPaused);
     reduced.addEventListener("change", syncPaused);
 
-    import("./wave/WaveRenderer")
-      .then(async ({ WaveRenderer }) => {
-        if (disposed) return;
-        try {
-          renderer = new WaveRenderer(canvas, {
-            theme: "light",
-            configs: {
-              wide: WAVE_DESKTOP,
-              medium: WAVE_TABLET,
-              small: WAVE_MOBILE,
-            },
-            paletteUrl: "/stripe/palette-411be97f.webp",
-            litSelector: "h1.hero-section__title--background",
-            onFirstDraw: () => setDrawn(true),
-          });
-          await renderer.init();
+    // the WebGL context is created once the page transition has settled: its set-up is synchronous round
+    // trips to the GPU process, which stall while it draws the transition (the static wave shows until then)
+    Promise.all([import("./wave/WaveRenderer"), pageSettled()])
+      .then(([{ WaveRenderer }]) =>
+        runHeavy(async () => {
           if (disposed) return;
-          syncPaused();
-          if (renderer.paused) renderer.drawOnce();
-        } catch {
-          setWebgl(false);
-        }
-      })
+          try {
+            renderer = new WaveRenderer(canvas, {
+              theme: "light",
+              configs: {
+                wide: WAVE_DESKTOP,
+                medium: WAVE_TABLET,
+                small: WAVE_MOBILE,
+              },
+              paletteUrl: "/stripe/palette-411be97f.webp",
+              litSelector: "h1.hero-section__title--background",
+              onFirstDraw: () => setDrawn(true),
+            });
+            await renderer.init();
+            if (disposed) return;
+            syncPaused();
+            if (renderer.paused) renderer.drawOnce();
+          } catch {
+            setWebgl(false);
+          }
+        }),
+      )
       .catch(() => setWebgl(false));
 
     return () => {
       disposed = true;
       io.disconnect();
       document.removeEventListener("visibilitychange", syncPaused);
+      offSettled();
       reduced.removeEventListener("change", syncPaused);
       renderer?.dispose();
     };

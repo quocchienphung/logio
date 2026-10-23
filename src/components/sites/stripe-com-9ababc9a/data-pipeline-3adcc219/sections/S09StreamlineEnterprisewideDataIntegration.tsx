@@ -33,14 +33,14 @@ export function S09StreamlineEnterprisewideDataIntegration() {
                       <div className="Copy__body">
                         <p>
                           {"With "}
-                          <a className="Link" href="https://docs.stripe.com/get-started/account/orgs" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/get-started/account/orgs" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Stripe Organizations"}
                           </a>
                           {", you can centrally manage all Stripe accounts in the Dashboard and send unified data from your organization to your data storage using Data Pipeline. "}
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/get-started/account/orgs#request-access" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_integration_get_started_docs">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/get-started/account/orgs" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_integration_get_started_docs">
                           {"Get started"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

@@ -38,17 +38,17 @@ export function AgenticCommerceGraphic() {
       ],
       [
         ".agentic-commerce-graphic__chat-bubble--user",
-        { opacity: 1, transform: "translateY(0)" },
+        { opacity: 1, transform: "translateY(0px)" },
         { ease: EASE.easeOutQuart, duration: 0.75, at: 0.25 },
       ],
       [
         ".agentic-commerce-graphic__chat-bubble--agent",
-        { opacity: 1, transform: "translateY(0)" },
+        { opacity: 1, transform: "translateY(0px)" },
         { ease: EASE.easeOutQuart, duration: 0.35, at: 1 },
       ],
       [
         ".agentic-commerce-graphic__products",
-        { opacity: 1, transform: "translateY(0)" },
+        { opacity: 1, transform: "translateY(0px)" },
         { ease: EASE.easeOutQuart, duration: 0.5, at: 1.4 },
       ],
       [

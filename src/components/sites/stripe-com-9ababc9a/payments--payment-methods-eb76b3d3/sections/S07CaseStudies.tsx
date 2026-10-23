@@ -93,7 +93,7 @@ export function S07CaseStudies() {
                                           </g>
                                         </svg>
                                         {" "}
-                                        <a className="Link ListItem__label" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__amazon__connect">
+                                        <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__amazon__connect">
                                           {"Connect"}
                                         </a>
                                       </li>
@@ -242,7 +242,7 @@ export function S07CaseStudies() {
                                           </g>
                                         </svg>
                                         {" "}
-                                        <a className="Link ListItem__label" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__woocommerce__connect">
+                                        <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__woocommerce__connect">
                                           {"Connect"}
                                         </a>
                                       </li>

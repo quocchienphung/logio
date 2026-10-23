@@ -1,0 +1,136 @@
+Blocks
+Onboarding illustration
+Onboarding illustration
+Pro
+
+A compact onboarding card whose line illustration morphs from folder to files, team, and badge.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live block · sample data
+Skip
+Create your first workspace
+
+Each project gets one home. Start with Q3 vendor contracts and add files whenever you’re ready.
+
+Step 1 of 4
+Back
+Next
+When to use
+A short first-run dialog in a document or workspace product.
+Onboarding with three or four steps that each need a simple picture.
+When not to use
+Use onboarding-checklist for tasks people complete over time.
+Use feature-illustration for a feature section on a marketing page.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Onboarding illustration is part of Arc Pro
+Pro
+
+The preview is open to everyone. Pro members get the source, the install command, and updates for every Pro block.
+
+Get Arc Pro
+Sign in
+Usage
+
+Use this as a first-run dialog in a document product. Swap the copy for your own steps and send Get started to your workspace creation flow; the preview creates nothing.
+
+example.tsx
+Copy
+Copied
+Failed
+1
+import { OnboardingIllustration } from "@/components/arc/blocks/onboarding-illustration/onboarding-illustration";
+2
+ 
+3
+export function FirstRun() {
+4
+  return (
+5
+    <div role="dialog" aria-label="Welcome">
+6
+      <OnboardingIllustration />
+7
+    </div>
+8
+  );
+9
+}
+API reference
+OnboardingIllustration
+
+A compact onboarding card whose line illustration morphs through four steps, with back and next buttons, step dots, and a Get started action. The copy is sample content and Get started creates nothing.
+
+No props.
+
+Keyboard interactions
+Arrow Left
+or
+Right
+Go to the previous or next step.
+Accessibility
+The illustration is role="img" with a label describing the current scene.
+Step copy sits in a polite live region, so step changes are read out.
+Step dots are labelled buttons with aria-current on the active step.
+Motion
+The same line shapes morph between folder, files, team, and badge scenes on springs.
+Reduced motion jumps to each scene without the morph.
+Responsive behavior
+Below 440px padding tightens, the Back label becomes an icon, and the copy keeps a fixed minimum height so buttons do not jump.
+The illustration's pointer parallax runs only for a mouse on hover-capable devices.
+Performance
+The scenes are one inline SVG whose shapes morph on springs, with no images to load.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use as a first-run dialog in a document or workspace product.
+Swap the step copy and scene labels for your own, and route Get started to your workspace creation flow.
+Has no Arc component dependencies.
+/components/blocks/onboarding-illustration/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Onboarding checklist
+Component
+Guide a new workspace through setup, one step at a time.
+Stepper
+Component
+Show where a person is in a multi-step flow and what is done.
+Empty states
+Block
+Four empty states in one illustration whose shapes morph between scenes as you switch tabs.
+Previous
+Settings page
+Next
+Integrations
+Arc · 103 block pages
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

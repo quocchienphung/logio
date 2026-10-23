@@ -5,7 +5,7 @@ export function S11MobileStickyNav() {
   return (
     <div className="MobileStickyNav" data-js-controller="MobileStickyNav">
       <div className="MobileStickyNav__container" data-js-target="MobileStickyNav.container">
-        <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register?redirect=%2Fsettings%2Fstripe-data-pipeline" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_start_now">
+        <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_start_now">
           {"Try for free"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -17,7 +17,7 @@ export function S11MobileStickyNav() {
           </span>
         </a>
         {" "}
-        <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_contact_sales">
+        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_contact_sales">
           {"Contact sales"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

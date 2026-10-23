@@ -63,16 +63,16 @@
   initial-value: 0px;
 }
 .hero-section-container {
-  --wave-tail: 440px;
+  --wave-tail: 900px;
 }
 @media (max-width: 1263px) {
   .hero-section-container {
-    --wave-tail: 340px;
+    --wave-tail: 680px;
   }
 }
 @media (max-width: 639px) {
   .hero-section-container {
-    --wave-tail: 240px;
+    --wave-tail: 460px;
   }
 }
 /* Let the tail overflow vertically while keeping the horizontal bleed clipped (no x scrollbar). */
@@ -98,22 +98,102 @@
     to bottom,
     #000 0,
     #000 calc(var(--wave-cut) - 64px),
-    rgba(0, 0, 0, 0.97) var(--wave-cut),
-    rgba(0, 0, 0, 0.84) calc(100% - var(--wave-tail) * 0.76),
-    rgba(0, 0, 0, 0.58) calc(100% - var(--wave-tail) * 0.52),
-    rgba(0, 0, 0, 0.3) calc(100% - var(--wave-tail) * 0.3),
-    rgba(0, 0, 0, 0.1) calc(100% - var(--wave-tail) * 0.12),
+    #000 calc(var(--wave-cut) + var(--wave-tail) * 0.12),
+    rgba(0, 0, 0, 0.9) calc(var(--wave-cut) + var(--wave-tail) * 0.4),
+    rgba(0, 0, 0, 0.62) calc(var(--wave-cut) + var(--wave-tail) * 0.65),
+    rgba(0, 0, 0, 0.22) calc(var(--wave-cut) + var(--wave-tail) * 0.85),
     transparent 100%
   );
   mask-image: linear-gradient(
     to bottom,
     #000 0,
     #000 calc(var(--wave-cut) - 64px),
-    rgba(0, 0, 0, 0.97) var(--wave-cut),
-    rgba(0, 0, 0, 0.84) calc(100% - var(--wave-tail) * 0.76),
-    rgba(0, 0, 0, 0.58) calc(100% - var(--wave-tail) * 0.52),
-    rgba(0, 0, 0, 0.3) calc(100% - var(--wave-tail) * 0.3),
-    rgba(0, 0, 0, 0.1) calc(100% - var(--wave-tail) * 0.12),
+    #000 calc(var(--wave-cut) + var(--wave-tail) * 0.12),
+    rgba(0, 0, 0, 0.9) calc(var(--wave-cut) + var(--wave-tail) * 0.4),
+    rgba(0, 0, 0, 0.62) calc(var(--wave-cut) + var(--wave-tail) * 0.65),
+    rgba(0, 0, 0, 0.22) calc(var(--wave-cut) + var(--wave-tail) * 0.85),
     transparent 100%
   );
+}
+
+/* Keep the Guide me icon beside its label in the mobile callout. */
+.navigation__personalize-callout--mobile .hds-link[href="/personalize"] {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+}
+
+/* Desktop navigation popup: a compositor-only pop (transform + opacity) instead of the reference's
+   clip-path/max-height wipe, which repaints the popup (and the blurred overlay behind it) every frame.
+   The popup drops 8px and grows from 97% under the hovered item with a soft overshoot; switching
+   between menus keeps the reference height glide and content slide. */
+@media (min-width: 940px) and (prefers-reduced-motion: no-preference) {
+  .hds-navigation-menu__popup {
+    clip-path: none;
+    max-height: none;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: 50% 0;
+    will-change: transform, opacity;
+    transition-property: opacity, transform, height;
+    transition-duration: var(--interaction-duration-fast), var(--interaction-duration-spring), var(--interaction-duration-spring);
+    transition-timing-function: var(--interaction-ease-enter), var(--interaction-ease-spring), var(--interaction-ease-spring);
+  }
+  .hds-navigation-menu__popup[data-status="open"] {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+  }
+  .hds-navigation-menu__popup[data-status="close"] {
+    clip-path: none;
+    opacity: 0;
+    transform: translateY(-4px) scale(0.985);
+    transition-duration: var(--interaction-duration-exit), var(--interaction-duration-exit), var(--interaction-duration-exit);
+    transition-timing-function: var(--interaction-ease-standard);
+  }
+  .hds-navigation-menu__overlay {
+    will-change: opacity;
+    transition-duration: 180ms;
+  }
+}
+
+/* "Book of the week" cover: reserve its box before it loads. The reference renders a placeholder while the cover
+   arrives; here the lazy <img> was `width:auto; height:auto`, i.e. 0px tall until loaded, and the section then
+   grew by 310–440px under the reader, pushing the call to action and the footer down (CLS 0.24 on a phone with
+   slow images). The sizes below are exactly what the loaded cover resolves to (592:880, capped by the
+   max-height / max-width the reference sets), so nothing moves when it arrives. */
+.book-of-the-week__image {
+  aspect-ratio: 592 / 880;
+}
+@media (max-width: 639px) {
+  .book-of-the-week__image {
+    height: 310px;
+  }
+}
+@media (min-width: 640px) and (max-width: 939px) {
+  .book-of-the-week__image {
+    height: 365px;
+  }
+}
+@media (min-width: 940px) {
+  .book-of-the-week__image {
+    width: 100%;
+  }
+}
+
+/* Phone menu, first level: let the list scroll. The reference only makes the second-level panels scroll
+   (`overflow: auto` plus a spacer the height of the fixed "Start now / Contact sales" bar), so on a short screen,
+   a phone held sideways, Pricing, Sign in and the callout sat under that bar and could not be reached. */
+@media (max-width: 939px) {
+  .hds-navigation-menu__viewport > .hds-navigation-menu__content:first-child {
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .hds-navigation-menu__viewport > .hds-navigation-menu__content:first-child::after {
+    content: "";
+    display: block;
+    height: calc(var(--navigation-menu-footer-height) + var(--hds-space-core-400));
+  }
 }

@@ -266,7 +266,7 @@ export function S06InPersonPayments() {
                           </div>
                           <div className="CustomersCaseStudyCardOverlay" style={{ backgroundColor: "#c0c0c0" }} data-js-target="CustomersCaseStudyCarousel.overlay"></div>
                           <div className="CustomersCaseStudyCarousel__track" data-js-target="CustomersCaseStudyCarousel.track">
-                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="https://stripe.com/us/customers/dripos" style={{ "--customerBrandColor": "#c0c0c0" }} data-js-controller="AnalyticsButton" data-js-brand-color="#3b54fc" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_Dripos">
+                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="/unavailable/stripe/stripe.com/us/customers/dripos" style={{ "--customerBrandColor": "#c0c0c0" }} data-js-controller="AnalyticsButton" data-js-brand-color="#3b54fc" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_Dripos">
                               <div className="CustomersCaseStudyCard__content">
                                 <div className="CustomersCaseStudyCardOverlay" style={{ backgroundColor: "#c0c0c0" }}></div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" fill="none" viewBox="52 7.578 200 40" className="UserLogo variant--Flat CustomersCaseStudyCard__logo" preserveAspectRatio="xMinYMin meet">
@@ -296,7 +296,7 @@ export function S06InPersonPayments() {
                               </div>
                             </a>
                             {" "}
-                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="https://stripe.com/us/customers/squire" style={{ "--customerBrandColor": "#000000" }} data-js-controller="AnalyticsButton" data-js-brand-color="#000000" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_Squire">
+                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="/unavailable/stripe/stripe.com/us/customers/squire" style={{ "--customerBrandColor": "#000000" }} data-js-controller="AnalyticsButton" data-js-brand-color="#000000" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_Squire">
                               <div className="CustomersCaseStudyCard__content">
                                 <div className="CustomersCaseStudyCardOverlay" style={{ backgroundColor: "#000000" }}></div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" fill="none" className="UserLogo variant--Flat CustomersCaseStudyCard__logo" preserveAspectRatio="xMinYMin meet" viewBox="48 6 200 40">
@@ -326,7 +326,7 @@ export function S06InPersonPayments() {
                               </div>
                             </a>
                             {" "}
-                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="https://stripe.com/us/customers/dines" style={{ "--customerBrandColor": "#161616" }} data-js-controller="AnalyticsButton" data-js-brand-color="#14142c" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_Dines">
+                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="/unavailable/stripe/stripe.com/us/customers/dines" style={{ "--customerBrandColor": "#161616" }} data-js-controller="AnalyticsButton" data-js-brand-color="#14142c" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_Dines">
                               <div className="CustomersCaseStudyCard__content">
                                 <div className="CustomersCaseStudyCardOverlay" style={{ backgroundColor: "#161616" }}></div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" fill="none" viewBox="50 2 200 40" className="UserLogo variant--Flat CustomersCaseStudyCard__logo" preserveAspectRatio="xMinYMin meet">
@@ -357,7 +357,7 @@ export function S06InPersonPayments() {
                               </div>
                             </a>
                             {" "}
-                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="https://stripe.com/us/customers/atvenu" style={{ "--customerBrandColor": "#cecece" }} data-js-controller="AnalyticsButton" data-js-brand-color="#26c1eb" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_AtVenue">
+                            <a className="CustomersCaseStudyCard theme--Dark variant--Normal" href="/unavailable/stripe/stripe.com/us/customers/atvenu" style={{ "--customerBrandColor": "#cecece" }} data-js-controller="AnalyticsButton" data-js-brand-color="#26c1eb" data-js-category="Default" data-js-target-list="CustomersCaseStudyCarousel.caseStudyCards" data-analytics-category="Carousels" data-analytics-action="Clicked" data-analytics-label="case_study_AtVenue">
                               <div className="CustomersCaseStudyCard__content">
                                 <div className="CustomersCaseStudyCardOverlay" style={{ backgroundColor: "#cecece" }}></div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" className="UserLogo variant--Flat CustomersCaseStudyCard__logo" preserveAspectRatio="xMinYMin meet" viewBox="41 6 200 40">

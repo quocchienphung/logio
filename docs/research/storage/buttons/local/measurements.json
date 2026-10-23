@@ -1,0 +1,55 @@
+{
+  "desktop": [
+    {
+      "class": "stg-split",
+      "rect": "{\"x\":1197.265625,\"y\":-559.921875,\"width\":201.734375,\"height\":46,\"top\":-559.921875,\"right\":1399,\"bottom\":-513.921875,\"left\":1197.265625}",
+      "font": "",
+      "radius": "18px",
+      "padding": "0px"
+    },
+    {
+      "class": "stg-split-trigger",
+      "rect": "{\"x\":1360,\"y\":-558.921875,\"width\":38,\"height\":44,\"top\":-558.921875,\"right\":1398,\"bottom\":-514.921875,\"left\":1360}",
+      "font": "",
+      "radius": "0px 17px 17px 0px",
+      "padding": "0px"
+    },
+    {
+      "class": "stg-expanding-group ",
+      "rect": "{\"x\":1221.25,\"y\":863.218017578125,\"width\":152.75,\"height\":39,\"top\":863.218017578125,\"right\":1374,\"bottom\":902.218017578125,\"left\":1221.25}",
+      "font": "",
+      "radius": "9999px",
+      "padding": "3px"
+    }
+  ],
+  "phone": [
+    {
+      "class": "stg-split",
+      "rect": "{\"x\":209.921875,\"y\":-1701,\"width\":170.640625,\"height\":46,\"top\":-1701,\"right\":380.5625,\"bottom\":-1655,\"left\":209.921875}",
+      "font": "",
+      "radius": "18px",
+      "padding": "0px"
+    },
+    {
+      "class": "stg-split-trigger",
+      "rect": "{\"x\":349.5625,\"y\":-1700,\"width\":30,\"height\":44,\"top\":-1700,\"right\":379.5625,\"bottom\":-1656,\"left\":349.5625}",
+      "font": "",
+      "radius": "0px 17px 17px 0px",
+      "padding": "0px"
+    },
+    {
+      "class": "stg-expanding-group ",
+      "rect": "{\"x\":194.6875,\"y\":698.453125,\"width\":155.3125,\"height\":44,\"top\":698.453125,\"right\":350,\"bottom\":742.453125,\"left\":194.6875}",
+      "font": "",
+      "radius": "9999px",
+      "padding": "3px"
+    },
+    {
+      "class": "stg-floating-group ",
+      "rect": "{\"x\":95.703125,\"y\":786,\"width\":268.40625,\"height\":36,\"top\":786,\"right\":364.109375,\"bottom\":822,\"left\":95.703125}",
+      "font": "",
+      "radius": "18px",
+      "padding": "0px"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ export function S09MobileStickyNav() {
   return (
     <div className="MobileStickyNav" data-js-controller="MobileStickyNav">
       <div className="MobileStickyNav__container" data-js-target="MobileStickyNav.container">
-        <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register/payment_links" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="register_hero_cta">
+        <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="register_hero_cta">
           {"Create a payment link"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -17,7 +17,7 @@ export function S09MobileStickyNav() {
           </span>
         </a>
         {" "}
-        <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/payment-links" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_explore_docs_cta">
+        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/payment-links" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_explore_docs_cta">
           {"Explore the docs"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

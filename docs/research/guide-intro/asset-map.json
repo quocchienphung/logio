@@ -1,0 +1,51 @@
+{
+  "artwork": {
+    "title": "The Starry Night",
+    "artist": "Vincent van Gogh",
+    "date": "June 1889",
+    "localPath": "public/sites/guide-intro/starry-night.jpg",
+    "width": 1280,
+    "height": 1014,
+    "sha256": "A2759458DBC9CF1150DDC8B5D16453ABA4790ED6FE826C29F4CF59471D07E629",
+    "source": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg?utm_source=vi.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+    "credit": "Vincent van Gogh / Google Art Project, via Wikimedia Commons",
+    "rights": "Public domain artwork and faithful reproduction; Commons PD-Art / Public Domain Mark 1.0",
+    "facts": "https://www.moma.org/collection/works/79802"
+  },
+  "interfaceReference": "https://www.affectui.com/components/agent-cursors",
+  "captureDate": "2026-10-21",
+  "frame": {
+    "title": "Cassetta frame",
+    "date": "ca. 1630",
+    "museum": "The Metropolitan Museum of Art",
+    "accession": "1975.1.2339",
+    "localPath": "public/sites/guide-intro/cassetta-frame-met.jpg",
+    "width": 1419,
+    "height": 1828,
+    "bytes": 698572,
+    "sha256": "1A9F275D43150C5BAF5471F38BB1920B87EF28B19BDF83155C4198E197B8E73A",
+    "source": "https://www.metmuseum.org/art/collection/search/459726",
+    "metadata": "https://collectionapi.metmuseum.org/public/collection/v1/objects/459726",
+    "download": "https://images.metmuseum.org/CRDImages/rl/original/86T_146R2M.jpg",
+    "credit": "The Metropolitan Museum of Art, Robert Lehman Collection, 1975",
+    "rights": "The Met Open Access, CC0; metadata isPublicDomain=true",
+    "treatment": "Original archival photograph retained locally. Before the intro clock starts, eight photographic crops and a warm gold color transfer are cached as a transparent 2000x1600 runtime Canvas bitmap. One SVG image with a polygon clip reveals the real moulding and corner photographs."
+  },
+  "updated": "2026-10-22",
+  "engraving": {
+    "text": "© Remplacé par Logio",
+    "surface": "Bare white workspace directly below the painting; no plaque or colored backing",
+    "localPath": "public/sites/guide-intro/engraving-plaster.jpg",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 617080,
+    "sha256": "73312EBB6EABC8E0A55ADDD8A82A8924BCD1E717B9488A887CC77F14B6EA554E",
+    "source": "https://polyhaven.com/a/plastered_wall",
+    "download": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/plastered_wall/plastered_wall_diff_1k.jpg",
+    "credit": "Amal Kumar / Poly Haven",
+    "rights": "CC0, https://polyhaven.com/license",
+    "treatment": "Original plaster photograph retained locally. Neutralized photo grain and shallow cut shading are cached inside the letter shapes in a transparent 1440x192 runtime Canvas bitmap. One active-letter SVG stroke mask and completed-letter clip reveal the cuts. No rectangular substrate is rendered. Contact, sparks and a faint ablation wisp remain live SVG.",
+    "lettering": "Fixed inscription outlines from the existing local Inter 500 font; build with scripts/guide-intro/build-engraving.py (fontTools). No new runtime font or npm dependency."
+  }
+}

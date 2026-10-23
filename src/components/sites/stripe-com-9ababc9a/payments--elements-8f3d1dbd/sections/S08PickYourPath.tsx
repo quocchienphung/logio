@@ -647,7 +647,7 @@ export function S08PickYourPath() {
                                 </section>
                               </div>
                               <div className="ProductFeatureCard__cta">
-                                <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/checkout/form/quickstart" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="product_matrix__prebuilt_payment_form__explore_checkout">
+                                <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/checkout/form/quickstart" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="product_matrix__prebuilt_payment_form__explore_checkout">
                                   {"Explore embedded form"}
                                   <span className="nobr">
                                     <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

@@ -43,7 +43,7 @@ export function S00ProductHeroSection() {
                             </a>
                           </li>
                           <li className="ProductNavItem" data-js-target-list="ProductNav.items">
-                            <a className="Link" href="https://docs.stripe.com/payments/analytics/authorization-boost" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="product_nav_authorization_boost_docs">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/analytics/authorization-boost" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="product_nav_authorization_boost_docs">
                               {"Docs"}
                             </a>
                           </li>
@@ -73,7 +73,7 @@ export function S00ProductHeroSection() {
                         </div>
                         <footer className="Copy__footer">
                           <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                            <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_boost_hero_contact_sales">
+                            <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_boost_hero_contact_sales">
                               {"Contact sales"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -85,7 +85,7 @@ export function S00ProductHeroSection() {
                               </span>
                             </a>
                             {" "}
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/analytics/authorization-boost" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_boost_hero_expore_the_docs">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/analytics/authorization-boost" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_boost_hero_expore_the_docs">
                               {"Explore the docs"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

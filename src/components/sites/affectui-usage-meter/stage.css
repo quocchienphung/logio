@@ -1,0 +1,141 @@
+/* affectUI preview stage (.stage / .stage__reset / .stage__theme / .stage__style / .usage-demo),
+   rebuilt from its computed styles on 2026-10-19. Theme tokens are scoped to the stage so the
+   preview can switch light/dark without touching the page. */
+
+.um-stage {
+  --preview: #fafafa;
+  --card: #fff;
+  --border: #e5e5e5;
+  --border-soft: #0a0a0a1a;
+  --muted-bg: #0000000a;
+  --text: #0a0a0a;
+  --text-muted: #737373;
+  --text-subtle: #0006;
+  position: relative;
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: var(--um-stage-pad, 48px 32px);
+  overflow: hidden;
+  background: var(--preview);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.um-stage[data-theme="dark"] {
+  --preview: #1f1f21;
+  --card: #19191b;
+  --border: #262628;
+  --border-soft: #ffffff12;
+  --muted-bg: #ffffff0d;
+  --text: #ededed;
+  --text-muted: #8f8f8f;
+  --text-subtle: #fff6;
+}
+
+.um-stage__look {
+  display: grid;
+  place-items: inherit;
+  width: 100%;
+  min-width: 0;
+  animation: um-look-in 0.32s ease backwards;
+}
+@keyframes um-look-in {
+  0% { opacity: 0; filter: blur(2px); }
+  100% { opacity: 1; filter: none; }
+}
+
+.um-stage .usage-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 460px);
+  place-content: center;
+  width: 100%;
+}
+
+.um-stage__tools {
+  position: absolute;
+  z-index: 10;
+  top: var(--um-tools-top, 12px);
+  right: var(--um-tools-right, 12px);
+  left: var(--um-tools-left, auto);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.um-stage[data-layout="row"] .um-stage__tools,
+.um-stage[data-layout="row"] .um-stage__group {
+  flex-direction: row;
+}
+
+.um-stage__reset {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border), 0 1px 2px #0000000a;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background-color 0.18s, color 0.18s, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.um-stage__reset:hover {
+  color: var(--text);
+}
+.um-stage__reset:active {
+  transform: scale(0.94);
+}
+
+.um-stage__group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: 0 0 0 1px var(--border), 0 1px 2px #0000000a;
+}
+.um-stage__group--style svg {
+  --switch-card: var(--card);
+}
+
+.um-stage__btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-subtle);
+  cursor: pointer;
+  transition: background-color 0.14s, color 0.14s;
+}
+.um-stage__btn:hover {
+  color: var(--text);
+}
+.um-stage__btn[aria-checked="true"] {
+  background: var(--muted-bg);
+  color: var(--text);
+}
+
+.um-stage :is(.um-stage__reset, .um-stage__btn):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text) 30%, transparent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .um-stage__look {
+    animation: none;
+  }
+}

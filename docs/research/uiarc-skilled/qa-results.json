@@ -1,0 +1,32 @@
+{
+  "results": [
+    "Workspace sidebar owns Skilled",
+    "No invented initial readings",
+    "Actual save operation recorded",
+    "Skill persists after reload",
+    "Details include provenance and instructions",
+    "Remote transfer disabled without backend",
+    "Bundle contains exact selected instruction and guardrails",
+    "Local installer preserves SKILL.md",
+    "Local installer emits guardrails",
+    "Offline receipt recorded without claiming model loading",
+    "Archive filter works",
+    "Search empty state works",
+    "Real GitHub raw import succeeds",
+    "GitHub scan includes supporting scripts and pins the captured commit",
+    "Form instructions alongside a GitHub source are preserved",
+    "Export and local installer preserve actual GitHub supporting scripts",
+    "Full-folder receipt validates supporting file hashes",
+    "Local SKILL.md keeps its exact contents and frontmatter",
+    "Importer rejects non-GitHub URL",
+    "Chart supports keyboard point reading",
+    "Chart can pause",
+    "Mobile has no horizontal overflow",
+    "Mobile sidebar opens",
+    "REST resource written to configured workspace",
+    "Mismatched receipt never confirms transfer",
+    "Matching receipt confirms transport only",
+    "No browser runtime errors"
+  ],
+  "errors": []
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { runHeavy } from "@/lib/pageSettled";
 import { ButtonArrow } from "@/components/stripe/icons";
 import { NEWS_ITEMS } from "./items";
 import type { SqueezyImagesCanvas } from "./SqueezyImagesCanvas";
@@ -35,22 +36,24 @@ export function SqueezyCarousel() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     let ro: ResizeObserver | null = null;
-    import("./SqueezyImagesCanvas").then(({ SqueezyImagesCanvas }) => {
-      if (disposed) return;
-      const inst = new SqueezyImagesCanvas(
-        canvas,
-        NEWS_ITEMS,
-        gotoNext,
-        reduced,
-      );
-      instance.current = inst;
-      let timer: number | undefined;
-      ro = new ResizeObserver(() => {
-        window.clearTimeout(timer);
-        timer = window.setTimeout(() => inst.onCanvasResize(), 150);
-      });
-      ro.observe(canvas);
-    });
+    import("./SqueezyImagesCanvas").then(({ SqueezyImagesCanvas }) =>
+      runHeavy(() => {
+        if (disposed) return;
+        const inst = new SqueezyImagesCanvas(
+          canvas,
+          NEWS_ITEMS,
+          gotoNext,
+          reduced,
+        );
+        instance.current = inst;
+        let timer: number | undefined;
+        ro = new ResizeObserver(() => {
+          window.clearTimeout(timer);
+          timer = window.setTimeout(() => inst.onCanvasResize(), 150);
+        });
+        ro.observe(canvas);
+      }),
+    );
     return () => {
       disposed = true;
       ro?.disconnect();

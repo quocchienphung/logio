@@ -47,6 +47,8 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
+ARG NEXT_PUBLIC_WORKSPACE_API_URL=""
+ENV NEXT_PUBLIC_WORKSPACE_API_URL=${NEXT_PUBLIC_WORKSPACE_API_URL}
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -82,6 +84,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+ENV LOGIO_DATA_DIR="/srv/logio-data"
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -94,6 +97,7 @@ COPY --from=builder --chown=node:node /app/public ./public
 # Set the correct permission for prerender cache
 RUN mkdir .next
 RUN chown node:node .next
+RUN mkdir -p /srv/logio-data && chown node:node /srv/logio-data
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing

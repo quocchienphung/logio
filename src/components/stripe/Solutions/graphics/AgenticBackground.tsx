@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { onTransitionSettled, runHeavy, transitionPlaying } from "@/lib/pageSettled";
 
 const FALLBACK = "/stripe/particles-w1028-46b1b0bb-mono.webp";
 
@@ -23,8 +24,8 @@ export function AgenticBackground() {
     let thought = false;
     const syncPaused = () => {
       if (!renderer) return;
-      renderer.paused = !intersecting || document.hidden || reduced.matches;
-      if (intersecting && !thought && !reduced.matches) {
+      renderer.paused = !intersecting || document.hidden || reduced.matches || transitionPlaying();
+      if (intersecting && !thought && !renderer.paused) {
         thought = true;
         renderer.think(2000, 1000);
       }
@@ -38,26 +39,30 @@ export function AgenticBackground() {
     );
     io.observe(root);
     document.addEventListener("visibilitychange", syncPaused);
+    const offSettled = onTransitionSettled(syncPaused);
 
     import("./agentic/AgenticParticlesRenderer")
-      .then(async ({ AgenticParticlesRenderer }) => {
-        if (disposed) return;
-        try {
-          renderer = new AgenticParticlesRenderer(canvas);
-          await renderer.init();
+      .then(({ AgenticParticlesRenderer }) =>
+        runHeavy(async () => {
           if (disposed) return;
-          syncPaused();
-          if (renderer.paused) renderer.drawOnce();
-        } catch {
-          setWebgl(false);
-        }
-      })
+          try {
+            renderer = new AgenticParticlesRenderer(canvas);
+            await renderer.init();
+            if (disposed) return;
+            syncPaused();
+            if (renderer.paused) renderer.drawOnce();
+          } catch {
+            setWebgl(false);
+          }
+        }),
+      )
       .catch(() => setWebgl(false));
 
     return () => {
       disposed = true;
       io.disconnect();
       document.removeEventListener("visibilitychange", syncPaused);
+      offSettled();
       renderer?.dispose();
     };
   }, []);

@@ -1,0 +1,212 @@
+155
+Get Pro
+Log In
+Components
+Trace Waterfall
+Trace Waterfall
+
+Where the time and money of an agent run go – every LLM call, tool call and sub-agent as a bar on a live timeline, with tokens and cost per step, the slowest call marked and branches that fold into their parent.
+
+Get Pro to install
+Preview
+Code
+Copy prompt
+MCP
+Copy
+Trace
+Launch the new pricing page by Friday
+Done
+DURATION
+1m 22s
+COST
+$0.49
+TOKENS
+99.7k
+LLM CALLS
+5
+TOOL CALLS
+14
+ERRORS
+1
+0s
+30s
+1m
+1m 30s
+SPAN
+Orchestrator
+Opus 5.5
+1m 22s · $0.49
+Plan the launch
+Opus 5.5
+6.9s · $0.12
+Researcher
+Sonnet 5.5
++5
+30s · $0.05
+web_search
+Linear pricing
+5.4s · $0.005
+web_search
+Notion pricing
+7.2s · $0.005
+Query plan usage
+Postgres
+3.5s
+Read G2 reviews
+120 pages
+13s · $0.02
+Summarize findings
+Gemini 3.8 Flash
+9.3s · $0.02
+Writer
+Sonnet 5.5
++4
+37s · $0.09
+Read brand voice
+Notion
+3.6s
+Read pricing frames
+Figma
+5.1s
+Draft plan copy
+Sonnet 5.5
+23s · $0.09
+SLOWEST
+Save draft
+Notion
+3.6s
+Coder
+GPT-6 Sol
+59s · $0.23
+Create branch
+GitHub
+2.1s
+Write pricing page
+GPT-6 Sol
+20s · $0.16
+Create prices
+Stripe
+3.0s
+Run checkout tests
+GitHub
+8.4s
+Fix coupon handling
+GPT-6 Sol
+7.8s · $0.07
+Run checkout tests
+retry
+7.2s
+Open pull request
+#482
+5.4s
+Update plans
+HubSpot
+3.3s
+Post to #launch
+Slack
+4.8s
+When to use
+Debugging an agent run: how long each step took, where the time and the money went, which call is slow
+A run view next to a chat or a log – every LLM call, tool call and sub-agent as a bar on one timeline
+Live runs, where you want to watch spans start, grow and finish while the agent works
+When not to use
+Who started whom, at a glance – use Agent Tree
+Several agents side by side over the last half hour – use Agent Lanes
+One agent's plan as a checklist – use Agent Plan
+Installation
+
+Trace Waterfall is a Pro component.
+
+Installation is part of Pro
+Get Pro to copy the code, install it with the CLI and use it in your projects.
+Unlock with Pro
+Usage
+Usage example is part of Pro
+Get Pro
+Examples
+Your own clock
+This example is part of Pro
+Get Pro
+Fold finished branches
+This example is part of Pro
+Get Pro
+Open a span from outside
+This example is part of Pro
+Get Pro
+Credits instead of dollars
+This example is part of Pro
+Get Pro
+API reference
+TraceWaterfall
+Prop	Type	Default	Description
+root	TraceSpan	–	{ id, name, kind, status, start, end?, detail?, icon?, model?, tokensIn?, tokensOut?, cost?, input?, output?, error?, children? } – the whole run as a tree, rebuilt as it goes on
+kind	"agent" | "subagent" | "llm" | "tool"	–	Per span – picks the bar's tint: agents slate, LLM calls violet, tool calls teal; failed spans are red
+status	"running" | "done" | "failed"	–	Per span – a running span has no end yet and grows into "now"
+start / end	number	–	Per span, in ms from the start of the run; leave end out while it runs
+detail	string	–	Per span – a few muted words after the name, e.g. the model or the query
+icon	ReactNode	–	Per span – a small mark, e.g. the model maker's or the tool's logo; defaults to a swatch in the kind's color
+cost / tokensIn / tokensOut	number	–	Per span, its own – agents add up their children, so don't pre-sum
+input / output / error	string	–	Per span – short previews shown in the details window
+now	number	–	The clock in ms from the start of the run – e.g. a faster one for a demo or a replay
+startedAt	number	–	When the run started (epoch ms) – without now, the component ticks its own clock from here while a span runs
+collapsed / defaultCollapsed	string[]	[]	Ids of folded spans, controlled or uncontrolled
+onCollapsedChange	(collapsed: string[]) => void	–	A span was folded or opened
+openId / defaultOpenId	string | null	null	The span whose details are open, controlled or uncontrolled
+onOpenChange	(id: string | null, span?: TraceSpan) => void	–	Details opened (with the span) or closed
+markSlowest	boolean	true	Marks the slowest finished LLM or tool call with a small "Slowest" tag
+minRange	number	10000	The shortest time the axis shows, in ms – it grows in round steps as the run gets longer
+formatCost	(amount: number) => string	dollars, e.g. "$0.042"	Formats every cost
+title	string	"Trace"	Heading of the bar; next to it the root's input (or name)
+className	string	–	Extra class on the root
+Keyboard interactions
+Tab	Moves into the waterfall (one row is in the tab order) and on to the details window
+ArrowUp or ArrowDown	Moves between the rows; Home and End jump to the first and the last
+ArrowRight	Opens a folded span, or moves to its first child
+ArrowLeft	Folds an open span, or moves to its parent
+Enter or Space	Opens or closes the details of the focused span
+Esc	Closes the details
+Accessibility
+The rows are a tree: every span is a treeitem with its level, labelled with name, kind, status, duration and cost; aria-expanded on spans with children
+Roving focus – only one row is in the tab order, so the waterfall is a single stop
+The details window is a dialog labelled with the span's name, with a close button; Esc closes it and returns focus to the row
+The run's state in the bar (Live, Done, Failed) is announced politely when it changes
+Ticks, grid lines and the "now" line are decoration and hidden from assistive tech
+Motion
+New spans slide in as rows and their bars grow from their start point
+A running span grows live, with a sheen and a soft glow at its leading edge; a "now" line moves across
+When the run outgrows the axis, the range glides to the next round value – ticks fade in and out where they are, bars rescale with it, nothing jumps
+Folding closes the children's rows smoothly and shows their calls as small marks on the parent bar; the chevron turns
+Rows that leave – a new run, removed data – close up a beat after each other, bottom first
+The details window opens with a soft scale and fade from the row's bar, and closes the same way
+Numbers that still climb – the duration, cost and tokens of a live run – carry a light shimmer
+With prefers-reduced-motion everything appears at once
+Responsive behavior
+Built on a container query: wide, the span tree sits on the left and the timeline on the right
+Under 560px each row stacks – name, duration and cost on one line, the bar across the whole width under it; the numbers wrap to three columns
+Under 360px the muted detail after each name drops out, so names keep their room
+Dark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme="dark"
+Notes for AI
+
+Give your coding assistant this summary instead of screenshots.
+
+Pass the whole tree every time something changes – ids keep rows in place, new ids slide in and grow
+start and end are ms from the run's start, not timestamps – subtract the run's start time from your span times
+cost and tokens are the span's own; agents and sub-agents add their children up
+A retried call is a new span with its own id – keep the failed one, it tells the story
+For a live run pass startedAt (the component ticks) or drive now yourself; once nothing runs, the axis settles on the last end
+Colors are variables on .ui-twc, e.g. --ui-twc-llm-bg / --ui-twc-llm-edge for LLM calls
+The chevron, warning and close icons are Hugeicons Free (MIT) – keep the credit comment when you copy the file
+Related
+Agent Tree
+Agents
+Who started whom – an orchestrator and its sub-agents as a live tree, with status, cost and time on every card, costs rolling up each branch, and branches that fold to one line
+Agent Lanes
+Agents
+Where every agent is right now – a live timeline with a lane per agent, tasks growing into “now”, hand-offs drawn between agents and approvals right on the block
+Agent Plan
+Agents
+An agent's step-by-step plan to review before it runs – rename, drag to reorder, remove or add steps, then watch each one run with live timers and retry from a failed step
+Agent Steering
+Agents
+Steer an agent while it works – queue a note for the next step and watch it glide into the plan when the agent picks it up, or interrupt right away
+affectUI · 56 components · 13 screens · 11 blocks · 24 illustrations · 8 motion effects

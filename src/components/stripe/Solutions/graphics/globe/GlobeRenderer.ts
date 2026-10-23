@@ -1574,9 +1574,12 @@ export class GlobeRenderer {
     this.globeGroup.updateMatrixWorld(true);
 
     loadSharedDots()
-      .then((dots) => {
+      .then(async (dots) => {
         if (this.disposed) return;
         this.applyDotsToScene(dots);
+        // link the programs in parallel before the first draw (see IphoneDuoRenderer)
+        await this.renderer.compileAsync(this.scene, this.camera).catch(() => {});
+        if (this.disposed) return;
         this.loaded = true;
         this.onLoadCallback?.();
         this.onLoadCallback = null;

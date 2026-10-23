@@ -1,0 +1,830 @@
+{
+  "date": "2026-10-21T19:27:32.806Z",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "White workspace frames the painting and its surrounding document without extra titles",
+      "ok": true
+    },
+    {
+      "name": "Painting agents dispatch decisively within 80ms, then settle on their work",
+      "ok": true
+    },
+    {
+      "name": "A separate bot laser engraves the exact inscription directly into the white surface below the painting",
+      "ok": true
+    },
+    {
+      "name": "Pausing freezes the laser contact, sparks and etched progress; reduced motion shows the finished signature",
+      "ok": true
+    },
+    {
+      "name": "One continuous color pass builds the painting over fifteen seconds",
+      "ok": true
+    },
+    {
+      "name": "Paint appears along actual cursor trajectories and stays absent ahead of the wands",
+      "ok": true
+    },
+    {
+      "name": "Autoplay opens browse at fifteen seconds and replaces the intro history entry",
+      "ok": true
+    },
+    {
+      "name": "Writers type, revise and follow their actual text carets, including after mobile reflow",
+      "ok": true
+    },
+    {
+      "name": "Provider presence follows the chosen agent and dims its teammates",
+      "ok": true
+    },
+    {
+      "name": "Comment popups stream in, collapse to pins and reopen on hover",
+      "ok": true
+    },
+    {
+      "name": "Reading and replying pauses the intro; Escape closes only the popup and resumes it",
+      "ok": true
+    },
+    {
+      "name": "Popup replies stay local and the check button resolves its comment",
+      "ok": true
+    },
+    {
+      "name": "Popup windows fit phones and small landscape screens and remain touch operable",
+      "ok": true
+    },
+    {
+      "name": "Painter tips travel steadily through the old phase boundaries, without teleporting",
+      "ok": true
+    },
+    {
+      "name": "All four popups stay near their annotation, visible and interactive without covering art or prose",
+      "ok": true
+    },
+    {
+      "name": "Streaming line wraps never slide a popup over newly written text",
+      "ok": true
+    },
+    {
+      "name": "The frame maker progressively reveals real photographed moulding with sealed corners",
+      "ok": true
+    },
+    {
+      "name": "Frame maker accelerates softly and rounds all four turns without hard direction changes",
+      "ok": true
+    },
+    {
+      "name": "An old pin replaces the active popup; moving to Reply keeps it open without stacking cards",
+      "ok": true
+    },
+    {
+      "name": "Phone, small phone, tablet, wide desktop and landscape keep all content within the white workspace",
+      "ok": true
+    },
+    {
+      "name": "Resizing during painting redraws its current reveal correctly",
+      "ok": true
+    },
+    {
+      "name": "Keyboard pause/resume and Escape work without visible controls",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion shows finished art without cursors, then continues at fifteen seconds",
+      "ok": true
+    },
+    {
+      "name": "An asset failure allows retry and recovery",
+      "ok": true
+    },
+    {
+      "name": "Homepage desktop/mobile Guide me links enter this intro; direct browse bypasses it",
+      "ok": true
+    },
+    {
+      "name": "WebKit paints distinct early and final pixels with the same document layout",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors or external runtime service requests occur",
+      "ok": true
+    }
+  ],
+  "evidence": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "root": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 900
+      },
+      "canvas": {
+        "x": 461.46875,
+        "y": 242.25,
+        "w": 517.046875,
+        "h": 409.5
+      },
+      "sheet": {
+        "x": 160,
+        "y": 111.5,
+        "w": 1120,
+        "h": 677
+      },
+      "background": "rgb(255, 255, 255)",
+      "scrollWidth": 1440,
+      "scrollHeight": 900
+    },
+    "blank": {
+      "white": 1,
+      "color": 0,
+      "hash": 1002196320,
+      "width": 517,
+      "height": 410
+    },
+    "dispatch": {
+      "leadOpacityAt300": 1,
+      "allLandedBy700": true
+    },
+    "engraving": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "box": {
+          "x": 581.984375,
+          "y": 682.234375,
+          "width": 276,
+          "height": 36
+        },
+        "frame": {
+          "x": 440.21875,
+          "y": 220.765625,
+          "width": 559.546875,
+          "height": 452.46875
+        },
+        "midpointProgress": 0.4595,
+        "tipError": 0.0056614987680682505
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "box": {
+          "x": 57,
+          "y": 349.296875,
+          "width": 276,
+          "height": 30
+        },
+        "frame": {
+          "x": 45,
+          "y": 98.703125,
+          "width": 300,
+          "height": 242.59375
+        },
+        "midpointProgress": 0.4595,
+        "tipError": 0.00712740965669027
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "box": {
+          "x": 78,
+          "y": 208.796875,
+          "width": 164,
+          "height": 30
+        },
+        "frame": {
+          "x": 78,
+          "y": 68.1875,
+          "width": 164,
+          "height": 132.609375
+        },
+        "midpointProgress": 0.4595,
+        "tipError": 0.001565629248432167
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "box": {
+          "x": 316.984375,
+          "y": 285.90625,
+          "width": 210,
+          "height": 36
+        },
+        "frame": {
+          "x": 316.984375,
+          "y": 107.09375,
+          "width": 210,
+          "height": 169.8125
+        },
+        "midpointProgress": 0.4633,
+        "tipError": 0.003918283522897834
+      }
+    ],
+    "finalDifference": {
+      "mean": 0,
+      "wrongFraction": 0
+    },
+    "stages": [
+      {
+        "time": 880,
+        "phase": "color",
+        "white": 0.987688098495212,
+        "color": 0.005471956224350205,
+        "hash": 1218139606,
+        "width": 517,
+        "height": 410
+      },
+      {
+        "time": 3680,
+        "phase": "color",
+        "white": 0.6313269493844049,
+        "color": 0.179890560875513,
+        "hash": 1480001581,
+        "width": 517,
+        "height": 410
+      },
+      {
+        "time": 7376,
+        "phase": "color",
+        "white": 0.3071135430916553,
+        "color": 0.34746922024623805,
+        "hash": 3272376578,
+        "width": 517,
+        "height": 410
+      },
+      {
+        "time": 10784,
+        "phase": "color",
+        "white": 0.06155950752393981,
+        "color": 0.4521203830369357,
+        "hash": 1021432511,
+        "width": 517,
+        "height": 410
+      },
+      {
+        "time": 13984,
+        "phase": "final",
+        "white": 0,
+        "color": 0.47674418604651164,
+        "hash": 3453272985,
+        "width": 517,
+        "height": 410
+      }
+    ],
+    "wandCorrelation": {
+      "changed": 176,
+      "near": 176,
+      "fraction": 1,
+      "farUntouched": 2184
+    },
+    "autoplayMs": 15162.60000000894,
+    "history": [
+      "http://localhost:3000/personalize?browse=1"
+    ],
+    "cursorSpeedPxPerMs": {
+      "median": 0.22878367432180224,
+      "maximum": 0.23985732022579548
+    },
+    "commentLayouts": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 177,
+          "y": 302.640625,
+          "right": 408.21875,
+          "bottom": 431.640625
+        },
+        "overlap": 0,
+        "targetGap": 12,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 1031.765625,
+          "y": 326.6875,
+          "right": 1263,
+          "bottom": 455.6875
+        },
+        "overlap": 0,
+        "targetGap": 32,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 1031.765625,
+          "y": 326.6875,
+          "right": 1263,
+          "bottom": 455.6875
+        },
+        "overlap": 0,
+        "targetGap": 12,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 177,
+          "y": 382.5,
+          "right": 408.21875,
+          "bottom": 511.5
+        },
+        "overlap": 0,
+        "targetGap": 32,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 33,
+          "y": 407.296875,
+          "right": 357,
+          "bottom": 540.296875
+        },
+        "overlap": 0,
+        "targetGap": 39,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 33,
+          "y": 407.296875,
+          "right": 357,
+          "bottom": 540.296875
+        },
+        "overlap": 0,
+        "targetGap": 66,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 33,
+          "y": 407.296875,
+          "right": 357,
+          "bottom": 540.296875
+        },
+        "overlap": 0,
+        "targetGap": 39,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 33,
+          "y": 407.296875,
+          "right": 357,
+          "bottom": 540.296875
+        },
+        "overlap": 0,
+        "targetGap": 66,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 27,
+          "y": 258.796875,
+          "right": 293,
+          "bottom": 361.796875
+        },
+        "overlap": 0,
+        "targetGap": 25,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 27,
+          "y": 258.140625,
+          "right": 293,
+          "bottom": 361.140625
+        },
+        "overlap": 0,
+        "targetGap": 58,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 27,
+          "y": 258.796875,
+          "right": 293,
+          "bottom": 361.796875
+        },
+        "overlap": 0,
+        "targetGap": 25,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 27,
+          "y": 253.796875,
+          "right": 293,
+          "bottom": 356.796875
+        },
+        "overlap": 0,
+        "targetGap": 58,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Researcher",
+        "card": {
+          "x": 11,
+          "y": 173.5,
+          "right": 259.84375,
+          "bottom": 276.5
+        },
+        "overlap": 0,
+        "targetGap": 12,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Colorist",
+        "card": {
+          "x": 584.140625,
+          "y": 180.25,
+          "right": 833,
+          "bottom": 283.25
+        },
+        "overlap": 0,
+        "targetGap": 57.15625,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Writer",
+        "card": {
+          "x": 584.140625,
+          "y": 174.65625,
+          "right": 833,
+          "bottom": 277.65625
+        },
+        "overlap": 0,
+        "targetGap": 12,
+        "insideDocument": true,
+        "replyUncovered": true
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "agent": "Frame maker",
+        "card": {
+          "x": 11,
+          "y": 175.8125,
+          "right": 259.84375,
+          "bottom": 278.8125
+        },
+        "overlap": 0,
+        "targetGap": 57.140625,
+        "insideDocument": true,
+        "replyUncovered": true
+      }
+    ],
+    "maximumStreamingOverlap": 0,
+    "framing": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 3000,
+        "paintedFraction": 0.09444444444444444,
+        "progress": 0.0631
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 6500,
+        "paintedFraction": 0.4666666666666667,
+        "progress": 0.4329
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 10500,
+        "paintedFraction": 0.9277777777777778,
+        "progress": 0.896
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "at": 13200,
+        "paintedFraction": 1,
+        "progress": 1
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "cornerSamples": [
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 3000,
+        "paintedFraction": 0.09444444444444444,
+        "progress": 0.0631
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 6500,
+        "paintedFraction": 0.4666666666666667,
+        "progress": 0.4329
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 10500,
+        "paintedFraction": 0.9277777777777778,
+        "progress": 0.896
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "at": 13200,
+        "paintedFraction": 1,
+        "progress": 1
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "cornerSamples": [
+          9,
+          9,
+          9,
+          9
+        ]
+      }
+    ],
+    "frameMotion": {
+      "maximumSpeed": 0.24624999999999986,
+      "maximumTurnDegrees": 25.613659738162788
+    },
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        "canvas": {
+          "x": 56.390625,
+          "y": 110.21875,
+          "w": 277.21875,
+          "h": 219.5625
+        },
+        "sheet": {
+          "x": 12,
+          "y": 33.703125,
+          "w": 366,
+          "h": 776.59375
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 390,
+        "scrollHeight": 844
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 568
+        },
+        "canvas": {
+          "x": 84.21875,
+          "y": 74.484375,
+          "w": 151.5625,
+          "h": 120.015625
+        },
+        "sheet": {
+          "x": 10,
+          "y": 15.1875,
+          "w": 300,
+          "h": 537.609375
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 320,
+        "scrollHeight": 568
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 1024
+        },
+        "canvas": {
+          "x": 226.90625,
+          "y": 179.578125,
+          "w": 314.1875,
+          "h": 248.84375
+        },
+        "sheet": {
+          "x": 74,
+          "y": 97.53125,
+          "w": 620,
+          "h": 828.9375
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 768,
+        "scrollHeight": 1024
+      },
+      {
+        "width": 1280,
+        "height": 800,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "canvas": {
+          "x": 400.59375,
+          "y": 207.375,
+          "w": 478.796875,
+          "h": 379.234375
+        },
+        "sheet": {
+          "x": 130,
+          "y": 77.5,
+          "w": 1020,
+          "h": 645
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 1280,
+        "scrollHeight": 800
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 1080
+        },
+        "canvas": {
+          "x": 701.46875,
+          "y": 332.25,
+          "w": 517.046875,
+          "h": 409.5
+        },
+        "sheet": {
+          "x": 400,
+          "y": 201.5,
+          "w": 1120,
+          "h": 677
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 1920,
+        "scrollHeight": 1080
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "root": {
+          "x": 0,
+          "y": 0,
+          "w": 844,
+          "h": 390
+        },
+        "canvas": {
+          "x": 324.953125,
+          "y": 115.15625,
+          "w": 194.0625,
+          "h": 153.6875
+        },
+        "sheet": {
+          "x": 10,
+          "y": 50.09375,
+          "w": 824,
+          "h": 289.8125
+        },
+        "background": "rgb(255, 255, 255)",
+        "scrollWidth": 844,
+        "scrollHeight": 390
+      }
+    ]
+  },
+  "errors": [],
+  "externalOrigins": []
+}

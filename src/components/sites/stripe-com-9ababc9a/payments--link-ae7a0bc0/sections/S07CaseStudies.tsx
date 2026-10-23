@@ -109,7 +109,7 @@ export function S07CaseStudies() {
                                           </g>
                                         </svg>
                                         {" "}
-                                        <a className="Link ListItem__label" href="https://link.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__openai__link">
+                                        <a className="Link ListItem__label" href="/unavailable/stripe/link.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__openai__link">
                                           {"Link"}
                                         </a>
                                       </li>
@@ -170,7 +170,7 @@ export function S07CaseStudies() {
                                           {", VP of Product and Partnerships, OpenAI "}
                                         </footer>
                                       </blockquote>
-                                      <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/newsroom/news/stripe-and-openai" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_openai_testimonial_cta">
+                                      <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/newsroom/news/stripe-and-openai" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_openai_testimonial_cta">
                                         {"Read more"}
                                         <span className="nobr">
                                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -265,7 +265,7 @@ export function S07CaseStudies() {
                                           </g>
                                         </svg>
                                         {" "}
-                                        <a className="Link ListItem__label" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__kickstarter__connect">
+                                        <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__kickstarter__connect">
                                           {"Connect"}
                                         </a>
                                       </li>
@@ -277,7 +277,7 @@ export function S07CaseStudies() {
                                           </g>
                                         </svg>
                                         {" "}
-                                        <a className="Link ListItem__label" href="https://link.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__kickstarter__link">
+                                        <a className="Link ListItem__label" href="/unavailable/stripe/link.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__kickstarter__link">
                                           {"Link"}
                                         </a>
                                       </li>
@@ -301,7 +301,7 @@ export function S07CaseStudies() {
                                           </g>
                                         </svg>
                                         {" "}
-                                        <a className="Link ListItem__label" href="https://stripe.com/radar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__kickstarter__radar">
+                                        <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/radar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="case_studies__kickstarter__radar">
                                           {"Radar"}
                                         </a>
                                       </li>
@@ -326,7 +326,7 @@ export function S07CaseStudies() {
                                           {", Former Head of Revenue Accounting and Operations "}
                                         </footer>
                                       </blockquote>
-                                      <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/kickstarter" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_case_study_kickstarter">
+                                      <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/kickstarter" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_case_study_kickstarter">
                                         {"Read more"}
                                         <span className="nobr">
                                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

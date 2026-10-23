@@ -1,0 +1,212 @@
+{
+  "base": "http://localhost:3000",
+  "backend": "Intercepted HTTP fixtures only; no live backend contacted",
+  "passed": [
+    "No backend: draft persists after Send and reload; no fabricated reply",
+    "Source model/plugin/folder menus and created folder persist in browser",
+    "Shift+Enter inserts newline, Enter submits, Invite opens Members settings",
+    "Mobile composer and top-layer menus remain inside viewport",
+    "Real HTTP contract: authenticated upload and send payload, failed retry is idempotent",
+    "Reload restores server history, delete removes the saved conversation",
+    "Stop invokes backend cancellation and ignores a late response",
+    "Server integrations return connection status; explicit Connect opens authorization",
+    "Workspace switch isolates composer preferences, history and uploaded files",
+    "New chat aborts initial restored-thread GET; delayed old content cannot overwrite it",
+    "Browser runtime has no uncaught errors"
+  ],
+  "failures": [],
+  "runtimeErrors": [],
+  "mockRequests": [
+    {
+      "path": "account/workspaces",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/companies",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "account/profile",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "account/preferences",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/command-settings",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/views",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/favorites",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/checklist",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/folders",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/threads",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/attachments",
+      "method": "POST",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/messages",
+      "method": "POST",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/messages",
+      "method": "POST",
+      "auth": "session"
+    },
+    {
+      "path": "account/workspaces",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/companies",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "account/profile",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "account/preferences",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/command-settings",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/views",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/favorites",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/checklist",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/folders",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/threads",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/threads/3ce13a87-38c3-4f04-8c8b-ff3ef85c9355",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/threads",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/threads/3ce13a87-38c3-4f04-8c8b-ff3ef85c9355",
+      "method": "DELETE",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/messages",
+      "method": "POST",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/threads/3619f260-eea8-48e9-83bc-3903eabefb40/requests/52a3a2a1-ad74-465a-9da9-989d00b4ef0c/cancel",
+      "method": "POST",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/integrations",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/integrations/drive/connect",
+      "method": "POST",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/personal/folders",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/personal/companies",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/personal/command-settings",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/personal/views",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/personal/favorites",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/personal/checklist",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/personal/assistant/threads",
+      "method": "GET",
+      "auth": "session"
+    },
+    {
+      "path": "workspaces/acme/assistant/threads",
+      "method": "GET",
+      "auth": "session"
+    }
+  ],
+  "completedAt": "2026-10-23T08:47:54.861Z"
+}

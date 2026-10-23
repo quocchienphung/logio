@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-21T19:42:34.360Z",
+  "base": "http://localhost:3012",
+  "cases": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "cpuThrottle": 1,
+      "engine": "WebKit",
+      "frames": 443,
+      "callbackMs": {
+        "p50": 1,
+        "p95": 2,
+        "p99": 2.000000000001819
+      },
+      "intervalMs": {
+        "p50": 31,
+        "p95": 36,
+        "over25ms": 410
+      },
+      "phases": {
+        "painting": {
+          "p50": 1,
+          "p95": 1.0000000000009095,
+          "p99": 2.0000000000004547
+        },
+        "laser": {
+          "p50": 2,
+          "p95": 2.000000000001819,
+          "p99": 2.999999999998181
+        }
+      },
+      "metrics": {},
+      "longTasks": []
+    },
+    {
+      "name": "phone-4x",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 3,
+      "cpuThrottle": 1,
+      "engine": "WebKit",
+      "frames": 159,
+      "callbackMs": {
+        "p50": 1,
+        "p95": 2,
+        "p99": 2.000000000001819
+      },
+      "intervalMs": {
+        "p50": 84,
+        "p95": 98,
+        "over25ms": 158
+      },
+      "phases": {
+        "painting": {
+          "p50": 1,
+          "p95": 2,
+          "p99": 2.000000000001819
+        },
+        "laser": {
+          "p50": 2,
+          "p95": 2.000000000001819,
+          "p99": 3
+        }
+      },
+      "metrics": {},
+      "longTasks": []
+    }
+  ],
+  "note": "Local Chromium measurements; 4x CPU throttling is not a physical iPhone or proof of 120 Hz presentation."
+}

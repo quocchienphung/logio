@@ -1,0 +1,21 @@
+{
+  "passed": [
+    "chromium: Every inactive row selects on first tap; rapid taps keep the last choice",
+    "chromium: List drag selects rows in both directions without scrolling or navigating",
+    "chromium: Long horizontal drag steps once, suppresses its click and permits an immediate fresh tap",
+    "chromium: Horizontal swipes work over preview; bounds stay clamped",
+    "chromium: Canceled touch does not open a workspace; the next tap still works",
+    "chromium: Live text remains editable; switching previews preserves its draft",
+    "chromium: Keyboard and mouse navigation work immediately after a touch drag",
+    "chromium: Vertical swipes outside the list retain native page scrolling",
+    "webkit: Every inactive row selects on first tap; rapid taps keep the last choice",
+    "webkit: List drag selects rows in both directions without scrolling or navigating",
+    "webkit: Long horizontal drag steps once, suppresses its click and permits an immediate fresh tap",
+    "webkit: Horizontal swipes work over preview; bounds stay clamped",
+    "webkit: Canceled touch does not open a workspace; the next tap still works",
+    "webkit: Live text remains editable; switching previews preserves its draft",
+    "webkit: Keyboard and mouse navigation work immediately after a touch drag"
+  ],
+  "errors": [],
+  "webkitDrags": "DOM pointer events; native taps"
+}

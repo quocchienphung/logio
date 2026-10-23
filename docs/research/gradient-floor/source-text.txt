@@ -1,0 +1,224 @@
+affectUI
+⌘
+K
+Library
+Docs
+Pricing
+Style
+Clean
+Components
+54
+AI Answer
+Chat Composer
+Thinking State
+Writing Assistant
+Thinking Loader
+Combobox
+Command Menu
+Date Range Picker
+Dropzone
+OTP Input
+Segmented Control
+Stepper Form
+Toaster
+Usage Meter
+Agent Inbox
+Agent Lanes
+Agent Steering
+Agent Tree
+Autonomy Dial
+Cited Answer
+Compact Breakdown
+Context Window
+Delegate Board
+Experiment Card
+Integration Picker
+Integration Settings
+KPI Chart
+Memory Panel
+Message Actions
+Model Picker
+Permission Request
+Profile Menu
+Project Card
+Prompt Library
+Tips Panel
+Tool Call Card
+Approval Card
+Breakdown Chart
+Button
+Data Table
+Filter Menu
+Reaction Bar
+Smart Recommendation
+Agent Plan
+Billing Schedule
+Change Summary
+Comments Panel
+Email Draft
+Progress Tracker
+Comment Thread
+Inline Diff
+Setup Guide
+Decision Inbox
+Notification Stack
+Screens
+13
+App Shell Flat
+App Shell Inset
+Assistant Home
+Folders
+Folder
+Integrations
+Agent Chat
+CRM
+Analytics
+Agent Run
+Settings & Billing
+Onboarding
+Evals
+Blocks
+11
+Client Context
+Invoice & Credit Note
+Logo Marquee
+Metrics Dashboard
+Pricing Plans
+Task Board
+Testimonial Wall
+AI Workspace
+App Directory
+KPI Board
+Agent Gallery
+Illustrations
+24
+Cover Flow
+Frost Cloud
+Glow Cloud
+Glow Keyboard
+Integration Beam
+Logo Cluster
+Model Wheel
+Project Flow
+DACH Region
+Empty Calendar
+Integration Flow
+Voice Orb
+Tab Overload
+World Map Continental
+Ghosted Chat
+Lead Sourcing
+Enrichment Orbit
+Outreach Branches
+Glass Folder
+Side Folder
+Team Invite
+Layer Stack
+Agent Team
+Integration Grid
+Motion
+8
+Blur Crossfade
+Gradient Floor
+Gradient Text
+Grid Background
+Number Ticker
+Shimmer Loader
+Text Reveal
+Tilt Card
+127
+Get Pro
+Log In
+Motion
+Gradient Floor
+Gradient Floor
+
+A blurred colour gradient that glows up from the bottom edge – two layers that drift and morph.
+
+Get Pro to install
+Preview
+Code
+Copy prompt
+MCP
+Copy
+When to use
+Hero sections, AI features or call-to-action blocks that need a warm, living backdrop
+Behind a chat input or a prompt, to make it feel like the start of something
+When not to use
+Behind long body text – the bright floor competes with small type
+Several floors on one screen – each one runs its own animation
+Installation
+
+Gradient Floor is a Pro component.
+
+Installation is part of Pro
+Get Pro to copy the code, install it with the CLI and use it in your projects.
+Unlock with Pro
+Usage
+Usage example is part of Pro
+Get Pro
+Examples
+Own colours, slower
+This example is part of Pro
+Get Pro
+API reference
+GradientFloor
+Prop	Type	Default	Description
+children	ReactNode	–	Content rendered above the floor
+colors	[string, string, string]	["#FF7700", "#FF0055", "#0073FF"]	Gradient from the crest down
+speed	number	3	Seconds per morph loop; 0 keeps the shape still
+className	string	–	Extra class on the root, e.g. for height or rounded corners
+Accessibility
+The floor layers are hidden from screen readers; only your children are announced
+Keep text above the bright part of the floor at a readable contrast
+Motion
+Two blurred layers – colour and a white plus-lighter layer – whose peaks and valleys rise and fall against each other
+Both layers drift sideways on the same beat, the light one a little less
+Runs only while on screen; with prefers-reduced-motion the floor stays still
+Responsive behavior
+Scales with the width of its container and stays anchored to the bottom edge – give the root a height
+Set the background with --ui-gf-bg (default #fafafa, dark mode #111113)
+Performance
+The morph runs in one requestAnimationFrame loop and pauses as soon as the floor leaves the screen
+Related
+Glow Keyboard
+Product scenes
+AI chat input that types itself over a glass keyboard – every key press sends a wave up the gradient floor
+Grid Background
+Backgrounds
+A fine line grid that drifts slowly behind your content and fades out towards the edges
+affectUI · 54 components · 13 screens · 11 blocks · 24 illustrations · 8 motion effects
+affectUI
+
+Agent-ready React UI for AI products – one file each, no dependencies.
+
+Site
+Home
+Components
+Screens
+Blocks
+Illustrations
+Motion
+Pricing
+Docs
+Introduction
+Installation
+Accessibility
+Legal & Account
+Account
+License
+Terms
+Privacy
+Refund
+Imprint
+Cookie settings
+Contact
+
+Created by Flo
+
+Cookies
+
+With your OK we use Google Analytics and the Meta pixel to see how the site is used and to measure our ads. You can change this any time under “Cookie settings” in the footer. Privacy
+
+Decline
+Accept

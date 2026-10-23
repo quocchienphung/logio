@@ -1,0 +1,267 @@
+Components
+Realtime stream
+Realtime stream
+Pro
+
+A live line that scrolls at 60fps as readings arrive, holds still on hover to read, and pops a marker on every anomaly.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Checkout API
+
+p95 latency, simulated feed
+
+124
+ms
+
+Live
+, pause
+
+Checkout API p95 latency, latest 20 readings
+Time	Value	Note
+09:20:11	142 ms	
+09:20:11	135 ms	
+09:20:12	127 ms	
+09:20:12	129 ms	
+09:20:13	130 ms	
+09:20:13	129 ms	
+09:20:14	131 ms	
+09:20:14	129 ms	
+09:20:15	128 ms	
+09:20:15	127 ms	
+09:20:16	125 ms	
+09:20:16	122 ms	
+09:20:17	127 ms	
+09:20:17	130 ms	
+09:20:18	127 ms	
+09:20:18	125 ms	
+09:20:19	120 ms	
+09:20:19	124 ms	
+09:20:20	120 ms	
+09:20:20	125 ms	
+When to use
+Live monitoring panels and status pages.
+A hero on an infrastructure or observability page where motion shows the system is alive.
+When not to use
+Use line-chart for static time series.
+Use brush-chart for long histories people zoom into.
+Use sparkline for a tiny trend inside a stat.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Realtime stream is part of Arc Pro
+Pro
+
+The preview is open to everyone. Pro members get the source, the install command, and updates for every Pro component.
+
+Get Arc Pro
+Sign in
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { RealtimeStream, type StreamPoint } from "@/components/arc/realtime-stream/realtime-stream";
+2
+ 
+3
+export function Latency({ socket }: { socket: WebSocket }) {
+4
+  const [points, setPoints] = useState<StreamPoint[]>([]);
+5
+  useEffect(() => {
+6
+    const onMessage = (event: MessageEvent) => {
+7
+      const { t, p95 } = JSON.parse(event.data);
+8
+      setPoints(list => [...list.slice(-200), { t, value: p95, anomaly: p95 > 300 ? "Spike" : undefined }]);
+9
+    };
+10
+    socket.addEventListener("message", onMessage);
+11
+    return () => socket.removeEventListener("message", onMessage);
+12
+  }, [socket]);
+13
+  return <RealtimeStream points={points} label="p95 latency" unit="ms" interval={500} />;
+14
+}
+API reference
+RealtimeStream
+
+A live line chart on a canvas that scrolls continuously at the display rate. It draws one interval behind the newest reading so each point slides in, eases its value axis, pops a marker for anomalies, and holds still on hover so a point can be read while new ones queue.
+
+Prop
+Type
+Default
+Description
+points
+Required
+StreamPoint[]
+–
+Append-only feed in ascending time: { t, value, anomaly? }. A string anomaly becomes the marker tag.
+label
+Required
+string
+–
+What is measured. Names the chart, the current value, and the table.
+unit
+string
+""
+Unit after values, such as "ms".
+windowMs
+number
+30000
+Visible span of time.
+interval
+number
+1000
+Typical time between points. The view trails the newest point by this much.
+height
+number
+200
+Plot height in pixels.
+formatValue
+(value: number) => string
+–
+Formats values in the readout, tooltip, and table.
+formatTime
+(t: number) => string
+HH:MM:SS
+Formats times in the tooltip and table.
+paused
+boolean
+–
+Controlled pause.
+defaultPaused
+boolean
+false
+Initial pause when uncontrolled.
+onPausedChange
+(paused: boolean) => void
+–
+Called when the status button or Space toggles the pause.
+pauseOnHover
+boolean
+true
+Holds the view while the pointer is over the plot.
+min
+number
+–
+Fixed bottom of the value axis. Leave it out to follow the data.
+max
+number
+–
+Fixed top of the value axis.
+emptyLabel
+string
+"Waiting for data"
+Shown before the first point.
+ref
+Ref<HTMLElement>
+–
+Forwarded to the figure.
+className
+string
+–
+Extra class on the figure.
+Keyboard interactions
+Tab
+Focuses the plot, holds the view, and reads the newest visible point.
+ArrowLeft
+or
+ArrowRight
+Previous or next point.
+PageUp
+or
+PageDown
+Ten points back or forward.
+Home
+or
+End
+Oldest or newest visible point.
+Space
+or
+Enter
+Pauses or resumes the stream.
+Escape
+Clears the reading and resumes.
+Accessibility
+The current value is text with an accessible name; the rolling digits are aria-hidden.
+The status button is a toggle with aria-pressed and shows live or paused with a shape and a label, never colour alone.
+Anomalies are announced once in a polite live region as they arrive; point readings are announced as the keyboard moves.
+A visually hidden table lists the latest twenty readings with their notes.
+Motion
+The line scrolls continuously at the display rate; the head interpolates between readings, so new points slide in rather than pop.
+The value axis eases toward the visible range, so gridlines slide instead of jumping.
+Anomaly markers and tags pop in with one overshoot as the head reaches them.
+Resuming glides from the held view back to live.
+Reduced motion stops the scroll: the chart redraws only when a reading arrives, without interpolation or pops.
+Responsive behavior
+The canvas fills its container at the device pixel ratio and redraws on resize.
+Time labels thin out as the plot narrows.
+Touch reads points with a press and drag, which also holds the view.
+Performance
+One canvas, one requestAnimationFrame loop, stopped off screen and in hidden tabs.
+Only points inside the window are drawn, found by binary search.
+Theme tokens are resolved from hidden probes a few times a second, not every frame.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Choose it for one live measure where the last seconds or minutes matter: latency, throughput, queue depth, active users.
+Set interval to the feed's cadence and windowMs to a few dozen points; trim the array to a few windows.
+Flag anomalies on the data itself with a short tag; the chart does not detect them.
+For history or several series, use line-chart or brush-chart instead.
+/components/realtime-stream/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Line chart
+Component
+A multi-series line chart with a gliding crosshair, legend toggles, and paths that morph between ranges.
+Brush chart
+Component
+A dense time series with an overview strip: drag a window to zoom, resize it by its handles, and read events in place.
+Sparkline
+Component
+Show a compact trend beside a value.
+Animated counter
+Component
+Give changing totals a clear sense of movement.
+Previous
+Radar chart
+Next
+Race bar chart
+Arc · 182 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

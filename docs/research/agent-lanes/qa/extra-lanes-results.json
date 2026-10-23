@@ -1,0 +1,243 @@
+{
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "Hermes Agent and Ollama join as lanes 5 and 6 with real, sized marks",
+      "ok": true
+    },
+    {
+      "name": "The reference lanes are untouched; the new lanes carry the duplicated block style",
+      "ok": true
+    },
+    {
+      "name": "Tooltips of the new blocks show their summaries and stay inside the frame",
+      "ok": true
+    },
+    {
+      "name": "The approval dialog still works with six lanes",
+      "ok": true
+    },
+    {
+      "name": "Nothing external was requested and nothing errored",
+      "ok": true
+    },
+    {
+      "name": "320x640 small phone: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "360x740 phone: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "375x667 phone: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "390x844 phone: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "430x932 large phone: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "844x390 landscape: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "768x1024 tablet: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "1024x768 laptop: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "1440x900 desktop: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "1920x1080 wide: lanes fit the frame, never clip, and the whitespace above and below matches",
+      "ok": true
+    },
+    {
+      "name": "Both new lanes show on 390px phones and up; smaller phones show as many as fit",
+      "ok": true
+    },
+    {
+      "name": "?lanes=base keeps the reference's four lanes for the comparison script",
+      "ok": true
+    },
+    {
+      "name": "chromium: a native tap on a new block opens its details without leaving CRM",
+      "ok": true
+    },
+    {
+      "name": "webkit: a native tap on a new block opens its details without leaving CRM",
+      "ok": true
+    }
+  ],
+  "fitted": {
+    "320x640 small phone": {
+      "frame": [
+        280.8125,
+        296.328125
+      ],
+      "card": [
+        280.8125,
+        279
+      ],
+      "above": 8.65625,
+      "below": 8.671875,
+      "tight": false,
+      "agents": 4,
+      "svgs": 4,
+      "clipped": false
+    },
+    "360x740 phone": {
+      "frame": [
+        319.8125,
+        337.484375
+      ],
+      "card": [
+        319.8125,
+        327
+      ],
+      "above": 5.234375,
+      "below": 5.25,
+      "tight": false,
+      "agents": 5,
+      "svgs": 5,
+      "clipped": false
+    },
+    "375x667 phone": {
+      "frame": [
+        334.453125,
+        352.921875
+      ],
+      "card": [
+        334.453125,
+        327
+      ],
+      "above": 12.953125,
+      "below": 12.96875,
+      "tight": false,
+      "agents": 5,
+      "svgs": 5,
+      "clipped": false
+    },
+    "390x844 phone": {
+      "frame": [
+        349.0625,
+        368.34375
+      ],
+      "card": [
+        349.0625,
+        361
+      ],
+      "above": 3.671875,
+      "below": 3.671875,
+      "tight": true,
+      "agents": 6,
+      "svgs": 6,
+      "clipped": false
+    },
+    "430x932 large phone": {
+      "frame": [
+        388.0625,
+        409.5
+      ],
+      "card": [
+        388.0625,
+        375
+      ],
+      "above": 17.25,
+      "below": 17.25,
+      "tight": false,
+      "agents": 6,
+      "svgs": 6,
+      "clipped": false
+    },
+    "844x390 landscape": {
+      "frame": [
+        320,
+        337.671875
+      ],
+      "card": [
+        320,
+        327
+      ],
+      "above": 5.328125,
+      "below": 5.34375,
+      "tight": false,
+      "agents": 5,
+      "svgs": 5,
+      "clipped": false
+    },
+    "768x1024 tablet": {
+      "frame": [
+        418.34375,
+        441.453125
+      ],
+      "card": [
+        418.34375,
+        375
+      ],
+      "above": 33.21875,
+      "below": 33.234375,
+      "tight": false,
+      "agents": 6,
+      "svgs": 6,
+      "clipped": false
+    },
+    "1024x768 laptop": {
+      "frame": [
+        366.109375,
+        386.328125
+      ],
+      "card": [
+        366.109375,
+        375
+      ],
+      "above": 5.65625,
+      "below": 5.671875,
+      "tight": false,
+      "agents": 6,
+      "svgs": 6,
+      "clipped": false
+    },
+    "1440x900 desktop": {
+      "frame": [
+        384,
+        405.21875
+      ],
+      "card": [
+        384,
+        375
+      ],
+      "above": 15.109375,
+      "below": 15.109375,
+      "tight": false,
+      "agents": 6,
+      "svgs": 6,
+      "clipped": false
+    },
+    "1920x1080 wide": {
+      "frame": [
+        384,
+        405.21875
+      ],
+      "card": [
+        384,
+        375
+      ],
+      "above": 15.109375,
+      "below": 15.109375,
+      "tight": false,
+      "agents": 6,
+      "svgs": 6,
+      "clipped": false
+    }
+  }
+}

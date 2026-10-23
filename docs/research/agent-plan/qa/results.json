@@ -1,0 +1,22 @@
+{
+  "passed": [
+    "The Sales frame shows the plan card (no photo) with the invoice steps, estimate, Draft badge and review controls",
+    "Hover reveals the grip and remove button; focus ring shows on keyboard focus",
+    "Rename: Enter or double-click opens a field, Enter saves, Esc cancels, blur saves, blank is ignored",
+    "Keyboard: arrows move focus, Alt+arrows move the step (focus follows, announced), Delete collapses it, Add step keeps the field ready",
+    "Remove button collapses the row and closes the gap; the last step can be removed too, then the plan cannot run",
+    "Dragging by the grip: the step follows the pointer, the others slide aside, and everything settles in the new order",
+    "Reorder glides (FLIP): a keyboard move animates every affected step instead of jumping",
+    "Cancel restores the plan as first given",
+    "Run: steps go pending -> active (live timer) -> done (took Ns), the rail fills, editing folds away, the footer shows Running · N of 5 with the elapsed time",
+    "The invoice engine: Draft until it is sent; the send fails once (\"Stopped · step 3 failed\"), the clock stops; Retry from here sends it (Unpaid), then payment is recorded (Paid), \"Done in Ns\"",
+    "Edited plans run as edited: removed steps are skipped, added steps run, the badge follows the effects",
+    "The card fills the Sales frame edge to edge, scales as one piece in every orientation, scrolls inside, and the frame keeps its ratio",
+    "Rotation re-lays the page out and the plan (and its progress) survives; the elapsed clock keeps running",
+    "Touch: tap Run plan, grip and remove are always visible, controls are touch-sized, fields do not zoom iOS; tapping inside never opens the page",
+    "Reduced motion: no ongoing animation (spinner, shimmer, drift stand still), the plan still runs",
+    "The selector: hover does not pull the frame away while someone types in the plan; the Sales row still opens the Invoice page; nothing leaves localhost"
+  ],
+  "errors": [],
+  "external": []
+}

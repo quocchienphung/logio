@@ -2016,7 +2016,7 @@ export function S01HowItWorks() {
                   <footer className="Copy__footer">
                     <section className="Copy variant--Detail">
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/docs/financial-connections" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="explore_the_docs">
+                        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/docs/financial-connections" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="explore_the_docs">
                           {"Explore the docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
