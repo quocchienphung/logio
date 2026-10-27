@@ -2,6 +2,7 @@
    map, so the star and the card keep their size when the map is zoomed). Above the page's floating cards (permission requests are 13), so a
    star whose block lies behind one can still be reached. */
 .pmap__sparks { position: absolute; inset: 0; z-index: 14; pointer-events: none; }
+.pmap[data-pushing] .pmap__sparks { transform: translateX(var(--push, 0px)); }
 .pmap__spark {
   --spark-a: #4285f4; --spark-b: #a56cf0; --spark-glow: rgba(110, 120, 255, .45);
   position: absolute; display: grid; place-items: center; width: 28px; height: 28px; margin: -14px 0 0 -14px; padding: 0; border: 0; border-radius: 50%;
@@ -27,7 +28,7 @@
 @keyframes spark-blink { 0%, 100% { transform: scale(.74) rotate(-8deg); opacity: .5; } 50% { transform: scale(1.12) rotate(8deg); opacity: 1; } }
 @keyframes spark-ring { 0% { opacity: .9; box-shadow: 0 0 0 0 var(--spark-glow); } 70%, 100% { opacity: 0; box-shadow: 0 0 0 9px var(--spark-glow); } }
 
-.pmap__notice { position: absolute; z-index: 1; pointer-events: auto; cursor: default; animation: notice-pop 200ms cubic-bezier(.22, 1, .36, 1) both; }
+.pmap__notice { position: absolute; z-index: 1; pointer-events: auto; cursor: default; animation: notice-pop 200ms cubic-bezier(.22, 1, .36, 1) backwards; }
 .pmap__notice[data-side="right"] { transform-origin: 0 0; --from: translateX(-8px); }
 .pmap__notice[data-side="left"] { transform-origin: 100% 0; --from: translateX(8px); }
 .pmap__notice[data-side="below"] { transform-origin: 50% 0; --from: translateY(-8px); }

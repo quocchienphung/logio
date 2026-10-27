@@ -1,4 +1,4 @@
-import { HOURS, OMEGA, PANEL_ABOVE_GAP, PANEL_BOTTOM_ROOM, PANEL_EDGE, PANEL_GAP, PANEL_HEIGHT, PANEL_LIFT, PANEL_WIDTH, COMPACT_WIDTH, flyPivotHeight } from "./terrain-constants.ts";
+import { CELLS, HOURS, OMEGA, PANEL_ABOVE_GAP, PANEL_BOTTOM_ROOM, PANEL_EDGE, PANEL_GAP, PANEL_HEIGHT, PANEL_LIFT, PANEL_WIDTH, COMPACT_WIDTH, flyPivotHeight } from "./terrain-constants.ts";
 import { TerrainCamera, type Mode } from "./terrain-camera.ts";
 import { Columns, type Rise } from "./terrain-columns.ts";
 import type { Tone } from "./terrain-colors.ts";
@@ -16,6 +16,8 @@ export interface EngineHandlers {
   /** The whole-week view was asked for from the keyboard. */
   onAnnounce(message: string): void;
 }
+/** Columns outside a focused group recede 70 % of the way to the platform; the fade runs on the split bar's own spring (14.5 rad/s) so the two move together. */
+const FOCUS_AMOUNT = 0.7, FOCUS_OMEGA = 14.5;
 export interface EngineOptions { canvas: HTMLCanvasElement; plot: HTMLElement; panel: HTMLElement | null; handlers: EngineHandlers }
 
 /**
@@ -49,6 +51,7 @@ export class TerrainEngine {
   private pendingData: { values: readonly number[]; tone: Tone; rise: Rise } | null = null;
   private panelX = new Spring(0, OMEGA.panel); private panelY = new Spring(0, OMEGA.panel);
   private panelOn = false;
+  private readonly focusMask = new Uint8Array(CELLS); private focus = new Spring(0, FOCUS_OMEGA);
   private cleanups: (() => void)[] = [];
 
   constructor(options: EngineOptions) {
@@ -81,6 +84,13 @@ export class TerrainEngine {
     this.camera.setMode(mode);
     this.columns.setFlat(mode === "top", this.reduced);
     if (this.reduced) this.camera.snap();
+    this.invalidate();
+  }
+  /** Light up a group of hours (the split bar's highlighted part): every other column fades back; `null` brings them all back. */
+  setFocus(cells: readonly number[] | null) {
+    if (cells) { this.focusMask.fill(0); for (const cell of cells) if (cell >= 0 && cell < CELLS) this.focusMask[cell] = 1; }
+    this.focus.target = cells ? 1 : 0;
+    if (this.reduced) this.focus.snap();
     this.invalidate();
   }
   /** The busiest hour: where keyboard focus starts. */
@@ -131,7 +141,7 @@ export class TerrainEngine {
     for (let ancestor: Element | null = this.plot; ancestor; ancestor = ancestor.parentElement) theme.observe(ancestor, { attributes: true, attributeFilter: ["class", "data-theme", "style"] });
     this.cleanups.push(() => theme.disconnect());
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const motionChanged = () => { this.reduced = motion.matches; this.camera.reduced = this.reduced; if (this.reduced) { this.columns.snap(); this.camera.snap(); } this.invalidate(); };
+    const motionChanged = () => { this.reduced = motion.matches; this.camera.reduced = this.reduced; if (this.reduced) { this.columns.snap(); this.camera.snap(); this.focus.snap(); } this.invalidate(); };
     motion.addEventListener("change", motionChanged); this.cleanups.push(() => motion.removeEventListener("change", motionChanged));
     this.reduced = motion.matches; this.camera.reduced = this.reduced;
     on(document, "visibilitychange", () => { if (!document.hidden) { this.last = 0; this.invalidate(); } });
@@ -175,15 +185,15 @@ export class TerrainEngine {
     if (this.disposed) return;
     const dt = this.last ? Math.min(0.05, (now - this.last) / 1000) : Math.min(0.034, Math.max(0, (now - this.wake) / 1000));
     this.last = now;
-    this.camera.step(dt); this.columns.step(dt);
+    this.camera.step(dt); this.columns.step(dt); this.focus.step(dt);
     // at rest to well under a pixel: land exactly on the targets, draw that last frame and sleep
     const done = this.settled();
-    if (done) { this.camera.snap(); this.columns.snap(); }
+    if (done) { this.camera.snap(); this.columns.snap(); this.focus.snap(); }
     this.paint(dt);
     if (done) this.last = 0; else this.invalidate();
   };
   private settled() {
-    return this.camera.settled && this.columns.settled && this.panelX.rests(0.05) && this.panelY.rests(0.05);
+    return this.camera.settled && this.columns.settled && this.panelX.rests(0.05) && this.panelY.rests(0.05) && this.focus.rests(0.004);
   }
   private paint(dt: number) {
     const ctx = this.ctx;
@@ -191,6 +201,7 @@ export class TerrainEngine {
     drawTerrain(ctx as unknown as Paint, {
       pose: this.camera.pose, size: { width: this.width, height: this.height }, theme: this.theme, tone: this.tone,
       heights: this.columns.shown, shares: this.columns.shares, highlight: this.highlightIndex, flight: this.camera.progress, compact: this.width < COMPACT_WIDTH,
+      dim: this.focus.value > 0.002 ? { mask: this.focusMask, amount: this.focus.value * FOCUS_AMOUNT } : null,
     }, this.scene);
     this.placePanel(dt);
   }

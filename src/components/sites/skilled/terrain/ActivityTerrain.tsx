@@ -4,7 +4,9 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { AnimatedNumber } from "./AnimatedNumber";
 import { Segmented } from "./Segmented";
+import { SplitBar } from "../split-bar/SplitBar";
 import { SAMPLE_WEEK } from "./sample-week.ts";
+import { GROUPING_LABELS, breakdownGroups, groupCells, groupOfCell, groupingsOf, hiddenSummary, maskedMetric, type GroupingId } from "./terrain-breakdown.ts";
 import { TerrainEngine, type HighlightSource } from "./terrain-engine.ts";
 import { rampColors } from "./terrain-colors.ts";
 import { HOURS } from "./terrain-constants.ts";
@@ -38,6 +40,10 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
   const [panelIndex, setPanelIndex] = useState<number | null>(null);
   const [flyIndex, setFlyIndex] = useState<number | null>(null);
   const [live, setLive] = useState("");
+  // the split bar under the terrain: how the week is split, what is switched off (it leaves the terrain), and the part the bar's own pointer lit
+  const [groupingChoice, setGroupingChoice] = useState<GroupingId>("day");
+  const [hidden, setHidden] = useState<string[]>([]);
+  const [focusId, setFocusId] = useState<string | null>(null);
   const plotRef = useRef<HTMLDivElement>(null), canvasRef = useRef<HTMLCanvasElement>(null), panelRef = useRef<HTMLDivElement>(null), engineRef = useRef<TerrainEngine | null>(null);
   const shown = useRef(false), dataKey = useRef("");
 
@@ -45,7 +51,12 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
   const hasOwn = workspace.metrics.operations.values.some(v => v > 0) || workspace.metrics.operations.previous.some(v => v > 0);
   const source: Source = choice ?? (hasOwn ? "workspace" : "sample");
   const week = source === "sample" ? SAMPLE_WEEK : workspace;
-  const metric = week.metrics[metricId];
+  const groupings = useMemo(() => groupingsOf(week), [week]);
+  const grouping: GroupingId = groupings.includes(groupingChoice) ? groupingChoice : "day";
+  const hiddenSet = useMemo(() => new Set(hidden), [hidden]);
+  const metric = useMemo(() => maskedMetric(week, metricId, grouping, hiddenSet), [week, metricId, grouping, hiddenSet]);
+  const splitSegments = useMemo(() => breakdownGroups(grouping, week, metricId), [grouping, week, metricId]);
+  const leftOut = hiddenSummary(grouping, hiddenSet);
   const summary = useMemo(() => summarize(metric), [metric]);
   const peakIndex = summary.peak?.index ?? null;
   const empty = source === "workspace" && !summary.hasData;
@@ -85,6 +96,13 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
   }, [metric, metricId, source]);
   useEffect(() => { engineRef.current?.setMode(mode); }, [mode]);
   useEffect(() => { engineRef.current?.setPeak(peakIndex); }, [peakIndex]);
+  // the part of the split bar under the pointer lights its hours up: every other column fades back
+  useEffect(() => {
+    const known = focusId !== null && splitSegments.some(segment => segment.id === focusId);
+    engineRef.current?.setFocus(known ? groupCells(grouping, week, metricId, focusId) : null);
+  }, [focusId, splitSegments, grouping, week, metricId]);
+  const changeGrouping = (value: GroupingId) => { setGroupingChoice(value); setHidden([]); setFocusId(null); };
+  const barHighlight = highlight ? groupOfCell(grouping, week, metricId, highlight.index) : null;
 
   // the sentence a screen reader hears for the highlighted hour (kept out of the engine: it knows only numbers)
   const spoken = useMemo(() => {
@@ -108,7 +126,7 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
             <h2 id={titleId}>The shape of your week</h2>
             <p>Hourly {METRIC_OPTIONS.map(option => option.label.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1")} for {week.rangeLabel}, in workspace time.</p>
           </div>
-          <Segmented label="Data" value={source} options={SOURCE_OPTIONS} onChange={value => { setChoice(value); setFlyIndex(null); }} />
+          <Segmented label="Data" value={source} options={SOURCE_OPTIONS} onChange={value => { setChoice(value); setFlyIndex(null); setHidden([]); setFocusId(null); }} />
         </header>
         <div className="at__toolbar">
           <Segmented label="Metric" value={metricId} options={METRIC_OPTIONS} onChange={setMetricId} />
@@ -149,7 +167,7 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
           </div>
           <aside className="at__stats" aria-label="Week summary">
             <div className="at__stat">
-              <p className="at__label">{metric.label} this week</p>
+              <p className="at__label">{metric.label} {leftOut ? "in view" : "this week"}</p>
               <p className="at__big"><AnimatedNumber text={formatCount(summary.total)} /></p>
               <span className="at__delta" data-tone={tone}>
                 <span className="at__deltaIcon" aria-hidden="true">{delta === null ? "–" : delta >= 0 ? "↗" : "↘"}</span>
@@ -175,6 +193,17 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
               <p className="at__sub">{busiest ? <><AnimatedNumber text={formatCount(busiest.total)} /> {unitOf(metric, busiest.total)}, <AnimatedNumber text={percent(busiest.workingShare)} /> in working hours</> : `No ${unit} yet`}</p>
             </div>
           </aside>
+        </div>
+        <div className="at__split">
+          <div className="at__splitTop">
+            <Segmented label="Split the week by" value={grouping} options={groupings.map(id => ({ value: id, label: GROUPING_LABELS[id] }))} onChange={changeGrouping} />
+            {leftOut && <p className="at__splitNote"><span>Left out of the terrain: {leftOut}.</span><button type="button" onClick={() => { setHidden([]); setFocusId(null); }}>Show all</button></p>}
+          </div>
+          <SplitBar
+            title="Where the week went" tone={metric.tone === "danger" ? "danger" : "neutral"}
+            description={`${metric.label} by ${grouping === "daypart" ? "time of day" : grouping}, ${week.rangeLabel}. Switch a part off to leave it out of the terrain.`}
+            segments={splitSegments} unit={metric.plural} totalLabel={leftOut ? "In view" : "This week"} emptyLabel="Nothing recorded this week yet"
+            hidden={hidden} onHiddenChange={setHidden} highlightId={barHighlight} onHighlightChange={setFocusId} />
         </div>
         <p className="at__sr" aria-live="polite">{spoken}</p>
         <div className="at__sr">

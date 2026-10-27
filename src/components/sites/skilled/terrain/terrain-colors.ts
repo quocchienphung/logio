@@ -28,5 +28,19 @@ export function topColor(t: number, tone: Tone, dark: boolean): [number, number,
 }
 export const rgb = (c: readonly [number, number, number], shade = 1) => `rgb(${clamp255(c[0] * shade)} ${clamp255(c[1] * shade)} ${clamp255(c[2] * shade)})`;
 
+/** `rgb(c, shade)` faded `t` (0..1) of the way to the platform colour `floor`: how columns outside a focused group recede. */
+export const rgbFaded = (c: readonly [number, number, number], shade: number, floor: readonly [number, number, number], t: number) =>
+  `rgb(${[0, 1, 2].map(i => clamp255(c[i] * shade * (1 - t) + floor[i] * t)).join(" ")})`;
+/** Channels of a css colour written `#rgb`, `#rrggbb`, `rgb(r g b)` or `rgb(r, g, b)` (the browser hands a custom property back as it was declared or as hex). */
+export const parseRgb = (css: string, fallback: readonly [number, number, number] = [249, 249, 249]): [number, number, number] => {
+  const text = css.trim(), hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(text);
+  if (hex) {
+    const digits = hex[1].length === 3 ? [...hex[1]].map(c => c + c).join("") : hex[1];
+    return [0, 2, 4].map(at => parseInt(digits.slice(at, at + 2), 16)) as [number, number, number];
+  }
+  const n = /^rgba?\(/i.test(text) ? text.match(/[\d.]+/g)?.slice(0, 3).map(Number) : undefined;
+  return n && n.length === 3 && n.every(Number.isFinite) ? [n[0], n[1], n[2]] : [fallback[0], fallback[1], fallback[2]];
+};
+
 /** The legend ramp's swatches, from "fewer" to "more": the same curve the columns use, shown at six steps. */
 export const rampColors = (tone: Tone, dark: boolean) => [0, 0.2, 0.4, 0.6, 0.8, 1].map(t => rgb(topColor(t, tone, dark)));

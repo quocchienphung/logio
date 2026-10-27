@@ -10,8 +10,12 @@ export interface MetricData {
   tone: "neutral" | "danger";
   values: number[]; previous: number[];
 }
-export interface WeekData { source: WeekSource; start: number; rangeLabel: string; metrics: Record<MetricId, MetricData> }
 export interface TerrainEvent { t: number; kind: "import" | "save" | "export" | "transfer"; outcome: "success" | "error" }
+export type ActionId = TerrainEvent["kind"];
+export const ACTION_IDS: readonly ActionId[] = ["import", "save", "export", "transfer"];
+export type ActionCells = Record<ActionId, Record<MetricId, { values: number[]; previous: number[] }>>;
+/** `byAction` is the same counts split by what was done; only the workspace's own week has it (the sample week is just numbers). */
+export interface WeekData { source: WeekSource; start: number; rangeLabel: string; metrics: Record<MetricId, MetricData>; byAction?: ActionCells }
 
 export const METRIC_IDS: readonly MetricId[] = ["operations", "deliveries", "errors"];
 export const DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
@@ -58,6 +62,8 @@ const emptyMetric = (id: MetricId): MetricData => ({
 export function buildWorkspaceWeek(events: readonly TerrainEvent[], now: number): WeekData {
   const start = weekStartOf(now);
   const metrics: Record<MetricId, MetricData> = { operations: emptyMetric("operations"), deliveries: emptyMetric("deliveries"), errors: emptyMetric("errors") };
+  const zeros = () => ({ values: new Array<number>(CELLS).fill(0), previous: new Array<number>(CELLS).fill(0) });
+  const byAction = Object.fromEntries(ACTION_IDS.map(id => [id, { operations: zeros(), deliveries: zeros(), errors: zeros() }])) as ActionCells;
   for (const event of events) {
     if (!Number.isFinite(event.t)) continue;
     for (const [offset, key] of [[0, "values"], [-7 * DAY_MS, "previous"]] as const) {
@@ -65,12 +71,14 @@ export function buildWorkspaceWeek(events: readonly TerrainEvent[], now: number)
       if (local < 0 || local >= 7 * DAY_MS) continue;
       const wall = new Date(event.t + WORKSPACE_OFFSET_MS), day = Math.floor(local / DAY_MS), hour = wall.getUTCHours();
       const cell = day * HOURS + hour;
+      const split = byAction[event.kind] as ActionCells[ActionId] | undefined;   // an unknown kind still counts in the totals, just not in a split
       metrics.operations[key][cell] += 1;
-      if (event.outcome === "error") metrics.errors[key][cell] += 1;
-      else if (event.kind === "export" || event.kind === "transfer") metrics.deliveries[key][cell] += 1;
+      if (split) split.operations[key][cell] += 1;
+      if (event.outcome === "error") { metrics.errors[key][cell] += 1; if (split) split.errors[key][cell] += 1; }
+      else if (event.kind === "export" || event.kind === "transfer") { metrics.deliveries[key][cell] += 1; if (split) split.deliveries[key][cell] += 1; }
     }
   }
-  return { source: "workspace", start, rangeLabel: rangeLabel(start), metrics };
+  return { source: "workspace", start, rangeLabel: rangeLabel(start), metrics, byAction };
 }
 
 export interface Peak { index: number; value: number; day: number; hour: number }

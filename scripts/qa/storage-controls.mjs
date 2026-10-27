@@ -78,10 +78,34 @@ try {
  await detail.getByRole('button',{name:'Delete document',exact:true}).click();
  await page.waitForTimeout(400);
  await detail.screenshot({path:`${out}/confirm-1440.png`});
- await detail.getByRole('button',{name:'Delete',exact:true}).click();
- await detail.waitFor({state:'hidden'});
+ // Delete is the Confirm morph in hold mode: a click does nothing, holding the confirm button for a second removes the document.
+ const vaultCount=()=>page.evaluate(()=>new Promise((resolve,reject)=>{const open=indexedDB.open('logio-knowledge-vault',1);open.onerror=()=>reject(open.error);open.onsuccess=()=>{const request=open.result.transaction('documents').objectStore('documents').count();request.onsuccess=()=>{open.result.close();resolve(request.result);};request.onerror=()=>reject(request.error);};}));
+ const hold=async(locator,ms=1200)=>{const box=await locator.boundingBox();await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.waitForTimeout(ms);await page.mouse.up();};
+ const vaultBefore=await vaultCount();
+ const rowNames=()=>page.locator('.stg-document-row .stg-file-name strong').allInnerTexts();
+ const orderBefore=await rowNames();
+ await detail.locator('.cm__confirm').click();
+ await page.waitForTimeout(300);
+ check('A quick click on Delete does not remove the document (hold mode)',await page.locator('.stg-document-row').count()===2 && await detail.locator('.cm[data-state="confirming"]').count()===1);
+ await hold(detail.locator('.cm__confirm'));
+ await detail.locator('.cm[data-state="done"]').waitFor();
  await page.waitForFunction(()=>document.querySelectorAll('.stg-document-row').length===1);
- check('Confirmation commits deletion of the selected original',await page.locator('.stg-document-row').count()===1);
+ check('Holding Delete removes the document from the library at once and the dialog shows Removed · Undo',await page.locator('.stg-document-row').count()===1 && await detail.getByRole('button',{name:'Undo',exact:true}).isVisible());
+ check('The original and its index stay in storage during the Undo window',await vaultCount()===vaultBefore);
+ await page.screenshot({path:`${out}/removed-undo-1440.png`});
+ await detail.getByRole('button',{name:'Undo',exact:true}).click();
+ await page.waitForFunction(()=>document.querySelectorAll('.stg-document-row').length===2);
+ check('Undo brings the document back in its old place, still readable',JSON.stringify(await rowNames())===JSON.stringify(orderBefore) && await detail.isVisible() && /Annual finance revenue/.test(await detail.locator('pre').innerText()));
+ await detail.locator('.cm[data-state="idle"]').waitFor();
+ await detail.getByRole('button',{name:'Delete document',exact:true}).click();
+ await page.waitForTimeout(400);
+ await hold(detail.locator('.cm__confirm'));
+ await detail.locator('.cm[data-state="done"]').waitFor();
+ await detail.waitFor({state:'hidden',timeout:14000});
+ await page.waitForFunction(()=>document.querySelectorAll('.stg-document-row').length===1);
+ check('After the Undo window the dialog closes and the removal is final',await page.locator('.stg-document-row').count()===1);
+ for(let i=0;i<32&&await vaultCount()>=vaultBefore;i++)await page.waitForTimeout(250);
+ check('Final removal deletes the original and its index from storage',await vaultCount()===vaultBefore-1);
  const desktopGeometry=await page.locator('.stg-split,.stg-split-trigger,.stg-expanding-group,.stg-floating-group,.stg-copy').evaluateAll(elements=>elements.map(e=>({class:e.className,rect:JSON.stringify(e.getBoundingClientRect()),font:getComputedStyle(e).font,radius:getComputedStyle(e).borderRadius,padding:getComputedStyle(e).padding})));
  await page.setViewportSize({width:390,height:844});
  await trigger.scrollIntoViewIfNeeded(); await trigger.click();
@@ -111,8 +135,8 @@ try {
  await finalRow.locator('.stg-file-name button').click();
  const darkDetail=page.getByRole('dialog',{name:'controls-sql.sql',exact:true});
  const darkCopy=darkDetail.getByRole('button',{name:'Copy fingerprint',exact:true});
- await darkCopy.click(); await page.waitForTimeout(700);
- const iconColors=await darkCopy.evaluate(e=>({button:getComputedStyle(e).color,stroke:getComputedStyle(e.querySelector('svg path:last-child')).stroke,opacity:getComputedStyle(e.querySelector('svg path:last-child')).opacity,width:getComputedStyle(e.querySelector('svg')).strokeWidth}));
+ // click and read inside the page, so the 2 s the copied state lasts is not eaten by Playwright's own round trips on a busy machine
+ const iconColors=await darkCopy.evaluate(async e=>{e.click();await new Promise(resolve=>setTimeout(resolve,700));const path=e.querySelector('svg path:last-child');return {button:getComputedStyle(e).color,stroke:getComputedStyle(path).stroke,opacity:getComputedStyle(path).opacity,width:getComputedStyle(e.querySelector('svg')).strokeWidth};});
  check('Copied icon retains visible currentColor stroke in dark mode',iconColors.stroke===iconColors.button && +iconColors.opacity>.8 && iconColors.width==='1.75px');
  await darkDetail.getByRole('button',{name:'Delete document',exact:true}).click();
  await page.waitForTimeout(400);

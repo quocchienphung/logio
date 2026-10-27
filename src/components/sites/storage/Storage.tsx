@@ -11,14 +11,24 @@ import { StorageOnboarding } from "./StorageOnboarding";
 import { StorageDropzone, type StorageDropzoneEntry } from "./StorageDropzone";
 import { StorageRun, type StorageRunStep, type StorageRunStatus } from "./StorageRun";
 import { StorageTreemap } from "./StorageTreemap";
-import { StorageActionButton, StorageButton, StorageButtonGroup, StorageConfirmMorph, StorageCopyButton, StorageExpandingButtonGroup, StorageFloatingButtonGroup, StorageIconMorph, StorageSplitButton } from "./StorageControls";
+import { StorageCategorySelect } from "./StorageCategorySelect";
+import { StorageButton, StorageButtonGroup, StorageCopyButton, StorageExpandingButtonGroup, StorageFloatingButtonGroup, StorageIconMorph, StorageSplitButton } from "./StorageControls";
+import { ActionButton } from "../skilled/ui/ActionButton";
+import { ConfirmMorph, type ConfirmPhase } from "../skilled/ui/ConfirmMorph";
+import { StorageDocumentEditor } from "./StorageDocumentEditor";
+import { applyDocumentEdit, draftOfDocument, restoreDocuments, withoutDocuments, type DocumentDraft, type Removed } from "./storage-edit";
+import { addPending, clearPending, duePending, readPending } from "./storage-purge";
 import { documentExtension, emptyStorage, formatStorageBytes, indexDocument, storageCategories, storageResource, validateDocument, type StorageCategory, type StorageDocument } from "./storage-model";
 import { extractDocument } from "./storage-extract";
 import { downloadBlob } from "./storage-vault";
 import { loadStorageIndex, loadStorageOriginal, removeStorageDocument, searchStorageDocuments, storeStorageDocument } from "./storage-transfer";
 import { persistStorage } from "./storage-persistence";
 import "./storage.css";
+import "./storage-edit.css";
 
+/** After a removal the originals stay in storage this long, so Undo can bring the documents back (the dialog's result shows Undo for 8 s of it). */
+const UNDO_MS = 10000;
+interface Trash { removed: Removed[]; backend: ReturnType<typeof useWorkspaceBackend>; workspaceId: string }
 interface QueueEntry extends StorageDropzoneEntry { file:File; category:StorageCategory }
 interface PreparedDocument { entryId:string; file:File; document:StorageDocument; text:string; chunks:string[] }
 const newSteps=():StorageRunStep[]=>[
@@ -60,17 +70,28 @@ export function Storage({workspaceId}:{workspaceId:string}) {
   const [notice,setNotice]=useState("");
   const [error,setError]=useState("");
   const [pendingSave,setPendingSave]=useState(false);
+  const [trash,setTrash]=useState<Trash|null>(null);
+  const [leftover,setLeftover]=useState<{ids:string[];backend:Trash["backend"];workspaceId:string}|null>(null);
+  const trashRef=useRef<Trash|null>(null),trashTimer=useRef<ReturnType<typeof setTimeout>|null>(null),finalizeRef=useRef<()=>Promise<void>>(async()=>{}),sawResult=useRef(false),purgeRef=useRef<(ids:string[],storageBackend:Trash["backend"],storageWorkspace:string)=>Promise<void>>(async()=>{});
   const controller=useRef<AbortController|null>(null),busy=useRef(false),mounted=useRef(true);
   const input=useRef<HTMLInputElement>(null),uploadPanel=useRef<HTMLDivElement>(null),reviewPanel=useRef<HTMLDivElement>(null);
   const reduce=useReducedMotion();
   const locked=status==="running"||status==="review";
   const documents=library.documents;
-  const detail=documents.find(d=>d.id===detailId);
+  // a document just removed keeps its dialog (and its Undo) until the removal becomes final
+  const detail=documents.find(d=>d.id===detailId)??trash?.removed.find(r=>r.document.id===detailId)?.document;
+  const detailRemoved=!!detail&&!documents.some(d=>d.id===detail.id);
   const query=search.toLocaleLowerCase().trim();
   const visible=useMemo(()=>documents.filter(d=>(filter==="All"||d.category===filter)&&(!query||`${d.name} ${d.category} ${d.excerpt} ${d.keywords.join(" ")}`.toLocaleLowerCase().includes(query)||contentMatches?.has(d.id))),[documents,filter,query,contentMatches]);
   const pending=queue.filter(q=>q.status==="pending"||q.status==="error");
   const indexed=documents.filter(d=>d.extraction==="indexed").length;
-  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;controller.current?.abort();};},[]);
+  useEffect(()=>{
+    mounted.current=true;
+    // leaving the page makes a pending removal final, so no original is left behind unreachable
+    const leave=()=>void finalizeRef.current();
+    window.addEventListener("pagehide",leave);
+    return()=>{mounted.current=false;controller.current?.abort();window.removeEventListener("pagehide",leave);leave();};
+  },[]);
   useEffect(()=>{if(status!=="review")return;const frame=requestAnimationFrame(()=>{reviewPanel.current?.scrollIntoView({behavior:reduce?"instant":"smooth",block:"nearest"});reviewPanel.current?.focus({preventScroll:true});});return()=>cancelAnimationFrame(frame);},[status,reduce]);
   useEffect(()=>{
     let cancelled=false;const abort=new AbortController();
@@ -84,6 +105,22 @@ export function Storage({workspaceId}:{workspaceId:string}) {
     const timer=setTimeout(()=>{void searchStorageDocuments(backend,workspaceId,documents.map(d=>d.id),query,abort.signal).then(ids=>{if(!cancelled){setContentMatches(new Set(ids));setSearchError("");}}).catch(e=>{if(!cancelled)setSearchError(`Full-text search is unavailable: ${errorText(e)}`);});},180);
     return()=>{cancelled=true;abort.abort();clearTimeout(timer);};
   },[backend,documents,query,workspaceId,searchEpoch]);
+  // Removals whose files were left behind (the page was closed inside the Undo window) are finished on the next visit.
+  useEffect(()=>{
+    if(sync.phase!=="ready")return;
+    let timer:ReturnType<typeof setTimeout>|undefined;
+    const sweep=()=>{
+      const {due,waitMs}=duePending(readPending(),workspaceId,Date.now(),UNDO_MS+2000);
+      const staged=(id:string)=>trashRef.current?.removed.some(r=>r.document.id===id);
+      const back=due.map(item=>item.id).filter(id=>libraryRef.current.documents.some(d=>d.id===id));
+      if(back.length)clearPending(workspaceId,back);
+      const gone=due.map(item=>item.id).filter(id=>!back.includes(id)&&!staged(id));
+      if(gone.length)void purgeRef.current(gone,backend,workspaceId);
+      if(waitMs!==null)timer=setTimeout(sweep,waitMs+300);
+    };
+    sweep();
+    return()=>{if(timer)clearTimeout(timer);};
+  },[sync.phase,workspaceId,backend]);
   function patchEntry(id:string,patch:Partial<QueueEntry>){if(mounted.current)setQueue(current=>current.map(q=>q.id===id?{...q,...patch}:q));}
   function stepState(id:string,state:StorageRunStep["status"],detail?:string,meta?:string){if(mounted.current)setSteps(current=>current.map(s=>s.id===id?{...s,status:state,...(detail?{detail}:{}),meta}:s));}
   function addFiles(files:File[]) {
@@ -199,12 +236,64 @@ export function Storage({workspaceId}:{workspaceId:string}) {
     for(const id of selected){const d=documents.find(d=>d.id===id);if(!d)continue;const original=await loadStorageOriginal(backend,workspaceId,d);files[`${id.slice(0,8)}-${d.name.replace(/[/\\]/g,"_")}`]=new Uint8Array(await original.arrayBuffer());}
     downloadBlob(new Blob([zipSync(files,{level:0}) as Uint8Array<ArrayBuffer>],{type:"application/zip"}),"knowledge-documents.zip");
   }
-  async function removeDocuments(ids:string[]){
-    setLibrary(current=>({...current,documents:current.documents.filter(d=>!ids.includes(d.id))}));setPendingSave(true);await persistStorage(entry,backend,workspaceId);setPendingSave(false);
-    await Promise.all(ids.map(id=>removeStorageDocument(backend,workspaceId,id)));
-    setSelected(current=>current.filter(id=>!ids.includes(id)));if(detailId&&ids.includes(detailId))setDetailId(null);setDeleteIds([]);setNotice(`${ids.length} document${ids.length===1?"":"s"} removed from this library.`);
+  // Removing is two steps: the documents leave the library at once (metadata saved and verified), their originals and indexes stay in storage for UNDO_MS so Undo can bring them back.
+  function stageTrash(next:Trash|null){trashRef.current=next;if(next)addPending(next.workspaceId,next.removed.map(r=>r.document.id));if(mounted.current)setTrash(next);}
+  function disarmTrash(){if(trashTimer.current)clearTimeout(trashTimer.current);trashTimer.current=null;}
+  function armTrash(){disarmTrash();trashTimer.current=setTimeout(()=>void finalizeRef.current(),UNDO_MS);}
+  async function finalizeTrash(){
+    const batch=trashRef.current;if(!batch)return;
+    disarmTrash();stageTrash(null);
+    // a document that is back in the library never loses its files
+    await purgeStored(batch.removed.map(r=>r.document.id).filter(id=>!libraryRef.current.documents.some(d=>d.id===id)),batch.backend,batch.workspaceId);
   }
-  async function deleteDocuments(){await removeDocuments([...deleteIds]);}
+  /** Delete the originals and indexes of removed documents; what the backend refuses stays listed, with a Retry. */
+  async function purgeStored(ids:string[],storageBackend:Trash["backend"],storageWorkspace:string){
+    const results=await Promise.allSettled(ids.map(id=>removeStorageDocument(storageBackend,storageWorkspace,id)));
+    const failed=ids.filter((_,i)=>results[i].status==="rejected");
+    clearPending(storageWorkspace,ids.filter(id=>!failed.includes(id)));
+    if(mounted.current)setLeftover(current=>{const all=[...(current?.ids??[]).filter(id=>!ids.includes(id)),...failed];return all.length?{ids:all,backend:storageBackend,workspaceId:storageWorkspace}:null;});
+  }
+  purgeRef.current=purgeStored;
+  finalizeRef.current=finalizeTrash;
+  async function removeDocuments(ids:string[]){
+    if(!trashRef.current?.removed.some(r=>ids.includes(r.document.id))){
+      await finalizeTrash();
+      const {library:next,removed}=withoutDocuments(libraryRef.current,ids);
+      if(!removed.length)return;
+      stageTrash({removed,backend,workspaceId});
+      setLibrary(current=>withoutDocuments(current,ids).library);libraryRef.current=next;
+    }
+    disarmTrash();
+    setPendingSave(true);await persistStorage(entry,backend,workspaceId);setPendingSave(false);
+    setSelected(current=>current.filter(id=>!ids.includes(id)));setNotice(`${ids.length} document${ids.length===1?"":"s"} removed from this library.`);
+    armTrash();
+  }
+  async function undoRemoval(){
+    const batch=trashRef.current;
+    if(!batch)throw new Error("It’s too late to undo: these documents were already removed for good.");
+    disarmTrash();
+    let next:ReturnType<typeof restoreDocuments>;try{next=restoreDocuments(libraryRef.current,batch.removed);}catch(e){armTrash();throw e;}
+    setLibrary(current=>restoreDocuments(current,batch.removed));libraryRef.current=next;stageTrash(null);clearPending(batch.workspaceId,batch.removed.map(r=>r.document.id));
+    setPendingSave(true);await persistStorage(entry,backend,workspaceId);setPendingSave(false);
+    setNotice(`${batch.removed.length} document${batch.removed.length===1?"":"s"} restored.`);
+  }
+  /** A removal dialog closes when its result has run out (its Undo window is over); after an Undo it stays. */
+  function removalPhase(phase:ConfirmPhase,close:()=>void){
+    if(phase==="done")sawResult.current=true;
+    else if(phase==="idle"){if(sawResult.current){sawResult.current=false;close();void finalizeTrash();}}
+    else sawResult.current=false;
+  }
+  async function saveDetails(id:string,draft:DocumentDraft){
+    const before=libraryRef.current.documents.find(d=>d.id===id);
+    applyDocumentEdit(libraryRef.current,id,draft);
+    setLibrary(current=>{try{return applyDocumentEdit(current,id,draft);}catch{return current;}});
+    try{setPendingSave(true);await persistStorage(entry,backend,workspaceId);setPendingSave(false);}
+    catch(e){
+      // not stored: put the old values back, so the editor still has a change to save and Save changes can be pressed again
+      if(before)setLibrary(current=>{try{return applyDocumentEdit(current,id,draftOfDocument(before));}catch{return current;}});
+      setPendingSave(false);throw e;
+    }
+  }
   function exportManifest(){downloadBlob(new Blob([JSON.stringify({version:1,workspaceId,exportedAt:new Date().toISOString(),documents},null,2)],{type:"application/json"}),"knowledge-manifest.json");setNotice("Document manifest exported. Original files are downloaded separately.");}
   async function handleDownload(d:StorageDocument){try{await downloadDocument(d);}catch(e){setError(errorText(e));}}
   if(sync.phase!=="ready")return <SectionSkeleton section="Storage"/>;
@@ -212,21 +301,24 @@ export function Storage({workspaceId}:{workspaceId:string}) {
     <input ref={input} type="file" className="stg-sr-only" multiple accept=".pdf,.docx,.txt,.md,.csv,.tsv,.sql,.json,.xlsx" tabIndex={-1} onChange={e=>{addFiles([...e.target.files||[]]);e.target.value="";}}/>
     <header className="stg-page-head"><div><div className="stg-eyebrow"><HardDrive size={14}/>Your knowledge library</div><h1>Storage<span className="stg-heading-dot"/></h1><p>A little more knowledge. A clearer picture.</p></div><div className="stg-head-actions"><StorageButton variant="ghost" size="sm" aria-label="Storage guide" onClick={()=>setGuide(true)}><CircleHelp size={17}/><span className="stg-help-label">Guide</span></StorageButton><StorageSplitButton disabled={locked} onClick={chooseFiles} actions={[{id:"upload",label:"Upload documents",icon:<Upload size={16}/>,onClick:chooseFiles},{id:"note",label:"Write a knowledge note",icon:<FilePlus2 size={16}/>,onClick:()=>setNoteOpen(true)},{id:"export",label:"Export document manifest",icon:<ArrowDownToLine size={16}/>,onClick:exportManifest,disabled:!documents.length}]}><StorageIconMorph state={locked?"pause":"plus"}/>Add documents</StorageSplitButton></div></header>
     <div className="stg-stats" aria-label="Library summary">{[{icon:FolderOpen,label:"Documents",value:documents.length.toLocaleString(),note:"Original files in your library"},{icon:Database,label:"Stored data",value:formatStorageBytes(documents.reduce((s,d)=>s+d.bytes,0)),note:backend.remote?"Originals on your connected backend":"Originals saved on this device"},{icon:Search,label:"Searchable",value:indexed.toLocaleString(),note:`${documents.length-indexed} original-only · ${documents.reduce((s,d)=>s+d.chunks,0)} passages`},{icon:BookOpen,label:"Knowledge areas",value:`${new Set(documents.map(d=>d.category)).size} / 4`,note:"Finance, Banking, SQL & Data"}].map(stat=><div className="stg-stat" key={stat.label}><span><stat.icon size={14}/>{stat.label}</span><strong>{stat.value}</strong><small>{stat.note}</small></div>)}</div>
-    <div className="stg-main-grid"><StorageTreemap documents={documents} onOpen={openDetail} onCategory={setFilter}/><aside className="stg-ingestion" aria-label="Add and process documents"><div ref={uploadPanel} className="stg-upload-panel"><div className="stg-panel-title"><h2>Grow your library</h2><span>01 — Import</span></div><p>Bring the sources you want to build on.</p><label className="stg-category-field">Knowledge area<select aria-label="Upload knowledge area" value={category} disabled={locked} onChange={e=>{const value=e.target.value as StorageCategory;setCategory(value);setQueue(current=>current.map(q=>q.status==="ready"?q:{...q,category:value}));}}>{storageCategories.map(c=><option key={c}>{c}</option>)}</select></label><StorageDropzone onFiles={addFiles} disabled={locked} entries={queue} onRemove={id=>{if(!locked)setQueue(current=>current.filter(q=>q.id!==id));}} onRetry={id=>void prepareFiles(id)}/><div className="stg-process-bar"><span>{pending.length?`${pending.length} waiting to process`:"Add a file or write a note"}</span><StorageActionButton action={async()=>{if(!await prepareFiles())throw new Error("Review the file errors before retrying.");}} pendingLabel="Processing" successLabel="Review ready" disabled={locked||!pending.length} size="sm" onError={e=>setError(errorText(e))}>Process files<ArrowRight size={14}/></StorageActionButton></div></div>
-      <StorageRun status={status} fileCount={runCount} steps={steps} onStop={()=>controller.current?.abort()} onRetry={()=>void retry().catch(e=>setError(errorText(e)))}>{!!prepared.length&&status!=="running"&&<div ref={reviewPanel} tabIndex={-1} className="stg-review"><div className="stg-review-title"><ShieldCheck size={16}/><strong>Your review, before storage</strong></div><p>Check the content and subject. These are extracts from your files, not generated summaries.</p><div className="stg-review-files">{prepared.map(item=><article key={item.entryId}><strong title={item.document.name}><FileText size={13}/>{item.document.name}</strong><label>Subject<select aria-label={`Knowledge area for ${item.document.name}`} value={item.document.category} onChange={e=>setPrepared(current=>current.map(p=>p.entryId===item.entryId?{...p,document:{...p.document,category:e.target.value as StorageCategory}}:p))}>{storageCategories.map(c=><option key={c}>{c}</option>)}</select></label><div className="stg-review-metrics">{item.document.words.toLocaleString()} words · {item.document.chunks} passages · {item.document.extraction==="indexed"?"Searchable":"Original only"}</div>{item.document.warning&&<p className="stg-warning">{item.document.warning}</p>}{item.document.excerpt&&<blockquote>{item.document.excerpt.slice(0,280)}</blockquote>}<div className="stg-keywords">{item.document.keywords.slice(0,5).map(k=><span key={k}>{k}</span>)}</div></article>)}</div><div className="stg-review-actions"><StorageButton variant="secondary" size="sm" onClick={discard}>Discard</StorageButton><StorageActionButton action={async()=>{if(!await approveFiles())throw new Error("Storage needs attention.");}} pendingLabel="Storing" successLabel="Stored" size="sm"><Check size={14}/>Approve & store</StorageActionButton></div></div>}</StorageRun>
-    </aside></div>
+    <div className="stg-main-grid"><div className="stg-primary"><StorageTreemap documents={documents} onOpen={openDetail} onCategory={setFilter}/>
     {(error||sync.error)&&<div className="stg-error" role="alert"><span>{error||sync.error?.message||"Verifying document metadata save?"}</span>{(sync.error||pendingSave)&&<StorageButton size="sm" variant="secondary" onClick={()=>void retrySave().catch(e=>setError(errorText(e)))}>Retry save</StorageButton>}<button type="button" aria-label="Dismiss storage error" onClick={()=>setError("")}><X size={14}/></button></div>}
+    {leftover&&<div className="stg-error" role="alert"><span>{leftover.ids.length} removed document{leftover.ids.length===1?"":"s"} could not be deleted from storage yet. {leftover.ids.length===1?"It is":"They are"} no longer in your library.</span><StorageButton size="sm" variant="secondary" onClick={()=>void purgeStored(leftover.ids,leftover.backend,leftover.workspaceId)}>Retry delete</StorageButton></div>}
     {searchError&&<div className="stg-error" role="alert"><span>{searchError} Filename and metadata search still work.</span><StorageButton size="sm" variant="secondary" onClick={()=>setSearchEpoch(current=>current+1)}>Retry search</StorageButton></div>}
     <div className="stg-notice" role="status">{notice||""}</div>
+    {trash&&!detailId&&!deleteIds.length&&<div className="stg-undo" role="status"><span>{trash.removed.length} document{trash.removed.length===1?"":"s"} removed.</span><StorageButton size="sm" variant="secondary" onClick={()=>void undoRemoval().catch(e=>setError(errorText(e)))}>Undo</StorageButton></div>}
     <section className="stg-library" aria-label="Document library"><div className="stg-library-head"><div><h2>Documents<span>{documents.length}</span></h2><p>Your sources, ready when you need them.</p></div><label className="stg-search"><Search size={15}/><input aria-label="Search stored documents" placeholder="Search your knowledge…" maxLength={256} value={search} onChange={e=>{setSearch(e.target.value);setSearchError("");setContentMatches(null);}}/>{search&&<button type="button" aria-label="Clear document search" onClick={()=>{setSearch("");setSearchError("");setContentMatches(null);}}><StorageIconMorph state="close" size={14}/></button>}</label></div><div className="stg-library-toolbar"><StorageButtonGroup label="Filter documents by knowledge area">{["All",...storageCategories].map(c=><button type="button" key={c} aria-pressed={filter===c} onClick={()=>setFilter(c)}>{c}<span>{c==="All"?documents.length:documents.filter(d=>d.category===c).length}</span></button>)}</StorageButtonGroup><span className="stg-save-status"><i data-saving={sync.save==="saving"||undefined}/>{sync.save==="saving"?"Saving…":sync.save==="error"?"Save needs attention":"Saved"}</span></div>
       <div className="stg-documents-table"><div className="stg-table-head"><label><input type="checkbox" aria-label="Select all visible documents" checked={visible.length>0&&visible.every(d=>selected.includes(d.id))} onChange={e=>setSelected(e.target.checked?[...new Set([...selected,...visible.map(d=>d.id)])]:selected.filter(id=>!visible.some(d=>d.id===id)))}/><span>Document</span></label><span>Knowledge area</span><span>Size</span><span>Added</span><span/></div><AnimatePresence initial={false}>{visible.map(d=><motion.div layout={!reduce} key={d.id} className="stg-document-row" initial={reduce?false:{opacity:0,y:5}} animate={{opacity:1,y:0}} exit={{opacity:0,height:0}}><div className="stg-file-name"><input type="checkbox" aria-label={`Select ${d.name}`} checked={selected.includes(d.id)} onChange={e=>setSelected(current=>e.target.checked?[...current,d.id]:current.filter(id=>id!==d.id))}/><span className="stg-file-type" data-category={d.category}>{documentExtension(d.name)}</span><button type="button" onClick={()=>openDetail(d.id)}><strong>{d.name}</strong><small>{d.extraction==="indexed"?`${d.words.toLocaleString()} words · Indexed`:"Original only"}{d.warning?" · Review note":""}</small></button></div><span className="stg-subject"><i data-category={d.category}/>{d.category}</span><span className="stg-row-bytes">{formatStorageBytes(d.bytes)}</span><span className="stg-row-date">{new Date(d.addedAt).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span><StorageExpandingButtonGroup label={`Actions for ${d.name}`} actions={[{id:"open",label:"Open",icon:<ArrowRight size={14}/>,onClick:()=>openDetail(d.id)},{id:"download",label:"Download",icon:<ArrowDownToLine size={14}/>,onClick:()=>void handleDownload(d)},{id:"delete",label:"Delete",icon:<Trash2 size={14}/>,danger:true,onClick:()=>setDeleteIds([d.id])}]}/></motion.div>)}</AnimatePresence></div>
       {!visible.length&&<div className="stg-library-empty"><span><FolderOpen size={25}/></span><h3>{documents.length?"No documents in this view":"Make room for what you know"}</h3><p>{documents.length?"Try a different subject or search term.":"Drop in your first source. We’ll help you keep it organized."}</p><StorageButton size="sm" variant="secondary" disabled={locked} onClick={()=>{if(documents.length){setSearch("");setSearchError("");setContentMatches(null);setFilter("All");}else chooseFiles();}}>{documents.length?"Clear filters":<><Upload size={14}/>Add your first document</>}</StorageButton></div>}
     </section>
+    </div><aside className="stg-ingestion" aria-label="Add and process documents"><div ref={uploadPanel} className="stg-upload-panel"><div className="stg-panel-title"><h2>Grow your library</h2><span>01 — Import</span></div><p>Bring the sources you want to build on.</p><label className="stg-category-field">Knowledge area<StorageCategorySelect label="Upload knowledge area" value={category} disabled={locked} onChange={value=>{setCategory(value);setQueue(current=>current.map(q=>q.status==="ready"?q:{...q,category:value}));}}/></label><StorageDropzone onFiles={addFiles} disabled={locked} entries={queue} onRemove={id=>{if(!locked)setQueue(current=>current.filter(q=>q.id!==id));}} onRetry={id=>void prepareFiles(id)}/><div className="stg-process-bar"><span>{pending.length?`${pending.length} waiting to process`:"Add a file or write a note"}</span><ActionButton size="sm" label="Process files" pendingLabel="Processing" successLabel="Review ready" disabled={locked||!pending.length} onAction={async()=>{if(!await prepareFiles())throw new Error("Review the file errors before retrying.");}} onActionError={e=>setError(errorText(e))}/></div></div>
+      <StorageRun status={status} fileCount={runCount} steps={steps} onStop={()=>controller.current?.abort()} onRetry={()=>void retry().catch(e=>setError(errorText(e)))}>{!!prepared.length&&status!=="running"&&<div ref={reviewPanel} tabIndex={-1} className="stg-review"><div className="stg-review-title"><ShieldCheck size={16}/><strong>Your review, before storage</strong></div><p>Check the content and subject. These are extracts from your files, not generated summaries.</p><div className="stg-review-files">{prepared.map(item=><article key={item.entryId}><strong title={item.document.name}><FileText size={13}/>{item.document.name}</strong><label>Subject<StorageCategorySelect label={`Knowledge area for ${item.document.name}`} value={item.document.category} onChange={category=>setPrepared(current=>current.map(p=>p.entryId===item.entryId?{...p,document:{...p.document,category}}:p))}/></label><div className="stg-review-metrics">{item.document.words.toLocaleString()} words · {item.document.chunks} passages · {item.document.extraction==="indexed"?"Searchable":"Original only"}</div>{item.document.warning&&<p className="stg-warning">{item.document.warning}</p>}{item.document.excerpt&&<blockquote>{item.document.excerpt.slice(0,280)}</blockquote>}<div className="stg-keywords">{item.document.keywords.slice(0,5).map(k=><span key={k}>{k}</span>)}</div></article>)}</div><div className="stg-review-actions"><StorageButton variant="secondary" size="sm" onClick={discard}>Discard</StorageButton><ActionButton size="sm" label="Approve & store" pendingLabel="Storing" successLabel="Stored" icon={<Check size={17} strokeWidth={2} aria-hidden="true"/>} onAction={async()=>{if(!await approveFiles())throw new Error("Storage needs attention.");}}/></div></div>}</StorageRun>
+    </aside></div>
     <footer className="stg-page-foot"><span><ShieldCheck size={13}/>{backend.remote?"Originals and searchable text are stored on your connected backend.":"Stored in this browser · No documents sent to an AI service"}</span><button type="button" onClick={()=>setGuide(true)}>How Storage works<ArrowRight size={12}/></button></footer>
     {!!selected.length&&<div className="stg-selection"><span>{selected.length} selected</span><StorageFloatingButtonGroup label="Selected document actions" actions={[{id:"download",label:"Download ZIP",icon:<ArrowDownToLine size={16}/>,onClick:()=>void downloadSelected().catch(e=>setError(errorText(e)))},{id:"delete",label:"Delete",icon:<Trash2 size={16}/>,danger:true,onClick:()=>setDeleteIds(selected)},{id:"clear",label:"Clear",icon:<X size={16}/>,onClick:()=>setSelected([])}]}/></div>}
     <StorageOnboarding open={guide||!library.onboarded} onClose={dismissGuide} onStart={()=>{dismissGuide();uploadPanel.current?.scrollIntoView({behavior:reduce?"instant":"smooth",block:"center"});}}/>
-    <WorkspaceDialog open={!!detail} title={detail?.name||"Document"} onClose={()=>setDetailId(null)} wide>{detail&&<div className="stg-detail"><div className="stg-detail-meta"><span>{detail.category}</span><span>{formatStorageBytes(detail.bytes)}</span><span>{detail.words.toLocaleString()} words</span><span>{detail.chunks} passages</span></div><label className="stg-category-field">Knowledge area<select value={detail.category} onChange={e=>{const category=e.target.value as StorageCategory;setLibrary(current=>({...current,documents:current.documents.map(d=>d.id===detail.id?{...d,category}:d)}));}}>{storageCategories.map(c=><option key={c}>{c}</option>)}</select></label>{detail.warning&&<p className="stg-warning">{detail.warning}</p>}{previewError&&<div className="stg-warning" role="alert">{previewError}<StorageButton size="sm" variant="secondary" onClick={()=>setDetailEpoch(current=>current+1)}>Retry text load</StorageButton></div>}<div className="stg-detail-section"><h3>Source text <StorageCopyButton value={preview??detail.excerpt} label="Copy text" iconOnly/></h3><pre>{preview??(detail.excerpt?`${detail.excerpt}\n\nFull text is unavailable. Showing the saved excerpt.`:"No text index is available. Download the original to review this document.")}</pre></div><div className="stg-keywords">{detail.keywords.map(k=><button type="button" key={k} onClick={()=>{setSearch(k);setContentMatches(null);setFilter("All");setDetailId(null);}}>{k}</button>)}</div><div className="stg-fingerprint"><span>SHA-256</span><code>{detail.sha256}</code><StorageCopyButton value={detail.sha256} label="Copy fingerprint" iconOnly/></div><div className="stg-detail-actions"><StorageConfirmMorph label="Delete document" title="Remove this document?" icon={<Trash2 size={14}/>} onConfirm={async()=>{try{await removeDocuments([detail.id]);}catch(e){setDeleteIds([detail.id]);setError(errorText(e));throw e;}}}/><StorageActionButton action={()=>downloadDocument(detail)} onError={e=>setError(errorText(e))} pendingLabel="Preparing" successLabel="Download ready"><ArrowDownToLine size={15}/>Download original</StorageActionButton></div></div>}</WorkspaceDialog>
+    <WorkspaceDialog open={!!detail} title={detail?.name||"Document"} onClose={()=>setDetailId(null)} wide>{detail&&<div className="stg-detail" data-removed={detailRemoved||undefined}><div className="stg-detail-body" inert={detailRemoved||undefined}><div className="stg-detail-meta"><span>{detail.category}</span><span>{formatStorageBytes(detail.bytes)}</span><span>{detail.words.toLocaleString()} words</span><span>{detail.chunks} passages</span></div><StorageDocumentEditor key={detail.id} document={detail} disabled={detailRemoved} onSave={draft=>saveDetails(detail.id,draft)}/>{detail.warning&&<p className="stg-warning">{detail.warning}</p>}{previewError&&<div className="stg-warning" role="alert">{previewError}<StorageButton size="sm" variant="secondary" onClick={()=>setDetailEpoch(current=>current+1)}>Retry text load</StorageButton></div>}<div className="stg-detail-section"><h3>Source text <StorageCopyButton value={preview??detail.excerpt} label="Copy text" iconOnly/></h3><pre>{preview??(detail.excerpt?`${detail.excerpt}\n\nFull text is unavailable. Showing the saved excerpt.`:"No text index is available. Download the original to review this document.")}</pre></div><div className="stg-keywords">{detail.keywords.map(k=><button type="button" key={k} onClick={()=>{setSearch(k);setContentMatches(null);setFilter("All");setDetailId(null);}}>{k}</button>)}</div><div className="stg-fingerprint"><span>SHA-256</span><code>{detail.sha256}</code><StorageCopyButton value={detail.sha256} label="Copy fingerprint" iconOnly/></div></div><div className="stg-detail-actions"><ConfirmMorph label="Delete document" icon={<Trash2 size={14}/>} prompt="Remove this document?" confirmMode="hold" confirmLabel="Delete" pendingLabel="Removing" doneLabel="Removed" resultTimeout={8000} onConfirm={()=>removeDocuments([detail.id])} onUndo={undoRemoval} onStateChange={phase=>removalPhase(phase,()=>setDetailId(null))}/><ActionButton size="sm" label="Download original" pendingLabel="Preparing" successLabel="Download ready" icon={<ArrowDownToLine size={17} strokeWidth={2} aria-hidden="true"/>} disabled={detailRemoved} onAction={()=>downloadDocument(detail)} onActionError={e=>setError(errorText(e))}/></div></div>}</WorkspaceDialog>
     <WorkspaceDialog open={noteOpen} title="Write a knowledge note" onClose={()=>setNoteOpen(false)}><form className="stg-note" onSubmit={e=>{e.preventDefault();const name=noteTitle.trim().replace(/[\\/]/g,"-");addFiles([new File([noteText],`${name}.md`,{type:"text/markdown"})]);setNoteOpen(false);setNoteTitle("");setNoteText("");}}><label>Title<input required maxLength={180} value={noteTitle} onChange={e=>setNoteTitle(e.target.value)} placeholder="What is this note about?"/></label><label>Content<textarea required value={noteText} onChange={e=>setNoteText(e.target.value)} placeholder="Write or paste the knowledge you want to keep…" rows={9} maxLength={1000000}/></label><p>Added to your queue as a Markdown document in {category}. Review before storage.</p><StorageButton type="submit" disabled={!noteTitle.trim()||!noteText.trim()}>Add to review queue<ArrowRight size={14}/></StorageButton></form></WorkspaceDialog>
-    <WorkspaceDialog open={!!deleteIds.length} title="Remove documents" onClose={()=>setDeleteIds([])}><div className="stg-delete"><p>Remove {deleteIds.length} document{deleteIds.length===1?"":"s"} and {deleteIds.length===1?"its":"their"} searchable index from this workspace?</p><p>Downloaded copies remain available separately. Workspace originals and indexes will be removed.</p><StorageConfirmMorph label={`Remove ${deleteIds.length} document${deleteIds.length===1?"":"s"}`} title="Confirm removal?" confirmLabel="Remove" icon={<Trash2 size={14}/>} onConfirm={deleteDocuments}/></div></WorkspaceDialog>
+    <WorkspaceDialog open={!!deleteIds.length} title="Remove documents" onClose={()=>setDeleteIds([])}>{!!deleteIds.length&&<div className="stg-delete"><p>Remove {deleteIds.length} document{deleteIds.length===1?"":"s"} and {deleteIds.length===1?"its":"their"} searchable index from this workspace?</p><p>Downloaded copies remain available separately. Workspace originals and indexes are deleted for good after a short window in which you can undo.</p><ConfirmMorph label={`Remove ${deleteIds.length} document${deleteIds.length===1?"":"s"}`} icon={<Trash2 size={14}/>} prompt="Confirm removal?" confirmMode="hold" confirmLabel="Remove" pendingLabel="Removing" doneLabel="Removed" resultTimeout={8000} onConfirm={()=>removeDocuments([...deleteIds])} onUndo={undoRemoval} onStateChange={phase=>removalPhase(phase,()=>setDeleteIds([]))}/></div>}</WorkspaceDialog>
   </div></div>;
 }

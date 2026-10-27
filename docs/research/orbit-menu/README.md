@@ -27,6 +27,9 @@ The demo has a button in the page. Here the same orbit is a **context menu of ev
 * **Choose**: click, hover + click, the arrow keys (+ Enter), a **hotkey** (shown in the pill while an action is lit), or press-drag-release
   from the middle button. Escape or a click elsewhere closes it; the focus returns to the block when it was opened from the keyboard.
 * **Fit**: the fan keeps inside the map and out from under the open settings panel (`fitOrbit()` rotates it, then narrows it only at a tight corner).
+  The caption sits outside the fan, on the opposite side of the close button. Its actual text size is measured so long block names,
+  hotkey hints and unavailable-action explanations keep an 8px gap from the buttons; near an edge it finds another clear position
+  within the same boundary. This intentionally adapts the source's middle-of-arc pill for six actions and longer Process labels.
 
 | Hotkey | Action | Same operation as |
 | --- | --- | --- |

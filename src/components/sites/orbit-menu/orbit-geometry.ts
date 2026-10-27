@@ -1,6 +1,29 @@
 export interface OrbitPoint { x: number; y: number }
 export interface OrbitBoundary { left: number; top: number; right: number; bottom: number }
 
+/** Place the caption outside the fan, with clearance from both the close button and every action. */
+export function orbitCaption(origin: OrbitPoint, points: readonly OrbitPoint[], boundary: OrbitBoundary, size: { width: number; height: number }, triggerSize: number, direction: number): OrbitPoint {
+  const halfWidth = size.width / 2, halfHeight = size.height / 2, gap = 8;
+  const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+  const clearance = (at: OrbitPoint, circle: OrbitPoint, radius: number) => Math.hypot(Math.max(0, Math.abs(circle.x - at.x) - halfWidth), Math.max(0, Math.abs(circle.y - at.y) - halfHeight)) - radius - gap;
+  let best = { x: 0, y: 0, score: Infinity };
+  for (let turn = 0; turn < 24; turn++) {
+    const angle = (direction + 180 + (turn % 2 ? -1 : 1) * Math.ceil(turn / 2) * 15) * Math.PI / 180;
+    const base = triggerSize / 2 + gap + Math.abs(Math.cos(angle)) * halfWidth + Math.abs(Math.sin(angle)) * halfHeight;
+    for (let extra = 0; extra <= 144; extra += 24) {
+      const wanted = { x: Math.cos(angle) * (base + extra), y: Math.sin(angle) * (base + extra) };
+      const at = {
+        x: clamp(origin.x + wanted.x, boundary.left + halfWidth, boundary.right - halfWidth) - origin.x,
+        y: clamp(origin.y + wanted.y, boundary.top + halfHeight, boundary.bottom - halfHeight) - origin.y,
+      };
+      const overlap = [clearance(at, { x: 0, y: 0 }, triggerSize / 2), ...points.map(point => clearance(at, point, 23))].reduce((sum, value) => sum + Math.max(0, -value), 0);
+      const score = (overlap > 0.01 ? 1_000_000 + overlap * 1000 : 0) + Math.ceil(turn / 2) * 15 + extra + Math.hypot(at.x - wanted.x, at.y - wanted.y);
+      if (score < best.score) best = { ...at, score };
+    }
+  }
+  return { x: best.x, y: best.y };
+}
+
 export function orbitPoints(count: number, radius = 104, spread = 150, direction = -90): OrbitPoint[] {
   return Array.from({ length: count }, (_, index) => {
     const angle = (direction - spread / 2 + (count === 1 ? spread / 2 : index * spread / (count - 1))) * Math.PI / 180;

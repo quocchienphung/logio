@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
 import type { Reducer } from "react";
 import { AlertTriangle, Check, Copy, FolderOpen, Hourglass, Trash2, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, ShieldCheck, Square, Undo2, Waypoints, X } from "lucide-react";
@@ -88,6 +88,10 @@ export function Process({ workspaceId, dataSource, runSource, engine: suppliedEn
 
 type Dialog = "library" | "new" | "connect" | "inspector" | "settings" | { kind: "delete-task"; id: string } | { kind: "delete-tasks"; ids: string[] } | { kind: "delete-process"; id: string } | null;
 const POLL_MS = 2000;
+/** The settings panel is docked: it takes this much width (panel 348 + its 12px margins) and the page is pushed aside by the same amount. */
+const PANEL_RESERVE = 372;
+/** Fitted to frames recorded from the public AI side panel preview (docs/research/ai-side-panel): a critically damped spring, about 0.5s to settle, no overshoot. */
+const PANEL_SPRING = { type: "spring", stiffness: 300, damping: 37, mass: 1 } as const;
 const shortcutIcons: Record<BlockShortcutId, typeof Play> = { run: Play, review: ShieldCheck, retry: Redo2, trace: Waypoints, settings: Settings2, add: Plus, duplicate: Copy, approval: ShieldCheck, delete: Trash2 };
 const historyOf = historyReducer as Reducer<History<ProcessLibrary>, HistoryAction<ProcessLibrary>>;
 const stateLabel = { running: "Running", waiting: "Needs you", done: "Done", failed: "Failed", stopped: "Stopped" } as const;
@@ -115,6 +119,32 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const [view, setView] = useState<"map" | "tree">("map");
   // The settings panel opens when a block is clicked or added, so the map has the whole page until then.
   const [panel, setPanel] = useState(false);
+  // How much room the docked panel has taken, animated: the panel slides in by the same amount the page is pushed over.
+  const reserve = useMotionValue(0);
+  const panelX = useTransform(reserve, value => PANEL_RESERVE - value);
+  const treePadding = useTransform(reserve, value => Math.max(24, value));
+  const [panelLeaving, setPanelLeaving] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const docked = !narrow && panel;
+  useEffect(() => {
+    const target = docked ? PANEL_RESERVE : 0;
+    if (reserve.get() === target) return;
+    if (reducedMotion || document.querySelector('.proc-workspace')?.closest('[data-ui-motion="off"]')) { reserve.set(target); setPanelLeaving(false); return; }
+    if (!docked) setPanelLeaving(true);
+    // The spring starts once the panel's content has been laid out: mounting the settings costs one slow frame, and a spring that is
+    // already running when it arrives would skip the start of the motion. Three normal frames in a row mean it is over (waits 250ms at most).
+    let controls: ReturnType<typeof animate> | undefined;
+    const begun = performance.now();
+    let last = begun, steady = 0, frame = 0;
+    const poll = (now: number) => {
+      steady = now - last < 24 ? steady + 1 : 0;
+      last = now;
+      if (steady >= 3 || now - begun > 250) controls = animate(reserve, target, { ...PANEL_SPRING, onComplete: () => { if (!docked) setPanelLeaving(false); } });
+      else frame = requestAnimationFrame(poll);
+    };
+    frame = requestAnimationFrame(poll);
+    return () => { cancelAnimationFrame(frame); controls?.stop(); };
+  }, [docked, reducedMotion, reserve]);
   const [palette, setPalette] = useState(false);
   const [revealId, setRevealId] = useState<string | null>(null);
   const [pickedLinkId, setPickedLinkId] = useState<string | null>(null);
@@ -506,9 +536,9 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
           root={doc.root} tree={tree} selectedId={selected.id} now={clock} formatCost={format} showCost={unit !== "none"} locked={locked} inset={mapInset} fitKey={`${doc.id}:${tidied}`} revealId={revealId}
           links={doc.links ?? []} selectedLinkId={pickedLink} onSelectLink={setPickedLinkId} check={(from, to) => checkLink(doc, from, to)} onConnect={connectBlocks} onLinkChange={changeLink} onLinkRemove={dropLink}
           multiIds={groupIds} onToggle={toggleMulti} onMoveMany={moveBlocks} notices={{ groups: sparkGroups, seen: seenSet, onSeen: markSeen, onDismiss: dropAlert }}
-          onBlockMenu={openBlockMenu}
+          onBlockMenu={openBlockMenu} push={reserve}
           onSelect={id => { setSelectedId(id); setRevealId(null); setPickedLinkId(null); setMulti([]); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={requestDelete} />
-        : <div className="proc-treewrap" style={{ paddingRight: !narrow && panel ? 372 : undefined }} {...treeMenuHandlers}>
+        : <motion.div className="proc-treewrap" style={{ paddingRight: treePadding }} {...treeMenuHandlers}>
           <AgentTree
             root={tree} title="Tasks" noun={["task", "tasks"]} now={clock} formatCost={format} showCost={unit !== "none"} collapsed={collapsed} onCollapsedChange={setCollapsed}
             onSelect={agent => { setSelectedId(taskIdOf(agent.id)); setMulti([]); if (narrow) setDialog("inspector"); }} selectedId={selected.id} onResolve={resolve}
@@ -524,7 +554,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
               </>;
             }}
           />
-        </div>}
+        </motion.div>}
     </div>
     {blockMenu && renderBlockMenu(blockMenu)}
 
@@ -559,10 +589,10 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
 
     {view === "map" && doc.root.children.length === 0 && <p className="proc-hint">This is the first block. Select it and use the + around it to connect more blocks, or choose a role under “Add block”.</p>}
 
-    {!narrow && panel && <aside className="proc-side" aria-label="Block settings">
+    {!narrow && (panel || panelLeaving) && <motion.aside className="proc-side" aria-label="Block settings" style={{ x: panelX }} inert={!panel}>
       <button type="button" className="proc-icon-button proc-side__close" aria-label="Close block settings" onClick={() => setPanel(false)}><X size={15} /></button>
       {inspector}
-    </aside>}
+    </motion.aside>}
 
     {snapshot && <ProcessPermissions key={snapshot.id} doc={handle?.kind === "simulated" ? { ...doc, unit: handle.log.unit } : doc}
       root={handle?.kind === "simulated" ? handle.log.root : doc.root} snapshot={snapshot} simulated={simulated} engines={engines}

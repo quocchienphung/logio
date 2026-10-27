@@ -35,7 +35,25 @@ try{
   await check('live resource polling updates the first device after a second device upload',async()=>{await writer.page.locator('.stg-document-row').filter({hasText:'backend-only.sql'}).waitFor({timeout:8000});});
   await check('remote ZIP export fetches authenticated byte-checked originals without local cache',async()=>{await reader.page.getByLabel('Select all visible documents').check();const download=reader.page.waitForEvent('download');await reader.page.getByRole('button',{name:'Download ZIP',exact:true}).click();await (await download).saveAs(`${out}/remote-originals.zip`);assert.ok((await fs.stat(`${out}/remote-originals.zip`)).size>Buffer.byteLength(text));await reader.page.getByRole('button',{name:'Clear',exact:true}).last().click();});
   await reader.page.locator('.stg-page-head').scrollIntoViewIfNeeded();await reader.page.waitForTimeout(500);await reader.page.screenshot({path:`${out}/connected-storage.png`});
-  await check('failed server deletion retains the original and the same confirmation retries successfully',async()=>{await reader.page.getByLabel('Select finance-evidence.txt',{exact:true}).check();await reader.page.getByRole('toolbar',{name:'Selected document actions'}).getByRole('button',{name:'Delete',exact:true}).click();await reader.page.getByRole('button',{name:'Remove 1 document',exact:true}).click();await reader.page.route('**/storage/documents/*',route=>route.request().method()==='DELETE'?route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:{message:'Delete temporarily unavailable'}})}):route.continue());await reader.page.getByRole('button',{name:'Remove',exact:true}).click();await reader.page.getByText('Could not delete. Retry?').waitFor();assert.equal((await request(`/workspaces/acme/storage/documents/${doc.id}/original`)).status,200);await reader.page.unroute('**/storage/documents/*');await reader.page.getByRole('button',{name:'Remove',exact:true}).click();await reader.page.getByRole('dialog',{name:'Remove documents',exact:true}).waitFor({state:'hidden'});assert.equal((await request(`/workspaces/acme/storage/documents/${doc.id}/original`)).status,404);});
+  await check('removal keeps the server original through the Undo window; a refused server deletion is kept visible and its Retry succeeds',async()=>{
+    const page=reader.page;
+    await page.getByLabel('Select finance-evidence.txt',{exact:true}).check();
+    await page.getByRole('toolbar',{name:'Selected document actions'}).getByRole('button',{name:'Delete',exact:true}).click();
+    await page.getByRole('button',{name:'Remove 1 document',exact:true}).click();
+    await page.route('**/storage/documents/*',route=>route.request().method()==='DELETE'?route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:{message:'Delete temporarily unavailable'}})}):route.continue());
+    await page.waitForTimeout(400);
+    const box=await page.locator('.crm-dialog[open] .cm__confirm').boundingBox();
+    await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.waitForTimeout(1200);await page.mouse.up();await page.mouse.move(4,4);
+    await page.locator('.crm-dialog[open] .cm[data-state=done]').waitFor();
+    assert.equal((await request(`/workspaces/acme/storage/documents/${doc.id}/original`)).status,200,'the original is still on the server while Undo is possible');
+    await page.getByRole('dialog',{name:'Remove documents',exact:true}).waitFor({state:'hidden',timeout:20000});
+    await page.getByText('could not be deleted from storage yet').waitFor();
+    assert.equal((await request(`/workspaces/acme/storage/documents/${doc.id}/original`)).status,200,'a refused deletion leaves the original in place');
+    await page.unroute('**/storage/documents/*');
+    await page.getByRole('button',{name:'Retry delete',exact:true}).click();
+    await page.getByText('could not be deleted from storage yet').waitFor({state:'hidden'});
+    assert.equal((await request(`/workspaces/acme/storage/documents/${doc.id}/original`)).status,404);
+  });
   await check('backend clients send auth on every request and pages have no runtime errors',async()=>{assert.ok(auth.length>12&&auth.every(Boolean));assert.deepEqual(errors,[]);});
   await writer.ctx.close();await reader.ctx.close();
 }finally{

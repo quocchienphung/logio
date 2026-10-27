@@ -47,6 +47,17 @@ const rightClick = async (page, name, offset = { x: 40, y: 24 }) => {
 };
 const labels = page => items(page).evaluateAll(els => els.map(el => el.getAttribute('aria-label')));
 const closed = async page => { await page.waitForFunction(() => !document.querySelector('[role=menu]')); await page.waitForTimeout(450); };
+const captionClear = async page => {
+  const label = await pill(page).boundingBox();
+  const viewport = page.viewportSize();
+  assert.ok(label.x >= 0 && label.y >= 0 && label.x + label.width <= viewport.width && label.y + label.height <= viewport.height, 'caption stays on screen');
+  for (const button of [...await items(page).all(), trigger(page)]) {
+    const rect = await button.boundingBox();
+    const dx = Math.max(label.x - (rect.x + rect.width / 2), 0, rect.x + rect.width / 2 - label.x - label.width);
+    const dy = Math.max(label.y - (rect.y + rect.height / 2), 0, rect.y + rect.height / 2 - label.y - label.height);
+    assert.ok(Math.hypot(dx, dy) >= rect.width / 2 + 3, `caption has clearance from ${await button.getAttribute('aria-label')}`);
+  }
+};
 
 {
   const { context, page } = await open();
@@ -61,6 +72,7 @@ const closed = async page => { await page.waitForFunction(() => !document.queryS
     assert.ok(Math.hypot(middle.x - at.x, middle.y - at.y) < 1.5, `trigger at ${middle.x},${middle.y} for click ${at.x},${at.y}`);
     assert.equal(await trigger(page).getAttribute('aria-expanded'), 'true');
     assert.equal(await page.locator('.orbit-menu-pill').innerText(), 'Writer shortcuts');
+    await captionClear(page);
     for (const item of await items(page).all()) {
       const b = await item.boundingBox();
       assert.ok(b.x >= 0 && b.y >= 0 && b.x + b.width <= 1440 && b.y + b.height <= 1000, 'every action is on screen');
@@ -78,6 +90,7 @@ const closed = async page => { await page.waitForFunction(() => !document.queryS
     await items(page).nth(5).hover();
     await page.waitForTimeout(350);
     assert.equal(await page.locator('.orbit-menu-lens[data-danger]').count(), 1, 'delete has the danger tone');
+    await captionClear(page);
     await page.screenshot({ path: `${out}/menu-hover-delete.png` });
   });
   await check('Escape folds the menu away', async () => {
@@ -107,6 +120,7 @@ const closed = async page => { await page.waitForFunction(() => !document.queryS
     await page.waitForTimeout(300);
     assert.match(await pill(page).innerText(), /cannot be deleted/i);
     assert.equal(await page.locator('dialog[open]').count(), 0);
+    await captionClear(page);
     await page.screenshot({ path: `${out}/menu-root-protected.png` });
     await page.keyboard.press('Escape');
     await closed(page);
@@ -147,7 +161,29 @@ const closed = async page => { await page.waitForFunction(() => !document.queryS
 
 {
   const { context, page } = await open();
+  await check('Coordinator caption clears all six actions in dark mode, including long disabled labels after zoom', async () => {
+    await page.locator('.ui-as-user').click();
+    await page.getByRole('menuitem', { name: 'Dark mode', exact: true }).click();
+    await page.keyboard.press('Escape');
+    await page.getByRole('button', { name: 'Zoom in', exact: true }).click({ clickCount: 2 });
+    const b = await block(page, 'Coordinator').boundingBox();
+    await page.mouse.click(b.x + b.width / 2, b.y + b.height / 2, { button: 'right' });
+    await menu(page).waitFor({ state: 'attached' });
+    await page.waitForTimeout(700);
+    assert.equal(await page.locator('.orbit-menu-portal').getAttribute('data-theme'), 'dark');
+    assert.equal(await pill(page).innerText(), 'Coordinator shortcuts');
+    await captionClear(page);
+    await page.screenshot({ path: `${out}/caption-coordinator-dark.png` });
+    for (const item of await items(page).all()) {
+      await item.focus();
+      await page.waitForTimeout(500);
+      await captionClear(page);
+    }
+    await page.keyboard.press('Escape');
+    await closed(page);
+  });
   await check('The Menu key (or Shift+F10) on a focused block opens it at the block, and Escape returns the focus to the block', async () => {
+    await page.getByRole('button', { name: 'Fit the whole map' }).click();
     await block(page, 'Tester').focus();
     await page.keyboard.press('Shift+F10');
     await menu(page).waitFor({ state: 'attached' });
@@ -167,6 +203,7 @@ const closed = async page => { await page.waitForFunction(() => !document.queryS
     await page.mouse.click(Math.max(b.x + 6, 14), b.y + 6, { button: 'right' });
     await menu(page).waitFor({ state: 'attached' });
     await page.waitForTimeout(700);
+    await captionClear(page);
     for (const item of await items(page).all()) {
       const r = await item.boundingBox();
       assert.ok(r.x >= 0 && r.y >= 0 && r.x + r.width <= 1440 && r.y + r.height <= 1000, `action at ${r.x},${r.y}`);
@@ -183,6 +220,7 @@ const closed = async page => { await page.waitForFunction(() => !document.queryS
     await page.mouse.click(Math.min(b.x + b.width - 10, panel.x - 20), b.y + 20, { button: 'right' });
     await menu(page).waitFor({ state: 'attached' });
     await page.waitForTimeout(700);
+    await captionClear(page);
     for (const item of await items(page).all()) {
       const r = await item.boundingBox();
       assert.ok(r.x + r.width <= panel.x + 2, `action right edge ${r.x + r.width} over the panel at ${panel.x}`);
@@ -222,6 +260,7 @@ const closed = async page => { await page.waitForFunction(() => !document.queryS
     await touch('touchEnd', x, y);
     await menu(page).waitFor({ state: 'attached' });
     await page.waitForTimeout(700);
+    await captionClear(page);
     for (const item of await items(page).all()) {
       const r = await item.boundingBox();
       assert.ok(r.x >= 0 && r.y >= 0 && r.x + r.width <= 390 && r.y + r.height <= 844, `action at ${r.x},${r.y}`);

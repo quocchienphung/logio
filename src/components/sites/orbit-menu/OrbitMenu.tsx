@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { fitOrbit, orbitPoints, orbitTarget, type OrbitBoundary, type OrbitPoint } from "./orbit-geometry";
+import { fitOrbit, orbitCaption, orbitPoints, orbitTarget, type OrbitBoundary, type OrbitPoint } from "./orbit-geometry";
 import "./orbit-menu.css";
 
 export interface OrbitAction {
@@ -53,6 +53,8 @@ export function OrbitMenu({ actions, onAction, label = "Actions", triggerLabel =
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null);
   const layer = useRef<HTMLDivElement>(null);
+  const caption = useRef<HTMLSpanElement>(null);
+  const [captionSize, setCaptionSize] = useState({ width: 180, height: 32 });
   const items = useRef<(HTMLButtonElement | null)[]>([]);
   const [localOpen, setLocalOpen] = useState(false);
   const open = controlledOpen ?? localOpen;
@@ -197,6 +199,20 @@ export function OrbitMenu({ actions, onAction, label = "Actions", triggerLabel =
   const originStyle = placed ? { left: placed.origin.x, top: placed.origin.y, fontFamily: placed.font, "--orbit-trigger-size": `${triggerSize}px` } as CSSProperties : undefined;
   const rootStyle = { "--orbit-trigger-size": `${triggerSize}px`, ...(anchor ? { left: anchor.x - triggerSize / 2, top: anchor.y - triggerSize / 2 } : {}) } as CSSProperties;
   const portalTheme = placed?.theme ?? themeOverride;
+  const captionBounds = boundary ?? { left: 8, top: 8, right: typeof window === "undefined" ? 1024 : window.innerWidth - 8, bottom: typeof window === "undefined" ? 768 : window.innerHeight - 8 };
+  const captionAt = placed ? orbitCaption(placed.origin, points, captionBounds, captionSize, triggerSize, placed.direction) : { x: 0, y: 0 };
+  useLayoutEffect(() => {
+    const element = caption.current;
+    if (!element) return;
+    const measure = () => {
+      const width = element.offsetWidth, height = element.offsetHeight;
+      setCaptionSize(current => current.width === width && current.height === height ? current : { width, height });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [placed, open, result]);
 
   const root = <span className={`orbit-menu ${className}`} style={rootStyle} data-open={open || undefined} data-pending={pending || undefined} data-anchored={anchor ? "" : undefined} data-result={result ? "" : undefined} data-theme={anchor ? themeOverride : undefined}>
     <button ref={trigger} type="button" className="orbit-menu-trigger" data-orbit-trigger="" aria-label={triggerLabel} aria-haspopup="menu" aria-expanded={open} aria-controls={open ? id : undefined} disabled={disabled || pending || !actions.length}
@@ -250,8 +266,8 @@ export function OrbitMenu({ actions, onAction, label = "Actions", triggerLabel =
     <span className="orbit-menu-sr" role="status" aria-live="polite">{result}</span>
     {placed && createPortal(<div className="orbit-menu-portal" inert={!open} data-theme={portalTheme} data-ui-motion={placed.motionOff ? "off" : undefined} data-reduced-motion={reduce || undefined} style={originStyle} ref={layer} onPointerDown={event => event.stopPropagation()} onContextMenu={event => event.preventDefault()} onKeyDown={event => onKeyDown(event)}>
       <AnimatePresence>
-        {(open || result) && <motion.div key="pill" className="orbit-menu-pill-anchor" style={{ left: Math.cos(placed.direction * Math.PI / 180) * placed.radius / 2, top: Math.sin(placed.direction * Math.PI / 180) * placed.radius / 2 }} initial={{ opacity: 0, scale: 0.75, filter: reduce ? "none" : "blur(4px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: reduce ? 1 : 0.8 }} transition={spring}>
-          <motion.span className="orbit-menu-pill" layout={reduce ? false : "size"} transition={spring}><AnimatePresence mode="popLayout" initial={false}><motion.span key={pill} initial={{ opacity: 0, y: reduce ? 0 : 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduce ? 0 : -5 }} transition={{ duration: 0.12 }}>{result && <span className="orbit-menu-done" aria-hidden="true">✓ </span>}{pill}{hint && <kbd className="orbit-menu-key" aria-hidden="true">{hint}</kbd>}</motion.span></AnimatePresence></motion.span>
+        {(open || result) && <motion.div key="pill" className="orbit-menu-pill-anchor" style={{ left: captionAt.x, top: captionAt.y }} initial={{ opacity: 0, scale: 0.75, filter: reduce ? "none" : "blur(4px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: reduce ? 1 : 0.8 }} transition={spring}>
+          <motion.span ref={caption} className="orbit-menu-pill" style={{ maxWidth: Math.min(260, Math.max(0, captionBounds.right - captionBounds.left - 16)) }} layout={reduce ? false : "size"} transition={spring}><AnimatePresence mode="popLayout" initial={false}><motion.span key={pill} initial={{ opacity: 0, y: reduce ? 0 : 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduce ? 0 : -5 }} transition={{ duration: 0.12 }}>{result && <span className="orbit-menu-done" aria-hidden="true">✓ </span>}{pill}{hint && <kbd className="orbit-menu-key" aria-hidden="true">{hint}</kbd>}</motion.span></AnimatePresence></motion.span>
         </motion.div>}
         {open && <motion.div key="menu" id={id} role="menu" aria-label={label} aria-orientation="horizontal" className="orbit-menu-actions" initial="closed" animate="open" exit="closed">
           <svg className="orbit-menu-track" width="1" height="1" aria-hidden="true">{[-1, 1].map(side => {

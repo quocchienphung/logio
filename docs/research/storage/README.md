@@ -62,3 +62,20 @@ Scripts generate the local PDF worker via `scripts/storage-assets.mjs` before de
 Storage now implements the complete document API on the built-in home server and configured HTTP backend. Full original/index persistence, authenticated downloads, full-text search, server deletion and visible polling work across independent browser sessions. Optional device-cache failures do not prevent remote storage. Read `api-contract.md`; run `node scripts/qa/storage-backend.mjs`.
 
 Backend verification: 11 authenticated production API/two-browser checks passed, with no runtime errors. Full-text search and original/ZIP downloads work with IndexedDB disabled. Injected upload, search and deletion failures recover through visible Retry. Results: `backend-qa/results.json`; 338 unit tests and the complete lint/typecheck/production checks pass.
+
+## Long queues and dropdowns
+
+The primary column now owns both the map and Documents, so a long upload/review queue cannot insert blank space between them.
+On desktop, the ingestion column stays alongside that content, sticks while the library scrolls, and is bounded to the viewport.
+The upload list scrolls after 224px; its summary, Clear and Process files remain outside the list. Tablet and phone retain the stacked
+map/import/library flow. The library uses container queries to adapt its columns to its own available width.
+
+`StorageCategorySelect.tsx` uses the shared `src/components/interaction/AnimatedSelect.tsx` for upload, review and document details.
+Base UI supplies selection, keyboard/typeahead, touch and collision handling. The appearance and opening/closing motion reuse the
+project's shared interaction tokens in `src/styles/interaction.css`. A dialog's menu stays in that dialog's top layer; Escape closes
+only the dropdown and restores its trigger. Portals inherit the actual workspace colors and motion preference. No storage/API contract
+was changed.
+
+QA: `node scripts/qa/storage-layout.mjs` exercises 25 actual files, review edits, save/reload, modal focus, dark colors, 320/390/768/1050/
+1200/1920px layouts and WebKit touch/reduced motion (15 checks). Captures are in `layout-qa/`. Existing `storage.mjs` and
+`storage-controls.mjs` also pass; the native-select test helpers now select through the visible listbox.

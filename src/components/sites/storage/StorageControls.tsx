@@ -34,23 +34,6 @@ export function StorageButton({ variant = "primary", size = "md", loading = fals
   </button>;
 }
 
-export function StorageActionButton({ action, children, pendingLabel = "Processing", successLabel = "Done", onError, ...props }: Omit<StorageButtonProps, "onClick" | "loading"> & { action: () => Promise<void> | void; pendingLabel?: string; successLabel?: string; onError?: (error: unknown) => void }) {
-  const [state, setState] = useState<"idle" | "pending" | "success" | "error">("idle");
-  const reset = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => () => { if (reset.current) clearTimeout(reset.current); }, []);
-  async function run() {
-    if (state === "pending") return;
-    if (reset.current) clearTimeout(reset.current);
-    setState("pending");
-    try { await action(); setState("success"); }
-    catch (error) { setState("error"); onError?.(error); }
-    reset.current = setTimeout(() => setState("idle"), 1800);
-  }
-  return <StorageButton {...props} loading={state === "pending"} onClick={() => void run()} data-state={state}>
-    {state === "success" ? <><StorageIconMorph state="check" />{successLabel}</> : state === "error" ? <><X size={16} />Try again</> : state === "pending" ? pendingLabel : children}
-  </StorageButton>;
-}
-
 export type StorageControlAction = { id: string; label: string; icon?: ReactNode; onClick: () => void; disabled?: boolean; danger?: boolean; pressed?: boolean; iconOnly?: boolean; separatorBefore?: boolean };
 
 export function StorageSplitButton({ children, onClick, actions, disabled = false }: { children: ReactNode; onClick: () => void; actions: StorageControlAction[]; disabled?: boolean }) {
@@ -151,50 +134,4 @@ export function StorageCopyButton({ value, label = "Copy", iconOnly = false, cla
   return <><StorageButton variant="secondary" size="sm" className={`stg-copy ${iconOnly ? "stg-copy--icon" : ""} ${className}`} aria-label={state === "idle" ? label : state === "copied" ? `${label}: Copied` : `${label}: Copy failed`} title={label} onClick={() => void copy()}>
     {state === "failed" ? <X size={16} /> : <StorageIconMorph state={state === "copied" ? "copied" : "copy"} />}{!iconOnly && (state === "copied" ? "Copied" : state === "failed" ? "Copy failed" : label)}
   </StorageButton><span role="status" className="stg-sr-only">{state === "copied" ? `${label}: Copied` : state === "failed" ? "Copy failed. Check clipboard permission and try again." : ""}</span></>;
-}
-
-export function StorageConfirmMorph({ label = "Delete", title = "Delete document?", confirmLabel = "Delete", onConfirm, onUndo, mode = "click", disabled = false, icon, className = "" }: { label?: string; title?: string; confirmLabel?: string; onConfirm: () => Promise<void> | void; onUndo?: () => void; mode?: "click" | "hold" | "countdown"; disabled?: boolean; icon?: ReactNode; className?: string }) {
-  const [state, setState] = useState<"idle" | "confirm" | "countdown" | "pending" | "success" | "error">("idle");
-  const [seconds, setSeconds] = useState(3);
-  const [holding, setHolding] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const confirmRef = useRef<HTMLButtonElement>(null);
-  const reduced = useReducedMotion();
-  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
-  useEffect(() => {
-    if (state !== "confirm" && state !== "error") return;
-    confirmRef.current?.focus({ preventScroll: true });
-    const outside = (event: PointerEvent) => { if (event.target instanceof Node && !rootRef.current?.contains(event.target)) { if (timerRef.current) clearTimeout(timerRef.current); timerRef.current = null; setHolding(false); setState("idle"); } };
-    document.addEventListener("pointerdown", outside);
-    return () => document.removeEventListener("pointerdown", outside);
-  }, [state]);
-  function clearHold() { if (timerRef.current) clearTimeout(timerRef.current); timerRef.current = null; setHolding(false); }
-  function cancel() { clearHold(); setState("idle"); requestAnimationFrame(() => triggerRef.current?.focus()); }
-  async function confirm() {
-    if (state === "pending") return;
-    setState("pending");
-    try { await onConfirm(); setState("success"); }
-    catch { setState("error"); }
-  }
-  function startHold() {
-    if (timerRef.current || state === "pending") return;
-    setHolding(true);
-    timerRef.current = setTimeout(() => { timerRef.current = null; setHolding(false); void confirm(); }, 900);
-  }
-  function startCountdown() {
-    setState("countdown"); setSeconds(3);
-    let remaining = 3;
-    const tick = () => { remaining -= 1; setSeconds(remaining); if (remaining > 0) timerRef.current = setTimeout(tick, 1000); else { timerRef.current = null; void confirm(); } };
-    timerRef.current = setTimeout(tick, 1000);
-  }
-  return <motion.div ref={rootRef} layout className={`stg-confirm ${className}`} data-state={state} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 34 }} onKeyDown={event => { if (event.key === "Escape" && ["confirm", "countdown", "error"].includes(state)) { event.preventDefault(); event.stopPropagation(); cancel(); } }}>
-    {state === "idle" ? <button ref={triggerRef} type="button" className="stg-confirm-trigger" disabled={disabled} onClick={() => setState("confirm")}>{icon}{label}</button> : state === "success" ? <><span className="stg-confirm-success" role="status"><StorageIconMorph state="check" />Deleted</span>{onUndo && <button type="button" onClick={() => { onUndo(); setState("idle"); }}>Undo</button>}</> : state === "countdown" ? <><span className="stg-confirm-title">Deleting in <strong>{seconds}</strong></span><button type="button" onClick={cancel}>Cancel</button></> : <>
-      <span className="stg-confirm-title">{state === "error" ? "Could not delete. Retry?" : title}</span>
-      <button type="button" className="stg-confirm-cancel" disabled={state === "pending"} onClick={cancel}>Cancel</button>
-      <button ref={confirmRef} type="button" className="stg-confirm-commit" disabled={state === "pending"} aria-busy={state === "pending" || undefined} aria-label={mode === "hold" ? `Press and hold: ${confirmLabel}` : confirmLabel} data-holding={holding || undefined} onPointerDown={event => { if (mode === "hold" && event.button === 0) { event.currentTarget.setPointerCapture(event.pointerId); startHold(); } }} onPointerUp={() => { if (mode === "hold") clearHold(); }} onPointerCancel={() => { if (mode === "hold") clearHold(); }} onPointerLeave={() => { if (mode === "hold") clearHold(); }} onKeyDown={event => { if (mode === "hold" && ["Enter", " "].includes(event.key)) { event.preventDefault(); if (!event.repeat) startHold(); } }} onKeyUp={event => { if (mode === "hold" && ["Enter", " "].includes(event.key)) { event.preventDefault(); clearHold(); } }} onBlur={() => { if (mode === "hold") clearHold(); }} onClick={() => { if (mode === "countdown") startCountdown(); else if (mode === "click") void confirm(); }}>{state === "pending" ? <LoaderCircle size={14} className="stg-spin" /> : null}{confirmLabel}</button>
-    </>}
-    <span className="stg-sr-only" role="status">{state === "pending" ? "Deleting" : state === "countdown" ? `Deleting in ${seconds} seconds` : state === "error" ? "Delete failed. Try again." : state === "confirm" && mode === "hold" ? "Press and hold to delete" : ""}</span>
-  </motion.div>;
 }

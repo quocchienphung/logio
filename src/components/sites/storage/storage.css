@@ -3,3 +3,42 @@
 .storage-run__review>.stg-review{padding:0}.stg-review:focus{outline:none}.stg-review:focus-visible{outline:2px solid #5a80e7;outline-offset:6px;border-radius:6px}
 @media(min-width:1051px){.stg-main-grid>.stg-map{position:sticky;top:20px}}
 @media(prefers-reduced-motion:reduce){.stg-workspace *,.stg-workspace *::before,.stg-workspace *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* The library follows its map; the upload queue never sets the height of the left column. */
+.stg-primary{display:flex;flex-direction:column;gap:22px;min-width:0}
+.stg-primary>.stg-error,.stg-primary>.stg-notice{margin:0}
+.stg-primary>.stg-notice:empty{display:none}
+.stg-library{container-type:inline-size}
+.stg-category-dot{display:block;width:6px;height:6px;flex:none;border-radius:50%;background:#4294df}
+.stg-category-dot[data-category=Banking]{background:#9364bf}
+.stg-category-dot[data-category=SQL]{background:#efa42f}
+.stg-category-dot[data-category=Data]{background:#1bb8a1}
+.stg-ingestion .storage-dropzone__list{max-height:224px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-gutter:stable}
+.stg-ingestion .storage-dropzone__list:empty{scrollbar-gutter:auto}
+@media(min-width:1051px){
+  .stg-ingestion{position:sticky;top:20px;max-height:calc(100dvh - 40px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;align-content:start;padding:3px 5px 3px 3px;margin:-3px -5px -3px -3px}
+}
+@container(max-width:850px){
+  .stg-library-head{align-items:flex-start;gap:12px;padding:20px 18px 16px}
+  .stg-search{max-width:210px}
+  .stg-library-toolbar{padding:0 18px 16px;flex-wrap:wrap}
+  .stg-table-head,.stg-document-row{grid-template-columns:minmax(130px,1fr) 86px 58px 145px;gap:8px;padding-inline:18px}
+  .stg-row-date,.stg-table-head>span:nth-last-child(2){display:none}
+}
+@container(max-width:620px){
+  .stg-library-head{flex-direction:column;align-items:stretch}
+  .stg-search{max-width:none}
+  .stg-table-head,.stg-document-row{grid-template-columns:minmax(0,1fr) 80px;padding-inline:16px;gap:9px}
+  .stg-table-head>span,.stg-row-bytes{display:none}
+  .stg-table-head>span:first-of-type{display:block}
+  .stg-document-row>.stg-expanding-group{grid-column:1/-1;margin-bottom:11px;justify-self:end}
+  .stg-document-row{padding-top:12px;min-height:90px}
+  .stg-subject{justify-self:end}
+}
+@media(max-width:1050px){
+  .stg-primary{display:contents}
+  .stg-main-grid>.stg-map{order:0;position:static}
+  .stg-ingestion{order:1}
+  .stg-primary>.stg-error,.stg-primary>.stg-notice{order:2}
+  .stg-library{order:3}
+}

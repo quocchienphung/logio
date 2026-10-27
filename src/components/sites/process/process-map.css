@@ -1,7 +1,11 @@
 /* The Process map. Cards are the Agent Tree's cards (affectui-agent-tree/agent-tree.css); this file is the canvas around them. */
+/* Not inherited: the push is written to the few layers that move, so a frame of it never restyles every block */
+@property --push { syntax: "<length>"; inherits: false; initial-value: 0px; }
 .pmap { position: relative; width: 100%; height: 100%; min-height: 320px; overflow: hidden; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; background-color: var(--proc-bg, #f8f8f8); background-image: radial-gradient(circle, color-mix(in srgb, var(--proc-ink, #171717) 13%, transparent) 1px, transparent 1.2px); background-size: calc(24px * var(--vs, 1)) calc(24px * var(--vs, 1)); background-position: var(--vx, 0) var(--vy, 0); outline: none; }
 .pmap[data-panning] { cursor: grabbing; }
-.pmap__stage { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; will-change: transform; }
+.pmap__stage { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-origin: 0 0; }
+/* Promoted only while the background is dragged: a standing will-change keeps the text rastered at an old zoom and blurs it. */
+.pmap[data-panning] .pmap__stage, .pmap[data-pushing] .pmap__stage { will-change: transform; }
 .pmap__edges { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
 .pmap__edge { fill: none; stroke: var(--agt-link); stroke-width: 1.6; stroke-linecap: round; transition: stroke 240ms ease; }
 .pmap__edges [data-muted] .pmap__edge { stroke: var(--agt-link-muted); }
@@ -23,7 +27,7 @@
 .pmap__tries li { display: flex; justify-content: space-between; gap: 8px; }
 .pmap__tries li span:last-child { color: var(--agt-muted); font-variant-numeric: tabular-nums; }
 /* The + on each side of the selected block connects a new block there */
-.pmap__add { position: absolute; display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: var(--agt-card); box-shadow: var(--agt-shadow), 0 2px 6px rgba(0, 0, 0, .12); color: var(--agt-accent); cursor: pointer; transition: transform 140ms ease, background-color 140ms ease; animation: agt-pop 160ms var(--agt-ease) both; }
+.pmap__add { position: absolute; display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: var(--agt-card); box-shadow: var(--agt-shadow), 0 2px 6px rgba(0, 0, 0, .12); color: var(--agt-accent); cursor: pointer; transition: transform 140ms ease, background-color 140ms ease; animation: agt-pop 160ms var(--agt-ease) backwards; }
 .pmap__add:hover { transform: scale(1.12); background: var(--agt-fill); }
 .pmap__add[data-side="top"] { left: 50%; top: -34px; margin-left: -12px; }
 .pmap__add[data-side="bottom"] { left: 50%; bottom: -34px; margin-left: -12px; }
@@ -57,14 +61,17 @@
 .pmap__block[data-target="no"] { outline: 2px solid var(--agt-danger-fg); outline-offset: 3px; }
 .pmap__tries--rounds { color: var(--agt-text); }
 .pmap__pills { position: absolute; inset: 0; z-index: 7; pointer-events: none; }
-.pmap__pill { position: absolute; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px 0 6px; border-radius: 11px; background: var(--agt-card); box-shadow: var(--agt-shadow), 0 1px 4px rgba(0, 0, 0, .1); font-size: 11px; font-weight: 500; line-height: 16px; color: var(--agt-accent); white-space: nowrap; pointer-events: auto; cursor: pointer; transform: translate(-50%, -50%); transition: background-color 140ms ease; font-variant-numeric: tabular-nums; }
+/* Only while the panel pushes the map: a transform at rest would make these layers the containing block of everything inside them */
+.pmap[data-pushing] .pmap__pills { transform: translateX(var(--push, 0px)); }
+/* Centred with `translate`, not `transform`: interaction.css clears `transform` on a pressed button[aria-expanded], which made the pill jump half its size on mousedown */
+.pmap__pill { position: absolute; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px 0 6px; border-radius: 11px; background: var(--agt-card); box-shadow: var(--agt-shadow), 0 1px 4px rgba(0, 0, 0, .1); font-size: 11px; font-weight: 500; line-height: 16px; color: var(--agt-accent); white-space: nowrap; pointer-events: auto; cursor: pointer; translate: -50% -50%; transition: background-color 140ms ease; font-variant-numeric: tabular-nums; }
 .pmap__pill[data-kind="needs"] { color: var(--agt-text); }
 .pmap__pill:hover, .pmap__pill[data-selected] { background: var(--agt-fill); }
 .pmap__pill:focus-visible { outline: 2px solid var(--agt-focus); outline-offset: 2px; }
 .pmap__hint { position: absolute; max-width: 260px; padding: 5px 9px; border-radius: 8px; background: var(--agt-ink); color: var(--agt-card); font-size: 12px; line-height: 16px; pointer-events: none; transform: translate(14px, 14px); box-shadow: var(--agt-pop); }
 .pmap__hint[data-state="no"] { background: var(--agt-danger-fg); color: #fff; }
 .pmap__editor-anchor { position: absolute; width: 0; height: 0; pointer-events: auto; }
-.pmap__editor { position: absolute; left: -150px; top: 20px; display: grid; gap: 10px; width: 300px; padding: 12px; border-radius: 12px; background: var(--agt-card); box-shadow: var(--agt-pop); color: var(--agt-text); font-size: 13px; line-height: 18px; animation: agt-pop 160ms var(--agt-ease) both; cursor: auto; }
+.pmap__editor { position: absolute; left: -150px; top: 20px; display: grid; gap: 10px; width: 300px; padding: 12px; border-radius: 12px; background: var(--agt-card); box-shadow: var(--agt-pop); color: var(--agt-text); font-size: 13px; line-height: 18px; animation: agt-pop 160ms var(--agt-ease) backwards; cursor: auto; }
 .pmap__editor-anchor[data-above] .pmap__editor { top: auto; bottom: 20px; }
 .pmap__editor-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .pmap__editor-icon { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--agt-fill); color: var(--agt-accent); flex: none; }

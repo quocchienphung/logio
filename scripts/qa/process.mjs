@@ -462,6 +462,7 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.getByRole('button', { name: 'Fit the whole map' }).click();
     await page.waitForTimeout(300);
     await block(page, 'Fixer').locator('.agt__name').click();
+    await page.waitForTimeout(1000); // the settings panel slides in and pushes the map over: wait for it to rest before dragging
     const handle = page.getByRole('button', { name: /^Add a block .* Fixer/ }).first();
     const from = await box(handle), to = await box(block(page, 'Coordinator'));
     await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);

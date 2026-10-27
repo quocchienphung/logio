@@ -1,0 +1,241 @@
+{
+  "ran": "2026-10-24T02:48:42.849Z",
+  "base": "http://localhost:3103",
+  "results": [
+    {
+      "name": "A skill card offers Deliver, Edit, Archive and Delete",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Edit opens the card on the stored SKILL.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Save changes starts disabled (nothing changed) and says everything is saved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Typing marks the draft unsaved and enables Save changes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The header is read live: name, size and the checksum note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A broken header says why and keeps Save changes off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The button shows Saved with a drawn check on the button itself",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The workspace holds the edited text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The checksum and size were recalculated to match",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Identity and provenance are kept (id, date added, target)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The draft is clean again after saving",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The button went pending -> success -> idle, kept focus semantics (aria-busy, not disabled)",
+      "ok": true,
+      "detail": "pending|true > success|false > idle|false"
+    },
+    {
+      "name": "Success stays about 2.4 s before the button returns to idle (measured 2.40 s)",
+      "ok": true,
+      "detail": "2403 ms"
+    },
+    {
+      "name": "The width springs back on the measured spring (critical, about 27 rad/s)",
+      "ok": true,
+      "detail": "omega 26.8, rms 0.032, 102 frames, 99 -> 150 px: -45:99 -20:99 9:100 87:133 151:146 174:147 198:149 222:149 247:149 271:150 330:150 349:150 374:150 398:150 422:150 446:150 470:150 495:150 519:150 543:150 568:150 592:150 616:150 641:150 664:150 689:150"
+    },
+    {
+      "name": "Ctrl+S saves",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Changing the name in the header renames the skill everywhere",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A clashing name is refused with the reason, and the button is idle again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Nothing was stored for the refused edit",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Done closes the editor",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Delete morphs into an inline question with Cancel and a hold-to-confirm button",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Confirm takes focus (so Enter answers) and the control is a labelled group",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Escape cancels the question and focus returns to the button",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A press outside cancels the question",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A quick click does not delete in hold mode",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Letting go early deletes nothing, and the fill drains back to empty",
+      "ok": true,
+      "detail": "peak 43.3 %, end 0.00 %"
+    },
+    {
+      "name": "The hold fill is a straight line that takes one second (measured 0.1 %/ms)",
+      "ok": true,
+      "detail": "100 %/s, deviation 0.06 %"
+    },
+    {
+      "name": "Holding the full second deletes the skill from the workspace at once",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The card stays in place showing Deleted and Undo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Undo is focused so a keyboard user can take it back",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Undo puts the skill back in its old place, in the workspace",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The restored card is a normal card again with its delete button at rest",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter on the button opens the question with Confirm focused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Letting go of Enter early does not delete",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Holding Enter for a second deletes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "After the result has been shown for a while the card leaves, and the skill stays deleted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "A deletion survives a reload",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The pill grows on the slower measured spring (critical, about 12.6 rad/s)",
+      "ok": true,
+      "detail": "omega 14.4, rms 0.013, 81 -> 247 px"
+    },
+    {
+      "name": "...and shrinks on the faster one (critical, about 16 rad/s)",
+      "ok": true,
+      "detail": "omega 17.2, rms 0.008"
+    },
+    {
+      "name": "The pill is 32 px tall in a card row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "If the workspace cannot store the change the button does not say Saved",
+      "ok": true,
+      "detail": "state idle"
+    },
+    {
+      "name": "Dark theme: the fill is the light danger colour with dark text",
+      "ok": true,
+      "detail": "{\"bg\":\"lab(70.1792 62.897 36.8075)\",\"fg\":\"lab(6.19571 0 0)\"}"
+    },
+    {
+      "name": "Phone: the editor fits without horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Phone: the question fits without horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Phone: holding the confirm button with a finger for a second deletes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Reduced motion: the pill lands in one step",
+      "ok": true,
+      "detail": "81 -> 247 px, 0 frames in between"
+    },
+    {
+      "name": "Reduced motion: the hold fill still shows progress",
+      "ok": true,
+      "detail": "inset(0px 46.4% 0px 0px round 999px)"
+    },
+    {
+      "name": "No console errors",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

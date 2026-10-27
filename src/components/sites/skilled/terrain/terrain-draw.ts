@@ -1,7 +1,7 @@
 import {
   CELLS, HALF, HOURS, LABEL_DAY_X, LABEL_FONT, LABEL_FONT_ACTIVE, LABEL_HOUR_Z, PILL_HEIGHT, PILL_PAD, PLATFORM_HALF_D, PLATFORM_HALF_W,
 } from "./terrain-constants.ts";
-import { rgb, shadesFor, topColor, type FaceShades, type Tone } from "./terrain-colors.ts";
+import { parseRgb, rgb, rgbFaded, shadesFor, topColor, type FaceShades, type Tone } from "./terrain-colors.ts";
 import { cellX, cellZ, makeView, projectPoint, type Pose, type Size } from "./terrain-math.ts";
 
 /** The slice of CanvasRenderingContext2D the terrain uses, so it can run against a recording stand-in in tests. */
@@ -32,6 +32,8 @@ export interface DrawParams {
   /** 0 perspective .. 1 top view, as flown */
   flight: number;
   compact: boolean;
+  /** A focused group of hours (the split bar's highlighted part): columns whose `mask` entry is 0 recede `amount` (0..1) of the way to the platform colour. */
+  dim?: { mask: ArrayLike<number>; amount: number } | null;
 }
 
 /** What the last draw put on screen: used to find the column under the pointer and to place the panel. */
@@ -91,6 +93,7 @@ export function drawTerrain(ctx: Paint, params: DrawParams, scene: Scene) {
   ctx.lineWidth = 0.6;
   const bx = new Float64Array(4), by = new Float64Array(4), tx = new Float64Array(4), ty = new Float64Array(4);
   const sideShade = [0, 0, 0];
+  const dim = params.dim && params.dim.amount > 0.002 ? params.dim : null, floor = dim ? parseRgb(theme.platform) : null;
   const fillQuad = (q: ArrayLike<number>, at: number, color: string) => {
     ctx.fillStyle = color; ctx.strokeStyle = color;
     ctx.beginPath(); ctx.moveTo(q[at], q[at + 1]); ctx.lineTo(q[at + 2], q[at + 3]); ctx.lineTo(q[at + 4], q[at + 5]); ctx.lineTo(q[at + 6], q[at + 7]); ctx.closePath();
@@ -118,8 +121,10 @@ export function drawTerrain(ctx: Paint, params: DrawParams, scene: Scene) {
     if (ex < x0) side(3, 0, shades.west); else if (ex > x1) side(1, 2, shades.east);
     if (ez > z1) side(2, 3, shades.south); else if (ez < z0) side(0, 1, shades.north);
     // the sides, then the top over them
-    for (let q = topVisible ? 1 : 0; q < count; q++) fillQuad(out, o + q * 8, rgb(base, sideShade[q]));
-    if (topVisible) fillQuad(out, o, rgb(base, shades.top));
+    const faded = dim && floor && !dim.mask[k] ? dim.amount : 0;
+    const paint = (shade: number) => (faded && floor ? rgbFaded(base, shade, floor, faded) : rgb(base, shade));
+    for (let q = topVisible ? 1 : 0; q < count; q++) fillQuad(out, o + q * 8, paint(sideShade[q]));
+    if (topVisible) fillQuad(out, o, paint(shades.top));
     scene.quadCount[k] = count;
   }
 

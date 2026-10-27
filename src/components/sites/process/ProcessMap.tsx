@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import type { MotionValue } from "motion/react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from "react";
 import { Hourglass, Maximize2, Minus, Plus, Repeat } from "lucide-react";
 import { AgentCardBody } from "../affectui-agent-tree/agent-card";
@@ -60,6 +61,12 @@ export interface ProcessMapProps {
   onDelete: (id: string) => void;
   /** A right click, the Menu key, or a long press on a block: where to open its shortcut menu (viewport coordinates). */
   onBlockMenu?: (request: { id: string; at: Point; keyboard: boolean; element: HTMLElement }) => void;
+  /**
+   * The width a docked panel has taken so far (animated, 0 up to `inset.right`). The map is pushed over by half of each change,
+   * so what you were looking at stays centred in the part of the page that is left, and moves in step with the panel. While it
+   * moves the offset is a CSS variable written straight to the DOM (no render per frame); it is folded into the view when it stops.
+   */
+  push?: MotionValue<number>;
 }
 
 /** The size of an element as an external store (a string, so the snapshot stays stable between renders). */
@@ -92,7 +99,7 @@ const READABLE = 0.55;
  * to. Drag a block to put it where you want (it keeps that place), drag the background to pan, zoom with Ctrl + wheel, a
  * pinch or the buttons, and use the + on a selected block to connect a new block to it. Arrow keys nudge the focused block.
  */
-export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, notices, onSelect, onOpen, onMove, onAdd, onDelete, onBlockMenu }: ProcessMapProps) {
+export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, notices, onSelect, onOpen, onMove, onAdd, onDelete, onBlockMenu, push }: ProcessMapProps) {
   const [setViewport, viewport] = useSize();
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [sizes, setSizes] = useState<ReadonlyMap<string, Size>>(new Map());
@@ -104,6 +111,8 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   const [connect, setConnect] = useState<{ from: string; side: Side; point: Point; over: string | null } | null>(null);
   const blocks = useRef(new Map<string, HTMLElement>());
   const dragCancel = useRef<null | (() => void)>(null);
+  // The panel width already folded into `view` (see `push`)
+  const pushBase = useRef(push?.get() ?? 0);
   const touchMenuAt = useRef(0);
   const gesture = useRef({ pointers: new Map<number, Point>(), pinch: 0, pan: null as null | { x: number; y: number; view: View } });
 
@@ -127,24 +136,72 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   const sizeOf = (id: string) => sizes.get(id) ?? BLOCK;
   const boxFor = (id: string): Box => boxOf(centerOf(id), sizeOf(id));
   const allBoxes = nodes.map(node => boxFor(node.id));
+  /** The whole map in the room that is left by the panel. A panel still on its way in or out will push the view by what it has left, so that is counted. */
+  const fittedView = (): View => {
+    const fitted = fitView(allBoxes, viewport, 56, inset, READABLE);
+    const toGo = push ? (inset?.right ?? 0) - pushBase.current : 0;
+    return toGo ? { ...fitted, x: fitted.x + toGo / 2 } : fitted;
+  };
 
   // The whole map is shown again when the key changes (a new process, "tidy up"), once the view has a size.
   if (fitted !== fitKey && viewport.w > 0) {
     setFitted(fitKey);
-    setView(fitView(allBoxes, viewport, 56, inset, READABLE));
+    setView(fittedView());
   }
   // A block that was just added is brought into view if it is off screen.
   if (revealId && revealed !== revealId && viewport.w > 0 && centers.has(revealId)) {
     setRevealed(revealId);
     const box = boxFor(revealId);
+    // A docked panel may be on its way: the map is about to be pushed over by what is left of it (and what is not yet in the view)
+    const toGo = push ? (inset?.right ?? 0) - pushBase.current : 0;
     const margin = 40, left = (inset?.left ?? 0) + margin, right = viewport.w - (inset?.right ?? 0) - margin, top = (inset?.top ?? 0) + margin, bottom = viewport.h - (inset?.bottom ?? 0) - margin;
     let dx = 0, dy = 0;
-    const screen = { l: box.x * view.scale + view.x, r: (box.x + box.w) * view.scale + view.x, t: box.y * view.scale + view.y, b: (box.y + box.h) * view.scale + view.y };
+    const screen = { l: box.x * view.scale + view.x - toGo / 2, r: (box.x + box.w) * view.scale + view.x - toGo / 2, t: box.y * view.scale + view.y, b: (box.y + box.h) * view.scale + view.y };
     if (screen.l < left) dx = left - screen.l; else if (screen.r > right) dx = right - screen.r;
     if (screen.t < top) dy = top - screen.t; else if (screen.b > bottom) dy = bottom - screen.b;
     if (dx || dy) setView({ ...view, x: view.x + dx, y: view.y + dy });
   }
   if (!revealId && revealed) setRevealed(null);
+
+  // Pushed over by a docked panel as it slides in or out (see `push`). `pushBase` is the panel width already folded into `view`.
+  const pushFold = useRef(false);
+  /** Writes the offset to the layers that move (the map itself for its grid, the stage, the link pills and the notification stars). */
+  const writePush = useCallback((value: string) => {
+    const root = viewportRef.current;
+    if (!root) return;
+    root.style.setProperty("--push", value);
+    for (const layer of root.querySelectorAll<HTMLElement>(":scope > .pmap__stage, :scope > .pmap__pills, :scope > .pmap__sparks")) layer.style.setProperty("--push", value);
+  }, []);
+  const pushOffset = useCallback(() => {
+    const dpr = window.devicePixelRatio || 1;
+    return Math.round(-((push?.get() ?? 0) - pushBase.current) / 2 * dpr) / dpr;
+  }, [push]);
+  useEffect(() => {
+    if (!push) return;
+    const write = () => writePush(`${pushOffset()}px`);
+    let settle = 0;
+    const off = push.on("change", () => {
+      viewportRef.current?.setAttribute("data-pushing", "");
+      write();
+      // Once it has stopped moving (or was set at once, with reduced motion) the offset becomes part of the view
+      window.clearTimeout(settle);
+      settle = window.setTimeout(() => {
+        const delta = -(push.get() - pushBase.current) / 2;
+        if (!delta) { viewportRef.current?.removeAttribute("data-pushing"); return; }
+        pushBase.current = push.get();
+        pushFold.current = true;
+        setView(current => ({ ...current, x: current.x + delta }));
+      }, 120);
+    });
+    return () => { off(); window.clearTimeout(settle); };
+  }, [push, pushOffset, writePush]);
+  // The same commit that moves the view takes the offset away, so nothing shifts on screen
+  useLayoutEffect(() => {
+    if (!pushFold.current) return;
+    pushFold.current = false;
+    writePush(`${pushOffset()}px`);
+    viewportRef.current?.removeAttribute("data-pushing");
+  }, [view, pushOffset, writePush]);
 
   // Blocks report their real size, so a tall card pushes its neighbours apart instead of overlapping them.
   const observer = useRef<ResizeObserver | null>(null);
@@ -186,7 +243,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
   // ----- pan, zoom and pinch -----
   const local = (event: { clientX: number; clientY: number }): Point => { const rect = viewportRef.current?.getBoundingClientRect(); return { x: event.clientX - (rect?.left ?? 0), y: event.clientY - (rect?.top ?? 0) }; };
   const zoomBy = (factor: number, around?: Point) => setView(current => zoomAt(current, factor, around ?? { x: viewport.w / 2, y: viewport.h / 2 }));
-  const fit = () => setView(fitView(allBoxes, viewport, 56, inset, READABLE));
+  const fit = () => setView(fittedView());
   useEffect(() => {
     const element = viewportRef.current;
     if (!element) return;
@@ -346,8 +403,10 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
     onAdd(parentId, freeSpot(taken, boxFor(parentId), side));
   };
 
-  const stage: CSSProperties = { transform: `translate(${view.x}px, ${view.y}px) scale(${view.scale})` };
-  const grid = { "--vx": `${view.x}px`, "--vy": `${view.y}px`, "--vs": view.scale } as CSSProperties;
+  // The map is moved by whole device pixels, so text stays on the pixel grid at every zoom
+  const dpr = typeof window === "undefined" ? 1 : window.devicePixelRatio || 1, snap = (value: number) => Math.round(value * dpr) / dpr;
+  const stage: CSSProperties = { transform: `translate(calc(var(--push, 0px) + ${snap(view.x)}px), ${snap(view.y)}px) scale(${view.scale})` };
+  const grid = { "--vx": `calc(var(--push, 0px) + ${view.x}px)`, "--vy": `${view.y}px`, "--vs": view.scale } as CSSProperties;
   const edges = nodes.flatMap(node => node.children.map(child => ({ parent: node.id, child: child.id })));
   const ids = new Set(nodes.map(node => node.id));
   const drawn = links.filter(link => ids.has(link.from) && ids.has(link.to)).map(link => {

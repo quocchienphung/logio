@@ -10,7 +10,11 @@ export function InteractionRuntime() {
     const pressed = new Map<HTMLElement, Animation>();
     const sizes = new WeakMap<HTMLElement, { width: number; text: string; time: number }>();
     const labelAnimations = new Map<HTMLElement, Animation[]>();
-    const buttonOf = (target: EventTarget | null) => target instanceof Element ? target.closest<HTMLElement>('button,a.Button,a[class*="CtaButton"],[data-slot="button"]') : null;
+    // a component that morphs its own buttons (label, width, press) marks itself data-interaction-own and is left alone here
+    const buttonOf = (target: EventTarget | null) => {
+      const button = target instanceof Element ? target.closest<HTMLElement>('button,a.Button,a[class*="CtaButton"],[data-slot="button"]') : null;
+      return button && !button.closest("[data-interaction-own]") ? button : null;
+    };
     const remember = (button: HTMLElement) => sizes.set(button, { width: button.offsetWidth, text: button.textContent ?? "", time: performance.now() });
     const eligible = (button: HTMLElement) => !button.matches(':disabled,[aria-disabled="true"],[aria-busy="true"],[aria-haspopup]:not([aria-haspopup="false"]),[aria-expanded],[role^="menuitem"],[role="option"],[role="combobox"]')
       && !button.closest('[data-interaction-press="off"],.guide-intro,.pmap__block,.agt__node,.twf__row')

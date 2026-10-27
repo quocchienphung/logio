@@ -16,6 +16,8 @@ import { createBundle, parseSkillMarkdown, parseSkillRecord, sha256, totalSkillB
 import { useSkills } from "./useSkills";
 import { SkillOverview } from "./SkillOverview";
 import { SkillTimeline } from "./SkillTimeline";
+import { applySkillEdit, reinsertSkill, withGhosts, withoutSkill, type Ghost, type SkillDraft } from "./skill-edit";
+import { settled } from "./skill-persist";
 import "./skilled.css";
 
 type Filter = "all" | "ready" | "archived";
@@ -47,6 +49,9 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
   const [selected, setSelected] = useState<string[]>([]);
   const [metric, setMetric] = useState("all");
   const [undo, setUndo] = useState<SkillRecord | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  // skills just deleted keep their card in place (showing the result and Undo) until it settles
+  const [ghosts, setGhosts] = useState<ReadonlyMap<string, Ghost>>(() => new Map());
   const inputFile = useRef<HTMLInputElement>(null);
   const receiptFile = useRef<HTMLInputElement>(null);
   const abort = useRef<AbortController | null>(null);
@@ -59,7 +64,7 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
   }, [instructions]);
   const ready = skills.filter(skill => skill.status === "ready");
   const chosen = ready.filter(skill => selected.includes(skill.id));
-  const visible = skills.filter(skill => (filter === "all" || skill.status === filter) && `${skill.name} ${skill.description} ${skill.target}`.toLowerCase().includes(query.toLowerCase()));
+  const visible = withGhosts(skills, ghosts).filter(({ skill }) => (filter === "all" || skill.status === filter) && `${skill.name} ${skill.description} ${skill.target}`.toLowerCase().includes(query.toLowerCase()));
   const measures = events.filter(event => metric === "all" || event.kind === metric);
   const successful = measures.filter(event => event.outcome === "success");
   const sorted = successful.map(event => event.durationMs).sort((a, b) => a - b);
@@ -174,6 +179,30 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
     setSelected(current => current.filter(id => id !== skill.id)); setUndo(skill); tell(`${skill.name} archived.`);
   }
 
+  /** Save an edit and wait until the workspace has really stored it: the Save changes button shows Saving until then. */
+  async function saveEdit(skill: SkillRecord, draft: SkillDraft) {
+    const next = await applySkillEdit(skill, draft, skills);
+    setSkills(current => current.map(item => (item.id === skill.id ? next : item)));
+    await settled(entry);
+  }
+  /** Delete for good (Undo restores it to its place). Safe to run again after a failed save: it only removes what is still there. */
+  async function deleteSkill(skill: SkillRecord) {
+    const { removed, index } = withoutSkill(skills, skill.id);
+    if (removed) {
+      setSkills(current => withoutSkill(current, skill.id).next);
+      setGhosts(current => new Map(current).set(skill.id, { skill: removed, index }));
+      setSelected(current => current.filter(id => id !== skill.id)); setEditingId(current => (current === skill.id ? null : current));
+    }
+    await settled(entry);
+  }
+  async function undoDelete(skill: SkillRecord) {
+    const ghost = ghosts.get(skill.id);
+    setSkills(reinsertSkill(skills, ghost?.skill ?? skill, ghost?.index ?? 0));
+    setGhosts(current => { const next = new Map(current); next.delete(skill.id); return next; });
+    await settled(entry);
+  }
+  function settleDeleted(id: string) { setGhosts(current => { if (!current.has(id)) return current; const next = new Map(current); next.delete(id); return next; }); }
+
   function chooseSource(next: "github" | "write" | "file") {
     setSourceMode(next); setAttributes(true); setFieldError("");
     if (next !== "github") setUrl("");
@@ -245,7 +274,7 @@ export function Skilled({ workspaceId }: { workspaceId: string }) {
               <div className="sk-library-actions"><span className="sk-save-status">{sync.save === "saving" ? "Saving..." : sync.error ? "Save failed" : "Saved"}</span>{ready.length > 0 && <button className="sk-secondary sk-deliver-all" aria-label="Deliver skills" onClick={() => { setSelected(ready.map(skill => skill.id)); setTransfer(true); }}><ArrowDownToLine size={14} /><span>Deliver skills</span></button>}</div>
             </div>
             {skills.length > 0 && <label className="sk-search"><Search size={14} /><input aria-label="Search skills" placeholder="Find a skill..." value={query} onChange={event => setQuery(event.target.value)} /><span>{skills.length}/200</span></label>}
-            <div className="sk-cards"><AnimatePresence initial={false}>{visible.map(skill => <SkillCard key={skill.id} skill={skill} expanded={expanded.has(skill.id)} onToggle={() => toggleCard(skill.id)} onDeliver={() => { setSelected([skill.id]); setTransfer(true); }} onArchive={() => archive(skill)} onRestore={() => restore(skill)} />)}</AnimatePresence>
+            <div className="sk-cards"><AnimatePresence initial={false}>{visible.map(({ skill, ghost }) => <SkillCard key={skill.id} skill={skill} expanded={expanded.has(skill.id)} editing={editingId === skill.id} deleted={ghost} onToggle={() => toggleCard(skill.id)} onDeliver={() => { setSelected([skill.id]); setTransfer(true); }} onArchive={() => archive(skill)} onRestore={() => restore(skill)} onEdit={() => { setEditingId(skill.id); setExpanded(current => new Set([...current, skill.id])); }} onCloseEdit={() => setEditingId(null)} onSave={draft => saveEdit(skill, draft)} onDelete={() => deleteSkill(skill)} onUndoDelete={() => undoDelete(skill)} onDeleteSettled={() => settleDeleted(skill.id)} />)}</AnimatePresence>
               {!visible.length && <div className="sk-empty"><div className="sk-empty-icon"><BookOpen size={23} /><span><Plus size={10} /></span></div><h2>{skills.length ? "No skills in this view" : "No skills yet"}</h2><p>{skills.length ? "Try a different filter or search." : "Import from GitHub or add your own instructions."}</p><button className="sk-secondary" onClick={() => chooseSource("github")}>Add from GitHub<ArrowRight size={14} /></button></div>}
             </div>
           </section>

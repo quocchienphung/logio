@@ -1,0 +1,246 @@
+{
+  "ran": "2026-10-23T14:48:31.088Z",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "The split bar sits under the terrain on Repo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Days with something recorded are listed, with their shares",
+      "ok": true,
+      "detail": "Monday, 26.2% | Tuesday, 21.4% | Wednesday, 14.3% | Thursday, 19.0% | Friday, 19.0%"
+    },
+    {
+      "name": "The parts fill the bar exactly",
+      "ok": true,
+      "detail": "sum 100"
+    },
+    {
+      "name": "At rest nothing is highlighted or dimmed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The readout starts on the week total, equal to the terrain's",
+      "ok": true,
+      "detail": "This week 42 operations / terrain 42"
+    },
+    {
+      "name": "Hover highlights one part and dims the others",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The hovered part widens by 4.5 % of the bar (or what its label needs), the others give way and the bar stays whole",
+      "ok": true,
+      "detail": "26.19, 21.429, 14.286, 19.047, 19.048 -> 30.69, 20.123, 13.414, 17.887, 17.886"
+    },
+    {
+      "name": "The readout names the part with its share, value and unit",
+      "ok": true,
+      "detail": "Monday 26.2% 11 operations"
+    },
+    {
+      "name": "No label is lost while a part is hovered at this width",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The terrain fades every column outside the hovered part",
+      "ok": true,
+      "detail": "182.4 -> 217.8"
+    },
+    {
+      "name": "Leaving brings everything back",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Switching a part off collapses it in place and the rest reflow to fill the bar",
+      "ok": true,
+      "detail": "33.333, 0, 18.182, 24.243, 24.242"
+    },
+    {
+      "name": "Its legend item is a pressed-off toggle with the word Off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The terrain, its total and its summary leave those hours out",
+      "ok": true,
+      "detail": "42 -> 33"
+    },
+    {
+      "name": "A note names what is left out, with a way back",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Show all restores the week",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The last visible part stays on, with the reason announced",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "With one part left the bar is whole",
+      "ok": true,
+      "detail": "100, 0, 0, 0, 0"
+    },
+    {
+      "name": "Arrow keys walk the parts and read each one out",
+      "ok": true,
+      "detail": "Monday 26.2% 11 operations -> Tuesday 21.4% 9 operations"
+    },
+    {
+      "name": "End jumps to the last part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Home jumps to the first part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter switches the highlighted part off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Escape clears the highlight",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The bar is a focusable group named with every share",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "An hour highlighted in the terrain lights the part that holds it",
+      "ok": true,
+      "detail": "peak Mon, lit Monday, 26.2%"
+    },
+    {
+      "name": "Time of day gives parts of the day",
+      "ok": true,
+      "detail": "Morning 06–12, 40.5% | Afternoon 12–18, 59.5%"
+    },
+    {
+      "name": "Action gives what was done",
+      "ok": true,
+      "detail": "Import, 11.9% | Save, 35.7% | Export, 21.4% | Transfer, 31.0%"
+    },
+    {
+      "name": "Switching an action off leaves its operations out of the terrain",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Changing the split starts from the whole week again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The bar follows the metric: errors, in red, with their own total",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The edges ride the measured spring (critically damped, about 14.5 rad/s)",
+      "ok": true,
+      "detail": "omega 16.20, rms 0.0122, travel -1.38"
+    },
+    {
+      "name": "The sample week splits by day and by time of day, never by action",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "The seven days are listed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "At rest every label fits inside its part at this width (Sunday 57.7 px is over the 56 px rule)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Hover squeezes the small parts out: they stand on the lane under the bar with S-shaped leader lines",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Outside labels never overlap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Outside labels stay inside the bar's width",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Leaving closes the lane again",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Hovering a legend item highlights its part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Switching the data source clears what was switched off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "With nothing recorded the bar says so instead of inventing shares",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Reduced motion: a part switched off is gone at once",
+      "ok": true,
+      "detail": "33.333, 0, 18.182, 24.243, 24.242"
+    },
+    {
+      "name": "Phone: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Phone: the bar spans its card",
+      "ok": true,
+      "detail": "288"
+    },
+    {
+      "name": "Phone: a tap highlights a part",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Phone: a tap elsewhere clears it",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Dark theme: the highlighted part keeps readable text",
+      "ok": true,
+      "detail": "{\"bg\":\"oklab(0.569006 0.000421773 -0.00145611)\",\"text\":\"rgb(244, 244, 245)\"}"
+    },
+    {
+      "name": "No console errors",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

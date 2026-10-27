@@ -1,0 +1,694 @@
+Components
+Split bar
+Split bar
+Pro
+
+A single 100% bar split into shares: rest on a segment to widen it and read its exact figures, toggle segments from the legend and the rest reflow, with labels inside when they fit and on leader lines when they don't.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+7 days
+30 days
+90 days
+
+Traffic by source
+
+Sessions on northwind.shop
+
+Total
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+,
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+sessions
+Organic search
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Direct
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Paid search
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Social
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Referral
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Other
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Referral
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Other
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Organic search
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Direct
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Paid search
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Social
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Referral
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+Other
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+
+When to use
+A compact part to whole view that fits in a card row or a dashboard header.
+Comparing shares where people also want exact figures on demand and the option to leave a category out.
+Showing how a mix changes between periods or filters with one continuous reflow.
+When not to use
+Use bar-chart to compare absolute values across many categories.
+Use donut-chart when the total in the middle is the headline, or waffle-chart for a count of units.
+Use a stacked chart over time when the trend of each share matters more than today's split.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Split bar is part of Arc Pro
+Pro
+
+The preview is open to everyone. Pro members get the source, the install command, and updates for every Pro component.
+
+Get Arc Pro
+Sign in
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { SplitBar, type SplitSegment } from "@/components/arc/split-bar/split-bar";
+2
+ 
+3
+const budget: SplitSegment[] = [
+4
+  { id: "payroll", label: "Payroll", value: 412_000 },
+5
+  { id: "cloud", label: "Cloud", value: 96_500 },
+6
+  { id: "marketing", label: "Marketing", value: 74_200 },
+7
+  { id: "tools", label: "Software", value: 18_900 },
+8
+  { id: "other", label: "Other", value: 9_300 },
+9
+];
+10
+ 
+11
+export function BudgetSplit() {
+12
+  const [hidden, setHidden] = useState<string[]>([]);
+13
+  return (
+14
+    <SplitBar
+15
+      title="Q4 budget"
+16
+      segments={budget}
+17
+      format={{ style: "currency", currency: "USD", maximumFractionDigits: 0 }}
+18
+      hidden={hidden}
+19
+      onHiddenChange={setHidden}
+20
+    />
+21
+  );
+22
+}
+API reference
+SplitBar
+
+One 100% bar split into shares, for traffic sources, budgets, storage or votes. Rest on a segment and it widens a little (small ones widen enough to show their own label) while the others give way proportionally and dim, and the readout above names it precisely: share, value and unit. Labels sit inside a segment when they fit, as name and percent or percent alone, and otherwise move to a lane under the bar with soft leader lines, pushed apart so they never overlap. The legend switches segments off and on: a hidden segment collapses in place and the rest reflow to fill the bar on springs, their percentages rolling to the new shares. New data does the same, so switching a period is one continuous reflow.
+
+Prop
+Type
+Default
+Description
+segments
+readonly SplitSegment[]
+–
+The shares in display order: { id, label, value, color? }. Shares are each value over the total of the visible segments; zero and negative values are left out. Segments are matched by id when the data changes.
+segments[].color
+string
+–
+Any CSS color. Defaults to --series-1 to --series-4, then two neutrals meant for catch-all shares such as Referral or Other.
+title
+string
+–
+Heading above the bar and the accessible name unless label is set.
+description
+string
+–
+One line under the title.
+format
+Intl.NumberFormatOptions
+–
+Number format for values in the readout, such as currency for a budget. Shares always read as percentages with one decimal.
+unit
+string
+–
+Word after values in the readout, such as sessions.
+totalLabel
+string
+"Total"
+Label of the readout when nothing is highlighted.
+hidden
+readonly string[]
+–
+Ids of segments that are switched off (controlled).
+defaultHidden
+readonly string[]
+[]
+Ids switched off at first (uncontrolled).
+onHiddenChange
+(hidden: string[]) => void
+–
+Called with the new list when the legend or the keyboard switches a segment.
+legend
+boolean
+true
+Show the legend. Each item toggles its segment and highlights it on hover.
+locale
+string
+"en-US"
+Formatting locale. Fixed by default so server and client render the same digits.
+label
+string
+–
+Accessible name. Defaults to the title.
+className
+string
+–
+Class on the root element.
+style
+CSSProperties
+–
+Inline styles on the root element.
+Keyboard interactions
+Tab
+Focuses the bar, then each legend item.
+Arrow Right
+or
+Arrow Down
+On the bar: highlights the next visible segment, widening it and reading it out.
+Arrow Left
+or
+Arrow Up
+On the bar: highlights the previous visible segment.
+Home
+or
+End
+On the bar: highlights the first or last visible segment.
+Enter
+or
+Space
+On the bar: switches the highlighted segment off. On a legend item: switches its segment off or back on.
+Escape
+Clears the highlight.
+Accessibility
+The bar is a focusable group with the role description split bar, named with every visible share (Organic search 41.6%, Direct 24.8% and so on) and how to read each one.
+Moving through segments with the arrow keys announces the segment's name, share and value in a polite live region; switching a segment off or on is announced too.
+Legend items are toggle buttons with aria-pressed, named with the segment and its share or hidden. An off segment is also shown without color: a hollow swatch, struck through name and the word Off.
+The last visible segment cannot be switched off; the legend item gives a small shake and the reason is announced.
+Inside labels, outside labels, leader lines and rolling digits are hidden from assistive technology; the group name and readout carry the same numbers as text.
+Segments use the shared chart palette, validated for color vision deficiency in both themes, and every segment is named in the legend, so color is never the only key.
+Motion
+Each segment is a full width layer cut to its share with an animated clip-path, and its edges ride the smooth spring. Reflow never touches layout, and a new target mid flight retargets from where the edges are.
+Hovering or arrowing onto a segment widens it by about 4.5% of the bar, or enough to fit its name and share when it is small, while the others give way proportionally and dim, so the bar always stays at 100%.
+Labels live inside the clipped layer, so they slide with their segment and are cut cleanly at its edge instead of spilling into a neighbour. When a segment grows or shrinks, its name opens or closes on a spring beside the percentage.
+Outside labels glide to their new places and fade in and out; their leader lines are S curves that morph with them. The label lane opens and closes smoothly when the first label moves outside or the last one comes back.
+Percentages, values and the total roll digit by digit like an odometer, in the direction they changed.
+The readout above the bar crossfades between the total and the highlighted segment with a short rise and a little blur.
+With reduced motion segments and labels move at once, digits change in place, readouts swap without travel and the refusal shake is skipped.
+Responsive behavior
+The bar spans its container. Its width is measured with a ResizeObserver and label fitting is recalculated, so the same data shows more labels inside on a wide card and moves more of them outside on a phone.
+The readout wraps under the title on narrow screens; the legend wraps to as many rows as it needs.
+On touch, a tap on a segment highlights it and a tap elsewhere clears it; vertical page scrolling is never captured.
+Performance
+Label fitting uses canvas text metrics cached per font, so it never reads layout while animating.
+Segment edges, caps and labels are driven by motion values; React renders only when the data, the hidden set or the highlighted segment changes.
+Segments animate clip-path and transform only.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use it for a part to whole split of two to eight categories where people compare shares at a glance: traffic sources, budget lines, storage by file type, survey answers, device mix.
+Order segments by size or by a meaningful sequence, and put catch-all shares such as Other last so they take the neutral colors.
+Set unit or format so the readout gives the exact figure, not only the percentage.
+Keep labels short. Long names only show inside wide segments; everything else moves to the outside lane.
+Pass new segments with the same ids to animate between periods or filters; the bar reflows instead of redrawing.
+/components/split-bar/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Donut chart
+Component
+A donut whose arcs morph between datasets, with the active value rolling into the center.
+Waffle chart
+Component
+A ten by ten unit chart where every cell is one percent, and cells fly to their new group when the data changes.
+Treemap
+Component
+A squarified treemap: click to drill and the tiles grow to fill the view, with a breadcrumb back and metrics that morph every tile.
+Bar chart
+Component
+Compare one measure across days and scrub any bar for its value.
+Usage meter
+Component
+Show what fills an allowance and how close it is to the limit.
+Previous
+Treemap
+Next
+Sunburst
+Arc · 185 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
