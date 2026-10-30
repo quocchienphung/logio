@@ -10,6 +10,9 @@ import { Button, Chunks, Count, Glyph, LabelSlot, ModelMark, SegmentedControl, S
 import type { RunController } from "./use-orchestrator-run";
 import { PULSE, computeWires } from "./wires.ts";
 import type { Rect, Wires } from "./wires.ts";
+import type { Translate } from "../i18n/translate";
+import { useOrchestratorCopy } from "./OrchestratorI18n";
+import { runAnnouncement } from "./orchestrator-copy";
 
 const series = (index: number) => `var(--series-${(index % 4) + 1})`;
 const TOOL_ICON: Record<ToolKind | "retry" | "return", ReactNode> = {
@@ -35,19 +38,19 @@ function Elapsed({ clock, from, frozen, on }: { clock: () => number; from: numbe
 
 const ACTIVE: ReadonlySet<LaneView["phase"]> = new Set(["starting", "working", "error", "approval"]);
 
-function activityOf(lane: LaneView, clock: () => number): { key: string; icon: ReactNode; label: ReactNode; shimmer: boolean; tone?: "danger" } {
+function activityOf(lane: LaneView, clock: () => number, t: Translate): { key: string; icon: ReactNode; label: ReactNode; shimmer: boolean; tone?: "danger" } {
   switch (lane.phase) {
-    case "waiting": return { key: "waiting", icon: <Glyph kind="clock" />, label: "Waiting for the plan", shimmer: false };
-    case "planned": return { key: "planned", icon: <Glyph kind="idle" />, label: "Planned", shimmer: false };
-    case "queued": return { key: `queued${lane.place}`, icon: <Glyph kind="queued" />, label: `Queued, ${ordinal(lane.place)}`, shimmer: false };
-    case "starting": return { key: "starting", icon: <Glyph kind="spin" />, label: "Starting", shimmer: false };
-    case "approval": return { key: "approval", icon: <ShieldCheck strokeWidth={1.75} aria-hidden="true" />, label: "Waiting for approval", shimmer: false };
-    case "error": return { key: "error", icon: <Glyph kind="error" />, label: <>Failed, retrying in <RetryIn at={lane.retryAt} clock={clock} /></>, shimmer: false, tone: "danger" };
-    case "done": return { key: "done", icon: <Glyph kind={lane.denied ? "stop" : "done"} />, label: lane.denied ? "Returned without writing" : `Returned after ${lane.toolCalls} tool calls`, shimmer: false };
-    case "stopped": return { key: "stopped", icon: <Glyph kind="stop" />, label: "Stopped", shimmer: false };
+    case "waiting": return { key: "waiting", icon: <Glyph kind="clock" />, label: t("Waiting for the plan"), shimmer: false };
+    case "planned": return { key: "planned", icon: <Glyph kind="idle" />, label: t("Planned"), shimmer: false };
+    case "queued": return { key: `queued${lane.place}`, icon: <Glyph kind="queued" />, label: t("Queued, {0}", [t(ordinal(lane.place))]), shimmer: false };
+    case "starting": return { key: "starting", icon: <Glyph kind="spin" />, label: t("Starting"), shimmer: false };
+    case "approval": return { key: "approval", icon: <ShieldCheck strokeWidth={1.75} aria-hidden="true" />, label: t("Waiting for approval"), shimmer: false };
+    case "error": return { key: "error", icon: <Glyph kind="error" />, label: <>{t("Failed, retrying in")} <RetryIn at={lane.retryAt} clock={clock} /></>, shimmer: false, tone: "danger" };
+    case "done": return { key: "done", icon: <Glyph kind={lane.denied ? "stop" : "done"} />, label: lane.denied ? t("Returned without writing") : t("Returned after {0} tool calls", [lane.toolCalls]), shimmer: false };
+    case "stopped": return { key: "stopped", icon: <Glyph kind="stop" />, label: t("Stopped"), shimmer: false };
     case "working": {
       const step = lane.step;
-      return { key: `w${step?.index}.${step?.attempt}`, icon: step ? TOOL_ICON[step.tool] : <Glyph kind="spin" />, label: step ? (step.target ? `${step.label} · ${step.target}` : step.label) : "Working", shimmer: true };
+      return { key: `w${step?.index}.${step?.attempt}`, icon: step ? TOOL_ICON[step.tool] : <Glyph kind="spin" />, label: step ? (step.target ? `${t(step.label)} · ${step.target}` : t(step.label)) : t("Working"), shimmer: true };
     }
   }
 }
@@ -78,21 +81,23 @@ function Ticker({ text, settled, animated }: { text: string; settled: boolean; a
 }
 
 function Transcript({ rows, onRetry }: { rows: LogRow[]; onRetry?: () => void }) {
-  if (!rows.length) return <p className="ob-log__empty">Nothing has run yet.</p>;
+  const t = useOrchestratorCopy();
+  if (!rows.length) return <p className="ob-log__empty">{t("Nothing has run yet.")}</p>;
   return <ol className="ob-log">
     {rows.map(row => <li key={row.id} className="ob-log__row" data-tone={row.tone === "danger" ? "danger" : undefined}>
       <span className="ob-log__icon">{row.tone === "danger" && row.tool !== "write" ? <Glyph kind="error" /> : TOOL_ICON[row.tool]}</span>
-      <span className="ob-log__main"><span className="ob-log__title">{row.title}{row.target && <span className="ob-log__target"> {row.target}</span>}</span>{row.detail && <span className="ob-log__detail">{row.detail}</span>}</span>
+      <span className="ob-log__main"><span className="ob-log__title">{t(row.title)}{row.target && <span className="ob-log__target"> {row.target}</span>}</span>{row.detail && <span className="ob-log__detail">{t(row.detail)}</span>}</span>
       <span className="ob-tabular ob-log__time">{row.ms !== undefined ? formatDuration(row.ms) : ""}</span>
     </li>)}
-    {onRetry && <li className="ob-retry"><Button size="sm" onClick={onRetry}><RotateCcw size={14} strokeWidth={1.75} aria-hidden="true" />Retry now</Button></li>}
+    {onRetry && <li className="ob-retry"><Button size="sm" onClick={onRetry}><RotateCcw size={14} strokeWidth={1.75} aria-hidden="true" />{t("Retry now")}</Button></li>}
   </ol>;
 }
 
 interface LaneCardProps { scenario: Scenario; index: number; lane: LaneView; clock: () => number; retryNow: (lane: number) => void; open: boolean; onToggle: (lane: number) => void; id: string }
 const LaneCard = memo(function LaneCard({ scenario, index, lane, clock, retryNow, open, onToggle, id }: LaneCardProps) {
+  const t = useOrchestratorCopy();
   const off = useMotionOff();
-  const activity = activityOf(lane, clock);
+  const activity = activityOf(lane, clock, t);
   const active = ACTIVE.has(lane.phase);
   const started = lane.phase !== "waiting" && lane.phase !== "planned" && lane.phase !== "queued";
   const settled = lane.phase === "done" || lane.phase === "stopped";
@@ -100,13 +105,13 @@ const LaneCard = memo(function LaneCard({ scenario, index, lane, clock, retryNow
   const name = workerName(scenario, index);
   const phaseWord = lane.phase === "error" ? "Failed, retrying" : lane.phase === "done" ? "Returned" : lane.phase === "approval" ? "Waiting for approval" : lane.phase.charAt(0).toUpperCase() + lane.phase.slice(1);
   return <div className="ob-lane" data-phase={lane.phase} style={{ "--lane": series(index) } as React.CSSProperties} data-wire="lane">
-    <button type="button" className="ob-lane__button" aria-expanded={open} aria-controls={id} aria-label={`${lane.title ?? "Unassigned"}, ${name}. ${phaseWord}. ${open ? "Hide" : "Show"} transcript`} onClick={() => onToggle(index)}>
+    <button type="button" className="ob-lane__button" aria-expanded={open} aria-controls={id} aria-label={t("{0}, {1}. {2}. {3} transcript", [t(lane.title ?? "Unassigned"), name, t(phaseWord), t(open ? "Hide" : "Show")])} onClick={() => onToggle(index)}>
       <span className="ob-lane__head">
         <span className="ob-lane__mark" aria-hidden="true"><ModelMark mark={workerMark(scenario, index)} /></span>
         <span className="ob-lane__model">{name}</span>
         <span className="ob-lane__time" data-hidden={started ? undefined : ""}><Elapsed clock={clock} from={lane.dispatchAt ?? 0} frozen={lane.ms} on={active} /></span>
       </span>
-      <span className="ob-lane__title" data-muted={lane.title ? undefined : ""}><Swap id={lane.title ?? "none"}><span className="ob-lane__titletext" style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{lane.title ?? "Unassigned"}</span></Swap></span>
+      <span className="ob-lane__title" data-muted={lane.title ? undefined : ""}><Swap id={lane.title ?? "none"}><span className="ob-lane__titletext" style={{ display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t(lane.title ?? "Unassigned")}</span></Swap></span>
       <Swap id={activity.key}>
         <span className="ob-activity" data-tone={activity.tone}>
           <span className="ob-activity__icon">{activity.icon}</span>
@@ -115,7 +120,7 @@ const LaneCard = memo(function LaneCard({ scenario, index, lane, clock, retryNow
       </Swap>
       <Swap id={`${lane.lineKey}:${lane.lineTone}`}>
         <span className="ob-output" data-tone={lane.lineTone === "normal" ? undefined : lane.lineTone}>
-          {lane.lineTone === "danger" ? <span className="ob-clip">{lane.line}</span> : lane.line ? <Ticker text={lane.line} settled={settled} animated={!settled} /> : null}
+          {lane.lineTone === "danger" ? <span className="ob-clip">{t(lane.line)}</span> : lane.line ? <Ticker text={t(lane.line)} settled={settled} animated={!settled} /> : null}
         </span>
       </Swap>
       <span className="ob-lane__foot">
@@ -186,12 +191,12 @@ function Pulse({ d, color, onDone }: { d: string; color: string; onDone: () => v
 
 // --------------------------------------------------------------------------- the block
 
-export function leadStatus(view: RunView, scenario: Scenario): { key: string; glyph: ReactNode; text: string } {
+export function leadStatus(view: RunView, scenario: Scenario, t: Translate): { key: string; glyph: ReactNode; text: string } {
   const working = view.lanes.filter(lane => lane.phase === "starting" || lane.phase === "working" || lane.phase === "error" || lane.phase === "approval").length;
   switch (view.status) {
     case "idle": return { key: "idle", glyph: <Glyph kind="idle" />, text: "Ready" };
     case "planning": return { key: "planning", glyph: <Glyph kind="spin" />, text: "Planning" };
-    case "running": return { key: working ? `w${working}` : "dispatch", glyph: <Glyph kind="spin" />, text: working ? `${working} working` : "Dispatching" };
+    case "running": return { key: working ? `w${working}` : "dispatch", glyph: <Glyph kind="spin" />, text: working ? t("{0} working", [working]) : "Dispatching" };
     case "merging": return view.summaryChunks > 0 ? { key: "writing", glyph: <Glyph kind="spin" />, text: "Writing summary" } : { key: "merging", glyph: <Glyph kind="spin" />, text: "Merging results" };
     case "done": return { key: "done", glyph: <Glyph kind="done" />, text: "Done" };
     case "stopped": return { key: "stopped", glyph: <Glyph kind="stop" />, text: "Stopped" };
@@ -199,9 +204,10 @@ export function leadStatus(view: RunView, scenario: Scenario): { key: string; gl
   void scenario;
 }
 
-function summaryText(scenario: Scenario) { return `${scenario.summary.chunks.join("")}\n${scenario.summary.bullets.map(bullet => `- ${bullet}`).join("\n")}`; }
+function summaryText(scenario: Scenario, t: Translate) { return `${scenario.summary.chunks.map(chunk => t(chunk)).join("")}\n${scenario.summary.bullets.map(bullet => `- ${t(bullet)}`).join("\n")}`; }
 
 export function OrchestratorBlock({ run, onLaneOpen }: { run: RunController; onLaneOpen?: (lane: number) => void }) {
+  const t = useOrchestratorCopy();
   const { scenario, view } = run;
   const off = useMotionOff();
   const root = useRef<HTMLDivElement>(null), flow = useRef<HTMLDivElement>(null);
@@ -238,18 +244,18 @@ export function OrchestratorBlock({ run, onLaneOpen }: { run: RunController; onL
     if (added.length) setPulses(current => [...current, ...added.filter(item => item.d).map(item => ({ id: (counter.current += 1), d: item.d, color: series(item.lane) }))]);
   }, [run.events, off]);
 
-  const status = leadStatus(view, scenario);
+  const status = leadStatus(view, scenario, t);
   const working = view.status === "planning" || view.status === "running" || view.status === "merging";
-  const summaryStatus = view.status === "done" ? { key: "done", glyph: <Glyph kind="done" />, text: `Merged ${total} results` }
-    : view.status === "merging" ? { key: "merging", glyph: <Glyph kind="spin" />, text: `Merging ${total} results` }
-    : view.status === "stopped" ? { key: "stopped", glyph: <Glyph kind="stop" />, text: `${view.returned} of ${total} returned` }
-    : view.status === "running" ? { key: `r${view.returned}`, glyph: <Glyph kind={view.returned ? "arc" : "idle"} progress={view.returned / total} />, text: `${view.returned} of ${total} returned` }
-    : { key: "waits", glyph: <Glyph kind="idle" />, text: `Waits for ${total} results` };
+  const summaryStatus = view.status === "done" ? { key: "done", glyph: <Glyph kind="done" />, text: t("Merged {0} results", [total]) }
+    : view.status === "merging" ? { key: "merging", glyph: <Glyph kind="spin" />, text: t("Merging {0} results", [total]) }
+    : view.status === "stopped" ? { key: "stopped", glyph: <Glyph kind="stop" />, text: t("{0} of {1} returned", [view.returned, total]) }
+    : view.status === "running" ? { key: `r${view.returned}`, glyph: <Glyph kind={view.returned ? "arc" : "idle"} progress={view.returned / total} />, text: t("{0} of {1} returned", [view.returned, total]) }
+    : { key: "waits", glyph: <Glyph kind="idle" />, text: t("Waits for {0} results", [total]) };
   const showSummary = view.status === "merging" || view.status === "done";
   const [copied, setCopied] = useState<"idle" | "copied" | "error">("idle");
   const copySummary = async () => {
     const totals = view.totals;
-    const text = `${scenario.goal}\n\n${summaryText(scenario)}${totals ? `\n\nTokens ${formatTokens(totals.tokens)}, cost ${formatCost(totals.cost, 2)}, wall time ${formatSeconds(totals.wall)}, ${formatSeconds(totals.sequential)} in sequence.` : ""}`;
+    const text = `${t(scenario.goal)}\n\n${summaryText(scenario, t)}${totals ? `\n\n${t("Tokens {0}, cost {1}, wall time {2}, {3} in sequence.", [formatTokens(totals.tokens), formatCost(totals.cost, 2), formatSeconds(totals.wall), formatSeconds(totals.sequential)])}` : ""}`;
     try { await navigator.clipboard.writeText(text); setCopied("copied"); } catch { setCopied("error"); }
     window.setTimeout(() => setCopied("idle"), 1800);
   };
@@ -267,13 +273,13 @@ export function OrchestratorBlock({ run, onLaneOpen }: { run: RunController; onL
 
   return <div ref={root} className="ob" data-lanes={lanes} style={{ "--count": lanes } as React.CSSProperties}>
     <header className="ob-header">
-      <h3 className="ob-goal">{scenario.goal}</h3>
+      <h3 className="ob-goal">{t(scenario.goal)}</h3>
       <div className="ob-toolbar">
         <div className="ob-limit">
-          <span className="ob-limit__label" aria-hidden="true">Concurrency</span>
+          <span className="ob-limit__label" aria-hidden="true">{t("Concurrency")}</span>
           <SegmentedControl label="Concurrency limit" value={run.concurrency} onChange={run.setConcurrency} options={Array.from({ length: CONCURRENCY.max - CONCURRENCY.min + 1 }, (_, index) => ({ value: CONCURRENCY.min + index, label: String(CONCURRENCY.min + index) }))} />
         </div>
-        <Button onClick={onRun}><LabelSlot id={runLabel.key}>{runLabel.icon}{runLabel.text}</LabelSlot></Button>
+        <Button onClick={onRun}><LabelSlot id={runLabel.key}>{runLabel.icon}{t(runLabel.text)}</LabelSlot></Button>
       </div>
     </header>
     <div ref={flow} className="ob-flow">
@@ -292,20 +298,20 @@ export function OrchestratorBlock({ run, onLaneOpen }: { run: RunController; onL
         {pulses.map(pulse => <Pulse key={pulse.id} d={pulse.d} color={pulse.color} onDone={() => setPulses(current => current.filter(item => item.id !== pulse.id))} />)}
       </svg>}
 
-      <section className="ob-node" aria-label="Lead agent" data-wire="lead">
+      <section className="ob-node" aria-label={t("Lead agent")} data-wire="lead">
         <div className="ob-node__row">
           <span className="ob-node__mark" aria-hidden="true" data-wire="lead-mark"><ModelMark mark={scenario.lead.mark} /></span>
-          <span className="ob-node__name">{scenario.lead.name}<span className="ob-node__role">Lead</span></span>
+          <span className="ob-node__name">{scenario.lead.name}<span className="ob-node__role">{t("Lead")}</span></span>
           <span className="ob-node__status">
-            <Swap id={status.key}><span className="ob-status"><span className="ob-activity__icon">{status.glyph}</span><span>{status.text}</span></span></Swap>
+            <Swap id={status.key}><span className="ob-status"><span className="ob-activity__icon">{status.glyph}</span><span>{t(status.text)}</span></span></Swap>
             <span className="ob-node__time"><Elapsed clock={run.clock} from={0} frozen={view.status === "done" ? view.totals?.wall : view.status === "stopped" ? view.endedAt : view.status === "idle" ? 0 : null} on={working} /></span>
           </span>
         </div>
         <div className="ob-node__body">
-          {view.plan > 0 && <ol className="ob-plan" aria-label="Plan">
+          {view.plan > 0 && <ol className="ob-plan" aria-label={t("Plan")}>
             {scenario.lanes.slice(0, view.plan).map((lane, index) => <motion.li key={lane.id} className="ob-plan__item" initial={off ? false : { height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
               transition={off ? { duration: 0 } : { height: { type: "spring", stiffness: 380, damping: 39 }, opacity: { duration: 0.16, ease: [0.16, 1, 0.3, 1] } }}>
-              <span className="ob-plan__inner"><span className="ob-plan__dot" aria-hidden="true" style={{ "--lane": series(index) } as React.CSSProperties} /><span className="ob-plan__text"><Chunks text={lane.instruction} animated={view.status !== "idle"} /></span></span>
+              <span className="ob-plan__inner"><span className="ob-plan__dot" aria-hidden="true" style={{ "--lane": series(index) } as React.CSSProperties} /><span className="ob-plan__text"><Chunks text={t(lane.instruction)} animated={view.status !== "idle"} /></span></span>
             </motion.li>)}
           </ol>}
         </div>
@@ -315,39 +321,39 @@ export function OrchestratorBlock({ run, onLaneOpen }: { run: RunController; onL
         {scenario.lanes.map((lane, index) => <LaneCard key={lane.id} scenario={scenario} index={index} lane={view.lanes[index]} clock={run.clock} retryNow={run.retryNow} id={`${baseId}-${index}`} open={!!open[index]} onToggle={toggleLane} />)}
       </div>
 
-      <section className="ob-node" aria-label="Summary" data-wire="summary">
+      <section className="ob-node" aria-label={t("Summary")} data-wire="summary">
         <div className="ob-node__row">
           <span className="ob-node__mark" aria-hidden="true" data-wire="summary-mark"><ModelMark mark={scenario.lead.mark} /></span>
-          <span className="ob-node__name">Summary</span>
+          <span className="ob-node__name">{t("Summary")}</span>
           <span className="ob-node__status"><Swap id={summaryStatus.key}><span className="ob-status"><span className="ob-activity__icon">{summaryStatus.glyph}</span><span>{summaryStatus.text}</span></span></Swap></span>
         </div>
         <div className="ob-node__body">
           <Swap id={showSummary ? "text" : "hint"}>
             {showSummary
-              ? <div className="ob-summary" role="region" aria-label="Summary text">
-                  <p>{scenario.summary.chunks.map((chunk, index) => (view.summaryChunks > index || view.status === "done" ? <span key={index} className={view.status === "done" ? undefined : "op-chunk"}>{chunk}</span> : null))}</p>
-                  <ul>{scenario.summary.bullets.map((bullet, index) => (view.summaryChunks > scenario.summary.chunks.length + index || view.status === "done" ? <li key={index}>{view.status === "done" ? bullet : <Chunks text={bullet} />}</li> : null))}</ul>
+              ? <div className="ob-summary" role="region" aria-label={t("Summary text")}>
+                  <p>{scenario.summary.chunks.map((chunk, index) => (view.summaryChunks > index || view.status === "done" ? <span key={index} className={view.status === "done" ? undefined : "op-chunk"}>{t(chunk)}</span> : null))}</p>
+                  <ul>{scenario.summary.bullets.map((bullet, index) => (view.summaryChunks > scenario.summary.chunks.length + index || view.status === "done" ? <li key={index}>{view.status === "done" ? t(bullet) : <Chunks text={t(bullet)} />}</li> : null))}</ul>
                 </div>
-              : <p className="ob-hint">The lead merges what the subagents return here.</p>}
+              : <p className="ob-hint">{t("The lead merges what the subagents return here.")}</p>}
           </Swap>
           <motion.div className="ob-totals-wrap" initial={false} animate={{ height: totalsOn && view.totals ? "auto" : 0, opacity: totalsOn && view.totals ? 1 : 0 }} inert={!(totalsOn && view.totals)}
             transition={off ? { duration: 0 } : { height: { type: "spring", stiffness: 380, damping: 39 }, opacity: { duration: 0.16, ease: [0.16, 1, 0.3, 1] } }}>
             {view.totals && <div className="ob-totals">
               <dl className="ob-stats">
-                <div><dt>Tokens</dt><dd className="ob-tabular">{formatTokens(view.totals.tokens)}</dd></div>
-                <div><dt>Cost</dt><dd className="ob-tabular">{formatCost(view.totals.cost, 2)}</dd></div>
-                <div><dt>Wall time</dt><dd className="ob-tabular">{formatSeconds(view.totals.wall)}</dd></div>
-                <div><dt>In sequence</dt><dd className="ob-tabular">{formatSeconds(view.totals.sequential)}</dd></div>
+                <div><dt>{t("Tokens")}</dt><dd className="ob-tabular">{formatTokens(view.totals.tokens)}</dd></div>
+                <div><dt>{t("Cost")}</dt><dd className="ob-tabular">{formatCost(view.totals.cost, 2)}</dd></div>
+                <div><dt>{t("Wall time")}</dt><dd className="ob-tabular">{formatSeconds(view.totals.wall)}</dd></div>
+                <div><dt>{t("In sequence")}</dt><dd className="ob-tabular">{formatSeconds(view.totals.sequential)}</dd></div>
               </dl>
               <div className="ob-speed-row">
-                <span className="ob-speed"><Gauge size={14} strokeWidth={1.75} aria-hidden="true" />{view.totals.speedup.toFixed(1)}x faster than running in sequence</span>
-                <Button size="sm" onClick={copySummary}><span className="op-icon" aria-hidden="true"><span data-state={copied}>{copied === "copied" ? <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg> : <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>}</span></span>{copied === "copied" ? "Copied" : copied === "error" ? "Failed" : "Copy summary"}</Button>
+                <span className="ob-speed"><Gauge size={14} strokeWidth={1.75} aria-hidden="true" />{t("{0}x faster than running in sequence", [view.totals.speedup.toFixed(1)])}</span>
+                <Button size="sm" onClick={copySummary}><span className="op-icon" aria-hidden="true"><span data-state={copied}>{copied === "copied" ? <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg> : <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg>}</span></span>{t(copied === "copied" ? "Copied" : copied === "error" ? "Failed" : "Copy summary")}</Button>
               </div>
             </div>}
           </motion.div>
         </div>
       </section>
     </div>
-    <p className="ob-sr" role="status" aria-live="polite">{view.announce}</p>
+    <p className="ob-sr" role="status" aria-live="polite">{runAnnouncement(view, t)}</p>
   </div>;
 }

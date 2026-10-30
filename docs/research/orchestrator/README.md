@@ -61,6 +61,10 @@ The **Orchestrator** page (`/personalize?section=orchestrator`, the Techniques f
 Differences from the preview, on purpose: the timeline is fed by the live run (the preview's incident sample is kept in `timeline-model.ts` as the test fixture); its speed-up uses the
 block's sequential estimate; the tool marks of web search/fetch/files are generic icons, the brand marks come from the repo's own set.
 
+## English / Tiếng Việt
+
+Orchestrator now follows the workspace's **EN / VI** account-menu control and Settings language preference. Presentation copy, sample narrative and accessible descriptions are translated without changing the run's English scenario, simulation/events or timings. Input/JSON, tool payload copies, URLs, paths, channels and model names remain original. Localization ownership and verification (alongside Claude Code's separate responsive changes): [workspace-i18n/orchestrator.md](../workspace-i18n/orchestrator.md).
+
 ## Performance notes
 
 Profiled on the dev server (React in development mode, Turbopack) with the Chrome profiler while a run plays: the first version spent most of its time in three places, all fixed

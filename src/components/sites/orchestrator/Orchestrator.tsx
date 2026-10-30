@@ -11,6 +11,7 @@ import type { TimelineRun } from "./timeline-model.ts";
 import { callsFromRun, postSummaryCall } from "./tool-call-model.ts";
 import type { ToolCallData, ToolStatus } from "./tool-call-model.ts";
 import { useOrchestratorRun } from "./use-orchestrator-run";
+import { OrchestratorI18n } from "./OrchestratorI18n";
 import "./orchestrator.css";
 
 /** Closes the spans a stopped run left open at the moment it was stopped. */
@@ -64,7 +65,7 @@ export function Orchestrator({ workspaceId }: { workspaceId: string }) {
   const laneOptions = [{ value: 0, label: "All" }, ...scenario.lanes.map((item, index) => ({ value: index + 1, label: item.title.split(" ")[0] }))];
   const live = run.active;
 
-  return <div className="orch">
+  return <OrchestratorI18n scenario={scenario}><div className="orch">
     <div className="orch__head">
       <div>
         <h1>{t("Orchestrator")}</h1>
@@ -79,7 +80,7 @@ export function Orchestrator({ workspaceId }: { workspaceId: string }) {
       <div>
         <AgentTimeline key={run.runs} run={timelineRun} live={live} liveNow={run.clock} speedup={view.totals?.speedup} title={t("Timeline of this run")} onSpanSelect={span => setLane(span && span.row > 0 ? span.row : 0)} />
       </div>
-      <section className="orch__card" aria-label="Tool calls">
+      <section className="orch__card" aria-label={t("Tool calls")}>
         <div className="orch__cardhead">
           <h2>{t("Tool calls")}</h2>
           <SegmentedControl label="Show the calls of" value={lane} onChange={setLane} options={laneOptions} />
@@ -96,5 +97,5 @@ export function Orchestrator({ workspaceId }: { workspaceId: string }) {
         </div>
       </section>
     </div>
-  </div>;
+  </div></OrchestratorI18n>;
 }

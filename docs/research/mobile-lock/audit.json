@@ -1,0 +1,131 @@
+[
+ {
+  "route": "/personalize?section=usage",
+  "w": 320,
+  "mainSpill": "",
+  "vw": 320,
+  "docW": 320,
+  "bodyW": 320,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-as-tabs 240/289",
+   "div.ui-sb-table-wrap 240/486"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage",
+  "w": 390,
+  "mainSpill": "",
+  "vw": 390,
+  "docW": 390,
+  "bodyW": 390,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-sb-table-wrap 310/486"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage&settings-tab=billing",
+  "w": 320,
+  "mainSpill": "",
+  "vw": 320,
+  "docW": 320,
+  "bodyW": 320,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-as-tabs 240/289",
+   "div.ui-sb-table-wrap 240/486"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage&settings-tab=billing",
+  "w": 390,
+  "mainSpill": "",
+  "vw": 390,
+  "docW": 390,
+  "bodyW": 390,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-sb-table-wrap 310/486"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage&settings-tab=keys",
+  "w": 320,
+  "mainSpill": "",
+  "vw": 320,
+  "docW": 320,
+  "bodyW": 320,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-as-tabs 240/289",
+   "div.ui-sb-table-wrap 240/486"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage&settings-tab=keys",
+  "w": 390,
+  "mainSpill": "",
+  "vw": 390,
+  "docW": 390,
+  "bodyW": 390,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-sb-table-wrap 310/486"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage&settings-tab=members",
+  "w": 320,
+  "mainSpill": "",
+  "vw": 320,
+  "docW": 320,
+  "bodyW": 320,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-as-tabs 240/289"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage&settings-tab=members",
+  "w": 390,
+  "mainSpill": "",
+  "vw": 390,
+  "docW": 390,
+  "bodyW": 390,
+  "sideways": 0,
+  "htmlOx": "visible",
+  "bodyOx": "visible",
+  "culprits": [],
+  "scrollers": [],
+  "errors": []
+ }
+]

@@ -11,5 +11,6 @@ import { roles } from './vi-roles';
 import { metrics } from './vi-metrics';
 import { examples } from './vi-examples';
 import { errors } from './vi-errors';
+import { orchestrator } from './vi-orchestrator';
 /** Authored Vietnamese UI copy. English keys remain the original source of truth. */
-export const vi: Readonly<Record<string, string>> = { ...common, ...settings, ...workspace, ...library, ...process, ...documents, ...assistant, ...previews, ...details, ...roles, ...metrics, ...examples, ...errors };
+export const vi: Readonly<Record<string, string>> = { ...common, ...settings, ...workspace, ...library, ...process, ...documents, ...assistant, ...previews, ...details, ...roles, ...metrics, ...examples, ...errors, ...orchestrator };

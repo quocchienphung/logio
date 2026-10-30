@@ -18,7 +18,7 @@ for (const name of fs.readdirSync('src/components/sites/i18n').filter(name => /^
 }
 const missing = new Map();
 const files = JSON.parse(fs.readFileSync('docs/research/workspace-i18n/files.json', 'utf8'));
-for (const file of files.filter(f => f.endsWith('.tsx') && !/orchestrator/i.test(f))) {
+for (const file of files.filter(f => f.endsWith('.tsx'))) {
   const ast = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   function add(key) {
     key = key.replace(/\s+/g, ' ').trim();
@@ -30,10 +30,11 @@ for (const file of files.filter(f => f.endsWith('.tsx') && !/orchestrator/i.test
   function argumentsOf(node) {
     if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) add(node.text);
     else if (ts.isTemplateExpression(node)) add(node.head.text + node.templateSpans.map((span, i) => `{${i}}${span.literal.text}`).join(''));
+    else if (ts.isConditionalExpression(node)) { argumentsOf(node.whenTrue); argumentsOf(node.whenFalse); }
     else if (!ts.isJsxElement(node) && !ts.isJsxSelfClosingElement(node) && !ts.isJsxFragment(node)) ts.forEachChild(node, argumentsOf);
   }
   function walk(node) {
-    if (ts.isCallExpression(node) && node.expression.getText(ast) === 'uiText') node.arguments.forEach(argumentsOf);
+    if (ts.isCallExpression(node) && ['uiText', 't'].includes(node.expression.getText(ast))) node.arguments.forEach(argumentsOf);
     ts.forEachChild(node, walk);
   }
   walk(ast);

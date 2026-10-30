@@ -28,7 +28,7 @@ try {
   await page.keyboard.press('Escape');
   await page.waitForTimeout(400);
   await page.getByRole('button', { name: 'Đóng cài đặt', exact: true }).click();
-  for (const section of ['home', 'companies', 'contacts', 'deals', 'reports', 'new-chat', 'files', 'run', 'usage', 'mapping', 'process', 'tracing', 'invoice', 'repo', 'storage', 'new-business', 'renewals', 'partnerships']) {
+  for (const section of ['home', 'companies', 'contacts', 'deals', 'reports', 'new-chat', 'files', 'run', 'usage', 'mapping', 'process', 'tracing', 'orchestrator', 'invoice', 'repo', 'storage', 'new-business', 'renewals', 'partnerships']) {
     await page.goto(`${base}/personalize?section=${section}`, { waitUntil: 'load', timeout: 90000 });
     await page.locator('.crm-page').waitFor({ timeout: 60000 });
     await page.waitForTimeout(1800);
@@ -71,7 +71,7 @@ try {
   }
   assert.deepEqual(errors, []);
   await fs.writeFile(`${out}/results.json`, JSON.stringify({ results, errors }, null, 2));
-  console.log('PASS language save, persistence, settings search, navigation search, 19 sections and responsive settings');
+  console.log('PASS language save, persistence, settings search, navigation search, 20 sections and responsive settings');
 } catch (error) {
   await fs.writeFile(`${out}/results.json`, JSON.stringify({ results, errors, failure: String(error) }, null, 2));
   throw error;

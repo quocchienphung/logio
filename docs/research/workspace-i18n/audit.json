@@ -1,5 +1,5 @@
 {
-  "entries": 2952,
+  "entries": 3139,
   "duplicates": [],
   "missing": [
     {
@@ -36,12 +36,6 @@
       "key": "claude-sonnet-5-5",
       "files": [
         "src/components/sites/affectui-context-window/ContextWindow.tsx"
-      ]
-    },
-    {
-      "key": "acme",
-      "files": [
-        "src/components/sites/affectui-crm/Crm.tsx"
       ]
     },
     {
@@ -145,18 +139,6 @@
       ]
     },
     {
-      "key": "key",
-      "files": [
-        "src/components/sites/security-settings/SecuritySettings.tsx"
-      ]
-    },
-    {
-      "key": "codes",
-      "files": [
-        "src/components/sites/security-settings/SecuritySettings.tsx"
-      ]
-    },
-    {
       "key": "9:14 AM",
       "files": [
         "src/components/sites/affectui-run/AgentRun.tsx"
@@ -166,37 +148,6 @@
       "key": "Ctrl ↵",
       "files": [
         "src/components/sites/affectui-run/RunApproval.tsx"
-      ]
-    },
-    {
-      "key": "edit",
-      "files": [
-        "src/components/sites/mapping/Mapping.tsx",
-        "src/components/sites/affectui-files/Files.tsx"
-      ]
-    },
-    {
-      "key": "credit",
-      "files": [
-        "src/components/sites/invoice/Invoice.tsx"
-      ]
-    },
-    {
-      "key": "library",
-      "files": [
-        "src/components/sites/invoice/Invoice.tsx"
-      ]
-    },
-    {
-      "key": "export",
-      "files": [
-        "src/components/sites/invoice/Invoice.tsx"
-      ]
-    },
-    {
-      "key": "invoice",
-      "files": [
-        "src/components/sites/invoice/InvoiceBlock.tsx"
       ]
     },
     {
@@ -239,18 +190,6 @@
       "key": "https://your-payment-provider.com/…",
       "files": [
         "src/components/sites/invoice/InvoiceEditor.tsx"
-      ]
-    },
-    {
-      "key": "custom",
-      "files": [
-        "src/components/sites/process/NodeInspector.tsx"
-      ]
-    },
-    {
-      "key": "ollama",
-      "files": [
-        "src/components/sites/process/NodeInspector.tsx"
       ]
     },
     {

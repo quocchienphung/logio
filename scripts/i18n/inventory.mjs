@@ -6,7 +6,7 @@ const roots = ['src/components/sites/guide-navigation/GuideNavigation.tsx', 'src
 const seen = new Set();
 export const files = [];
 function visitFile(file) {
-  if (seen.has(file) || /stripe|orchestrator|\/i18n\//i.test(file)) return;
+  if (seen.has(file) || /stripe|\/i18n\//i.test(file)) return;
   seen.add(file);
   if (!fs.existsSync(file)) return;
   const source = fs.readFileSync(file, 'utf8');

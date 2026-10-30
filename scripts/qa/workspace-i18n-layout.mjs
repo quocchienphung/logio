@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 const base = process.argv[2] ?? 'http://localhost:3001', out = 'docs/research/workspace-i18n/layout';
 await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome' }), results = [], errors = [];
-const sections = ['home', 'companies', 'contacts', 'deals', 'reports', 'new-chat', 'files', 'run', 'usage', 'mapping', 'process', 'tracing', 'invoice', 'repo', 'storage', 'new-business', 'renewals', 'partnerships'];
+const sections = ['home', 'companies', 'contacts', 'deals', 'reports', 'new-chat', 'files', 'run', 'usage', 'mapping', 'process', 'tracing', 'orchestrator', 'invoice', 'repo', 'storage', 'new-business', 'renewals', 'partnerships'];
 try {
   for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 1000 }]) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
@@ -25,7 +25,7 @@ try {
     await page.locator('.guide-page[lang="vi"]').waitFor(); await page.waitForTimeout(800);
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
     await page.screenshot({ path: `${out}/guide-${viewport.width}-vi.png` });
-    console.log(`PASS 19 sections and Guide selector at ${viewport.width}`);
+    console.log(`PASS 20 sections and Guide selector at ${viewport.width}`);
     await context.close();
   }
   assert.deepEqual(errors, []);

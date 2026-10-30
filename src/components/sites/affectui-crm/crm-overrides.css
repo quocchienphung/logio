@@ -86,3 +86,9 @@
   .crm-page .ui-as-side:not(:has(:focus-within)) { overscroll-behavior: contain; }
 }
 @media (prefers-reduced-motion: reduce) { .crm-page *, .crm-page *::before, .crm-page *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+/* Locked vertical: the workspace panel scrolls up and down only, at every width. Boxes that hold wider content (tables, boards, tabs, the timeline) scroll inside themselves;
+   anything that still sticks out is cut at the panel's edge instead of letting the whole page slide sideways. */
+.crm-page .ui-as-main { overflow-x: hidden; overscroll-behavior-x: none; }
+/* the hidden "move to" menu of a board card is positioned against the card, so the board's own scroller clips it (against the panel it stretched the panel to 1160px) */
+.crm-page .ui-as-board__card { position: relative; }

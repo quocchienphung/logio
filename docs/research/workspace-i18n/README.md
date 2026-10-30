@@ -1,6 +1,6 @@
 # Guide me: English / Tiếng Việt
 
-User-authorized localization of `/personalize` (including its page selector) and `/skilled`. **Orchestrator is excluded**, as explicitly confirmed by the user; its component/model/style files are left to Claude Code. Homepage and Stripe product pages remain English.
+User-authorized localization of `/personalize` (including its page selector) and `/skilled`. **Orchestrator is now included** following the user's additional request; the earlier exclusion has been lifted for copy. Its responsive CSS remains with Claude Code. See [Orchestrator scope and verification](orchestrator.md). Homepage and Stripe product pages remain English.
 
 ## Language control
 

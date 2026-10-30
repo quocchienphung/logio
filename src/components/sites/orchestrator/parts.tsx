@@ -8,6 +8,7 @@ import { Mark } from "../affectui-agent-tree/tree-marks";
 import { TIMING } from "./orchestrator-model.ts";
 import type { MarkName } from "./orchestrator-model.ts";
 import type { ToolId, ToolStatus } from "./tool-call-model.ts";
+import { useOrchestratorCopy } from "./OrchestratorI18n";
 
 /** One piece of text that streams: a chunk of a few words every 36 ms, each fading in over 150 ms (the delay is on the chunk, so nothing renders per frame). */
 export function chunkify(text: string): string[] {
@@ -130,6 +131,7 @@ export function Button({ tone = "secondary", size = "md", iconOnly, className, c
 
 /** The segmented control: a pill slides to the chosen option on a critically damped spring (stiffness 160, damping 25.6, measured). Arrows, Home and End choose. */
 export function SegmentedControl({ options, value, onChange, label }: { options: { value: number; label: string }[]; value: number; onChange: (value: number) => void; label: string }) {
+  const t = useOrchestratorCopy();
   const off = useMotionOff();
   const id = useId();
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -137,7 +139,7 @@ export function SegmentedControl({ options, value, onChange, label }: { options:
   const left = useMotionValue(0), width = useMotionValue(0);
   const first = useRef(true);
   const pillRef = useRef<HTMLSpanElement>(null);
-  const optionsKey = options.map(option => `${option.value}:${option.label}`).join("|");
+  const optionsKey = options.map(option => `${option.value}:${t(option.label)}`).join("|");
   useLayoutEffect(() => {
     const index = options.findIndex(option => option.value === value);
     const button = refs.current[index];
@@ -153,7 +155,7 @@ export function SegmentedControl({ options, value, onChange, label }: { options:
   useMotionValueEvent(left, "change", latest => { if (pillRef.current) pillRef.current.style.transform = `translateX(${latest}px)`; });
   useMotionValueEvent(width, "change", latest => { if (pillRef.current) pillRef.current.style.width = `${latest}px`; });
   const choose = (next: number) => { onChange(next); window.requestAnimationFrame(() => refs.current[options.findIndex(option => option.value === next)]?.focus({ preventScroll: true })); };
-  return <div className="op-seg" role="group" aria-label={label}>
+  return <div className="op-seg" role="group" aria-label={t(label)}>
     <div className="op-seg__track" style={{ position: "relative" }}>
       <span ref={pillRef} className="op-seg__selection" aria-hidden="true" style={{ zIndex: 0, inset: "auto", top: 3, bottom: 3, left: 0, width: layout?.width ?? 0, transform: `translateX(${layout?.left ?? 0}px)`, borderRadius: "calc(var(--radius-control) - 4px)", opacity: layout ? 1 : 0 }} data-id={id} />
       {options.map((option, index) => <button key={option.value} ref={element => { refs.current[index] = element; }} type="button" className="op-seg__button" data-value={option.value} aria-pressed={option.value === value} tabIndex={option.value === value ? 0 : -1}
@@ -164,7 +166,7 @@ export function SegmentedControl({ options, value, onChange, label }: { options:
           else if (event.key === "ArrowLeft" || event.key === "ArrowDown") { event.preventDefault(); choose(options[Math.max(0, at - 1)].value); }
           else if (event.key === "Home") { event.preventDefault(); choose(options[0].value); }
           else if (event.key === "End") { event.preventDefault(); choose(options[options.length - 1].value); }
-        }}><span className="op-seg__label" style={{ zIndex: 1 }}>{option.label}</span></button>)}
+        }}><span className="op-seg__label" style={{ zIndex: 1 }}>{t(option.label)}</span></button>)}
     </div>
   </div>;
 }

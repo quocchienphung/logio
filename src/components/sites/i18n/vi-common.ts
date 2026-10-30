@@ -14,12 +14,12 @@ Mapping	Bản đồ
 Process	Quy trình
 Tracing	Theo dõi
 Orchestrator	Điều phối
-A lead agent splits a goal into a plan, fans the subtasks out to parallel worker lanes and merges what comes back. The same run is shown as time on a shared axis and as every tool call it made.	Một agent chủ trì chia mục tiêu thành kế hoạch, giao các việc con cho các làn song song rồi gộp kết quả trả về. Cùng một lượt chạy được hiển thị theo thời gian trên một trục chung và theo từng lệnh gọi công cụ.
+A lead agent splits a goal into a plan, fans the subtasks out to parallel worker lanes and merges what comes back. The same run is shown as time on a shared axis and as every tool call it made.	Tác tử chính lập kế hoạch, giao các việc cho tác tử chạy song song rồi tổng hợp kết quả. Cùng một lượt chạy được thể hiện qua dòng thời gian và từng lần gọi công cụ.
 A simulated run: nothing is sent anywhere.	Lượt chạy mô phỏng: không có gì được gửi đi.
 Timeline of this run	Dòng thời gian của lượt chạy này
 Tool calls	Lệnh gọi công cụ
-Ask before a worker writes	Hỏi trước khi một worker ghi
-The calls the lanes make appear here as the run goes.	Các lệnh gọi của từng làn sẽ hiện ở đây khi lượt chạy diễn ra.
+Ask before a worker writes	Hỏi trước khi tác tử ghi
+The calls the lanes make appear here as the run goes.	Các lần gọi công cụ sẽ xuất hiện ở đây khi chạy.
 Invoice	Hóa đơn
 Usage	Sử dụng
 Skilled	Kỹ năng

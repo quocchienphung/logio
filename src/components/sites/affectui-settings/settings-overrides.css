@@ -23,3 +23,6 @@
   .settings-dialog-form .ui-sb-actions {flex-wrap:wrap;}
 }
 @media(prefers-reduced-motion:reduce) {.ui-sb *, .ui-sb *::before, .ui-sb *::after {animation-duration:0.01ms!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}}
+
+/* a table that scrolls inside its frame must also hold what is positioned inside it: otherwise it stretches the whole panel sideways on a phone */
+.ui-sb-table-wrap { position: relative; }
