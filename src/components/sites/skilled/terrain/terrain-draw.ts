@@ -25,6 +25,8 @@ export const lightTheme: TerrainTheme = { dark: false, platform: "rgb(249 249 24
 export const darkTheme: TerrainTheme = { dark: true, platform: "rgb(33 33 33)", label: "rgb(140 140 140)", ink: [244, 244, 244], surface: "rgb(33 33 33)", font: LABEL_FONT, fontActive: LABEL_FONT_ACTIVE };
 
 export interface DrawParams {
+  /** UI labels only; the operation data and chart geometry are unchanged. */
+  localize?: (text: string) => string;
   pose: Pose; size: Size; theme: TerrainTheme; tone: Tone;
   /** displayed column heights in world units, and each column's share of the busiest hour (colour) */
   heights: ArrayLike<number>; shares: ArrayLike<number>;
@@ -149,7 +151,7 @@ export function drawTerrain(ctx: Paint, params: DrawParams, scene: Scene) {
   ctx.font = theme.fontActive;
   const place = (text: string, wx: number, wz: number) => { projectPoint(view, wx, 0, wz, P); return { x: P.x, y: P.y, w: ctx.measureText(text).width + 2 * PILL_PAD, text }; };
   if (cell) {
-    pills.push(place(DAY_NAMES[cell.j], LABEL_DAY_X, cellZ(cell.j)));
+    pills.push(place(params.localize?.(DAY_NAMES[cell.j]) ?? DAY_NAMES[cell.j], LABEL_DAY_X, cellZ(cell.j)));
     pills.push(place(timeLabel(cell.i, compact), cellX(cell.i), LABEL_HOUR_Z));
   }
   ctx.font = theme.font; ctx.fillStyle = theme.label;
@@ -159,7 +161,7 @@ export function drawTerrain(ctx: Paint, params: DrawParams, scene: Scene) {
     if (overlaps(P.x, P.y, ctx.measureText(label).width + 2 * PILL_PAD)) return;
     ctx.fillText(label, P.x, P.y);
   };
-  for (const j of steps.days) if (!(cell && cell.j === j)) text(DAY_NAMES[j], LABEL_DAY_X, cellZ(j));
+  for (const j of steps.days) if (!(cell && cell.j === j)) text(params.localize?.(DAY_NAMES[j]) ?? DAY_NAMES[j], LABEL_DAY_X, cellZ(j));
   for (const i of steps.hours) if (!(cell && cell.i === i)) text(timeLabel(i, compact), cellX(i), LABEL_HOUR_Z);
   if (pills.length) {
     ctx.fillStyle = rgb(theme.ink);

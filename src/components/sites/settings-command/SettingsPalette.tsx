@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { CornerDownLeft, Search } from "lucide-react";
@@ -20,11 +21,12 @@ export function SettingsPalette({ origin, frameWidth, onClose, onPick, onAnnounc
   onPick: (row: SettingsSearchRow) => { to: FlightRect } | void;
   onAnnounce: (message: string) => void;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const reduce = useReducedMotion();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const [leaving, setLeaving] = useState<FlightRect | "origin" | null>(null);
-  const hits = useMemo(() => searchSettings(query), [query]);
+  const hits = useMemo(() => searchSettings(query, uiText), [query, uiText]);
   const id = useId();
   const content = useRef<HTMLDivElement>(null);
   const list = useRef<HTMLUListElement>(null);
@@ -74,18 +76,18 @@ export function SettingsPalette({ origin, frameWidth, onClose, onPick, onAnnounc
 
   return <>
     <motion.div className="sc-scrim" aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: leaving ? 0 : 1 }} transition={{ duration: reduce ? 0.1 : 0.22 }} onPointerDown={close} />
-    <motion.div className="sc-palette" role="dialog" aria-modal="true" aria-label="Search settings"
+    <motion.div className="sc-palette" role="dialog" aria-modal="true" aria-label={uiText("Search settings")}
       initial={{ x: origin.x, y: origin.y, width: origin.width, height: origin.height, borderRadius: 10, opacity: 1 }}
       animate={animate} transition={transition} onAnimationComplete={() => { if (leaving) onClose(); }}>
       <div className="sc-palette__content" ref={content} style={{ width }}>
         <div className="sc-palette__field">
           <Search size={16} aria-hidden="true" />
-          <input autoFocus placeholder="Search settings" role="combobox" aria-expanded="true" aria-controls={`${id}-results`} aria-autocomplete="list" aria-activedescendant={hits[active] ? `${id}-option-${hits[active].row.id}` : undefined} spellCheck={false} autoComplete="off" value={query} onChange={event => { setQuery(event.target.value); setActive(0); }} onKeyDown={onKeyDown} />
-          <kbd className="sc-kbd">Esc</kbd>
+          <input autoFocus placeholder={uiText("Search settings")} role="combobox" aria-expanded="true" aria-controls={`${id}-results`} aria-autocomplete="list" aria-activedescendant={hits[active] ? `${id}-option-${hits[active].row.id}` : undefined} spellCheck={false} autoComplete="off" value={query} onChange={event => { setQuery(event.target.value); setActive(0); }} onKeyDown={onKeyDown} />
+          <kbd className="sc-kbd">{uiText("Esc")}</kbd>
         </div>
         <motion.div className="sc-palette__body" initial={{ opacity: reduce ? 1 : 0 }} animate={{ opacity: leaving ? 0 : 1 }} transition={{ duration: 0.16, delay: leaving || reduce ? 0 : 0.08 }}>
-          {!query.trim() && <p className="sc-palette__hint">Suggested</p>}
-          {hits.length ? <ul id={`${id}-results`} ref={list} role="listbox" aria-label="Matching settings" className="sc-results">
+          {!query.trim() && <p className="sc-palette__hint">{uiText("Suggested")}</p>}
+          {hits.length ? <ul id={`${id}-results`} ref={list} role="listbox" aria-label={uiText("Matching settings")} className="sc-results">
             {hits.map((hit, index) => {
               const Icon = sectionIcons[hit.row.section];
               const [from, to] = hit.labelRange ?? [0, 0];
@@ -93,14 +95,14 @@ export function SettingsPalette({ origin, frameWidth, onClose, onPick, onAnnounc
                 {index === active && <motion.span layoutId={`${id}-highlight`} className="sc-result__highlight" aria-hidden="true" transition={{ type: "spring", stiffness: 520, damping: 40 }} />}
                 <Icon size={15} aria-hidden="true" />
                 <span className="sc-result__text">
-                  <span className="sc-result__label">{to > from ? <>{hit.row.label.slice(0, from)}<mark className="sc-mark">{hit.row.label.slice(from, to)}</mark>{hit.row.label.slice(to)}</> : hit.row.label}</span>
-                  <span className="sc-result__description">{hit.row.hint}</span>
+                  <span className="sc-result__label">{to > from ? <>{uiText(hit.row.label.slice(0, from))}<mark className="sc-mark">{uiText(hit.row.label.slice(from, to))}</mark>{uiText(hit.row.label.slice(to))}</> : hit.row.label}</span>
+                  <span className="sc-result__description">{uiText(hit.row.hint)}</span>
                 </span>
                 <span className="sc-result__end" aria-hidden="true">{index === active && <CornerDownLeft size={14} />}</span>
               </li>;
             })}
-          </ul> : <p className="sc-empty" role="status">No settings match “{query.trim()}”.</p>}
-          <div className="sc-palette__foot" aria-hidden="true"><span><kbd className="sc-kbd">↑</kbd><kbd className="sc-kbd">↓</kbd> Move</span><span><kbd className="sc-kbd">↵</kbd> Jump to setting</span></div>
+          </ul> : <p className="sc-empty" role="status">{uiText("No settings match “")}{uiText(query.trim())}”.</p>}
+          <div className="sc-palette__foot" aria-hidden="true"><span><kbd className="sc-kbd">↑</kbd><kbd className="sc-kbd">↓</kbd> {uiText(" Move")}</span><span><kbd className="sc-kbd">↵</kbd> {uiText(" Jump to setting")}</span></div>
         </motion.div>
       </div>
     </motion.div>

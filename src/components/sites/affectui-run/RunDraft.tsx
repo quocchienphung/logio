@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { Fragment, useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import "./run-draft.css";
@@ -34,6 +35,7 @@ export function RunDraft({ workspaceId, resetKey = 0, notify, onTextChange }: {
   notify: (message: string) => void;
   onTextChange?: (text: string) => void;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [stored, setStored] = useResource(resources.runDraft, workspaceId,  initialState);
   const state = stored?.decisions?.length === suggestions.length && Array.isArray(stored.history) ? stored : initialState;
   const [active, setActive] = useState<number | null>(null);
@@ -152,28 +154,28 @@ export function RunDraft({ workspaceId, resetKey = 0, notify, onTextChange }: {
   }
 
   return <div ref={root} className="ui-df" data-done={done || undefined} onKeyDown={handleKey}>
-    <div className="ui-df__label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75c.3 2.9 1.35 3.95 4.25 4.25-2.9.3-3.95 1.35-4.25 4.25C7.7 7.35 6.65 6.3 3.75 6 6.65 5.7 7.7 4.65 8 1.75Z"/><path d="M12.5 10.25c.15 1.25.6 1.7 1.75 1.75-1.15.15-1.6.6-1.75 1.75-.15-1.15-.6-1.6-1.75-1.75 1.15-.05 1.6-.5 1.75-1.75Z"/></svg><span>Board memo – Q3 · Revenue</span></div>
+    <div className="ui-df__label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.75c.3 2.9 1.35 3.95 4.25 4.25-2.9.3-3.95 1.35-4.25 4.25C7.7 7.35 6.65 6.3 3.75 6 6.65 5.7 7.7 4.65 8 1.75Z"/><path d="M12.5 10.25c.15 1.25.6 1.7 1.75 1.75-1.15.15-1.6.6-1.75 1.75-.15-1.15-.6-1.6-1.75-1.75 1.15-.05 1.6-.5 1.75-1.75Z"/></svg><span>{uiText("Board memo – Q3 · Revenue")}</span></div>
     <div ref={card} className="ui-df__card">
       <div className="ui-df__head"><div className="ui-df__bar">
         <div className="ui-df__layer" data-show={!done || undefined} inert={done} aria-hidden={done || undefined}>
-          <span className="ui-df__count"><span className="ui-df__num">{pending.length}</span><span className="ui-df__word">{pending.length === 1 ? "suggestion" : "suggestions"}</span></span>
-          <span className="ui-df__actions"><span className="ui-df__nav"><button type="button" className="ui-df__icon" aria-label="Previous suggestion" disabled={done} onClick={() => navigate(-1)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 12.5 5.5 8 10 3.5"/></svg></button><button type="button" className="ui-df__icon" aria-label="Next suggestion" disabled={done} onClick={() => navigate(1)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></button></span><button type="button" className="ui-df__btn" disabled={done} onClick={() => decide("rejected", null)}>Reject all</button><button type="button" className="ui-df__btn ui-df__btn--primary" disabled={done} onClick={() => decide("accepted", null)}>Accept all</button></span>
+          <span className="ui-df__count"><span className="ui-df__num">{uiText(pending.length)}</span><span className="ui-df__word">{uiText(pending.length === 1 ? uiText("suggestion") : uiText("suggestions"))}</span></span>
+          <span className="ui-df__actions"><span className="ui-df__nav"><button type="button" className="ui-df__icon" aria-label={uiText("Previous suggestion")} disabled={done} onClick={() => navigate(-1)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 12.5 5.5 8 10 3.5"/></svg></button><button type="button" className="ui-df__icon" aria-label={uiText("Next suggestion")} disabled={done} onClick={() => navigate(1)}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></button></span><button type="button" className="ui-df__btn" disabled={done} onClick={() => decide("rejected", null)}>{uiText("Reject all")}</button><button type="button" className="ui-df__btn ui-df__btn--primary" disabled={done} onClick={() => decide("accepted", null)}>{uiText("Accept all")}</button></span>
         </div>
-        <div className="ui-df__layer" data-show={done || undefined} inert={!done} aria-hidden={!done || undefined}><span className="ui-df__count ui-df__count--done"><svg className="ui-df__ok" viewBox="0 0 16 16" aria-hidden="true"><path d={checkPath} pathLength="1"/></svg>All changes reviewed</span><button type="button" className="ui-df__btn" disabled={!state.history.length} onClick={undo}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4 2.75 6.75 5.5 9.5"/><path d="M3 6.75h6.5a3.75 3.75 0 0 1 0 7.5H7.5"/></svg>Undo</button></div>
+        <div className="ui-df__layer" data-show={done || undefined} inert={!done} aria-hidden={!done || undefined}><span className="ui-df__count ui-df__count--done"><svg className="ui-df__ok" viewBox="0 0 16 16" aria-hidden="true"><path d={checkPath} pathLength="1"/></svg>{uiText("All changes reviewed")}</span><button type="button" className="ui-df__btn" disabled={!state.history.length} onClick={undo}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4 2.75 6.75 5.5 9.5"/><path d="M3 6.75h6.5a3.75 3.75 0 0 1 0 7.5H7.5"/></svg>{uiText("Undo")}</button></div>
       </div></div>
-      <div className="ui-df__body"><p className="ui-df__text"><span>Revenue grew </span>{suggestions.map((suggestion, index) => {
+      <div className="ui-df__body"><p className="ui-df__text"><span>{uiText("Revenue grew ")}</span>{suggestions.map((suggestion, index) => {
         const decision = state.decisions[index];
         const isPending = decision === "pending";
-        return <Fragment key={index}><span ref={element => { tokens.current[index] = element; }} className="ui-df__chg" data-state={decision} data-active={active === index && isPending || undefined} tabIndex={isPending ? 0 : undefined} role={isPending ? "button" : undefined} aria-label={isPending ? `Suggestion ${index + 1} of 9: ${description(suggestion)}. Press Y to accept, N to reject` : undefined}
+        return <Fragment key={index}><span ref={element => { tokens.current[index] = element; }} className="ui-df__chg" data-state={decision} data-active={active === index && isPending || undefined} tabIndex={isPending ? 0 : undefined} role={isPending ? "button" : undefined} aria-label={uiText(isPending ? uiText("Suggestion {0} of 9: {1}. Press Y to accept, N to reject", [index + 1, description(suggestion)]) : undefined)}
           onClick={() => activate(index, true)} onFocus={() => activate(index)} onPointerEnter={event => { if (event.pointerType !== "touch") activate(index); }} onPointerLeave={leaveHover}
           onBlur={event => { if (!root.current?.contains(event.relatedTarget)) setActive(null); }}
           onKeyDown={event => { if (isPending && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); activate(index, true); } }}>
-          {suggestion.before && <del className="ui-df__del" aria-hidden={decision === "accepted" || undefined}>{suggestion.before}</del>}{suggestion.after && <ins className="ui-df__ins" aria-hidden={decision === "rejected" || undefined}>{suggestion.after}</ins>}
-        </span><span>{suggestion.following}</span></Fragment>;
+          {suggestion.before && <del className="ui-df__del" aria-hidden={decision === "accepted" || undefined}>{uiText(suggestion.before)}</del>}{suggestion.after && <ins className="ui-df__ins" aria-hidden={decision === "rejected" || undefined}>{uiText(suggestion.after)}</ins>}
+        </span><span>{uiText(suggestion.following)}</span></Fragment>;
       })}</p></div>
-      <div ref={popover} className="ui-df__pop" role="group" aria-label="Review suggestion" aria-hidden={!activePending || undefined} data-open={activePending || undefined} style={position} onPointerEnter={cancelHoverClose} onPointerLeave={leaveHover}>
-        <button type="button" tabIndex={activePending ? 0 : -1} className="ui-df__pbtn" aria-label="Accept suggestion" onClick={() => { if (active !== null) decide("accepted", active); }}><svg viewBox="0 0 16 16" aria-hidden="true"><path d={checkPath}/></svg>Accept<kbd>Y</kbd></button><span className="ui-df__sep" aria-hidden="true"/><button type="button" tabIndex={activePending ? 0 : -1} className="ui-df__pbtn" aria-label="Reject suggestion" onClick={() => { if (active !== null) decide("rejected", active); }}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg>Reject<kbd>N</kbd></button>
+      <div ref={popover} className="ui-df__pop" role="group" aria-label={uiText("Review suggestion")} aria-hidden={!activePending || undefined} data-open={activePending || undefined} style={position} onPointerEnter={cancelHoverClose} onPointerLeave={leaveHover}>
+        <button type="button" tabIndex={activePending ? 0 : -1} className="ui-df__pbtn" aria-label={uiText("Accept suggestion")} onClick={() => { if (active !== null) decide("accepted", active); }}><svg viewBox="0 0 16 16" aria-hidden="true"><path d={checkPath}/></svg>{uiText("Accept")}<kbd>Y</kbd></button><span className="ui-df__sep" aria-hidden="true"/><button type="button" tabIndex={activePending ? 0 : -1} className="ui-df__pbtn" aria-label={uiText("Reject suggestion")} onClick={() => { if (active !== null) decide("rejected", active); }}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/></svg>{uiText("Reject")}<kbd>N</kbd></button>
       </div>
-    </div><span className="ui-df__sr" role="status" aria-live="polite">{announcement}</span>
+    </div><span className="ui-df__sr" role="status" aria-live="polite">{uiText(announcement)}</span>
   </div>;
 }

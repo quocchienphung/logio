@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { Fragment, useCallback, useEffect, useId, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { Hourglass } from "lucide-react";
@@ -114,6 +115,7 @@ export function TraceWaterfall({
   root, now: nowProp, startedAt, collapsed: collapsedProp, defaultCollapsed = [], onCollapsedChange, openId: openProp, defaultOpenId = null, onOpenChange,
   markSlowest = true, minRange = MIN_RANGE, formatCost = formatDollars, title = "Trace", subtitle, state, className,
 }: TraceWaterfallProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const uid = useId();
   const [setBox, width] = useWidth();
   const [innerCollapsed, setInnerCollapsed] = useState<readonly string[]>(defaultCollapsed);
@@ -241,27 +243,27 @@ export function TraceWaterfall({
   return <div className={`twf${className ? ` ${className}` : ""}`} ref={setBox} style={style} data-narrow={narrow ? "" : undefined}>
     <header className="twf__head">
       <span className="twf__spark"><Spark /></span>
-      <span className="twf__heading">{title}</span>
-      <span className="twf__task">{header}</span>
-      <span className="twf__pill" data-status={pillStatus} aria-live="polite">{pillStatus === "running" && <span className="twf__pulse" />}{pillText}</span>
+      <span className="twf__heading">{uiText(title)}</span>
+      <span className="twf__task">{uiText(header)}</span>
+      <span className="twf__pill" data-status={pillStatus} aria-live="polite">{pillStatus === "running" && <span className="twf__pulse" />}{uiText(pillText)}</span>
     </header>
     <div className="twf__card">
       <dl className="twf__stats">
-        <Stat label="Duration" value={formatDuration(totals.duration)} live={live} />
-        <Stat label="Cost" value={totals.hasCost ? formatCost(totals.cost) : "–"} live={live && totals.hasCost} />
-        <Stat label="Tokens" value={totals.hasTokens ? formatTokens(totals.tokens) : "–"} live={live && totals.hasTokens} />
-        <Stat label="LLM calls" value={String(totals.llmCalls)} />
-        <Stat label="Tool calls" value={String(totals.toolCalls)} />
-        <Stat label="Errors" value={String(totals.errors)} failed={totals.errors > 0} />
+        <Stat label={uiText("Duration")} value={formatDuration(totals.duration)} live={live} />
+        <Stat label={uiText("Cost")} value={totals.hasCost ? formatCost(totals.cost) : "–"} live={live && totals.hasCost} />
+        <Stat label={uiText("Tokens")} value={totals.hasTokens ? formatTokens(totals.tokens) : "–"} live={live && totals.hasTokens} />
+        <Stat label={uiText("LLM calls")} value={String(totals.llmCalls)} />
+        <Stat label={uiText("Tool calls")} value={String(totals.toolCalls)} />
+        <Stat label={uiText("Errors")} value={String(totals.errors)} failed={totals.errors > 0} />
       </dl>
       <div className="twf__body">
         <div className="twf__layer" aria-hidden="true">
-          {axis.ticks.map(tick => <span key={tick} className="twf__tick" data-zero={tick === 0 ? "" : undefined} style={{ "--v": tick } as CSSProperties}><span>{formatTick(tick)}</span></span>)}
-          {axis.gone.map(tick => <span key={`gone-${tick}`} className="twf__tick" data-leaving="" style={{ "--v": tick } as CSSProperties}><span>{formatTick(tick)}</span></span>)}
+          {axis.ticks.map(tick => <span key={tick} className="twf__tick" data-zero={tick === 0 ? "" : undefined} style={{ "--v": tick } as CSSProperties}><span>{uiText(formatTick(tick))}</span></span>)}
+          {axis.gone.map(tick => <span key={`gone-${tick}`} className="twf__tick" data-leaving="" style={{ "--v": tick } as CSSProperties}><span>{uiText(formatTick(tick))}</span></span>)}
           <span className="twf__now" />
         </div>
-        <div className="twf__axis" aria-hidden="true"><span>Span</span></div>
-        <div className="twf__rows" role="tree" aria-label={title}>
+        <div className="twf__axis" aria-hidden="true"><span>{uiText("Span")}</span></div>
+        <div className="twf__rows" role="tree" aria-label={uiText(title)}>
           {shown.map(({ row, leaving }, index) => {
             const { span } = row;
             const open = openId === span.id;
@@ -276,10 +278,10 @@ export function TraceWaterfall({
             const above = reachable.length > 4 && reachable.findIndex(item => item.span.id === span.id) > reachable.length * 0.55;
             const pop = popId === span.id ? <Details key={`${span.id}-pop`} id={`${uid}-${span.id}`} span={span} now={now} formatCost={formatCost} width={width} narrow={narrow} trackPx={trackPx} bar={bar} above={above} closing={!open} onClose={() => closeDetails()} /> : null;
             return <Fragment key={span.id}>
-              {above && pop}
+              {uiText(above && pop)}
               <div
                 ref={element => { if (element) rowEls.current.set(span.id, element); else rowEls.current.delete(span.id); }}
-                className="twf__row" role="treeitem" aria-level={row.level} aria-selected={open} aria-label={rowLabel(span, now, formatCost)} aria-expanded={row.hasChildren ? !row.folded : undefined}
+                className="twf__row" role="treeitem" aria-level={row.level} aria-selected={open} aria-label={uiText(rowLabel(span, now, formatCost))} aria-expanded={row.hasChildren ? !row.folded : undefined}
                 tabIndex={rovingId === span.id && !row.hidden ? 0 : -1} data-kind={span.kind} data-status={span.status} data-parent={row.hasChildren ? "" : undefined} data-folded={row.folded ? "" : undefined}
                 data-open={open ? "" : undefined} data-hidden={row.hidden ? "" : undefined} data-leaving={leaving ? "" : undefined} data-slow={slow === span.id ? "" : undefined} style={{ animationDelay: `${delay}ms` }}
                 onClick={() => toggleOpen(span.id)} onFocus={event => { if (event.target === event.currentTarget) setFocusId(span.id); }} onKeyDown={event => onKey(event, row)}
@@ -288,19 +290,19 @@ export function TraceWaterfall({
                   {row.level > 1 && <span className="twf__guides" aria-hidden="true" style={{ width: `calc(${row.level - 1} * var(--twf-indent))` }} />}
                   <span className="twf__chev" data-leaf={row.hasChildren ? undefined : ""} aria-hidden="true" onClick={row.hasChildren ? event => { event.stopPropagation(); toggle(span.id, row.folded); } : undefined}>{row.hasChildren && <Chevron />}</span>
                   <SpanIcon span={span} />
-                  <span className="twf__label"><span className="twf__title">{span.name}</span>{span.detail && <span className="twf__detail">{span.detail}</span>}</span>
-                  {row.folded && <span className="twf__more" title={`${row.descendants.length} hidden`}>+{row.descendants.length}</span>}
+                  <span className="twf__label"><span className="twf__title">{uiText(span.name)}</span>{span.detail && <span className="twf__detail">{uiText(span.detail)}</span>}</span>
+                  {row.folded && <span className="twf__more" title={uiText("{0} hidden", [row.descendants.length])}>+{uiText(row.descendants.length)}</span>}
                   {span.status !== "done" && <span className="twf__state" data-status={span.status}>{span.status === "running" ? <Spin /> : <Warn />}</span>}
-                  <span className="twf__meta"><span className="twf__amount" data-live={span.status === "running" ? "" : undefined}>{formatDuration(duration)}{cost !== undefined && <span className="twf__meta-cost"> · {formatCost(cost)}</span>}</span>{slow === span.id && <span className="twf__slow">Slowest</span>}</span>
+                  <span className="twf__meta"><span className="twf__amount" data-live={span.status === "running" ? "" : undefined}>{uiText(formatDuration(duration))}{cost !== undefined && <span className="twf__meta-cost"> · {uiText(formatCost(cost))}</span>}</span>{slow === span.id && <span className="twf__slow">{uiText("Slowest")}</span>}</span>
                 </div>
                 <div className="twf__track">
                   <span className="twf__bar" data-bar="" data-kind={span.kind} data-status={span.status} style={{ "--s": span.start, "--d": Math.max(0, spanEnd(span, now) - span.start), animationDelay: `${delay + 60}ms` } as CSSProperties} />
                   {marks.map(mark => <span key={mark.id} className="twf__mark" data-kind={mark.kind} data-status={mark.status} aria-hidden="true" style={{ "--s": mark.start, "--d": spanDuration(mark, now) } as CSSProperties} />)}
-                  <span className="twf__tag" data-side={side} style={{ "--s": span.start, "--d": spanEnd(span, now) - span.start } as CSSProperties}><span className="twf__amount" data-live={span.status === "running" ? "" : undefined}>{labelText}</span></span>
-                  {slow === span.id && <span className="twf__slow twf__slow--bar" style={{ "--e": spanEnd(span, now) } as CSSProperties}>Slowest</span>}
+                  <span className="twf__tag" data-side={side} style={{ "--s": span.start, "--d": spanEnd(span, now) - span.start } as CSSProperties}><span className="twf__amount" data-live={span.status === "running" ? "" : undefined}>{uiText(labelText)}</span></span>
+                  {slow === span.id && <span className="twf__slow twf__slow--bar" style={{ "--e": spanEnd(span, now) } as CSSProperties}>{uiText("Slowest")}</span>}
                 </div>
               </div>
-              {!above && pop}
+              {uiText(!above && pop)}
             </Fragment>;
           })}
         </div>
@@ -310,34 +312,36 @@ export function TraceWaterfall({
 }
 
 function Stat({ label, value, live, failed }: { label: string; value: string; live?: boolean; failed?: boolean }) {
-  return <div className="twf__stat" data-kind={failed ? "failed" : undefined}><dt>{label}</dt><dd><span className="twf__amount" data-live={live ? "" : undefined}>{value}</span></dd></div>;
+  const { t: uiText } = useWorkspaceI18n();
+  return <div className="twf__stat" data-kind={failed ? "failed" : undefined}><dt>{uiText(label)}</dt><dd><span className="twf__amount" data-live={live ? "" : undefined}>{uiText(value)}</span></dd></div>;
 }
 
 interface DetailsProps { id: string; span: TraceSpan; now: number; formatCost: (amount: number) => string; width: number; narrow: boolean; trackPx: number; bar: { start: number; width: number }; above: boolean; closing: boolean; onClose: () => void }
 function Details({ id, span, now, formatCost, width, narrow, trackPx, bar, above, closing, onClose }: DetailsProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const popWidth = Math.min(320, Math.max(0, width - 16));
   const left = narrow ? 8 : Math.max(8, Math.min(width - popWidth - 8, PAD + NAME + GAP + bar.start * trackPx - 24));
   const duration = spanDuration(span, now);
   const kind = `${kindLabel[span.kind]}${span.mark ? ` · ${markNames[span.mark]}` : span.detail ? ` · ${span.detail}` : ""}`;
   const cost = span.cost;
   return <div className="twf__anchor" data-above={above ? "" : undefined}>
-    <div className="twf__pop" id={id} role="dialog" aria-label={`${span.name} details`} data-kind={span.kind} data-status={span.status} data-side={above ? "above" : "below"} data-closing={closing ? "" : undefined} style={{ left }} onKeyDown={event => { if (event.key === "Escape") { event.stopPropagation(); onClose(); } }}>
+    <div className="twf__pop" id={id} role="dialog" aria-label={uiText("{0} details", [span.name])} data-kind={span.kind} data-status={span.status} data-side={above ? "above" : "below"} data-closing={closing ? "" : undefined} style={{ left }} onKeyDown={event => { if (event.key === "Escape") { event.stopPropagation(); onClose(); } }}>
       <div className="twf__pop-head">
         <SpanIcon span={span} />
-        <span className="twf__pop-who"><span className="twf__pop-name">{span.name}</span><span className="twf__pop-kind">{kind}</span></span>
-        <span className="twf__pill" data-status={span.status}>{statusLabel[span.status]}</span>
-        <button type="button" className="twf__close" aria-label="Close details" onClick={onClose}><Close /></button>
+        <span className="twf__pop-who"><span className="twf__pop-name">{uiText(span.name)}</span><span className="twf__pop-kind">{uiText(kind)}</span></span>
+        <span className="twf__pill" data-status={span.status}>{uiText(statusLabel[span.status])}</span>
+        <button type="button" className="twf__close" aria-label={uiText("Close details")} onClick={onClose}><Close /></button>
       </div>
       <dl className="twf__pop-stats">
-        <div><dt>Duration</dt><dd>{formatDuration(duration)}</dd></div>
-        <div><dt>Started</dt><dd>{formatStarted(span.start)}</dd></div>
-        {cost !== undefined && <div><dt>Cost</dt><dd>{formatCost(cost)}</dd></div>}
-        {span.tokensIn !== undefined && <div><dt>Tokens in</dt><dd>{formatTokens(span.tokensIn)}</dd></div>}
-        {span.tokensOut !== undefined && <div><dt>Tokens out</dt><dd>{formatTokens(span.tokensOut)}</dd></div>}
+        <div><dt>{uiText("Duration")}</dt><dd>{uiText(formatDuration(duration))}</dd></div>
+        <div><dt>{uiText("Started")}</dt><dd>{uiText(formatStarted(span.start))}</dd></div>
+        {cost !== undefined && <div><dt>{uiText("Cost")}</dt><dd>{uiText(formatCost(cost))}</dd></div>}
+        {span.tokensIn !== undefined && <div><dt>{uiText("Tokens in")}</dt><dd>{uiText(formatTokens(span.tokensIn))}</dd></div>}
+        {span.tokensOut !== undefined && <div><dt>{uiText("Tokens out")}</dt><dd>{uiText(formatTokens(span.tokensOut))}</dd></div>}
       </dl>
-      {span.error && <div className="twf__pop-error"><Warn /><span>{span.error}</span></div>}
-      {span.input && <div className="twf__pop-io"><span>Input</span><p>{span.input}</p></div>}
-      {span.output && <div className="twf__pop-io"><span>Output</span><p>{span.output}</p></div>}
+      {span.error && <div className="twf__pop-error"><Warn /><span>{uiText(span.error)}</span></div>}
+      {span.input && <div className="twf__pop-io"><span>{uiText("Input")}</span><p>{uiText(span.input)}</p></div>}
+      {span.output && <div className="twf__pop-io"><span>{uiText("Output")}</span><p>{uiText(span.output)}</p></div>}
     </div>
   </div>;
 }

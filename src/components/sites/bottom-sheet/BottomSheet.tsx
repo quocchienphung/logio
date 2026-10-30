@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import { X } from "lucide-react";
 import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
@@ -32,6 +33,7 @@ export const useBottomSheetClose = () => useContext(CloseContext) ?? (() => {});
 interface DragState { id: number; startPointer: number; startY: number; moved: boolean; samples: { t: number; y: number }[]; fromBody: boolean }
 
 function Surface({ open, onOpenChange, onClosed, title, description, children, detents, initialDetent, onDetentChange, closeLabel = "Close", className = "", returnFocus }: BottomSheetProps & { onClosed: () => void }) {
+  const { t: uiText } = useWorkspaceI18n();
   const id = useId();
   const reduced = !!useReducedMotion();
   const sorted = useMemo(() => normalizeDetents(detents), [detents]);
@@ -193,20 +195,20 @@ function Surface({ open, onOpenChange, onClosed, title, description, children, d
       data-state={open ? "open" : "closed"} data-dragging={dragging ? "" : undefined} data-expanded={expanded ? "" : undefined} data-scrolled={scrolled ? "" : undefined}
       style={{ "--sheet-max": lay.max, "--sheet-extension": `${SHEET.extension}px`, y, opacity: fade } as never} onKeyDown={onKeyDown} onFocusCapture={onFocus}>
       <div ref={head} className="bs-header" onPointerDown={event => { if ((event.target as Element).closest("[data-no-drag]")) return; startDrag(event, false); }}>
-        <button ref={grabber} type="button" className="bs-grabber" data-grabber="" aria-label={label} aria-expanded={expanded}
+        <button ref={grabber} type="button" className="bs-grabber" data-grabber="" aria-label={uiText(label)} aria-expanded={expanded}
           onClick={() => { if (swallowClick.current) return; const next = keyboardDetent("Enter", detentRef.current, sorted.length); if (next !== null) settle(next); }}>
           <span className="bs-grabber-bar" aria-hidden="true" />
         </button>
         <div className="bs-head-row">
-          <div className="bs-head-text"><h2 id={`${id}-title`} className="bs-title">{title}</h2>{description && <p id={`${id}-description`} className="bs-description">{description}</p>}</div>
-          <button type="button" className="bs-close" data-no-drag="" aria-label={closeLabel} onClick={() => dismiss()}><X size={15} strokeWidth={1.75} aria-hidden="true" /></button>
+          <div className="bs-head-text"><h2 id={`${id}-title`} className="bs-title">{uiText(title)}</h2>{description && <p id={`${id}-description`} className="bs-description">{uiText(description)}</p>}</div>
+          <button type="button" className="bs-close" data-no-drag="" aria-label={uiText(closeLabel)} onClick={() => dismiss()}><X size={15} strokeWidth={1.75} aria-hidden="true" /></button>
         </div>
       </div>
       <div ref={body} className="bs-body" onScroll={event => setScrolled((event.currentTarget as HTMLElement).scrollTop > 0)}
         onPointerDown={event => { if (event.pointerType === "touch" && detentRef.current < last) startDrag(event, true); }}>
         {children}
       </div>
-      <span className="bs-sr" role="status" aria-live="polite">{announce}</span>
+      <span className="bs-sr" role="status" aria-live="polite">{uiText(announce)}</span>
     </motion.div>
   </CloseContext.Provider>;
 }

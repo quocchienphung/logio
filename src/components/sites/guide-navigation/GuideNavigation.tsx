@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, MouseEvent, PointerEvent } from "react";
 import dynamic from "next/dynamic";
@@ -18,6 +19,7 @@ import { ProjectDelegateBoard } from "../affectui-delegate-board/ProjectDelegate
 import { CrmAgentLanes } from "../affectui-agent-lanes/CrmAgentLanes";
 import { ContextWindow } from "../affectui-context-window/ContextWindow";
 import "../affectui-fonts.css";
+import "../i18n/vietnamese-fonts.css";
 import "./guide-navigation.css";
 
 const Workspace = dynamic(() => import("../affectui-crm/Crm").then(module => module.Crm), {
@@ -35,6 +37,7 @@ export function PersonalizeApp({ initialBrowse = false, initialGroup, initialSec
 }
 
 function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
+  const { t: uiText, locale } = useWorkspaceI18n();
   // The heading is set in this font, so it is asked for with the page rather than when the heading is first painted
   preload("/fonts/inter-latin.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
   const groupIndex = guideGroups.findIndex(group => group.id === initialGroup);
@@ -206,12 +209,12 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
     rows.current[next]?.focus();
   }
 
-  return <main className="guide-page" onPointerDown={onSwipeStart} onPointerMove={onSwipeMove} onPointerUp={onSwipeEnd} onPointerCancel={onSwipeCancel} onClickCapture={onClickCapture}>
+  return <main lang={locale} className="guide-page" onPointerDown={onSwipeStart} onPointerMove={onSwipeMove} onPointerUp={onSwipeEnd} onPointerCancel={onSwipeCancel} onClickCapture={onClickCapture}>
     <GradientFloor className="guide-floor" />
     <div className="guide-stage">
-      <h1 className="guide-heading"><span>How I can help you</span><sup>(SERVICES)</sup></h1>
+      <h1 className="guide-heading"><span>{uiText("How I can help you")}</span><sup>{uiText("(SERVICES)")}</sup></h1>
       <div className="guide-grid">
-        <nav aria-label="Guide me">
+        <nav aria-label={uiText("Guide me")}>
           <ul className="guide-list" ref={list} data-ready={ready ? "" : undefined} onKeyDown={onKeyDown}>
             {bar && <li className="guide-bar" aria-hidden="true" style={{ transform: `translateY(${bar.top}px)`, height: bar.height }} />}
             {guideGroups.map((group, index) => <li key={group.id}>
@@ -226,8 +229,8 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
                 onFocus={() => select(index)}
                 onClick={event => onClick(event, index)}
               >
-                <span className="guide-item__number">({group.number})</span>
-                <span className="guide-item__name">{group.name}</span>
+                <span className="guide-item__number">({uiText(group.number)})</span>
+                <span className="guide-item__name">{uiText(group.name)}</span>
               </WorkspaceLink>
             </li>)}
           </ul>
@@ -253,7 +256,7 @@ function GuideNavigation({ initialGroup }: { initialGroup: string | null }) {
               </div>;
             })}
           </div>
-          {!liveFrameOf(guideGroups[active]) && <WorkspaceLink href={guideGroups[active].href} className="guide-preview__link" tabIndex={-1} aria-label={`Open ${guideGroups[active].name}`} />}
+          {!liveFrameOf(guideGroups[active]) && <WorkspaceLink href={guideGroups[active].href} className="guide-preview__link" tabIndex={-1} aria-label={uiText("Open {0}", [guideGroups[active].name])} />}
         </div>
       </div>
     </div>

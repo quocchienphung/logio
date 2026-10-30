@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { createPortal } from "react-dom";
@@ -41,6 +42,7 @@ export interface StampStageProps {
  * Nothing is a picture: the card, the stamp's body, the paper, the shadow and the impression are all DOM and SVG built here.
  */
 export function StampStage({ invoice, initial, onCommit, onClose, onDownload, onNext }: StampStageProps) {
+  const { t: uiText } = useWorkspaceI18n();
   // The stamp the invoice had when the pop-up opened: Undo goes back to it, even after the invoice has been given a new one
   const [original] = useState(initial);
   const start = original && isStampDate(original.date) ? original : undefined;
@@ -158,10 +160,10 @@ export function StampStage({ invoice, initial, onCommit, onClose, onDownload, on
   const below = HANDLE.h / 2 - 21;
   const pickKind = (id: StampKind) => { const next = STAMP_KINDS.find(item => item.id === id); if (!next) return; setKind(next.id); setInk(next.ink); };
 
-  const stage = <div ref={root} className="inv-stage" role="dialog" aria-modal="true" aria-label="Stamp this invoice" data-phase={phase} data-reduced={reduced ? "" : undefined} tabIndex={-1} style={{ "--stg-ink": color } as CSSProperties} onKeyDown={onKeyDown}>
+  const stage = <div ref={root} className="inv-stage" role="dialog" aria-modal="true" aria-label={uiText("Stamp this invoice")} data-phase={phase} data-reduced={reduced ? "" : undefined} tabIndex={-1} style={{ "--stg-ink": color } as CSSProperties} onKeyDown={onKeyDown}>
     <div className="inv-stage__flat" ref={ref("flat")} onPointerDown={() => { if (phase === "pick") onClose(); }} />
     <div className="inv-stage__table" ref={ref("table")} />
-    {(phase === "pick" || phase === "final") && <button type="button" className="inv-stage__close" aria-label="Close" onClick={onClose}><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"><path d="m4 4 8 8M12 4l-8 8" /></svg></button>}
+    {(phase === "pick" || phase === "final") && <button type="button" className="inv-stage__close" aria-label={uiText("Close")} onClick={onClose}><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"><path d="m4 4 8 8M12 4l-8 8" /></svg></button>}
 
     <div className="inv-stage__world" style={{ transform: `scale(${scale})` }}>
       <div className="inv-stage__camera">
@@ -173,20 +175,20 @@ export function StampStage({ invoice, initial, onCommit, onClose, onDownload, on
         </div>
         <Stamp3D refFor={ref} face={
           <div className="inv-face">
-            <div className="inv-face__head"><span className="inv-face__kind">{info.tab}</span><span className="inv-face__ink" /></div>
+            <div className="inv-face__head"><span className="inv-face__kind">{uiText(info.tab)}</span><span className="inv-face__ink" /></div>
             <div className="inv-face__wheels">
-              <DateWheel label="Day" items={days} index={parts.d - 1} readOnly={!picking} onIndex={index => setParts(was => clampParts({ ...was, d: index + 1 }))} />
-              <DateWheel label="Month" items={months} index={parts.m - 1} readOnly={!picking} onIndex={index => setParts(was => clampParts({ ...was, m: index + 1 }))} />
-              <DateWheel label="Year" items={years} index={parts.y - MIN_YEAR} readOnly={!picking} onIndex={index => setParts(was => clampParts({ ...was, y: MIN_YEAR + index }))} />
+              <DateWheel label={uiText("Day")} items={days} index={parts.d - 1} readOnly={!picking} onIndex={index => setParts(was => clampParts({ ...was, d: index + 1 }))} />
+              <DateWheel label={uiText("Month")} items={months} index={parts.m - 1} readOnly={!picking} onIndex={index => setParts(was => clampParts({ ...was, m: index + 1 }))} />
+              <DateWheel label={uiText("Year")} items={years} index={parts.y - MIN_YEAR} readOnly={!picking} onIndex={index => setParts(was => clampParts({ ...was, y: MIN_YEAR + index }))} />
             </div>
-            <div className="inv-face__cols" aria-hidden="true"><span>Day</span><span>Month</span><span>Year</span></div>
+            <div className="inv-face__cols" aria-hidden="true"><span>{uiText("Day")}</span><span>{uiText("Month")}</span><span>{uiText("Year")}</span></div>
           </div>} />
       </div>
     </div>
 
     <div className="inv-stage__chrome" data-layer="" ref={ref("chrome")} style={{ top: `calc(50% + ${below * scale + 20}px)` }}>
-      <p className="inv-stage__date" aria-live="polite">{weekdayLabel(date)}</p>
-      <div className="inv-seg" role="radiogroup" aria-label="Kind of stamp" style={{ "--at": STAMP_KINDS.findIndex(item => item.id === kind), "--n": STAMP_KINDS.length } as CSSProperties}>
+      <p className="inv-stage__date" aria-live="polite">{uiText(weekdayLabel(date))}</p>
+      <div className="inv-seg" role="radiogroup" aria-label={uiText("Kind of stamp")} style={{ "--at": STAMP_KINDS.findIndex(item => item.id === kind), "--n": STAMP_KINDS.length } as CSSProperties}>
         <span className="inv-seg__thumb" aria-hidden="true" />
         {STAMP_KINDS.map(item => <button key={item.id} type="button" role="radio" aria-checked={kind === item.id} data-active={kind === item.id ? "" : undefined} tabIndex={kind === item.id ? 0 : -1} disabled={!picking} data-kind={item.id}
           onClick={() => pickKind(item.id)}
@@ -196,27 +198,27 @@ export function StampStage({ invoice, initial, onCommit, onClose, onDownload, on
             const at = STAMP_KINDS.findIndex(entry => entry.id === kind), step = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : STAMP_KINDS.length - 1, next = STAMP_KINDS[(at + step) % STAMP_KINDS.length];
             pickKind(next.id);
             (event.currentTarget.parentElement?.querySelector(`[data-kind="${next.id}"]`) as HTMLElement | null)?.focus();
-          }}>{item.tab}</button>)}
+          }}>{uiText(item.tab)}</button>)}
       </div>
-      <div className="inv-inks" role="radiogroup" aria-label="Ink">
-        {STAMP_INKS.map(item => <button key={item.id} type="button" role="radio" aria-checked={ink === item.id} aria-label={item.label} title={item.label} data-active={ink === item.id ? "" : undefined} disabled={!picking} style={{ "--dot": item.color } as CSSProperties} onClick={() => setInk(item.id)} />)}
+      <div className="inv-inks" role="radiogroup" aria-label={uiText("Ink")}>
+        {STAMP_INKS.map(item => <button key={item.id} type="button" role="radio" aria-checked={ink === item.id} aria-label={uiText(item.label)} title={uiText(item.label)} data-active={ink === item.id ? "" : undefined} disabled={!picking} style={{ "--dot": item.color } as CSSProperties} onClick={() => setInk(item.id)} />)}
       </div>
-      <button type="button" className="inv-go" disabled={!picking} onClick={confirm} ref={ref("go")}>{info.action}</button>
+      <button type="button" className="inv-go" disabled={!picking} onClick={confirm} ref={ref("go")}>{uiText(info.action)}</button>
     </div>
 
-    <div className="inv-stage__toast" data-layer="" ref={ref("toast")} role="group" aria-label="Stamp placed" style={{ top: `calc(50% + ${205 * scale}px)` }}>
+    <div className="inv-stage__toast" data-layer="" ref={ref("toast")} role="group" aria-label={uiText("Stamp placed")} style={{ top: `calc(50% + ${205 * scale}px)` }}>
       <span className="inv-stage__toast-dot" style={{ background: inkColor(shown.ink) }} aria-hidden="true" />
-      <span className="inv-stage__toast-text">{kindInfo(shown.kind).done} <i aria-hidden="true">·</i> {shortDate(shown.date)}</span>
-      <button type="button" className="inv-btn" onClick={undo} disabled={phase !== "hold"}>Undo</button>
-      <button type="button" className="inv-go inv-go--small" ref={ref("undoDone")} onClick={done} disabled={phase !== "hold"}>Done</button>
+      <span className="inv-stage__toast-text">{uiText(kindInfo(shown.kind).done)} <i aria-hidden="true">·</i> {uiText(shortDate(shown.date))}</span>
+      <button type="button" className="inv-btn" onClick={undo} disabled={phase !== "hold"}>{uiText("Undo")}</button>
+      <button type="button" className="inv-go inv-go--small" ref={ref("undoDone")} onClick={done} disabled={phase !== "hold"}>{uiText("Done")}</button>
     </div>
 
-    <div className="inv-stage__final" data-layer="" ref={ref("final")} role="group" aria-label="Invoice stamped" style={{ top: `calc(50% + ${214 * scale}px)` }}>
-      {reduced && <button type="button" className="inv-btn" onClick={undo} disabled={phase !== "final"}>Undo</button>}
-      <button type="button" className="inv-btn" ref={ref("download")} onClick={onDownload} disabled={phase !== "final"}>Download PDF</button>
-      <button type="button" className="inv-go" onClick={onNext} disabled={phase !== "final"}>Next invoice</button>
+    <div className="inv-stage__final" data-layer="" ref={ref("final")} role="group" aria-label={uiText("Invoice stamped")} style={{ top: `calc(50% + ${214 * scale}px)` }}>
+      {reduced && <button type="button" className="inv-btn" onClick={undo} disabled={phase !== "final"}>{uiText("Undo")}</button>}
+      <button type="button" className="inv-btn" ref={ref("download")} onClick={onDownload} disabled={phase !== "final"}>{uiText("Download PDF")}</button>
+      <button type="button" className="inv-go" onClick={onNext} disabled={phase !== "final"}>{uiText("Next invoice")}</button>
     </div>
-    <span className="inv-sr" role="status">{announce}</span>
+    <span className="inv-sr" role="status">{uiText(announce)}</span>
   </div>;
 
   return createPortal(stage, document.body);

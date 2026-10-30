@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { animate, motion, useMotionValue, useReducedMotion } from "motion/react";
 import { BookOpen, ChartNoAxesCombined, Code, Compass, CreditCard, FileText, Folder, House, MessageSquare, Search, Settings, Shield, Users, Workflow, X } from "lucide-react";
@@ -19,10 +20,12 @@ function MatchedLabel({ match }: { match: NavigationMatch }) {
 export function CommandPanel({ items, onSelect, onClose }: {
   items: readonly NavigationItem[]; onSelect: (item: NavigationItem) => void; onClose: () => void;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const reduced = useReducedMotion();
   const id = useId();
   const [query, setQuery] = useState("");
-  const matches = useMemo(()=>searchNavigation(items,query),[items,query]);
+  const localizedItems = useMemo(() => items.map(item => ({ ...item, label: uiText(item.label), description: uiText(item.description), keywords: [...(item.keywords ?? []), item.label, item.description] })), [items, uiText]);
+  const matches = useMemo(()=>searchNavigation(localizedItems,query),[localizedItems,query]);
   const [selected, setSelected] = useState<string | null>(null);
   const active = matches.find(match=>match.item.id === selected) ?? matches[0];
   const groups = [...new Set(matches.map(match=>match.item.group))];
@@ -126,30 +129,30 @@ export function CommandPanel({ items, onSelect, onClose }: {
   return <motion.div className="cp-palette" data-interaction-own="" initial={reduced ? false : {opacity:0,y:6,scale:.98}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,...(reduced ? {} : {y:4,scale:.985}),transition:{duration:.13,ease:[.22,1,.36,1]}}} transition={{...paletteSpring,opacity:{duration:.16,ease:[.16,1,.3,1]}}}>
     <div className="cp-search">
       <span className="cp-search-icon"><Search size={18} strokeWidth={1.75} aria-hidden="true" /></span>
-      <label className="cp-sr" htmlFor={id}>Navigate pages</label>
-      <input ref={input} id={id} role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls={`${id}-results`} aria-activedescendant={active ? `${id}-${active.item.id}` : undefined} autoFocus autoComplete="off" spellCheck={false} placeholder="Search pages" value={query} onChange={e=>changeQuery(e.target.value)} onKeyDown={onKeyDown} />
-      {query && <button className="cp-clear" type="button" aria-label="Clear search" onClick={()=>{changeQuery("");input.current?.focus();}}><X size={15} aria-hidden="true" /></button>}
-      <button className="cp-close" type="button" aria-label="Close command palette" onClick={onClose}>Esc</button>
-      <kbd className="cp-key">Tab</kbd>
+      <label className="cp-sr" htmlFor={id}>{uiText("Navigate pages")}</label>
+      <input ref={input} id={id} role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls={`${id}-results`} aria-activedescendant={active ? `${id}-${active.item.id}` : undefined} autoFocus autoComplete="off" spellCheck={false} placeholder={uiText("Search pages")} value={query} onChange={e=>changeQuery(e.target.value)} onKeyDown={onKeyDown} />
+      {query && <button className="cp-clear" type="button" aria-label={uiText("Clear search")} onClick={()=>{changeQuery("");input.current?.focus();}}><X size={15} aria-hidden="true" /></button>}
+      <button className="cp-close" type="button" aria-label={uiText("Close command palette")} onClick={onClose}>{uiText("Esc")}</button>
+      <kbd className="cp-key">{uiText("Tab")}</kbd>
     </div>
     <motion.div className="cp-frame" style={{height:frameHeight}}>
-      <div className="cp-results" ref={list} id={`${id}-results`} role="listbox" aria-label="Pages" style={{maxHeight}}>
+      <div className="cp-results" ref={list} id={`${id}-results`} role="listbox" aria-label={uiText("Pages")} style={{maxHeight}}>
         {active && <motion.span className="cp-highlight" aria-hidden="true" style={{y:cursorY,height:cursorHeight}} />}
         <div className="cp-content" ref={content}>
-          {groups.map(group=><div className="cp-group" role="group" aria-label={group} key={group}>
-            <span className="cp-heading" aria-hidden="true">{group}</span>
+          {groups.map(group=><div className="cp-group" role="group" aria-label={uiText(group)} key={group}>
+            <span className="cp-heading" aria-hidden="true">{uiText(group)}</span>
             {matches.filter(match=>match.item.group===group).map(match=>{
               const Icon=icons[match.item.icon]; const isActive=match.item.id===active?.item.id;
               return <button ref={node=>{if(node)rows.current.set(match.item.id,node);else rows.current.delete(match.item.id);}} type="button" className="cp-result" role="option" aria-selected={isActive} id={`${id}-${match.item.id}`} data-href={match.item.href} key={match.item.id} tabIndex={-1} onPointerMove={event=>{if(event.pointerType!=="touch"){keyboard.current=false;setSelected(match.item.id);}}} onPointerDown={event=>{if(event.pointerType==="mouse")event.preventDefault();}} onClick={()=>onSelect(match.item)}>
                 <span className="cp-item-icon"><Icon size={16} strokeWidth={2} aria-hidden="true" /></span>
-                <span className="cp-copy"><span className="cp-label"><MatchedLabel match={match} /></span><span className="cp-description">{match.item.description}</span></span>
+                <span className="cp-copy"><span className="cp-label"><MatchedLabel match={match} /></span><span className="cp-description">{uiText(match.item.description)}</span></span>
               </button>;
             })}
           </div>)}
-          {!matches.length && <div className="cp-empty"><span className="cp-empty-icon"><Search size={20} strokeWidth={1.75} aria-hidden="true" /></span><p>No results for “{query}”</p><span>Try a different word or clear the search.</span></div>}
+          {!matches.length && <div className="cp-empty"><span className="cp-empty-icon"><Search size={20} strokeWidth={1.75} aria-hidden="true" /></span><p>{uiText("No results for “")}{uiText(query)}”</p><span>{uiText("Try a different word or clear the search.")}</span></div>}
         </div>
       </div>
     </motion.div>
-    <span className="cp-sr" role="status" aria-live="polite">{matches.length ? `${matches.length} ${matches.length===1?"page":"pages"} found` : "No results"}</span>
+    <span className="cp-sr" role="status" aria-live="polite">{uiText(matches.length ? uiText("{0} {1} found", [matches.length, matches.length===1?"page":"pages"]) : uiText("No results"))}</span>
   </motion.div>;
 }

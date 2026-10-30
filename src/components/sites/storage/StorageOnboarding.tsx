@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useRef, useState } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -18,6 +19,7 @@ export interface StorageOnboardingProps {
 }
 
 function StorageIllustration({ step }: { step: number }) {
+  const { t: uiText } = useWorkspaceI18n();
   const reducedMotion = useReducedMotion();
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
@@ -26,7 +28,7 @@ function StorageIllustration({ step }: { step: number }) {
   const badge = step === 2;
   const files = step === 1;
   const spring = reducedMotion ? { duration: 0 } : { type: "spring" as const, stiffness: 180, damping: 22 };
-  return <motion.svg className="storage-onboarding__art" viewBox="0 0 320 200" role="img" aria-label={steps[step].scene} style={{ x: driftX, y: driftY }} onPointerMove={event => {
+  return <motion.svg className="storage-onboarding__art" viewBox="0 0 320 200" role="img" aria-label={uiText(steps[step].scene)} style={{ x: driftX, y: driftY }} onPointerMove={event => {
     if (event.pointerType !== "mouse" || reducedMotion) return;
     const box = event.currentTarget.getBoundingClientRect();
     pointerX.set((event.clientX - box.left - box.width / 2) * .025);
@@ -47,6 +49,7 @@ function StorageIllustration({ step }: { step: number }) {
 }
 
 export function StorageOnboarding({ open, onClose, onStart }: StorageOnboardingProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   const descriptionId = useId();
@@ -63,21 +66,21 @@ export function StorageOnboarding({ open, onClose, onStart }: StorageOnboardingP
     <div className="storage-onboarding__card">
       <div className="storage-onboarding__stage">
         <StorageIllustration step={step} />
-        <button type="button" className="storage-onboarding__skip" onClick={onClose}>Skip</button>
+        <button type="button" className="storage-onboarding__skip" onClick={onClose}>{uiText("Skip")}</button>
       </div>
       <div className="storage-onboarding__body">
         <div className="storage-onboarding__copy" aria-live="polite" aria-atomic="true">
           <motion.div key={step} initial={reducedMotion ? false : { opacity: 0, y: 5, filter: "blur(3px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: reducedMotion ? 0 : .2 }}>
-          <h2 id={titleId}>{steps[step].title}</h2>
-          <p id={descriptionId}>{steps[step].copy}</p>
-          <span className="storage-onboarding__sr">Step {step + 1} of 3</span>
+          <h2 id={titleId}>{uiText(steps[step].title)}</h2>
+          <p id={descriptionId}>{uiText(steps[step].copy)}</p>
+          <span className="storage-onboarding__sr">{uiText("Step ")}{uiText(step + 1)} {uiText(" of 3")}</span>
           </motion.div>
         </div>
         <div className="storage-onboarding__footer">
-          <div className="storage-onboarding__dots" role="group" aria-label="Storage introduction steps">{steps.map((item, index) => <button key={item.title} type="button" aria-label={`Step ${index + 1}: ${item.title}`} aria-current={step === index ? "step" : undefined} onClick={() => setStep(index)}><span /></button>)}</div>
+          <div className="storage-onboarding__dots" role="group" aria-label={uiText("Storage introduction steps")}>{steps.map((item, index) => <button key={item.title} type="button" aria-label={uiText("Step {0}: {1}", [index + 1, item.title])} aria-current={step === index ? "step" : undefined} onClick={() => setStep(index)}><span /></button>)}</div>
           <div className="storage-onboarding__actions">
-            <button type="button" className="storage-onboarding__back" aria-label="Previous step" disabled={step === 0} onClick={() => setStep(current => Math.max(0, current - 1))}><ArrowLeft size={16} /><span>Back</span></button>
-            <button type="button" className="storage-onboarding__next" onClick={() => step === 2 ? onStart() : setStep(current => current + 1)}>{step === 2 ? "Add documents" : "Next"}<ArrowRight size={16} /></button>
+            <button type="button" className="storage-onboarding__back" aria-label={uiText("Previous step")} disabled={step === 0} onClick={() => setStep(current => Math.max(0, current - 1))}><ArrowLeft size={16} /><span>{uiText("Back")}</span></button>
+            <button type="button" className="storage-onboarding__next" onClick={() => step === 2 ? onStart() : setStep(current => current + 1)}>{uiText(step === 2 ? uiText("Add documents") : uiText("Next"))}<ArrowRight size={16} /></button>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties, KeyboardEvent, MouseEvent, ReactNode } from "react";
 import {
@@ -98,6 +99,7 @@ export function AgentTree({
   root, collapsed, defaultCollapsed, onCollapsedChange, onResolve, onSelect, selectedId, now: suppliedNow, formatCost = dollars, showCost = true,
   title = "Agents", noun = ["agent", "agents"], barExtra, renderCardActions, className,
 }: AgentTreeProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const [one, many] = noun;
   const ids = useId();
   const [ownCollapsed, setOwnCollapsed] = useState<readonly string[]>(defaultCollapsed ?? []);
@@ -239,7 +241,7 @@ export function AgentTree({
       if ((event.target as Element).closest("button, a, input, select, textarea, [data-no-select]") && event.target !== event.currentTarget) return;
       onSelect?.(agent);
     }
-    return <div className={`agt__branch${depth === 0 ? " agt__root-branch" : ""}`} key={agent.id} role="treeitem" aria-label={label} aria-level={depth + 1}
+    return <div className={`agt__branch${depth === 0 ? " agt__root-branch" : ""}`} key={agent.id} role="treeitem" aria-label={uiText(label)} aria-level={depth + 1}
       aria-expanded={total ? expanded : undefined} aria-selected={selectable ? selectedId === agent.id : undefined} style={{ "--agt-depth": depth } as CSSProperties}>
       <div
         className="agt__node" ref={element => { if (element) cards.current.set(agent.id, element); else cards.current.delete(agent.id); }}
@@ -248,19 +250,19 @@ export function AgentTree({
         onClick={selectable ? select : undefined} onKeyDown={selectable ? event => { if ((event.key === "Enter" || event.key === " ") && event.target === event.currentTarget) { event.preventDefault(); select(event); } } : undefined}
       >
         <AgentCardBody agent={agent} now={now} formatCost={formatCost} showCost={showCost} actions={renderCardActions?.(agent)} fold={total > 0 ? <button type="button" className="agt__fold" aria-expanded={expanded} aria-controls={`${ids}-${agent.id}`}
-          aria-label={`${expanded ? "Hide" : "Show"} ${total} sub-${total === 1 ? one : many} of ${agent.name}`} onClick={() => toggle(agent.id)}>{total}<Chevron /></button> : undefined} />
+          aria-label={uiText("{0} {1} sub-{2} of {3}", [expanded ? "Hide" : "Show", total, total === 1 ? one : many, agent.name])} onClick={() => toggle(agent.id)}>{uiText(total)}<Chevron /></button> : undefined} />
       </div>
       {kids.length > 0 && <div className={depth === 0 ? "agt__level" : "agt__below"} role="group" id={`${ids}-${agent.id}`}>
-        {kids.map((child, position) => renderBranch(child, depth + 1, position))}
+        {uiText(kids.map((child, position) => renderBranch(child, depth + 1, position)))}
       </div>}
     </div>;
   }
 
   return <div className={`agt${className ? ` ${className}` : ""}`} ref={setHost} data-wide={wide ? "" : undefined} style={{ ...(width ? {} : { visibility: "hidden" }), ...(wide ? { "--agt-card-w": `${cardWidth}px` } : {}) } as CSSProperties}>
-    <AgentBar root={root} title={title} noun={noun} formatCost={formatCost} showCost={showCost} onResolve={onResolve} extra={barExtra} />
-    <div className="agt__tree" ref={treeRef} role="tree" aria-label={title}>
+    <AgentBar root={root} title={uiText(title)} noun={noun} formatCost={formatCost} showCost={showCost} onResolve={onResolve} extra={barExtra} />
+    <div className="agt__tree" ref={treeRef} role="tree" aria-label={uiText(title)}>
       <svg className="agt__links" ref={linksRef} aria-hidden="true" />
-      {renderBranch(shown, 0, 0)}
+      {uiText(renderBranch(shown, 0, 0))}
       <svg className="agt__links agt__dots" ref={dotsRef} aria-hidden="true" style={{ zIndex: 2 }} />
     </div>
   </div>;

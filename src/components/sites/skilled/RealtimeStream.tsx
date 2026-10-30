@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent } from "react";
 import "./realtime-stream.css";
@@ -62,6 +63,7 @@ export function RealtimeStream({
   points, label, unit = "ms", description, emptyLabel = "Waiting for measurements",
   className = "", windowMs = 30000, interval = 1000, height = 200,
 }: RealtimeStreamProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const helpId = useId();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const plotRef = useRef<HTMLDivElement>(null);
@@ -389,23 +391,23 @@ export function RealtimeStream({
   const anomalies = cleanPoints.filter(point => point.anomaly).slice(-3);
   const queued = held ? cleanPoints.filter(point => point.t > (held.points.at(-1)?.t ?? -Infinity)).length : 0;
   return (
-    <figure ref={figureRef} className={`skilled-stream ${className}`} aria-label={label}>
+    <figure ref={figureRef} className={`skilled-stream ${className}`} aria-label={uiText(label)}>
       <figcaption className="skilled-stream-caption">
-        <span>{label}</span>{description && <small>{description}</small>}
+        <span>{uiText(label)}</span>{description && <small>{uiText(description)}</small>}
       </figcaption>
       <div className="skilled-stream-head">
-        <p className="skilled-stream-now" aria-label={`${label}, ${readout}${selectedPoint ? ` ${unit}` : ""}`}>
-          <span className="skilled-stream-value" aria-hidden="true">{readout}</span>
-          <span className="skilled-stream-unit" aria-hidden="true">{unit}</span>
+        <p className="skilled-stream-now" aria-label={uiText("{0}, {1}{2}", [label, readout, selectedPoint ? ` ${unit}` : ""])}>
+          <span className="skilled-stream-value" aria-hidden="true">{uiText(readout)}</span>
+          <span className="skilled-stream-unit" aria-hidden="true">{uiText(unit)}</span>
         </p>
         <button type="button" className="skilled-stream-status" aria-pressed={paused} onClick={togglePause}>
           <span className="skilled-stream-dot" data-paused={paused || !!held || undefined} aria-hidden="true" />
-          <span>{paused || held ? `Paused${queued ? `, ${queued} new` : ""}` : "Live"}</span>
-          <span className="skilled-stream-sr">{paused ? ", resume" : ", pause"}</span>
+          <span>{uiText(paused || held ? uiText("Paused{0}", [queued ? `, ${queued} new` : ""]) : uiText("Live"))}</span>
+          <span className="skilled-stream-sr">{uiText(paused ? uiText(", resume") : uiText(", pause"))}</span>
         </button>
       </div>
       <div ref={plotRef} className="skilled-stream-plot" style={{ height: plotHeight }} role="group" tabIndex={0}
-        aria-roledescription="live chart" aria-label={`${label}, last ${span / 1000} seconds`}
+        aria-roledescription="live chart" aria-label={uiText("{0}, last {1} seconds", [label, span / 1000])}
         aria-describedby={helpId} onKeyDown={readKeyboard}
         onFocus={() => {
           if (pointerFocus.current || holdReasons.current.pointer) { pointerFocus.current = false; return; }
@@ -421,20 +423,20 @@ export function RealtimeStream({
         onPointerUp={event => { event.currentTarget.releasePointerCapture(event.pointerId); if (event.pointerType !== "mouse") clearPointer(); }}
         onPointerCancel={clearPointer}>
         <canvas ref={canvasRef} aria-hidden="true" />
-        {!latest && <p className="skilled-stream-empty">{emptyLabel}</p>}
+        {!latest && <p className="skilled-stream-empty">{uiText(emptyLabel)}</p>}
         {reading && <div className="skilled-stream-tooltip" style={{ left: tooltipX }} aria-hidden="true">
-          <strong>{numberFormat.format(reading.value)} {unit}</strong>
-          <span>{formatTime(reading.t)}{reading.anomaly ? ` · ${reading.anomaly}` : ""}</span>
+          <strong>{uiText(numberFormat.format(reading.value))} {uiText(unit)}</strong>
+          <span>{uiText(formatTime(reading.t))}{uiText(reading.anomaly ? uiText(" · {0}", [reading.anomaly]) : "")}</span>
         </div>}
       </div>
-      <p id={helpId} className="skilled-stream-sr">Focus holds the view. Arrow keys read points; Home and End jump to the first and last point; Page Up and Page Down move ten points. Space pauses or resumes. Escape resumes the live view.</p>
-      <p className="skilled-stream-sr" aria-live="polite" aria-atomic="true">{announcement}</p>
-      <p className="skilled-stream-sr" aria-live="polite" aria-atomic="false">{anomalies.map(point => <span key={`${point.t}-${point.anomaly}`}>{point.anomaly}, {numberFormat.format(point.value)} {unit}, {formatTime(point.t)}. </span>)}</p>
+      <p id={helpId} className="skilled-stream-sr">{uiText("Focus holds the view. Arrow keys read points; Home and End jump to the first and last point; Page Up and Page Down move ten points. Space pauses or resumes. Escape resumes the live view.")}</p>
+      <p className="skilled-stream-sr" aria-live="polite" aria-atomic="true">{uiText(announcement)}</p>
+      <p className="skilled-stream-sr" aria-live="polite" aria-atomic="false">{anomalies.map(point => <span key={`${point.t}-${point.anomaly}`}>{uiText(point.anomaly)}, {uiText(numberFormat.format(point.value))} {uiText(unit)}, {uiText(formatTime(point.t))}. </span>)}</p>
       <div className="skilled-stream-sr"><table>
-        <caption>{label}, latest 20 readings</caption>
-        <thead><tr><th scope="col">Time</th><th scope="col">Value</th><th scope="col">Note</th></tr></thead>
+        <caption>{uiText(label)}{uiText(", latest 20 readings")}</caption>
+        <thead><tr><th scope="col">{uiText("Time")}</th><th scope="col">{uiText("Value")}</th><th scope="col">{uiText("Note")}</th></tr></thead>
         <tbody>{cleanPoints.slice(-20).map((point, index) => <tr key={`${point.t}-${index}`}>
-          <th scope="row">{formatTime(point.t)}</th><td>{numberFormat.format(point.value)} {unit}</td><td>{point.anomaly}</td>
+          <th scope="row">{uiText(formatTime(point.t))}</th><td>{uiText(numberFormat.format(point.value))} {uiText(unit)}</td><td>{uiText(point.anomaly)}</td>
         </tr>)}</tbody>
       </table></div>
     </figure>

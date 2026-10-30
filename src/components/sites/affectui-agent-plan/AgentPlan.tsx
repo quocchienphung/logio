@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import {
@@ -59,6 +60,7 @@ type Drag = {
  * design), so it keeps its proportions in a small frame or a full column.
  */
 export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone, badge, estimate, className }: AgentPlanProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const { plan, dispatch, run, retry, reopen, elapsedLabel, stepMs } = usePlanEngine({ steps: initialSteps, executor, onRun, onDone });
   const hintId = `ap-${useId().replace(/[^a-zA-Z0-9]/g, "")}-hint`;
   const editable = plan.phase === "draft";
@@ -239,28 +241,28 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
   const estimateLabel = estimate ?? formatEstimate(estimateMs(plan.steps));
 
   return <div className={className ? `ap-frame ${className}` : "ap-frame"}>
-    <section ref={root} className="ap" data-status={status} aria-label={title}>
+    <section ref={root} className="ap" data-status={status} aria-label={uiText(title)}>
       <header className="ap__head">
         <div className="ap__meta">
           <span className="ap__state">
             <svg className="ap__state-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 4.5h7M6.5 8h7M6.5 11.5h7" /><circle cx="3.25" cy="4.5" r=".6" /><circle cx="3.25" cy="8" r=".6" /><circle cx="3.25" cy="11.5" r=".6" /></svg>
-            <span className="ap__state-label">Plan · {total} {total === 1 ? "step" : "steps"}</span>
+            <span className="ap__state-label">{uiText("Plan · ")}{uiText(total)} {uiText(total === 1 ? uiText("step") : uiText("steps"))}</span>
           </span>
           {editable && <span className="ap__estimate">
             <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M8 5v3.2l2 1.3" /></svg>
-            <span><span className="ap__sr">Estimated time </span>{estimateLabel}</span>
+            <span><span className="ap__sr">{uiText("Estimated time ")}</span>{uiText(estimateLabel)}</span>
           </span>}
         </div>
         <div className="ap__titlerow">
-          <h3 className="ap__title">{title}</h3>
+          <h3 className="ap__title">{uiText(title)}</h3>
           {pill && <span className="ap__pill" data-tone={pill.tone} key={pill.tone}>
             {pill.tone === "paid" && <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.2 8.4 6.8 11l5-5.6" /></svg>}
-            {pill.label}
+            {uiText(pill.label)}
           </span>}
         </div>
       </header>
-      <p id={hintId} className="ap__sr">Press Enter to rename, Alt plus arrow keys to move, Delete to remove.</p>
-      <ol className="ap__list" ref={list} aria-label={`Plan: ${title}`}>
+      <p id={hintId} className="ap__sr">{uiText("Press Enter to rename, Alt plus arrow keys to move, Delete to remove.")}</p>
+      <ol className="ap__list" ref={list} aria-label={uiText("Plan: {0}", [title])}>
         {plan.steps.map((step, index) => {
           const isEditing = editing?.id === step.id;
           return <li
@@ -278,7 +280,7 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
             {editable && <span
               className="ap__grip"
               aria-hidden="true"
-              title="Drag to reorder"
+              title={uiText("Drag to reorder")}
               onPointerDown={event => onGripDown(event, step.id)}
               onPointerMove={onGripMove}
               onPointerUp={onGripEnd}
@@ -288,13 +290,13 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
               {!editable && step.state === "active" ? <Spinner />
                 : !editable && step.state === "done" ? <svg viewBox="0 0 16 16" className="ap__mark"><path d="M4.2 8.4 6.8 11l5-5.6" pathLength="1" className="ap__draw" /></svg>
                 : !editable && step.state === "failed" ? <svg viewBox="0 0 16 16" className="ap__mark"><path d="M8 4.2v4.4M8 11.6h.01" /></svg>
-                : <span className="ap__num">{index + 1}</span>}
+                : <span className="ap__num">{uiText(index + 1)}</span>}
             </span>
             <div className="ap__main">
               {isEditing
                 ? <input
                   className="ap__edit"
-                  aria-label={`Rename step ${index + 1}`}
+                  aria-label={uiText("Rename step {0}", [index + 1])}
                   autoFocus
                   value={editing.value}
                   onFocus={event => event.currentTarget.select()}
@@ -305,27 +307,26 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
                     else if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); finishEdit(false); }
                   }}
                 />
-                : <span className="ap__name" onDoubleClick={() => { if (editable) setEditing({ id: step.id, value: step.title }); }}>{step.title}</span>}
+                : <span className="ap__name" onDoubleClick={() => { if (editable) setEditing({ id: step.id, value: step.title }); }}>{uiText(step.title)}</span>}
               {(step.detail || step.tool) && <span className="ap__sub">
-                {step.detail && <span className="ap__detail">{step.detail}</span>}
+                {step.detail && <span className="ap__detail">{uiText(step.detail)}</span>}
                 {step.tool && <code className="ap__tool">{step.tool}</code>}
               </span>}
-              {!editable && <span className="ap__sr">{step.state === "active" ? ", In progress" : step.state === "done" ? ", Done" : step.state === "failed" ? ", Failed" : ", Pending"}</span>}
+              {!editable && <span className="ap__sr">{uiText(step.state === "active" ? uiText(", In progress") : step.state === "done" ? uiText(", Done") : step.state === "failed" ? uiText(", Failed") : uiText(", Pending"))}</span>}
               {!editable && step.state === "failed" && <span className="ap__fail">
-                <span className="ap__error">{step.error}</span>
+                <span className="ap__error">{uiText(step.error)}</span>
                 <button type="button" className="ap__retry" onClick={() => retry(step.id)}>
                   <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.6-3.7" /><path d="M13 3v2.6h-2.6" /></svg>
-                  Retry from here
-                </button>
+                  {uiText("Retry from here")}</button>
               </span>}
             </div>
             <span className="ap__aside">
               {editable
-                ? <button type="button" className="ap__remove" aria-label={`Remove step ${index + 1}: ${step.title}`} onClick={() => removeStep(step.id)}>
+                ? <button type="button" className="ap__remove" aria-label={uiText("Remove step {0}: {1}", [index + 1, step.title])} onClick={() => removeStep(step.id)}>
                   <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
                 </button>
-                : step.state === "active" ? <span className="ap__time" aria-hidden="true">{formatStepTime(stepMs)}</span>
-                : step.state === "done" && step.tookMs !== undefined ? <span className="ap__time ap__time--done"><span className="ap__sr">took </span>{formatStepTime(step.tookMs)}</span> : null}
+                : step.state === "active" ? <span className="ap__time" aria-hidden="true">{uiText(formatStepTime(stepMs))}</span>
+                : step.state === "done" && step.tookMs !== undefined ? <span className="ap__time ap__time--done"><span className="ap__sr">{uiText("took ")}</span>{uiText(formatStepTime(step.tookMs))}</span> : null}
             </span>
             <span className="ap__rail" aria-hidden="true" />
           </li>;
@@ -337,8 +338,8 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
             <span className="ap__add-icon" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 4.5v7M4.5 8h7" /></svg></span>
             <input
               ref={addField}
-              placeholder="Add step"
-              aria-label="Add a step at the end"
+              placeholder={uiText("Add step")}
+              aria-label={uiText("Add a step at the end")}
               enterKeyHint="done"
               value={adding}
               onChange={event => setAdding(event.target.value)}
@@ -349,48 +350,47 @@ export function AgentPlan({ title, steps: initialSteps, executor, onRun, onDone,
       </div>
       <div className="ap__foot" data-phase={plan.phase} key={plan.phase}>
         {plan.phase === "draft" && <>
-          <span className="ap__hint" aria-hidden="true">Drag to reorder · double-click to rename</span>
+          <span className="ap__hint" aria-hidden="true">{uiText("Drag to reorder · double-click to rename")}</span>
           <span className="ap__actions">
-            <button type="button" className="ap__btn ap__btn--secondary" onClick={() => { dispatch({ type: "cancel" }); setAnnouncement("Changes discarded"); }}>Cancel</button>
+            <button type="button" className="ap__btn ap__btn--secondary" onClick={() => { dispatch({ type: "cancel" }); setAnnouncement("Changes discarded"); }}>{uiText("Cancel")}</button>
             <button type="button" className="ap__btn ap__btn--primary" disabled={total === 0} onClick={run}>
-              Run plan
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.8v8.4L12 8z" /></svg>
+              {uiText("Run plan")}<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.8v8.4L12 8z" /></svg>
             </button>
           </span>
         </>}
         {plan.phase === "running" && <>
           <span className="ap__status">
             <span className="ap__status-icon" aria-hidden="true"><Spinner /></span>
-            <span className="ap__status-label ap__shimmer" data-text={`Running · ${position} of ${total}`}>Running · {position} of {total}</span>
+            <span className="ap__status-label ap__shimmer" data-text={`Running · ${position} of ${total}`}>{uiText("Running · ")}{uiText(position)} {uiText(" of ")}{uiText(total)}</span>
           </span>
-          <span className="ap__elapsed" aria-hidden="true">{elapsedLabel}</span>
+          <span className="ap__elapsed" aria-hidden="true">{uiText(elapsedLabel)}</span>
         </>}
         {plan.phase === "failed" && <span className="ap__status">
           <span className="ap__status-icon" aria-hidden="true"><svg viewBox="0 0 16 16" className="ap__badge"><circle cx="8" cy="8" r="7" /><path d="M8 4.8v3.8M8 11.2h.01" /></svg></span>
-          <span className="ap__status-label" data-text={`Stopped · step ${failedIndex + 1} failed`}>Stopped · step {failedIndex + 1} failed</span>
+          <span className="ap__status-label" data-text={`Stopped · step ${failedIndex + 1} failed`}>{uiText("Stopped · step ")}{uiText(failedIndex + 1)} {uiText(" failed")}</span>
         </span>}
         {plan.phase === "done" && <>
           <span className="ap__status">
             <span className="ap__status-icon" aria-hidden="true"><svg viewBox="0 0 16 16" className="ap__badge"><circle cx="8" cy="8" r="7" /><path d="M5.2 8.2 7.1 10l3.7-4" pathLength="1" className="ap__draw" /></svg></span>
-            <span className="ap__status-label" data-text={`Done in ${elapsedLabel}`}>Done in {elapsedLabel}</span>
+            <span className="ap__status-label" data-text={`Done in ${elapsedLabel}`}>{uiText("Done in ")}{uiText(elapsedLabel)}</span>
           </span>
           <span className="ap__actions">
             <button type="button" className="ap__btn ap__btn--secondary ap__again" onClick={reopen}>
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.6-3.7" /><path d="M13 3v2.6h-2.6" /></svg>
-              Run again
-            </button>
+              {uiText("Run again")}</button>
           </span>
         </>}
       </div>
-      <p className="ap__sr" role="status" aria-live="polite">{liveText}</p>
+      <p className="ap__sr" role="status" aria-live="polite">{uiText(liveText)}</p>
     </section>
   </div>;
 }
 
 /** The plan card for invoices: draft -> review -> send (unpaid) -> wait -> record the payment (paid). */
 export function InvoicePlan({ title = invoiceTitle, steps = defaultInvoiceSteps, ...rest }: Partial<AgentPlanProps>): ReactNode {
+  const { t: uiText } = useWorkspaceI18n();
   return <AgentPlan
-    title={title}
+    title={uiText(title)}
     steps={steps}
     badge={list => { const status: InvoiceStatus = invoiceStatusOf(list); return { label: invoiceStatusLabels[status], tone: status }; }}
     {...rest}

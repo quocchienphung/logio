@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import { AnimatePresence, animate, motion, useMotionTemplate, useMotionValue, usePresence, useReducedMotion, useTransform } from "motion/react";
@@ -50,6 +51,7 @@ const sameMetrics = (a: Metrics | null, b: Metrics) => a !== null && a.digit ===
 
 /** One part of the bar: a full-width layer cut to its share by an animated clip-path, so its labels slide with it and are cut cleanly at its edge. */
 function Layer({ share, span, barW, mode, text, highlighted, dimmed, reduced, color }: { share: Share; span: Span; barW: MotionValue<number>; mode: LabelMode; text: string; highlighted: boolean; dimmed: boolean; reduced: boolean; color: string }) {
+  const { t: uiText } = useWorkspaceI18n();
   // a part opens from nothing where it will stand
   const left = useMotionValue(span.left * 100), right = useMotionValue(100 - span.left * 100);
   const [present, safeToRemove] = usePresence();
@@ -82,7 +84,7 @@ function Layer({ share, span, barW, mode, text, highlighted, dimmed, reduced, co
   return <motion.span className="sb__segment" aria-hidden="true" data-hl={highlighted ? "" : undefined} data-dim={dimmed ? "" : undefined} data-leaving={present ? undefined : ""} style={{ "--seg": color, clipPath } as never}>
     <motion.span className="sb__cap" style={{ x: capX, opacity: capOpacity }} />
     <motion.span className="sb__inside" data-mode={mode} style={{ x: insideX }}>
-      <motion.span className="sb__insideName" initial={false} animate={{ width: showName ? "auto" : 0, opacity: showName ? 1 : 0, marginRight: showName ? 5 : 0 }} transition={reduced ? { duration: 0 } : EDGE}>{share.short}</motion.span>
+      <motion.span className="sb__insideName" initial={false} animate={{ width: showName ? "auto" : 0, opacity: showName ? 1 : 0, marginRight: showName ? 5 : 0 }} transition={reduced ? { duration: 0 } : EDGE}>{uiText(share.short)}</motion.span>
       <AnimatedNumber text={lastText.current} />
     </motion.span>
   </motion.span>;
@@ -109,6 +111,7 @@ export function SplitBar({
   segments, title, description, format, unit, totalLabel = "Total", hidden: hiddenProp, defaultHidden, onHiddenChange, legend = true, locale = "en-US", label, className, style,
   highlightId = null, onHighlightChange, emptyLabel = "Nothing to show", tone = "neutral",
 }: SplitBarProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const titleId = useId(), reduced = useReducedMotion() ?? false;
   const barRef = useRef<HTMLDivElement>(null), measureRef = useRef<HTMLSpanElement>(null);
   const barW = useMotionValue(0);
@@ -272,21 +275,21 @@ export function SplitBar({
     </span>
     <div className="sb__head">
       <div className="sb__heading">
-        <p id={titleId} className="sb__title">{title}</p>
-        {description && <p className="sb__description">{description}</p>}
+        <p id={titleId} className="sb__title">{uiText(title)}</p>
+        {description && <p className="sb__description">{uiText(description)}</p>}
       </div>
       <div className="sb__readout" aria-hidden="true">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div key={lineKey} className="sb__readoutLine" initial={{ opacity: 0, y: reduced ? 0 : 6, filter: reduced ? "blur(0px)" : "blur(2px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: reduced ? 0 : -6, filter: reduced ? "blur(0px)" : "blur(2px)" }} transition={reduced ? { duration: 0 } : FADE}>
             {active && <span className="sb__dot" style={{ "--seg": colorOf(active) } as CSSProperties} />}
-            <span className="sb__readoutName">{active ? active.label : totalLabel}</span>
+            <span className="sb__readoutName">{uiText(active ? active.label : totalLabel)}</span>
             <span className="sb__readoutShare"><AnimatedNumber text={active ? shareText(active.share) : formatValue(total)} /></span>
-            <span className="sb__readoutValue">{active ? <><AnimatedNumber text={formatValue(active.value)} />{unitText}</> : unit}</span>
+            <span className="sb__readoutValue">{active ? <><AnimatedNumber text={formatValue(active.value)} />{uiText(unitText)}</> : unit}</span>
           </motion.div>
         </AnimatePresence>
       </div>
     </div>
-    <div ref={barRef} className="sb__bar" tabIndex={0} role="group" aria-roledescription="split bar" aria-label={barLabel} data-empty={visible.length === 0 ? "" : undefined} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave} onPointerDown={onPointerDown} onKeyDown={onKeyDown} onBlur={() => setOwn(current => (current?.how === "keyboard" ? null : current))}>
+    <div ref={barRef} className="sb__bar" tabIndex={0} role="group" aria-roledescription="split bar" aria-label={uiText(barLabel)} data-empty={visible.length === 0 ? "" : undefined} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave} onPointerDown={onPointerDown} onKeyDown={onKeyDown} onBlur={() => setOwn(current => (current?.how === "keyboard" ? null : current))}>
       <AnimatePresence initial>
         {shares.map(item => {
           const span = spanOf.get(item.id);
@@ -294,7 +297,7 @@ export function SplitBar({
           return <Layer key={item.id} share={item} span={span} barW={barW} mode={modes.get(item.id) ?? "share"} text={shareText(item.share)} highlighted={item.id === activeId} dimmed={activeId !== null && item.id !== activeId} reduced={reduced} color={colorOf(item)} />;
         })}
       </AnimatePresence>
-      {visible.length === 0 && <span className="sb__emptyLabel">{emptyLabel}</span>}
+      {visible.length === 0 && <span className="sb__emptyLabel">{uiText(emptyLabel)}</span>}
     </div>
     <motion.div className="sb__lane" aria-hidden="true" initial={false} animate={{ height: outside.length > 0 ? LANE_HEIGHT : 0 }} transition={reduced ? { duration: 0 } : EDGE}>
       <svg className="sb__leaders" width="100%" height={LANE_HEIGHT}>
@@ -307,27 +310,27 @@ export function SplitBar({
           const share = shares.find(entry => entry.id === item.id);
           if (!share) return null;
           return <motion.span key={item.id} className="sb__outside" initial={{ x: item.left, opacity: 0 }} animate={{ x: item.left, opacity: 1 }} exit={{ opacity: 0 }} transition={reduced ? { duration: 0 } : { x: EDGE, opacity: FADE }}>
-            <span className="sb__outsideName">{share.short}</span><AnimatedNumber text={shareText(share.share)} />
+            <span className="sb__outsideName">{uiText(share.short)}</span><AnimatedNumber text={shareText(share.share)} />
           </motion.span>;
         })}
       </AnimatePresence>
     </motion.div>
-    {legend && <ul className="sb__legend" aria-label={`${label ?? title} segments`}>
+    {legend && <ul className="sb__legend" aria-label={uiText("{0} segments", [label ?? title])}>
       {shares.map(item => {
         const off = hiddenSet.has(item.id);
         return <li key={item.id}>
-          <button type="button" className="sb__legendItem" aria-pressed={!off} aria-label={off ? `${item.label}, hidden` : `${item.label}, ${shareText(item.share)}`} data-off={off ? "true" : undefined} style={{ "--seg": colorOf(item) } as CSSProperties}
+          <button type="button" className="sb__legendItem" aria-pressed={!off} aria-label={uiText(off ? uiText("{0}, hidden", [item.label]) : uiText("{0}, {1}", [item.label, shareText(item.share)]))} data-off={off ? "true" : undefined} style={{ "--seg": colorOf(item) } as CSSProperties}
             onClick={() => toggle(item.id)}
             onPointerEnter={event => { if (event.pointerType === "mouse" && !off) setOwn({ id: item.id, how: "legend" }); }}
             onPointerLeave={event => { if (event.pointerType === "mouse") setOwn(current => (current?.how === "legend" && current.id === item.id ? null : current)); }}>
             <motion.span key={shake?.id === item.id ? shake.n : 0} className="sb__legendLabel" initial={{ x: 0 }} animate={shake?.id === item.id && shake.n > 0 && !reduced ? { x: [0, -3, 3, -2, 2, 0] } : { x: 0 }} transition={{ duration: 0.32, ease: "easeOut" }}>
-              <span className="sb__swatch" aria-hidden="true" /><span className="sb__legendName">{item.label}</span>
+              <span className="sb__swatch" aria-hidden="true" /><span className="sb__legendName">{uiText(item.label)}</span>
             </motion.span>
-            <span className="sb__legendShare" aria-hidden="true">{off ? <span className="sb__legendOff">Off</span> : <AnimatedNumber text={shareText(item.share)} />}</span>
+            <span className="sb__legendShare" aria-hidden="true">{off ? <span className="sb__legendOff">{uiText("Off")}</span> : <AnimatedNumber text={shareText(item.share)} />}</span>
           </button>
         </li>;
       })}
     </ul>}
-    <p className="sb__sr" role="status" aria-live="polite" aria-atomic="true">{live}</p>
+    <p className="sb__sr" role="status" aria-live="polite" aria-atomic="true">{uiText(live)}</p>
   </figure>;
 }

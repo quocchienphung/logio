@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { createContext, useCallback, useContext, useEffect, useId, useLayoutEffect, useReducer, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, animate, motion, useMotionTemplate, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import type { AnimationPlaybackControls } from "motion/react";
@@ -75,6 +76,7 @@ export function ConfirmMorph({
   undoLabel = "Undo", undoingLabel = "Restoring", tone = "danger", confirmMode = "press", holdDuration = HOLD_MS, onConfirm, onUndo, onCancel, onStateChange,
   confirmTimeout = QUESTION_TIMEOUT_MS, resultTimeout = 0, cancelOnOutsidePress = true, ariaLabel, size = "md", disabled = false, className,
 }: ConfirmMorphProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const reduced = useReducedMotion() ?? false;
   const promptId = useId(), holdId = useId();
   const [state, dispatch] = useReducer(confirmReducer, initialConfirm);
@@ -185,11 +187,11 @@ export function ConfirmMorph({
     <motion.div className="cm__surface" style={ready ? { width } : undefined}>
       <AnimatePresence initial={false}>
         {phase === "idle" && <FaceFrame key="idle" name="idle" context={faceProps} onMeasure={natural}>
-          <Part index={0}><button ref={triggerRef} type="button" className="cm__trigger" aria-label={ariaLabel} disabled={disabled} onClick={open}>{icon && <span className="cm__icon" aria-hidden="true">{icon}</span>}<span>{label}</span></button></Part>
+          <Part index={0}><button ref={triggerRef} type="button" className="cm__trigger" aria-label={uiText(ariaLabel)} disabled={disabled} onClick={open}>{icon && <span className="cm__icon" aria-hidden="true">{uiText(icon)}</span>}<span>{uiText(label)}</span></button></Part>
         </FaceFrame>}
         {phase === "confirming" && <FaceFrame key="confirming" name="confirming" context={faceProps} onMeasure={natural} group={promptId}>
-          <Part index={0} className="cm__prompt"><span id={promptId}>{prompt ?? <>{label}?</>}</span></Part>
-          <Part index={1}><button type="button" className="cm__secondary" onClick={cancel}>{cancelLabel}</button></Part>
+          <Part index={0} className="cm__prompt"><span id={promptId}>{prompt ?? <>{uiText(label)}?</>}</span></Part>
+          <Part index={1}><button type="button" className="cm__secondary" onClick={cancel}>{uiText(cancelLabel)}</button></Part>
           <Part index={2}>
             <button ref={confirmRef} type="button" className="cm__confirm" data-holding={holding ? "" : undefined} aria-describedby={hold ? holdId : undefined}
               onPointerDown={event => { if (hold && (event.pointerType !== "mouse" || event.button === 0)) startHold(); }}
@@ -199,26 +201,26 @@ export function ConfirmMorph({
               onKeyUp={event => { if (hold && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); endHold(); } }}
               onBlur={() => { if (hold) endHold(); }}
               onClick={() => { if (!hold && canConfirm(performance.now(), openedAt.current)) startConfirm(); }}>
-              <span>{confirmLabel}</span>
-              {hold && <motion.span className="cm__fill" aria-hidden="true" style={{ clipPath: fillClip }}><span>{confirmLabel}</span></motion.span>}
+              <span>{uiText(confirmLabel)}</span>
+              {hold && <motion.span className="cm__fill" aria-hidden="true" style={{ clipPath: fillClip }}><span>{uiText(confirmLabel)}</span></motion.span>}
             </button>
           </Part>
-          {hold && <span id={holdId} className="cm__sr">Press and hold</span>}
+          {hold && <span id={holdId} className="cm__sr">{uiText("Press and hold")}</span>}
         </FaceFrame>}
         {phase === "pending" && <FaceFrame key="pending" name="pending" context={faceProps} onMeasure={natural}>
-          <Part index={0} className="cm__status" ><LoaderCircle className="cm__spinner" size={16} strokeWidth={2} aria-hidden="true" /><span>{state.undoing ? undoingLabel : pendingLabel}</span></Part>
+          <Part index={0} className="cm__status" ><LoaderCircle className="cm__spinner" size={16} strokeWidth={2} aria-hidden="true" /><span>{uiText(state.undoing ? undoingLabel : pendingLabel)}</span></Part>
         </FaceFrame>}
         {phase === "done" && <FaceFrame key="done" name="done" context={faceProps} onMeasure={natural}>
-          <Part index={0} className="cm__status cm__status--done"><DoneCheck reduced={reduced} /><span className="cm__statusText">{doneLabel}</span></Part>
-          {onUndo && <Part index={1}><button ref={undoRef} type="button" className="cm__secondary cm__undo" onClick={undo}>{undoLabel}</button></Part>}
+          <Part index={0} className="cm__status cm__status--done"><DoneCheck reduced={reduced} /><span className="cm__statusText">{uiText(doneLabel)}</span></Part>
+          {onUndo && <Part index={1}><button ref={undoRef} type="button" className="cm__secondary cm__undo" onClick={undo}>{uiText(undoLabel)}</button></Part>}
         </FaceFrame>}
         {phase === "error" && <FaceFrame key="error" name="error" context={faceProps} onMeasure={natural}>
-          <Part index={0} className="cm__status cm__status--error"><CircleAlert size={16} strokeWidth={2} aria-hidden="true" /><span>{errorLabel}</span></Part>
-          <Part index={1}><button ref={retryRef} type="button" className="cm__secondary" onClick={retry}>{retryLabel}</button></Part>
+          <Part index={0} className="cm__status cm__status--error"><CircleAlert size={16} strokeWidth={2} aria-hidden="true" /><span>{uiText(errorLabel)}</span></Part>
+          <Part index={1}><button ref={retryRef} type="button" className="cm__secondary" onClick={retry}>{uiText(retryLabel)}</button></Part>
         </FaceFrame>}
       </AnimatePresence>
     </motion.div>
-    <span className="cm__sr" role="status" aria-live="polite">{live}</span>
+    <span className="cm__sr" role="status" aria-live="polite">{uiText(live)}</span>
   </div>;
 }
 

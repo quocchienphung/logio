@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 
@@ -14,6 +15,7 @@ const clamp = (value: number, low: number, high: number) => Math.min(high, Math.
  * Rows farther from the middle fade and blur, as the rows of a real drum fall away from you.
  */
 export function DateWheel({ label, items, index, onIndex, readOnly = false }: { label: string; items: readonly WheelItem[]; index: number; onIndex: (index: number) => void; readOnly?: boolean }) {
+  const { t: uiText } = useWorkspaceI18n();
   const last = items.length - 1;
   const [pos, setPos] = useState(index);
   const posRef = useRef(index), target = useRef(index), frame = useRef(0), clock = useRef(0);
@@ -106,13 +108,13 @@ export function DateWheel({ label, items, index, onIndex, readOnly = false }: { 
   for (let at = Math.max(0, Math.floor(pos) - 3); at <= Math.min(last, Math.ceil(pos) + 3); at += 1) rows.push({ item: items[at], at });
   const current = items[clamp(index, 0, Math.max(0, last))];
 
-  return <div ref={root} className="inv-wheel" role="spinbutton" tabIndex={readOnly ? -1 : 0} aria-label={label} aria-valuemin={items[0]?.value} aria-valuemax={items[last]?.value} aria-valuenow={current?.value} aria-valuetext={current?.text} aria-readonly={readOnly || undefined}
+  return <div ref={root} className="inv-wheel" role="spinbutton" tabIndex={readOnly ? -1 : 0} aria-label={uiText(label)} aria-valuemin={items[0]?.value} aria-valuemax={items[last]?.value} aria-valuenow={current?.value} aria-valuetext={uiText(current?.text)} aria-readonly={readOnly || undefined}
     data-readonly={readOnly ? "" : undefined} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerUp} onKeyDown={onKeyDown}>
     <span className="inv-wheel__lens" aria-hidden="true" />
     {rows.map(({ item, at }) => {
       const away = Math.abs(at - pos), fade = away <= 1 ? 1 - away * 0.26 : Math.max(0, 0.74 - (away - 1) * 0.62), blur = Math.max(0, away - 1.1) * 1.3;
       return <span key={item.value} className="inv-wheel__row" aria-hidden="true" data-center={away < 0.5 ? "" : undefined}
-        style={{ transform: `translateY(${((at - pos) * WHEEL_PITCH).toFixed(2)}px) scale(${(1 - Math.min(away, 2) * 0.05).toFixed(3)})`, opacity: fade, filter: blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : undefined }}>{item.text}</span>;
+        style={{ transform: `translateY(${((at - pos) * WHEEL_PITCH).toFixed(2)}px) scale(${(1 - Math.min(away, 2) * 0.05).toFixed(3)})`, opacity: fade, filter: blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : undefined }}>{uiText(item.text)}</span>;
     })}
   </div>;
 }

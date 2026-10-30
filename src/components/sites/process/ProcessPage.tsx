@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
@@ -69,6 +70,7 @@ export interface ProcessProps {
 interface Loaded { source: SnapshotSource<ProcessLibrary>; library: ProcessLibrary; runs: RunStore }
 
 export function Process({ workspaceId, dataSource, runSource, engine: suppliedEngine, remote = false }: ProcessProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const source = useMemo(() => dataSource ?? createLocalProcessSource(`affectui:${workspaceId}:process`), [dataSource, workspaceId]);
   const runs = useMemo(() => runSource ?? createLocalRunSource(`affectui:${workspaceId}:process-run`), [runSource, workspaceId]);
   const engine = useMemo(() => suppliedEngine ?? configuredEngine(), [suppliedEngine]);
@@ -84,8 +86,8 @@ export function Process({ workspaceId, dataSource, runSource, engine: suppliedEn
     return () => controller.abort();
   }, [source, runs, engine, attempt]);
   const reload = () => { setResult(null); setAttempt(value => value + 1); };
-  if (!result || result.source !== source) return <SectionSkeleton section="Process" label="Loading processes…" />;
-  if (!result.loaded) return <div className="proc-workspace proc-loading" role="alert"><p>{result.error}</p><button className="proc-button" type="button" onClick={reload}>Retry loading</button></div>;
+  if (!result || result.source !== source) return <SectionSkeleton section="Process" label={uiText("Loading processes…")} />;
+  if (!result.loaded) return <div className="proc-workspace proc-loading" role="alert"><p>{uiText(result.error)}</p><button className="proc-button" type="button" onClick={reload}>{uiText("Retry loading")}</button></div>;
   return <ProcessStudio key={`${workspaceId}-${attempt}`} workspaceId={workspaceId} source={source} runs={runs} engine={engine} initial={result.loaded} remote={remote} onReload={reload} />;
 }
 
@@ -101,6 +103,7 @@ const stateLabel = { running: "Running", waiting: "Needs you", done: "Done", fai
 const isField = (target: EventTarget | null) => target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) || target.closest("[role=combobox], [role=listbox]") !== null);
 
 function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onReload }: { workspaceId: string; source: SnapshotSource<ProcessLibrary>; runs: SnapshotSource<RunStore>; engine: ProcessEngine; initial: Loaded; remote: boolean; onReload: () => void }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [history, dispatch] = useReducer(historyOf, initial.library, createHistory);
   const library = history.present;
   const doc = library.processes.find(item => item.id === library.activeId) ?? library.processes[0];
@@ -387,7 +390,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     const shortcuts = blockShortcuts(doc, node, { active, starting: runStarting, run: snapshot?.nodes[node.id] });
     return <OrbitMenu
       key="block-menu" anchor={menu.at} boundary={menu.boundary} theme={menu.theme} motionOff={menu.motionOff} open={menu.open}
-      label={`${node.name} shortcuts`} triggerLabel={`Close shortcuts for ${node.name}`} className={menu.keyboard ? "proc-block-orbit is-keyboard" : "proc-block-orbit"} triggerSize={narrow ? 44 : 48}
+      label={uiText("{0} shortcuts", [node.name])} triggerLabel={`Close shortcuts for ${node.name}`} className={menu.keyboard ? "proc-block-orbit is-keyboard" : "proc-block-orbit"} triggerSize={narrow ? 44 : 48}
       onOpenChange={open => {
         setBlockMenu(current => current && current.id === menu.id ? { ...current, open } : current);
         // Opened from the keyboard: the focus goes back to the block, unless an action has moved it into a dialog.
@@ -527,14 +530,14 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     onConnect={to => connectBlocks(selected.id, to)} onLinkChange={changeLink} onLinkRemove={dropLink} onAddStep={addStep} onAddNext={role => addBlock(selected.id, { role })} />;
 
   const runControls = active
-    ? <button type="button" className="proc-button proc-button--small" onClick={() => void act({ type: "stop" })}><Square size={12} />Stop</button>
+    ? <button type="button" className="proc-button proc-button--small" onClick={() => void act({ type: "stop" })}><Square size={12} />{uiText("Stop")}</button>
     : <>
-      <button type="button" className="proc-button proc-button--dark proc-button--small" disabled={runStarting} onClick={() => void start()}>{runStarting ? <LoaderCircle className="proc-spin" size={12} /> : <Play size={12} />}{runStarting ? "Starting..." : snapshot ? "Run again" : "Run"}</button>
-      {snapshot && <button type="button" className="proc-button proc-button--small" onClick={clearRun}>Clear</button>}
+      <button type="button" className="proc-button proc-button--dark proc-button--small" disabled={runStarting} onClick={() => void start()}>{runStarting ? <LoaderCircle className="proc-spin" size={12} /> : <Play size={12} />}{uiText(runStarting ? uiText("Starting...") : snapshot ? uiText("Run again") : uiText("Run"))}</button>
+      {snapshot && <button type="button" className="proc-button proc-button--small" onClick={clearRun}>{uiText("Clear")}</button>}
     </>;
 
-  const stateChip = <span className="proc-state" data-state={snapshot?.state ?? "draft"}>{state}</span>;
-  const saveChip = <span className="proc-save" data-state={save.error ? "error" : save.saving || save.dirty ? "busy" : "ok"} role="status">{save.error ? <AlertTriangle size={13} /> : save.saving ? <LoaderCircle className="proc-spin" size={13} /> : save.dirty ? null : <Check size={13} />}<span>{saveText}</span></span>;
+  const stateChip = <span className="proc-state" data-state={snapshot?.state ?? "draft"}>{uiText(state)}</span>;
+  const saveChip = <span className="proc-save" data-state={save.error ? "error" : save.saving || save.dirty ? "busy" : "ok"} role="status">{save.error ? <AlertTriangle size={13} /> : save.saving ? <LoaderCircle className="proc-spin" size={13} /> : save.dirty ? null : <Check size={13} />}<span>{uiText(saveText)}</span></span>;
   const mapInset = { right: !narrow && panel ? 372 : 0, top: narrow ? 164 : 72, bottom: 72 };
 
   return <div className="proc-workspace" ref={setPage} data-narrow={narrow ? "" : undefined} data-view={view}>
@@ -548,30 +551,30 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
           onSelect={id => { setSelectedId(id); setRevealId(null); setPickedLinkId(null); setMulti([]); }} onOpen={id => { setSelectedId(id); if (narrow) setDialog("inspector"); else { setPanel(true); setRevealId(id); } }} onMove={moveBlock} onAdd={(parentId, pos) => addBlock(parentId, { pos })} onDelete={requestDelete} />
         : <motion.div className="proc-treewrap" style={{ paddingRight: treePadding }} {...treeMenuHandlers}>
           <AgentTree
-            root={tree} title="Tasks" noun={["task", "tasks"]} now={clock} formatCost={format} showCost={unit !== "none"} collapsed={collapsed} onCollapsedChange={setCollapsed}
+            root={tree} title={uiText("Tasks")} noun={["task", "tasks"]} now={clock} formatCost={format} showCost={unit !== "none"} collapsed={collapsed} onCollapsedChange={setCollapsed}
             onSelect={agent => { setSelectedId(taskIdOf(agent.id)); setMulti([]); if (narrow) setDialog("inspector"); }} selectedId={selected.id} onResolve={resolve}
             renderCardActions={agent => {
               const node = findNode(doc.root, agent.id);
               if (!node) return null;
               return <>
-                {node.approval && <span className="proc-tag" title="Asks you before it runs">Approval</span>}
-                {(() => { const loop = loopFrom(doc, node.id); return loop ? <span className="proc-tag" title={`When it has finished, the blocks from ${findNode(doc.root, loop.to)?.name} down to here run again`}><Repeat size={10} /> back to {findNode(doc.root, loop.to)?.name} ×{loop.rounds ?? 2}</span> : null; })()}
-                {waitsFor(doc, node.id).length > 0 && <span className="proc-tag" title="Starts only after these blocks have finished"><Hourglass size={10} /> waits for {waitsFor(doc, node.id).map(from => findNode(doc.root, from)?.name).join(", ")}</span>}
-                <button type="button" className="proc-add" aria-label={`Add a sub-task to ${node.name}`} title="Add a sub-task" disabled={locked} onClick={() => addBlock(node.id)}><Plus size={12} /></button>
+                {node.approval && <span className="proc-tag" title={uiText("Asks you before it runs")}>{uiText("Approval")}</span>}
+                {(() => { const loop = loopFrom(doc, node.id); return loop ? <span className="proc-tag" title={uiText("When it has finished, the blocks from {0} down to here run again", [findNode(doc.root, loop.to)?.name])}><Repeat size={10} /> {uiText(" back to ")}{uiText(findNode(doc.root, loop.to)?.name)} ×{uiText(loop.rounds ?? 2)}</span> : null; })()}
+                {waitsFor(doc, node.id).length > 0 && <span className="proc-tag" title={uiText("Starts only after these blocks have finished")}><Hourglass size={10} /> {uiText(" waits for ")}{uiText(waitsFor(doc, node.id).map(from => findNode(doc.root, from)?.name).join(", "))}</span>}
+                <button type="button" className="proc-add" aria-label={uiText("Add a sub-task to {0}", [node.name])} title={uiText("Add a sub-task")} disabled={locked} onClick={() => addBlock(node.id)}><Plus size={12} /></button>
                 <span hidden data-block-menu={node.id} />
               </>;
             }}
           />
         </motion.div>}
     </div>
-    {blockMenu && renderBlockMenu(blockMenu)}
+    {uiText(blockMenu && renderBlockMenu(blockMenu))}
 
     <div className="proc-top">
       <div className="proc-pill proc-pill--name">
-        <h1 className="proc-name"><input aria-label="Process name" value={doc.name} maxLength={LIMITS.name} onChange={event => edit(item => ({ ...item, name: event.target.value }), "name")} onBlur={() => { if (!doc.name.trim()) edit(item => ({ ...item, name: "Untitled process" })); }} /></h1>
-        {stateChip}
-        <button type="button" className="proc-chip" data-kind={simulated ? "simulated" : "connected"} onClick={() => setDialog("connect")} aria-label={simulated ? "Simulated engine. Connect an engine" : "Connected engine"} title={simulated ? "Nothing is sent to a model. Click to connect an engine." : "A server runs the tasks."}><Plug size={13} /><span>{simulated ? "Simulated" : "Connected"}</span></button>
-        <SplitButton className="proc-split" matchColors variant="secondary" size="compact" label={flashed ?? "New process"} icon={flashed ? <Check size={14} strokeWidth={2} /> : <Plus size={14} strokeWidth={2} />} menuLabel="More process actions" onClick={() => setDialog("new")}
+        <h1 className="proc-name"><input aria-label={uiText("Process name")} value={doc.name} maxLength={LIMITS.name} onChange={event => edit(item => ({ ...item, name: event.target.value }), "name")} onBlur={() => { if (!doc.name.trim()) edit(item => ({ ...item, name: "Untitled process" })); }} /></h1>
+        {uiText(stateChip)}
+        <button type="button" className="proc-chip" data-kind={simulated ? "simulated" : "connected"} onClick={() => setDialog("connect")} aria-label={uiText(simulated ? uiText("Simulated engine. Connect an engine") : uiText("Connected engine"))} title={uiText(simulated ? uiText("Nothing is sent to a model. Click to connect an engine.") : uiText("A server runs the tasks."))}><Plug size={13} /><span>{uiText(simulated ? uiText("Simulated") : uiText("Connected"))}</span></button>
+        <SplitButton className="proc-split" matchColors variant="secondary" size="compact" label={uiText(flashed ?? uiText("New process"))} icon={flashed ? <Check size={14} strokeWidth={2} /> : <Plus size={14} strokeWidth={2} />} menuLabel="More process actions" onClick={() => setDialog("new")}
           actions={[
             { id: "saved", label: `Saved processes (${library.processes.length})`, icon: <FolderOpen size={15} />, onSelect: () => setDialog("library") },
             { id: "duplicate", label: "Duplicate this process", icon: <Copy size={15} />, disabled: library.processes.length >= LIMITS.processes, onSelect: () => duplicateProcess(doc.id) },
@@ -580,33 +583,33 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
             { id: "delete", label: "Delete this process", icon: <Trash2 size={15} />, destructive: true, disabled: library.processes.length < 2, confirm: { prompt: "Delete?", confirmLabel: "Delete", doneLabel: "Deleted", onConfirm: () => deleteProcess(doc.id), onUndo: () => dispatch({ type: "undo" }) } },
           ]} />
       </div>
-      <ProcessRunBar key={doc.id} tree={tree} title={view === "map" ? "Blocks" : "Tasks"} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} onReviewWaiting={() => reviewPermission()} extra={runControls}
+      <ProcessRunBar key={doc.id} tree={tree} title={uiText(view === "map" ? uiText("Blocks") : uiText("Tasks"))} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} onReviewWaiting={() => reviewPermission()} extra={runControls}
         doc={handle?.kind === "simulated" ? { ...doc, root: handle.log.root, links: handle.log.links, unit: handle.log.unit } : doc}
         snapshot={snapshot} simulated={simulated} engines={engines} starting={runStarting} onStart={() => start()} onAction={act}
         onLocate={id => { setView("map"); setMulti([]); setSelectedId(id); setRevealId(id); }} onReview={reviewPermission} onTrace={() => goTo("Tracing")} />
     </div>
 
     {view === "tree" && <div className="proc-notices" data-narrow={narrow ? "" : undefined}>
-      <NotificationStack notices={stackNotices} onDismiss={item => dropAlert(item.id)} onDismissAll={() => setAlerts(current => ({ ...current, notices: [] }))} label="Run notifications" />
+      <NotificationStack notices={stackNotices} onDismiss={item => dropAlert(item.id)} onDismissAll={() => setAlerts(current => ({ ...current, notices: [] }))} label={uiText("Run notifications")} />
     </div>}
 
-    {groupIds.length > 1 && view === "map" && <div className="proc-multi proc-pill" role="toolbar" aria-label="Selected blocks">
-      <span className="proc-multi__count" role="status">{groupIds.length} blocks selected</span>
-      <button type="button" className="proc-button proc-button--small proc-button--danger" disabled={locked} onClick={() => requestDelete(groupIds[0])}><Trash2 size={13} />Delete</button>
-      <button type="button" className="proc-button proc-button--small" onClick={() => setMulti([])}>Clear</button>
+    {groupIds.length > 1 && view === "map" && <div className="proc-multi proc-pill" role="toolbar" aria-label={uiText("Selected blocks")}>
+      <span className="proc-multi__count" role="status">{uiText(groupIds.length)} {uiText(" blocks selected")}</span>
+      <button type="button" className="proc-button proc-button--small proc-button--danger" disabled={locked} onClick={() => requestDelete(groupIds[0])}><Trash2 size={13} />{uiText("Delete")}</button>
+      <button type="button" className="proc-button proc-button--small" onClick={() => setMulti([])}>{uiText("Clear")}</button>
     </div>}
 
     <div className="proc-toasts">
-      {notice && <div className="proc-notice" data-kind={notice.kind} role={notice.kind === "error" ? "alert" : "status"}><span>{notice.text}</span><button type="button" className="proc-icon-button" aria-label="Dismiss" onClick={() => setNotice(null)}><X size={14} /></button></div>}
-      {save.error && <div className="proc-notice" data-kind="error" role="alert"><span>{save.error.code === "conflict" ? "This process was changed somewhere else, so your latest edit was not saved. Reload to see the stored copy." : `${save.error.message} Your edits are kept on this page.`}</span>{save.error.code === "conflict" ? <button type="button" className="proc-button proc-button--small" onClick={onReload}>Reload</button> : <button type="button" className="proc-button proc-button--small" onClick={save.retry}>Retry</button>}</div>}
-      {runSave.error && simulated && <div className="proc-notice" data-kind="error" role="alert"><span>The run could not be saved on this browser, so it will not survive a reload.</span><button type="button" className="proc-button proc-button--small" onClick={runSave.retry}>Retry</button></div>}
+      {notice && <div className="proc-notice" data-kind={notice.kind} role={notice.kind === "error" ? "alert" : "status"}><span>{uiText(notice.text)}</span><button type="button" className="proc-icon-button" aria-label={uiText("Dismiss")} onClick={() => setNotice(null)}><X size={14} /></button></div>}
+      {save.error && <div className="proc-notice" data-kind="error" role="alert"><span>{save.error.code === "conflict" ? uiText("This process was changed somewhere else, so your latest edit was not saved. Reload to see the stored copy.") : uiText("{0} Your edits are kept on this page.", [save.error.message])}</span>{save.error.code === "conflict" ? <button type="button" className="proc-button proc-button--small" onClick={onReload}>{uiText("Reload")}</button> : <button type="button" className="proc-button proc-button--small" onClick={save.retry}>{uiText("Retry")}</button>}</div>}
+      {runSave.error && simulated && <div className="proc-notice" data-kind="error" role="alert"><span>{uiText("The run could not be saved on this browser, so it will not survive a reload.")}</span><button type="button" className="proc-button proc-button--small" onClick={runSave.retry}>{uiText("Retry")}</button></div>}
     </div>
 
-    {view === "map" && doc.root.children.length === 0 && <p className="proc-hint">This is the first block. Select it and use the + around it to connect more blocks, or choose a role under “Add block”.</p>}
+    {view === "map" && doc.root.children.length === 0 && <p className="proc-hint">{uiText("This is the first block. Select it and use the + around it to connect more blocks, or choose a role under “Add block”.")}</p>}
 
-    {!narrow && (panel || panelLeaving) && <motion.aside className="proc-side" aria-label="Block settings" style={{ x: panelX }} inert={!panel}>
-      <button type="button" className="proc-icon-button proc-side__close" aria-label="Close block settings" onClick={() => setPanel(false)}><X size={15} /></button>
-      {inspector}
+    {!narrow && (panel || panelLeaving) && <motion.aside className="proc-side" aria-label={uiText("Block settings")} style={{ x: panelX }} inert={!panel}>
+      <button type="button" className="proc-icon-button proc-side__close" aria-label={uiText("Close block settings")} onClick={() => setPanel(false)}><X size={15} /></button>
+      {uiText(inspector)}
     </motion.aside>}
 
     {snapshot && <ProcessPermissions key={snapshot.id} doc={handle?.kind === "simulated" ? { ...doc, unit: handle.log.unit } : doc}
@@ -615,33 +618,33 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
       onDecide={(id, decision) => act({ type: decision, id })}
       onLocate={id => { setView("map"); setSelectedId(id); setRevealId(id); }} />}
 
-    <div className="proc-dock proc-pill" role="toolbar" aria-label="Map tools">
+    <div className="proc-dock proc-pill" role="toolbar" aria-label={uiText("Map tools")}>
       <div className="proc-dock__add">
-        <button type="button" className="proc-button proc-button--dark proc-button--small" aria-haspopup="menu" aria-expanded={palette} disabled={locked} onClick={() => setPalette(value => !value)}><Plus size={13} />Add block</button>
-        <AnimatePresence>{palette && <MenuSurface className="proc-menu" side="top" role="menu" aria-label={`Add a block connected to ${selected.name}`}>
-          <p className="proc-menu__title">Connect a new block to <strong>{selected.name}</strong> as</p>
+        <button type="button" className="proc-button proc-button--dark proc-button--small" aria-haspopup="menu" aria-expanded={palette} disabled={locked} onClick={() => setPalette(value => !value)}><Plus size={13} />{uiText("Add block")}</button>
+        <AnimatePresence>{palette && <MenuSurface className="proc-menu" side="top" role="menu" aria-label={uiText("Add a block connected to {0}", [selected.name])}>
+          <p className="proc-menu__title">{uiText("Connect a new block to ")}<strong>{selected.name}</strong> {uiText(" as")}</p>
           {roles.map(role => <button key={role.id} type="button" role="menuitem" className="proc-menu__item" onClick={() => addBlock(selected.id, { role: role.id === "custom" ? undefined : role.id })}>
-            <span className="proc-menu__dot" style={{ background: role.color }} /><span><strong>{role.label}</strong><small>{role.description}</small></span>
+            <span className="proc-menu__dot" style={{ background: role.color }} /><span><strong>{uiText(role.label)}</strong><small>{uiText(role.description)}</small></span>
           </button>)}
         </MenuSurface>}</AnimatePresence>
       </div>
       <span className="proc-sep" />
-      <button type="button" className="proc-icon-button" aria-label="Undo" title="Undo (Ctrl+Z)" disabled={!history.past.length} onClick={() => dispatch({ type: "undo" })}><Undo2 size={15} /></button>
-      <button type="button" className="proc-icon-button" aria-label="Redo" title="Redo (Ctrl+Shift+Z)" disabled={!history.future.length} onClick={() => dispatch({ type: "redo" })}><Redo2 size={15} /></button>
+      <button type="button" className="proc-icon-button" aria-label={uiText("Undo")} title={uiText("Undo (Ctrl+Z)")} disabled={!history.past.length} onClick={() => dispatch({ type: "undo" })}><Undo2 size={15} /></button>
+      <button type="button" className="proc-icon-button" aria-label={uiText("Redo")} title={uiText("Redo (Ctrl+Shift+Z)")} disabled={!history.future.length} onClick={() => dispatch({ type: "redo" })}><Redo2 size={15} /></button>
       <span className="proc-sep" />
-      <div className="proc-seg" role="group" aria-label="View">
-        <button type="button" aria-pressed={view === "map"} onClick={() => setView("map")}>Map</button>
-        <button type="button" aria-pressed={view === "tree"} onClick={() => setView("tree")}>Tree</button>
+      <div className="proc-seg" role="group" aria-label={uiText("View")}>
+        <button type="button" aria-pressed={view === "map"} onClick={() => setView("map")}>{uiText("Map")}</button>
+        <button type="button" aria-pressed={view === "tree"} onClick={() => setView("tree")}>{uiText("Tree")}</button>
       </div>
-      {view === "map" && <button type="button" className="proc-icon-button" aria-label="Tidy up the map" title="Tidy up: let the map place every block again" onClick={tidyUp}><LayoutGrid size={15} /></button>}
-      <button type="button" className="proc-icon-button" aria-label="Process settings" title="Process settings" onClick={() => setDialog("settings")}><Settings2 size={15} /></button>
-      {!narrow && <button type="button" className="proc-icon-button" aria-label="Block settings panel" aria-pressed={panel} title="Block settings" onClick={() => setPanel(value => !value)}><PanelRight size={15} /></button>}
-      {problems.length > 0 && <button type="button" className="proc-chip" data-kind="warn" onClick={() => { setSelectedId(problems[0].id); setRevealId(problems[0].id); if (narrow) setDialog("inspector"); else setPanel(true); }}><AlertTriangle size={13} />{problems.length} need{problems.length === 1 ? "s" : ""} attention</button>}
+      {view === "map" && <button type="button" className="proc-icon-button" aria-label={uiText("Tidy up the map")} title={uiText("Tidy up: let the map place every block again")} onClick={tidyUp}><LayoutGrid size={15} /></button>}
+      <button type="button" className="proc-icon-button" aria-label={uiText("Process settings")} title={uiText("Process settings")} onClick={() => setDialog("settings")}><Settings2 size={15} /></button>
+      {!narrow && <button type="button" className="proc-icon-button" aria-label={uiText("Block settings panel")} aria-pressed={panel} title={uiText("Block settings")} onClick={() => setPanel(value => !value)}><PanelRight size={15} /></button>}
+      {problems.length > 0 && <button type="button" className="proc-chip" data-kind="warn" onClick={() => { setSelectedId(problems[0].id); setRevealId(problems[0].id); if (narrow) setDialog("inspector"); else setPanel(true); }}><AlertTriangle size={13} />{uiText(problems.length)} {uiText(" need")}{uiText(problems.length === 1 ? "s" : "")} {uiText(" attention")}</button>}
       <span className="proc-sep" />
-      {saveChip}
+      {uiText(saveChip)}
     </div>
 
-    {narrow && <WorkspaceDialog open={open === "inspector"} title="Task settings" onClose={closeIf(current => current === "inspector")} wide><div className="proc-dialog proc-dialog--inspector">{inspector}</div></WorkspaceDialog>}
+    {narrow && <WorkspaceDialog open={open === "inspector"} title={uiText("Task settings")} onClose={closeIf(current => current === "inspector")} wide><div className="proc-dialog proc-dialog--inspector">{uiText(inspector)}</div></WorkspaceDialog>}
     <LibrarySheet open={open === "library"} onClose={closeIf(current => current === "library")} library={library} onSwitch={switchTo} onDuplicate={duplicateProcess} onDelete={deleteProcess} onUndo={() => dispatch({ type: "undo" })} onNew={() => setDialog("new")} />
     <SettingsDialog open={open === "settings"} onClose={closeIf(current => current === "settings")} doc={doc} simulated={simulated} remote={remote}
       onGoal={goal => edit(item => ({ ...item, goal }), "goal")} onUnit={value => edit(item => ({ ...item, unit: value }))} onConnect={() => setDialog("connect")}
@@ -650,11 +653,11 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     <NewProcessSheet open={open === "new"} onClose={closeIf(current => current === "new")} onCreate={createProcess} />
     <ConnectDialog open={open === "connect"} onClose={closeIf(current => current === "connect")} simulated={simulated} engineCount={engines.length} />
     <ConfirmDialog
-      open={isKind(dialog, "delete-task")} onClose={closeIf(current => isKind(current, "delete-task"))} title="Delete task" confirmLabel="Delete"
+      open={isKind(dialog, "delete-task")} onClose={closeIf(current => isKind(current, "delete-task"))} title={uiText("Delete task")} confirmLabel={uiText("Delete")}
       message={(() => { const target = dialog && typeof dialog === "object" && dialog.kind === "delete-task" ? findNode(doc.root, dialog.id) : undefined; const count = target ? countNodes(target) - 1 : 0; return target ? `Delete “${target.name}”${count ? ` and its ${count} sub-task${count === 1 ? "" : "s"}` : ""}? You can undo this.` : "Delete this task?"; })()}
       onConfirm={() => { if (dialog && typeof dialog === "object" && dialog.kind === "delete-task") deleteTask(dialog.id); }} />
     <ConfirmDialog
-      open={isKind(dialog, "delete-tasks")} onClose={closeIf(current => isKind(current, "delete-tasks"))} title="Delete blocks" confirmLabel="Delete"
+      open={isKind(dialog, "delete-tasks")} onClose={closeIf(current => isKind(current, "delete-tasks"))} title={uiText("Delete blocks")} confirmLabel={uiText("Delete")}
       message={(() => {
         const ids = dialog && typeof dialog === "object" && dialog.kind === "delete-tasks" ? dialog.ids.filter(id => id !== doc.root.id) : [];
         const gone = new Set(ids.flatMap(id => { const target = findNode(doc.root, id); return target ? flattenNodes(target).map(node => node.id) : []; }));
@@ -662,7 +665,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         return ids.length ? `Delete ${ids.length} block${ids.length === 1 ? "" : "s"} (${named})${gone.size > ids.length ? ` and what hangs under ${ids.length === 1 ? "it" : "them"}, ${gone.size} blocks in all` : ""}? ${dialog && typeof dialog === "object" && dialog.kind === "delete-tasks" && dialog.ids.includes(doc.root.id) ? "The first block stays. " : ""}You can undo this.` : "Delete these blocks?";
       })()}
       onConfirm={() => { if (dialog && typeof dialog === "object" && dialog.kind === "delete-tasks") deleteTasks(dialog.ids); }} />
-    <p className="proc-sr" role="status">{providerOf(selected.ai.provider).label} block selected: {selected.name}</p>
+    <p className="proc-sr" role="status">{uiText(providerOf(selected.ai.provider).label)} {uiText(" block selected: ")}{selected.name}</p>
   </div>;
 }
 

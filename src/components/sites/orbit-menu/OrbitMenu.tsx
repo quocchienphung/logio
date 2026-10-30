@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -50,6 +51,7 @@ export interface OrbitMenuProps {
 interface Placement { origin: OrbitPoint; direction: number; spread: number; radius: number; theme: string | undefined; motionOff: boolean; font: string }
 
 export function OrbitMenu({ actions, onAction, label = "Actions", triggerLabel = label, className = "", triggerSize = 56, radius = 104, spread = 150, direction = -90, boundary, disabled = false, open: controlledOpen, onOpenChange, onBeforeOpen, onError, reducedMotion = false, anchor, theme: themeOverride, motionOff: motionOverride, autoFocus = true }: OrbitMenuProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const id = useId();
   const trigger = useRef<HTMLButtonElement>(null);
   const layer = useRef<HTMLDivElement>(null);
@@ -215,7 +217,7 @@ export function OrbitMenu({ actions, onAction, label = "Actions", triggerLabel =
   }, [placed, open, result]);
 
   const root = <span className={`orbit-menu ${className}`} style={rootStyle} data-open={open || undefined} data-pending={pending || undefined} data-anchored={anchor ? "" : undefined} data-result={result ? "" : undefined} data-theme={anchor ? themeOverride : undefined}>
-    <button ref={trigger} type="button" className="orbit-menu-trigger" data-orbit-trigger="" aria-label={triggerLabel} aria-haspopup="menu" aria-expanded={open} aria-controls={open ? id : undefined} disabled={disabled || pending || !actions.length}
+    <button ref={trigger} type="button" className="orbit-menu-trigger" data-orbit-trigger="" aria-label={uiText(triggerLabel)} aria-haspopup="menu" aria-expanded={open} aria-controls={open ? id : undefined} disabled={disabled || pending || !actions.length}
       onKeyDown={event => onKeyDown(event, true)} onContextMenu={event => event.preventDefault()}
       onClick={event => {
         event.stopPropagation();
@@ -263,13 +265,13 @@ export function OrbitMenu({ actions, onAction, label = "Actions", triggerLabel =
         <motion.path d={result ? "M5 12 10 17 19 7" : open ? "M7 7 17 17 M17 7 7 17" : "M5 12h.01 M12 12h.01 M19 12h.01"} animate={{ rotate: open ? 90 : 0 }} transition={spring} fill="none" stroke="currentColor" strokeWidth={open || result ? 2 : 3.5} strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </button>
-    <span className="orbit-menu-sr" role="status" aria-live="polite">{result}</span>
+    <span className="orbit-menu-sr" role="status" aria-live="polite">{uiText(result)}</span>
     {placed && createPortal(<div className="orbit-menu-portal" inert={!open} data-theme={portalTheme} data-ui-motion={placed.motionOff ? "off" : undefined} data-reduced-motion={reduce || undefined} style={originStyle} ref={layer} onPointerDown={event => event.stopPropagation()} onContextMenu={event => event.preventDefault()} onKeyDown={event => onKeyDown(event)}>
       <AnimatePresence>
         {(open || result) && <motion.div key="pill" className="orbit-menu-pill-anchor" style={{ left: captionAt.x, top: captionAt.y }} initial={{ opacity: 0, scale: 0.75, filter: reduce ? "none" : "blur(4px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: reduce ? 1 : 0.8 }} transition={spring}>
-          <motion.span ref={caption} className="orbit-menu-pill" style={{ maxWidth: Math.min(260, Math.max(0, captionBounds.right - captionBounds.left - 16)) }} layout={reduce ? false : "size"} transition={spring}><AnimatePresence mode="popLayout" initial={false}><motion.span key={pill} initial={{ opacity: 0, y: reduce ? 0 : 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduce ? 0 : -5 }} transition={{ duration: 0.12 }}>{result && <span className="orbit-menu-done" aria-hidden="true">✓ </span>}{pill}{hint && <kbd className="orbit-menu-key" aria-hidden="true">{hint}</kbd>}</motion.span></AnimatePresence></motion.span>
+          <motion.span ref={caption} className="orbit-menu-pill" style={{ maxWidth: Math.min(260, Math.max(0, captionBounds.right - captionBounds.left - 16)) }} layout={reduce ? false : "size"} transition={spring}><AnimatePresence mode="popLayout" initial={false}><motion.span key={pill} initial={{ opacity: 0, y: reduce ? 0 : 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduce ? 0 : -5 }} transition={{ duration: 0.12 }}>{result && <span className="orbit-menu-done" aria-hidden="true">✓ </span>}{uiText(pill)}{hint && <kbd className="orbit-menu-key" aria-hidden="true">{uiText(hint)}</kbd>}</motion.span></AnimatePresence></motion.span>
         </motion.div>}
-        {open && <motion.div key="menu" id={id} role="menu" aria-label={label} aria-orientation="horizontal" className="orbit-menu-actions" initial="closed" animate="open" exit="closed">
+        {open && <motion.div key="menu" id={id} role="menu" aria-label={uiText(label)} aria-orientation="horizontal" className="orbit-menu-actions" initial="closed" animate="open" exit="closed">
           <svg className="orbit-menu-track" width="1" height="1" aria-hidden="true">{[-1, 1].map(side => {
             const center = orbitPoints(1, placed.radius, 0, placed.direction)[0];
             const end = orbitPoints(1, placed.radius, 0, placed.direction + side * placed.spread / 2)[0];
@@ -280,13 +282,13 @@ export function OrbitMenu({ actions, onAction, label = "Actions", triggerLabel =
             const point = points[index];
             const magnet = !reduce && pointer && !dragging && Math.hypot(pointer.x - point.x, pointer.y - point.y) < 80 ? { x: (pointer.x - point.x) * 0.08, y: (pointer.y - point.y) * 0.08 } : { x: 0, y: 0 };
             const folded = orbitPoints(1, placed.radius * 0.2, 0, placed.direction + (index - actions.length / 2) * 9)[0];
-            return <motion.button ref={element => { items.current[index] = element; }} key={action.id} type="button" role="menuitem" aria-label={action.label} aria-describedby={action.description ? `${id}-description-${index}` : undefined} aria-disabled={action.disabled || pending || undefined} title={action.disabled ? action.description : undefined} tabIndex={focused === index ? 0 : -1} className="orbit-menu-item" data-active={active === index || undefined} data-danger={action.tone === "danger" || undefined}
+            return <motion.button ref={element => { items.current[index] = element; }} key={action.id} type="button" role="menuitem" aria-label={uiText(action.label)} aria-describedby={action.description ? `${id}-description-${index}` : undefined} aria-disabled={action.disabled || pending || undefined} title={uiText(action.disabled ? action.description : undefined)} tabIndex={focused === index ? 0 : -1} className="orbit-menu-item" data-active={active === index || undefined} data-danger={action.tone === "danger" || undefined}
               variants={{ open: { x: point.x + magnet.x, y: point.y + magnet.y, opacity: 1, scale: 1, filter: "blur(0px)", transition: { ...spring, delay: reduce ? 0 : index * 0.025 } }, closed: { x: reduce ? point.x : folded.x, y: reduce ? point.y : folded.y, opacity: 0, scale: reduce ? 1 : 0.45, filter: reduce ? "none" : "blur(3px)", transition: { duration: reduce ? 0.1 : 0.18, delay: reduce ? 0 : (actions.length - index - 1) * 0.018 } } }}
               onFocus={() => { setFocused(index); setActive(index); }} onBlur={() => { if (!dragging) setActive(-1); }}
               onPointerEnter={event => { if (event.pointerType !== "touch") { setActive(index); targetRef.current = index; } }}
               onPointerMove={event => { if (event.pointerType !== "touch") setPointer({ x: event.clientX - placed.origin.x, y: event.clientY - placed.origin.y }); }}
               onPointerLeave={() => { if (!dragging) { setActive(-1); setPointer(undefined); } }}
-              onClick={event => { event.stopPropagation(); void fire(index); }}><span>{action.icon}</span>{action.description && <span className="orbit-menu-sr" id={`${id}-description-${index}`}>{action.description}</span>}</motion.button>;
+              onClick={event => { event.stopPropagation(); void fire(index); }}><span>{uiText(action.icon)}</span>{action.description && <span className="orbit-menu-sr" id={`${id}-description-${index}`}>{uiText(action.description)}</span>}</motion.button>;
           })}
         </motion.div>}
       </AnimatePresence>

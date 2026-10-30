@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useId, type KeyboardEvent, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ChevronDown, Folder, FolderOpen } from "lucide-react";
@@ -20,6 +21,7 @@ type SidebarFolderProps = {
 };
 
 export function SidebarFolder({ id, title, open, lit, onToggle, children }: SidebarFolderProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const reduce = useReducedMotion();
   const bodyId = `${useId()}-${id}`;
   const keys = (event: KeyboardEvent<HTMLButtonElement>) => {
@@ -30,7 +32,7 @@ export function SidebarFolder({ id, title, open, lit, onToggle, children }: Side
     <div className="workspace-folder" data-open={open ? "" : undefined}>
       <button type="button" className="ui-as-side__item workspace-folder__head" aria-expanded={open} aria-controls={bodyId} data-lit={lit ? "" : undefined} onClick={() => onToggle(!open)} onKeyDown={keys}>
         {open ? <FolderOpen size={16} strokeWidth={1.7} /> : <Folder size={16} strokeWidth={1.7} />}
-        <span className="workspace-nav-label">{title}</span>
+        <span className="workspace-nav-label">{uiText(title)}</span>
         <motion.span className="workspace-folder__chevron" aria-hidden="true" initial={false} animate={{ rotate: open ? 0 : -90 }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 32 }}>
           <ChevronDown size={14} strokeWidth={1.8} />
         </motion.span>
@@ -42,7 +44,7 @@ export function SidebarFolder({ id, title, open, lit, onToggle, children }: Side
             id={bodyId}
             className="workspace-folder__body"
             role="group"
-            aria-label={title}
+            aria-label={uiText(title)}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1, transition: reduce ? { duration: 0 } : { height: heightSpring, opacity: { duration: 0.2, delay: 0.07, ease: [0.22, 1, 0.36, 1] } } }}
             exit={{ height: 0, opacity: 0, transition: reduce ? { duration: 0 } : { height: heightSpring, opacity: { duration: 0.1, ease: "easeOut" } } }}

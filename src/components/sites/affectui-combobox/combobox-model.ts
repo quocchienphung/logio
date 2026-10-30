@@ -2,6 +2,8 @@
 export interface ComboboxOption {
   value: string;
   label: string;
+  /** False for a person's name or other free-text record value. */
+  localize?: boolean;
   /** Secondary text shown after the label. Also searched. */
   hint?: string;
   /** An image URL, or `true` for the label's initials. */

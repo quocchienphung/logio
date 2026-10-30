@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useReducer, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { useReducedMotion } from "motion/react";
@@ -41,6 +42,7 @@ function Icon({ name, size = 16 }: { name: "arrow" | "chevron" | "remove" | "com
 }
 
 function RollingNumber({ value, reduced }: { value: number; reduced: boolean }) {
+  const { t: uiText } = useWorkspaceI18n();
   const element = useRef<HTMLSpanElement>(null);
   const current = useRef(value);
   useEffect(() => {
@@ -56,11 +58,12 @@ function RollingNumber({ value, reduced }: { value: number; reduced: boolean }) 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
   }, [value, reduced]);
-  return <span className="ui-cwc__big" aria-hidden="true" ref={element}>{formatTokens(value)}</span>;
+  return <span className="ui-cwc__big" aria-hidden="true" ref={element}>{uiText(formatTokens(value))}</span>;
 }
 
 /** Rebuilt from the visible public preview. All numbers and actions are local demo data. */
 export function ContextWindow({ active = true, autoPlay = false }: { active?: boolean; autoPlay?: boolean }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [state, dispatch] = useReducer(reducer, undefined, initial);
   const [interacted, setInteracted] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -126,14 +129,14 @@ export function ContextWindow({ active = true, autoPlay = false }: { active?: bo
     onPointerLeave={() => hover(null)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) hover(null); }}>
     <div className="ui-cwc__card">
       <div className="ui-cwc__head">
-        <span id={`${id}-title`} className="ui-cwc__title">Context window</span>
-        <span className="ui-cwc__model"><span className="ui-cwc__model-icon"><Image src="/sites/affectui-context-window/claude.svg" width={12} height={12} alt="" /></span><span>claude-sonnet-5-5</span></span>
+        <span id={`${id}-title`} className="ui-cwc__title">{uiText("Context window")}</span>
+        <span className="ui-cwc__model"><span className="ui-cwc__model-icon"><Image src="/sites/affectui-context-window/claude.svg" width={12} height={12} alt="" /></span><span>{uiText("claude-sonnet-5-5")}</span></span>
       </div>
       <div className="ui-cwc__figure">
         <RollingNumber value={selected ? tokensOf(selected) : used} reduced={reduced} />
-        <span className="ui-cwc__of" aria-hidden="true"><span className="ui-cwc__swap"><span className="ui-cwc__swap-item" key={hot ?? "total"}>{selected ? selected.label : "of 200K tokens"}</span></span></span>
-        <span className="ui-cwc__pill" aria-hidden="true">{percent}%</span>
-        <span className="ui-cwc__sr">{formatTokens(used)} of 200.0K tokens used, {percent} percent</span>
+        <span className="ui-cwc__of" aria-hidden="true"><span className="ui-cwc__swap"><span className="ui-cwc__swap-item" key={hot ?? "total"}>{uiText(selected ? selected.label : uiText("of 200K tokens"))}</span></span></span>
+        <span className="ui-cwc__pill" aria-hidden="true">{uiText(percent)}%</span>
+        <span className="ui-cwc__sr">{uiText(formatTokens(used))} {uiText(" of 200.0K tokens used, ")}{uiText(percent)} {uiText(" percent")}</span>
       </div>
       <div className="ui-cwc__field" aria-hidden="true" data-hot={hot || undefined} onPointerLeave={() => hover(null)}>
         {cells.map((part, index) => <span key={index} className="ui-cwc__cell" style={{ "--i": index, "--ui-cwc-color": part ? `var(--ui-cwc-c${part.color})` : undefined } as CSSProperties}
@@ -142,20 +145,20 @@ export function ContextWindow({ active = true, autoPlay = false }: { active?: bo
       </div>
       <ul className="ui-cwc__parts">
         {parts.map(part => {
-          const content = <><span className="ui-cwc__swatch" style={{ background: `var(--ui-cwc-c${part.color})` }} /><span className="ui-cwc__label">{part.label}{part.items && <span className="ui-cwc__open" data-open={expanded ? "" : undefined}><Icon name="chevron" /></span>}</span></>;
+          const content = <><span className="ui-cwc__swatch" style={{ background: `var(--ui-cwc-c${part.color})` }} /><span className="ui-cwc__label">{uiText(part.label)}{part.items && <span className="ui-cwc__open" data-open={expanded ? "" : undefined}><Icon name="chevron" /></span>}</span></>;
           return <li className="ui-cwc__part" key={part.id} data-hot={hot === part.id ? "" : undefined} data-dim={hot && hot !== part.id ? "" : undefined}
             onPointerEnter={event => { if (event.pointerType !== "touch") hover(part.id); }} onPointerLeave={() => hover(null)} onFocus={() => hover(part.id)}>
-            <div className="ui-cwc__row">{part.items ? <button className="ui-cwc__main" type="button" aria-expanded={expanded} aria-controls={`${id}-files`} onClick={() => dispatch({ type: "toggle" })}>{content}<span className="ui-cwc__value">{formatTokens(tokensOf(part))}</span></button>
-              : <div className="ui-cwc__main">{content}{part.compact && <button type="button" className="ui-cwc__compact" aria-label={done ? "Conversation is compacted" : "Compact Conversation"} disabled={busy || done} data-busy={busy ? "" : undefined} data-done={done ? "" : undefined} data-leaving={hideDone ? "" : undefined} aria-hidden={hideDone || undefined}
-                onClick={() => dispatch({ type: "compact" })}><span className="ui-cwc__compact-icon" key={busy ? "busy" : done ? "done" : "ready"}>{busy ? <span className="ui-cwc__spinner" /> : <Icon name={done ? "check" : "compact"} size={12} />}</span><span className="ui-cwc__compact-text" key={`${busy}:${done}`}>{busy ? "Compacting" : done ? "Compacted" : "Compact"}</span></button>}<span className="ui-cwc__value">{formatTokens(tokensOf(part))}</span></div>}</div>
+            <div className="ui-cwc__row">{part.items ? <button className="ui-cwc__main" type="button" aria-expanded={expanded} aria-controls={`${id}-files`} onClick={() => dispatch({ type: "toggle" })}>{uiText(content)}<span className="ui-cwc__value">{uiText(formatTokens(tokensOf(part)))}</span></button>
+              : <div className="ui-cwc__main">{uiText(content)}{part.compact && <button type="button" className="ui-cwc__compact" aria-label={uiText(done ? uiText("Conversation is compacted") : uiText("Compact Conversation"))} disabled={busy || done} data-busy={busy ? "" : undefined} data-done={done ? "" : undefined} data-leaving={hideDone ? "" : undefined} aria-hidden={hideDone || undefined}
+                onClick={() => dispatch({ type: "compact" })}><span className="ui-cwc__compact-icon" key={busy ? "busy" : done ? "done" : "ready"}>{busy ? <span className="ui-cwc__spinner" /> : <Icon name={done ? "check" : "compact"} size={12} />}</span><span className="ui-cwc__compact-text" key={`${busy}:${done}`}>{uiText(busy ? uiText("Compacting") : done ? uiText("Compacted") : uiText("Compact"))}</span></button>}<span className="ui-cwc__value">{uiText(formatTokens(tokensOf(part)))}</span></div>}</div>
             {part.items && <div className="ui-cwc__fold" id={`${id}-files`} data-open={expanded ? "" : undefined} inert={!expanded}><div className="ui-cwc__clip"><ul className="ui-cwc__items">
-              {part.items.map(item => <li className="ui-cwc__fold ui-cwc__fold--item" data-open={removing !== item.id ? "" : undefined} key={item.id} inert={removing === item.id}><div className="ui-cwc__clip"><div className="ui-cwc__item"><span className="ui-cwc__item-label">{item.label}</span><span className="ui-cwc__item-value">{formatTokens(item.tokens)}</span><button type="button" className="ui-cwc__remove" aria-label={`Remove ${item.label}`} onClick={() => { dispatch({ type: "remove-start", id: item.id }); }}><Icon name="remove" /></button></div></div></li>)}
-              {!part.items.length && <li className="ui-cwc__empty">No files attached</li>}
+              {part.items.map(item => <li className="ui-cwc__fold ui-cwc__fold--item" data-open={removing !== item.id ? "" : undefined} key={item.id} inert={removing === item.id}><div className="ui-cwc__clip"><div className="ui-cwc__item"><span className="ui-cwc__item-label">{uiText(item.label)}</span><span className="ui-cwc__item-value">{uiText(formatTokens(item.tokens))}</span><button type="button" className="ui-cwc__remove" aria-label={uiText("Remove {0}", [item.label])} onClick={() => { dispatch({ type: "remove-start", id: item.id }); }}><Icon name="remove" /></button></div></div></li>)}
+              {!part.items.length && <li className="ui-cwc__empty">{uiText("No files attached")}</li>}
             </ul></div></div>}
           </li>;
         })}
       </ul>
     </div>
-    <div className="ui-cwc__foot"><span className="ui-cwc__caption" aria-live="polite"><span className="ui-cwc__swap"><span className="ui-cwc__swap-item" data-tone={tone} key={caption}><span className={busy ? "ui-cwc__shimmer" : undefined} data-text={busy ? caption : undefined}>{caption}</span></span></span></span><button type="button" className="ui-cwc__action" onClick={() => dispatch({ type: "reset" })}>New chat<Icon name="arrow" /></button></div>
+    <div className="ui-cwc__foot"><span className="ui-cwc__caption" aria-live="polite"><span className="ui-cwc__swap"><span className="ui-cwc__swap-item" data-tone={tone} key={caption}><span className={busy ? "ui-cwc__shimmer" : undefined} data-text={busy ? caption : undefined}>{uiText(caption)}</span></span></span></span><button type="button" className="ui-cwc__action" onClick={() => dispatch({ type: "reset" })}>{uiText("New chat")}<Icon name="arrow" /></button></div>
   </div>;
 }

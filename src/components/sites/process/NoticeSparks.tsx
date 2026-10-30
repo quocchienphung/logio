@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
@@ -33,6 +34,7 @@ export interface NoticeSparksProps {
 const STAR = "M12 1.5C12 7.6 16.4 12 22.5 12C16.4 12 12 16.4 12 22.5C12 16.4 7.6 12 1.5 12C7.6 12 12 7.6 12 1.5Z";
 
 export function NoticeSparks({ groups, screenBox, nameOf, viewport, inset, seen, onSeen, onDismiss }: NoticeSparksProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const [openId, setOpenId] = useState<string | null>(null);
   const gradient = useId();
   const sparks = useRef(new Map<string, HTMLButtonElement>());
@@ -82,18 +84,18 @@ export function NoticeSparks({ groups, screenBox, nameOf, viewport, inset, seen,
       return <button
         key={group.blockId} type="button" ref={element => { if (element) sparks.current.set(group.blockId, element); else sparks.current.delete(group.blockId); }}
         className="pmap__spark" data-tone={loud} data-blinking={blinking ? "" : undefined} data-open={isOpen ? "" : undefined} data-pinned={spark.pinned ? "" : undefined}
-        style={{ left: spark.x, top: spark.y }} aria-label={`${label}. ${isOpen ? "Close" : "Open"}`} aria-expanded={isOpen} aria-haspopup="dialog"
+        style={{ left: spark.x, top: spark.y }} aria-label={uiText("{0}. {1}", [label, isOpen ? "Close" : "Open"])} aria-expanded={isOpen} aria-haspopup="dialog"
         onClick={() => { if (isOpen) close(false); else { close(false); setOpenId(group.blockId); } }}>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <defs><linearGradient id={id} x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse"><stop offset="0" style={{ stopColor: "var(--spark-a)" }} /><stop offset="1" style={{ stopColor: "var(--spark-b)" }} /></linearGradient></defs>
           <path d={STAR} fill={`url(#${id})`} />
         </svg>
-        {count > 1 && <span className="pmap__spark-count" aria-hidden="true">{count}</span>}
+        {count > 1 && <span className="pmap__spark-count" aria-hidden="true">{uiText(count)}</span>}
       </button>;
     })}
-    <AnimatePresence>{open && place && <MenuSurface key={open.blockId} ref={card} className="pmap__notice" role="dialog" aria-label={`Notifications for ${nameOf(open.blockId)}`} data-side={place.side}
+    <AnimatePresence>{open && place && <MenuSurface key={open.blockId} ref={card} className="pmap__notice" role="dialog" aria-label={uiText("Notifications for {0}", [nameOf(open.blockId)])} data-side={place.side}
       style={{ left: place.left, width: place.width, top: place.top, bottom: place.bottom }}>
-      <NotificationStack notices={open.notices} label={`Notifications for ${nameOf(open.blockId)}`}
+      <NotificationStack notices={open.notices} label={uiText("Notifications for {0}", [nameOf(open.blockId)])}
         onDismiss={notice => onDismiss(notice.id)}
         // "Dismiss all" in the card calls onDismiss for each of its notices first; nothing is left to do here
         onDismissAll={() => {}} />

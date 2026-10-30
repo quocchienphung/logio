@@ -110,15 +110,15 @@ try {
   await page.waitForSelector('.sc-bar', { state: 'detached', timeout: 5000 });
 
   // Select: opens a listbox, keyboard picks.
-  const language = page.locator('#language');
+  const language = page.locator('#timezone');
   await language.focus();
   await page.keyboard.press('Enter');
   check('select opens a listbox', await page.locator('.sc-select__content [role="option"]').count() === 6);
   await page.screenshot({ path: `${out}/qa-select.png` });
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('Enter');
-  check('select picks with the keyboard', (await language.innerText()).includes('English (UK)') || (await language.innerText()).includes('Deutsch'));
-  check('select closes and returns focus', await page.locator('.sc-select__content').count() === 0 && await page.evaluate(() => document.activeElement?.id === 'language'));
+  check('select picks with the keyboard', (await language.innerText()).includes('London') || (await language.innerText()).includes('Berlin'));
+  check('select closes and returns focus', await page.locator('.sc-select__content').count() === 0 && await page.evaluate(() => document.activeElement?.id === 'timezone'));
   await page.getByRole('button', { name: 'Discard' }).click();
 
   // Search palette.

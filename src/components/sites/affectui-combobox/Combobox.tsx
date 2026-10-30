@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent, PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -48,9 +49,10 @@ function Glyph({ d, className }: { d: string; className?: string }) { return <sv
 
 /** A number that rolls up or down when it changes. */
 function Roll({ value }: { value: number }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [state, setState] = useState({ value, dir: 1 });
   if (state.value !== value) setState({ value, dir: value >= state.value ? 1 : -1 });
-  return <span className="cbx__roll"><span key={value} data-dir={state.dir}>{value}</span></span>;
+  return <span className="cbx__roll"><span key={value} data-dir={state.dir}>{uiText(value)}</span></span>;
 }
 
 function Highlight({ text, query }: { text: string; query: string }) {
@@ -71,12 +73,14 @@ function Avatar({ option }: { option: ComboboxOption }) {
 }
 
 export function Combobox(props: ComboboxProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const { options, label, placeholder, name, disabled, required, emptyText = "No results", creatable, onCreate, createLabel = text => `Create “${text}”`, size = "default", className, maxMenuHeight = 300 } = props;
   const multiple = props.multiple === true;
   const reduce = useReducedMotion();
   const uid = useId(), inputId = props.id ?? `${uid}-input`, listId = `${uid}-list`, labelId = `${uid}-label`;
   const [created, setCreated] = useState<ComboboxOption[]>([]);
   const all = useMemo(() => [...options, ...created.filter(item => !options.some(option => option.value === item.value))], [options, created]);
+  const displayAll = useMemo(() => all.map(option => option.localize === false ? option : ({ ...option, label: uiText(option.label), hint: uiText(option.hint), group: uiText(option.group), keywords: [...(option.keywords ?? []), option.label, option.hint ?? ''] })), [all, uiText]);
   const searchable = props.searchable ?? (creatable || all.length > 7);
   const footer = props.footer ?? multiple;
 
@@ -96,10 +100,10 @@ export function Combobox(props: ComboboxProps) {
 
   const query = searchable ? typed ?? "" : "";
   const view = useMemo(() => {
-    const matches = searchable && query.trim() ? filterOptions(all, query) : all;
+    const matches = searchable && query.trim() ? filterOptions(displayAll, query) : displayAll;
     const offer = creatable && query.trim() && !hasExactMatch(all, query) ? query.trim() : undefined;
     return { matches, ...buildSections(matches, offer) };
-  }, [all, query, searchable, creatable]);
+  }, [all, displayAll, query, searchable, creatable]);
   const { rows, sections } = view;
 
   // `fresh` is an option created a moment ago: it is not in `all` yet (that list updates on the next render).
@@ -130,7 +134,7 @@ export function Combobox(props: ComboboxProps) {
     let option = row.option;
     if (row.kind === "create") {
       const text = row.text ?? "";
-      option = onCreate?.(text) || { value: text, label: text };
+      option = onCreate?.(text) || { value: text, label: text, localize: false };
       setCreated(previous => [...previous, option!]);
     }
     if (!option || option.disabled) return;
@@ -155,7 +159,7 @@ export function Combobox(props: ComboboxProps) {
   function onInput(text: string) {
     if (!searchable) return;
     setTyped(text); setArmed(false);
-    const next = buildSections(text.trim() ? filterOptions(all, text) : all, creatable && text.trim() && !hasExactMatch(all, text) ? text.trim() : undefined).rows;
+    const next = buildSections(text.trim() ? filterOptions(displayAll, text) : displayAll, creatable && text.trim() && !hasExactMatch(all, text) ? text.trim() : undefined).rows;
     setActive(firstEnabled(next)); setPointerIn(true);
     if (!open) openList(firstEnabled(next));
   }
@@ -290,35 +294,36 @@ export function Combobox(props: ComboboxProps) {
   // An explicit aria-label names the control (for example per card: "Move Notion to stage"); otherwise the visible label does.
   const labelledBy = label && !props["aria-label"] ? labelId : undefined;
   const activeId = open && active >= 0 && rows[active] ? `${uid}-o${active}` : undefined;
-  const inputValue = searchable ? (typed ?? (multiple ? "" : single?.label ?? "")) : (multiple ? "" : single?.label ?? "");
+  const displaySingle = single?.localize === false ? single?.label : uiText(single?.label);
+  const inputValue = searchable ? (typed ?? (multiple ? "" : displaySingle ?? "")) : (multiple ? "" : displaySingle ?? "");
   const showPlaceholder = multiple ? !selected.length : !single;
   const style: CSSProperties | undefined = place ? { left: place.left, width: place.width, top: place.top, bottom: place.bottom, ["--cbx-max" as string]: `${place.max}px` } : undefined;
   const emptyMessage = view.matches.length === 0 && (query.trim() ? `${emptyText} for “${query.trim()}”` : emptyText);
 
   return <div className={`cbx${className ? ` ${className}` : ""}`} data-open={open || undefined} data-size={size} data-multiple={multiple || undefined} data-disabled={disabled || undefined} data-searchable={searchable || undefined}>
-    {label && <label className="cbx__label" id={labelId} htmlFor={inputId}>{label}</label>}
+    {label && <label className="cbx__label" id={labelId} htmlFor={inputId}>{uiText(label)}</label>}
     <div className="cbx__field" ref={field} onPointerDown={fieldPointer}>
       <div className="cbx__field-inner">
-        {multiple && <ul className="cbx__measure" ref={measure} aria-hidden="true">{selected.map(option => <li key={option.value} className="cbx__chip" data-chip=""><span className="cbx__chip-body"><Avatar option={option} /><span className="cbx__chip-label">{option.label}</span><span className="cbx__chip-x" /></span></li>)}<li className="cbx__chip" data-more=""><span className="cbx__chip-body">+99</span></li></ul>}
-        {multiple && <ul className="cbx__chips" aria-label={label ? `${label}: selected` : "Selected"}><AnimatePresence initial={false}>{chips.map((option, index) => <motion.li key={option.value} className="cbx__chip" data-armed={armed && index === selected.length - 1 && !more ? "" : undefined} layout={reduce ? false : "position"} initial={reduce ? false : { opacity: 0, scale: .82 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? { opacity: 0 } : { opacity: 0, scale: .82, width: 0, marginRight: -4 }} transition={{ duration: reduce ? 0 : .22, ease: [.22, 1, .36, 1] }}><span className="cbx__chip-body"><Avatar option={option} /><span className="cbx__chip-label">{option.label}</span><button type="button" className="cbx__chip-x" tabIndex={-1} aria-label={`Remove ${option.label}`} disabled={disabled} onPointerDown={event => event.preventDefault()} onClick={() => remove(option.value)}><Glyph d="M7 7l10 10M17 7L7 17" /></button></span></motion.li>)}</AnimatePresence>{more > 0 && <li className="cbx__chip cbx__more"><span className="cbx__chip-body"><span>+<Roll value={more} /></span></span></li>}</ul>}
+        {multiple && <ul className="cbx__measure" ref={measure} aria-hidden="true">{selected.map(option => <li key={option.value} className="cbx__chip" data-chip=""><span className="cbx__chip-body"><Avatar option={option} /><span className="cbx__chip-label">{option.localize === false ? option.label : uiText(option.label)}</span><span className="cbx__chip-x" /></span></li>)}<li className="cbx__chip" data-more=""><span className="cbx__chip-body">+99</span></li></ul>}
+        {multiple && <ul className="cbx__chips" aria-label={uiText(label ? uiText("{0}: selected", [label]) : uiText("Selected"))}><AnimatePresence initial={false}>{chips.map((option, index) => <motion.li key={option.value} className="cbx__chip" data-armed={armed && index === selected.length - 1 && !more ? "" : undefined} layout={reduce ? false : "position"} initial={reduce ? false : { opacity: 0, scale: .82 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? { opacity: 0 } : { opacity: 0, scale: .82, width: 0, marginRight: -4 }} transition={{ duration: reduce ? 0 : .22, ease: [.22, 1, .36, 1] }}><span className="cbx__chip-body"><Avatar option={option} /><span className="cbx__chip-label">{option.localize === false ? option.label : uiText(option.label)}</span><button type="button" className="cbx__chip-x" tabIndex={-1} aria-label={uiText("Remove {0}", [option.label])} disabled={disabled} onPointerDown={event => event.preventDefault()} onClick={() => remove(option.value)}><Glyph d="M7 7l10 10M17 7L7 17" /></button></span></motion.li>)}</AnimatePresence>{more > 0 && <li className="cbx__chip cbx__more"><span className="cbx__chip-body"><span>+<Roll value={more} /></span></span></li>}</ul>}
         {!multiple && single?.color && <span className="cbx__dot" style={{ background: single.color }} aria-hidden="true" />}
-        <input ref={input} id={inputId} className="cbx__input" role="combobox" autoComplete="off" spellCheck={false} aria-expanded={open} aria-controls={listId} aria-autocomplete={searchable ? "list" : "none"} aria-haspopup="listbox" aria-activedescendant={activeId} aria-labelledby={labelledBy} aria-label={labelledBy ? undefined : props["aria-label"]} aria-required={required || undefined} disabled={disabled} readOnly={!searchable} placeholder={showPlaceholder ? placeholder ?? (searchable ? "Search…" : "Select…") : undefined} value={inputValue} onChange={event => onInput(event.target.value)} onKeyDown={onKeyDown} onMouseUp={event => { if (selectOnUp.current) { event.preventDefault(); selectOnUp.current = false; input.current?.select(); } }} onFocus={() => { if (searchable && !multiple) input.current?.select(); }} onBlur={() => { if (open) closeList(); setTyped(null); setArmed(false); }} />
+        <input ref={input} id={inputId} className="cbx__input" role="combobox" autoComplete="off" spellCheck={false} aria-expanded={open} aria-controls={listId} aria-autocomplete={searchable ? "list" : "none"} aria-haspopup="listbox" aria-activedescendant={activeId} aria-labelledby={labelledBy} aria-label={uiText(labelledBy ? undefined : props["aria-label"])} aria-required={required || undefined} disabled={disabled} readOnly={!searchable} placeholder={uiText(showPlaceholder ? placeholder ?? (searchable ? "Search…" : "Select…") : undefined)} value={inputValue} onChange={event => onInput(event.target.value)} onKeyDown={onKeyDown} onMouseUp={event => { if (selectOnUp.current) { event.preventDefault(); selectOnUp.current = false; input.current?.select(); } }} onFocus={() => { if (searchable && !multiple) input.current?.select(); }} onBlur={() => { if (open) closeList(); setTyped(null); setArmed(false); }} />
       </div>
-      <button type="button" className="cbx__toggle" tabIndex={-1} aria-label={open ? "Close list" : "Open list"} disabled={disabled}><Glyph d="M8 10l4 4 4-4" /></button>
+      <button type="button" className="cbx__toggle" tabIndex={-1} aria-label={uiText(open ? uiText("Close list") : uiText("Open list"))} disabled={disabled}><Glyph d="M8 10l4 4 4-4" /></button>
     </div>
     {name && (multiple ? values : [values[0] ?? ""]).map(value => <input key={value} ref={hidden} type="hidden" name={name} value={value} required={required && !multiple} />)}
     {name && multiple && !values.length && <input ref={hidden} type="hidden" disabled />}
     {shown && <div className="cbx__pop" ref={pop} popover={supportsPopover() ? "manual" : undefined} data-state={open ? "open" : "closing"} data-side={place?.side ?? "below"} data-fallback={supportsPopover() ? undefined : ""} style={style} onMouseDown={event => event.preventDefault()}>
-      <div className="cbx__list" id={listId} ref={list} role="listbox" aria-multiselectable={multiple || undefined} aria-labelledby={labelledBy} aria-label={labelledBy ? undefined : props["aria-label"]} onPointerLeave={() => setPointerIn(false)} onPointerEnter={() => setPointerIn(true)}>
+      <div className="cbx__list" id={listId} ref={list} role="listbox" aria-multiselectable={multiple || undefined} aria-labelledby={labelledBy} aria-label={uiText(labelledBy ? undefined : props["aria-label"])} onPointerLeave={() => setPointerIn(false)} onPointerEnter={() => setPointerIn(true)}>
         <span className="cbx__pill" ref={pill} aria-hidden="true" data-hidden={!pointerIn || active < 0 || undefined} />
         <div className="cbx__list-inner" ref={inner$}>
-          {emptyMessage && <div className="cbx__empty">{emptyMessage}</div>}
+          {emptyMessage && <div className="cbx__empty">{uiText(emptyMessage)}</div>}
           {sections.map(section => <div key={section.id} role={section.title ? "group" : "presentation"} aria-labelledby={section.title ? `${uid}-${section.id}` : undefined} className="cbx__group">
-            {section.title && <div className="cbx__group-label" id={`${uid}-${section.id}`}>{section.title}</div>}
+            {section.title && <div className="cbx__group-label" id={`${uid}-${section.id}`}>{uiText(section.title)}</div>}
             {section.rows.map(({ row, index }) => {
               const option = row.option, chosen = !!option && values.includes(option.value);
               return <div key={option?.value ?? "create"} id={`${uid}-o${index}`} data-index={index} role="option" aria-selected={row.kind === "option" ? chosen : false} aria-disabled={option?.disabled || undefined} data-active={index === active || undefined} className={`cbx__option${row.kind === "create" ? " cbx__create" : ""}`} onPointerMove={event => { if (event.pointerType !== "touch" && (index !== active || !pointerIn)) { pill.current?.style.removeProperty("transition-duration"); setActive(index); setPointerIn(true); } }} onClick={() => choose(row)}>
-                {row.kind === "create" ? <><span className="cbx__plus" aria-hidden="true"><Glyph d="M12 6v12M6 12h12" /></span><span className="cbx__name">{createLabel(row.text ?? "")}</span></> : <>
+                {row.kind === "create" ? <><span className="cbx__plus" aria-hidden="true"><Glyph d="M12 6v12M6 12h12" /></span><span className="cbx__name">{uiText(createLabel(row.text ?? ""))}</span></> : <>
                   {option && <Avatar option={option} />}
                   {option?.color && <span className="cbx__dot" style={{ background: option.color }} aria-hidden="true" />}
                   <span className="cbx__text"><span className="cbx__name"><Highlight text={option!.label} query={query} /></span>{option!.hint && <span className="cbx__hint"><Highlight text={option!.hint} query={query} /></span>}</span>
@@ -329,8 +334,8 @@ export function Combobox(props: ComboboxProps) {
           </div>)}
         </div>
       </div>
-      {footer && <div className="cbx__foot">{multiple && <span className="cbx__count"><Roll value={selected.length} /> selected</span>}<span className="cbx__keys"><kbd>↑</kbd><kbd>↓</kbd><span>to move</span><kbd>↵</kbd><span>{multiple ? "to toggle" : "to select"}</span></span></div>}
+      {footer && <div className="cbx__foot">{multiple && <span className="cbx__count"><Roll value={selected.length} /> {uiText(" selected")}</span>}<span className="cbx__keys"><kbd>↑</kbd><kbd>↓</kbd><span>{uiText("to move")}</span><kbd>↵</kbd><span>{uiText(multiple ? uiText("to toggle") : uiText("to select"))}</span></span></div>}
     </div>}
-    <span className="cbx__live" role="status" aria-live="polite">{announcement}</span>
+    <span className="cbx__live" role="status" aria-live="polite">{uiText(announcement)}</span>
   </div>;
 }

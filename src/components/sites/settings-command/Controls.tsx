@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
@@ -15,6 +16,7 @@ export function Switch({ id, checked, onChange, labelledBy, describedBy }: { id:
 
 /** A group of exclusive buttons; the selected tab glides to the choice (spring 114.5 / 21.4, the one UIArc's segmented control uses). */
 export function Segmented({ label, value, options, onChange }: { label: string; value: string; options: readonly Option[]; onChange: (value: string) => void }) {
+  const { t: uiText } = useWorkspaceI18n();
   const id = useId();
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     const last = options.length - 1;
@@ -24,21 +26,22 @@ export function Segmented({ label, value, options, onChange }: { label: string; 
     onChange(options[next].value);
     (event.currentTarget.parentElement?.children[next] as HTMLElement | undefined)?.focus();
   }
-  return <div className="sc-seg" role="group" aria-label={label}><div className="sc-seg__track">
+  return <div className="sc-seg" role="group" aria-label={uiText(label)}><div className="sc-seg__track">
     {options.map((option, index) => {
       const pressed = option.value === value;
       return <button key={option.value} type="button" className="sc-seg__button" data-value={option.value} aria-pressed={pressed} tabIndex={pressed ? 0 : -1} onClick={() => onChange(option.value)} onKeyDown={event => onKeyDown(event, index)}>
         {pressed && <motion.span layoutId={`${id}-selection`} className="sc-seg__selection" aria-hidden="true" transition={{ type: "spring", stiffness: 114.5, damping: 21.4 }} />}
-        <span className="sc-seg__label">{option.label}</span>
+        <span className="sc-seg__label">{uiText(option.label)}</span>
       </button>;
     })}
   </div></div>;
 }
 
 export function TextField({ id, value, onChange, labelledBy, describedBy, prefix, placeholder, invalid, errorId }: { id: string; value: string; onChange: (value: string) => void; labelledBy: string; describedBy: string; prefix?: string; placeholder?: string; invalid: boolean; errorId?: string }) {
+  const { t: uiText } = useWorkspaceI18n();
   return <span className="sc-text" data-invalid={invalid ? "" : undefined}>
     {prefix && <span className="sc-text__prefix" aria-hidden="true">{prefix}</span>}
-    <input id={id} value={value} placeholder={placeholder} spellCheck={false} autoComplete="off" aria-labelledby={labelledBy} aria-describedby={invalid && errorId ? `${describedBy} ${errorId}` : describedBy} aria-invalid={invalid || undefined} onChange={event => onChange(event.target.value)} />
+    <input id={id} value={value} placeholder={uiText(placeholder)} spellCheck={false} autoComplete="off" aria-labelledby={labelledBy} aria-describedby={invalid && errorId ? `${describedBy} ${errorId}` : describedBy} aria-invalid={invalid || undefined} onChange={event => onChange(event.target.value)} />
   </span>;
 }
 
@@ -49,6 +52,7 @@ interface Placement { left: number; top: number; width: number; side: "top" | "b
  * typing a letter move the highlight, Enter or Space chooses, Escape closes and returns focus to the button.
  */
 export function SelectField({ id, label, value, options, onChange, size = "row" }: { id: string; label: string; value: string; options: readonly Option[]; onChange: (value: string) => void; size?: "row" | "popup" }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [placement, setPlacement] = useState<Placement | null>(null);
@@ -109,17 +113,17 @@ export function SelectField({ id, label, value, options, onChange, size = "row" 
   }
   const current = options[selected];
   return <div className="sc-select" data-size={size}>
-    <label htmlFor={id} className="sc-sr-only">{label}</label>
+    <label htmlFor={id} className="sc-sr-only">{uiText(label)}</label>
     <button ref={trigger} type="button" id={id} role="combobox" className="sc-select__trigger" aria-expanded={open} aria-haspopup="listbox" aria-controls={open ? listId : undefined} data-state={open ? "open" : "closed"} onClick={() => (open ? setOpen(false) : show())} onKeyDown={onTriggerKey}>
-      <span className="sc-select__value"><AnimatePresence initial={false} mode="popLayout"><motion.span key={current?.value} initial={{ opacity: 0, filter: "blur(2px)" }} animate={{ opacity: 1, filter: "blur(0px)" }} exit={{ opacity: 0, filter: "blur(2px)" }} transition={{ duration: 0.14 }}>{current?.label}</motion.span></AnimatePresence></span>
+      <span className="sc-select__value"><AnimatePresence initial={false} mode="popLayout"><motion.span key={current?.value} initial={{ opacity: 0, filter: "blur(2px)" }} animate={{ opacity: 1, filter: "blur(0px)" }} exit={{ opacity: 0, filter: "blur(2px)" }} transition={{ duration: 0.14 }}>{uiText(current?.label)}</motion.span></AnimatePresence></span>
       <span className="sc-select__chevron" aria-hidden="true"><ChevronDown size={15} /></span>
     </button>
     {open && placement && host && createPortal(
-      <div ref={mountList} id={listId} role="listbox" tabIndex={-1} aria-label={label} aria-activedescendant={`${listId}-${active}`} className="sc-tokens sc-select__content" data-theme={host.theme} data-side={placement.side} onKeyDown={onListKey}
+      <div ref={mountList} id={listId} role="listbox" tabIndex={-1} aria-label={uiText(label)} aria-activedescendant={`${listId}-${active}`} className="sc-tokens sc-select__content" data-theme={host.theme} data-side={placement.side} onKeyDown={onListKey}
         style={{ left: placement.left, width: placement.width, maxHeight: placement.maxHeight, ...(placement.side === "bottom" ? { top: placement.top } : { bottom: window.innerHeight - placement.top }) }}>
         <div className="sc-select__viewport">
           {options.map((option, index) => <div key={option.value} id={`${listId}-${index}`} role="option" data-index={index} aria-selected={option.value === value} data-highlighted={index === active ? "" : undefined} className="sc-select__item" onPointerMove={() => setActive(index)} onClick={() => choose(index)}>
-            {option.label}{option.value === value && <span className="sc-select__check" aria-hidden="true"><Check size={14} /></span>}
+            {uiText(option.label)}{option.value === value && <span className="sc-select__check" aria-hidden="true"><Check size={14} /></span>}
           </div>)}
         </div>
       </div>, host.root)}
@@ -128,11 +132,12 @@ export function SelectField({ id, label, value, options, onChange, size = "row" 
 
 /** A label, its hint and the control, in the row grid of the page (also the unit the search jumps to). */
 export function Row({ id, order, label, hint, kind, wide, dirty, error, pulse, children, rowRef }: { id: string; order: number; label: string; hint: string; kind: string; wide?: boolean; dirty: boolean; error?: string; pulse?: "a" | "b"; children: ReactNode; rowRef?: (node: HTMLDivElement | null) => void }) {
+  const { t: uiText } = useWorkspaceI18n();
   return <div ref={rowRef} style={{ "--i": 12 + order } as CSSProperties} className={`sc-row${wide ? " sc-row--wide" : ""}${pulse ? ` sc-row--pulse-${pulse}` : ""}`} data-setting={id} data-kind={kind} data-dirty={dirty ? "" : undefined}>
     <div className="sc-row__text">
-      <span className="sc-row__label"><label id={`${id}-label`} htmlFor={kind === "select" ? id : kind === "segmented" ? undefined : id}>{label}</label>{dirty && <><span className="sc-row__dirty" aria-hidden="true" /><span className="sc-sr-only">Edited</span></>}</span>
-      <p id={`${id}-hint`}>{hint}</p>
-      {error && <p className="sc-row__error" id={`${id}-error`} role="alert">{error}</p>}
+      <span className="sc-row__label"><label id={`${id}-label`} htmlFor={kind === "select" ? id : kind === "segmented" ? undefined : id}>{uiText(label)}</label>{dirty && <><span className="sc-row__dirty" aria-hidden="true" /><span className="sc-sr-only">{uiText("Edited")}</span></>}</span>
+      <p id={`${id}-hint`}>{uiText(hint)}</p>
+      {error && <p className="sc-row__error" id={`${id}-error`} role="alert">{uiText(error)}</p>}
     </div>
     <div className="sc-row__control">{children}</div>
   </div>;

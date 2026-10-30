@@ -8,6 +8,7 @@ export interface Rect extends Point { w: number; h: number }
 export interface Palette { surface: string; muted: string; fg: string; secondary: string; faint: string; border: string; subtle: string; strong: string; accent: string; success: string; warning: string; danger: string }
 export const lightPalette: Palette = { surface: "#fff", muted: "oklch(97.8% 0 0)", fg: "oklch(15% 0 0)", secondary: "oklch(46% 0 0)", faint: "oklch(59% 0 0)", border: "oklch(93.5% 0 0)", subtle: "oklch(96.5% 0 0)", strong: "oklch(82% 0 0)", accent: "oklch(33% 0 0)", success: "oklch(49% .19 150)", warning: "oklch(58% .18 75)", danger: "oklch(54% .21 25)" };
 export class MappingPainter {
+  localize = (text: string, values?: readonly unknown[]): string => values ? text.replace(/\{(\d+)\}/g, (_, index: string) => String(values[Number(index)] ?? '')) : text;
   ctx: CanvasRenderingContext2D;
   miniCtx: CanvasRenderingContext2D;
   width = 0; height = 0; dpr = 1; cx = 824; cy = 455; scale = .5;
@@ -181,7 +182,7 @@ export class MappingPainter {
     this.text(`${Math.round(100 * (this.progress.get(node.key) || 0))}%`, x + w - inset, top + (title - small) * 1.01, small, 500, p.secondary, "right");
     const reveal = smooth(8.5, 10.5, 20 * s);
     if (reveal > .01) { const font = clamp(20 * s, 11, 13), baseline = Math.max(top + 1.3 * title, y + 50 * s), face = 1.45 * font, stats = this.model.stats(node.id); this.avatar(team.lead, x + inset, baseline + (1.3 * font - face) / 2, face, alpha * reveal); ctx.globalAlpha = alpha * reveal; this.text(this.fit(`${this.model.person(team.lead).name} · ${stats.projects} projects · ${stats.open} open tasks`, font, 400, w - 2 * inset - face - 6), x + inset + face + 6, baseline, font, 400, p.secondary); }
-    if (!team.projects.length) { const hint = smooth(8.8, 11, 12 * s); if (hint > .01) { ctx.globalAlpha = alpha * hint; this.text("No projects yet", x + inset, y + 84 * s, clamp(13 * s, 11, 14), 400, p.faint); } }
+    if (!team.projects.length) { const hint = smooth(8.8, 11, 12 * s); if (hint > .01) { ctx.globalAlpha = alpha * hint; this.text(this.localize("No projects yet"), x + inset, y + 84 * s, clamp(13 * s, 11, 14), 400, p.faint); } }
     node.children.forEach((id, projectIndex) => this.drawProject(this.model.nodes[id], alpha * Math.min(1, 1.5 * intro), index, projectIndex, now, (1 - intro) * 18));
   }
   drawProject(node: MapNode, parentAlpha: number, teamIndex: number, projectIndex: number, now: number, offset: number) {
@@ -192,7 +193,7 @@ export class MappingPainter {
     if (titleReveal > .01) { const title = clamp(13 * s, 12, 20); ctx.globalAlpha = alpha * titleReveal; this.text(this.fit(project.name, title, 500, inner - (metaReveal > .01 ? this.measure(`${percent}%`, small, 500) + 10 : 0)), x + inset, y + 11 * s, title, 500, p.fg); }
     if (metaReveal > .01) { const dot = small / 2; ctx.globalAlpha = alpha * metaReveal; this.circle(x + inset + dot / 2, y + 31 * s + .65 * small, dot / 2); ctx.fillStyle = project.health === "on-track" ? p.success : project.health === "at-risk" ? p.warning : p.danger; ctx.fill(); this.text(`${percent}%`, x + w - inset, y + 11 * s + (clamp(13 * s, 12, 20) - small) * 1.01, small, 500, p.secondary, "right"); this.text(this.fit(`${healthLabels[project.health]} · Due ${formatDue(project.due)}`, small, 400, inner - dot - 6), x + inset + dot + 6, y + 31 * s, small, 400, p.secondary); }
     const track = clamp(3 * s, 1.5, 6); ctx.globalAlpha = alpha; this.round(x + inset, y + 50 * s, inner, track, track / 2); ctx.fillStyle = p.subtle; ctx.fill(); this.round(x + inset, y + 50 * s, Math.max(track, inner * progress), track, track / 2); ctx.fillStyle = p.accent; ctx.fill();
-    if (!project.tasks.length && metaReveal > .01) { ctx.globalAlpha = alpha * metaReveal; this.text("No tasks yet", x + inset, y + 66 * s, small, 400, p.faint); }
+    if (!project.tasks.length && metaReveal > .01) { ctx.globalAlpha = alpha * metaReveal; this.text(this.localize("No tasks yet"), x + inset, y + 66 * s, small, 400, p.faint); }
     project.tasks.forEach((id, index) => { const intro = this.intro(teamIndex * 70 + 180 + 45 * projectIndex + index * 16, now); if (intro > 0) this.drawTask(this.model.nodes[this.model.tasks[id].node], alpha * intro, intro, offset); });
     const faceSize = 16 * s;
     if (faceSize >= 3 && project.people.length > 0 && y + (node.h - 28) * s <= this.height && y + (node.h - 12) * s >= 0) {
@@ -226,7 +227,7 @@ export class MappingPainter {
   drawDetail(id: number, rect: Rect, inset: number, afterTitle: number, alpha: number) {
     const { x, y, w, h } = rect, ctx = this.ctx, p = this.palette, task = this.model.tasks[id], project = this.model.projects[task.project], status = this.model.status(id), available = (bottom: number) => smooth(-4, 18, y + h - .7 * inset - bottom);
     this.glyph(status, x + inset + 7, y + inset + 8.45, 14, alpha); ctx.globalAlpha = alpha;
-    this.text(statusLabels[status], x + inset + 22, y + inset, 13, 500, status === "blocked" ? p.danger : p.fg);
+    this.text(this.localize(statusLabels[status]), x + inset + 22, y + inset, 13, 500, status === "blocked" ? p.danger : p.fg);
     this.text(`· Due ${formatDue(task.due)} · ${task.points} ${task.points === 1 ? "point" : "points"}`, x + inset + 28 + this.measure(statusLabels[status], 13, 500), y + inset, 13, 400, p.secondary);
     this.text(`${task.comments} ${task.comments === 1 ? "comment" : "comments"}`, x + w - inset, y + inset, 13, 400, p.faint, "right");
     let row = afterTitle + 8;

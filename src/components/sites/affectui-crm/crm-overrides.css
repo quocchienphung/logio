@@ -33,6 +33,7 @@
 .crm-page .ui-as-guide-slot { height: 70px; }
 .crm-page .ui-as-user > .crm-icon, .crm-page .ui-as-user > svg { margin-left: auto; }
 .crm-page .ui-as-menu a { text-decoration: none; }
+.crm-page .ui-as-user-menu > .ui-as-menu { max-height: calc(100dvh - 64px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
 .crm-page .ui-as-crm__tabs { overflow: visible; }
 .crm-page .ui-as-crm__view { font-size: 13.5px; margin-left: -5px; }
 .crm-page .ui-as-crm__table { scrollbar-width: thin; }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import {
   useEffect,
   useId,
@@ -83,7 +84,7 @@ function fmt(value: number, decimals = 0) {
   }
   return f.format(value);
 }
-const withUnit = (value: string, unit?: string) => (unit ? `${value} ${unit}` : value);
+const withRawUnit = (value: string, unit?: string) => (unit ? `${value} ${unit}` : value);
 const easeOutQuart = (t: number) => 1 - (1 - t) ** 4;
 
 function useReducedMotion() {
@@ -189,6 +190,8 @@ export function UsageMeter({
   topUpLabel = "Add credits",
   className,
 }: UsageMeterProps) {
+  const { t: uiText } = useWorkspaceI18n();
+  const withUnit = (value: string, suffix?: string) => withRawUnit(value, uiText(suffix));
   const p = look === "clean" ? "ui-umc" : "ui-um";
   const id = useId();
   const rootRef = useRef<HTMLElement>(null);
@@ -391,22 +394,22 @@ export function UsageMeter({
           <header className={`${p}__head`}>
             <div className={`${p}__heading`}>
               <h3 id={`${id}-title`} className={`${p}__title`}>
-                {title}
+                {uiText(title)}
               </h3>
               {(plan || resetLabel) && (
                 <p className={`${p}__sub`}>
-                  {plan}
+                  {uiText(plan)}
                   {plan && resetLabel && <span className={`${p}__sep`}>·</span>}
                   {resetLabel && (
-                    <time dateTime={resetAt?.toISOString()} title={resetTitle}>
-                      {resetLabel}
+                    <time dateTime={resetAt?.toISOString()} title={uiText(resetTitle)}>
+                      {uiText(resetLabel)}
                     </time>
                   )}
                 </p>
               )}
             </div>
             {periods && periods.length > 1 && (
-              <div ref={switchRef} className={`${p}__switch`} role="radiogroup" aria-label="Period" onKeyDown={onSwitchKey}>
+              <div ref={switchRef} className={`${p}__switch`} role="radiogroup" aria-label={uiText("Period")} onKeyDown={onSwitchKey}>
                 <span ref={pillRef} className={`${p}__pill`} aria-hidden="true" />
                 {periods.map((o) => (
                   <button
@@ -418,7 +421,7 @@ export function UsageMeter({
                     className={`${p}__option`}
                     onClick={() => pick(o.id)}
                   >
-                    {o.label}
+                    {uiText(o.label)}
                   </button>
                 ))}
               </div>
@@ -427,12 +430,12 @@ export function UsageMeter({
 
           <div className={`${p}__figure`}>
             <p className={`${p}__amount`}>
-              <span className={`${p}__big`}>{fmt(tween("used"))}</span>
-              <span className={`${p}__of`}>of {withUnit(fmt(total), unit)}</span>
+              <span className={`${p}__big`}>{uiText(fmt(tween("used")))}</span>
+              <span className={`${p}__of`}>{uiText("of ")}{uiText(withUnit(fmt(total), unit))}</span>
             </p>
             <span className={`${p}__pct`} data-state={state}>
               {near && <span className={`${p}__dot`} aria-hidden="true" />}
-              {fmt(Math.min(shownPct, 999))}%
+              {uiText(fmt(Math.min(shownPct, 999)))}%
             </span>
           </div>
 
@@ -440,7 +443,7 @@ export function UsageMeter({
             className={`${p}__bar`}
             tabIndex={0}
             role="group"
-            aria-label={`${fmt(usedTotal)} of ${fmt(total)} ${unit} used – arrow keys read each category`}
+            aria-label={uiText("{0} of {1} {2} used – arrow keys read each category", [fmt(usedTotal), fmt(total), unit])}
             data-active={activeRow ? "" : undefined}
             onPointerMove={(e) => e.pointerType === "mouse" && highlight(labelAt(e))}
             onPointerLeave={(e) => e.pointerType === "mouse" && highlight(null)}
@@ -458,7 +461,7 @@ export function UsageMeter({
               aria-valuemin={0}
               aria-valuemax={total}
               aria-valuenow={Math.min(usedTotal, total)}
-              aria-valuetext={`${fmt(usedTotal)} of ${fmt(total)} ${unit}`}
+              aria-valuetext={uiText("{0} of {1} {2}", [fmt(usedTotal), fmt(total), unit])}
             >
               {segments.map((s) => (
                 <span
@@ -479,18 +482,18 @@ export function UsageMeter({
                 <>
                   <span className={`${p}__tip-label`}>
                     <span className={`${p}__swatch`} style={{ background: tipRow.color }} />
-                    {tipRow.label}
+                    {uiText(tipRow.label)}
                   </span>
                   <span className={`${p}__tip-value`}>
-                    {withUnit(fmt(tipRow.value), unit)}
-                    <span className={`${p}__muted`}> · {fmt(usedTotal ? (tipRow.value / usedTotal) * 100 : 0)}%</span>
+                    {uiText(withUnit(fmt(tipRow.value), unit))}
+                    <span className={`${p}__muted`}> · {uiText(fmt(usedTotal ? (tipRow.value / usedTotal) * 100 : 0))}%</span>
                   </span>
                 </>
               )}
             </div>
           </div>
 
-          <ul className={`${p}__legend`} aria-label="By category" data-active={activeRow ? "" : undefined}>
+          <ul className={`${p}__legend`} aria-label={uiText("By category")} data-active={activeRow ? "" : undefined}>
             {rows.map((r) => {
               const value = tween(`r:${r.label}`);
               const sum = tween("used");
@@ -504,9 +507,9 @@ export function UsageMeter({
                     onPointerUp={(e) => e.pointerType !== "mouse" && !r.leaving && highlight(r.label === active ? null : r.label)}
                   >
                     <span className={`${p}__swatch`} style={{ background: r.color }} />
-                    <span className={`${p}__label`}>{r.label}</span>
-                    <span className={`${p}__value`}>{fmt(value)}</span>
-                    <span className={`${p}__share`}>{fmt(sum ? (value / sum) * 100 : 0)}%</span>
+                    <span className={`${p}__label`}>{uiText(r.label)}</span>
+                    <span className={`${p}__value`}>{uiText(fmt(value))}</span>
+                    <span className={`${p}__share`}>{uiText(fmt(sum ? (value / sum) * 100 : 0))}%</span>
                   </div>
                 </li>
               );
@@ -516,16 +519,15 @@ export function UsageMeter({
           {days.length > 0 && (
             <div className={`${p}__daily`}>
               <div className={`${p}__daily-head`}>
-                <span>Per day</span>
+                <span>{uiText("Per day")}</span>
                 <span key={dayRead ? `d${day}` : "avg"} className={`${p}__daily-read`}>
                   {dayRead ? (
                     <>
-                      {dayRead.label} · <b>{dayRead.value === null ? "–" : withUnit(fmt(dayRead.value), unit)}</b>
+                      {uiText(dayRead.label)} · <b>{uiText(dayRead.value === null ? "–" : withUnit(fmt(dayRead.value), unit))}</b>
                     </>
                   ) : (
                     <>
-                      Avg <b>{fmt(average)}</b> / day
-                    </>
+                      {uiText("Avg ")}<b>{uiText(fmt(average))}</b> {uiText(" / day")}</>
                   )}
                 </span>
               </div>
@@ -534,7 +536,7 @@ export function UsageMeter({
                 className={`${p}__spark`}
                 tabIndex={0}
                 role="img"
-                aria-label={`${title} per day, ${fmt(average)} ${unit} on average – arrow keys read each day`}
+                aria-label={uiText("{0} per day, {1} {2} on average – arrow keys read each day", [title, fmt(average), unit])}
                 data-hover={day !== null || undefined}
                 data-regrow={regrow || undefined}
                 data-few={days.length <= 14 || undefined}
@@ -562,7 +564,7 @@ export function UsageMeter({
           )}
 
           {limits.length > 0 && (
-            <ul className={`${p}__limits`} aria-label="Plan limits" style={{ ["--n" as string]: Math.min(3, limits.length) }}>
+            <ul className={`${p}__limits`} aria-label={uiText("Plan limits")} style={{ ["--n" as string]: Math.min(3, limits.length) }}>
               {limits.map((l) => {
                 const unlimited = l.total == null || !isFinite(l.total);
                 const total = unlimited ? 0 : (l.total as number);
@@ -574,26 +576,26 @@ export function UsageMeter({
                 return (
                   <li key={l.label} className={`${p}__limit`} data-state={limitState}>
                     <span className={`${p}__limit-label`}>
-                      {l.label}
+                      {uiText(l.label)}
                       {limitState !== "ok" && (
-                        <span className={`${p}__dot`} aria-label={limitState === "limit" ? "At the limit" : "Close to the limit"} />
+                        <span className={`${p}__dot`} aria-label={uiText(limitState === "limit" ? uiText("At the limit") : uiText("Close to the limit"))} />
                       )}
                     </span>
                     <span className={`${p}__limit-value`}>
-                      {fmt(shown, decimals)}
-                      <span className={`${p}__muted`}> of {withUnit(of, unlimited ? undefined : l.unit)}</span>
+                      {uiText(fmt(shown, decimals))}
+                      <span className={`${p}__muted`}> {uiText(" of ")}{uiText(withUnit(of, unlimited ? undefined : l.unit))}</span>
                     </span>
                     {unlimited ? (
-                      <span className={`${p}__thin`} data-unlimited="" aria-label={`${l.label}: ${fmt(l.used, decimals)}, unlimited`} role="img" />
+                      <span className={`${p}__thin`} data-unlimited="" aria-label={uiText("{0}: {1}, unlimited", [l.label, fmt(l.used, decimals)])} role="img" />
                     ) : (
                       <span
                         className={`${p}__thin`}
                         role="meter"
-                        aria-label={l.label}
+                        aria-label={uiText(l.label)}
                         aria-valuemin={0}
                         aria-valuemax={total}
                         aria-valuenow={Math.min(l.used, total)}
-                        aria-valuetext={`${fmt(l.used, decimals)} of ${withUnit(of, l.unit)}`}
+                        aria-valuetext={uiText("{0} of {1}", [fmt(l.used, decimals), withUnit(of, l.unit)])}
                       >
                         <span style={{ width: `${Math.min(100, (shown / Math.max(total, 1e-9)) * 100)}%` }} />
                       </span>
@@ -611,13 +613,13 @@ export function UsageMeter({
           {near && <span className={`${p}__dot`} aria-hidden="true" />}
           {state === "limit" ? (
             <>
-              <b>Limit reached</b>
-              {usedTotal > total && <span className={`${p}__muted`}>{withUnit(fmt(usedTotal - total), "over")}</span>}
+              <b>{uiText("Limit reached")}</b>
+              {usedTotal > total && <span className={`${p}__muted`}>{uiText(withUnit(fmt(usedTotal - total), "over"))}</span>}
             </>
           ) : (
             <>
-              {state === "warn" && <b>Running low</b>}
-              <span className={state === "warn" ? `${p}__muted` : undefined}>{withUnit(fmt(tween("left")), unit)} left</span>
+              {state === "warn" && <b>{uiText("Running low")}</b>}
+              <span className={state === "warn" ? `${p}__muted` : undefined}>{uiText(withUnit(fmt(tween("left")), unit))} {uiText(" left")}</span>
             </>
           )}
         </span>
@@ -630,13 +632,13 @@ export function UsageMeter({
         >
           <span ref={actionInnerRef} className={`${p}__action-inner`}>
             <span key={near ? "top-up" : "upgrade"} className={`${p}__action-text`}>
-              {near ? topUpLabel : upgradeLabel}
+              {uiText(near ? topUpLabel : upgradeLabel)}
             </span>
           </span>
         </button>
       </div>
       <span className={`${p}__live`} aria-live="polite">
-        {liveText}
+        {uiText(liveText)}
       </span>
     </section>
   );

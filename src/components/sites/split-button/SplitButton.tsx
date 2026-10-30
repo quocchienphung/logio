@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { animate, useMotionValue } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
@@ -75,6 +76,7 @@ function MorphLabel({ text, motionOff }: { text: string; motionOff: boolean }) {
 
 /** An icon that crossfades when the element changes. */
 function IconPhase({ icon }: { icon: ReactNode }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [phases, setPhases] = useState<{ key: number; node: ReactNode; leaving: boolean }[]>([{ key: 0, node: icon, leaving: false }]);
   const current = useRef(icon), counter = useRef(0);
   useEffect(() => {
@@ -86,13 +88,14 @@ function IconPhase({ icon }: { icon: ReactNode }) {
     const done = window.setTimeout(() => setPhases(list => list.filter(phase => !phase.leaving)), 220);
     return () => window.clearTimeout(done);
   }, [icon]);
-  return <span className="sb-icon">{phases.map(phase => <span key={phase.key} className="sb-icon-phase" data-leaving={phase.leaving ? "" : undefined}>{phase.node}</span>)}</span>;
+  return <span className="sb-icon">{phases.map(phase => <span key={phase.key} className="sb-icon-phase" data-leaving={phase.leaving ? "" : undefined}>{uiText(phase.node)}</span>)}</span>;
 }
 
 interface MenuState { placement: MenuPlacement | null; theme: string | undefined; closing: boolean; by: "keyboard" | "pointer"; tokens?: CSSProperties }
 const COLOR_TOKENS = ["--sb-surface", "--sb-fg", "--sb-border", "--sb-muted", "--sb-focus", "--sb-danger"] as const;
 
 export function SplitButton({ label, actions, onClick, icon, variant = "primary", size = "md", disabled = false, menuLabel, className = "", matchColors = false }: SplitButtonProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const id = useId();
   const group = useRef<HTMLDivElement>(null);
   const primary = useRef<HTMLButtonElement>(null);
@@ -235,17 +238,17 @@ export function SplitButton({ label, actions, onClick, icon, variant = "primary"
             <MorphLabel text={label} motionOff={motionOff} />
           </span>
         </span>
-        <span className="sb-sr">{label}</span>
+        <span className="sb-sr">{uiText(label)}</span>
       </button>
-      <button ref={trigger} type="button" className="sb-trigger" disabled={disabled} aria-label={menuLabel ?? `${label} more actions`} aria-haspopup="menu" aria-expanded={open} aria-controls={menu ? `${id}-menu` : undefined} data-state={open ? "open" : "closed"}
+      <button ref={trigger} type="button" className="sb-trigger" disabled={disabled} aria-label={uiText(menuLabel ?? uiText("{0} more actions", [label]))} aria-haspopup="menu" aria-expanded={open} aria-controls={menu ? `${id}-menu` : undefined} data-state={open ? "open" : "closed"}
         onPointerDown={event => { if (event.button !== 0 || event.pointerType === "touch") return; event.preventDefault(); if (open) closeMenu(false); else openMenu("pointer"); trigger.current?.focus({ preventScroll: true }); }}
         onClick={event => { if (event.detail === 0 || (event.nativeEvent as PointerEvent).pointerType === "touch") { if (open) closeMenu(false); else openMenu(event.detail === 0 ? "keyboard" : "pointer"); } }}
         onKeyDown={event => { if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); if (!open) openMenu("keyboard", event.key === "ArrowUp" ? "last" : "first"); } }}>
         <ChevronDown className="sb-chevron" size={16} aria-hidden="true" />
       </button>
-      <span className="sb-sr" role="status" aria-live="polite">{label}</span>
+      <span className="sb-sr" role="status" aria-live="polite">{uiText(label)}</span>
     </div>
-    {menu && createPortal(<div ref={menuRef} id={`${id}-menu`} role="menu" aria-label={menuLabel ?? `${label} actions`} aria-orientation="vertical" tabIndex={-1} className="sb-menu" data-state={state} data-confirmable={actions.some(action => action.confirm) ? "" : undefined} data-side={menu.placement?.side ?? "bottom"} data-theme={menu.theme} style={style} onKeyDown={onMenuKey}>
+    {menu && createPortal(<div ref={menuRef} id={`${id}-menu`} role="menu" aria-label={uiText(menuLabel ?? uiText("{0} actions", [label]))} aria-orientation="vertical" tabIndex={-1} className="sb-menu" data-state={state} data-confirmable={actions.some(action => action.confirm) ? "" : undefined} data-side={menu.placement?.side ?? "bottom"} data-theme={menu.theme} style={style} onKeyDown={onMenuKey}>
       {actions.map((action, index) => {
         const confirm = action.confirm, asking = busy === index;
         return <div key={action.id ?? action.label} ref={element => { items.current[index] = element; }} role="menuitem" tabIndex={-1} className="sb-item" data-destructive={action.destructive ? "" : undefined} data-highlighted={highlighted === index ? "" : undefined} data-disabled={action.disabled && !asking ? "" : undefined} data-confirm={confirm ? "" : undefined} data-asking={asking ? "" : undefined} aria-disabled={(action.disabled && !asking) || undefined}
@@ -253,7 +256,7 @@ export function SplitButton({ label, actions, onClick, icon, variant = "primary"
           onPointerMove={() => { if (!action.disabled && highlighted !== index) { if (asking) setHighlighted(index); else highlight(index); } }} onPointerLeave={() => { if (asking) return; if (highlighted === index) { setHighlighted(-1); menuRef.current?.focus({ preventScroll: true }); } }}
           onClick={event => { if (asking || (confirm && (event.target as HTMLElement).closest(".cm button"))) return; select(index); }}>
           {confirm
-            ? <ConfirmMorph size="sm" className="sb-confirm" label={action.label} icon={action.icon} ariaLabel={action.label} prompt={confirm.prompt ?? "Sure?"} confirmLabel={confirm.confirmLabel ?? "Delete"} pendingLabel={confirm.pendingLabel} doneLabel={confirm.doneLabel} undoLabel={confirm.undoLabel}
+            ? <ConfirmMorph size="sm" className="sb-confirm" label={uiText(action.label)} icon={action.icon} ariaLabel={action.label} prompt={confirm.prompt ?? "Sure?"} confirmLabel={uiText(confirm.confirmLabel ?? "Delete")} pendingLabel={confirm.pendingLabel} doneLabel={confirm.doneLabel} undoLabel={confirm.undoLabel}
                 disabled={action.disabled} resultTimeout={confirm.resultTimeout ?? 4000} onConfirm={confirm.onConfirm} onUndo={confirm.onUndo}
                 onStateChange={phase => {
                   const before = busyPhase.current; busyPhase.current = phase;
@@ -262,7 +265,7 @@ export function SplitButton({ label, actions, onClick, icon, variant = "primary"
                   // the result has stayed its time: the menu goes with it
                   if (phase === "idle" && (before === "done" || before === "error")) closeMenu(true);
                 }} />
-            : <>{action.icon && <span className="sb-item-icon">{action.icon}</span>}<span>{action.label}</span></>}
+            : <>{action.icon && <span className="sb-item-icon">{uiText(action.icon)}</span>}<span>{uiText(action.label)}</span></>}
         </div>;
       })}
     </div>, document.body)}

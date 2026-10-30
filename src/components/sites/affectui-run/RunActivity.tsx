@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { memo, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { RunSpinner } from "./RunPlan";
@@ -30,6 +31,7 @@ function duration(ms: number) { return ms < 1000 ? `${Math.round(ms)}ms` : `${(m
 function payloadText(value: unknown) { return typeof value === "string" ? value : JSON.stringify(value, null, 2) ?? "null"; }
 
 function Highlight({ value }: { value: unknown }) {
+  const { t: uiText } = useWorkspaceI18n();
   const text = payloadText(value);
   if (typeof value === "string") return text;
   const tokens = /"(?:\\.|[^"\\])*"(?=\s*:)|"(?:\\.|[^"\\])*"|\b(?:true|false|null)\b|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
@@ -40,7 +42,7 @@ function Highlight({ value }: { value: unknown }) {
     nodes.push(text.slice(last, start));
     const token = match[0];
     const type = token.startsWith('"') ? /^\s*:/.test(text.slice(start + token.length)) ? "key" : "str" : /^(true|false|null)$/.test(token) ? "lit" : "num";
-    nodes.push(<span key={start} className={`ui-tc__t-${type}`}>{token}</span>);
+    nodes.push(<span key={start} className={`ui-tc__t-${type}`}>{uiText(token)}</span>);
     last = start + token.length;
   }
   nodes.push(text.slice(last));
@@ -48,6 +50,7 @@ function Highlight({ value }: { value: unknown }) {
 }
 
 function PayloadSection({ label, value, notify }: { label: "Arguments" | "Result"; value: unknown; notify: (message: string) => void }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const reset = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -73,20 +76,22 @@ function PayloadSection({ label, value, notify }: { label: "Arguments" | "Result
       reset.current = setTimeout(() => setCopied(false), 1800);
     } catch { notify("Clipboard unavailable. Select the payload text to copy it."); }
   }
-  return <div className="ui-tc__section"><div className="ui-tc__section-head"><span className="ui-tc__label">{label}</span><button type="button" className="ui-tc__copy" aria-label={`Copy ${label.toLowerCase()}`} title={`Copy ${label.toLowerCase()}`} data-copied={copied ? "" : undefined} onClick={copy}><svg className="ui-tc__copy-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.25" y="5.25" width="8" height="8" rx="2" /><path d="M10.75 5.25v-1a1.5 1.5 0 0 0-1.5-1.5h-4.5a2 2 0 0 0-2 2v4.5a1.5 1.5 0 0 0 1.5 1.5h1" /></svg><svg className="ui-tc__copy-done" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.4 6.6 11.3 12.5 4.9" pathLength="1" /></svg></button></div><pre className={`ui-tc__code${capped && !expanded ? " run-payload-capped" : ""}`} data-capped={capped && !expanded ? "" : undefined}><code><Highlight value={value} /></code></pre>{capped && <button type="button" className="ui-tc__more" aria-expanded={expanded} onClick={() => setExpanded(current => !current)}>{expanded ? "Show less" : "Show more"}</button>}</div>;
+  return <div className="ui-tc__section"><div className="ui-tc__section-head"><span className="ui-tc__label">{uiText(label)}</span><button type="button" className="ui-tc__copy" aria-label={uiText("Copy {0}", [label.toLowerCase()])} title={uiText("Copy {0}", [label.toLowerCase()])} data-copied={copied ? "" : undefined} onClick={copy}><svg className="ui-tc__copy-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="5.25" y="5.25" width="8" height="8" rx="2" /><path d="M10.75 5.25v-1a1.5 1.5 0 0 0-1.5-1.5h-4.5a2 2 0 0 0-2 2v4.5a1.5 1.5 0 0 0 1.5 1.5h1" /></svg><svg className="ui-tc__copy-done" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.4 6.6 11.3 12.5 4.9" pathLength="1" /></svg></button></div><pre className={`ui-tc__code${capped && !expanded ? " run-payload-capped" : ""}`} data-capped={capped && !expanded ? "" : undefined}><code><Highlight value={value} /></code></pre>{capped && <button type="button" className="ui-tc__more" aria-expanded={expanded} onClick={() => setExpanded(current => !current)}>{uiText(expanded ? uiText("Show less") : uiText("Show more"))}</button>}</div>;
 }
 
 const ToolCard = memo(function ToolCard({ call, running, elapsed, notify }: { call: ToolCall; running: boolean; elapsed: number; notify: (message: string) => void }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [open, setOpen] = useState(false);
   const bodyId = useId();
   return <div className="ui-tc" data-status={running ? "running" : "success"} data-open={open ? "" : undefined}>
-    <span className="ui-tc-sr" role="status" aria-live="polite">{call.name} {running ? "running" : "finished"}</span>
-    <button type="button" className="ui-tc__head" aria-expanded={open} aria-controls={bodyId} onClick={() => setOpen(current => !current)}><ToolIcon icon={call.icon} /><span className="ui-tc__main"><code className="ui-tc__name">{call.name}</code><span className="ui-tc__summary" title={call.summary}>{call.summary}</span></span><span className="ui-tc__status"><ToolStatus running={running} /><span className="ui-tc__time">{running ? `${(elapsed / 1000).toFixed(1)}s` : duration(call.duration)}</span></span><Chevron /></button>
-    <div className="ui-tc__body" id={bodyId} inert={!open}><div className="ui-tc__clip"><div className="ui-tc__sections"><PayloadSection label="Arguments" value={call.args} notify={notify} />{running ? <div className="ui-tc__section"><div className="ui-tc__section-head"><span className="ui-tc__label">Result</span></div><p className="ui-tc__pending">Waiting for result…</p></div> : <PayloadSection label="Result" value={call.result} notify={notify} />}</div></div></div>
+    <span className="ui-tc-sr" role="status" aria-live="polite">{uiText(call.name)} {uiText(running ? "running" : "finished")}</span>
+    <button type="button" className="ui-tc__head" aria-expanded={open} aria-controls={bodyId} onClick={() => setOpen(current => !current)}><ToolIcon icon={call.icon} /><span className="ui-tc__main"><code className="ui-tc__name">{call.name}</code><span className="ui-tc__summary" title={uiText(call.summary)}>{uiText(call.summary)}</span></span><span className="ui-tc__status"><ToolStatus running={running} /><span className="ui-tc__time">{uiText(running ? `${(elapsed / 1000).toFixed(1)}s` : duration(call.duration))}</span></span><Chevron /></button>
+    <div className="ui-tc__body" id={bodyId} inert={!open}><div className="ui-tc__clip"><div className="ui-tc__sections"><PayloadSection label={uiText("Arguments")} value={call.args} notify={notify} />{running ? <div className="ui-tc__section"><div className="ui-tc__section-head"><span className="ui-tc__label">{uiText("Result")}</span></div><p className="ui-tc__pending">{uiText("Waiting for result…")}</p></div> : <PayloadSection label={uiText("Result")} value={call.result} notify={notify} />}</div></div></div>
   </div>;
 });
 
 function ToolGroup({ step, runtime, notify }: { step: RunStep; runtime: StepRuntime; notify: (message: string) => void }) {
+  const { t: uiText } = useWorkspaceI18n();
   const listId = useId();
   const running = runtime.status === "running" && runtime.completedCalls < step.calls.length;
   const mode = running ? "running" : "settled";
@@ -96,8 +101,8 @@ function ToolGroup({ step, runtime, notify }: { step: RunStep; runtime: StepRunt
   const total = step.calls.slice(0, runtime.completedCalls).reduce((sum, call) => sum + call.duration, 0) + (running ? runtime.callElapsed : 0);
   const label = running ? "Using tools…" : `Used ${calls.length} tool${calls.length === 1 ? "" : "s"}`;
   return <div className="ui-tc-group" data-open={open ? "" : undefined}>
-    <span className="ui-tc-sr" role="status" aria-live="polite">{label}</span>
-    <button type="button" className="ui-tc-group__head" aria-expanded={open} aria-controls={listId} onClick={() => setChoice({ mode, open: !open })}><span className="ui-tc-group__stack" aria-hidden="true">{calls.slice(0, 3).map((call, index) => <ToolIcon icon={call.icon} key={index} />)}</span><span className="ui-tc-group__title"><span className={`ui-tc-group__label${running ? " ui-tc__shine" : ""}`} data-text={label}>{label}</span><span className="ui-tc-group__time">· {(total / 1000).toFixed(1)}s</span></span><Chevron /></button>
+    <span className="ui-tc-sr" role="status" aria-live="polite">{uiText(label)}</span>
+    <button type="button" className="ui-tc-group__head" aria-expanded={open} aria-controls={listId} onClick={() => setChoice({ mode, open: !open })}><span className="ui-tc-group__stack" aria-hidden="true">{calls.slice(0, 3).map((call, index) => <ToolIcon icon={call.icon} key={index} />)}</span><span className="ui-tc-group__title"><span className={`ui-tc-group__label${running ? " ui-tc__shine" : ""}`} data-text={label}>{uiText(label)}</span><span className="ui-tc-group__time">· {uiText((total / 1000).toFixed(1))}s</span></span><Chevron /></button>
     <div className="ui-tc__body" id={listId} inert={!open}><div className="ui-tc__clip"><div className="ui-tc-group__list">{calls.map((call, index) => <ToolCard key={`${index}-${call.name}`} call={call} running={running && index === runtime.completedCalls} elapsed={running && index === runtime.completedCalls ? runtime.callElapsed : call.duration} notify={notify} />)}</div></div></div>
   </div>;
 }
@@ -107,6 +112,7 @@ function ApprovalIcon() {
 }
 
 function ActivityLoader({ label, done }: { label: string; done: boolean }) {
+  const { t: uiText } = useWorkspaceI18n();
   const labelRef = useRef<HTMLSpanElement>(null);
   const [width, setWidth] = useState<number | undefined>(undefined);
   useEffect(() => {
@@ -116,14 +122,15 @@ function ActivityLoader({ label, done }: { label: string; done: boolean }) {
     observer.observe(element);
     return () => observer.disconnect();
   }, [label]);
-  return <span className="ui-tl ui-ar__loader" data-size="sm" data-variant="pill" role="status" aria-live="polite" data-done={done ? "true" : undefined}><span className="ui-tl__icon" aria-hidden="true"><RunSpinner className="ui-tl__spinner" /><svg className="ui-tl__check" viewBox="0 0 16 16"><path d="M3.5 8.4 6.6 11.3 12.5 4.9" pathLength="1" /></svg></span><span className="ui-tl__text run-activity-text" style={width === undefined ? undefined : { width }}><span ref={labelRef} key={label} className={`ui-tl__label ui-tl__label--in${done ? "" : " ui-tl__shine"}`} data-text={label}>{label}</span></span></span>;
+  return <span className="ui-tl ui-ar__loader" data-size="sm" data-variant="pill" role="status" aria-live="polite" data-done={done ? "true" : undefined}><span className="ui-tl__icon" aria-hidden="true"><RunSpinner className="ui-tl__spinner" /><svg className="ui-tl__check" viewBox="0 0 16 16"><path d="M3.5 8.4 6.6 11.3 12.5 4.9" pathLength="1" /></svg></span><span className="ui-tl__text run-activity-text" style={width === undefined ? undefined : { width }}><span ref={labelRef} key={label} className={`ui-tl__label ui-tl__label--in${done ? "" : " ui-tl__shine"}`} data-text={label}>{uiText(label)}</span></span></span>;
 }
 
 export function RunActivity({ snapshot, onShowApproval, notify }: RunActivityProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const active = snapshot.steps.find(step => step.id === snapshot.activeId);
   const finished = snapshot.phase === "done";
   const loader = snapshot.phase === "waiting" ? "Waiting for your approval" : snapshot.phase === "done" ? `Done in ${Math.round(snapshot.elapsed / 1000)}s` : active?.title ?? "Working on your plan";
-  return <div className="ui-ar__feed"><span className="ui-ar__label">Activity</span><AnimatePresence initial={false}>{snapshot.steps.map((step, index) => {
+  return <div className="ui-ar__feed"><span className="ui-ar__label">{uiText("Activity")}</span><AnimatePresence initial={false}>{snapshot.steps.map((step, index) => {
     const runtime = snapshot.states[step.id];
     if (!runtime || runtime.status === "pending" || (runtime.status === "running" && runtime.elapsed < 700 && !runtime.completedCalls)) return null;
     const decision = snapshot.approvals[step.id];
@@ -131,9 +138,9 @@ export function RunActivity({ snapshot, onShowApproval, notify }: RunActivityPro
     const waiting = runtime.status === "waiting" || (runtime.status === "stopped" && !!step.approval && !decision && runtime.elapsed >= 700);
     const hasCalls = runtime.completedCalls > 0 || (runtime.status === "running" && runtime.callElapsed > 0);
     return <motion.div key={step.id} className="ui-ar__entry ui-as-rise" exit={{ opacity: 0, height: 0 }} transition={{ duration: .25 }}>
-      <span className="ui-ar__entry-head"><span className="ui-ar__num" data-done={runtime.status === "done" ? "true" : undefined}>{index + 1}</span>{step.title}</span>
-      {(waiting || decision) && <span className="ui-ar__note" data-state={waiting ? "pending" : decision}><ApprovalIcon />{waiting ? <button type="button" className="run-approval-link" onClick={onShowApproval}>Waiting for your approval</button> : decision === "approved" ? "You approved this step" : "You denied this step"}</span>}
+      <span className="ui-ar__entry-head"><span className="ui-ar__num" data-done={runtime.status === "done" ? "true" : undefined}>{uiText(index + 1)}</span>{uiText(step.title)}</span>
+      {(waiting || decision) && <span className="ui-ar__note" data-state={waiting ? "pending" : decision}><ApprovalIcon />{waiting ? <button type="button" className="run-approval-link" onClick={onShowApproval}>{uiText("Waiting for your approval")}</button> : decision === "approved" ? uiText("You approved this step") : uiText("You denied this step")}</span>}
       {hasCalls && <ToolGroup step={step} runtime={runtime} notify={notify} />}
     </motion.div>;
-  })}</AnimatePresence>{snapshot.phase !== "stopped" && <ActivityLoader label={loader} done={finished} />}</div>;
+  })}</AnimatePresence>{snapshot.phase !== "stopped" && <ActivityLoader label={uiText(loader)} done={finished} />}</div>;
 }

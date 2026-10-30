@@ -40,7 +40,7 @@ export const sections: readonly SettingsSection[] = [
 export const rows: readonly SettingRow[] = [
   { key: "workspaceName", id: "workspace-name", section: "general", kind: "text", label: "Workspace name", hint: "Shown in the sidebar, invites, and emails." },
   { key: "workspaceUrl", id: "workspace-url", section: "general", kind: "text", label: "Workspace URL", hint: "Changing it breaks old links for 30 days.", prefix: "logio.app/" },
-  { key: "language", id: "language", section: "general", kind: "select", label: "Language", hint: "Used for dates, numbers, and interface text.", options: [{ value: "en-us", label: "English (US)" }, { value: "en-uk", label: "English (UK)" }, { value: "de", label: "Deutsch" }, { value: "fr", label: "Français" }, { value: "pt", label: "Português" }, { value: "ja", label: "日本語" }] },
+  { key: "language", id: "language", section: "general", kind: "segmented", label: "Language", hint: "Choose the language used throughout your workspace.", options: [{ value: "en", label: "English" }, { value: "vi", label: "Tiếng Việt" }] },
   { key: "timezone", id: "timezone", section: "general", kind: "select", label: "Time zone", hint: "Due dates and digests follow this zone.", options: [{ value: "lisbon", label: "Lisbon (GMT+1)" }, { value: "london", label: "London (GMT+1)" }, { value: "berlin", label: "Berlin (GMT+2)" }, { value: "new-york", label: "New York (GMT-4)" }, { value: "san-francisco", label: "San Francisco (GMT-7)" }, { value: "tokyo", label: "Tokyo (GMT+9)" }] },
   { key: "weekStart", id: "week-start", section: "general", kind: "segmented", label: "Week starts on", hint: "Affects calendars and weekly reports.", options: [{ value: "mon", label: "Monday" }, { value: "sun", label: "Sunday" }] },
 
@@ -84,7 +84,7 @@ export function slugify(name: string) {
 
 export function defaultSettings(workspaceName: string): SettingsValues {
   return {
-    workspaceName, workspaceUrl: slugify(workspaceName) || "workspace", language: "en-us", timezone: "lisbon", weekStart: "mon",
+    workspaceName, workspaceUrl: slugify(workspaceName) || "workspace", language: "en", timezone: "lisbon", weekStart: "mon",
     theme: "system", density: "comfortable", textSize: "default", sidebarCounts: true, motion: true, loadingEffect: "decode",
     mentions: true, assigned: true, deployFailures: true, weeklyDigest: false, emailCadence: "hourly",
     twoStep: true, saml: false, sessionLength: "24h", ipAllowlist: false, auditRetention: "1y",
@@ -134,21 +134,25 @@ export interface SearchHit { row: SettingsSearchRow; labelRange?: [number, numbe
  * Settings that match a query: every word must appear in the label, hint or section name. The first match inside the label is
  * reported so the result can mark it. An empty query gives the suggested settings.
  */
-export function searchSettings(query: string): SearchHit[] {
-  const words = query.toLowerCase().split(/\s+/).filter(Boolean);
-  if (!words.length) return suggestedIds.map(id => ({ row: rows.find(row => row.id === id)! }));
+export function searchSettings(query: string, localize: (text: string) => string = text => text): SearchHit[] {
+  const fold = (text: string) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").toLowerCase();
+  const words = fold(query).split(/\s+/).filter(Boolean);
+  const localizedRows = rows.map(row => ({ ...row, label: localize(row.label), hint: localize(row.hint) }));
+  if (!words.length) return suggestedIds.map(id => ({ row: localizedRows.find(row => row.id === id)! }));
   const hits: SearchHit[] = [];
-  for (const row of rows) {
-    const label = row.label.toLowerCase();
-    const haystack = `${label} ${row.hint.toLowerCase()} ${sections.find(section => section.id === row.section)!.label.toLowerCase()}`;
+  for (const row of localizedRows) {
+    const original = rows.find(item => item.id === row.id)!;
+    const label = fold(row.label);
+    const sectionLabel = sections.find(section => section.id === row.section)!.label;
+    const haystack = fold(`${row.label} ${row.hint} ${localize(sectionLabel)} ${original.label} ${original.hint} ${sectionLabel}`);
     if (!words.every(word => haystack.includes(word))) continue;
     const at = label.indexOf(words[0]);
     hits.push({ row, labelRange: at >= 0 ? [at, at + words[0].length] : undefined });
   }
-  const accountText = 'where you log login sign in devices sessions authenticator two-factor password backup codes';
+  const accountText = fold(`where you log login sign in devices sessions authenticator two-factor password backup codes ${localize('Where you log')} ${localize('Two-factor authentication, password and active sessions.')}`);
   if (words.every(word => accountText.includes(word))) {
-    const label = 'Where you log', at = label.toLowerCase().indexOf(words[0]);
-    hits.push({ row: { id: 'where-you-log', section: 'where-you-log', kind: 'section', label, hint: 'Two-factor authentication, password and active sessions.' }, labelRange: at >= 0 ? [at, at + words[0].length] : undefined });
+    const label = localize('Where you log'), at = fold(label).indexOf(words[0]);
+    hits.push({ row: { id: 'where-you-log', section: 'where-you-log', kind: 'section', label, hint: localize('Two-factor authentication, password and active sessions.') }, labelRange: at >= 0 ? [at, at + words[0].length] : undefined });
   }
   return hits.sort((a, b) => Number(!!b.labelRange) - Number(!!a.labelRange));
 }

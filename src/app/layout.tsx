@@ -5,6 +5,7 @@ import { PageTransitionScript } from "@/components/page-transition/PageTransitio
 import { StripeNavigationScript } from "@/components/navigation/StripeNavigationScript";
 import { ConsentRoot } from "@/components/sites/cookie-consent/ConsentRoot";
 import { CommandPalette } from "@/components/sites/command-palette/CommandPalette";
+import { WorkspaceI18nProvider } from "@/components/sites/i18n/WorkspaceI18n";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,10 +23,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <MotionScript />
       </head>
       <body>
+        <WorkspaceI18nProvider>
         <div id="__next">{children}</div>
         <InteractionRuntime />
         <ConsentRoot />
         <CommandPalette />
+        </WorkspaceI18nProvider>
       </body>
     </html>
   );

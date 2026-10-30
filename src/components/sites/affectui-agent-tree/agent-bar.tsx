@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
@@ -32,6 +33,7 @@ export interface AgentBarProps {
  * it and gives the focus back to the button.
  */
 export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], formatCost = dollars, showCost = true, onResolve, extra, onReviewWaiting, trailing }: AgentBarProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const [one, many] = noun;
   const ids = useId();
   const totals = totalsOf(root);
@@ -63,26 +65,26 @@ export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], f
   const announce = `${totals.agents} ${totals.agents === 1 ? one : many}, ${totals.running} running${totals.waiting ? `, ${totals.waiting} ${totals.waiting === 1 ? "needs" : "need"} you` : ""}${totals.failed ? `, ${totals.failed} failed` : ""}`;
   return <div className="agt__bar" ref={bar}>
     <span className="agt__spark"><Spark /></span>
-    <span className="agt__title">{title}</span>
-    {extra && <span className="agt__extra">{extra}</span>}
+    <span className="agt__title">{uiText(title)}</span>
+    {extra && <span className="agt__extra">{uiText(extra)}</span>}
     <span className="agt__sum">
-      <span>{totals.agents} {totals.agents === 1 ? one : many}</span>
-      {totals.running > 0 && <span className="agt__sum-run">{totals.running} running</span>}
-      {totals.waiting > 0 && <button type="button" className="agt__sum-btn" data-kind="waiting" aria-expanded={onReviewWaiting ? undefined : windowKind === "waiting"} aria-haspopup="dialog" aria-controls={windowKind === "waiting" ? `${ids}-window` : undefined} onClick={() => { if (onReviewWaiting) { setOpen(null); onReviewWaiting(); } else setOpen(windowKind === "waiting" ? null : "waiting"); }}>{totals.waiting} {totals.waiting === 1 ? "needs" : "need"} you<Chevron /></button>}
-      {totals.failed > 0 && <button type="button" className="agt__sum-btn" data-kind="failed" aria-expanded={windowKind === "failed"} aria-haspopup="dialog" aria-controls={windowKind === "failed" ? `${ids}-window` : undefined} onClick={() => setOpen(windowKind === "failed" ? null : "failed")}>{totals.failed} failed<Chevron /></button>}
-      {showCost && <span className="agt__sum-cost"><span className="agt__amount" data-live={totals.live ? "" : undefined}>{formatCost(totals.cost)}</span></span>}
+      <span>{uiText(totals.agents)} {uiText(totals.agents === 1 ? one : many)}</span>
+      {totals.running > 0 && <span className="agt__sum-run">{uiText(totals.running)} {uiText(" running")}</span>}
+      {totals.waiting > 0 && <button type="button" className="agt__sum-btn" data-kind="waiting" aria-expanded={onReviewWaiting ? undefined : windowKind === "waiting"} aria-haspopup="dialog" aria-controls={windowKind === "waiting" ? `${ids}-window` : undefined} onClick={() => { if (onReviewWaiting) { setOpen(null); onReviewWaiting(); } else setOpen(windowKind === "waiting" ? null : "waiting"); }}>{uiText(totals.waiting)} {uiText(totals.waiting === 1 ? uiText("needs") : uiText("need"))} {uiText(" you")}<Chevron /></button>}
+      {totals.failed > 0 && <button type="button" className="agt__sum-btn" data-kind="failed" aria-expanded={windowKind === "failed"} aria-haspopup="dialog" aria-controls={windowKind === "failed" ? `${ids}-window` : undefined} onClick={() => setOpen(windowKind === "failed" ? null : "failed")}>{uiText(totals.failed)} {uiText(" failed")}<Chevron /></button>}
+      {showCost && <span className="agt__sum-cost"><span className="agt__amount" data-live={totals.live ? "" : undefined}>{uiText(formatCost(totals.cost))}</span></span>}
     </span>
-    {trailing && <span className="agt__trailing">{trailing}</span>}
-    <AnimatePresence>{windowKind && <MenuSurface className="agt__pop" ref={pop} id={`${ids}-window`} role="dialog" aria-label={windowKind === "waiting" ? `${many.charAt(0).toUpperCase()}${many.slice(1)} that need you` : `Failed ${many}`}>
+    {trailing && <span className="agt__trailing">{uiText(trailing)}</span>}
+    <AnimatePresence>{windowKind && <MenuSurface className="agt__pop" ref={pop} id={`${ids}-window`} role="dialog" aria-label={uiText(windowKind === "waiting" ? uiText("{0}{1} that need you", [many.charAt(0).toUpperCase(), many.slice(1)]) : uiText("Failed {0}", [many]))}>
       {windowAgents.map(agent => <div className="agt__pop-item" key={agent.id}>
-        <div className="agt__pop-head"><span className="agt__status" data-status={agent.status}><StatusGlyph status={agent.status} /></span><span className="agt__pop-name">{agent.name}</span><span className="agt__pop-task">{agent.task}</span></div>
-        <p className="agt__pop-text">{windowKind === "waiting" ? (agent.ask ?? `This ${one} is waiting for your decision.`) : (agent.error ?? `This ${one} failed.`)}</p>
+        <div className="agt__pop-head"><span className="agt__status" data-status={agent.status}><StatusGlyph status={agent.status} /></span><span className="agt__pop-name">{uiText(agent.name)}</span><span className="agt__pop-task">{uiText(agent.task)}</span></div>
+        <p className="agt__pop-text">{uiText(windowKind === "waiting" ? (agent.ask ?? `This ${one} is waiting for your decision.`) : (agent.error ?? `This ${one} failed.`))}</p>
         {onResolve && <div className="agt__pop-actions">
-          <button type="button" className="agt__btn" onClick={() => onResolve(agent, windowKind === "waiting" ? "reject" : "dismiss")}>{windowKind === "waiting" ? "Reject" : "Dismiss"}</button>
-          <button type="button" className="agt__btn agt__btn--primary" onClick={() => onResolve(agent, windowKind === "waiting" ? "approve" : "retry")}>{windowKind === "waiting" ? "Approve" : "Retry"}</button>
+          <button type="button" className="agt__btn" onClick={() => onResolve(agent, windowKind === "waiting" ? "reject" : "dismiss")}>{uiText(windowKind === "waiting" ? uiText("Reject") : uiText("Dismiss"))}</button>
+          <button type="button" className="agt__btn agt__btn--primary" onClick={() => onResolve(agent, windowKind === "waiting" ? "approve" : "retry")}>{uiText(windowKind === "waiting" ? uiText("Approve") : uiText("Retry"))}</button>
         </div>}
       </div>)}
     </MenuSurface>}</AnimatePresence>
-    <span className="agt__sr" role="status" aria-live="polite">{announce}</span>
+    <span className="agt__sr" role="status" aria-live="polite">{uiText(announce)}</span>
   </div>;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { revealPanelContent, useMorphingPanel } from "@/components/interaction/useMorphingPanel";
 import { ArrowRight, ChevronLeft, ChevronRight, CircleDollarSign, Eye, GitBranch, ListChecks, Minus, ShieldCheck, Wrench, X } from "lucide-react";
@@ -37,11 +38,12 @@ function RequestCard({ node, doc, simulated, engines = [], reason, ...props }: {
 
 /** A sandbox next to the approval rule: it never calls the engine or writes a decision. */
 export function PermissionPreview({ node, doc, simulated, engines }: { node: ProcessNode; doc: ProcessDoc; simulated: boolean; engines: readonly EngineInfo[] }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [decision, setDecision] = useState<PermissionDecision>();
   return <details className="proc-permission-preview" data-interaction-accordion>
-    <summary><Eye size={14} aria-hidden="true" /><span>Preview permission request</span><ChevronRight size={13} aria-hidden="true" /></summary>
+    <summary><Eye size={14} aria-hidden="true" /><span>{uiText("Preview permission request")}</span><ChevronRight size={13} aria-hidden="true" /></summary>
     <div className="proc-permission-preview__body">
-      <span className="proc-permission-preview__label">Interactive preview</span>
+      <span className="proc-permission-preview__label">{uiText("Interactive preview")}</span>
       <RequestCard key={node.id} node={node} doc={doc} simulated={simulated} engines={engines} preview decision={decision} onDecision={setDecision} onReset={() => setDecision(undefined)} />
     </div>
   </details>;
@@ -53,6 +55,7 @@ export function ProcessPermissions({ doc, root, snapshot, simulated, engines, pr
   preferredId?: string; focusOnOpen: boolean; reviewRevision?: number;
   onDecide: (id: string, decision: PermissionDecision) => Promise<boolean>; onLocate: (id: string) => void;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [selectedId, setSelectedId] = useState(preferredId);
   const [minimized, setMinimized] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -109,25 +112,25 @@ export function ProcessPermissions({ doc, root, snapshot, simulated, engines, pr
   return <section className={`proc-permissions${compact ? " proc-permissions--minimized" : ""}`} aria-labelledby={compact ? undefined : titleId} ref={container}>
     <div className="proc-permissions__inner" data-morph-content>
     {compact ? <>
-    <button type="button" className="proc-permissions__trigger proc-pill" data-review-trigger onClick={() => { moveFocus.current = true; setMinimized(false); setDismissed(false); setReceipt(undefined); }}><ShieldCheck size={16} /><span>{waiting.length} permission request{waiting.length === 1 ? "" : "s"}</span><span className="proc-permissions__count">Review<ArrowRight size={12} /></span></button>
+    <button type="button" className="proc-permissions__trigger proc-pill" data-review-trigger onClick={() => { moveFocus.current = true; setMinimized(false); setDismissed(false); setReceipt(undefined); }}><ShieldCheck size={16} /><span>{uiText(waiting.length)} {uiText(" permission request")}{uiText(waiting.length === 1 ? "" : "s")}</span><span className="proc-permissions__count">{uiText("Review")}<ArrowRight size={12} /></span></button>
     </> : <>
     <div className="proc-permissions__bar" data-panel-reveal>
-      <span id={titleId}><ShieldCheck size={13} aria-hidden="true" />{receipt ? "Your decision" : "Permission request"}{waiting.length > 0 && <span className="proc-permissions__number">{waiting.length} waiting</span>}</span>
-      <button type="button" className="proc-icon-button" aria-label={receipt && !node ? "Dismiss decision" : "Minimize permission requests"} disabled={busy} onClick={() => { moveFocus.current = true; if (!node) dismissReceipt(); else setMinimized(true); }}><Minus size={14} /></button>
+      <span id={titleId}><ShieldCheck size={13} aria-hidden="true" />{uiText(receipt ? uiText("Your decision") : uiText("Permission request"))}{waiting.length > 0 && <span className="proc-permissions__number">{uiText(waiting.length)} {uiText(" waiting")}</span>}</span>
+      <button type="button" className="proc-icon-button" aria-label={uiText(receipt && !node ? uiText("Dismiss decision") : uiText("Minimize permission requests"))} disabled={busy} onClick={() => { moveFocus.current = true; if (!node) dismissReceipt(); else setMinimized(true); }}><Minus size={14} /></button>
     </div>
     <div className="proc-permissions__content">
       {receipt ? <>
         <RequestCard node={receipt.node} doc={doc} engines={engines} simulated={simulated} decision={receipt.decision} onDecision={() => {}} />
-        <div className="proc-permissions__after"><p>{receipt.decision === "approve" ? "Allowed for this run. Future runs will ask again." : "This block and its sub-tasks will not run."}</p>
-          {node ? <button type="button" className="proc-button proc-button--small" onClick={() => pick(node.id)}>Next request<ArrowRight size={12} /></button> : <button type="button" className="proc-icon-button" aria-label="Dismiss decision" onClick={dismissReceipt}><X size={14} /></button>}
+        <div className="proc-permissions__after"><p>{uiText(receipt.decision === "approve" ? uiText("Allowed for this run. Future runs will ask again.") : uiText("This block and its sub-tasks will not run."))}</p>
+          {node ? <button type="button" className="proc-button proc-button--small" onClick={() => pick(node.id)}>{uiText("Next request")}<ArrowRight size={12} /></button> : <button type="button" className="proc-icon-button" aria-label={uiText("Dismiss decision")} onClick={dismissReceipt}><X size={14} /></button>}
         </div>
       </> : node && <>
-        {waiting.length > 1 && <nav className="proc-permissions__queue" aria-label="Pending permission requests"><span>Request {index + 1} of {waiting.length}</span><button type="button" className="proc-icon-button" aria-label="Previous request" disabled={busy || index === 0} onClick={() => pick(waiting[index - 1].id)}><ChevronLeft size={14} /></button><button type="button" className="proc-icon-button" aria-label="Next request" disabled={busy || index === waiting.length - 1} onClick={() => pick(waiting[index + 1].id)}><ChevronRight size={14} /></button></nav>}
+        {waiting.length > 1 && <nav className="proc-permissions__queue" aria-label={uiText("Pending permission requests")}><span>{uiText("Request ")}{uiText(index + 1)} {uiText(" of ")}{uiText(waiting.length)}</span><button type="button" className="proc-icon-button" aria-label={uiText("Previous request")} disabled={busy || index === 0} onClick={() => pick(waiting[index - 1].id)}><ChevronLeft size={14} /></button><button type="button" className="proc-icon-button" aria-label={uiText("Next request")} disabled={busy || index === waiting.length - 1} onClick={() => pick(waiting[index + 1].id)}><ChevronRight size={14} /></button></nav>}
         <RequestCard key={node.id} node={node} doc={doc} engines={engines} simulated={simulated} reason={snapshot.nodes[node.id].ask} busy={busy} error={error} onDecision={decision => void decide(decision)} />
-        <button type="button" className="proc-permissions__locate" disabled={busy} onClick={() => { moveFocus.current = true; setMinimized(true); onLocate(node.id); }}>Show {node.name} in {doc.name}<ArrowRight size={12} /></button>
+        <button type="button" className="proc-permissions__locate" disabled={busy} onClick={() => { moveFocus.current = true; setMinimized(true); onLocate(node.id); }}>{uiText("Show ")}{node.name} {uiText(" in ")}{doc.name}<ArrowRight size={12} /></button>
       </>}
     </div>
-    <span className="proc-sr" role="status">{waiting.length ? `${waiting.length} permission request${waiting.length === 1 ? " is" : "s are"} waiting for your decision.` : "No permission requests waiting."}</span>
+    <span className="proc-sr" role="status">{uiText(waiting.length ? uiText("{0} permission request{1} waiting for your decision.", [waiting.length, waiting.length === 1 ? " is" : "s are"]) : uiText("No permission requests waiting."))}</span>
     </>}
     </div>
   </section>;

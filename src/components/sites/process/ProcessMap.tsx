@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import type { MotionValue } from "motion/react";
 import type { CSSProperties, KeyboardEvent as ReactKeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from "react";
@@ -100,6 +101,7 @@ const READABLE = 0.55;
  * pinch or the buttons, and use the + on a selected block to connect a new block to it. Arrow keys nudge the focused block.
  */
 export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, locked, inset, fitKey, revealId, links, selectedLinkId, onSelectLink, check, onConnect, onLinkChange, onLinkRemove, multiIds, onToggle, onMoveMany, notices, onSelect, onOpen, onMove, onAdd, onDelete, onBlockMenu, push }: ProcessMapProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const [setViewport, viewport] = useSize();
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [sizes, setSizes] = useState<ReadonlyMap<string, Size>>(new Map());
@@ -422,7 +424,7 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
 
   return <div
     className="pmap agt" ref={attach} data-panning={panning ? "" : undefined}
-    style={grid} role="group" aria-label="Process map. Drag a block to move it, right-click a block for its shortcuts, drag the background to pan, press plus or minus to zoom, zero to fit." tabIndex={-1}
+    style={grid} role="group" aria-label={uiText("Process map. Drag a block to move it, right-click a block for its shortcuts, drag the background to pan, press plus or minus to zoom, zero to fit.")} tabIndex={-1}
     onPointerDownCapture={trackDown} onPointerMoveCapture={trackMove} onPointerUpCapture={trackUp} onPointerCancelCapture={trackUp}
     onPointerDown={onBackgroundDown} onPointerMove={onBackgroundMove} onPointerUp={onBackgroundUp} onPointerCancel={onBackgroundUp} onKeyDown={onViewportKey}
   >
@@ -459,19 +461,19 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
         return <div
           key={node.id} ref={register(node.id)} data-block={node.id}
           className="pmap__block agt__node" data-status={agent.status} data-selected={selected ? "" : undefined} data-multi={grouped.has(node.id) ? "" : undefined} data-target={connect?.over === node.id ? (connectCheck?.ok ? "ok" : "no") : undefined} data-dragging={drag?.id === node.id ? "" : undefined} data-root={node.id === root.id ? "" : undefined}
-          role="group" aria-label={`${agent.name}, ${statusLabel[agent.status]}${agent.badge ? `, ${agent.badge.label}` : ""}`} aria-current={selected ? "true" : undefined} tabIndex={0}
+          role="group" aria-label={uiText("{0}, {1}{2}", [agent.name, statusLabel[agent.status], agent.badge ? `, ${agent.badge.label}` : ""])} aria-current={selected ? "true" : undefined} tabIndex={0}
           style={{ left: at.x - BLOCK.w / 2, top: at.y - size.h / 2 }}
           onPointerDown={event => onBlockDown(event, node.id)} onKeyDown={event => onBlockKey(event, node.id)} onContextMenu={event => onBlockContext(event, node.id)}
         >
           <AgentCardBody agent={agent} now={now} formatCost={formatCost} showCost={showCost} />
-          {node.approval && <span className="proc-tag pmap__tag" title="Asks you before it runs">Approval</span>}
-          {failedTries.length > 0 && <ul className="pmap__tries" aria-label={`Earlier tries of ${agent.name}`}>
-            {failedTries.map((attempt, index) => <li key={attempt.id} title={attempt.error}><span>Try {index + 1} failed</span>{attempt.started !== undefined && attempt.ended !== undefined && <span>{showCost && attempt.cost !== undefined ? `${formatCost(attempt.cost)} · ` : ""}{durationLabel(attempt.ended - attempt.started)}</span>}</li>)}
+          {node.approval && <span className="proc-tag pmap__tag" title={uiText("Asks you before it runs")}>{uiText("Approval")}</span>}
+          {failedTries.length > 0 && <ul className="pmap__tries" aria-label={uiText("Earlier tries of {0}", [agent.name])}>
+            {failedTries.map((attempt, index) => <li key={attempt.id} title={uiText(attempt.error)}><span>{uiText("Try ")}{uiText(index + 1)} {uiText(" failed")}</span>{attempt.started !== undefined && attempt.ended !== undefined && <span>{uiText(showCost && attempt.cost !== undefined ? uiText("{0} · ", [formatCost(attempt.cost)]) : "")}{uiText(durationLabel(attempt.ended - attempt.started))}</span>}</li>)}
           </ul>}
-          {(agent.round?.earlier.length ?? 0) > 0 && <ul className="pmap__tries pmap__tries--rounds" aria-label={`Earlier rounds of ${agent.name}`}>
-            {agent.round!.earlier.map(round => <li key={round.round}><span>Round {round.round} · {statusLabel[round.status].toLowerCase()}</span>{round.started !== undefined && round.ended !== undefined && <span>{showCost ? `${formatCost(round.cost)} · ` : ""}{durationLabel(round.ended - round.started)}</span>}</li>)}
+          {(agent.round?.earlier.length ?? 0) > 0 && <ul className="pmap__tries pmap__tries--rounds" aria-label={uiText("Earlier rounds of {0}", [agent.name])}>
+            {agent.round!.earlier.map(round => <li key={round.round}><span>{uiText("Round ")}{uiText(round.round)} · {uiText(statusLabel[round.status].toLowerCase())}</span>{round.started !== undefined && round.ended !== undefined && <span>{uiText(showCost ? uiText("{0} · ", [formatCost(round.cost)]) : "")}{uiText(durationLabel(round.ended - round.started))}</span>}</li>)}
           </ul>}
-          {selected && !locked && sides.map(side => <button key={side} type="button" className="pmap__add" data-side={side} aria-label={`Add a block ${sideLabel[side]} ${agent.name}. Drag onto another block to connect it.`} title="Click to add a block. Drag onto another block to connect it, or onto empty space for a new one." onPointerDown={event => onHandleDown(event, node.id, side)} onClick={event => { if (event.detail === 0) addAt(node.id, side); }}><Plus size={13} /></button>)}
+          {selected && !locked && sides.map(side => <button key={side} type="button" className="pmap__add" data-side={side} aria-label={uiText("Add a block {0} {1}. Drag onto another block to connect it.", [sideLabel[side], agent.name])} title={uiText("Click to add a block. Drag onto another block to connect it, or onto empty space for a new one.")} onPointerDown={event => onHandleDown(event, node.id, side)} onClick={event => { if (event.detail === 0) addAt(node.id, side); }}><Plus size={13} /></button>)}
         </div>;
       })}
     </div>
@@ -479,11 +481,11 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
       {drawn.map(({ link, kind, edge }) => {
         const at = screenOf(edge.mid), rounds = link.rounds ?? 2;
         return <button key={link.id} type="button" className="pmap__pill" data-kind={kind} data-selected={link.id === selectedLinkId ? "" : undefined} style={{ left: at.x, top: at.y }}
-          aria-label={kind === "loop" ? `Loop from ${nameOf(link.from)} back to ${nameOf(link.to)}, up to ${rounds} rounds. Edit` : `${nameOf(link.to)} waits for ${nameOf(link.from)}. Edit`}
+          aria-label={uiText(kind === "loop" ? uiText("Loop from {0} back to {1}, up to {2} rounds. Edit", [nameOf(link.from), nameOf(link.to), rounds]) : uiText("{0} waits for {1}. Edit", [nameOf(link.to), nameOf(link.from)]))}
           aria-expanded={link.id === selectedLinkId} onClick={() => onSelectLink(link.id === selectedLinkId ? null : link.id)}
           onKeyDown={event => { if ((event.key === "Delete" || event.key === "Backspace") && !locked) { event.preventDefault(); onLinkRemove(link.id); } }}>
           {kind === "loop" ? <Repeat size={12} /> : <Hourglass size={12} />}
-          <span>{link.label ? link.label : kind === "loop" ? `${rounds}×` : "waits"}</span>
+          <span>{uiText(link.label ? link.label : kind === "loop" ? uiText("{0}×", [rounds]) : uiText("waits"))}</span>
         </button>;
       })}
       {openLink && (() => {
@@ -494,18 +496,18 @@ export function ProcessMap({ root, tree, selectedId, now, formatCost, showCost, 
         </div>;
       })()}
       {connect && <div className="pmap__hint" data-state={connectCheck ? connectCheck.ok ? "ok" : "no" : "new"} style={{ left: screenOf(connect.point).x, top: screenOf(connect.point).y }} role="status">
-        {connectCheck ? connectCheck.ok ? (connectCheck.kind === "loop" ? `Loop back to ${nameOf(connect.over!)}` : `${nameOf(connect.over!)} will wait for ${nameOf(connect.from)}`) : connectCheck.reason : "Drop to add a new block here"}
+        {uiText(connectCheck ? connectCheck.ok ? (connectCheck.kind === "loop" ? `Loop back to ${nameOf(connect.over!)}` : `${nameOf(connect.over!)} will wait for ${nameOf(connect.from)}`) : connectCheck.reason : uiText("Drop to add a new block here"))}
       </div>}
     </div>
     {notices && notices.groups.length > 0 && <NoticeSparks
       groups={notices.groups} nameOf={nameOf} viewport={viewport} inset={inset} seen={notices.seen} onSeen={notices.onSeen} onDismiss={notices.onDismiss}
       screenBox={id => { if (!ids.has(id)) return null; const box = boxFor(id), at = screenOf({ x: box.x, y: box.y }); return { x: at.x, y: at.y, w: box.w * view.scale, h: box.h * view.scale }; }} />}
-    <div className="pmap__controls" role="toolbar" aria-label="Map view">
-      <button type="button" className="pmap__control" aria-label="Zoom out" onClick={() => zoomBy(1 / 1.2)}><Minus size={14} /></button>
-      <span className="pmap__zoom" aria-live="polite">{percent}</span>
-      <button type="button" className="pmap__control" aria-label="Zoom in" onClick={() => zoomBy(1.2)}><Plus size={14} /></button>
-      <button type="button" className="pmap__control" aria-label="Fit the whole map" title="Fit the whole map" onClick={fit}><Maximize2 size={14} /></button>
+    <div className="pmap__controls" role="toolbar" aria-label={uiText("Map view")}>
+      <button type="button" className="pmap__control" aria-label={uiText("Zoom out")} onClick={() => zoomBy(1 / 1.2)}><Minus size={14} /></button>
+      <span className="pmap__zoom" aria-live="polite">{uiText(percent)}</span>
+      <button type="button" className="pmap__control" aria-label={uiText("Zoom in")} onClick={() => zoomBy(1.2)}><Plus size={14} /></button>
+      <button type="button" className="pmap__control" aria-label={uiText("Fit the whole map")} title={uiText("Fit the whole map")} onClick={fit}><Maximize2 size={14} /></button>
     </div>
-    <span className="agt__sr" role="status">{nodes.length} blocks</span>
+    <span className="agt__sr" role="status">{uiText(nodes.length)} {uiText(" blocks")}</span>
   </div>;
 }

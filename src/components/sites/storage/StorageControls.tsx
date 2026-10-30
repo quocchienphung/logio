@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ChevronDown, LoaderCircle, X } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from "react";
@@ -37,6 +38,7 @@ export function StorageButton({ variant = "primary", size = "md", loading = fals
 export type StorageControlAction = { id: string; label: string; icon?: ReactNode; onClick: () => void; disabled?: boolean; danger?: boolean; pressed?: boolean; iconOnly?: boolean; separatorBefore?: boolean };
 
 export function StorageSplitButton({ children, onClick, actions, disabled = false }: { children: ReactNode; onClick: () => void; actions: StorageControlAction[]; disabled?: boolean }) {
+  const { t: uiText } = useWorkspaceI18n();
   const id = useId();
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -58,10 +60,10 @@ export function StorageSplitButton({ children, onClick, actions, disabled = fals
   }, [open]);
   return <div className="stg-split">
     <StorageButton disabled={disabled} onClick={onClick}>{children}</StorageButton>
-    <button ref={triggerRef} type="button" className="stg-split-trigger" aria-label="More upload actions" aria-haspopup="menu" aria-expanded={open} disabled={disabled} popoverTarget={id} onClick={place} onKeyDown={event => {
+    <button ref={triggerRef} type="button" className="stg-split-trigger" aria-label={uiText("More upload actions")} aria-haspopup="menu" aria-expanded={open} disabled={disabled} popoverTarget={id} onClick={place} onKeyDown={event => {
       if (event.key === "ArrowDown" || event.key === "ArrowUp") { event.preventDefault(); place(); menuRef.current?.showPopover(); requestAnimationFrame(() => { const items = menuRef.current?.querySelectorAll<HTMLButtonElement>("button:not(:disabled)"); items?.[event.key === "ArrowUp" ? items.length - 1 : 0]?.focus(); }); }
     }}><ChevronDown size={16} className={open ? "stg-chevron-open" : ""} /></button>
-    <div ref={menuRef} id={id} popover="auto" role="menu" aria-label="Upload actions" className="stg-control-menu" style={{ top: position.top, left: position.left }} onToggle={event => {
+    <div ref={menuRef} id={id} popover="auto" role="menu" aria-label={uiText("Upload actions")} className="stg-control-menu" style={{ top: position.top, left: position.left }} onToggle={event => {
       const isOpen = event.newState === "open";
       setOpen(isOpen);
       if (isOpen) requestAnimationFrame(() => menuRef.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")?.focus());
@@ -74,16 +76,18 @@ export function StorageSplitButton({ children, onClick, actions, disabled = fals
         items[index]?.focus();
       }
       if (event.key === "Escape") triggerRef.current?.focus();
-    }}>{actions.map(action => <button key={action.id} type="button" role="menuitem" disabled={action.disabled} data-danger={action.danger || undefined} onClick={() => { menuRef.current?.hidePopover(); triggerRef.current?.focus(); action.onClick(); }}>{action.icon}{action.label}</button>)}</div>
+    }}>{actions.map(action => <button key={action.id} type="button" role="menuitem" disabled={action.disabled} data-danger={action.danger || undefined} onClick={() => { menuRef.current?.hidePopover(); triggerRef.current?.focus(); action.onClick(); }}>{uiText(action.icon)}{uiText(action.label)}</button>)}</div>
   </div>;
 }
 
 export function StorageButtonGroup({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
-  return <div role="group" aria-label={label} className={`stg-button-group ${className}`}>{children}</div>;
+  const { t: uiText } = useWorkspaceI18n();
+  return <div role="group" aria-label={uiText(label)} className={`stg-button-group ${className}`}>{children}</div>;
 }
 
 export function StorageFloatingButtonGroup({ label, actions, className = "", orientation = "horizontal", appearance = "muted" }: { label: string; actions: StorageControlAction[]; className?: string; orientation?: "horizontal" | "vertical"; appearance?: "muted" | "raised" }) {
-  return <div role="toolbar" aria-label={label} aria-orientation={orientation} data-appearance={appearance} className={`stg-floating-group ${className}`} onKeyDown={event => {
+  const { t: uiText } = useWorkspaceI18n();
+  return <div role="toolbar" aria-label={uiText(label)} aria-orientation={orientation} data-appearance={appearance} className={`stg-floating-group ${className}`} onKeyDown={event => {
     const previous = orientation === "vertical" ? "ArrowUp" : "ArrowLeft";
     const next = orientation === "vertical" ? "ArrowDown" : "ArrowRight";
     if (![previous, next, "Home", "End"].includes(event.key)) return;
@@ -91,14 +95,15 @@ export function StorageFloatingButtonGroup({ label, actions, className = "", ori
     const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
     event.preventDefault();
     buttons[event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : (current + (event.key === next ? 1 : -1) + buttons.length) % buttons.length]?.focus();
-  }}>{actions.map(action => <button key={action.id} type="button" aria-label={action.label} title={action.label} aria-pressed={action.pressed} disabled={action.disabled} data-danger={action.danger || undefined} data-icon-only={action.iconOnly || undefined} data-separator={action.separatorBefore || undefined} onClick={action.onClick}>{action.icon}{!action.iconOnly && <span>{action.label}</span>}</button>)}</div>;
+  }}>{actions.map(action => <button key={action.id} type="button" aria-label={uiText(action.label)} title={uiText(action.label)} aria-pressed={action.pressed} disabled={action.disabled} data-danger={action.danger || undefined} data-icon-only={action.iconOnly || undefined} data-separator={action.separatorBefore || undefined} onClick={action.onClick}>{uiText(action.icon)}{!action.iconOnly && <span>{uiText(action.label)}</span>}</button>)}</div>;
 }
 
 export function StorageExpandingButtonGroup({ label, actions, className = "" }: { label: string; actions: StorageControlAction[]; className?: string }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [active, setActive] = useState(actions[0]?.id);
   const reduced = useReducedMotion();
-  return <div role="group" aria-label={label} className={`stg-expanding-group ${className}`} onMouseLeave={() => setActive(actions[0]?.id)}>{actions.map(action => <motion.button key={action.id} type="button" aria-label={action.label} title={action.label} disabled={action.disabled} data-active={active === action.id || undefined} data-danger={action.danger || undefined} onPointerEnter={event => { if (event.pointerType === "mouse") setActive(action.id); }} onFocus={() => setActive(action.id)} onClick={action.onClick}>
-    {action.icon}<motion.span initial={false} animate={{ width: active === action.id ? "auto" : 0, opacity: active === action.id ? 1 : 0 }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}><span>{action.label}</span></motion.span>
+  return <div role="group" aria-label={uiText(label)} className={`stg-expanding-group ${className}`} onMouseLeave={() => setActive(actions[0]?.id)}>{actions.map(action => <motion.button key={action.id} type="button" aria-label={uiText(action.label)} title={uiText(action.label)} disabled={action.disabled} data-active={active === action.id || undefined} data-danger={action.danger || undefined} onPointerEnter={event => { if (event.pointerType === "mouse") setActive(action.id); }} onFocus={() => setActive(action.id)} onClick={action.onClick}>
+    {uiText(action.icon)}<motion.span initial={false} animate={{ width: active === action.id ? "auto" : 0, opacity: active === action.id ? 1 : 0 }} transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}><span>{uiText(action.label)}</span></motion.span>
   </motion.button>)}</div>;
 }
 
@@ -122,6 +127,7 @@ export function StorageIconMorph({ state, size = 16 }: { state: MorphIconState; 
 }
 
 export function StorageCopyButton({ value, label = "Copy", iconOnly = false, className = "" }: { value: string; label?: string; iconOnly?: boolean; className?: string }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
   const reset = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (reset.current) clearTimeout(reset.current); }, []);
@@ -131,7 +137,7 @@ export function StorageCopyButton({ value, label = "Copy", iconOnly = false, cla
     catch { setState("failed"); }
     reset.current = setTimeout(() => setState("idle"), 2000);
   }
-  return <><StorageButton variant="secondary" size="sm" className={`stg-copy ${iconOnly ? "stg-copy--icon" : ""} ${className}`} aria-label={state === "idle" ? label : state === "copied" ? `${label}: Copied` : `${label}: Copy failed`} title={label} onClick={() => void copy()}>
-    {state === "failed" ? <X size={16} /> : <StorageIconMorph state={state === "copied" ? "copied" : "copy"} />}{!iconOnly && (state === "copied" ? "Copied" : state === "failed" ? "Copy failed" : label)}
-  </StorageButton><span role="status" className="stg-sr-only">{state === "copied" ? `${label}: Copied` : state === "failed" ? "Copy failed. Check clipboard permission and try again." : ""}</span></>;
+  return <><StorageButton variant="secondary" size="sm" className={`stg-copy ${iconOnly ? "stg-copy--icon" : ""} ${className}`} aria-label={uiText(state === "idle" ? label : state === "copied" ? uiText("{0}: Copied", [label]) : uiText("{0}: Copy failed", [label]))} title={uiText(label)} onClick={() => void copy()}>
+    {state === "failed" ? <X size={16} /> : <StorageIconMorph state={state === "copied" ? "copied" : "copy"} />}{uiText(!iconOnly && (state === "copied" ? "Copied" : state === "failed" ? "Copy failed" : label))}
+  </StorageButton><span role="status" className="stg-sr-only">{uiText(state === "copied" ? uiText("{0}: Copied", [label]) : state === "failed" ? uiText("Copy failed. Check clipboard permission and try again.") : "")}</span></>;
 }

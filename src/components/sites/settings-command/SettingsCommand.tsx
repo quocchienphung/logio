@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react";
 import { Search, X } from "lucide-react";
@@ -39,6 +40,7 @@ export function SettingsCommand({ saved, onSave, notify, initialSection, onClose
   reveal?: boolean;
   profileEmail?: string;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const reduce = useReducedMotion();
   const [draft, setDraft] = useState(saved);
   const [current, setCurrent] = useState<SectionId>("general");
@@ -207,41 +209,41 @@ export function SettingsCommand({ saved, onSave, notify, initialSection, onClose
   function control(row: SettingRow) {
     const value = draft[row.key];
     const labelled = `${row.id}-label`, described = `${row.id}-hint`;
-    if (row.kind === "text") return <TextField id={row.id} value={String(value)} onChange={next => update(row.key, next as never)} labelledBy={labelled} describedBy={described} prefix={row.prefix} placeholder={row.placeholder} invalid={!!errors[row.key] && (attempted || edited.has(row.key))} errorId={`${row.id}-error`} />;
-    if (row.kind === "select") return <SelectField id={row.id} label={row.label} value={String(value)} options={row.options!} onChange={next => update(row.key, next as never)} />;
-    if (row.kind === "segmented") return <Segmented label={row.label} value={String(value)} options={row.options!} onChange={next => update(row.key, next as never)} />;
+    if (row.kind === "text") return <TextField id={row.id} value={String(value)} onChange={next => update(row.key, next as never)} labelledBy={labelled} describedBy={described} prefix={row.prefix} placeholder={uiText(row.placeholder)} invalid={!!errors[row.key] && (attempted || edited.has(row.key))} errorId={`${row.id}-error`} />;
+    if (row.kind === "select") return <SelectField id={row.id} label={uiText(row.label)} value={String(value)} options={row.options!} onChange={next => update(row.key, next as never)} />;
+    if (row.kind === "segmented") return <Segmented label={uiText(row.label)} value={String(value)} options={row.options!} onChange={next => update(row.key, next as never)} />;
     return <Switch id={row.id} checked={Boolean(value)} onChange={next => update(row.key, next as never)} labelledBy={labelled} describedBy={described} />;
   }
 
   return <div className="sc sc-tokens" data-reveal={reveal ? "" : undefined} onKeyDown={event => { if (event.key === "Escape" && !palette && changed.length && (event.target as HTMLElement).matches?.("input")) (event.target as HTMLElement).blur(); }}>
     <div className="sc-frame" ref={frame}>
       <header className="sc-header">
-        <h2 style={step(0)}>Settings</h2>
+        <h2 style={step(0)}>{uiText("Settings")}</h2>
         <div className="sc-trigger-slot" style={step(1)}>
           <button ref={trigger} type="button" className="sc-trigger" aria-haspopup="dialog" aria-keyshortcuts="Meta+K Control+K /" data-hidden={palette ? "" : undefined} onClick={openPalette}>
-            <Search size={16} aria-hidden="true" /><span>Search settings</span><kbd className="sc-kbd" aria-hidden="true">{shortcut}</kbd>
+            <Search size={16} aria-hidden="true" /><span>{uiText("Search settings")}</span><kbd className="sc-kbd" aria-hidden="true">{uiText(shortcut)}</kbd>
           </button>
         </div>
-        {onClose && <button type="button" className="sc-close" aria-label="Close settings" style={step(2)} onClick={onClose}><X size={16} aria-hidden="true" /></button>}
+        {onClose && <button type="button" className="sc-close" aria-label={uiText("Close settings")} style={step(2)} onClick={onClose}><X size={16} aria-hidden="true" /></button>}
       </header>
-      <nav className="sc-nav" aria-label="Settings sections"><ul>
+      <nav className="sc-nav" aria-label={uiText("Settings sections")}><ul>
         {sections.map((section, index) => {
           const Icon = sectionIcons[section.id];
           const active = current === section.id;
           return <li key={section.id} style={step(3 + index)}><button type="button" className="sc-nav__item" aria-current={active ? "true" : undefined} onClick={() => goToSection(section.id)}>
             {active && <motion.span className="sc-nav__highlight" layoutId="sc-nav-highlight" aria-hidden="true" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 520, damping: 40 }} />}
-            <Icon size={16} aria-hidden="true" /><span className="sc-nav__label">{section.label}</span>
-            {dirty.has(section.id) && <><span className="sc-nav__dot" aria-hidden="true" /><span className="sc-sr-only">Has edited settings</span></>}
+            <Icon size={16} aria-hidden="true" /><span className="sc-nav__label">{uiText(section.label)}</span>
+            {dirty.has(section.id) && <><span className="sc-nav__dot" aria-hidden="true" /><span className="sc-sr-only">{uiText("Has edited settings")}</span></>}
           </button></li>;
         })}
       </ul></nav>
       <div className="sc-main">
         <div className="sc-scroller" ref={scroller} tabIndex={-1}>
           {sections.map((section, sectionIndex) => <section key={section.id} className="sc-section" id={`sc-section-${section.id}`} aria-labelledby={`sc-heading-${section.id}`} ref={node => { if (node) sectionNodes.current.set(section.id, node); }}>
-            <div className="sc-section__head" style={step(9 + sectionIndex * 2)}><h3 id={`sc-heading-${section.id}`}>{section.label}</h3><p>{section.description(draft)}</p></div>
+            <div className="sc-section__head" style={step(9 + sectionIndex * 2)}><h3 id={`sc-heading-${section.id}`}>{uiText(section.label)}</h3><p>{section.id === "general" ? uiText("Name, address, and regional defaults for {0}.", [draft.workspaceName.trim() || uiText("this workspace")]) : uiText(section.description(draft))}</p></div>
             {section.id === 'where-you-log' && <SecuritySettings email={profileEmail} embedded labelledBy={`sc-heading-${section.id}`} />}
             <div className="sc-rows">
-              {rows.filter(row => row.section === section.id).map(row => <Row key={row.id} order={rows.indexOf(row)} id={row.id} label={row.label} hint={row.hint} kind={row.kind} wide={row.kind === "text"} dirty={edited.has(row.key)} error={errors[row.key] && (attempted || edited.has(row.key)) ? errors[row.key] : undefined} pulse={pulse?.id === row.id ? pulse.flip : undefined} rowRef={node => { if (node) rowNodes.current.set(row.id, node); else rowNodes.current.delete(row.id); }}>{control(row)}</Row>)}
+              {rows.filter(row => row.section === section.id).map(row => <Row key={row.id} order={rows.indexOf(row)} id={row.id} label={uiText(row.label)} hint={uiText(row.hint)} kind={row.kind} wide={row.kind === "text"} dirty={edited.has(row.key)} error={errors[row.key] && (attempted || edited.has(row.key)) ? errors[row.key] : undefined} pulse={pulse?.id === row.id ? pulse.flip : undefined} rowRef={node => { if (node) rowNodes.current.set(row.id, node); else rowNodes.current.delete(row.id); }}>{uiText(control(row))}</Row>)}
             </div>
           </section>)}
         </div>
@@ -249,6 +251,6 @@ export function SettingsCommand({ saved, onSave, notify, initialSection, onClose
       </div>
       <AnimatePresence>{palette && <SettingsPalette key="palette" origin={palette} frameWidth={frameWidth} onClose={closePalette} onPick={pick} onAnnounce={announce} />}</AnimatePresence>
     </div>
-    <div className="sc-sr-only" role="status" aria-live="polite">{message}</div>
+    <div className="sc-sr-only" role="status" aria-live="polite">{uiText(message)}</div>
   </div>;
 }

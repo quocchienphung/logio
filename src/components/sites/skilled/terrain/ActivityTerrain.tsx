@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { AnimatedNumber } from "./AnimatedNumber";
@@ -31,6 +32,7 @@ const percent = (value: number) => `${(Math.round(value * 10) / 10).toFixed(1)}%
  * or, while there are none (or when asked), a sample week that is always labelled as one.
  */
 export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] }) {
+  const { t: uiText } = useWorkspaceI18n();
   const titleId = useId(), hintId = useId();
   const [now] = useState(() => Date.now());
   const [choice, setChoice] = useState<Source | null>(null);
@@ -55,7 +57,7 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
   const grouping: GroupingId = groupings.includes(groupingChoice) ? groupingChoice : "day";
   const hiddenSet = useMemo(() => new Set(hidden), [hidden]);
   const metric = useMemo(() => maskedMetric(week, metricId, grouping, hiddenSet), [week, metricId, grouping, hiddenSet]);
-  const splitSegments = useMemo(() => breakdownGroups(grouping, week, metricId), [grouping, week, metricId]);
+  const splitSegments = useMemo(() => breakdownGroups(grouping, week, metricId).map(segment => ({ ...segment, label: uiText(segment.label), short: uiText(segment.short) })), [grouping, week, metricId, uiText]);
   const leftOut = hiddenSummary(grouping, hiddenSet);
   const summary = useMemo(() => summarize(metric), [metric]);
   const peakIndex = summary.peak?.index ?? null;
@@ -95,6 +97,7 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
     shown.current = true;
   }, [metric, metricId, source]);
   useEffect(() => { engineRef.current?.setMode(mode); }, [mode]);
+  useEffect(() => { engineRef.current?.setLocalize(uiText); }, [uiText]);
   useEffect(() => { engineRef.current?.setPeak(peakIndex); }, [peakIndex]);
   // the part of the split bar under the pointer lights its hours up: every other column fades back
   useEffect(() => {
@@ -123,98 +126,98 @@ export function ActivityTerrain({ events }: { events: readonly TerrainEvent[] })
       <div className="at__inner">
         <header className="at__header">
           <div>
-            <h2 id={titleId}>The shape of your week</h2>
-            <p>Hourly {METRIC_OPTIONS.map(option => option.label.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1")} for {week.rangeLabel}, in workspace time.</p>
+            <h2 id={titleId}>{uiText("The shape of your week")}</h2>
+            <p>{uiText("Hourly ")}{uiText(METRIC_OPTIONS.map(option => option.label.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1"))} {uiText(" for ")}{uiText(week.rangeLabel)}{uiText(", in workspace time.")}</p>
           </div>
-          <Segmented label="Data" value={source} options={SOURCE_OPTIONS} onChange={value => { setChoice(value); setFlyIndex(null); setHidden([]); setFocusId(null); }} />
+          <Segmented label={uiText("Data")} value={source} options={SOURCE_OPTIONS} onChange={value => { setChoice(value); setFlyIndex(null); setHidden([]); setFocusId(null); }} />
         </header>
         <div className="at__toolbar">
-          <Segmented label="Metric" value={metricId} options={METRIC_OPTIONS} onChange={setMetricId} />
-          <Segmented label="Camera" value={mode} options={MODE_OPTIONS} onChange={setMode} />
+          <Segmented label={uiText("Metric")} value={metricId} options={METRIC_OPTIONS} onChange={setMetricId} />
+          <Segmented label={uiText("Camera")} value={mode} options={MODE_OPTIONS} onChange={setMode} />
         </div>
         <div className="at__body">
           <div className="at__stage">
             <div className="at__viewport">
-              <div ref={plotRef} className="at__plot" tabIndex={0} role="group" aria-label={`${metric.label} terrain`} aria-describedby={hintId}>
-                <canvas ref={canvasRef} className="at__canvas" role="img" aria-label={describeWeek(metric, week, summary)} />
+              <div ref={plotRef} className="at__plot" tabIndex={0} role="group" aria-label={uiText("{0} terrain", [metric.label])} aria-describedby={hintId}>
+                <canvas ref={canvasRef} className="at__canvas" role="img" aria-label={uiText(describeWeek(metric, week, summary))} />
                 <div ref={panelRef} className="at__panel" aria-hidden="true" data-show={highlight ? "" : undefined}>
                   {detail && <>
-                    <p className="at__panelHead"><span>{DAY_NAMES[detail.day]}</span><span>{hourLabel(detail.hour)} to {hourLabel((detail.hour + 1) % HOURS)}</span></p>
-                    <p className="at__panelValue">{formatCount(detail.value)} <span>{unitOf(metric, detail.value)}</span></p>
+                    <p className="at__panelHead"><span>{uiText(DAY_NAMES[detail.day])}</span><span>{uiText(hourLabel(detail.hour))} {uiText(" to ")}{uiText(hourLabel((detail.hour + 1) % HOURS))}</span></p>
+                    <p className="at__panelValue">{uiText(formatCount(detail.value))} <span>{uiText(unitOf(metric, detail.value))}</span></p>
                     <dl className="at__panelRows">
-                      <div><dt>Last week</dt><dd>{formatCount(detail.previous)}</dd></div>
-                      <div><dt>Change</dt><dd data-tone={detailTone}>{formatDelta(detail.change)}</dd></div>
-                      <div><dt>Share of {shortDay(detail.day)}</dt><dd>{percent(detail.share)}</dd></div>
+                      <div><dt>{uiText("Last week")}</dt><dd>{uiText(formatCount(detail.previous))}</dd></div>
+                      <div><dt>{uiText("Change")}</dt><dd data-tone={detailTone}>{uiText(formatDelta(detail.change))}</dd></div>
+                      <div><dt>{uiText("Share of ")}{uiText(shortDay(detail.day))}</dt><dd>{uiText(percent(detail.share))}</dd></div>
                     </dl>
                     <span className="at__spark" aria-hidden="true">{detail.spark.map((value, hour) => <span key={hour} style={{ "--v": value } as React.CSSProperties} data-on={hour === detail.hour ? "" : undefined} />)}</span>
                   </>}
                 </div>
                 {empty && <div className="at__empty" role="status">
-                  <p><strong>Nothing recorded this week yet</strong>Import, save or deliver a skill and its hour shows up here.</p>
-                  <button type="button" onClick={() => setChoice("sample")}>Preview a sample week</button>
+                  <p><strong>{uiText("Nothing recorded this week yet")}</strong>{uiText("Import, save or deliver a skill and its hour shows up here.")}</p>
+                  <button type="button" onClick={() => setChoice("sample")}>{uiText("Preview a sample week")}</button>
                 </div>}
               </div>
-              <button type="button" className="at__reset" data-hidden={flyIndex === null ? "" : undefined} aria-hidden={flyIndex === null || undefined} tabIndex={flyIndex === null ? -1 : 0} onClick={() => engineRef.current?.resetView()}><RotateCcw size={16} aria-hidden="true" />Reset view</button>
+              <button type="button" className="at__reset" data-hidden={flyIndex === null ? "" : undefined} aria-hidden={flyIndex === null || undefined} tabIndex={flyIndex === null ? -1 : 0} onClick={() => engineRef.current?.resetView()}><RotateCcw size={16} aria-hidden="true" />{uiText("Reset view")}</button>
             </div>
             <div className="at__legend">
-              <span className="at__scale" aria-hidden="true">Fewer<span className="at__ramp">{ramp.map((color, index) => <span key={index} style={{ "--light": color, "--dark": darkRamp[index] } as React.CSSProperties} />)}</span>More</span>
+              <span className="at__scale" aria-hidden="true">{uiText("Fewer")}<span className="at__ramp">{ramp.map((color, index) => <span key={index} style={{ "--light": color, "--dark": darkRamp[index] } as React.CSSProperties} />)}</span>{uiText("More")}</span>
               <p id={hintId} className="at__hint">
-                <span className="at__hintFine">Drag to orbit, pinch to zoom, click a bar to fly in.</span>
-                <span className="at__hintTouch">Swipe sideways to orbit, tap a bar to fly in.</span>
-                <span className="at__sr"> Arrow keys move between hours and days, Enter focuses a bar, Shift with arrow keys orbits, plus and minus zoom, Escape clears.</span>
+                <span className="at__hintFine">{uiText("Drag to orbit, pinch to zoom, click a bar to fly in.")}</span>
+                <span className="at__hintTouch">{uiText("Swipe sideways to orbit, tap a bar to fly in.")}</span>
+                <span className="at__sr"> {uiText(" Arrow keys move between hours and days, Enter focuses a bar, Shift with arrow keys orbits, plus and minus zoom, Escape clears.")}</span>
               </p>
             </div>
           </div>
-          <aside className="at__stats" aria-label="Week summary">
+          <aside className="at__stats" aria-label={uiText("Week summary")}>
             <div className="at__stat">
-              <p className="at__label">{metric.label} {leftOut ? "in view" : "this week"}</p>
+              <p className="at__label">{uiText(metric.label)} {uiText(leftOut ? uiText("in view") : uiText("this week"))}</p>
               <p className="at__big"><AnimatedNumber text={formatCount(summary.total)} /></p>
               <span className="at__delta" data-tone={tone}>
-                <span className="at__deltaIcon" aria-hidden="true">{delta === null ? "–" : delta >= 0 ? "↗" : "↘"}</span>
-                <span className="at__deltaValue">{formatDelta(delta)}</span>
-                <span>{delta === null ? "no earlier week to compare" : "vs last week"}</span>
+                <span className="at__deltaIcon" aria-hidden="true">{uiText(delta === null ? "–" : delta >= 0 ? "↗" : "↘")}</span>
+                <span className="at__deltaValue">{uiText(formatDelta(delta))}</span>
+                <span>{uiText(delta === null ? uiText("no earlier week to compare") : uiText("vs last week"))}</span>
               </span>
             </div>
             <div className="at__stat">
-              <p className="at__label">Peak hours</p>
+              <p className="at__label">{uiText("Peak hours")}</p>
               <ul className="at__peaks">
-                {summary.peaks.length === 0 && <li className="at__none">No busy hours yet</li>}
+                {summary.peaks.length === 0 && <li className="at__none">{uiText("No busy hours yet")}</li>}
                 {summary.peaks.map(peak => <li key={peak.index}>
-                  <button type="button" className="at__peak" aria-pressed={flyIndex === peak.index} aria-label={`${DAY_NAMES[peak.day]} ${hourLabel(peak.hour)}, ${formatCount(peak.value)} ${unitOf(metric, peak.value)}. Fly to this hour`} onClick={() => (flyIndex === peak.index ? engineRef.current?.exitFly() : engineRef.current?.flyTo(peak.index))}>
-                    <span>{shortDay(peak.day)} {hourLabel(peak.hour)}</span>
+                  <button type="button" className="at__peak" aria-pressed={flyIndex === peak.index} aria-label={uiText("{0} {1}, {2} {3}. Fly to this hour", [DAY_NAMES[peak.day], hourLabel(peak.hour), formatCount(peak.value), unitOf(metric, peak.value)])} onClick={() => (flyIndex === peak.index ? engineRef.current?.exitFly() : engineRef.current?.flyTo(peak.index))}>
+                    <span>{uiText(shortDay(peak.day))} {uiText(hourLabel(peak.hour))}</span>
                     <span className="at__peakValue"><AnimatedNumber text={formatCount(peak.value)} /></span>
                   </button>
                 </li>)}
               </ul>
             </div>
             <div className="at__stat">
-              <p className="at__label">Busiest day</p>
-              <p className="at__mid">{busiest ? DAY_NAMES[busiest.day] : "—"}</p>
-              <p className="at__sub">{busiest ? <><AnimatedNumber text={formatCount(busiest.total)} /> {unitOf(metric, busiest.total)}, <AnimatedNumber text={percent(busiest.workingShare)} /> in working hours</> : `No ${unit} yet`}</p>
+              <p className="at__label">{uiText("Busiest day")}</p>
+              <p className="at__mid">{uiText(busiest ? DAY_NAMES[busiest.day] : "—")}</p>
+              <p className="at__sub">{busiest ? <><AnimatedNumber text={formatCount(busiest.total)} /> {uiText(unitOf(metric, busiest.total))}, <AnimatedNumber text={percent(busiest.workingShare)} /> {uiText(" in working hours")}</> : uiText("No {0} yet", [unit])}</p>
             </div>
           </aside>
         </div>
         <div className="at__split">
           <div className="at__splitTop">
-            <Segmented label="Split the week by" value={grouping} options={groupings.map(id => ({ value: id, label: GROUPING_LABELS[id] }))} onChange={changeGrouping} />
-            {leftOut && <p className="at__splitNote"><span>Left out of the terrain: {leftOut}.</span><button type="button" onClick={() => { setHidden([]); setFocusId(null); }}>Show all</button></p>}
+            <Segmented label={uiText("Split the week by")} value={grouping} options={groupings.map(id => ({ value: id, label: GROUPING_LABELS[id] }))} onChange={changeGrouping} />
+            {leftOut && <p className="at__splitNote"><span>{uiText("Left out of the terrain: ")}{uiText(leftOut)}.</span><button type="button" onClick={() => { setHidden([]); setFocusId(null); }}>{uiText("Show all")}</button></p>}
           </div>
           <SplitBar
-            title="Where the week went" tone={metric.tone === "danger" ? "danger" : "neutral"}
-            description={`${metric.label} by ${grouping === "daypart" ? "time of day" : grouping}, ${week.rangeLabel}. Switch a part off to leave it out of the terrain.`}
+            title={uiText("Where the week went")} tone={metric.tone === "danger" ? "danger" : "neutral"}
+            description={uiText("{0} by {1}, {2}. Switch a part off to leave it out of the terrain.", [uiText(metric.label), uiText(GROUPING_LABELS[grouping]), week.rangeLabel])}
             segments={splitSegments} unit={metric.plural} totalLabel={leftOut ? "In view" : "This week"} emptyLabel="Nothing recorded this week yet"
             hidden={hidden} onHiddenChange={setHidden} highlightId={barHighlight} onHighlightChange={setFocusId} />
         </div>
-        <p className="at__sr" aria-live="polite">{spoken}</p>
+        <p className="at__sr" aria-live="polite">{uiText(spoken)}</p>
         <div className="at__sr">
           <table>
-            <caption>{metric.label} per hour, {week.rangeLabel}, workspace time{source === "sample" ? " (sample week)" : ""}</caption>
-            <thead><tr><th scope="col">Day</th>{Array.from({ length: HOURS }, (_, hour) => <th scope="col" key={hour}>{hourLabel(hour)}</th>)}</tr></thead>
-            <tbody>{DAY_NAMES.map((name, day) => <tr key={name}><th scope="row">{name}</th>{metric.values.slice(day * HOURS, (day + 1) * HOURS).map((value, hour) => <td key={hour}>{formatCount(value)}</td>)}</tr>)}</tbody>
+            <caption>{uiText(metric.label)} {uiText(" per hour, ")}{uiText(week.rangeLabel)}{uiText(", workspace time")}{uiText(source === "sample" ? uiText(" (sample week)") : "")}</caption>
+            <thead><tr><th scope="col">{uiText("Day")}</th>{Array.from({ length: HOURS }, (_, hour) => <th scope="col" key={hour}>{uiText(hourLabel(hour))}</th>)}</tr></thead>
+            <tbody>{DAY_NAMES.map((name, day) => <tr key={name}><th scope="row">{name}</th>{metric.values.slice(day * HOURS, (day + 1) * HOURS).map((value, hour) => <td key={hour}>{uiText(formatCount(value))}</td>)}</tr>)}</tbody>
           </table>
         </div>
       </div>
-      {source === "sample" && <p className="at__note">{hasOwn ? "Showing a sample week, not your operations." : "A sample week, so there is something to explore. Your own operations replace it as soon as you import, save or deliver a skill."}</p>}
+      {source === "sample" && <p className="at__note">{uiText(hasOwn ? uiText("Showing a sample week, not your operations.") : uiText("A sample week, so there is something to explore. Your own operations replace it as soon as you import, save or deliver a skill."))}</p>}
     </div>
   </section>;
 }

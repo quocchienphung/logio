@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { SettingsCommand } from "./SettingsCommand";
@@ -35,6 +36,7 @@ export function SettingsOverlay({ origin, section, saved, onSave, onClose, notif
   onClose: () => void; notify?: (message: string) => void;
   profileEmail?: string;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const reduce = useReducedMotion();
   const [target, setTarget] = useState<OverlayRect>(targetRect);
   const [start] = useState<OverlayRect>(() => origin ?? rectOf(document.querySelector(".ui-as-user")) ?? { x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 20, width: 200, height: 40 });
@@ -84,7 +86,7 @@ export function SettingsOverlay({ origin, section, saved, onSave, onClose, notif
   const radius = leaving ? 12 : 20;
   return <div className="sc-overlay" onKeyDown={onKeyDown}>
     <motion.div className="sc-overlay__scrim" aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: leaving ? 0 : 1 }} transition={{ duration: reduce ? 0.12 : 0.28 }} onPointerDown={close} />
-    <motion.div ref={panel} className="sc-overlay__panel sc-tokens" role="dialog" aria-modal="true" aria-label="Settings" tabIndex={-1}
+    <motion.div ref={panel} className="sc-overlay__panel sc-tokens" role="dialog" aria-modal="true" aria-label={uiText("Settings")} tabIndex={-1}
       initial={{ x: start.x, y: start.y, width: start.width, height: start.height, borderRadius: 14, opacity: 1 }}
       animate={{ x: goal.x, y: goal.y, width: goal.width, height: goal.height, borderRadius: radius, opacity: leaving && !reduce ? 0.01 : leaving ? 0 : 1 }}
       transition={leaving ? { ...(reduce ? { duration: 0.14 } : { type: "spring", stiffness: 230, damping: 28 }), opacity: { duration: 0.18, delay: reduce ? 0 : 0.14 } } : spring}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useId } from "react";
 import type { ReactNode } from "react";
 import { Check, LoaderCircle, ShieldCheck, X } from "lucide-react";
@@ -14,6 +15,7 @@ export function PermissionRequest({ name, avatar, target, reason, items, decisio
   decision?: PermissionDecision; busy?: boolean; error?: string; preview?: boolean; simulated?: boolean;
   onDecision: (decision: PermissionDecision) => void; onReset?: () => void;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const id = useId();
   return <div className="permission-request" data-decision={decision} data-preview={preview ? "" : undefined}
     role={decision ? "status" : preview ? "group" : "dialog"} aria-modal={!decision && !preview ? false : undefined}
@@ -25,29 +27,29 @@ export function PermissionRequest({ name, avatar, target, reason, items, decisio
     }}>
     {decision ? <div className="permission-request__resolved">
       <span className="permission-request__result-icon" aria-hidden="true">{decision === "approve" ? <Check size={14} /> : <X size={14} />}</span>
-      <span id={`${id}-title`}><strong>{decision === "approve" ? "Allowed just once" : "Denied"}</strong><span className="permission-request__result-name"> · {name}</span></span>
-      {onReset && <button type="button" className="permission-request__text-button" onClick={onReset}>Try again</button>}
+      <span id={`${id}-title`}><strong>{uiText(decision === "approve" ? uiText("Allowed just once") : uiText("Denied"))}</strong><span className="permission-request__result-name"> · {name}</span></span>
+      {onReset && <button type="button" className="permission-request__text-button" onClick={onReset}>{uiText("Try again")}</button>}
     </div> : <>
       <header className="permission-request__head" data-panel-reveal>
-        <span className="permission-request__avatar" aria-hidden="true">{avatar ?? name.slice(0, 2).toUpperCase()}</span>
-        <div className="permission-request__heading"><span id={`${id}-title`}><b>{name}</b> wants to <b>run this block</b></span><span className="permission-request__target">{target}</span></div>
-        <span className="permission-request__badge"><ShieldCheck size={12} aria-hidden="true" />Ask first</span>
+        <span className="permission-request__avatar" aria-hidden="true">{uiText(avatar ?? name.slice(0, 2).toUpperCase())}</span>
+        <div className="permission-request__heading"><span id={`${id}-title`}><b>{name}</b> {uiText(" wants to ")}<b>{uiText("run this block")}</b></span><span className="permission-request__target">{uiText(target)}</span></div>
+        <span className="permission-request__badge"><ShieldCheck size={12} aria-hidden="true" />{uiText("Ask first")}</span>
       </header>
-      <p id={`${id}-reason`} className="permission-request__reason" data-panel-reveal>{reason}</p>
+      <p id={`${id}-reason`} className="permission-request__reason" data-panel-reveal>{uiText(reason)}</p>
       <section className="permission-request__preview" aria-labelledby={`${id}-what`} data-panel-reveal>
-        <h4 id={`${id}-what`}>What will happen <span>{items.length}</span></h4>
+        <h4 id={`${id}-what`}>{uiText("What will happen ")}<span>{uiText(items.length)}</span></h4>
         <ul>{items.map(item => <li key={item.id}>
           <span className="permission-request__item-icon" aria-hidden="true">{item.icon ?? <ShieldCheck size={16} />}</span>
-          <span className="permission-request__item-label">{item.label}</span>{item.detail && <span className="permission-request__meta">{item.detail}</span>}
+          <span className="permission-request__item-label">{uiText(item.label)}</span>{item.detail && <span className="permission-request__meta">{uiText(item.detail)}</span>}
         </li>)}</ul>
       </section>
       <footer className="permission-request__answer" data-panel-reveal>
-        <div className="permission-request__scope"><span><ShieldCheck size={13} aria-hidden="true" />Just once</span><small>Ask again next run</small></div>
-        <p className="permission-request__note">{preview ? "Preview only. These buttons won’t start a run." : simulated ? "Simulation only. No model or external tool is called." : "Allows this block in this run. Other blocks keep their own rules."}</p>
-        {error && <p className="permission-request__error" role="alert">{error}</p>}
+        <div className="permission-request__scope"><span><ShieldCheck size={13} aria-hidden="true" />{uiText("Just once")}</span><small>{uiText("Ask again next run")}</small></div>
+        <p className="permission-request__note">{uiText(preview ? uiText("Preview only. These buttons won’t start a run.") : simulated ? uiText("Simulation only. No model or external tool is called.") : uiText("Allows this block in this run. Other blocks keep their own rules."))}</p>
+        {error && <p className="permission-request__error" role="alert">{uiText(error)}</p>}
         <div className="permission-request__buttons">
-          <button type="button" className="permission-request__button" disabled={busy} aria-label="Deny" onClick={() => onDecision("reject")}>Deny<kbd aria-hidden="true">Esc</kbd></button>
-          <button type="button" className="permission-request__button permission-request__button--primary" disabled={busy} aria-label="Allow once" onClick={() => onDecision("approve")}>{busy ? <><LoaderCircle size={14} className="permission-request__spinner" aria-hidden="true" />Sending…</> : <>Allow once<kbd aria-hidden="true">↵</kbd></>}</button>
+          <button type="button" className="permission-request__button" disabled={busy} aria-label={uiText("Deny")} onClick={() => onDecision("reject")}>{uiText("Deny")}<kbd aria-hidden="true">{uiText("Esc")}</kbd></button>
+          <button type="button" className="permission-request__button permission-request__button--primary" disabled={busy} aria-label={uiText("Allow once")} onClick={() => onDecision("approve")}>{busy ? <><LoaderCircle size={14} className="permission-request__spinner" aria-hidden="true" />{uiText("Sending…")}</> : <>{uiText("Allow once")}<kbd aria-hidden="true">↵</kbd></>}</button>
         </div>
       </footer>
     </>}

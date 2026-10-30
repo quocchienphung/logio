@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { CommandPanel } from "./CommandPanel";
@@ -7,6 +8,7 @@ import { navigationItems, type NavigationItem } from "./navigation-items";
 import "./command-palette.css";
 
 export function CommandPalette() {
+  const { t: uiText } = useWorkspaceI18n();
   const [open,setOpen]=useState(false);
   const [dark,setDark]=useState(false);
   const dialog=useRef<HTMLDialogElement>(null);
@@ -67,7 +69,7 @@ export function CommandPalette() {
     }else if(target.href!==window.location.href){window.location.assign(target.href);}
   }
 
-  return <dialog ref={dialog} className="cp-dialog" data-theme={dark?"dark":"light"} data-closing={!open || undefined} aria-label="Navigate pages" aria-modal="true" onCancel={event=>{event.preventDefault();close();}} onKeyDown={event=>{event.stopPropagation();if(event.key==="Escape" && !event.nativeEvent.isComposing){event.preventDefault();close();}}} onPointerDown={event=>{pointerOutside.current=event.target===event.currentTarget;}} onClick={event=>{if(event.target===event.currentTarget && pointerOutside.current)close();pointerOutside.current=false;}}>
+  return <dialog ref={dialog} className="cp-dialog" data-theme={dark?"dark":"light"} data-closing={!open || undefined} aria-label={uiText("Navigate pages")} aria-modal="true" onCancel={event=>{event.preventDefault();close();}} onKeyDown={event=>{event.stopPropagation();if(event.key==="Escape" && !event.nativeEvent.isComposing){event.preventDefault();close();}}} onPointerDown={event=>{pointerOutside.current=event.target===event.currentTarget;}} onClick={event=>{if(event.target===event.currentTarget && pointerOutside.current)close();pointerOutside.current=false;}}>
     <AnimatePresence onExitComplete={finishClose}>{open && <CommandPanel key="palette" items={navigationItems} onSelect={select} onClose={close} />}</AnimatePresence>
   </dialog>;
 }

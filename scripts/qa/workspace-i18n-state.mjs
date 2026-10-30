@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import { chromium } from 'playwright';
+const base = process.argv[2] ?? 'http://localhost:3001', out = 'docs/research/workspace-i18n/state';
+await fs.mkdir(out, { recursive: true });
+const browser = await chromium.launch({ channel: 'chrome' }), errors = [];
+try {
+  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'reduce' });
+  const page = await context.newPage(); page.on('pageerror', error => errors.push(error.message));
+  await page.goto(`${base}/personalize?section=home&settings=general`);
+  await page.locator('.sc-frame').waitFor();
+  const reject = page.getByRole('button', { name: 'Reject all', exact: true }); if (await reject.isVisible()) await reject.click();
+  await page.waitForTimeout(900);
+  const measure = () => page.locator('[data-setting="workspace-name"]').evaluate(row => {
+    const label = row.querySelector('label'), field = row.querySelector('.sc-text'), l = getComputedStyle(label), f = getComputedStyle(field), rect = field.getBoundingClientRect();
+    return { label: [l.fontFamily, l.fontSize, l.fontWeight, l.lineHeight], field: [f.fontFamily, f.fontSize, f.fontWeight, f.lineHeight], x: rect.x, width: rect.width };
+  });
+  const english = await measure();
+  await page.locator('[data-setting="language"]').getByRole('button', { name: 'Tiếng Việt', exact: true }).click();
+  await page.getByRole('button', { name: 'Save', exact: true }).click();
+  await page.getByRole('heading', { name: 'Cài đặt', exact: true }).waitFor(); await page.waitForTimeout(1000);
+  const vietnamese = await measure(); assert.deepEqual(vietnamese, english, 'Settings font and control grid stay identical');
+  await page.getByRole('button', { name: 'Đóng cài đặt', exact: true }).click();
+  await page.evaluate(() => {
+    localStorage.setItem('affectui:workspaces', JSON.stringify([{ id: 'acme', name: 'Save' }, { id: 'personal', name: 'Personal' }]));
+    localStorage.setItem('affectui:profile', JSON.stringify({ name: 'Home', email: 'alex@logio.com', role: 'Save' }));
+    localStorage.setItem('affectui:acme:contacts', JSON.stringify([{ id: 'language-check', name: 'Cancel', email: 'person@example.com', role: 'Home' }]));
+    localStorage.setItem('affectui:acme:companies', JSON.stringify([{ id: 'language-check', company: 'Save', category: 'Design', domain: 'example.com', owner: 'Home', value: 100, stage: 'New', lastContact: 'Today' }]));
+  });
+  await page.goto(`${base}/personalize?section=companies`); await page.locator('.ui-dt__name-text').waitFor();
+  assert.equal(await page.locator('.ui-dt__name-text').first().innerText(), 'Save');
+  assert.match(await page.locator('.ui-as-user').innerText(), /Home/);
+  assert.match(await page.locator('.ui-as-news__kicker').first().innerText(), /Save/);
+  await page.goto(`${base}/personalize?section=contacts`); await page.locator('.workspace-contact h2').waitFor();
+  assert.equal(await page.locator('.workspace-contact h2').innerText(), 'Cancel');
+  assert.equal(await page.locator('.workspace-contact > p').innerText(), 'Home');
+  await page.goto(`${base}/personalize?section=home&settings=general`); await page.locator('.sc-frame').waitFor();
+  await page.locator('[data-setting="language"]').getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'Lưu', exact: true }).click();
+  await page.getByRole('heading', { name: 'Settings', exact: true }).waitFor();
+  assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('affectui:interface-language'))), 'en');
+  const stored = await page.evaluate(() => ({ companies: JSON.parse(localStorage.getItem('affectui:acme:companies')), profile: JSON.parse(localStorage.getItem('affectui:profile')) }));
+  assert.equal(stored.companies[0].company, 'Save'); assert.equal(stored.profile.name, 'Home');
+  await page.evaluate(() => localStorage.setItem('affectui:interface-language', '"vi"'));
+  await page.goto(base); await page.waitForTimeout(500);
+  assert.equal(await page.locator('html').getAttribute('lang'), 'en-US', 'marketing homepage remains English');
+  assert.deepEqual(errors, []);
+  await fs.writeFile(`${out}/results.json`, JSON.stringify({ english, vietnamese, savedNames: stored, errors }, null, 2));
+  console.log('PASS font/grid parity, names and data preserved, English round trip, homepage scope');
+} finally { await browser.close(); }

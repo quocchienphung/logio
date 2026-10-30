@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useRef, useState, type CSSProperties, type DragEvent } from "react";
 import "./storage-dropzone.css";
 
@@ -59,6 +60,7 @@ function DocumentBadge({ type }: { type: "PDF" | "SQL" }) {
 
 /** Independent reconstruction of affectUI's publicly rendered Dropzone. */
 export function StorageDropzone({ onFiles, disabled = false, entries = [], onRemove, onRetry }: StorageDropzoneProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const input = useRef<HTMLInputElement>(null);
   const depth = useRef(0);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -114,7 +116,7 @@ export function StorageDropzone({ onFiles, disabled = false, entries = [], onRem
   return <div className="storage-dropzone" data-disabled={disabled || undefined}>
     <div className="storage-dropzone__card">
       <div className="storage-dropzone__body">
-        <input ref={input} className="storage-dropzone__input" type="file" multiple accept={extensions} disabled={disabled} tabIndex={-1} aria-label="Choose storage documents" onChange={event => {
+        <input ref={input} className="storage-dropzone__input" type="file" multiple accept={extensions} disabled={disabled} tabIndex={-1} aria-label={uiText("Choose storage documents")} onChange={event => {
           receive(Array.from(event.currentTarget.files ?? []));
           event.currentTarget.value = "";
         }} />
@@ -128,13 +130,13 @@ export function StorageDropzone({ onFiles, disabled = false, entries = [], onRem
             <span className="storage-dropzone__sheet storage-dropzone__sheet--right"><DocumentBadge type="SQL" /></span>
             <span className="storage-dropzone__sheet storage-dropzone__sheet--middle"><Glyph kind="upload" /></span>
           </span>
-          <span className="storage-dropzone__title">{dragCount > 0 ? `Release to add ${dragCount} ${dragCount === 1 ? "file" : "files"}` : <>
-            <span className="storage-dropzone__mouse">Drop files here or <span className="storage-dropzone__browse">browse</span></span>
-            <span className="storage-dropzone__touch">Tap to <span className="storage-dropzone__browse">choose files</span></span>
+          <span className="storage-dropzone__title">{dragCount > 0 ? uiText("Release to add {0} {1}", [dragCount, dragCount === 1 ? "file" : "files"]) : <>
+            <span className="storage-dropzone__mouse">{uiText("Drop files here or ")}<span className="storage-dropzone__browse">{uiText("browse")}</span></span>
+            <span className="storage-dropzone__touch">{uiText("Tap to ")}<span className="storage-dropzone__browse">{uiText("choose files")}</span></span>
           </>}</span>
-          <span className="storage-dropzone__hint" id={hintId}>PDF, DOCX, TXT, MD, CSV, TSV, SQL, JSON, XLSX · up to 20 MB each</span>
+          <span className="storage-dropzone__hint" id={hintId}>{uiText("PDF, DOCX, TXT, MD, CSV, TSV, SQL, JSON, XLSX · up to 20 MB each")}</span>
         </button>
-        <ul className="storage-dropzone__list" aria-label="Document processing">
+        <ul className="storage-dropzone__list" aria-label={uiText("Document processing")}>
           {entries.map(item => {
             const progress = Math.round(Math.max(0, Math.min(100, Number.isFinite(item.progress) ? item.progress : 0)));
             const busy = item.status === "pending" || item.status === "processing";
@@ -142,21 +144,21 @@ export function StorageDropzone({ onFiles, disabled = false, entries = [], onRem
               <div className="storage-dropzone__row-clip"><div className="storage-dropzone__row-inner">
                 <FileGlyph name={item.name} />
                 <div className="storage-dropzone__info">
-                  <div className="storage-dropzone__line"><span className="storage-dropzone__name" title={item.name}>{item.name}</span>{item.status === "ready" && <span className="storage-dropzone__done" aria-label="Ready"><Glyph kind="check" /></span>}</div>
-                  <div className="storage-dropzone__meta">{item.status === "error" ? <span className="storage-dropzone__error">{item.error || "Could not process this document"}</span> : <>{fileSize(item.size)}{busy && <><span className="storage-dropzone__dot">·</span>{item.status === "pending" ? "Queued" : `${progress}% processed`}</>}</>}</div>
-                  {(busy || item.status === "error") && <div className="storage-dropzone__bar" role="progressbar" aria-label={`Processing ${item.name}`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} aria-valuetext={item.status === "error" ? item.error || "Processing failed" : `${progress}%`}><span style={{ "--storage-progress": progress / 100 } as CSSProperties} /></div>}
+                  <div className="storage-dropzone__line"><span className="storage-dropzone__name" title={item.name}>{item.name}</span>{item.status === "ready" && <span className="storage-dropzone__done" aria-label={uiText("Ready")}><Glyph kind="check" /></span>}</div>
+                  <div className="storage-dropzone__meta">{item.status === "error" ? <span className="storage-dropzone__error">{uiText(item.error || uiText("Could not process this document"))}</span> : <>{uiText(fileSize(item.size))}{busy && <><span className="storage-dropzone__dot">·</span>{uiText(item.status === "pending" ? uiText("Queued") : uiText("{0}% processed", [progress]))}</>}</>}</div>
+                  {(busy || item.status === "error") && <div className="storage-dropzone__bar" role="progressbar" aria-label={uiText("Processing {0}", [item.name])} aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} aria-valuetext={uiText(item.status === "error" ? item.error || uiText("Processing failed") : uiText("{0}%", [progress]))}><span style={{ "--storage-progress": progress / 100 } as CSSProperties} /></div>}
                 </div>
                 <div className="storage-dropzone__actions">
-                  {item.status === "error" && onRetry && <button type="button" className="storage-dropzone__icon-button storage-dropzone__retry" disabled={disabled || removing.has(item.id)} aria-label={`Retry ${item.name}`} title="Retry" onClick={() => onRetry(item.id)}><Glyph kind="retry" /></button>}
-                  {onRemove && <button type="button" className="storage-dropzone__icon-button" disabled={disabled || removing.has(item.id)} aria-label={`Remove ${item.name}`} title="Remove" onClick={() => remove(item.id)}><Glyph kind="remove" /></button>}
+                  {item.status === "error" && onRetry && <button type="button" className="storage-dropzone__icon-button storage-dropzone__retry" disabled={disabled || removing.has(item.id)} aria-label={uiText("Retry {0}", [item.name])} title={uiText("Retry")} onClick={() => onRetry(item.id)}><Glyph kind="retry" /></button>}
+                  {onRemove && <button type="button" className="storage-dropzone__icon-button" disabled={disabled || removing.has(item.id)} aria-label={uiText("Remove {0}", [item.name])} title={uiText("Remove")} onClick={() => remove(item.id)}><Glyph kind="remove" /></button>}
                 </div>
               </div></div>
             </li>;
           })}
         </ul>
       </div>
-      <div className="storage-dropzone__footer"><span className={processing ? "storage-dropzone__summary storage-dropzone__summary--busy" : "storage-dropzone__summary"}>{summary}</span>{entries.length > 0 && !processing && onRemove && <button type="button" className="storage-dropzone__clear" disabled={disabled} onClick={() => entries.forEach(item => remove(item.id))}>Clear</button>}</div>
+      <div className="storage-dropzone__footer"><span className={processing ? "storage-dropzone__summary storage-dropzone__summary--busy" : "storage-dropzone__summary"}>{uiText(summary)}</span>{entries.length > 0 && !processing && onRemove && <button type="button" className="storage-dropzone__clear" disabled={disabled} onClick={() => entries.forEach(item => remove(item.id))}>{uiText("Clear")}</button>}</div>
     </div>
-    <span className="storage-dropzone__live" role="status" aria-live="polite" aria-atomic="true">{complete} documents ready.{failed > 0 ? ` ${failed} documents need attention. ${entries.filter(item => item.status === "error").map(item => `${item.name}: ${item.error || "Processing failed"}`).join(". ")}` : ""}</span>
+    <span className="storage-dropzone__live" role="status" aria-live="polite" aria-atomic="true">{uiText(complete)} {uiText(" documents ready.")}{failed > 0 ? uiText(" {0} documents need attention. {1}", [failed, entries.filter(item => item.status === "error").map(item => `${item.name}: ${item.error || "Processing failed"}`).join(". ")]) : ""}</span>
   </div>;
 }

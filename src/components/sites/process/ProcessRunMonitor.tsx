@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowRight, Check, ChevronDown, Circle, CircleCheck, GitBranch, Hand, ListChecks, LoaderCircle, MapPin, Play, RotateCcw, Square, Terminal, TriangleAlert, Waypoints } from "lucide-react";
@@ -55,26 +56,29 @@ function Glyph({ status }: { status: string }) {
 }
 
 function StepVerb({ status, motionOff }: { status: keyof typeof verbs; motionOff: boolean }) {
+  const { t: uiText } = useWorkspaceI18n();
   const measure = useRef<HTMLSpanElement>(null);
   const [width, setWidth] = useState<number>();
   const label = verbs[status];
   useLayoutEffect(() => { if (measure.current) setWidth(measure.current.getBoundingClientRect().width); }, [label]);
   return <motion.span className="prun-verb" initial={false} animate={{ width }} transition={motionOff ? { duration: 0 } : spring}>
-    <span ref={measure} className="prun-verb-measure" aria-hidden="true">{label}</span>
-    <AnimatePresence initial={false}><motion.span className={`prun-verb-word${status === 'running' ? ' prun-shimmer' : ''}`} key={status} initial={motionOff ? false : { opacity: 0, y: 2 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, transition: { duration: motionOff ? 0 : .1 } }} transition={{ duration: motionOff ? 0 : .16 }}>{label}</motion.span></AnimatePresence>
+    <span ref={measure} className="prun-verb-measure" aria-hidden="true">{uiText(label)}</span>
+    <AnimatePresence initial={false}><motion.span className={`prun-verb-word${status === 'running' ? ' prun-shimmer' : ''}`} key={status} initial={motionOff ? false : { opacity: 0, y: 2 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, transition: { duration: motionOff ? 0 : .1 } }} transition={{ duration: motionOff ? 0 : .16 }}>{uiText(label)}</motion.span></AnimatePresence>
   </motion.span>;
 }
 
 function StreamedSummary({ text, motionOff }: { text: string; motionOff: boolean }) {
+  const { t: uiText } = useWorkspaceI18n();
   const words = text.split(' ');
   const chunks = Array.from({ length: Math.ceil(words.length / 3) }, (_, index) => words.slice(index * 3, index * 3 + 3).join(' '));
-  return <p className="prun-summary" aria-label={text}>{chunks.map((chunk, index) => <span key={`${text}:${index}`} aria-hidden="true" style={{ animationDelay: `${motionOff ? 0 : index * 34}ms` }}>{chunk}{index < chunks.length - 1 ? ' ' : ''}</span>)}</p>;
+  return <p className="prun-summary" aria-label={uiText(text)}>{chunks.map((chunk, index) => <span key={`${text}:${index}`} aria-hidden="true" style={{ animationDelay: `${motionOff ? 0 : index * 34}ms` }}>{uiText(chunk)}{uiText(index < chunks.length - 1 ? ' ' : '')}</span>)}</p>;
 }
 
 function Step({ step, now, simulated, engines, unit, onLocate, onReview, onAction, motionOff }: {
   step: MonitorStep; now: number; simulated: boolean; engines: readonly EngineInfo[]; unit: ProcessDoc['unit'];
   onLocate: (id: string) => void; onReview: (id: string) => void; onAction: (action: RunAction) => Promise<boolean>; motionOff: boolean;
 }) {
+  const { t: uiText } = useWorkspaceI18n();
   const [expanded, setExpanded] = useState<boolean | null>(null);
   const [busy, setBusy] = useState(false);
   const pending = useRef(false);
@@ -101,29 +105,30 @@ function Step({ step, now, simulated, engines, unit, onLocate, onReview, onActio
     <button ref={head} type="button" className="prun-step-head" aria-expanded={open} aria-controls={id} onClick={() => setExpanded(!open)}>
       <span className="prun-step-icon">{mark ? <Mark id={mark} /> : <GitBranch size={16} />}</span>
       <span className="prun-step-label"><StepVerb status={run.status} motionOff={motionOff} /><span title={node.name}>{node.name}</span></span>
-      {step.round > 1 && <span className="prun-round">Round {step.round}</span>}
-      <span className="prun-time">{waiting ? '' : `${(elapsed / 1000).toFixed(1)}s`}</span>
-      <span className="prun-step-state" aria-label={run.status}><Glyph status={run.status} /></span>
+      {step.round > 1 && <span className="prun-round">{uiText("Round ")}{uiText(step.round)}</span>}
+      <span className="prun-time">{uiText(waiting ? '' : uiText("{0}s", [(elapsed / 1000).toFixed(1)]))}</span>
+      <span className="prun-step-state" aria-label={uiText(run.status)}><Glyph status={run.status} /></span>
       <ChevronDown size={16} className="prun-chevron" />
     </button>
     <AnimatePresence initial={false}>{open && <motion.div id={id} className="prun-detail-wrap" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={motionOff ? { duration: 0 } : spring}>
       <div className="prun-detail">
-        <div className="prun-route">{step.from.length ? step.from.map(from => <span key={from.id}><button type="button" onClick={() => onLocate(from.id)}>{from.name}</button><ArrowRight size={12} /></span>) : <span>Start<ArrowRight size={12} /></span>}<button type="button" onClick={() => onLocate(node.id)}>{node.name}</button>{step.round > 1 && <span>· Round {step.round}</span>}</div>
-        <p>{node.task}</p>
-        <dl className="prun-config"><div><dt>Model</dt><dd>{modelLabel(node.ai.provider, node.ai.model, engines)}</dd></div>{node.tools.length > 0 && <div><dt>Configured tools</dt><dd>{node.tools.join(", ")}</dd></div>}{unit !== 'none' && <div><dt>Cost limit</dt><dd>{node.limit === undefined ? 'No limit' : costFormatter(unit)(node.limit)}</dd></div>}{node.children.length > 0 && <div><dt>Sub-tasks</dt><dd>{node.children.length} · {node.mode === 'parallel' ? 'In parallel' : 'In sequence'}</dd></div>}</dl>
-        {node.ai.instructions && <details className="prun-instructions"><summary>Instructions</summary><p>{node.ai.instructions}</p></details>}
-        {run.attempts?.map((attempt, index) => <div className="prun-attempt" key={attempt.started}><TriangleAlert size={13} />Attempt {index + 1} · {((attempt.ended - attempt.started) / 1000).toFixed(1)}s<p>{attempt.error}</p></div>)}
-        {run.calls?.map(call => <details className="prun-call" key={call.id}><summary><Terminal size={14} /><span>{call.name}{call.detail ? ` · ${call.detail}` : ""}</span><Glyph status={call.status} /></summary><div>{call.input !== undefined && <><span>Input</span><pre>{call.input}</pre></>}{call.output !== undefined && <><span>Output</span><pre>{call.output}</pre></>}{call.error && <p className="prun-error">{call.error}</p>}{call.input === undefined && call.output === undefined && !call.error && <p>The engine has not supplied input or output for this call.</p>}</div></details>)}
-        {!run.calls?.length && <p className="prun-note">{simulated ? "Simulated block activity. No model or tool is called." : "The engine has not reported individual calls for this block."}</p>}
-        {run.error && <p className="prun-error">{run.error}</p>}
-        {waiting && <div className="prun-review"><p>{"ask" in run && run.ask ? run.ask : node.askText || `Approve ${node.name} before it starts.`}</p><div><span>Nothing starts until you approve.</span><div className="prun-review-buttons"><button type="button" className="prun-button" disabled={busy} onClick={() => void decide('reject')}>Reject</button><button type="button" className="prun-button prun-button--primary" disabled={busy} onClick={() => void decide('approve')}>{busy ? <LoaderCircle size={14} className="prun-spin" /> : null}Approve</button></div></div></div>}
-        <div className="prun-detail-actions"><button type="button" onClick={() => onLocate(node.id)}><MapPin size={13} />Show block on map</button>{waiting && <button type="button" onClick={() => onReview(node.id)}><ListChecks size={13} />Full permission details</button>}{run.status === "failed" && step.current && <button type="button" disabled={busy} onClick={() => void decide('retry')}><RotateCcw size={13} />Retry block</button>}</div>
+        <div className="prun-route">{step.from.length ? step.from.map(from => <span key={from.id}><button type="button" onClick={() => onLocate(from.id)}>{uiText(from.name)}</button><ArrowRight size={12} /></span>) : <span>{uiText("Start")}<ArrowRight size={12} /></span>}<button type="button" onClick={() => onLocate(node.id)}>{node.name}</button>{step.round > 1 && <span>{uiText("· Round ")}{uiText(step.round)}</span>}</div>
+        <p>{uiText(node.task)}</p>
+        <dl className="prun-config"><div><dt>{uiText("Model")}</dt><dd>{uiText(modelLabel(node.ai.provider, node.ai.model, engines))}</dd></div>{node.tools.length > 0 && <div><dt>{uiText("Configured tools")}</dt><dd>{uiText(node.tools.join(", "))}</dd></div>}{unit !== 'none' && <div><dt>{uiText("Cost limit")}</dt><dd>{uiText(node.limit === undefined ? uiText('No limit') : costFormatter(unit)(node.limit))}</dd></div>}{node.children.length > 0 && <div><dt>{uiText("Sub-tasks")}</dt><dd>{node.children.length} · {uiText(node.mode === 'parallel' ? uiText('In parallel') : uiText('In sequence'))}</dd></div>}</dl>
+        {node.ai.instructions && <details className="prun-instructions"><summary>{uiText("Instructions")}</summary><p>{node.ai.instructions}</p></details>}
+        {run.attempts?.map((attempt, index) => <div className="prun-attempt" key={attempt.started}><TriangleAlert size={13} />{uiText("Attempt ")}{uiText(index + 1)} · {uiText(((attempt.ended - attempt.started) / 1000).toFixed(1))}s<p>{uiText(attempt.error)}</p></div>)}
+        {run.calls?.map(call => <details className="prun-call" key={call.id}><summary><Terminal size={14} /><span>{uiText(call.name)}{uiText(call.detail ? uiText(" · {0}", [call.detail]) : "")}</span><Glyph status={call.status} /></summary><div>{call.input !== undefined && <><span>{uiText("Input")}</span><pre>{call.input}</pre></>}{call.output !== undefined && <><span>{uiText("Output")}</span><pre>{call.output}</pre></>}{call.error && <p className="prun-error">{uiText(call.error)}</p>}{call.input === undefined && call.output === undefined && !call.error && <p>{uiText("The engine has not supplied input or output for this call.")}</p>}</div></details>)}
+        {!run.calls?.length && <p className="prun-note">{uiText(simulated ? uiText("Simulated block activity. No model or tool is called.") : uiText("The engine has not reported individual calls for this block."))}</p>}
+        {run.error && <p className="prun-error">{uiText(run.error)}</p>}
+        {waiting && <div className="prun-review"><p>{"ask" in run && run.ask ? run.ask : node.askText || uiText("Approve {0} before it starts.", [node.name])}</p><div><span>{uiText("Nothing starts until you approve.")}</span><div className="prun-review-buttons"><button type="button" className="prun-button" disabled={busy} onClick={() => void decide('reject')}>{uiText("Reject")}</button><button type="button" className="prun-button prun-button--primary" disabled={busy} onClick={() => void decide('approve')}>{busy ? <LoaderCircle size={14} className="prun-spin" /> : null}{uiText("Approve")}</button></div></div></div>}
+        <div className="prun-detail-actions"><button type="button" onClick={() => onLocate(node.id)}><MapPin size={13} />{uiText("Show block on map")}</button>{waiting && <button type="button" onClick={() => onReview(node.id)}><ListChecks size={13} />{uiText("Full permission details")}</button>}{run.status === "failed" && step.current && <button type="button" disabled={busy} onClick={() => void decide('retry')}><RotateCcw size={13} />{uiText("Retry block")}</button>}</div>
       </div>
     </motion.div>}</AnimatePresence>
   </motion.li>;
 }
 
 export function ProcessRunBar(props: BarProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const { doc, snapshot, simulated, engines } = props;
   const [open, setOpen] = useState(false);
   const [showFinished, setShowFinished] = useState(false);
@@ -200,29 +205,29 @@ export function ProcessRunBar(props: BarProps) {
   }
   const locate = (nodeId: string) => { props.onLocate(nodeId); collapse(); };
   const review = (nodeId: string) => { props.onReview(nodeId); setOpen(false); };
-  const toggle = <button ref={trigger} type="button" className="prun-toggle" aria-expanded={open} aria-controls={id} aria-label={open ? 'Hide process activity' : `Show process activity${state !== 'idle' ? `: ${labels[state]}` : ''}`} title="Process activity" onClick={() => setOpen(value => !value)}>
-    <Waypoints size={14} /><span className="prun-toggle-text">Activity</span>{state !== "idle" && <span className="prun-toggle-state" aria-hidden="true"><Glyph status={state} /></span>}<ChevronDown size={14} className="prun-toggle-chevron" />
+  const toggle = <button ref={trigger} type="button" className="prun-toggle" aria-expanded={open} aria-controls={id} aria-label={uiText(open ? uiText('Hide process activity') : uiText("Show process activity{0}", [state !== 'idle' ? `: ${labels[state]}` : '']))} title={uiText("Process activity")} onClick={() => setOpen(value => !value)}>
+    <Waypoints size={14} /><span className="prun-toggle-text">{uiText("Activity")}</span>{state !== "idle" && <span className="prun-toggle-state" aria-hidden="true"><Glyph status={state} /></span>}<ChevronDown size={14} className="prun-toggle-chevron" />
   </button>;
   return <div ref={container} className="proc-pill proc-pill--bar agt prun" data-open={open} data-state={state} data-motion-off={motionOff || undefined} data-interaction-own>
     <div className="prun-barrow">
-      <AgentBar root={props.tree} title={props.title} noun={props.noun} formatCost={props.formatCost} showCost={props.showCost} onResolve={props.onResolve} onReviewWaiting={props.onReviewWaiting} extra={props.extra} trailing={toggle} />
+      <AgentBar root={props.tree} title={uiText(props.title)} noun={props.noun} formatCost={props.formatCost} showCost={props.showCost} onResolve={props.onResolve} onReviewWaiting={props.onReviewWaiting} extra={props.extra} trailing={toggle} />
     </div>
     <div ref={content} className="prun-body">
-      {open && <section id={id} className="prun-card" aria-label={`${doc.name} activity`}>
+      {open && <section id={id} className="prun-card" aria-label={uiText("{0} activity", [doc.name])}>
         <header className="prun-header">
-          <div className="prun-meta"><span className="prun-model">{mark && <Mark id={mark} />}<span title={modelLabel(doc.root.ai.provider, doc.root.ai.model, engines)}>{modelLabel(doc.root.ai.provider, doc.root.ai.model, engines)}</span></span><span className={`prun-status${state === 'running' ? ' prun-shimmer' : ''}`}><Glyph status={state} />{state !== 'idle' ? labels[state] : 'Ready'}</span><span className="prun-timer" title="Elapsed time, including approval waits">{monitorTime(elapsed)}</span></div>
+          <div className="prun-meta"><span className="prun-model">{mark && <Mark id={mark} />}<span title={uiText(modelLabel(doc.root.ai.provider, doc.root.ai.model, engines))}>{uiText(modelLabel(doc.root.ai.provider, doc.root.ai.model, engines))}</span></span><span className={`prun-status${state === 'running' ? ' prun-shimmer' : ''}`}><Glyph status={state} />{uiText(state !== 'idle' ? labels[state] : uiText('Ready'))}</span><span className="prun-timer" title={uiText("Elapsed time, including approval waits")}>{uiText(monitorTime(elapsed))}</span></div>
         </header>
         <div className="prun-scroll">
-          <div className="prun-context"><span className="prun-engine">{simulated ? 'Simulated' : 'Connected engine'}</span><span>{snapshot ? `${completed} of ${nodes.length} blocks complete` : `${nodes.length} blocks ready`}</span></div>
-          {active && live.length > 0 && <div className="prun-live-routes" aria-label="Current block connections">{live.map(step => <button key={step.id} type="button" onClick={() => locate(step.node.id)} title={`Show ${step.node.name} on map`}>{step.from.length ? <span>{step.from.map(node => node.name).join(' + ')}</span> : <span>Start</span>}<ArrowRight size={12} /><strong>{step.node.name}</strong><Glyph status={step.run.status} /></button>)}</div>}
-          {terminal && <button type="button" className="prun-fold" aria-expanded={showFinished} aria-controls={`${id}-steps`} onClick={() => setShowFinished(value => !value)}><ListChecks size={16} /><span>{steps.length} steps · {Math.round(elapsed / 1000)}s</span><ChevronDown size={16} /></button>}
-          <AnimatePresence initial={false}>{listVisible && <motion.div key={snapshot?.id ?? 'idle'} id={`${id}-steps`} className="prun-steps-wrap" initial={motionOff ? false : { height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={motionOff ? { duration: 0 } : spring}><ol aria-label="Steps" className="prun-steps">{steps.map(step => <Step key={step.id} step={step} now={snapshot?.at ?? 0} simulated={simulated} engines={engines} unit={doc.unit} onLocate={locate} onReview={review} onAction={props.onAction} motionOff={motionOff} />)}</ol></motion.div>}</AnimatePresence>
-          {!snapshot && <div className="prun-empty"><GitBranch size={24} /><p>{doc.goal || doc.root.task}</p><p className="prun-note">Follow every block, its connections and the calls reported by your engine.</p><button type="button" className="prun-button prun-button--primary" disabled={props.starting || busy} onClick={() => void action(props.onStart)}><Play size={14} />{props.starting ? 'Starting…' : 'Start run'}</button></div>}
-          {terminal && <motion.div className="prun-result" initial={motionOff ? false : { height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} transition={motionOff ? { duration: 0 } : spring}><StreamedSummary text={state === 'done' ? `Completed ${completed} blocks in ${monitorTime(elapsed)}.` : state === 'failed' ? 'The run needs attention. Open the steps to inspect failures and retry a block.' : `Run stopped. ${completed} of ${nodes.length} blocks completed.`} motionOff={motionOff} /><div className="prun-result-blocks">{nodes.filter(node => snapshot.nodes[node.id]?.status !== 'queued').map(node => <button type="button" key={node.id} onClick={() => locate(node.id)}><GitBranch size={14} /><span>{node.name}</span><Glyph status={snapshot.nodes[node.id]?.status ?? 'idle'} /></button>)}</div><div className="prun-result-actions"><span><CircleCheck size={14} />{completed} completed</span><button type="button" className="prun-button prun-button--primary" onClick={() => { props.onTrace(); setOpen(false); }}><Waypoints size={14} />View trace</button></div></motion.div>}
+          <div className="prun-context"><span className="prun-engine">{uiText(simulated ? uiText('Simulated') : uiText('Connected engine'))}</span><span>{uiText(snapshot ? uiText("{0} of {1} blocks complete", [completed, nodes.length]) : uiText("{0} blocks ready", [nodes.length]))}</span></div>
+          {active && live.length > 0 && <div className="prun-live-routes" aria-label={uiText("Current block connections")}>{live.map(step => <button key={step.id} type="button" onClick={() => locate(step.node.id)} title={uiText("Show {0} on map", [step.node.name])}>{step.from.length ? <span>{step.from.map(node => node.name).join(' + ')}</span> : <span>{uiText("Start")}</span>}<ArrowRight size={12} /><strong>{step.node.name}</strong><Glyph status={step.run.status} /></button>)}</div>}
+          {terminal && <button type="button" className="prun-fold" aria-expanded={showFinished} aria-controls={`${id}-steps`} onClick={() => setShowFinished(value => !value)}><ListChecks size={16} /><span>{uiText(steps.length)} {uiText(" steps · ")}{uiText(Math.round(elapsed / 1000))}s</span><ChevronDown size={16} /></button>}
+          <AnimatePresence initial={false}>{listVisible && <motion.div key={snapshot?.id ?? 'idle'} id={`${id}-steps`} className="prun-steps-wrap" initial={motionOff ? false : { height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={motionOff ? { duration: 0 } : spring}><ol aria-label={uiText("Steps")} className="prun-steps">{steps.map(step => <Step key={step.id} step={step} now={snapshot?.at ?? 0} simulated={simulated} engines={engines} unit={doc.unit} onLocate={locate} onReview={review} onAction={props.onAction} motionOff={motionOff} />)}</ol></motion.div>}</AnimatePresence>
+          {!snapshot && <div className="prun-empty"><GitBranch size={24} /><p>{uiText(doc.goal || doc.root.task)}</p><p className="prun-note">{uiText("Follow every block, its connections and the calls reported by your engine.")}</p><button type="button" className="prun-button prun-button--primary" disabled={props.starting || busy} onClick={() => void action(props.onStart)}><Play size={14} />{uiText(props.starting ? uiText('Starting…') : uiText('Start run'))}</button></div>}
+          {terminal && <motion.div className="prun-result" initial={motionOff ? false : { height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} transition={motionOff ? { duration: 0 } : spring}><StreamedSummary text={state === 'done' ? `Completed ${completed} blocks in ${monitorTime(elapsed)}.` : state === 'failed' ? 'The run needs attention. Open the steps to inspect failures and retry a block.' : `Run stopped. ${completed} of ${nodes.length} blocks completed.`} motionOff={motionOff} /><div className="prun-result-blocks">{nodes.filter(node => snapshot.nodes[node.id]?.status !== 'queued').map(node => <button type="button" key={node.id} onClick={() => locate(node.id)}><GitBranch size={14} /><span>{node.name}</span><Glyph status={snapshot.nodes[node.id]?.status ?? 'idle'} /></button>)}</div><div className="prun-result-actions"><span><CircleCheck size={14} />{uiText(completed)} {uiText(" completed")}</span><button type="button" className="prun-button prun-button--primary" onClick={() => { props.onTrace(); setOpen(false); }}><Waypoints size={14} />{uiText("View trace")}</button></div></motion.div>}
         </div>
-        <footer className="prun-footer">{simulated ? 'Simulation · no model or external tool is called.' : 'Activity reported by your connected engine.'}</footer>
+        <footer className="prun-footer">{uiText(simulated ? uiText('Simulation · no model or external tool is called.') : uiText('Activity reported by your connected engine.'))}</footer>
       </section>}
     </div>
-    <span className="proc-sr" aria-live="polite" aria-atomic="true">{state !== 'idle' ? labels[state] : 'Ready'}. {live.map(step => step.node.name).join(', ')}. {terminal ? `${completed} blocks completed.` : ''}</span>
+    <span className="proc-sr" aria-live="polite" aria-atomic="true">{uiText(state !== 'idle' ? labels[state] : uiText('Ready'))}. {live.map(step => step.node.name).join(', ')}. {uiText(terminal ? uiText("{0} blocks completed.", [completed]) : '')}</span>
   </div>;
 }

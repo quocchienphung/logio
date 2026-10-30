@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
 import {
@@ -86,6 +87,7 @@ export function DelegateBoard({
   agents, tasks, onAssign, mode, defaultMode = "manual", onModeChange, suggestion = null, formatCost = defaultFormatCost, now,
   title = "Delegate", agentLabel = "agent", agentsLabel = "Agents", maxChips = 3, className,
 }: DelegateBoardProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const root = useRef<HTMLDivElement>(null);
   const ids = useId();
   const [own, setOwn] = useState<readonly DelegateTask[]>(tasks);
@@ -258,7 +260,7 @@ export function DelegateBoard({
       <span className="dgb__task-title">{task.title}</span>
       <span className="dgb__task-meta">
         {!!task.tools?.length && <span className="dgb__tools">{task.tools.map(tool => <Tool key={tool} id={tool} />)}</span>}
-        <span>~{task.estimate} min</span>
+        <span>~{uiText(task.estimate)} {uiText(" min")}</span>
       </span>
     </span>
   </>;
@@ -272,18 +274,18 @@ export function DelegateBoard({
     >
       <div className="dgb__bar">
         <span className="dgb__spark"><Spark /></span>
-        <span className="dgb__title">{title}</span>
-        <span className="dgb__hint">{pick ? "↑ ↓ to choose, Enter to hand over" : `Drag a task onto ${/^[aeiou]/i.test(agentLabel) ? "an" : "a"} ${agentLabel}`}</span>
+        <span className="dgb__title">{uiText(title)}</span>
+        <span className="dgb__hint">{uiText(pick ? uiText("↑ ↓ to choose, Enter to hand over") : uiText("Drag a task onto {0} {1}", [/^[aeiou]/i.test(agentLabel) ? "an" : "a", agentLabel]))}</span>
         <button type="button" role="switch" aria-checked={currentMode === "auto"} className="dgb__auto" onClick={() => setMode(currentMode === "auto" ? "manual" : "auto")}>
-          <span className="dgb__auto-label">Auto</span>
+          <span className="dgb__auto-label">{uiText("Auto")}</span>
           <span className="dgb__switch"><span /></span>
         </button>
       </div>
 
       <div className="dgb__body">
         <section className="dgb__pile" aria-labelledby={`${ids}-pile`} data-drop={PILE} data-over={drag?.over === PILE ? "" : undefined}>
-          <h4 className="dgb__head" id={`${ids}-pile`}>Unassigned <span className="dgb__count">{waiting.length}</span></h4>
-          {waiting.length ? <ul className="dgb__tasks" aria-label="Unassigned tasks">
+          <h4 className="dgb__head" id={`${ids}-pile`}>{uiText("Unassigned ")}<span className="dgb__count">{uiText(waiting.length)}</span></h4>
+          {waiting.length ? <ul className="dgb__tasks" aria-label={uiText("Unassigned tasks")}>
             {waiting.map(task => <li key={task.id} className="dgb__task-slot">
               <button
                 type="button"
@@ -296,15 +298,15 @@ export function DelegateBoard({
                 onPointerDown={event => startDrag(event, task)}
                 onKeyDown={event => onTaskKey(event, task)}
                 onBlur={() => setPick(current => current?.id === task.id ? null : current)}
-              >{taskCard(task)}</button>
+              >{uiText(taskCard(task))}</button>
             </li>)}
-          </ul> : <p className="dgb__empty">All handed over</p>}
+          </ul> : <p className="dgb__empty">{uiText("All handed over")}</p>}
         </section>
 
         <section className="dgb__agents" aria-labelledby={`${ids}-agents`}>
           <h4 className="dgb__head" id={`${ids}-agents`}>
-            {agentsLabel}
-            <span className="dgb__spend" key={totals.priced ? totals.cost : totals.minutes}>{totals.priced ? formatCost(totals.cost) : formatMinutes(totals.minutes)} in queues</span>
+            {uiText(agentsLabel)}
+            <span className="dgb__spend" key={totals.priced ? totals.cost : totals.minutes}>{uiText(totals.priced ? formatCost(totals.cost) : formatMinutes(totals.minutes))} {uiText(" in queues")}</span>
           </h4>
           <ul className="dgb__roster">
             {agents.map((agent, index) => {
@@ -321,16 +323,16 @@ export function DelegateBoard({
                 <span className="dgb__avatar" data-logo={agent.logo ? "" : undefined}>{agent.logo ? <Mark id={agent.logo} /> : initialsOf(agent)}</span>
                 <span className="dgb__who">
                   <span className="dgb__name-line">
-                    <span className="dgb__name">{agent.name}</span>
-                    {index < 9 && <span className="dgb__key" aria-hidden="true">{index + 1}</span>}
+                    <span className="dgb__name">{uiText(agent.name)}</span>
+                    {index < 9 && <span className="dgb__key" aria-hidden="true">{uiText(index + 1)}</span>}
                   </span>
-                  {(agent.model || agent.rate !== undefined) && <span className="dgb__model">{agent.model}{agent.rate !== undefined && <span className="dgb__rate">{formatCost(agent.rate)}/min</span>}</span>}
+                  {(agent.model || agent.rate !== undefined) && <span className="dgb__model">{uiText(agent.model)}{agent.rate !== undefined && <span className="dgb__rate">{uiText(formatCost(agent.rate))}{uiText("/min")}</span>}</span>}
                 </span>
                 <span className="dgb__load">
-                  {price && <span className="dgb__price" key={price}>{price}</span>}
-                  <span className="dgb__tag" data-kind={kind} key={`${kind}-${tagText}`}>{tagText}</span>
+                  {price && <span className="dgb__price" key={price}>{uiText(price)}</span>}
+                  <span className="dgb__tag" data-kind={kind} key={`${kind}-${tagText}`}>{uiText(tagText)}</span>
                 </span>
-                {queue.length > 0 && <ul className="dgb__queue" aria-label={`${agent.name} queue`}>
+                {queue.length > 0 && <ul className="dgb__queue" aria-label={uiText("{0} queue", [agent.name])}>
                   {shown.map((task, position) => <li key={task.id} className="dgb__chip-slot">
                     <button
                       type="button"
@@ -352,9 +354,9 @@ export function DelegateBoard({
                     </button>
                   </li>)}
                   {rest.length > 0 && <li className="dgb__chip-slot dgb__more" data-open={openMore === agent.id ? "" : undefined}>
-                    <button type="button" className="dgb__chip dgb__chip--more" aria-expanded={openMore === agent.id} onClick={() => setOpenMore(current => current === agent.id ? null : agent.id)} onKeyDown={event => { if (event.key === "Escape") setOpenMore(null); }} aria-label={`${rest.length} more tasks in ${agent.name}'s queue`}>+{rest.length}</button>
+                    <button type="button" className="dgb__chip dgb__chip--more" aria-expanded={openMore === agent.id} onClick={() => setOpenMore(current => current === agent.id ? null : agent.id)} onKeyDown={event => { if (event.key === "Escape") setOpenMore(null); }} aria-label={uiText("{0} more tasks in {1}'s queue", [rest.length, agent.name])}>+{uiText(rest.length)}</button>
                     <span className="dgb__tip" role="tooltip"><ul className="dgb__tip-list">
-                      {rest.map(task => <li key={task.id}>{task.tools?.map(tool => <Tool key={tool} id={tool} />)}<span>{task.title}</span><span className="dgb__tip-min">~{task.estimate} min</span></li>)}
+                      {rest.map(task => <li key={task.id}>{task.tools?.map(tool => <Tool key={tool} id={tool} />)}<span>{task.title}</span><span className="dgb__tip-min">~{uiText(task.estimate)} {uiText(" min")}</span></li>)}
                     </ul></span>
                   </li>}
                 </ul>}
@@ -364,14 +366,14 @@ export function DelegateBoard({
         </section>
       </div>
 
-      <p className="dgb__sr" id={help}>Drag onto {/^[aeiou]/i.test(agentLabel) ? "an" : "a"} {agentLabel}, or press Enter, choose with the arrow keys and press Enter again. Number keys hand it over at once.</p>
-      <div className="dgb__sr" role="status" aria-live="polite">{note}</div>
+      <p className="dgb__sr" id={help}>{uiText("Drag onto ")}{uiText(/^[aeiou]/i.test(agentLabel) ? uiText("an") : "a")} {uiText(agentLabel)}{uiText(", or press Enter, choose with the arrow keys and press Enter again. Number keys hand it over at once.")}</p>
+      <div className="dgb__sr" role="status" aria-live="polite">{uiText(note)}</div>
 
       {drag && ghost && <div
         className="dgb__ghost"
         aria-hidden="true"
         style={{ left: drag.left, top: drag.top, width: drag.width, minHeight: drag.height }}
-      >{taskCard(ghost)}</div>}
+      >{uiText(taskCard(ghost))}</div>}
     </div>
   </div>;
 }

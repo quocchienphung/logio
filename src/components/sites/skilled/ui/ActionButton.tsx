@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ButtonHTMLAttributes, KeyboardEvent, ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -47,6 +48,7 @@ const phaseVariants = {
 export function ActionButton({
   label, onAction, pendingLabel = "Saving", successLabel = "Saved", resetAfterMs = RESET_AFTER_MS, onActionError, icon, size = "md", className, disabled, type = "button", ...rest
 }: ActionButtonProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const reduced = useReducedMotion() ?? false;
   const [phase, setPhase] = useState<Phase>("idle");
   const [from, setFrom] = useState<Phase>("idle");
@@ -101,19 +103,19 @@ export function ActionButton({
     onClick={() => void run()}>
     <span className="ab__content" aria-hidden="true">
       <motion.span className="ab__morph" initial={false} animate={textWidth === null ? undefined : { width: textWidth }} transition={reduced ? { duration: 0 } : WIDTH}>
-        <span ref={sizerRef} className="ab__sizer">{text}</span>
+        <span ref={sizerRef} className="ab__sizer">{uiText(text)}</span>
         <AnimatePresence initial={false}>
-          <motion.span key={text} className="ab__label" initial={reduced ? { opacity: 0 } : { opacity: 0, y: 2 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, transition: { duration: reduced ? 0.06 : 0.1, ease } }} transition={{ duration: reduced ? 0.06 : 0.13, ease }}>{text}</motion.span>
+          <motion.span key={text} className="ab__label" initial={reduced ? { opacity: 0 } : { opacity: 0, y: 2 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, transition: { duration: reduced ? 0.06 : 0.1, ease } }} transition={{ duration: reduced ? 0.06 : 0.13, ease }}>{uiText(text)}</motion.span>
         </AnimatePresence>
       </motion.span>
       <span className="ab__iconSlot">
         <AnimatePresence initial={false} custom={{ kind, from }}>
           <motion.span key={kind} className="ab__phase" custom={{ kind, from }} variants={phaseVariants} initial="enter" animate="center" exit="exit"
-            transition={reduced ? { duration: 0.06 } : { opacity: { duration: 0.14, ease }, filter: { duration: 0.14, ease }, x: ICON_SCALE, scale: ICON_SCALE }}>{iconNode}</motion.span>
+            transition={reduced ? { duration: 0.06 } : { opacity: { duration: 0.14, ease }, filter: { duration: 0.14, ease }, x: ICON_SCALE, scale: ICON_SCALE }}>{uiText(iconNode)}</motion.span>
         </AnimatePresence>
       </span>
     </span>
-    <span className="ab__sr">{label}</span>
-    <span className="ab__sr" role="status">{live}</span>
+    <span className="ab__sr">{uiText(label)}</span>
+    <span className="ab__sr" role="status">{uiText(live)}</span>
   </motion.button>;
 }

@@ -26,6 +26,8 @@ export interface EngineOptions { canvas: HTMLCanvasElement; plot: HTMLElement; p
  * offscreen and in a hidden tab, and with reduced motion every change simply lands.
  */
 export class TerrainEngine {
+  private localize = (text: string) => text;
+  setLocalize(localize: (text: string) => string) { this.localize = localize; this.invalidate(); }
   private readonly canvas: HTMLCanvasElement; private readonly plot: HTMLElement; private readonly panel: HTMLElement | null; private readonly handlers: EngineHandlers;
   private readonly ctx: CanvasRenderingContext2D;
   private readonly camera = new TerrainCamera({ width: 640, height: 292 });
@@ -199,6 +201,7 @@ export class TerrainEngine {
     const ctx = this.ctx;
     ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
     drawTerrain(ctx as unknown as Paint, {
+      localize: this.localize,
       pose: this.camera.pose, size: { width: this.width, height: this.height }, theme: this.theme, tone: this.tone,
       heights: this.columns.shown, shares: this.columns.shares, highlight: this.highlightIndex, flight: this.camera.progress, compact: this.width < COMPACT_WIDTH,
       dim: this.focus.value > 0.002 ? { mask: this.focusMask, amount: this.focus.value * FOCUS_AMOUNT } : null,

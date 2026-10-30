@@ -1,5 +1,6 @@
 "use client";
 
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { announcement, depthCss, drawn, LEAVE_MS, stackHeight } from "./stack-model";
@@ -48,6 +49,7 @@ function Pattern({ kind }: { kind: NoticePattern }) {
 }
 
 export function NotificationStack({ notices, onDismiss, onDismissAll, label = "Notifications", className }: NotificationStackProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const [leaving, setLeaving] = useState<readonly Notice[]>([]);
   const [heights, setHeights] = useState<Record<string, number>>({});
   const [paused, setPaused] = useState(false);
@@ -98,32 +100,32 @@ export function NotificationStack({ notices, onDismiss, onDismissAll, label = "N
   const hearing = front ? announcement(front) : "";
 
   if (!items.length) return null;
-  return <section className={`nsc${className ? ` ${className}` : ""}`} aria-label={label} style={{ height }}
+  return <section className={`nsc${className ? ` ${className}` : ""}`} aria-label={uiText(label)} style={{ height }}
     onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}
     onKeyDown={event => { if (event.key === "Escape" && front) { event.stopPropagation(); dismiss(front, "escape"); } }}>
     {items.map(({ notice, depth, leaving: isLeaving }) => {
       const isFront = depth === 0 && !isLeaving;
       const action = notice.action;
-      const actionBody: ReactNode = <>{action?.label}{action?.external && <Arrow />}</>;
+      const actionBody: ReactNode = <>{uiText(action?.label)}{action?.external && <Arrow />}</>;
       return <article key={notice.id} ref={register(notice.id)} data-id={notice.id} className="nsc__card" data-depth={isLeaving ? 0 : depth} data-tone={notice.tone ?? "neutral"} data-leaving={isLeaving ? "" : undefined}
         aria-labelledby={`${notice.id}-title`} aria-hidden={isFront ? undefined : true} inert={isFront ? undefined : true}
         style={{ zIndex: isLeaving ? 11 : 10 - depth, transform: isLeaving ? undefined : depthCss(depth) }}>
         <Pattern kind={notice.pattern ?? "rings"} />
         <div className="nsc__body">
-          <div className="nsc__top"><span className="nsc__badge">{notice.badge}</span>
-            <button type="button" className="nsc__close" aria-label={`Dismiss ${notice.title}`} onClick={() => dismiss(notice, "close")}><Close /></button></div>
-          <h3 id={`${notice.id}-title`} className="nsc__title">{notice.title}</h3>
-          {notice.text && <p className="nsc__text">{notice.text}</p>}
+          <div className="nsc__top"><span className="nsc__badge">{uiText(notice.badge)}</span>
+            <button type="button" className="nsc__close" aria-label={uiText("Dismiss {0}", [notice.title])} onClick={() => dismiss(notice, "close")}><Close /></button></div>
+          <h3 id={`${notice.id}-title`} className="nsc__title">{uiText(notice.title)}</h3>
+          {notice.text && <p className="nsc__text">{uiText(notice.text)}</p>}
           {action && (action.href
-            ? <a className="nsc__btn" href={action.href} {...(action.external ? { target: "_blank", rel: "noreferrer" } : {})} onClick={() => { action.onClick?.(); if (!action.keep) dismiss(notice, "action"); }}>{actionBody}</a>
-            : <button type="button" className="nsc__btn" onClick={() => { action.onClick?.(); if (!action.keep) dismiss(notice, "action"); }}>{actionBody}</button>)}
+            ? <a className="nsc__btn" href={action.href} {...(action.external ? { target: "_blank", rel: "noreferrer" } : {})} onClick={() => { action.onClick?.(); if (!action.keep) dismiss(notice, "action"); }}>{uiText(actionBody)}</a>
+            : <button type="button" className="nsc__btn" onClick={() => { action.onClick?.(); if (!action.keep) dismiss(notice, "action"); }}>{uiText(actionBody)}</button>)}
         </div>
       </article>;
     })}
     {notices.length > 1 && <div className="nsc__foot" style={{ top: height + 6 }}>
-      <span aria-live="off">{notices.length} notices</span>
-      {onDismissAll && <button type="button" onClick={() => { notices.forEach(notice => dismiss(notice, "all")); onDismissAll(); }}>Dismiss all</button>}
+      <span aria-live="off">{uiText(notices.length)} {uiText(" notices")}</span>
+      {onDismissAll && <button type="button" onClick={() => { notices.forEach(notice => dismiss(notice, "all")); onDismissAll(); }}>{uiText("Dismiss all")}</button>}
     </div>}
-    <span className="nsc__sr" role={front?.tone === "error" ? "alert" : "status"} key={front?.id ?? "none"}>{hearing}</span>
+    <span className="nsc__sr" role={front?.tone === "error" ? "alert" : "status"} key={front?.id ?? "none"}>{uiText(hearing)}</span>
   </section>;
 }

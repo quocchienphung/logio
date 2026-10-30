@@ -1,0 +1,923 @@
+(node:42164) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:42164) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-agent-lanes/lanes-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ Finished blocks retain duration and slide left with the visible window (0.7716ms)
+✔ Running blocks end at now while future, expired and invalid intervals are omitted (0.2095ms)
+✔ A handoff uses both task timestamps and the correct agent rows (0.2279ms)
+✔ Waiting outranks running; completed/expired work leaves an idle agent (0.3282ms)
+✔ Approval resumes at the existing start; rejection freezes the end without mutating input (0.1805ms)
+(node:42852) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:42852) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-agent-plan/invoice-plan.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a new plan is a draft with every step pending (1.9318ms)
+✔ rename trims, ignores blanks and unknown ids (0.6086ms)
+✔ remove, add and move edit the order; ids stay stable (0.4176ms)
+✔ Cancel restores the plan as first given, including removed and renamed steps (0.2843ms)
+✔ running: the first step becomes active, each done step activates the next, the last one ends the run (0.6488ms)
+✔ a plan with no steps cannot run, and nothing can be edited once it runs (1.1594ms)
+✔ a failed step stops the run; Retry resets it and everything after it, and keeps earlier results (0.3024ms)
+✔ stale completions are ignored (a step that is no longer active, or a plan that stopped) (0.1015ms)
+✔ Run again returns a finished or failed plan to review with clean steps, edits possible again (0.3249ms)
+✔ the invoice is draft, then unpaid once it is sent, then paid once the payment is recorded (0.3722ms)
+✔ a failed send leaves the invoice a draft; the retry then sends it (0.1801ms)
+✔ effect of a custom plan follows the steps that carry one (0.1001ms)
+✔ estimate and clocks are formatted as on the preview (0.2733ms)
+(node:14452) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14452) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-agent-steering/agentSteeringModel.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ starts two minutes in, step 1 done and step 2 running (2.3744ms)
+✔ queue insertion keeps stable ids and ignores blank drafts (0.9117ms)
+✔ queue deletion (0.2485ms)
+✔ pickup: queued notes join the next step with the same id, which re-plans its title (0.3306ms)
+✔ interrupt redirects the active step immediately and restarts it (0.6473ms)
+✔ pause freezes the timers and resume continues without resetting the step (0.1806ms)
+✔ completing while paused is ignored; repeated pause/resume is idempotent (0.2464ms)
+✔ rapid input cannot duplicate notes or skip steps (0.3554ms)
+✔ the run completes, completed steps stay completed and the run freezes (0.5342ms)
+✔ reset replays from the start (0.6664ms)
+(node:10552) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10552) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-agent-tree/tree-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a card with children shows the whole branch and the bar adds everything up once (2.2544ms)
+✔ the windows list waiting and failed agents in tree order (0.4749ms)
+✔ running and waiting agents count up to now, finished ones stop (0.1857ms)
+✔ labels (0.1837ms)
+✔ folding keeps the agent and drops what is below it; branch ids ignore leaves (0.5626ms)
+✔ agents that leave are remembered with their place and can be put back, flagged (0.6835ms)
+✔ new agents are the ids not seen before (0.1412ms)
+(node:8104) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8104) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-assistant/assistant-api.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ authenticated list/get/history encode workspace and thread IDs, refreshing headers each time (31.2534ms)
+✔ send retries preserve clientMessageId, model, plugins and idempotency without inventing replies (2.1039ms)
+✔ cancel and delete use real API endpoints and support successful empty responses (0.6275ms)
+✔ multipart attachment uploads use the actual file and browser-generated content type (1.8469ms)
+✔ untrusted response envelopes, messages, attachments and timestamps are validated (4.3625ms)
+✔ HTTP status, server errors and network failures retain actionable error codes (3.0373ms)
+✔ caller cancellation works before fetch, during auth and during body reading (1.1065ms)
+✔ timeout covers full response body and pending authentication (43.6343ms)
+✔ integrations use server connection state and validate authorization URL schemes (3.5339ms)
+✔ configuration reuses workspace runtime settings, supports custom routes, and is null without an endpoint (1.5241ms)
+✔ extended thinking and effort travel with the message only when thinking is on (1.7548ms)
+(node:19436) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19436) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-assistant/assistant-models.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ every model has a unique id, a name and a router (Auto) to fall back on (0.8037ms)
+✔ ratings are whole numbers from 1 to 5, set all together or not at all, and figures are positive (0.3069ms)
+✔ saved model ids from earlier versions map to a model; unknown ones become Auto (0.9608ms)
+(node:14656) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14656) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-combobox/combobox-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ search ignores case and accents and matches label, hint, group and keywords (3.6139ms)
+✔ match ranges point into the original text, merged and accent-aware (0.7195ms)
+✔ sections keep the keyboard order, group by title and add a create row last (0.3571ms)
+✔ movement skips disabled rows and clamps at the ends (0.2233ms)
+✔ type-ahead finds the next label that starts with the typed letters, cycling on repeats (0.4166ms)
+✔ exact matches suppress the create row and initials fall back safely (0.2955ms)
+(node:35436) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35436) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-crm/workspace-brand.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ legacy display data is rebranded without changing IDs, assets or unrelated data (3.1409ms)
+(node:10336) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10336) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-delegate-board/delegate-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the running task counts its remaining minutes, the queue behind it counts full estimates (1.0008ms)
+✔ a hand-off previews the new busy time; a task already in the queue changes nothing (0.2138ms)
+✔ assigning moves a task to the end of the queue and back to unassigned with null (0.8769ms)
+✔ auto routing picks whoever is free first and ties go to the first listed (0.3247ms)
+✔ queue totals are money when agents have rates and minutes otherwise (0.314ms)
+✔ labels (1.034ms)
+(node:9780) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9780) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-files/files-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ library validates persisted/backend records, unique ids, formats and download URLs (2.1511ms)
+✔ safe URL and upload file kind detection do not execute untrusted content (0.9326ms)
+(node:31192) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31192) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-gradient-floor/gradient-floor-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ time 0 reproduces the first frame measured on the preview (1.0024ms)
+✔ one loop of `speed` seconds returns to the same shape (0.2101ms)
+✔ each height stays within its measured range (1.5819ms)
+✔ speed 0 keeps the shape still (0.8099ms)
+✔ the still pose used for reduced motion is the one measured on the preview (0.1921ms)
+✔ the five heights move out of step (the peaks and valleys rise and fall against each other) (1.733ms)
+✔ the path is a closed contour with the measured anchor points (0.2792ms)
+✔ the light layer is the same contour at 0.8427 scale on its own canvas (0.3177ms)
+✔ default colours and stops are the measured ones (0.3137ms)
+(node:38456) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:38456) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-model-picker/model-picker-logic.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ thinking multiplies the first-token time by the effort: x1.6, x2.5, x4 (1.9534ms)
+✔ figures are formatted like the reference: one decimal of seconds, whole dollars or cents (0.2047ms)
+✔ the footer shows figures when a model has them and its description when it does not (0.3175ms)
+✔ rows say what they are to a screen reader; a model without ratings is a router (0.2337ms)
+✔ arrow keys wrap around the list and Home/End jump (0.2047ms)
+✔ the rolling figures ease out and stay inside their range (0.1791ms)
+✔ the menu opens below when it fits or there is more room there, otherwise above, and never taller than the room (0.2561ms)
+(node:31704) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31704) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-notification-stack/stack-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ cards sit behind each other: 12 px lower and 5% smaller each, three visible, the rest where the third is (1.5195ms)
+✔ the stack is as tall as its front card plus the strips that show behind it (0.1686ms)
+✔ a dismissed card is drawn leaving, once, and not at all when it is back (0.3414ms)
+✔ new notices go in front; failures and ones that need the person go before the quiet ones; the oldest quiet ones are dropped first (0.9666ms)
+✔ a card is announced with its badge, title and text (0.2665ms)
+(node:1628) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1628) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-run/run-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ tools complete in order and approval gates all later side effects (1.3211ms)
+✔ deny stops and retry removes previous approval before replaying the step (0.2665ms)
+✔ approval waiting time is accounted once without executing a gated tool (0.2282ms)
+✔ stop cancels progress; rename/move/remove preserve stable ids and support custom steps (1.2072ms)
+(node:37140) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37140) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-trace-waterfall/trace-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ times are written in the unit that fits: ms, one decimal under ten seconds, whole seconds, minutes (1.2444ms)
+✔ tokens and dollars: 880, 4.1k, 99.7k; $0.12, $0.02, $0.042, $0.005 (1.4803ms)
+✔ the axis moves up a ladder as the run grows and never holds a run past 84% of it (0.735ms)
+✔ ticks: five or fewer, round steps, the edge left out (3.1778ms)
+✔ the header numbers add up every span's own cost and tokens, count the calls and the errors (0.6976ms)
+✔ an error is counted once, at the span that failed, not again at the blocks that hold it (0.2866ms)
+✔ the state of a run: running while anything runs, then failed or done by the first span (0.1861ms)
+✔ the slowest finished model or tool call is marked, running calls and agents are not (0.285ms)
+✔ rows: folding closes up the rows below and counts what is hidden; leaves have no chevron (0.8038ms)
+✔ a bar's place on the axis, and a label goes after the bar, inside it or before it (0.4913ms)
+✔ flattenSpans lists a trace parent first (0.1934ms)
+(node:8596) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8596) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-writing-assistant/writing-assistant-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the four suggestions and the dictation sentence reach the replies measured on the preview (1.5619ms)
+✔ rules are tried in order and anything else gets the open first-draft reply (0.3836ms)
+✔ tokens keep trailing whitespace so revealing words never reflows earlier text (0.8298ms)
+✔ sending adds the user message and a Writing line, trims the text and ignores blanks (0.4163ms)
+✔ a second message cannot be sent while a reply is on its way (0.3626ms)
+✔ a reply shows its first word at once, then reveals word by word to done (0.2419ms)
+✔ an instant reply (reduced motion) is done immediately and a one-word reply never streams (0.2471ms)
+✔ stale replies and reveals are ignored once a message is no longer in that phase (0.1837ms)
+✔ a failed reply becomes an error line, frees the chat and keeps the user's message (0.3514ms)
+✔ New chat clears everything and ids keep counting up within a chat (1.4794ms)
+✔ long replies stream within the cap, short ones at the measured per-word pace (0.2942ms)
+✔ dictation reveals the sentence word by word (0.2324ms)
+(node:25124) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25124) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/ascii-reveal/glyph-field.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the grid never has more than MAX_CELLS cells, however large the window (1.6353ms)
+✔ the hash is stable and spread over [0, 1) (1.0154ms)
+✔ the wave starts at its origin and reaches the farthest cell last (1.7012ms)
+✔ a faster speed starts every cell sooner and shortens the reveal, which never exceeds the cap (0.2876ms)
+✔ every cell ends fully transparent: the reveal always uncovers the whole page (8.92ms)
+✔ the first frame of the reveal is the loading field (no jump when the wait ends), and the cover only ever decreases (1.0112ms)
+✔ glyphs come from fixed sets, never from the page: only printable ASCII (70.2454ms)
+(node:40560) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40560) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/bottom-sheet/sheet-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ layout matches the recorded sheet: 1080px tall, rests at 460, closed at 960; and 0.46 of every viewport height measured (1.4136ms)
+✔ detents are sorted, clamped and de-duplicated; the default is [0.45, 0.92] (0.2608ms)
+✔ backdrop: 1 at the tallest, .78 at the smallest, 0 closed, linear between (recorded: 230 -> .88, 710 -> .40) (0.216ms)
+✔ the sheet follows the pointer 1:1 and rubber-bands above the tallest detent (recorded 100 -> 40, 320 -> 72, 640 -> 89.5) (0.2102ms)
+✔ a release at rest snaps to the nearest stop: thresholds 230 (between the detents) and 710 (between the smallest and closing) (0.3062ms)
+✔ flicks decide by projection, matching the recorded sweeps (0.2824ms)
+✔ velocity comes from the last three samples inside the window (0.1542ms)
+✔ keyboard: arrows step one detent, Home/End jump, Enter and Space toggle the ends (0.1627ms)
+(node:19688) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19688) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/cookie-consent/consent-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ required categories are always on, others follow their default (3.3689ms)
+✔ the hidden count Save is described by (0.4299ms)
+✔ a stored choice is read back only for the same version and only when well formed (0.5647ms)
+✔ shapes measured from the preview: bar 635 at a 635 layer, panel 420 centred 107.5px in, 44px chip at the left (0.3871ms)
+✔ the bar is at most 660px, the panel 420px, both clamped to the layer; corners put them on their side (0.4002ms)
+✔ below 560px the message stacks above the actions (0.1284ms)
+✔ growing springs with a little bounce, shrinking is critically damped (never overshoots when it folds away) (0.5039ms)
+✔ English source, whitespace and React nodes retain their original values (2.7567ms)
+✔ Vietnamese is exact reviewed copy, without partial sentence replacement (0.3784ms)
+✔ explicit interpolation preserves names, values, currency and placeholder order (0.3503ms)
+✔ every translated placeholder exists in its English key (2.9126ms)
+✔ both languages search the same stable settings IDs, including unaccented Vietnamese (4.973ms)
+(node:44064) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:44064) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/invoice/invoice-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ source sample totals and per-line taxes are exact (4.8647ms)
+✔ fractional quantities and cent/tax ties round half-up with integer arithmetic (0.3824ms)
+✔ continuous deletion and mixed taxes recompute without stale totals (1.347ms)
+✔ credit selections, caps, and tax follow the current line amounts (0.3514ms)
+✔ strict storage/import parsing rejects corrupt dates, ids, credit and versions (3.8798ms)
+✔ legacy v1 migration retains entered billing data (0.4184ms)
+✔ new invoices use distinct numbers and validation keeps bad links or incomplete drafts unsaved (0.3993ms)
+✔ CSV quotes real content and neutralizes spreadsheet formulas (1.0164ms)
+(node:17544) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17544) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/invoice/stamp-timeline.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the wheels only ever hold a date that exists (1.8829ms)
+✔ a date reads the way the picker and the stamp print it (20.1946ms)
+✔ a stamp is checked before it is trusted, and each kind has its own words and ink (0.3735ms)
+✔ an impression is never set down perfectly square, and the same stamp always lands the same way (0.2816ms)
+✔ easing starts at 0, ends at 1 and a move that arrives is monotonic (0.7095ms)
+✔ pressing the button: the picker's controls leave, the card is where it was, nothing is stamped yet (0.6276ms)
+✔ the card becomes a stamp: the paper comes up out of the blur and the camera tilts down onto it, and the stamp follows the same tilt (1.2131ms)
+✔ the drop is decisive: down onto the paper in a few hundredths of a second, held, then straight back up (0.3032ms)
+✔ ink appears only when the stamp touches, wet and soft at first, then dry and sharp (0.456ms)
+✔ the toast comes up only once the stamp has settled (1.0728ms)
+✔ after Done the stamp leaves upward, the paper lies flat and settles, and the buttons come up last (0.7037ms)
+✔ the two clips join without a jump (0.2125ms)
+✔ outside the slam and the lift, nothing jumps between two frames at 60 fps (7.4258ms)
+(node:19856) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19856) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/mapping/mapping-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ sample data has the starter shape, generic names and no copied content (17.5988ms)
+✔ layout is computed from data: nested, non-overlapping and growing with content (9.0872ms)
+✔ new users count upward and never reuse a number (1.8922ms)
+✔ every field is editable and rollups follow the edits (3.4963ms)
+✔ checklist completion drives status and ancestors; setStatus keeps them consistent (6.0027ms)
+✔ add, move, rearrange and delete keep the structure valid (0.7029ms)
+✔ imports are validated: bad references dropped, junk rejected, counters stay ahead (0.4854ms)
+(node:30252) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30252) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/orbit-menu/orbit-geometry.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ observed 104px/150° fan has the source five action centers (0.8111ms)
+✔ pie targeting accepts a direction without requiring a circle hit (0.2119ms)
+✔ targeting rotates correctly through the angle discontinuity (0.0984ms)
+✔ a top edge flips the fan into available space (0.5984ms)
+✔ inspector boundary rotates the fan away from the right panel (0.2602ms)
+✔ narrow corner fans retain separated 46px targets (1.9514ms)
+(node:42396) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:42396) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/orchestrator/orchestrator-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the plan streams in one item at a time and is ready 1465 ms after Run (5.7077ms)
+✔ lanes are dispatched 110 ms apart and start working when the packet lands, 460 ms later (0.6465ms)
+✔ lanes return when they did in the recording (Haiku, GPT, Sonnet, Gemini) and the lead merges 608 ms after the last (0.7104ms)
+✔ the Quillstack fetch fails after 1.3 s with a 503, waits 2 s and retries; the lane returns after four tool calls (1.8335ms)
+✔ tokens and cost add up to the recorded lane totals and the totals row (1.9242ms)
+✔ concurrency 2: two lanes start, the others queue, the next starts the moment one returns (0.4891ms)
+✔ raising the limit mid-run releases queued lanes at once (0.4045ms)
+✔ stopping ends the simulation with no further events (0.1486ms)
+✔ the limit is kept inside 1 to 4 (0.3866ms)
+✔ formatting and layout rules (0.556ms)
+✔ Retry now skips what is left of the wait: the lane carries on at once and finishes that much earlier (0.8608ms)
+✔ with approvals on a lane waits before writing; Allow carries on from there, Deny returns without writing (1.1006ms)
+✔ a lane's transcript grows with the run: the running step is a row, a failure stays, the retry follows it (0.8043ms)
+(node:23628) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23628) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/orchestrator/orchestrator-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the header counts tokens exactly, cost within a cent, and the agents working, at every recorded time (2.1096ms)
+✔ the finished summary: five agents, 26.4s, 1.5x faster than sequential, $0.16, 51,210 tokens (30.4275ms)
+✔ connectors have the recorded geometry: a dispatch drops from the orchestrator, a result rises into it (0.7028ms)
+✔ span states follow the playhead (1.1428ms)
+✔ axis ticks: 5 s for the preview's run, finer for a short one (0.2932ms)
+✔ accessible names read the agent, the kind, the tool, a failure, what it did, its time range and tokens (0.4138ms)
+✔ arrow keys move along a row, to the overlapping span of the next row, and to the ends (as recorded) (0.5848ms)
+✔ pinning a span lights its row, the orchestrator spans its handoffs enter, and the two connectors (as recorded for the analyst) (1.4499ms)
+✔ an orchestrator run becomes a timeline: the lead plans, waits, merges; a failed call, its wait and its retry are three spans (3.0409ms)
+✔ a run in progress closes only the spans that have finished (0.7965ms)
+(node:11796) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11796) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/orchestrator/orchestrator-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the header reads Used / Using / Waiting for approval with the failed count or the total time (1.6157ms)
+✔ a group opens by itself while a call runs, waits or has failed; a finished one starts folded and folds itself 450 ms after (0.2176ms)
+✔ titles follow the status; the summary is derived from the output when left out (0.238ms)
+✔ tables fold after five rows and JSON after ten lines, behind "Show N more lines" (0.4684ms)
+✔ the calls of a run: running rows, a failed row that can be retried while the lane waits, the retried row, then all settled (6.4363ms)
+✔ the approval after the run: Post a summary asks, then runs, then posted (0.277ms)
+(node:39284) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39284) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/orchestrator/wires.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ side by side: a trunk, a bus above the lanes and one below, an elbow into the last lane (the recorded paths) (2.0475ms)
+✔ stacked: one trunk in the lead's column and a short branch with a port into each lane (the recorded paths) (1.2233ms)
+✔ the packet routes follow the same paths: down the trunk into a lane, and from a lane back to the summary (0.4519ms)
+✔ lanes of different heights: each bottom branch starts at its own lane, the merge bus is under the summary's gap (0.2387ms)
+(node:15252) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15252) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/block-shortcuts.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ run shortcuts require a configured whole branch, not just a configured parent (3.598ms)
+✔ waiting and failed block shortcuts preserve the existing approval and retry paths (0.4264ms)
+✔ an active or starting run freezes mutations and a starting run cannot be launched twice (0.491ms)
+✔ root protections, human approval and subtree copy limits remain enforced (2.3252ms)
+✔ every shortcut has a hotkey and hotkeys never collide within one menu (0.4668ms)
+✔ menu anchor: pointer where clicked, keyboard at the block centre (1.0988ms)
+(node:16028) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16028) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/process-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ Retry after a terminal failure wakes the stopped page clock (3.6478ms)
+✔ the simulated engine starts a run of the plan or of one task, and answers decisions (5.4976ms)
+✔ the REST engine posts the plan to the documented route with the host's headers (31.8633ms)
+✔ actions go to the run's route; an answer with a snapshot replaces the state, an empty one keeps it (3.6856ms)
+✔ polling sends the last version and keeps the handle on 304 (1.6837ms)
+✔ the remote clock moves on from the server's time (0.2073ms)
+✔ a snapshot that is not valid is refused and the old state stays (2.4127ms)
+✔ failures map to the backend's error codes and show the server's message (28.529ms)
+✔ the catalog lists installed models, tolerates a missing route and drops what is not an entry (0.9339ms)
+✔ latest asks for the process's newest run and treats 'none' as null (1.1487ms)
+(node:15116) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15116) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/history.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ every edit is a step; undo and redo walk through them (2.3752ms)
+✔ edits to the same field in quick succession are one step (0.3629ms)
+✔ an edit that changes nothing is not a step, and replace clears the history (0.2036ms)
+✔ the history is capped (0.4151ms)
+(node:18372) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18372) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/process-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the first block is in the middle and every other block has its own place (7.425ms)
+✔ the branches fan out around the middle: the first goes up, then clockwise, each taking a slice as wide as its blocks (0.4943ms)
+✔ one branch goes to the right and two go left and right (0.1654ms)
+✔ the layout is the same every time and does not change the plan (0.4194ms)
+✔ a block the person placed keeps its place and the others make way for it (0.7999ms)
+✔ measured sizes are used; a tall block pushes its neighbours away (0.4329ms)
+✔ a wide plan with many blocks in one branch still has no overlaps (2.3261ms)
+✔ edges leave the side that faces the other block and arrive on the side that faces back (0.5803ms)
+✔ fitting shows every block, never zoomed in past 1, and zooming keeps the point under the pointer (0.6342ms)
+✔ a new block goes next to its parent on the chosen side and steps away from blocks that are there (0.9972ms)
+✔ a tall screen gets rings taller than wide, and fitView never goes below its floor (0.5468ms)
+✔ a bent edge leaves the same sides and bulges to the right of its way; its middle is where a label can sit (0.22ms)
+✔ anchors sit exactly on the sides of the box, and blockAt finds the block under a point (1.2011ms)
+(node:40464) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40464) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/notice-spark-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ notices are grouped under their block; the run's own notice goes to the first block (1.5817ms)
+✔ a star is as loud as the loudest notice behind it (0.2182ms)
+✔ a star blinks until everything behind it has been opened (0.1256ms)
+✔ the star sits at its block's top right corner, and is pinned to the edge when the block is out of view (0.2789ms)
+✔ the card opens beside the block, on the right when there is room, on the left otherwise (0.3303ms)
+✔ a card near the bottom hangs from the bottom so it stays on the screen (0.1918ms)
+✔ on a narrow map the card goes under the block, or above it when there is no room below, and never past the edges (0.1994ms)
+(node:17380) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17380) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/process-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a link back to a block that came before is a loop; any other link means waiting (1.9737ms)
+✔ connecting blocks: any block to any other, with a reason when it is not allowed (1.2891ms)
+✔ waiting links never make two blocks wait for each other (0.5838ms)
+✔ a sequence is a chain of waiting too: a later block cannot be waited for by an earlier one (0.2305ms)
+✔ rounds are limited to 2..10 and only loops have them (0.4053ms)
+✔ removing a connection, and a block takes its connections with it (1.2491ms)
+✔ moving a block under another can make a connection invalid; pruning drops it, and a waiting link that became a loop gets rounds (0.6824ms)
+✔ a saved document keeps its connections; broken ones are dropped (3.24ms)
+✔ a copy of a process from a template keeps its connections between the new ids (0.8096ms)
+✔ the closed-loop template is a valid plan: every connection is allowed, one loop closes it and a person approves the deploy (33.6571ms)
+(node:11968) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11968) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/process-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the sample and the local template are valid and use the provider kinds the page offers (5.4816ms)
+✔ tree edits are immutable and leave untouched branches as the same objects (0.4617ms)
+✔ adding, duplicating, removing and moving tasks (0.8646ms)
+✔ a task can move under another one, but never under itself or its own sub-tasks (0.4837ms)
+✔ depth and size limits refuse an edit and return the same tree (6.1796ms)
+✔ untrusted data is clamped, de-duplicated and rejected when it is not a library (0.52ms)
+✔ normalizing keeps a valid library intact and repairs the active id (2.5943ms)
+✔ templates become new processes with fresh ids (0.428ms)
+✔ cost formatting per unit (0.3919ms)
+✔ roles and positions are part of a block and survive a save (1.2341ms)
+(node:600) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:600) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/process-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ several blocks are removed at once, each with what hangs under it (1.629ms)
+✔ a block that went with its parent does not matter, a missing id is ignored, and the first block is never removed (0.2772ms)
+✔ connections of removed blocks go with them when the document is pruned (0.8268ms)
+(node:13820) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13820) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/run-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a loop runs the blocks from its target to its source again, up to its rounds, then the run is done (4.8519ms)
+✔ rounds: 2 goes around twice; the pause between passes is LOOP_MS and no pass overlaps the one before (2.2597ms)
+✔ mid-run the newest pass is shown running and the later passes are queued without having started (1.3274ms)
+✔ a failure in a loop ends it: a block that failed is not run again (0.3791ms)
+✔ a simulated failure happens in the first pass only; later passes do not fail (0.7986ms)
+✔ an approval inside a loop asks again every pass, and a decision must name the pass it is about (1.0813ms)
+✔ Stop ends a loop, during a pass or between passes (0.7724ms)
+✔ a loop back to the first block runs the whole plan again (0.4482ms)
+✔ a block waits for the block it is connected from, even when that block comes later in the plan (0.6889ms)
+✔ without connections the plan is played as before (0.7205ms)
+✔ startLog keeps only the connections inside the part that is run; baseId strips a pass suffix (0.2799ms)
+✔ saved runs and reported snapshots with rounds and connections validate; broken ones do not (0.8155ms)
+(node:18496) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18496) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/process-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ children start after the parent delegates, and everything is queued before that (5.3539ms)
+✔ a waiting task holds only itself; the rest of the run carries on (0.4866ms)
+✔ approving starts the task at the moment of the decision and the run can finish (0.7114ms)
+✔ rejecting stops the task and what is under it (0.3247ms)
+✔ a failed task keeps its failed try, restarts on retry and then succeeds (0.6235ms)
+✔ costs grow while a task works and stop when it ends (0.3599ms)
+✔ a cost limit fails the task at the moment the limit is reached (0.2578ms)
+✔ sub-tasks in sequence mode wait for the one before (0.3822ms)
+✔ stop ends everything that is not finished and a stopped run is not active (0.5782ms)
+✔ actions are only recorded when they make sense at that moment (0.8796ms)
+✔ snapshots and logs that come from outside are validated (0.9243ms)
+✔ a saved run store keeps the valid runs and drops the rest (0.4833ms)
+(node:2964) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2964) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/process-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ Routes use tree and wait dependencies, keeping parallel siblings separate (3.6212ms)
+✔ Only observed steps stream in, preserving earlier rounds, failures and reported calls (0.7507ms)
+✔ The ended clock freezes at the reported end and partial runs do not invent rows (0.3196ms)
+✔ Later loop rounds show the back edge rather than claiming a new Start (0.386ms)
+(node:10776) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10776) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/run-notices.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a page that opens in the middle of a run says nothing about what happened before (4.0588ms)
+✔ a block that finishes is announced once, with its engine, cost and time and a way to find it; the first block is the run, not a block (3.0983ms)
+✔ blocks that finish together are one notice (1.2456ms)
+✔ a failure carries its reason and a retry; when the block is retried the failure notice is retired (1.3624ms)
+✔ the end of the run is announced once: done with cost and time, or failed or stopped; the trace is the way on (3.6319ms)
+✔ costs can be left out, and a loop's later round is announced again (458.4605ms)
+✔ statusesOf remembers every block's status per round and the run's state (0.4599ms)
+(node:21920) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21920) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/process/run-view.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ without a run every card is ready, with the AI block's mark and name (2.3744ms)
+✔ with a run each card takes its task's status, cost and times (2.2015ms)
+✔ a retried task keeps its failed try as a card of its own (1.1631ms)
+✔ a task that is not in the run yet (added after it started) is ready, not queued (0.5706ms)
+✔ the roster: every AI engine has a unique id, a real logo and a place in the picker (0.6401ms)
+✔ model names: the app's list, what the engine reports, then what was typed (0.4586ms)
+✔ problems are reported next to the task, not found when the run fails (0.3251ms)
+(node:47720) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:47720) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-trace-waterfall/trace-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a block that has not started has no span; blocks appear as they start and the first block is the agent run (6.2446ms)
+✔ inside a block: model calls and tool calls derived from its settings (simulated engine only), tools in between (14.7371ms)
+✔ what the header adds up: costs sit on the model calls, once, and match the run's total (2.3627ms)
+✔ a task that waited for a person has a wait span from the moment it was ready to the moment of the decision (1.3262ms)
+✔ a failed try stays as its own failed span and the retry is a new one (1.9939ms)
+✔ a loop shows each pass as a span of its own: passes of a block and of what is under it line up (4.8187ms)
+✔ stopped blocks end where the run was stopped and say so; a person's block shows a wait, not a model call (0.9537ms)
+✔ connections that make blocks wait are respected in the trace; ids are stable between ticks (3.5002ms)
+(node:31332) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31332) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/security-settings/security-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ Preview metadata discards secrets, invalid dates and the current sample session (1.8604ms)
+✔ Password requirements match the observed 12 character, mixed case, number and symbol rules (0.5635ms)
+(node:36660) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:36660) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/affectui-crm/workspace-state.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ every workspace section has a skeleton shaped for it, not the fallback by accident (1.4398ms)
+✔ the loading label tells a screen reader which page is loading (0.1961ms)
+(node:21168) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21168) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/skill-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a fresh draft is clean, and any change to text, target or guardrails makes it dirty (7.3604ms)
+✔ the header is checked while typing, with a sentence for every failure (1.9889ms)
+✔ saving an edit recomputes name, description, size and checksum and keeps everything else (5.4077ms)
+✔ an edit cannot take the name of another active skill, but may of an archived one (2.9143ms)
+✔ an invalid edit is refused with the reason (1.026ms)
+✔ delete removes a skill and remembers where it stood; undo puts it back there (2.6792ms)
+✔ undo refuses when the name was taken meanwhile or the library is full (17.9616ms)
+✔ a deleted skill stays in its old place as a ghost until it settles (1.9156ms)
+✔ settled waits for the store, and reports its failure (0.7925ms)
+✔ settled keeps waiting while a flaky save is retried in the background (23.2515ms)
+✔ settled gives up with a clear message after the timeout (35.1449ms)
+(node:30196) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30196) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/skill-insights.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ buckets count times inside the window, oldest first (1.7684ms)
+✔ cumulative series starts from what is older than the window (0.5409ms)
+✔ period counts compare with the period before (0.3428ms)
+✔ sizes use the unit that reads best (0.6653ms)
+✔ lifecycle steps follow what exists (0.5267ms)
+✔ timeline entries skip storage writes and name what happened (0.8493ms)
+(node:39124) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39124) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/skill-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ frontmatter handles real scalar/folded descriptions, preserves instruction bytes and rejects invalid metadata (4.4868ms)
+✔ resource collections reject corrupted records, duplicates and unbounded telemetry (11.6144ms)
+✔ bundles verify hashes and exact receipt coverage instead of trusting a successful HTTP response (9.2847ms)
+✔ offline installer validates everything before writes, preserves SKILL.md and emits honest file receipt (207.9303ms)
+✔ offline installer rejects symlink destinations (5.025ms)
+✔ support files preserve nested UTF8 and binary bytes, contribute to receipt size, and are isolated from mutation (34.8528ms)
+✔ folder receipts acknowledge every exact supporting hash and keep instruction-only compatibility (3.2093ms)
+✔ support parser rejects unsafe, reserved, duplicate and file/directory-conflicting paths (1.2515ms)
+✔ all supporting hashes, aggregate bounds and collision paths are rejected before installer writes (16.6074ms)
+(node:25136) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25136) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/split-bar/split-bar-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ shares are over the visible total; zero, negative and non-finite values are left out (4.2362ms)
+✔ hovering a part widens it by 4.5 % and the others give way as recorded (Direct: 24.8 -> 29.3, Organic 41.6 -> 39.1) (0.6156ms)
+✔ a small part widens enough for its own label (Social at 668.8 px: 14.68 % recorded) (0.1882ms)
+✔ spans are contiguous and a hidden part collapses in place (0.2232ms)
+✔ a single visible part fills the bar and is not widened (0.1563ms)
+✖ the label rule reproduces the modes recorded at eight widths of the preview (0.5983ms)
+✔ outside labels never overlap and stay in the bar; recorded: Referral at 506.9, Other at 600.0 on a 668.8 px bar (0.4433ms)
+✔ leader path has the recorded S shape (0.1533ms)
+✔ shares read with one decimal (1.962ms)
+✔ arrow keys walk the visible parts and stop at the ends (0.4673ms)
+✔ the pointer keeps the highlighted part inside its widened extent, and plain layout decides elsewhere (0.2428ms)
+(node:22008) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22008) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/sample-week.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ every grouping adds up to the terrain's own total for every metric (1.6915ms)
+✔ days, parts of the day and actions are counted where they happened (1.3557ms)
+✔ the sample week has days and parts of the day but no actions (0.532ms)
+✔ switching groups off leaves exactly their hours out, in the totals, the peaks and last week (1.6515ms)
+✔ hours know their group, and a group knows its hours (0.4224ms)
+✔ what is left out is named, in the grouping's own order (0.326ms)
+✔ columns outside a focused group recede toward the platform colour, whichever way the browser writes it (12.2743ms)
+(node:24652) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24652) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain-columns.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the sample week is the one the public preview shows, with its totals, peaks and busiest day (4.4238ms)
+✔ a workspace week counts only what was recorded, by hour of the workspace clock, and never invents a comparison (3.2101ms)
+✔ hour details, keyboard moves and the sentences read out (1.2052ms)
+✔ springs: critical and underdamped steps agree with a fine numerical integration for any step size (13.0721ms)
+✖ framing fits the scene at the measured scale for the sample metrics and canvas sizes (7.08ms)
+✔ a drag starts only after the pointer has travelled the threshold, and releases with the recent velocity (2.0545ms)
+✔ the camera never leaves its soft limits for good, and flying and flattening are reversible (34.7743ms)
+✔ column colours run from light to dark in the light theme, the other way in the dark, and to red for errors (0.6102ms)
+✖ the rest view draws the same polygons, colours and labels as the public preview, frame for frame (2.4616ms)
+✖ the top view draws flat tiles at the preview's positions, and the dark theme its darker colours (1.6798ms)
+✖ hover finds the column under the pointer, nearest first, and the highlight adds guide lines and two pills (1.2692ms)
+✖ the camera's motion follows the recorded frames: intro, flights, orbit, zoom, fly (1.087ms)
+✖ columns rise in a wave along the grid's diagonal, quickly on a metric change (0.9185ms)
+(node:10648) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10648) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/ui/confirm-morph-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the happy path: question, pending, result, then Undo restores to rest (1.6414ms)
+✔ cancel, timeout and dismiss return to rest; failures offer a retry that reruns (0.2365ms)
+✔ events that make no sense in a state change nothing (0.1798ms)
+✔ a press inside the guard window, or an auto-repeated key, never confirms (0.1265ms)
+✔ the measured constants are the ones used (traces in docs/research/uiarc-confirm-morph) (0.2934ms)
+✔ the timer fires once, and pausing keeps what was left (0.3988ms)
+✔ a cancelled timer never fires and cannot be restarted (0.2194ms)
+✖ the measured traces back the hold and spring numbers (0.6605ms)
+(node:29152) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29152) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/split-button/split-button-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ Publish to Published keeps seven letters and brings two in; going back sends them out (1.9383ms)
+✔ a different label keeps only the shared start; a new label from nothing enters whole (0.4522ms)
+✔ an unchanged label changes nothing and glyphs that already left are not revived (0.1977ms)
+✔ menu: end-aligned 4px under the chevron, as measured (192px menu, group right edge 784.5) (0.286ms)
+✔ menu: flips above when it does not fit below, and stays 12px inside the viewport (0.2129ms)
+✔ menu start: 5px toward the button and scaled .97 (0.2237ms)
+✔ keyboard: arrows loop and skip disabled items; typeahead finds the next match (0.3318ms)
+✔ measured constants: items stagger 35ms up to the fifth, result label stays ~2s (0.1334ms)
+(node:33296) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33296) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/storage/storage-edit.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ the extension is the file's type and stays out of the draft (15.8367ms)
+✔ a fresh draft is clean; a new name or area makes it dirty; spaces around the name do not (0.328ms)
+✔ the name is checked in words (0.4384ms)
+✔ an edit changes only name and area, and the library still parses (12.1321ms)
+✔ removing remembers where each document stood, and restoring puts them back there (0.5558ms)
+✔ restoring is idempotent and refuses an identical twin that was uploaded meanwhile (0.2577ms)
+(node:18924) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:18924) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/storage/storage-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ library accepts measured records and rejects malformed or executable metadata (2.6109ms)
+✔ file admission rejects oversize, empty and unsupported documents (0.6252ms)
+✔ lexical index retains source text with overlap; does not generate summaries (13.6615ms)
+✔ treemap uses actual original bytes or file counts in each subject (2.0283ms)
+✔ squarified tiles conserve area, stay bounded and never overlap over varied screens (6.7088ms)
+(node:13176) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13176) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/storage/storage-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ read-back receipt detects swallowed local quota failure and recovers on retry (5.7649ms)
+✔ persistence waits for an already inflight save and then its queued latest edit (1033.0976ms)
+(node:13236) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13236) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/storage/storage-purge.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ noted removals are read back, per workspace, and cleared by id (1.6278ms)
+✔ noting the same document again moves it instead of duplicating it (0.2247ms)
+✔ a damaged or missing store reads as empty and never throws (0.4648ms)
+✔ only removals past their window are due, and the wait to the next one is reported (0.2519ms)
+(node:6712) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6712) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/tracing/performance.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ a block's own time is what its calls and waits cover, not what is under it; shares add up to one (5.053ms)
+✔ parallelism says how many blocks worked at once, and waiting for a person is counted apart (0.4451ms)
+✔ the critical path goes from the first block into the block that ended last (0.5535ms)
+✔ engines add up their blocks: time, cost and calls (0.2973ms)
+✔ a running trace is measured up to now, and a run of several rounds says how many (7.1294ms)
+✔ app code under src/ never imports a file from outside src/ (331.9413ms)
+(node:29584) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29584) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/lib/server/agent-delivery.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ store round-trips, versions and rejects stale writes (30.9738ms)
+✔ store refuses unsafe names and ids (0.6439ms)
+✔ concurrent writes are serialised (54.6171ms)
+✔ guard serves private hosts only unless a token is set (20.4645ms)
+✔ skill.transfer writes the bundle for the agent and returns a matching receipt (24.7483ms)
+✔ skill.transfer refuses a wrong workspace, a bad agent id and a tampered bundle (1.0789ms)
+(node:33008) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33008) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/lib/server/workspace-store.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ server stores byte-perfect originals and complete indexes, with idempotent upload receipts (25.5485ms)
+✔ workspace isolation, unsafe paths, bad fingerprints and oversize indexes are rejected (3.6414ms)
+✔ search uses server text outside excerpts, and deletion preserves referenced originals (22.5998ms)
+✔ multipart/index/original/delete HTTP handlers return safe attachment responses (35.2315ms)
+(node:14264) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14264) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/skill-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ public archive scan pins commit, includes folder references/binary/license, excludes unrelated source (16.7984ms)
+✔ scan rejects missing skill, unsafe folder paths, oversized files and archives without commit identity (32.7189ms)
+✔ folder import uses public codeload and rejects unsupported hosts before making a request (23.9554ms)
+✔ repository root discovers actual metadata using one HEAD archive and commit-pinned choices (11.4843ms)
+✔ folder discovery is scoped; exact folder and root SKILL files still import directly (4.6101ms)
+✔ discovery bounds candidates, ignores malformed docs safely, and reports no valid skills clearly (53.5665ms)
+(node:38704) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:38704) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/skill-model.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ GitHub file/tree/raw links resolve to raw content with explicit provenance and no API (3.0948ms)
+✔ URL allowlist blocks SSRF, alternate protocols, credentials, escapes and unsupported filenames (0.6688ms)
+✔ import streams raw bytes, checks metadata and computes SHA-256 without executing instructions (36.9979ms)
+✔ import rejects oversized streamed files, invalid UTF8/metadata, HTML and upstream failure (5.3641ms)
+(node:31560) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31560) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/lib/stripe-navigation.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ all Stripe marketing, docs, payment and demo destinations become local 404 paths (1.4697ms)
+✔ local login/signup replace dashboard authentication, without forwarding external return URLs (0.3644ms)
+✔ browser URL variants cannot retain an external Stripe destination (0.226ms)
+✔ local routes and unrelated hosts retain their existing destinations (0.1667ms)
+✔ policy is idempotent and encoded segments cannot become an external authority (0.1558ms)
+(node:8964) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8964) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/lib/storage/knowledge-contract.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ all Storage operations share configurable routes, bearer auth and cookie settings (28.3491ms)
+✔ upload receipts and indexes are validated; auth and unsupported APIs fail visibly (1.7739ms)
+(node:6760) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6760) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/quocc/Downloads/logio/src/lib/workspace-backend/index.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\quocc\Downloads\logio\package.json.
+✔ changes are matched by id: created, updated, deleted, and reordering alone is not a change (2.7417ms)
+✔ local keys are the ones earlier versions wrote, so saved data keeps working (0.1616ms)
+✔ secrets are removed from records and plain objects, and untouched when there are none (0.2112ms)
+✔ the local backend round-trips values and tolerates broken storage (1.5411ms)
+✔ the http backend uses the documented routes, auth headers, versions and statuses (19.8302ms)
+✔ http failures become typed errors the screens can act on (31.2772ms)
+✔ queries, commands, uploads and run actions have their own routes; routes can be remapped (1.976ms)
+✔ the browser simulates the run unless the server is said to drive it (0.1891ms)
+✔ live resources are polled with a conditional request and unchanged answers are ignored (91.0989ms)
+✔ the store shows an empty value while a remote load runs, then the stored one; screens share one entry (31.5764ms)
+✔ edits show at once and are saved after a pause with only the latest value, a diff and the base version (109.9826ms)
+✔ only one save is in flight and an edit made meanwhile is saved right after (76.4912ms)
+✔ secrets stay in the browser: removed from remote saves, kept by the local backend (124.4679ms)
+✔ device resources never leave this browser, even with a remote backend (47.1335ms)
+✔ failures: network errors retry on their own, conflicts and rejections wait for the person (1386.0097ms)
+✔ edits made while the first load runs are kept, and nothing is saved until the load is done (76.844ms)
+✔ a signature keeps high-frequency state from being saved on every tick (79.4718ms)
+✔ changes from elsewhere replace the value unless there are unsaved local edits (15.3189ms)
+✔ the sync summary counts loading, saving and failed resources of remote backends only (92.3657ms)
+✔ a server-driven resource can opt out of saving (46.7278ms)
+✔ browser storage is read on the first render, so a screen never flashes its defaults (14.5964ms)
+✔ a snapshot source sends the revision back, forwards commands, and after a conflict fetches the newest revision for the retry (0.5087ms)
+✔ a snapshot source relays remote changes and drops the ones that fail validation (0.1343ms)
+✔ answers are checked against a sample of the expected shape (0.192ms)
+✔ a read model falls back to the built-in sample when the answer is missing or invalid, and keeps its data when a refresh fails (29.3293ms)
+✔ files go to the backend's upload route (account files to the account route), and fall back to a data URL only when there is no such route (0.9341ms)
+ℹ tests 472
+ℹ suites 0
+ℹ pass 464
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3490.0251
+
+✖ failing tests:
+
+test at src\components\sites\skilled\split-bar\split-bar.test.mjs:54:1
+✖ the label rule reproduces the modes recorded at eight widths of the preview (0.5983ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-split-bar\labels-fit.json'
+      at readFileSync (node:fs:442:20)
+      at TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/split-bar/split-bar.test.mjs:55:27)
+      at Test.runInAsyncScope (node:async_hooks:211:14)
+      at Test.run (node:internal/test_runner/test:979:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+      at Test.postRun (node:internal/test_runner/test:1090:19)
+      at Test.run (node:internal/test_runner/test:1018:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-split-bar\\labels-fit.json'
+  }
+
+test at src\components\sites\skilled\terrain\terrain.test.mjs:87:1
+✖ framing fits the scene at the measured scale for the sample metrics and canvas sizes (7.08ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-terrain\fixtures\heights.json'
+      at async open (node:internal/fs/promises:638:25)
+      at async readFile (node:internal/fs/promises:1242:14)
+      at async fixture (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:16:42)
+      at async TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:88:20)
+      at async Test.run (node:internal/test_runner/test:980:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-terrain\\fixtures\\heights.json'
+  }
+
+test at src\components\sites\skilled\terrain\terrain.test.mjs:180:1
+✖ the rest view draws the same polygons, colours and labels as the public preview, frame for frame (2.4616ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-terrain\fixtures\frame-rest.json'
+      at async open (node:internal/fs/promises:638:25)
+      at async readFile (node:internal/fs/promises:1242:14)
+      at async fixture (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:16:42)
+      at async TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:181:17)
+      at async Test.run (node:internal/test_runner/test:980:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-terrain\\fixtures\\frame-rest.json'
+  }
+
+test at src\components\sites\skilled\terrain\terrain.test.mjs:193:1
+✖ the top view draws flat tiles at the preview's positions, and the dark theme its darker colours (1.6798ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-terrain\fixtures\frame-top.json'
+      at async open (node:internal/fs/promises:638:25)
+      at async readFile (node:internal/fs/promises:1242:14)
+      at async fixture (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:16:42)
+      at async TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:194:15)
+      at async Test.run (node:internal/test_runner/test:980:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-terrain\\fixtures\\frame-top.json'
+  }
+
+test at src\components\sites\skilled\terrain\terrain.test.mjs:209:1
+✖ hover finds the column under the pointer, nearest first, and the highlight adds guide lines and two pills (1.2692ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-terrain\fixtures\heights.json'
+      at async open (node:internal/fs/promises:638:25)
+      at async readFile (node:internal/fs/promises:1242:14)
+      at async fixture (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:16:42)
+      at async renderSetup (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:176:20)
+      at async TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:210:29)
+      at async Test.run (node:internal/test_runner/test:980:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-terrain\\fixtures\\heights.json'
+  }
+
+test at src\components\sites\skilled\terrain\terrain.test.mjs:229:1
+✖ the camera's motion follows the recorded frames: intro, flights, orbit, zoom, fly (1.087ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-terrain\fixtures\camera-load.json'
+      at async open (node:internal/fs/promises:638:25)
+      at async readFile (node:internal/fs/promises:1242:14)
+      at async fixture (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:16:42)
+      at async cameraScenario (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:225:16)
+      at async TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:235:20)
+      at async Test.run (node:internal/test_runner/test:980:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-terrain\\fixtures\\camera-load.json'
+  }
+
+test at src\components\sites\skilled\terrain\terrain.test.mjs:240:1
+✖ columns rise in a wave along the grid's diagonal, quickly on a metric change (0.9185ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-terrain\fixtures\heights.json'
+      at async open (node:internal/fs/promises:638:25)
+      at async readFile (node:internal/fs/promises:1242:14)
+      at async fixture (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:16:42)
+      at async TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/terrain/terrain.test.mjs:241:19)
+      at async Test.run (node:internal/test_runner/test:980:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-terrain\\fixtures\\heights.json'
+  }
+
+test at src\components\sites\skilled\ui\confirm-morph.test.mjs:80:1
+✖ the measured traces back the hold and spring numbers (0.6605ms)
+  Error: ENOENT: no such file or directory, open 'C:\Users\quocc\Downloads\logio\docs\research\uiarc-confirm-morph\fit.txt'
+      at readFileSync (node:fs:442:20)
+      at TestContext.<anonymous> (file:///C:/Users/quocc/Downloads/logio/src/components/sites/skilled/ui/confirm-morph.test.mjs:82:16)
+      at Test.runInAsyncScope (node:async_hooks:211:14)
+      at Test.run (node:internal/test_runner/test:979:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+      at Test.postRun (node:internal/test_runner/test:1090:19)
+      at Test.run (node:internal/test_runner/test:1018:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:677:7) {
+    errno: -4058,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'C:\\Users\\quocc\\Downloads\\logio\\docs\\research\\uiarc-confirm-morph\\fit.txt'
+  }

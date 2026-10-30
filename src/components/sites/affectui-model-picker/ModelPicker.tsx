@@ -1,4 +1,5 @@
 "use client";
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { interactionMotion } from "@/components/interaction/motion-tokens";
 
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
@@ -56,6 +57,7 @@ export function ModelPicker({
   models, value, defaultValue, onChange, thinking, defaultThinking = false, onThinkingChange, webSearch, defaultWebSearch = false, onWebSearchChange,
   effort, defaultEffort = "medium", onEffortChange, open, defaultOpen = false, onOpenChange, align = "start", side = "auto", features, disabled = false, className,
 }: ModelPickerProps) {
+  const { t: uiText } = useWorkspaceI18n();
   const uid = useId();
   const showThinking = features?.thinking !== false, showWebSearch = features?.webSearch !== false;
   const [modelId, setModelId] = useControllable(value, defaultValue ?? models[0]?.id ?? "", onChange);
@@ -170,61 +172,61 @@ export function ModelPicker({
     onKeyDown={event => { if (event.key === "Escape" && isOpen) { event.preventDefault(); event.stopPropagation(); close(true); } }}
     onBlur={event => { if (isOpen && event.relatedTarget instanceof Node && !root.current?.contains(event.relatedTarget)) close(false); }}>
     <button ref={trigger} type="button" className="mp__trigger" disabled={disabled} aria-haspopup="dialog" aria-expanded={isOpen} aria-controls={`${uid}-menu`}
-      aria-label={`Model: ${selected.name}${thinkingOn && showThinking ? ", extended thinking" : ""}`}
+      aria-label={uiText("Model: {0}{1}", [selected.name, thinkingOn && showThinking ? ", extended thinking" : ""])}
       onClick={() => (isOpen ? close(true) : openMenu())}
       onKeyDown={event => { if (event.key === "ArrowDown") { event.preventDefault(); if (isOpen) list.current?.focus(); else openMenu(); } }}>
       <Glyph model={selected} />
-      <span className="mp__name"><Swap id={selected.id}>{selected.name}</Swap></span>
+      <span className="mp__name"><Swap id={selected.id}>{selected.name === "Auto" ? uiText("Auto") : selected.name}</Swap></span>
       {showThinking && <span className="mp__flag" data-on={thinkingOn ? "" : undefined} aria-hidden="true"><span><Bulb /></span></span>}
       <Chevron />
     </button>
-    <div ref={pop} id={`${uid}-menu`} className="mp__pop" role="dialog" aria-label="Model settings" popover="manual">
+    <div ref={pop} id={`${uid}-menu`} className="mp__pop" role="dialog" aria-label={uiText("Model settings")} popover="manual">
       <div ref={card} className="mp__card">
-        <div className="mp__head" aria-hidden="true"><span>Model</span>{anyRatings && <span className="mp__cols"><span>Speed</span><span>Quality</span><span>Cost</span></span>}</div>
-        <div ref={list} className="mp__list" role="listbox" aria-label="Model" tabIndex={0} aria-activedescendant={isOpen ? optionId(activeModel.id) : undefined} data-pointing={pointing ? "" : undefined}
+        <div className="mp__head" aria-hidden="true"><span>{uiText("Model")}</span>{anyRatings && <span className="mp__cols"><span>{uiText("Speed")}</span><span>{uiText("Quality")}</span><span>{uiText("Cost")}</span></span>}</div>
+        <div ref={list} className="mp__list" role="listbox" aria-label={uiText("Model")} tabIndex={0} aria-activedescendant={isOpen ? optionId(activeModel.id) : undefined} data-pointing={pointing ? "" : undefined}
           onKeyDown={listKey} onPointerLeave={() => setPointing(false)}>
           {models.map(model => {
             const rated = hasRatings(model), lit = litModel.id === model.id;
-            return <div key={model.id} id={optionId(model.id)} data-id={model.id} role="option" aria-selected={model.id === selected.id} aria-label={rowLabel(model)} className="mp__option"
+            return <div key={model.id} id={optionId(model.id)} data-id={model.id} role="option" aria-selected={model.id === selected.id} aria-label={uiText(rowLabel(model))} className="mp__option"
               data-active={model.id === activeModel.id ? "" : undefined} data-lit={lit ? "" : undefined}
               onPointerMove={event => { if (event.pointerType === "mouse" && (!pointing || activeId !== model.id)) { setPointing(true); setActiveId(model.id); } }}
               onClick={() => pick(model.id)}>
               <Glyph model={model} />
               <span className="mp__text">
-                <span className="mp__title"><span className="mp__title-name">{model.name}</span>{model.id === selected.id && <Check />}</span>
-                {model.description && <span className="mp__desc">{model.description}</span>}
+                <span className="mp__title"><span className="mp__title-name">{uiText(model.name)}</span>{model.id === selected.id && <Check />}</span>
+                {model.description && <span className="mp__desc">{uiText(model.description)}</span>}
               </span>
               {rated ? <span className="mp__bars" aria-hidden="true">{[model.speed, model.quality, model.cost].map((rating, meter) => <span className="mp__meter" style={{ "--c": meter } as CSSProperties} key={meter}>
                 {Array.from({ length: BAR_SEGMENTS }, (_, segment) => <span className="mp__seg" data-on={segment < clampRating(rating) ? "" : undefined} style={{ "--s": segment } as CSSProperties} key={segment} />)}</span>)}</span>
-                : anyRatings && <span className="mp__varies" aria-hidden="true">Varies</span>}
+                : anyRatings && <span className="mp__varies" aria-hidden="true">{uiText("Varies")}</span>}
             </div>;
           })}
         </div>
         {(showThinking || showWebSearch) && <div className="mp__settings">
           {showThinking && <>
             <button type="button" role="switch" aria-checked={thinkingOn} className="mp__toggle" onClick={() => setThinking(!thinkingOn)}>
-              <span className="mp__toggle-icon"><Bulb /></span><span className="mp__toggle-label">Extended thinking</span><span className="mp__switch" aria-hidden="true" />
+              <span className="mp__toggle-icon"><Bulb /></span><span className="mp__toggle-label">{uiText("Extended thinking")}</span><span className="mp__switch" aria-hidden="true" />
             </button>
             <div className="mp__fold" data-open={thinkingOn ? "" : undefined} inert={!thinkingOn}><div className="mp__clip"><div className="mp__effort">
-              <span className="mp__effort-label" id={`${uid}-effort`}>Effort</span>
+              <span className="mp__effort-label" id={`${uid}-effort`}>{uiText("Effort")}</span>
               <div ref={group} className="mp__segmented" role="radiogroup" aria-labelledby={`${uid}-effort`} onKeyDown={effortKey}>
                 <span className="mp__thumb" aria-hidden="true" />
-                {efforts.map(item => <button type="button" role="radio" aria-checked={level === item} tabIndex={level === item ? 0 : -1} data-effort={item} className="mp__seg-btn" key={item} onClick={() => setLevel(item)}>{effortLabels[item]}</button>)}
+                {efforts.map(item => <button type="button" role="radio" aria-checked={level === item} tabIndex={level === item ? 0 : -1} data-effort={item} className="mp__seg-btn" key={item} onClick={() => setLevel(item)}>{uiText(effortLabels[item])}</button>)}
               </div>
             </div></div></div>
           </>}
           {showWebSearch && <button type="button" role="switch" aria-checked={webOn} className="mp__toggle" onClick={() => setWeb(!webOn)}
             onPointerEnter={event => { if (event.pointerType === "mouse") setWebHover(true); }} onPointerLeave={() => setWebHover(false)} onFocus={event => { if (event.currentTarget.matches(":focus-visible")) setWebFocus(true); }} onBlur={() => setWebFocus(false)}>
-            <span className="mp__toggle-icon"><Globe /></span><span className="mp__toggle-label">Web search</span><span className="mp__switch" aria-hidden="true" />
+            <span className="mp__toggle-icon"><Globe /></span><span className="mp__toggle-label">{uiText("Web search")}</span><span className="mp__switch" aria-hidden="true" />
           </button>}
         </div>}
       </div>
       <div className="mp__foot">
         <span className="mp__caption" aria-hidden="true"><Swap id={caption.key}>{stats
-          ? <>{caption.seconds !== null && <span>~<b>{formatSeconds(seconds)}</b> first token</span>}{caption.seconds !== null && caption.price !== null && <span className="mp__dot"> · </span>}{caption.price !== null && <span><b>{formatPrice(price, priceDecimals(caption.price))}</b> / M tokens</span>}</>
+          ? <>{caption.seconds !== null && <span>~<b>{uiText(formatSeconds(seconds))}</b> {uiText(" first token")}</span>}{caption.seconds !== null && caption.price !== null && <span className="mp__dot"> · </span>}{caption.price !== null && <span><b>{uiText(formatPrice(price, priceDecimals(caption.price)))}</b> {uiText(" / M tokens")}</span>}</>
           : caption.text}</Swap></span>
         <span className="mp__keys" aria-hidden="true"><kbd>↑↓</kbd><kbd>↵</kbd></span>
-        <span className="mp__sr" aria-live="polite">{spoken}</span>
+        <span className="mp__sr" aria-live="polite">{uiText(spoken)}</span>
       </div>
     </div>
   </div>;
