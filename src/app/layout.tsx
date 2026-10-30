@@ -3,6 +3,7 @@ import { MotionScript } from "@/components/motion/MotionScript";
 import { InteractionRuntime } from "@/components/interaction/InteractionRuntime";
 import { PageTransitionScript } from "@/components/page-transition/PageTransitionScript";
 import { StripeNavigationScript } from "@/components/navigation/StripeNavigationScript";
+import { ConsentRoot } from "@/components/sites/cookie-consent/ConsentRoot";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <div id="__next">{children}</div>
         <InteractionRuntime />
+        <ConsentRoot />
       </body>
     </html>
   );

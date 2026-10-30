@@ -45,7 +45,9 @@ export interface ProcessEngine {
 
 /** The clock a handle's timers should use: the local one, or the server's, moved on by the time since it reported. */
 export function handleNow(handle: RunHandle, now: number) {
-  return handle.kind === "remote" ? handle.snapshot.at + Math.max(0, now - handle.receivedAt) : now;
+  // A terminal run has unsubscribed from the shared clock. A new retry must be read at least at its decision time,
+  // otherwise that stale tick still sees the failure, and the page never subscribes again to advance the retry.
+  return handle.kind === "remote" ? handle.snapshot.at + Math.max(0, now - handle.receivedAt) : Math.max(now, handle.log.events.at(-1)?.t ?? now);
 }
 
 /* ---------- the simulated engine ---------- */

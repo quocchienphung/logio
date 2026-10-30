@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createRemoteEngine, createSimulatedEngine, handleNow, simulatedHandle } from "./engine.ts";
-import { createSampleProcess } from "./process-model.ts";
+import { createBlankProcess, createNode, createSampleProcess } from "./process-model.ts";
 import { replay } from "./run-model.ts";
 
 const doc = createSampleProcess(new Date("2026-10-21T09:00:00Z"));
@@ -19,6 +19,18 @@ function mock(...answers) {
   return { fetch, calls };
 }
 const engine = (m, extra = {}) => createRemoteEngine({ baseUrl: "https://api.test/v1/", fetch: m.fetch, headers: () => ({ Authorization: "Bearer t" }), credentials: "include", ...extra });
+
+test('Retry after a terminal failure wakes the stopped page clock', async () => {
+  const sim = createSimulatedEngine();
+  const plan = createBlankProcess();
+  plan.root = createNode({ id: 'failed', sim: { durationMs: 1000, failOnce: true } });
+  const handle = await sim.start('w', plan, undefined, T0);
+  assert.equal(sim.read(handle, T0 + 700).state, 'failed');
+  const next = await sim.act('w', handle, { type: 'retry', id: 'failed' }, T0 + 2000);
+  assert.equal(handleNow(next, T0 + 700), T0 + 2000);
+  assert.equal(sim.read(next, handleNow(next, T0 + 700)).state, 'running');
+  assert.equal(sim.read(next, T0 + 3100).state, 'done');
+});
 
 test("the simulated engine starts a run of the plan or of one task, and answers decisions", async () => {
   const sim = createSimulatedEngine();

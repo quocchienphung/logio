@@ -22,6 +22,8 @@ export interface AgentBarProps {
   extra?: ReactNode;
   /** A host can supply a richer permission review surface instead of the compact waiting popover. */
   onReviewWaiting?: () => void;
+  /** A control at the very end of the bar, after the cost (the Process page puts its activity toggle here). */
+  trailing?: ReactNode;
 }
 
 /**
@@ -29,7 +31,7 @@ export interface AgentBarProps {
  * failed, cost). "Needs you" and "failed" open a small window to deal with them: the first answer is focused, Esc closes
  * it and gives the focus back to the button.
  */
-export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], formatCost = dollars, showCost = true, onResolve, extra, onReviewWaiting }: AgentBarProps) {
+export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], formatCost = dollars, showCost = true, onResolve, extra, onReviewWaiting, trailing }: AgentBarProps) {
   const [one, many] = noun;
   const ids = useId();
   const totals = totalsOf(root);
@@ -70,6 +72,7 @@ export function AgentBar({ root, title = "Agents", noun = ["agent", "agents"], f
       {totals.failed > 0 && <button type="button" className="agt__sum-btn" data-kind="failed" aria-expanded={windowKind === "failed"} aria-haspopup="dialog" aria-controls={windowKind === "failed" ? `${ids}-window` : undefined} onClick={() => setOpen(windowKind === "failed" ? null : "failed")}>{totals.failed} failed<Chevron /></button>}
       {showCost && <span className="agt__sum-cost"><span className="agt__amount" data-live={totals.live ? "" : undefined}>{formatCost(totals.cost)}</span></span>}
     </span>
+    {trailing && <span className="agt__trailing">{trailing}</span>}
     <AnimatePresence>{windowKind && <MenuSurface className="agt__pop" ref={pop} id={`${ids}-window`} role="dialog" aria-label={windowKind === "waiting" ? `${many.charAt(0).toUpperCase()}${many.slice(1)} that need you` : `Failed ${many}`}>
       {windowAgents.map(agent => <div className="agt__pop-item" key={agent.id}>
         <div className="agt__pop-head"><span className="agt__status" data-status={agent.status}><StatusGlyph status={agent.status} /></span><span className="agt__pop-name">{agent.name}</span><span className="agt__pop-task">{agent.task}</span></div>

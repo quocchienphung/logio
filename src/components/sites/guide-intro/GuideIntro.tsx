@@ -265,7 +265,12 @@ export function GuideIntro() {
   return <main ref={root} className="guide-intro" data-ready={status === "ready"} data-phase={phase} data-paused={paused} aria-label="Agents painting The Starry Night and writing its story">
     <div className="guide-intro__sheet">
       <header className="guide-intro__bar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+        <div className="guide-intro__bar-left">
+          <Link href={WORKSPACE_HREF} replace className="guide-intro__mark" aria-label="Skip intro and open the workspace" title="Skip intro">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+          </Link>
+          <Link href="/" replace prefetch={false} className="guide-intro__home" aria-label="Back to homepage"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg><span>Back to homepage</span></Link>
+        </div>
         <StudioPresence agents={artistAgents} following={following} onFollow={setFollowing} done={elapsed >= ENGRAVE_END || reduced} />
       </header>
       <div className="guide-intro__document">

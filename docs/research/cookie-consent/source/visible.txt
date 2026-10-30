@@ -1,0 +1,519 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+133
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+7
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+New
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+New
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+130
+Special components
+104
+What’s new
+76 new
+Components
+Cookie consent
+Cookie consent
+
+A consent bar that morphs into preferences and folds into a reopen button.
+
+$
+pnpm dlx shadcn@latest add @uiarc/cookie-consent
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+
+We use essential cookies to run this site. With your OK, we'd also use optional ones to remember settings and learn what helps.
+
+Customize
+Reject all
+Accept all
+Waiting for a choice. Optional cookies stay off until then.
+Ask again
+When to use
+Asking for cookie or tracking consent on a marketing site or app.
+Sites that need per-category choices with a way to reopen them later.
+When not to use
+Use announcement-bar for a site-wide promotion or notice that needs no choice.
+Use toast for a one-off message that dismisses itself.
+Use dialog when the page must block until the visitor decides.
+Installation
+
+Add Cookie consent with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/cookie-consent
+pnpm dlx shadcn@latest add @uiarc/cookie-consent
+
+Adds the component and its local dependencies, and installs motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/cookie-consent.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { useRef } from "react";
+2
+import { CookieConsent, type CookieConsentHandle } from "@/components/arc/cookie-consent/cookie-consent";
+3
+ 
+4
+export function Consent() {
+5
+  const consent = useRef<CookieConsentHandle>(null);
+6
+  return (
+7
+    <>
+8
+      <CookieConsent
+9
+        ref={consent}
+10
+        storageKey="acme-consent"
+11
+        policy={{ label: "Cookie policy", href: "/cookies" }}
+12
+        onChange={value => { if (value?.analytics) loadAnalytics(); }}
+13
+      />
+14
+      <button type="button" onClick={() => consent.current?.openPreferences()}>Cookie settings</button>
+15
+    </>
+16
+  );
+17
+}
+API reference
+
+3 parts. The first is the root.
+
+CookieConsent
+
+A consent bar that morphs into a preferences panel and then folds into a small reopen button, with optional localStorage memory.
+
+Prop
+Type
+Default
+Description
+categories
+CookieCategory[]
+defaultCookieCategories
+Groups: { id, label, description?, required?, defaultEnabled? }. Required ones are always on.
+value
+CookieConsentValue | null
+–
+Controlled saved choice (category id to allowed). null means the visitor has not decided.
+defaultValue
+CookieConsentValue | null
+null
+Starting choice when uncontrolled.
+onChange
+(value: CookieConsentValue | null, detail: { action: CookieConsentAction; updatedAt: Date }) => void
+–
+Called on accept-all, reject-all, save, or reset. Load optional scripts from here.
+storageKey
+string
+–
+Remembers the choice in localStorage under this key. Read it elsewhere with readCookieConsent.
+version
+string
+"1"
+Bump when categories or policy change; a stored choice for another version is ignored and the bar asks again.
+preferencesOpen
+boolean
+–
+Controlled open state of the preferences panel.
+defaultPreferencesOpen
+boolean
+false
+Opens the panel on first render when uncontrolled.
+onPreferencesOpenChange
+(open: boolean) => void
+–
+Called when the panel opens or closes.
+policy
+{ label: string; href?: string; onClick?: () => void }
+–
+Link to the full policy, shown in the bar and panel. Renders a button when href is missing.
+position
+"bottom" | "bottom-left" | "bottom-right"
+"bottom"
+Where the bar sits along the bottom edge.
+strategy
+"fixed" | "absolute"
+"fixed"
+fixed pins to the viewport; absolute fills the nearest positioned ancestor, for previews.
+showReopenButton
+boolean
+true
+Keeps a 44px cookie button after a choice so visitors can change their mind.
+reopenSide
+"left" | "right"
+–
+Corner for the reopen button. Defaults to the bar's side, or left when centered.
+labels
+Partial<CookieConsentLabels>
+–
+Overrides for message, customize, acceptAll, rejectAll, save, preferencesTitle, preferencesDescription, reopen, alwaysOn, and close.
+className
+string
+–
+Class on the layer.
+ref
+Ref<CookieConsentHandle>
+–
+Imperative handle: openPreferences(), closePreferences(), reset().
+readCookieConsent
+
+Reads a saved choice as { value, version, updatedAt }, or null when there is none or it was saved for another version. Safe on the server.
+
+Prop
+Type
+Default
+Description
+storageKey
+Required
+string
+–
+The same key passed to CookieConsent.
+version
+string
+"1"
+The version the choice must match.
+defaultCookieCategories
+
+The default categories: Strictly necessary (required), Preferences, Analytics, and Marketing.
+
+No props.
+
+Keyboard interactions
+Tab
+Moves through the bar or panel buttons and switches.
+Space
+Toggles the focused category switch.
+Escape
+Closes the preferences panel without saving and returns focus to the bar or reopen button.
+Accessibility
+The bar and panel are non-modal dialogs; the bar is described by its message and the panel is labelled by its heading.
+Opening the panel focuses its heading; saving focuses the reopen button, which has aria-haspopup="dialog" and the reopen label.
+Each switch is labelled by its category and described by its hint; required categories show Always on text instead of a switch.
+Save is described by a hidden count such as 2 of 3 optional categories allowed.
+Reject all sits beside Accept all at the same weight, so refusing is as easy as accepting.
+Motion
+One surface springs its position, width, height, and radius between the bar, the panel, and the 44px reopen button; faces rise from a short blur.
+Growing uses a slightly bouncy spring and shrinking a flat one, so the surface never overshoots when it folds away.
+The surface enters rising 24px and scaling from 0.98.
+Reduced motion jumps the surface to each shape and swaps faces with a plain fade.
+Responsive behavior
+The bar is at most 660px and the panel 420px wide, both clamped to the layer, which sits 16px from the viewport edges.
+Below a 560px bar width the message stacks above the actions; panel actions go on one row at a 340px container width.
+The layer ignores pointer input, so only the surface blocks clicks on the page behind it.
+Performance
+Nothing renders until hydration and the stored choice are read, so a decided visitor never sees the bar flash.
+One ResizeObserver tracks the layer width and one tracks the current face; motion runs only when the shape changes.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Mount once near the root layout. Gate optional scripts on onChange or on readCookieConsent(storageKey, version) at startup.
+Bump version whenever categories or the policy change to ask everyone again.
+Wire a footer Cookie settings link to ref.openPreferences(). Set showReopenButton={false} if that link is the only way back.
+Use strategy="absolute" inside a positioned preview frame, not for production.
+/components/cookie-consent/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Switch
+Component
+A tactile toggle for settings that take effect immediately.
+Button
+Component
+A clear, responsive action with quiet secondary states.
+Announcement bar
+Component
+A top banner that rotates messages, counts down, and collapses smoothly when dismissed.
+Toast
+Component
+Brief confirmation for a completed background action.
+Dialog
+Component
+A focused surface for decisions that need attention.
+More like this in Pro
+Explore Pro
+Undo toast
+Pro
+Component
+Archive or delete rows with a second chance: the gap closes, a countdown toast merges repeat actions, and Undo or ⌘Z puts every row back exactly where it was.
+Wallet stack
+Pro
+Component
+Fan a stack of cards and lift one out to see its activity.
+Liquid tab bar
+Pro
+Component
+Tabs with a lens selection that slides between them, swaps labels cleanly, and fills in icons as it passes.
+Previous
+Announcement bar
+Next
+Undo toast
+Arc · 240 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+120 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

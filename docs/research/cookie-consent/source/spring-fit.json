@@ -1,0 +1,224 @@
+{
+  "bar-to-prefs": {
+    "width": {
+      "from": 635,
+      "to": 420,
+      "start": 102.7,
+      "stiffness": 110,
+      "damping": 19.3,
+      "ratio": 0.92,
+      "rmse": 0.0143,
+      "overshoot": "0%"
+    },
+    "height": {
+      "from": 79,
+      "to": 448,
+      "start": 102.7,
+      "stiffness": 110,
+      "damping": 19.3,
+      "ratio": 0.92,
+      "rmse": 0.0143,
+      "overshoot": "0%"
+    },
+    "radius": {
+      "from": 22,
+      "to": 26,
+      "start": 102.7,
+      "stiffness": 110,
+      "damping": 19.3,
+      "ratio": 0.92,
+      "rmse": 0.0143,
+      "overshoot": "0%"
+    },
+    "shift": {
+      "from": 0,
+      "to": 107.5,
+      "start": 102.7,
+      "stiffness": 110,
+      "damping": 19.3,
+      "ratio": 0.92,
+      "rmse": 0.0143,
+      "overshoot": "0%"
+    }
+  },
+  "prefs-to-reopen": {
+    "width": {
+      "from": 420,
+      "to": 44,
+      "start": 93.7,
+      "stiffness": 250,
+      "damping": 34.15,
+      "ratio": 1.08,
+      "rmse": 0.0048,
+      "overshoot": "0%"
+    },
+    "height": {
+      "from": 448,
+      "to": 44,
+      "start": 93.7,
+      "stiffness": 250,
+      "damping": 34.15,
+      "ratio": 1.08,
+      "rmse": 0.0048,
+      "overshoot": "0%"
+    },
+    "radius": {
+      "from": 26,
+      "to": 22,
+      "start": 93.7,
+      "stiffness": 250,
+      "damping": 34.15,
+      "ratio": 1.08,
+      "rmse": 0.0047,
+      "overshoot": "0%"
+    },
+    "shift": {
+      "from": 107.5,
+      "to": 0,
+      "start": 93.7,
+      "stiffness": 250,
+      "damping": 34.15,
+      "ratio": 1.08,
+      "rmse": 0.0048,
+      "overshoot": "0%"
+    }
+  },
+  "reopen-to-prefs": {
+    "width": {
+      "from": 44,
+      "to": 420,
+      "start": 95.9,
+      "stiffness": 160,
+      "damping": 26.82,
+      "ratio": 1.06,
+      "rmse": 0.0044,
+      "overshoot": "0%"
+    },
+    "height": {
+      "from": 44,
+      "to": 448,
+      "start": 95.9,
+      "stiffness": 160,
+      "damping": 26.82,
+      "ratio": 1.06,
+      "rmse": 0.0044,
+      "overshoot": "0%"
+    },
+    "radius": {
+      "from": 22,
+      "to": 26,
+      "start": 95.9,
+      "stiffness": 160,
+      "damping": 26.82,
+      "ratio": 1.06,
+      "rmse": 0.0044,
+      "overshoot": "0%"
+    },
+    "shift": null
+  },
+  "prefs-escape-to-reopen": {
+    "width": {
+      "from": 420,
+      "to": 44,
+      "start": 58,
+      "stiffness": 240,
+      "damping": 33.46,
+      "ratio": 1.08,
+      "rmse": 0.0042,
+      "overshoot": "0%"
+    },
+    "height": {
+      "from": 448,
+      "to": 44,
+      "start": 58,
+      "stiffness": 240,
+      "damping": 33.46,
+      "ratio": 1.08,
+      "rmse": 0.0042,
+      "overshoot": "0%"
+    },
+    "radius": {
+      "from": 26,
+      "to": 22,
+      "start": 58,
+      "stiffness": 240,
+      "damping": 33.46,
+      "ratio": 1.08,
+      "rmse": 0.0041,
+      "overshoot": "0%"
+    },
+    "shift": null
+  },
+  "reset-to-bar": {
+    "width": {
+      "from": 44,
+      "to": 635,
+      "start": 79.3,
+      "stiffness": 150,
+      "damping": 25.47,
+      "ratio": 1.04,
+      "rmse": 0.0037,
+      "overshoot": "0%"
+    },
+    "height": {
+      "from": 44,
+      "to": 79,
+      "start": 79.3,
+      "stiffness": 150,
+      "damping": 25.47,
+      "ratio": 1.04,
+      "rmse": 0.0039,
+      "overshoot": "0%"
+    },
+    "radius": null,
+    "shift": null
+  },
+  "accept-to-reopen": {
+    "width": {
+      "from": 635,
+      "to": 44,
+      "start": 101.2,
+      "stiffness": 230,
+      "damping": 32.15,
+      "ratio": 1.06,
+      "rmse": 0.0037,
+      "overshoot": "0%"
+    },
+    "height": {
+      "from": 79,
+      "to": 44,
+      "start": 101.2,
+      "stiffness": 230,
+      "damping": 32.15,
+      "ratio": 1.06,
+      "rmse": 0.0039,
+      "overshoot": "0%"
+    },
+    "radius": null,
+    "shift": null
+  },
+  "reject-to-reopen": {
+    "width": {
+      "from": 635,
+      "to": 44,
+      "start": 103.2,
+      "stiffness": 260,
+      "damping": 35.47,
+      "ratio": 1.1,
+      "rmse": 0.0055,
+      "overshoot": "0%"
+    },
+    "height": {
+      "from": 79,
+      "to": 44,
+      "start": 103.2,
+      "stiffness": 260,
+      "damping": 35.47,
+      "ratio": 1.1,
+      "rmse": 0.0057,
+      "overshoot": "0%"
+    },
+    "radius": null,
+    "shift": null
+  }
+}

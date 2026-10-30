@@ -3,7 +3,7 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { CornerDownLeft, Search } from "lucide-react";
-import { searchSettings, type SettingRow } from "./settings-model";
+import { searchSettings, type SettingsSearchRow } from "./settings-model";
 import { sectionIcons } from "./section-icons";
 
 export interface FlightRect { x: number; y: number; width: number; height: number }
@@ -17,7 +17,7 @@ export function SettingsPalette({ origin, frameWidth, onClose, onPick, onAnnounc
   origin: FlightRect; frameWidth: number;
   /** `to` is where the palette should travel while it closes (the field, by default). */
   onClose: () => void;
-  onPick: (row: SettingRow) => { to: FlightRect } | void;
+  onPick: (row: SettingsSearchRow) => { to: FlightRect } | void;
   onAnnounce: (message: string) => void;
 }) {
   const reduce = useReducedMotion();

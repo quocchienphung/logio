@@ -1,0 +1,213 @@
+{
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "The canvas has the whole page: no title row, breadcrumb or toolbar row above it, only floating controls",
+      "ok": true
+    },
+    {
+      "name": "One block sits in the middle and the other eight branch out around it, joined by arrows, none overlapping",
+      "ok": true
+    },
+    {
+      "name": "Every AI block shows its real brand mark and its role",
+      "ok": true
+    },
+    {
+      "name": "Pan and zoom: dragging the background pans, the buttons and Ctrl+wheel zoom, Fit brings the whole map back",
+      "ok": true
+    },
+    {
+      "name": "Opening a block shows its settings in a floating panel; editing the name updates the block and is saved and restored",
+      "ok": true
+    },
+    {
+      "name": "The role is the person's choice and changes the block's label and default instructions",
+      "ok": true
+    },
+    {
+      "name": "The AI block is the person's choice: Kimi, Ollama, Gemini, Claude Code, Codex, Hermes, a person; a local model is typed",
+      "ok": true
+    },
+    {
+      "name": "Tools, approval and limits are attributes of the block",
+      "ok": true
+    },
+    {
+      "name": "\"Add block\" connects a new block of the chosen role to the selected block; it is selected, named and joined",
+      "ok": true
+    },
+    {
+      "name": "The + handles on the selected block add a block on that side",
+      "ok": true
+    },
+    {
+      "name": "Dragging a block moves it, it keeps the place after a reload, and \"Tidy up\" gives it back to the layout",
+      "ok": true
+    },
+    {
+      "name": "Arrow keys nudge the focused block and Delete asks before removing it; undo brings it back",
+      "ok": true
+    },
+    {
+      "name": "The Tree view shows the same blocks as a tree and the toggle returns to the map",
+      "ok": true
+    },
+    {
+      "name": "Running on the map: arrows animate, the writer needs approval, the tester fails once and is retried, the run ends done",
+      "ok": true
+    },
+    {
+      "name": "Clear returns every block to ready; Stop ends a run and the clock stops",
+      "ok": true
+    },
+    {
+      "name": "A run survives a reload; the structure is frozen while it is active",
+      "ok": true
+    },
+    {
+      "name": "Run from here starts one block and what hangs under it",
+      "ok": true
+    },
+    {
+      "name": "Process settings: goal, cost unit, tidy, export and import; the engine dialog explains how to connect",
+      "ok": true
+    },
+    {
+      "name": "A local-model template lays out Hermes Agent, two Ollama blocks and a person, and says what still needs choosing",
+      "ok": true
+    },
+    {
+      "name": "The library lists, switches, duplicates and deletes processes (with confirmation and undo)",
+      "ok": true
+    },
+    {
+      "name": "Every arrow starts and ends exactly on the side of its block, before a run, during it and after adding blocks (no gap on the way down)",
+      "ok": true
+    },
+    {
+      "name": "Roles: QA, Creator and Reviewer join the others; each role explains itself and offers the sub-blocks and the next role that usually go with it",
+      "ok": true
+    },
+    {
+      "name": "Every AI agent has a logo and can be chosen: the picker is grouped, searchable and lists more than ninety engines",
+      "ok": true
+    },
+    {
+      "name": "The person draws the connections: from Fixer back to Coordinator makes a loop with rounds, a label and a card; undo removes it",
+      "ok": true
+    },
+    {
+      "name": "A connection that is not allowed says why; a block can be connected to any other, and the inspector lists and removes connections",
+      "ok": true
+    },
+    {
+      "name": "Deleting a block takes its connections with it; moving a block under another can drop a connection that is no longer allowed",
+      "ok": true
+    },
+    {
+      "name": "The closed-loop template: the deploy asks, and after the person approves the loop goes round and asks again; the cards say which round",
+      "ok": true
+    },
+    {
+      "name": "Ctrl + click chooses several blocks: they are marked, counted, and clicking one again lets it go; a plain click clears the group",
+      "ok": true
+    },
+    {
+      "name": "Ctrl + A chooses every block and Escape lets the group go",
+      "ok": true
+    },
+    {
+      "name": "Delete (or the button) asks once for the whole group, names it, removes every block with what hangs under it, and one undo brings them all back",
+      "ok": true
+    },
+    {
+      "name": "A group that holds the first block keeps it; a block's own sub-blocks go with it; the button works too",
+      "ok": true
+    },
+    {
+      "name": "Dragging one block of a group moves the whole group by the same amount, and it is one step to undo",
+      "ok": true
+    },
+    {
+      "name": "While a run is active the structure is frozen: Delete says so and removes nothing",
+      "ok": true
+    },
+    {
+      "name": "Nothing keeps a corner of the map: no stack on the left, a blinking star appears beside the block that finished, at its top right corner",
+      "ok": true
+    },
+    {
+      "name": "Clicking the star opens the notice in a card right beside the block (not at the left of the page), with the engine, cost and time; the star stops blinking once read",
+      "ok": true
+    },
+    {
+      "name": "The card follows its block when the map is panned or zoomed, and Escape closes it and gives the focus back to the star",
+      "ok": true
+    },
+    {
+      "name": "A quiet notice is gone once it has been read (its star disappears); an unread star keeps blinking",
+      "ok": true
+    },
+    {
+      "name": "A failure gives a red star that stays until the block runs again; its card shows the reason and a Retry and is announced as an alert",
+      "ok": true
+    },
+    {
+      "name": "Retry in the card retries the block and its failure star goes away; the block runs again on the map",
+      "ok": true
+    },
+    {
+      "name": "A star whose block is out of view stays at the edge of the map, inside what the page keeps for its controls, and still opens its card",
+      "ok": true
+    },
+    {
+      "name": "Several notices on one block: the star counts them and the card is the Notification Stack (12 px / 5% steps, Dismiss all)",
+      "ok": true
+    },
+    {
+      "name": "The permission request decides the waiting block; when the run ends one star on the first block says so, with the cost and time, and opens the trace",
+      "ok": true
+    },
+    {
+      "name": "The Tree view has no blocks to put a star on, so it keeps the stack under the name pill",
+      "ok": true
+    },
+    {
+      "name": "Phone: no horizontal overflow, blocks are readable, the dock fits and the settings open as a sheet",
+      "ok": true
+    },
+    {
+      "name": "Phone: a finger drags the background to pan and a block to move it; two fingers pinch to zoom",
+      "ok": true
+    },
+    {
+      "name": "Phone: the run can be started and decided without leaving the page",
+      "ok": true
+    },
+    {
+      "name": "Phone: a block that finished has a star with a finger-sized target; tapping it opens the card beside or under the block, on the screen, with no sideways scroll",
+      "ok": true
+    },
+    {
+      "name": "WebKit: the map draws with its arrows, a block is edited and a run reaches the approval",
+      "ok": true
+    },
+    {
+      "name": "REST: the engine chip says connected, the engine's installed models are offered and processes save with versions",
+      "ok": true
+    },
+    {
+      "name": "REST: a run is started on the server; its snapshots, approval and result are shown; decisions are sent as actions",
+      "ok": true
+    },
+    {
+      "name": "REST: a refused save shows its message and keeps the edit; Retry saves again; a conflict offers Reload",
+      "ok": true
+    },
+    {
+      "name": "No page errors and nothing was requested from another origin",
+      "ok": true
+    }
+  ]
+}

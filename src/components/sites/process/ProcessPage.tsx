@@ -12,7 +12,6 @@ import type { BlockShortcutId } from "./block-shortcuts";
 import type { SnapshotSource } from "@/lib/workspace-backend";
 import { downloadFile } from "../affectui-crm/workspace-state";
 import { AgentTree } from "../affectui-agent-tree/AgentTree";
-import { AgentBar } from "../affectui-agent-tree/agent-bar";
 import { useWidth } from "../affectui-agent-tree/use-width";
 import type { TreeAgent } from "../affectui-agent-tree/tree-model";
 import { durationLabel } from "../affectui-agent-tree/tree-model";
@@ -28,6 +27,7 @@ import { NodeInspector } from "./NodeInspector";
 import { ConfirmDialog, ConnectDialog, LibraryDialog, NewProcessDialog, SettingsDialog } from "./ProcessDialogs";
 import { ProcessMap } from "./ProcessMap";
 import { ProcessPermissions } from "./ProcessPermissions";
+import { ProcessRunBar } from "./ProcessRunMonitor";
 import { roles } from "./roles";
 import type { Role, RoleStep } from "./roles";
 import type { Point } from "./map-layout";
@@ -566,9 +566,10 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         <button type="button" className="proc-icon-button" aria-label={`Saved processes (${library.processes.length})`} title="Saved processes" onClick={() => setDialog("library")}><FolderOpen size={16} /></button>
         <button type="button" className="proc-icon-button" aria-label="New process" title="New process" onClick={() => setDialog("new")}><Plus size={16} /></button>
       </div>
-      <div className="proc-pill proc-pill--bar agt">
-        <AgentBar root={tree} title={view === "map" ? "Blocks" : "Tasks"} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} onReviewWaiting={() => reviewPermission()} extra={runControls} />
-      </div>
+      <ProcessRunBar key={doc.id} tree={tree} title={view === "map" ? "Blocks" : "Tasks"} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} onReviewWaiting={() => reviewPermission()} extra={runControls}
+        doc={handle?.kind === "simulated" ? { ...doc, root: handle.log.root, links: handle.log.links, unit: handle.log.unit } : doc}
+        snapshot={snapshot} simulated={simulated} engines={engines} starting={runStarting} onStart={() => start()} onAction={act}
+        onLocate={id => { setView("map"); setMulti([]); setSelectedId(id); setRevealId(id); }} onReview={reviewPermission} onTrace={() => goTo("Tracing")} />
     </div>
 
     {view === "tree" && <div className="proc-notices" data-narrow={narrow ? "" : undefined}>

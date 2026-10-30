@@ -14,6 +14,8 @@ import { parseFileLibrary } from "./affectui-files/files-model";
 import type { FileLibrary } from "./affectui-files/files-model";
 import type { DemoApiKey, GeneralValue, SettingsMember } from "./affectui-settings/SettingsTabs";
 import type { SettingsValues } from "./settings-command/settings-model";
+import { parseSecurityPreview } from "./security-settings/security-model";
+import type { SecurityPreviewState } from "./security-settings/security-model";
 
 /**
  * Every piece of workspace data that outlives a page load, in one place. Each entry is a seam to the backend:
@@ -46,6 +48,7 @@ export const resources = {
   activeWorkspace: defineResource<string>({ name: "active-workspace", scope: "account", storage: "device", parse: isString }),
   profile: defineResource<WorkspaceProfile>({ name: "profile", scope: "account", storage: "backend", parse: isObject }),
   preferences: defineResource<WorkspacePreferences>({ name: "preferences", scope: "account", storage: "backend", parse: isObject }),
+  securityPreview: defineResource<SecurityPreviewState>({ name: "security-preview", scope: "account", storage: "device", parse: parseSecurityPreview }),
   feedback: defineResource<{ id: string; text: string }[]>({ name: "feedback", scope: "account", storage: "backend", collection: true, empty: [], parse: isArray }),
   news: defineResource<number>({ name: "news", scope: "workspace", storage: "device", parse: isNumber }),
   checklist: defineResource<string[]>({ name: "checklist", scope: "workspace", storage: "backend", empty: [], parse: isStringList }),

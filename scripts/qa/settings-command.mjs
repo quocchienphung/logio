@@ -2,16 +2,17 @@ import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 
-// Settings page (settings-command layout) and the compact "Appearance & notifications" pop-up.
+// Settings panel, account theme selection and Where you log integration.
 // Usage: node scripts/qa/settings-command.mjs [base-url]
 const base = process.argv[2] || 'http://localhost:3000';
-const out = 'docs/research/uiarc-settings-command/qa';
+const out = 'docs/research/account-settings/regression';
 await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome' });
 const results = [], errors = [];
 const check = (name, result) => { assert.ok(result, name); results.push(name); };
 const fresh = async (viewport, url = '/personalize?section=new-chat&settings=1') => {
   const context = await browser.newContext({ viewport, hasTouch: viewport.width < 500 });
+  await context.addInitScript(() => localStorage.setItem('logio-cookie-consent', JSON.stringify({ value: { necessary: true, preferences: false, analytics: false, marketing: false }, version: '1', updatedAt: new Date().toISOString() })));
   const page = await context.newPage();
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(`${base}${url}`, { waitUntil: 'networkidle' });
@@ -24,11 +25,11 @@ const fresh = async (viewport, url = '/personalize?section=new-chat&settings=1')
 try {
   const { context, page } = await fresh({ width: 1440, height: 1000 });
 
-  // Structure: six sections, 29 rows, the measured geometry.
-  check('six navigation items', await page.locator('.sc-nav__item').count() === 6);
+  // Structure: seven sections including Where you log, the existing rows and measured geometry.
+  check('seven navigation items', await page.locator('.sc-nav__item').count() === 7);
   const tabs = await page.locator('.sc-nav__item').evaluateAll(nodes => nodes.map(node => { const r = node.getBoundingClientRect(); return [Math.round(r.left), Math.round(r.top)]; }));
   check('navigation tabs sit side by side on one line, with their icons', new Set(tabs.map(tab => tab[1])).size === 1 && tabs.every((tab, index) => !index || tab[0] > tabs[index - 1][0]) && await page.locator('.sc-nav__item svg').first().isVisible());
-  check('six sections', await page.locator('.sc-section').count() === 6);
+  check('seven sections', await page.locator('.sc-section').count() === 7);
   check('29 rows', await page.locator('.sc-row').count() === 29);
   const geometry = await page.evaluate(() => {
     const box = selector => document.querySelector(selector).getBoundingClientRect();
@@ -135,7 +136,7 @@ try {
   await page.screenshot({ path: `${out}/qa-palette.png` });
   await page.keyboard.type('sess');
   await page.waitForTimeout(300);
-  check('typing filters and marks the match', await page.locator('.sc-palette [role="option"]').count() === 1 && (await page.locator('.sc-mark').innerText()).toLowerCase() === 'sess');
+  check('typing filters and marks the match', await page.locator('.sc-palette [role="option"]').count() === 2 && (await page.locator('.sc-mark').innerText()).toLowerCase() === 'sess');
   await page.keyboard.press('Escape');
   await page.waitForSelector('.sc-palette', { state: 'detached', timeout: 3000 });
   await page.waitForTimeout(150);
@@ -172,37 +173,17 @@ try {
   await page.waitForSelector('.sc-overlay', { state: 'detached', timeout: 4000 });
   check('Escape closes the panel and the address drops ?settings', !page.url().includes('settings=') && page.url().includes('section=new-chat'));
 
-  // Compact pop-up from the account menu.
+  // The account menu has one Settings destination and a shared inline theme switch.
   await page.locator('.ui-as-user').click();
-  await page.getByRole('menuitem', { name: 'Appearance & notifications' }).click();
-  const dialog = page.locator('dialog[open]');
-  await dialog.waitFor();
-  check('pop-up has the compact groups', await dialog.locator('.sc-quick__group').count() === 2 && await dialog.locator('.sc-quick__row').count() === 6);
-  await page.waitForTimeout(700);
-  await page.screenshot({ path: `${out}/qa-popup.png` });
-  await dialog.locator('[data-kind="switch"] button[role="switch"]').first().click();
-  await dialog.locator('#' + (await dialog.locator('[role="combobox"]').first().getAttribute('id'))).click();
-  check('pop-up select list opens inside the dialog (not inert)', await dialog.locator('[role="listbox"]').count() === 1);
-  await page.keyboard.press('ArrowDown');
-  await page.keyboard.press('Enter');
-  await dialog.getByRole('button', { name: 'Save' }).click();
-  await dialog.waitFor({ state: 'hidden' });
-  await page.locator('.ui-as-user').click();
+  for (const name of ['Profile', 'Help & feedback', 'Appearance & notifications']) check(`${name} was removed from the account menu`, await page.getByRole('menuitem', { name, exact: true }).count() === 0);
+  await page.getByRole('menuitemradio', { name: 'Dark', exact: true }).click();
+  check('inline theme keeps the menu open', await page.locator('.ui-as-user-menu>.ui-as-menu').count() === 1);
   await page.getByRole('menuitem', { name: 'Settings', exact: true }).click();
-  await page.waitForSelector('.sc-frame');
-  await page.waitForTimeout(1800);
-  check('pop-up save is shared with the page', await page.locator('[data-setting="mentions"] button[role="switch"]').getAttribute('aria-checked') === 'false');
-  await page.keyboard.press('Escape');
-  await page.waitForSelector('.sc-overlay', { state: 'detached' });
-  await page.locator('.ui-as-user').click();
-  await page.getByRole('menuitem', { name: 'Appearance & notifications' }).click();
-  await dialog.getByRole('button', { name: /All settings/ }).click();
-  await dialog.waitFor({ state: 'hidden' });
-  await page.waitForSelector('.sc-overlay__panel');
-  check('"All settings" opens the Settings panel', page.url().includes('settings=') && await page.locator('.sc-overlay__panel').count() === 1);
-  await page.waitForTimeout(1800);
-  await page.locator('.sc-close').click();
-  await page.waitForSelector('.sc-overlay', { state: 'detached', timeout: 4000 });
+  await page.waitForSelector('.sc-frame'); await page.waitForTimeout(1800);
+  check('account theme is shared with Settings', await page.locator('[data-setting="theme"] [data-value="dark"]').getAttribute('aria-pressed') === 'true');
+  await page.locator('.sc-nav__item', { hasText: 'Where you log' }).click(); await page.waitForTimeout(1500);
+  check('Where you log is inside Settings', await page.locator('.sc-nav__item[aria-current]').innerText() === 'Where you log' && await page.locator('#sc-section-where-you-log .sec-settings').count() === 1);
+  await page.locator('.sc-close').click(); await page.waitForSelector('.sc-overlay', { state: 'detached' });
   check('the close button closes the panel', !page.url().includes('settings='));
 
   // Deep link from "Invite teammates" opens Members.

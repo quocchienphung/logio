@@ -10,7 +10,7 @@ import type { KnowledgeTransport } from "../storage/knowledge-contract.ts";
  * interface.
  */
 export type ResourceName =
-  | "workspaces" | "active-workspace" | "profile" | "preferences" | "feedback"
+  | "workspaces" | "active-workspace" | "profile" | "preferences" | "feedback" | "security-preview"
   | "companies" | "contacts" | "views" | "active-tab" | "favorites" | "news" | "checklist" | "pixel-connected" | "documents" | "folders"
   | "report-period" | "reports"
   | "run-draft" | "agent-run"

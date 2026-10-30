@@ -4,7 +4,7 @@
  * Row labels, hints and options were read from the rendered public preview of UIArc's Settings command block
  * (docs/research/uiarc-settings-command/); the default values are this workspace's own.
  */
-export type SectionId = "general" | "appearance" | "notifications" | "security" | "members" | "billing";
+export type SectionId = "general" | "appearance" | "notifications" | "security" | "where-you-log" | "members" | "billing";
 
 export interface SettingsValues {
   workspaceName: string; workspaceUrl: string; language: string; timezone: string; weekStart: "mon" | "sun";
@@ -32,6 +32,7 @@ export const sections: readonly SettingsSection[] = [
   { id: "appearance", label: "Appearance", description: () => "How the app looks for you on this device." },
   { id: "notifications", label: "Notifications", description: () => "Choose what reaches you and how often." },
   { id: "security", label: "Security", description: () => "Sign in rules and session policy for everyone." },
+  { id: "where-you-log", label: "Where you log", description: () => "Account sign-in, two-factor setup, password and sessions." },
   { id: "members", label: "Members", description: () => "Who can join and what new people can do." },
   { id: "billing", label: "Billing", description: () => "Where invoices go and how they are issued." },
 ];
@@ -126,7 +127,9 @@ export function errorsOf(values: SettingsValues): Partial<Record<SettingKey, str
   return errors;
 }
 
-export interface SearchHit { row: SettingRow; labelRange?: [number, number] }
+export interface SettingsSectionLink { id: string; section: SectionId; kind: "section"; label: string; hint: string }
+export type SettingsSearchRow = SettingRow | SettingsSectionLink;
+export interface SearchHit { row: SettingsSearchRow; labelRange?: [number, number] }
 /**
  * Settings that match a query: every word must appear in the label, hint or section name. The first match inside the label is
  * reported so the result can mark it. An empty query gives the suggested settings.
@@ -141,6 +144,11 @@ export function searchSettings(query: string): SearchHit[] {
     if (!words.every(word => haystack.includes(word))) continue;
     const at = label.indexOf(words[0]);
     hits.push({ row, labelRange: at >= 0 ? [at, at + words[0].length] : undefined });
+  }
+  const accountText = 'where you log login sign in devices sessions authenticator two-factor password backup codes';
+  if (words.every(word => accountText.includes(word))) {
+    const label = 'Where you log', at = label.toLowerCase().indexOf(words[0]);
+    hits.push({ row: { id: 'where-you-log', section: 'where-you-log', kind: 'section', label, hint: 'Two-factor authentication, password and active sessions.' }, labelRange: at >= 0 ? [at, at + words[0].length] : undefined });
   }
   return hits.sort((a, b) => Number(!!b.labelRange) - Number(!!a.labelRange));
 }

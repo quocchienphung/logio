@@ -1,5 +1,7 @@
 # Settings page (settings command layout)
 
+Updated account navigation (2026-10-31): the menu now has an inline Light/Dark/System Theme selector and one Settings destination. Profile, Help & feedback and the compact Appearance & notifications popup were removed; `QuickSettings.tsx` was deleted. **Where you log** is the seventh Settings section, with a search/deep link and the independently rebuilt Security settings preview. See [current placement, source observations, runtime limits and QA](../account-settings/README.md). Older compact-popup descriptions below are historical.
+
 Source: the public preview of the **Settings command** block, <https://uiarc.dev/components/blocks/settings-command>. Read through the rendered page only (`scripts/forensics/uiarc-settings-command-*.mjs`): DOM, resolved and declared CSS, tokens, screenshots of each state and frame traces of the motion. No UIArc API, registry, CLI or gated Pro source was used; the component was authored independently from those measurements.
 
 ## Route map

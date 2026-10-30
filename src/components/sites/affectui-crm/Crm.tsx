@@ -5,7 +5,8 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion, useReducedMotion } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
-import { ArrowLeft, BookOpen, Check, GitBranch, HardDrive, ChevronDown, ChevronRight, CirclePlay, FileText, Folder, Gauge, Map, MessageSquarePlus, Moon, Search, Star, Sun, Waypoints, Workflow, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Check, GitBranch, HardDrive, ChevronDown, ChevronRight, CirclePlay, FileText, Folder, Gauge, Map, MessageSquarePlus, Search, Star, Waypoints, Workflow, X } from "lucide-react";
+import { AccountTheme } from "./AccountTheme";
 import { CrmIcon } from "./CrmIcon";
 import { SidebarFolder } from "./SidebarFolder";
 import { CrmTable } from "./CrmTable";
@@ -61,7 +62,7 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
   const engine=useCrmEngine(workspaceId);
   const {section,crmView,settings,openSettings,closeSettings,navigate:routeTo}=useWorkspaceRoute();
   const [settingsOrigin,setSettingsOrigin]=useState<OverlayRect|null>(null);
-  const [profile,setProfile,profileSync]=useResource(resources.profile, undefined, {name:user.name,email:"alex@logio.com",role:"Head of Sales",avatar:user.avatar});
+  const [profile,,profileSync]=useResource(resources.profile, undefined, {name:user.name,email:"alex@logio.com",role:"Head of Sales",avatar:user.avatar});
   const [preferences,setPreferences,preferencesSync]=useResource(resources.preferences, undefined, {dark:false,emailNotifications:true,desktopNotifications:true});
   // Until the workspace, the profile and the preferences have been read once, the page shows its skeleton, not the seed values that
   // would be replaced a moment later (the first thing a reload used to show was the Companies page of the default workspace).
@@ -89,7 +90,7 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
   const [query,setQuery]=useState("");
   const [tableEpoch,setTableEpoch]=useState(0);
   const [chatEpoch,setChatEpoch]=useState(0);
-  const [editor,setEditor]=useState<EditorKind>("Profile");
+  const [editor,setEditor]=useState<EditorKind>("Full changelog");
   const [editorOpen,setEditorOpen]=useState(false);
   const toastTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
   const reduce=useReducedMotion();
@@ -135,6 +136,9 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
     if(name && name!==workspaceName)setWorkspaces(workspaces.map(item=>item.id===workspaceId ? {...item,name} : item));
     setPreferences({...preferences,theme:values.theme,dark:values.theme==="dark" || (values.theme==="system" && window.matchMedia("(prefers-color-scheme: dark)").matches),emailNotifications:values.emailCadence!=="never",desktopNotifications:values.mentions || values.assigned || values.deployFailures});
   }
+  function chooseTheme(theme:SettingsValues["theme"]) {
+    setPreferences({...preferences,theme,dark:theme==="dark" || (theme==="system" && window.matchMedia("(prefers-color-scheme: dark)").matches)});
+  }
   function openCompany(name:string) {navigate("Companies");setView("Head of Sales");setTab("Company CRM");setQuery(name);setTableEpoch(current=>current+1);}
   function switchTab(id:string) {onNavigate?.("Companies");setDrawer(false);setMenu(null);setQuery("");setTab(id);routeTo("Companies",id);}
   function openEditor(kind:EditorKind) {setMenu(null);setEditor(kind);setEditorOpen(true);}
@@ -165,7 +169,7 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
   function popover(id:string,title:string,children:ReactNode,top=false) {
     return <AnimatePresence>{menu===id && <MenuSurface className="ui-as-popover ui-as-menu" data-motion="" data-side={top ? "top" : undefined} side={top ? "top" : "bottom"} role="menu" onKeyDown={event=>{
       if(!["ArrowDown","ArrowUp","Home","End"].includes(event.key))return;event.preventDefault();
-      const items=[...event.currentTarget.querySelectorAll<HTMLButtonElement|HTMLAnchorElement>('button:not(:disabled):not([aria-disabled="true"]),a[href]:not([aria-disabled="true"])')];const current=items.indexOf(document.activeElement as HTMLButtonElement);
+      const items=[...event.currentTarget.querySelectorAll<HTMLButtonElement|HTMLAnchorElement>('button:not(:disabled):not([aria-disabled="true"]):not([data-theme-option][aria-checked="false"]),a[href]:not([aria-disabled="true"])')];const current=items.indexOf(document.activeElement as HTMLButtonElement);
       items[event.key==="Home" ? 0 : event.key==="End" ? items.length-1 : (current+(event.key==="ArrowDown" ? 1 : -1)+items.length)%items.length]?.focus();
     }}>{title && <span className="ui-as-menu__title">{title}</span>}<div className="ui-as-menu__list">{children}</div></MenuSurface>}</AnimatePresence>;
   }
@@ -187,14 +191,16 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
           <div className="ui-as-guide-slot"><motion.div layout className="ui-as-guide" data-open={guide ? "" : undefined} transition={{layout:{type:"spring",stiffness:350,damping:34}}}>
             {!guide ? <button type="button" className="ui-as-steps ui-as-guide__content" aria-expanded="false" onClick={()=>setGuide(true)}><span className="ui-as-steps__title">Getting started<ChevronRight size={12} /></span><span className="ui-as-steps__sub">{Math.round(completed.length/8*100)}% done · <span className="ui-as-steps__cheer">{completed.length===8 ? "All done!" : "Great start!"}</span></span><span className="ui-as-steps__bar"><i style={{width:`${completed.length/8*100}%`}} /></span></button> : <div className="crm-guide ui-as-guide__content"><div className="crm-guide__title">Getting started<button type="button" aria-label="Close getting started" onClick={()=>setGuide(false)}><X size={14} /></button></div><span className="ui-as-steps__bar"><i style={{width:`${completed.length/8*100}%`}} /></span>{setupGroups.map(group=><section key={group.title} data-expanded={guideGroup===group.title ? "" : undefined}><h3><button type="button" aria-expanded={guideGroup===group.title} onClick={()=>setGuideGroup(guideGroup===group.title ? null : group.title)}>{group.title}<ChevronDown size={12} /></button></h3><AnimatePresence initial={false}>{guideGroup===group.title && <motion.div initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}} transition={{duration:reduce ? 0 : 0.24}} className="workspace-guide-group">{group.items.map(item=><button type="button" role="checkbox" aria-checked={completed.includes(item)} className="crm-guide__step" key={item} disabled={item==="Connect your first app" && !completed.includes("Invite your teammates")} onClick={()=>setCompleted(completed.includes(item) ? completed.filter(value=>value!==item) : [...completed,item])}><span className="crm-guide__check">{completed.includes(item) && <Check size={10} />}</span>{item}</button>)}</motion.div>}</AnimatePresence></section>)}</div>}
           </motion.div></div>
-          <span className="ui-as-anchor ui-as-user-menu"><button type="button" className="ui-as-user" aria-expanded={menu==="user"} onClick={()=>toggleMenu("user")}>{booting ? <><Skeleton circle width={22} /><Skeleton width={84} height={11} /></> : <>{profile.avatar ? <img src={profile.avatar} alt="" /> : <span className="ui-as-user__initials">{initials}</span>}{profile.name}</>}<ChevronDown size={12} /></button>{popover("user","",<>
+          <span className="ui-as-anchor ui-as-user-menu"><button type="button" className="ui-as-user" aria-haspopup="menu" aria-label={`Account menu, ${profile.name}`} aria-expanded={menu==="user"} onClick={()=>toggleMenu("user")}>{booting ? <><Skeleton circle width={22} /><Skeleton width={84} height={11} /></> : <>{profile.avatar ? <img src={profile.avatar} alt="" /> : <span className="ui-as-user__initials">{initials}</span>}{profile.name}</>}<ChevronDown size={12} /></button>{popover("user","",<>
+            <div className="account-identity"><span className="account-identity__avatar">{profile.avatar ? <img src={profile.avatar} alt="" /> : initials}</span><span className="account-identity__text"><strong>{profile.name}</strong><small>{profile.email}</small></span></div>
+            <div className="workspace-account-divider" />
             <div className="workspace-account-heading">Workspaces</div>
             {workspaces.map(item=><button type="button" role="menuitemradio" aria-checked={workspaceId===item.id} className="ui-as-menu__item" key={item.id} onClick={()=>{setWorkspaceId(item.id);setMenu(null);setQuery("");setView("Head of Sales");}}><span className="ui-as-side__logo">{item.logo ? <img className="settings-sidebar-logo" src={item.logo} alt="" /> : item.name[0]}</span><span className="ui-as-menu__label">{item.name}</span>{workspaceId===item.id && <Check size={14} />}</button>)}
             <button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Create workspace")}>Create workspace</button>
             <div className="workspace-account-divider" />
             <button type="button" role="menuitem" className="ui-as-menu__item" aria-label="Search" onClick={openSearch}><Search size={14} />Search</button>
             <button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>{setCollapsed(true);setDrawer(false);setMenu(null);}}><CrmIcon name="Collapse sidebar" size={14} />Collapse sidebar</button>
-            <button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Profile")}>Profile</button><button type="button" role="menuitem" className="ui-as-menu__item" aria-haspopup="dialog" onClick={event=>{const box=event.currentTarget.closest(".ui-as-menu")?.getBoundingClientRect();openSettingsFrom(box ? {x:box.left,y:box.top,width:box.width,height:box.height} : null);}}>Settings</button><button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Help & feedback")}>Help &amp; feedback</button><button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>setPreferences({...preferences,dark:!preferences.dark,theme:preferences.dark ? "light" : "dark"})}>{preferences.dark ? <Sun size={14} /> : <Moon size={14} />}{preferences.dark ? "Light mode" : "Dark mode"}</button><button type="button" role="menuitem" className="ui-as-menu__item" onClick={()=>openEditor("Appearance & notifications")}>Appearance &amp; notifications</button><Link href="/" role="menuitem" className="ui-as-menu__item"><ArrowLeft size={14} />Back to Stripe</Link>
+            <button type="button" role="menuitem" className="ui-as-menu__item" aria-haspopup="dialog" onClick={event=>{const box=event.currentTarget.closest(".ui-as-menu")?.getBoundingClientRect();openSettingsFrom(box ? {x:box.left,y:box.top,width:box.width,height:box.height} : null);}}>Settings</button><AccountTheme value={savedSettings.theme} onChange={chooseTheme} /><Link href="/" role="menuitem" className="ui-as-menu__item"><ArrowLeft size={14} />Back to Stripe</Link>
           </>,true)}</span>
         </div>
       </aside>
@@ -208,8 +214,8 @@ function Workspace({workspace="Logio",user={name:"Alex Morgan"},onNavigate,class
       </motion.div></AnimatePresence>}</main>
       <AnimatePresence>{toast && <motion.div className="ui-as-toast" role="status" key={toast.id} initial={{opacity:0,y:8,scale:0.97}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:5,scale:0.98}} transition={{duration:reduce ? 0 : 0.2}}><Check size={14} />{toast.text}</motion.div>}</AnimatePresence>
       <WorkspaceDialog open={searchOpen} title="Search workspace" onClose={()=>setSearchOpen(false)}><label className="workspace-search workspace-search--dialog"><Search size={17} /><input autoFocus aria-label="Search workspace" placeholder="Search companies and views…" value={search} onChange={event=>setSearch(event.target.value)} /></label><div className="crm-search__results"><AnimatePresence initial={false}>{searchItems.map(item=><motion.button type="button" layout initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} key={item.id} onClick={()=>{if(item.kind==="section")navigate(item.label as WorkspaceSection);else if(item.kind==="view")switchTab(item.id);else openCompany(item.label);setSearchOpen(false);}}><CrmIcon name={item.label} /><span>{item.label}</span><small>{item.kind}</small><ChevronRight size={12} /></motion.button>)}</AnimatePresence>{!searchItems.length && <p className="workspace-muted">No companies or views found.</p>}</div></WorkspaceDialog>
-      <WorkspaceEditors kind={editor} open={editorOpen} onClose={()=>setEditorOpen(false)} profile={profile} setProfile={setProfile} settings={savedSettings} onSaveSettings={applySettings} onOpenSettings={box=>openSettingsFrom(box)} owners={[...new Set(engine.rows.map(row=>row.owner))].filter(Boolean)} notify={notify} createWorkspace={name=>{const id=crypto.randomUUID();setWorkspaces([...workspaces,{id,name}]);setWorkspaceId(id);navigate("Companies");notify("Workspace created");}} createView={newView=>{setCustomViews([...customViews,newView]);navigate("Companies");setTab(newView.id);notify("View created");}} />
-      {settings!==null && <SettingsOverlay section={settings} origin={settingsOrigin} saved={savedSettings} onSave={applySettings} notify={notify} onClose={()=>{setSettingsOrigin(null);closeSettings();}} />}
+      <WorkspaceEditors kind={editor} open={editorOpen} onClose={()=>setEditorOpen(false)} owners={[...new Set(engine.rows.map(row=>row.owner))].filter(Boolean)} createWorkspace={name=>{const id=crypto.randomUUID();setWorkspaces([...workspaces,{id,name}]);setWorkspaceId(id);navigate("Companies");notify("Workspace created");}} createView={newView=>{setCustomViews([...customViews,newView]);navigate("Companies");setTab(newView.id);notify("View created");}} />
+      {settings!==null && <SettingsOverlay profileEmail={profile.email} section={settings} origin={settingsOrigin} saved={savedSettings} onSave={applySettings} notify={notify} onClose={()=>{setSettingsOrigin(null);closeSettings();}} />}
     </div>
   </div></LayoutGroup>;
 }

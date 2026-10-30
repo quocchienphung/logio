@@ -1,0 +1,42 @@
+{
+  "results": [
+    {
+      "name": "The top-right bar unfolds into the card (no circle below); Escape folds it back and returns focus to its toggle",
+      "ok": true
+    },
+    {
+      "name": "Start keeps the popup open; streams real block states and causal connections",
+      "ok": true
+    },
+    {
+      "name": "Reload preserves the pending approval; approve advances the existing engine",
+      "ok": true
+    },
+    {
+      "name": "Retry completes and folds the steps; timer freezes; result opens the trace",
+      "ok": true
+    },
+    {
+      "name": "Mobile 390: popup stays inside the page, rejection and Stop work",
+      "ok": true
+    },
+    {
+      "name": "Mobile 320: popup stays inside the page, rejection and Stop work",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion keeps every state without animation",
+      "ok": true
+    },
+    {
+      "name": "Connected engine: reported calls disclose their exact input/output; loops retain both rounds",
+      "ok": true
+    },
+    {
+      "name": "No page errors or third-party requests",
+      "ok": true
+    }
+  ],
+  "errors": [],
+  "external": []
+}

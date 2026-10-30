@@ -27,12 +27,13 @@ const rectOf = (node: Element | null): OverlayRect | null => {
  * after another. Closing sends the panel back into the account button. The panel is laid out at its final size from the first frame and
  * clipped by the growing box, so nothing reflows during the flight.
  */
-export function SettingsOverlay({ origin, section, saved, onSave, onClose, notify }: {
+export function SettingsOverlay({ origin, section, saved, onSave, onClose, notify, profileEmail }: {
   /** The box the panel starts from (the open menu); without one it grows from the account button. */
   origin: OverlayRect | null;
   section: string;
   saved: SettingsValues; onSave: (values: SettingsValues) => void;
   onClose: () => void; notify?: (message: string) => void;
+  profileEmail?: string;
 }) {
   const reduce = useReducedMotion();
   const [target, setTarget] = useState<OverlayRect>(targetRect);
@@ -89,7 +90,7 @@ export function SettingsOverlay({ origin, section, saved, onSave, onClose, notif
       transition={leaving ? { ...(reduce ? { duration: 0.14 } : { type: "spring", stiffness: 230, damping: 28 }), opacity: { duration: 0.18, delay: reduce ? 0 : 0.14 } } : spring}
       onAnimationComplete={() => { if (leaving) onClose(); }}>
       <motion.div className="sc-overlay__content" style={{ width: target.width, height: target.height }} animate={{ opacity: leaving ? 0 : 1 }} transition={{ duration: leaving ? 0.1 : 0 }}>
-        <SettingsCommand saved={saved} onSave={onSave} notify={notify} initialSection={initialSection} onClose={close} reveal={!reduce} />
+        <SettingsCommand saved={saved} onSave={onSave} notify={notify} initialSection={initialSection} onClose={close} reveal={!reduce} profileEmail={profileEmail} />
       </motion.div>
     </motion.div>
   </div>;

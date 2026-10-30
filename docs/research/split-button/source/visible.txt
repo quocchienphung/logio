@@ -1,0 +1,443 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+133
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+7
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+New
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+New
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+130
+Special components
+104
+What’s new
+76 new
+Components
+Split button
+Split button
+
+A primary action with a menu of nearby alternatives.
+
+$
+pnpm dlx shadcn@latest add @uiarc/split-button
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+P
+u
+b
+l
+i
+s
+h
+Publish
+When to use
+One default action with a few close variants, like Merge with Squash and Rebase.
+Export or share actions where one format is the usual pick and others sit behind the chevron.
+Copy actions that swap the label to Copied in place while offering alternatives.
+When not to use
+Use dropdown-menu when there is no default action and every option is equal.
+Use button when there are no alternatives.
+Use context-menu for actions tied to a piece of content rather than a toolbar.
+Installation
+
+Add Split button with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/split-button
+pnpm dlx shadcn@latest add @uiarc/split-button
+
+Adds the component and its local dependencies, and installs @radix-ui/react-dropdown-menu, motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/split-button.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { SplitButton } from "@/components/arc/split-button/split-button";
+2
+ 
+3
+export function MergeButton() {
+4
+  return (
+5
+    <SplitButton
+6
+      label="Merge pull request"
+7
+      onClick={merge}
+8
+      actions={[
+9
+        { label: "Squash and merge", onSelect: squash },
+10
+        { label: "Rebase and merge", onSelect: rebase },
+11
+        { label: "Close pull request", onSelect: close, destructive: true },
+12
+      ]}
+13
+    />
+14
+  );
+15
+}
+API reference
+SplitButton
+
+A primary action joined to a chevron that opens a Radix dropdown of related actions.
+
+Prop
+Type
+Default
+Description
+label
+Required
+string
+–
+Main action label. Changes morph letter by letter.
+actions
+Required
+SplitButtonAction[]
+–
+Menu items: { label, onSelect?, disabled?, destructive?, icon? }.
+onClick
+() => void
+–
+Runs the main action.
+icon
+ReactNode
+–
+Leading icon on the main half. A different icon element crossfades in.
+variant
+"primary" | "secondary"
+"primary"
+Visual weight of both halves.
+disabled
+boolean
+–
+Disables both the main action and the menu trigger.
+Keyboard interactions
+Enter
+or
+Space
+Runs the main action, or opens the menu from the chevron.
+ArrowDown
+or
+ArrowUp
+Moves between menu items, looping at the ends.
+Escape
+Closes the menu and returns focus to the chevron.
+Accessibility
+Two native buttons; the chevron is labelled "<label> more actions".
+The menu is a Radix DropdownMenu with menu and menuitem roles and focus management.
+The main label is announced through a polite live region when it changes.
+Motion
+The main label and icon morph in place while its width springs; the menu half never scales, so the menu opens from a still anchor.
+Menu items fade in with a short stagger.
+Reduced motion removes the press scale, width spring, and menu transform, leaving a quick opacity fade.
+Responsive behavior
+The menu opens aligned to the end of the button with 12px collision padding, so it stays on screen near viewport edges.
+The secondary variant sets a 142px minimum on the main half; the pair does not collapse on narrow screens, so give it its own row on mobile.
+Performance
+The main label animates per letter with a ResizeObserver-driven width spring; the menu mounts only while open through a Radix portal.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use when one action is the default and two to five close variants exist. For a menu with no default action use dropdown-menu.
+Keep the menu actions as variations of the main action; put unrelated commands elsewhere.
+Swap label and icon (Copy page → Copied) to show the result in place.
+/components/split-button/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Button
+Component
+A clear, responsive action with quiet secondary states.
+Dropdown menu
+Component
+A focused list of actions anchored to a trigger.
+Action button
+Component
+A compact button for frequent toolbar actions.
+Copy button
+Component
+Copy a value with immediate confirmation.
+More like this in Pro
+Explore Pro
+Wallet stack
+Pro
+Component
+Fan a stack of cards and lift one out to see its activity.
+Liquid tab bar
+Pro
+Component
+Tabs with a lens selection that slides between them, swaps labels cleanly, and fills in icons as it passes.
+Cover flow
+Pro
+Component
+A depth rail of images you can throw, with soft grounded shadows and a quiet reflection.
+Previous
+Action button
+Next
+Button group
+Arc · 240 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+120 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

@@ -7,6 +7,8 @@ import { Row, Segmented, SelectField, Switch, TextField } from "./Controls";
 import { SaveBar, type BarPhase } from "./SaveBar";
 import { SettingsPalette, type FlightRect } from "./SettingsPalette";
 import { sectionIcons } from "./section-icons";
+import { SecuritySettings } from "../security-settings/SecuritySettings";
+import type { SettingsSearchRow } from "./settings-model";
 import { changedKeys, dirtySections, errorsOf, rows, sections, type SectionId, type SettingKey, type SettingRow, type SettingsValues } from "./settings-model";
 import type { CSSProperties } from "react";
 import "./settings-command.css";
@@ -27,7 +29,7 @@ function rectIn(node: Element, frame: Element): FlightRect {
  *
  * `saved` is what the workspace holds; `onSave` receives the edited copy once it validates. Nothing leaves the browser from here.
  */
-export function SettingsCommand({ saved, onSave, notify, initialSection, onClose, reveal = false }: {
+export function SettingsCommand({ saved, onSave, notify, initialSection, onClose, reveal = false, profileEmail = "" }: {
   saved: SettingsValues; onSave: (values: SettingsValues) => void; notify?: (message: string) => void;
   /** The section to open on (a link such as `?settings=members`). */
   initialSection?: SectionId;
@@ -35,6 +37,7 @@ export function SettingsCommand({ saved, onSave, notify, initialSection, onClose
   onClose?: () => void;
   /** Texts, tabs and rows rise into place one after another (while the panel grows out of the menu). */
   reveal?: boolean;
+  profileEmail?: string;
 }) {
   const reduce = useReducedMotion();
   const [draft, setDraft] = useState(saved);
@@ -149,7 +152,8 @@ export function SettingsCommand({ saved, onSave, notify, initialSection, onClose
   });
 
   function pulseRow(id: string) { setPulse(previous => ({ id, flip: previous?.flip === "a" ? "b" : "a" })); }
-  function pick(row: SettingRow) {
+  function pick(row: SettingsSearchRow) {
+    if (row.kind === 'section') { goToSection(row.section); announce(row.label); return; }
     const scrollerNode = scroller.current, host = frame.current, rowNode = rowNodes.current.get(row.id);
     if (!scrollerNode || !host || !rowNode) return;
     const sectionId = row.section;
@@ -235,6 +239,7 @@ export function SettingsCommand({ saved, onSave, notify, initialSection, onClose
         <div className="sc-scroller" ref={scroller} tabIndex={-1}>
           {sections.map((section, sectionIndex) => <section key={section.id} className="sc-section" id={`sc-section-${section.id}`} aria-labelledby={`sc-heading-${section.id}`} ref={node => { if (node) sectionNodes.current.set(section.id, node); }}>
             <div className="sc-section__head" style={step(9 + sectionIndex * 2)}><h3 id={`sc-heading-${section.id}`}>{section.label}</h3><p>{section.description(draft)}</p></div>
+            {section.id === 'where-you-log' && <SecuritySettings email={profileEmail} title="Security" />}
             <div className="sc-rows">
               {rows.filter(row => row.section === section.id).map(row => <Row key={row.id} order={rows.indexOf(row)} id={row.id} label={row.label} hint={row.hint} kind={row.kind} wide={row.kind === "text"} dirty={edited.has(row.key)} error={errors[row.key] && (attempted || edited.has(row.key)) ? errors[row.key] : undefined} pulse={pulse?.id === row.id ? pulse.flip : undefined} rowRef={node => { if (node) rowNodes.current.set(row.id, node); else rowNodes.current.delete(row.id); }}>{control(row)}</Row>)}
             </div>

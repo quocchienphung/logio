@@ -1,0 +1,58 @@
+{
+ "light-off-switch0": {
+  "trackLeftTop": "#ffffff",
+  "trackRight": "#dcdcdc",
+  "thumbCenter": "#ffffff",
+  "thumbCenterRight": "#dcdcdc",
+  "state": "false"
+ },
+ "light-off-switch1": {
+  "trackLeftTop": "#ffffff",
+  "trackRight": "#dcdcdc",
+  "thumbCenter": "#ffffff",
+  "thumbCenterRight": "#dcdcdc",
+  "state": "false"
+ },
+ "light-on-switch0": {
+  "trackLeftTop": "#1d1d1d",
+  "trackRight": "#ffffff",
+  "thumbCenter": "#1d1d1d",
+  "thumbCenterRight": "#ffffff",
+  "state": "true"
+ },
+ "light-on-switch1": {
+  "trackLeftTop": "#ffffff",
+  "trackRight": "#dcdcdc",
+  "thumbCenter": "#ffffff",
+  "thumbCenterRight": "#dcdcdc",
+  "state": "false"
+ },
+ "dark-on-first-switch0": {
+  "trackLeftTop": "#e8e8e8",
+  "trackRight": "#141414",
+  "thumbCenter": "#e8e8e8",
+  "thumbCenterRight": "#141414",
+  "state": "true"
+ },
+ "dark-on-first-switch1": {
+  "trackLeftTop": "#f5f5f5",
+  "trackRight": "#353535",
+  "thumbCenter": "#f5f5f5",
+  "thumbCenterRight": "#353535",
+  "state": "false"
+ },
+ "dark-both-switch0": {
+  "trackLeftTop": "#e8e8e8",
+  "trackRight": "#141414",
+  "thumbCenter": "#e8e8e8",
+  "thumbCenterRight": "#141414",
+  "state": "true"
+ },
+ "dark-both-switch1": {
+  "trackLeftTop": "#e8e8e8",
+  "trackRight": "#141414",
+  "thumbCenter": "#e8e8e8",
+  "thumbCenterRight": "#141414",
+  "state": "true"
+ }
+}
