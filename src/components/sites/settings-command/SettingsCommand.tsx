@@ -239,7 +239,7 @@ export function SettingsCommand({ saved, onSave, notify, initialSection, onClose
         <div className="sc-scroller" ref={scroller} tabIndex={-1}>
           {sections.map((section, sectionIndex) => <section key={section.id} className="sc-section" id={`sc-section-${section.id}`} aria-labelledby={`sc-heading-${section.id}`} ref={node => { if (node) sectionNodes.current.set(section.id, node); }}>
             <div className="sc-section__head" style={step(9 + sectionIndex * 2)}><h3 id={`sc-heading-${section.id}`}>{section.label}</h3><p>{section.description(draft)}</p></div>
-            {section.id === 'where-you-log' && <SecuritySettings email={profileEmail} title="Security" />}
+            {section.id === 'where-you-log' && <SecuritySettings email={profileEmail} embedded labelledBy={`sc-heading-${section.id}`} />}
             <div className="sc-rows">
               {rows.filter(row => row.section === section.id).map(row => <Row key={row.id} order={rows.indexOf(row)} id={row.id} label={row.label} hint={row.hint} kind={row.kind} wide={row.kind === "text"} dirty={edited.has(row.key)} error={errors[row.key] && (attempted || edited.has(row.key)) ? errors[row.key] : undefined} pulse={pulse?.id === row.id ? pulse.flip : undefined} rowRef={node => { if (node) rowNodes.current.set(row.id, node); else rowNodes.current.delete(row.id); }}>{control(row)}</Row>)}
             </div>

@@ -26,7 +26,7 @@ function PasswordField({ label, value, onChange, autoComplete, invalid, errorId 
 }
 
 /** Independent public-preview reconstruction. All security operations are explicitly a local preview, never real authentication. */
-export function SecuritySettings({ email, title = "Where you log" }: { email: string; title?: string }) {
+export function SecuritySettings({ email, title = "Where you log", embedded = false, labelledBy }: { email: string; title?: string; embedded?: boolean; labelledBy?: string }) {
   const [saved, setSaved, sync] = useResource(resources.securityPreview, undefined, initialSecurityPreview);
   const [step, setStep] = useState<SetupStep | null>(null);
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -108,8 +108,8 @@ export function SecuritySettings({ email, title = "Where you log" }: { email: st
   }
   function closePassword() { setPasswordOpen(false); setCurrentPassword(''); setNewPassword(''); setSignOutOnPassword(false); setPasswordError(''); }
 
-  return <section ref={root} className="sec-settings" aria-labelledby={`${id}-title`} data-motion-off={reduced || undefined} data-interaction-own>
-    <header className="sec-header"><div><h3 id={`${id}-title`}>{title}</h3><span className="sec-badge">Preview</span></div><p>Control how you sign in to Logio as {email}.</p><p className="sec-preview-note">Sample sessions and simulated security actions. Account authentication is not connected.</p></header>
+  return <section ref={root} className={`sec-settings${embedded ? ' sec-settings--embedded' : ''}`} aria-labelledby={labelledBy ?? `${id}-title`} data-motion-off={reduced || undefined} data-interaction-own>
+    <header className="sec-header">{embedded ? <div className="sec-account"><p>Signed in as <strong>{email}</strong></p><span className="sec-badge">Preview</span></div> : <><div><h3 id={`${id}-title`}>{title}</h3><span className="sec-badge">Preview</span></div><p>Control how you sign in to Logio as {email}.</p></>}<p className="sec-preview-note">Sample sessions and simulated security actions. Account authentication is not connected.</p></header>
     <section className="sec-section" aria-labelledby={`${id}-2fa`}><div className="sec-section-head"><div className="sec-section-text"><h4 id={`${id}-2fa`}>Two-factor authentication</h4><p>Ask for a code from your authenticator app when you sign in on a new device.</p></div><div className="sec-aside"><span className="sec-badge" data-on={saved.twoFactor || undefined}>{step ? 'Setting up' : saved.twoFactor ? 'On' : 'Off'}</span>{step ? <button type="button" className="sec-button sec-button--ghost" disabled={verifying || busy} onClick={resetSetup}>Cancel</button> : saved.twoFactor ? null : <button type="button" className="sec-button sec-button--primary" onClick={() => { resetSetup(); setStep('scan'); }}>Enable</button>}</div></div>
       {saved.twoFactor && <div className="sec-enabled"><span className="sec-enabled-icon"><ShieldCheck size={22} /></span><div><h4>Two-factor authentication is on</h4><p>Authenticator app added {saved.twoFactorEnabledAt ? new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Ho_Chi_Minh' }).format(new Date(saved.twoFactorEnabledAt)) : 'in this preview'} · 10 of 10 backup codes unused</p></div><HoldAction disabled={busy} label="Hold to turn off" doneLabel="Turned off" Icon={ShieldOff} onConfirm={() => commit({ ...saved, twoFactor: false }, 'two-factor preview turned off.')} /></div>}
       <AnimatePresence initial={false}>{step && <Reveal reduced={reduced}><div className="sec-setup"><ol className="sec-rail" aria-label="Two-factor setup steps">{(['scan', 'verify', 'codes'] as const).map((item, index) => {

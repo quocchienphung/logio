@@ -33,12 +33,13 @@ try {
   check('29 rows', await page.locator('.sc-row').count() === 29);
   const geometry = await page.evaluate(() => {
     const box = selector => document.querySelector(selector).getBoundingClientRect();
-    return { header: box('.sc-header').height, nav: [box('.sc-nav').width, box('.sc-nav').height, box('.sc-nav').top - box('.sc-header').bottom], trigger: [box('.sc-trigger').width, box('.sc-trigger').height], text: box('.sc-text').height, switch: [box('.sc-switch__track').width, box('.sc-switch__track').height], section: box('.sc-section').width, seg: box('.sc-seg').height };
+    const scroller = document.querySelector('.sc-scroller'), style = getComputedStyle(scroller);
+    return { header: box('.sc-header').height, nav: [box('.sc-nav').width, box('.sc-nav').height, box('.sc-nav').top - box('.sc-header').bottom], trigger: [box('.sc-trigger').width, box('.sc-trigger').height], text: box('.sc-text').height, switch: [box('.sc-switch__track').width, box('.sc-switch__track').height], section: box('.sc-section').width, content: scroller.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight), seg: box('.sc-seg').height };
   });
-  check('header 56px; navigation is a full-width row right under it', geometry.header === 56 && geometry.nav[0] > 800 && geometry.nav[1] < 60 && Math.abs(geometry.nav[2]) < 1);
-  check('search field 300 × 34', Math.round(geometry.trigger[0]) === 300 && geometry.trigger[1] === 34);
-  check('text field 32px, switch 42 × 24, segmented 34px', geometry.text === 32 && geometry.switch[0] === 42 && geometry.switch[1] === 24 && geometry.seg === 34);
-  check('sections are at most 620px wide', geometry.section <= 620);
+  check('header 64px; navigation is a full-width row right under it', geometry.header === 64 && geometry.nav[0] > 800 && geometry.nav[1] < 60 && Math.abs(geometry.nav[2]) < 1);
+  check('search field 300 × 38', Math.round(geometry.trigger[0]) === 300 && geometry.trigger[1] === 38);
+  check('text field 40px, switch 42 × 24, segmented 40px', geometry.text === 40 && geometry.switch[0] === 42 && geometry.switch[1] === 24 && geometry.seg === 40);
+  check('sections fill the available panel content width', geometry.section > 900 && Math.abs(geometry.section - geometry.content) < 1);
 
   // The old Settings page moved to Usage and still renders.
   check('sidebar lists Usage, and Settings is not a page of the sidebar', await page.getByRole('button', { name: 'Usage', exact: true }).count() === 1 && await page.locator('.workspace-nav-label', { hasText: /^Settings$/ }).count() === 0);
@@ -157,9 +158,8 @@ try {
   check('the row is in view', rowBox.y >= scrollBox.y && rowBox.y + rowBox.height <= scrollBox.y + scrollBox.height);
   check('the section in view follows', await page.locator('.sc-nav__item[aria-current]').innerText() === 'Billing');
   await page.waitForTimeout(500);
-  await page.evaluate(() => document.activeElement?.blur());
-  await page.locator('.sc-scroller').hover();
-  await page.mouse.click(1100, 500);
+  // Controls now fill the panel; a hard-coded blank-space click can land in an input.
+  await page.locator('.sc-scroller').focus();
   await page.keyboard.press('/');
   check('"/" opens the search while focus is in the page', await page.locator('.sc-palette').count() === 1);
   await page.keyboard.type('zzzz');

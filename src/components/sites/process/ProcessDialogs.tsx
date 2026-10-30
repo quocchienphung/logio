@@ -1,49 +1,16 @@
 "use client";
 
 import { useId } from "react";
-import { Copy, Download, LayoutGrid, Plug, Plus, Trash2, Upload } from "lucide-react";
+import { Download, LayoutGrid, Plug, Upload } from "lucide-react";
 import { Combobox } from "../affectui-combobox/Combobox";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
-import { LIMITS, countNodes, templates, unitLabel } from "./process-model";
-import type { CostUnit, ProcessDoc, ProcessLibrary } from "./process-model";
+import { LIMITS, unitLabel } from "./process-model";
+import type { CostUnit, ProcessDoc } from "./process-model";
 
 export function ConfirmDialog({ open, title, message, confirmLabel, onConfirm, onClose }: { open: boolean; title: string; message: string; confirmLabel: string; onConfirm: () => void; onClose: () => void }) {
   return <WorkspaceDialog open={open} title={title} onClose={onClose}>
     <div className="proc-dialog"><p>{message}</p>
       <div className="proc-dialog__actions"><button type="button" className="proc-button" onClick={onClose}>Cancel</button><button type="button" className="proc-button proc-button--danger" onClick={onConfirm}>{confirmLabel}</button></div>
-    </div>
-  </WorkspaceDialog>;
-}
-
-const when = (stamp: string) => { const date = new Date(stamp); return Number.isNaN(date.getTime()) ? "" : date.toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" }); };
-
-export function LibraryDialog({ open, onClose, library, onSwitch, onDuplicate, onDelete, onNew }: {
-  open: boolean; onClose: () => void; library: ProcessLibrary; onSwitch: (id: string) => void; onDuplicate: (id: string) => void; onDelete: (id: string) => void; onNew: () => void;
-}) {
-  return <WorkspaceDialog open={open} title="Saved processes" onClose={onClose}>
-    <div className="proc-dialog">
-      <ul className="proc-library">
-        {library.processes.map(doc => <li key={doc.id} data-active={doc.id === library.activeId ? "" : undefined}>
-          <button type="button" className="proc-library__open" onClick={() => { onSwitch(doc.id); onClose(); }} aria-current={doc.id === library.activeId ? "true" : undefined}>
-            <strong>{doc.name}</strong><span>{countNodes(doc.root)} task{countNodes(doc.root) === 1 ? "" : "s"} · {when(doc.updatedAt)}</span>
-          </button>
-          <button type="button" className="proc-icon-button" aria-label={`Duplicate ${doc.name}`} title="Duplicate" onClick={() => onDuplicate(doc.id)}><Copy size={15} /></button>
-          <button type="button" className="proc-icon-button" aria-label={`Delete ${doc.name}`} title="Delete" disabled={library.processes.length < 2} onClick={() => onDelete(doc.id)}><Trash2 size={15} /></button>
-        </li>)}
-      </ul>
-      <div className="proc-dialog__actions"><button type="button" className="proc-button proc-button--dark" onClick={() => { onClose(); onNew(); }}><Plus size={14} />New process</button></div>
-    </div>
-  </WorkspaceDialog>;
-}
-
-export function NewProcessDialog({ open, onClose, onCreate }: { open: boolean; onClose: () => void; onCreate: (template: string) => void }) {
-  return <WorkspaceDialog open={open} title="New process" onClose={onClose}>
-    <div className="proc-dialog">
-      <p>Start from a blank page or from an example. You can change everything afterwards.</p>
-      <ul className="proc-templates">
-        <li><button type="button" onClick={() => onCreate("blank")}><strong>Blank</strong><span>One main task. Add the sub-tasks and AI blocks yourself.</span></button></li>
-        {templates.map(template => <li key={template.id}><button type="button" onClick={() => onCreate(template.id)}><strong>{template.label}</strong><span>{template.description}</span></button></li>)}
-      </ul>
     </div>
   </WorkspaceDialog>;
 }

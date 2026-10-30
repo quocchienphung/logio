@@ -89,7 +89,7 @@ export function SettingsOverlay({ origin, section, saved, onSave, onClose, notif
       animate={{ x: goal.x, y: goal.y, width: goal.width, height: goal.height, borderRadius: radius, opacity: leaving && !reduce ? 0.01 : leaving ? 0 : 1 }}
       transition={leaving ? { ...(reduce ? { duration: 0.14 } : { type: "spring", stiffness: 230, damping: 28 }), opacity: { duration: 0.18, delay: reduce ? 0 : 0.14 } } : spring}
       onAnimationComplete={() => { if (leaving) onClose(); }}>
-      <motion.div className="sc-overlay__content" style={{ width: target.width, height: target.height }} animate={{ opacity: leaving ? 0 : 1 }} transition={{ duration: leaving ? 0.1 : 0 }}>
+      <motion.div className="sc-overlay__content" style={{ width: target.width - 2, height: target.height - 2 }} animate={{ opacity: leaving ? 0 : 1 }} transition={{ duration: leaving ? 0.1 : 0 }}>
         <SettingsCommand saved={saved} onSave={onSave} notify={notify} initialSection={initialSection} onClose={close} reveal={!reduce} profileEmail={profileEmail} />
       </motion.div>
     </motion.div>

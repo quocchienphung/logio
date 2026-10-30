@@ -6,8 +6,8 @@
     "name": "Launch the pricing page",
     "goal": "Ship it on Friday",
     "unit": "tokens",
-    "createdAt": "2026-10-30T17:25:32.044Z",
-    "updatedAt": "2026-10-30T17:25:34.109Z",
+    "createdAt": "2026-10-30T18:16:56.857Z",
+    "updatedAt": "2026-10-30T18:16:58.884Z",
     "root": {
       "id": "launch",
       "name": "Coordinator",

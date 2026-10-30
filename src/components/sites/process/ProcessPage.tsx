@@ -4,7 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, u
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import { MenuSurface } from "@/components/interaction/MenuSurface";
 import type { Reducer } from "react";
-import { AlertTriangle, Check, Copy, FolderOpen, Hourglass, Trash2, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, ShieldCheck, Square, Undo2, Waypoints, X } from "lucide-react";
+import { AlertTriangle, Check, Copy, Download, FolderOpen, Upload, Hourglass, Trash2, LayoutGrid, LoaderCircle, PanelRight, Play, Plug, Plus, Redo2, Repeat, Settings2, ShieldCheck, Square, Undo2, Waypoints, X } from "lucide-react";
 import { OrbitMenu } from "../orbit-menu/OrbitMenu";
 import type { OrbitBoundary, OrbitPoint } from "../orbit-menu/orbit-geometry";
 import { blockShortcuts, menuAnchor } from "./block-shortcuts";
@@ -24,7 +24,10 @@ import { diffRun } from "./run-notices";
 import type { NoticeIntent, ProcessNotice } from "./run-notices";
 import { WorkspaceDialog } from "../affectui-crm/WorkspaceDialog";
 import { NodeInspector } from "./NodeInspector";
-import { ConfirmDialog, ConnectDialog, LibraryDialog, NewProcessDialog, SettingsDialog } from "./ProcessDialogs";
+import { ConfirmDialog, ConnectDialog, SettingsDialog } from "./ProcessDialogs";
+import { LibrarySheet, NewProcessSheet } from "./ProcessSheets";
+import { SplitButton } from "../split-button/SplitButton";
+import { MORPH } from "../split-button/split-button-model";
 import { ProcessMap } from "./ProcessMap";
 import { ProcessPermissions } from "./ProcessPermissions";
 import { ProcessRunBar } from "./ProcessRunMonitor";
@@ -86,7 +89,7 @@ export function Process({ workspaceId, dataSource, runSource, engine: suppliedEn
   return <ProcessStudio key={`${workspaceId}-${attempt}`} workspaceId={workspaceId} source={source} runs={runs} engine={engine} initial={result.loaded} remote={remote} onReload={reload} />;
 }
 
-type Dialog = "library" | "new" | "connect" | "inspector" | "settings" | { kind: "delete-task"; id: string } | { kind: "delete-tasks"; ids: string[] } | { kind: "delete-process"; id: string } | null;
+type Dialog = "library" | "new" | "connect" | "inspector" | "settings" | { kind: "delete-task"; id: string } | { kind: "delete-tasks"; ids: string[] } | null;
 const POLL_MS = 2000;
 /** The settings panel is docked: it takes this much width (panel 348 + its 12px margins) and the page is pushed aside by the same amount. */
 const PANEL_RESERVE = 372;
@@ -115,6 +118,11 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   const [setPage, pageWidth] = useWidth();
   const narrow = pageWidth > 0 && pageWidth < 940;
   const importRef = useRef<HTMLInputElement>(null);
+  // What the split button's main label says for a moment after an action it started has finished ("Created", "Exported"…)
+  const [flashed, setFlashed] = useState<string | null>(null);
+  const flashTimer = useRef<number | undefined>(undefined);
+  const flash = useCallback((text: string) => { setFlashed(text); window.clearTimeout(flashTimer.current); flashTimer.current = window.setTimeout(() => setFlashed(null), MORPH.resultMs); }, []);
+  useEffect(() => () => window.clearTimeout(flashTimer.current), []);
   const focusName = useRef(false);
   const [view, setView] = useState<"map" | "tree">("map");
   // The settings panel opens when a block is clicked or added, so the map has the whole page until then.
@@ -446,20 +454,20 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
   function createProcess(template: string) {
     const found = templates.find(item => item.id === template);
     addProcess(found ? instantiate(found.create()) : createBlankProcess("Untitled process"));
-    setDialog(null);
+    setDialog(null); flash("Created");
   }
   function duplicateProcess(id: string) {
     const original = library.processes.find(item => item.id === id);
-    if (original) addProcess({ ...instantiate(original), name: `${original.name} (copy)`.slice(0, LIMITS.name) });
+    if (original) { addProcess({ ...instantiate(original), name: `${original.name} (copy)`.slice(0, LIMITS.name) }); flash("Duplicated"); }
   }
   function deleteProcess(id: string) {
     const rest = library.processes.filter(item => item.id !== id);
     if (!rest.length) return;
     dispatch({ type: "edit", at: Date.now(), next: current => ({ ...current, activeId: current.activeId === id ? rest[0].id : current.activeId, processes: rest }) });
     setHandles(current => { const next = { ...current }; delete next[id]; return next; });
-    setSelectedId(rest[0].root.id); setDialog(null);
+    setSelectedId(rest[0].root.id); flash("Deleted");
   }
-  function exportProcess() { downloadFile(`${doc.name.replace(/[^\w-]+/g, "-").toLowerCase() || "process"}.json`, JSON.stringify({ format: "logio-process", version: 1, process: doc }, null, 2), "application/json"); }
+  function exportProcess() { downloadFile(`${doc.name.replace(/[^\w-]+/g, "-").toLowerCase() || "process"}.json`, JSON.stringify({ format: "logio-process", version: 1, process: doc }, null, 2), "application/json"); flash("Exported"); }
   async function importFile(file: File) {
     try {
       if (file.size > 2_000_000) throw new Error("That file is too large to be a process.");
@@ -467,7 +475,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
       const imported = normalizeProcess(raw?.process ?? raw);
       if (!imported) throw new Error("That file is not a process this page can read.");
       addProcess({ ...instantiate(imported), name: imported.name });
-      setNotice({ kind: "info", text: `Imported “${imported.name}” with ${countNodes(imported.root)} tasks.` });
+      setNotice({ kind: "info", text: `Imported “${imported.name}” with ${countNodes(imported.root)} tasks.` }); flash("Imported");
     } catch (error) { fail(error, "That file could not be imported."); }
   }
 
@@ -527,7 +535,7 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
 
   const stateChip = <span className="proc-state" data-state={snapshot?.state ?? "draft"}>{state}</span>;
   const saveChip = <span className="proc-save" data-state={save.error ? "error" : save.saving || save.dirty ? "busy" : "ok"} role="status">{save.error ? <AlertTriangle size={13} /> : save.saving ? <LoaderCircle className="proc-spin" size={13} /> : save.dirty ? null : <Check size={13} />}<span>{saveText}</span></span>;
-  const mapInset = { right: !narrow && panel ? 372 : 0, top: narrow ? 120 : 72, bottom: 72 };
+  const mapInset = { right: !narrow && panel ? 372 : 0, top: narrow ? 164 : 72, bottom: 72 };
 
   return <div className="proc-workspace" ref={setPage} data-narrow={narrow ? "" : undefined} data-view={view}>
     <div className="proc-stage">
@@ -563,8 +571,14 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         <h1 className="proc-name"><input aria-label="Process name" value={doc.name} maxLength={LIMITS.name} onChange={event => edit(item => ({ ...item, name: event.target.value }), "name")} onBlur={() => { if (!doc.name.trim()) edit(item => ({ ...item, name: "Untitled process" })); }} /></h1>
         {stateChip}
         <button type="button" className="proc-chip" data-kind={simulated ? "simulated" : "connected"} onClick={() => setDialog("connect")} aria-label={simulated ? "Simulated engine. Connect an engine" : "Connected engine"} title={simulated ? "Nothing is sent to a model. Click to connect an engine." : "A server runs the tasks."}><Plug size={13} /><span>{simulated ? "Simulated" : "Connected"}</span></button>
-        <button type="button" className="proc-icon-button" aria-label={`Saved processes (${library.processes.length})`} title="Saved processes" onClick={() => setDialog("library")}><FolderOpen size={16} /></button>
-        <button type="button" className="proc-icon-button" aria-label="New process" title="New process" onClick={() => setDialog("new")}><Plus size={16} /></button>
+        <SplitButton className="proc-split" matchColors variant="secondary" size="compact" label={flashed ?? "New process"} icon={flashed ? <Check size={14} strokeWidth={2} /> : <Plus size={14} strokeWidth={2} />} menuLabel="More process actions" onClick={() => setDialog("new")}
+          actions={[
+            { id: "saved", label: `Saved processes (${library.processes.length})`, icon: <FolderOpen size={15} />, onSelect: () => setDialog("library") },
+            { id: "duplicate", label: "Duplicate this process", icon: <Copy size={15} />, disabled: library.processes.length >= LIMITS.processes, onSelect: () => duplicateProcess(doc.id) },
+            { id: "export", label: "Export as JSON", icon: <Download size={15} />, onSelect: exportProcess },
+            { id: "import", label: "Import from a file…", icon: <Upload size={15} />, onSelect: () => importRef.current?.click() },
+            { id: "delete", label: "Delete this process", icon: <Trash2 size={15} />, destructive: true, disabled: library.processes.length < 2, confirm: { prompt: "Delete?", confirmLabel: "Delete", doneLabel: "Deleted", onConfirm: () => deleteProcess(doc.id), onUndo: () => dispatch({ type: "undo" }) } },
+          ]} />
       </div>
       <ProcessRunBar key={doc.id} tree={tree} title={view === "map" ? "Blocks" : "Tasks"} noun={view === "map" ? ["block", "blocks"] : ["task", "tasks"]} formatCost={format} showCost={unit !== "none"} onResolve={resolve} onReviewWaiting={() => reviewPermission()} extra={runControls}
         doc={handle?.kind === "simulated" ? { ...doc, root: handle.log.root, links: handle.log.links, unit: handle.log.unit } : doc}
@@ -628,12 +642,12 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
     </div>
 
     {narrow && <WorkspaceDialog open={open === "inspector"} title="Task settings" onClose={closeIf(current => current === "inspector")} wide><div className="proc-dialog proc-dialog--inspector">{inspector}</div></WorkspaceDialog>}
-    <LibraryDialog open={open === "library"} onClose={closeIf(current => current === "library")} library={library} onSwitch={switchTo} onDuplicate={duplicateProcess} onDelete={id => setDialog({ kind: "delete-process", id })} onNew={() => setDialog("new")} />
+    <LibrarySheet open={open === "library"} onClose={closeIf(current => current === "library")} library={library} onSwitch={switchTo} onDuplicate={duplicateProcess} onDelete={deleteProcess} onUndo={() => dispatch({ type: "undo" })} onNew={() => setDialog("new")} />
     <SettingsDialog open={open === "settings"} onClose={closeIf(current => current === "settings")} doc={doc} simulated={simulated} remote={remote}
       onGoal={goal => edit(item => ({ ...item, goal }), "goal")} onUnit={value => edit(item => ({ ...item, unit: value }))} onConnect={() => setDialog("connect")}
       onExport={exportProcess} onImport={() => importRef.current?.click()} onTidy={() => { setDialog(null); tidyUp(); }} />
     <input ref={importRef} type="file" accept="application/json,.json" hidden onChange={event => { const file = event.target.files?.[0]; event.target.value = ""; if (file) void importFile(file); }} />
-    <NewProcessDialog open={open === "new"} onClose={closeIf(current => current === "new")} onCreate={createProcess} />
+    <NewProcessSheet open={open === "new"} onClose={closeIf(current => current === "new")} onCreate={createProcess} />
     <ConnectDialog open={open === "connect"} onClose={closeIf(current => current === "connect")} simulated={simulated} engineCount={engines.length} />
     <ConfirmDialog
       open={isKind(dialog, "delete-task")} onClose={closeIf(current => isKind(current, "delete-task"))} title="Delete task" confirmLabel="Delete"
@@ -648,10 +662,6 @@ function ProcessStudio({ workspaceId, source, runs, engine, initial, remote, onR
         return ids.length ? `Delete ${ids.length} block${ids.length === 1 ? "" : "s"} (${named})${gone.size > ids.length ? ` and what hangs under ${ids.length === 1 ? "it" : "them"}, ${gone.size} blocks in all` : ""}? ${dialog && typeof dialog === "object" && dialog.kind === "delete-tasks" && dialog.ids.includes(doc.root.id) ? "The first block stays. " : ""}You can undo this.` : "Delete these blocks?";
       })()}
       onConfirm={() => { if (dialog && typeof dialog === "object" && dialog.kind === "delete-tasks") deleteTasks(dialog.ids); }} />
-    <ConfirmDialog
-      open={isKind(dialog, "delete-process")} onClose={closeIf(current => isKind(current, "delete-process"))} title="Delete process" confirmLabel="Delete process"
-      message={`Delete “${(dialog && typeof dialog === "object" && dialog.kind === "delete-process" ? library.processes.find(item => item.id === dialog.id)?.name : "") ?? ""}” and its run? You can undo this.`}
-      onConfirm={() => { if (dialog && typeof dialog === "object" && dialog.kind === "delete-process") deleteProcess(dialog.id); }} />
     <p className="proc-sr" role="status">{providerOf(selected.ai.provider).label} block selected: {selected.name}</p>
   </div>;
 }

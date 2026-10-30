@@ -1,0 +1,14 @@
+import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+const out='docs/research/command-palette/local';await fs.mkdir(out,{recursive:true});
+const browser=await chromium.launch({channel:'chrome'});const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto(process.argv[2]||'http://localhost:3000/',{waitUntil:'load'});await page.locator('.cp-dialog').waitFor({state:'attached'});await page.waitForTimeout(1500);
+await page.keyboard.press('Tab');await page.waitForTimeout(900);const panel=page.locator('.cp-palette');
+await page.screenshot({path:`${out}/desktop.png`});await panel.screenshot({path:`${out}/panel.png`});
+console.log('open',await panel.boundingBox(),await page.getByRole('combobox',{name:'Navigate pages'}).evaluate(e=>e===document.activeElement));
+const input=page.getByRole('combobox',{name:'Navigate pages'});await input.fill('process');await page.waitForTimeout(1000);await panel.screenshot({path:`${out}/filtered.png`});console.log('matches',await page.getByRole('option').allTextContents());
+await input.fill('qzxxzz');await page.waitForTimeout(1000);await panel.screenshot({path:`${out}/empty.png`});
+await page.keyboard.press('Escape');console.log('Escape cleared',await input.inputValue());await page.waitForTimeout(800);
+await page.setViewportSize({width:390,height:844});await page.waitForTimeout(700);await page.screenshot({path:`${out}/mobile.png`});console.log('mobile',await panel.boundingBox());
+await page.keyboard.press('Escape');await page.waitForTimeout(250);console.log('closed',await page.locator('.cp-dialog').evaluate(e=>e.open));
+await fs.writeFile(`${out}/errors.json`,JSON.stringify(errors));console.log(errors);await browser.close();

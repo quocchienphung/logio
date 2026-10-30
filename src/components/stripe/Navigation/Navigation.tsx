@@ -25,9 +25,10 @@ import { interactionMotion } from "@/components/interaction/motion-tokens";
 type MenuId = Menu["id"];
 type Status = "initial" | "open" | "close";
 
-// Menus open on the first hover frame; the close delay alone keeps passing pointers from flickering them.
-const OPEN_DELAY = 0;
-const CLOSE_DELAY = 150;
+// UIArc Morph nav's public preview: pointer intent 60ms, gap tolerance 180ms.
+const OPEN_DELAY = 60;
+const CLOSE_DELAY = 180;
+const CONTENT_EXIT = 120;
 const CLOSE_ANIM = interactionMotion.exit;
 const MOBILE_QUERY = "(max-width: 939px)";
 
@@ -150,13 +151,13 @@ function NavigationMenu() {
         );
         setLeaving(active);
         clear("leave");
-        timers.current.leave = window.setTimeout(() => setLeaving(null), interactionMotion.spring);
-      } else {
+        timers.current.leave = window.setTimeout(() => setLeaving(null), CONTENT_EXIT);
+      } else if (!active) {
         setDirection(undefined);
       }
       setActive(id);
       measureAnchor();
-      setPopupStatus((s) => (s === "open" ? s : "initial"));
+      setPopupStatus((s) => s === "close" ? "open" : s ?? "initial");
     },
     [active, measureAnchor],
   );
@@ -164,8 +165,10 @@ function NavigationMenu() {
   const scheduleOpen = (id: MenuId) => {
     if (mobile) return;
     clear("open");
-    if (OPEN_DELAY === 0) open(id);
-    else timers.current.open = window.setTimeout(() => open(id), OPEN_DELAY);
+    // Cancel departure immediately, before waiting for intent. Otherwise an older close timer
+    // can fire during these 60ms and cancel the new open (a fast out-and-back pointer stalls).
+    clear("close");
+    timers.current.open = window.setTimeout(() => open(id), OPEN_DELAY);
   };
 
   const close = useCallback(() => {
@@ -207,11 +210,14 @@ function NavigationMenu() {
     setPopupStatus("initial");
   };
 
-  // initial → open on the next frame so the open transition starts from the initial styles
+  // Keep one painted initial frame. A single rAF can run before the mounting paint and skip entry.
   useLayoutEffect(() => {
     if (popupStatus !== "initial") return;
-    const raf = requestAnimationFrame(() => setPopupStatus("open"));
-    return () => cancelAnimationFrame(raf);
+    let next = 0;
+    const raf = requestAnimationFrame(() => {
+      next = requestAnimationFrame(() => setPopupStatus("open"));
+    });
+    return () => { cancelAnimationFrame(raf); cancelAnimationFrame(next); };
   }, [popupStatus]);
 
   // animate popup height between desktop menus
@@ -219,12 +225,17 @@ function NavigationMenu() {
     if (!active || mobile) return;
     const el = contentRefs.current[active];
     if (!el) return;
-    const measure = () => setPopupHeight(el.offsetHeight);
+    // The content must measure independently of the animated viewport (see overrides.css).
+    // Otherwise observing its stretched height feeds each animation frame back into the target.
+    const measure = () => {
+      const height = Math.round(el.getBoundingClientRect().height);
+      setPopupHeight((previous) => previous === height ? previous : height);
+    };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [active, popupStatus, mobile]);
+  }, [active, mobile]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -306,7 +317,8 @@ function NavigationMenu() {
               }
               aria-controls={`navigation-popup-${m.id}`}
               data-active={active === m.id ? "" : undefined}
-              onMouseEnter={() => scheduleOpen(m.id)}
+              onPointerEnter={(e) => { if (e.pointerType === "mouse") scheduleOpen(m.id); }}
+              onPointerLeave={() => clear("open")}
               onFocus={(e) => {
                 if (!mobile && !restoringFocus.current && e.currentTarget.matches(":focus-visible")) open(m.id);
               }}
@@ -620,6 +632,7 @@ function NavigationMenu() {
                           }}
                           className="hds-navigation-menu__content"
                           data-status={contentStatus(m.id)}
+                          inert={m.id !== active}
                         >
                           <MegaMenuContent menu={m} />
                         </div>

@@ -49,6 +49,8 @@ const run = page => page.locator('.agt__extra').getByRole('button', { name: 'Run
 const goto = async (page, section) => page.locator('.ui-as-side__item', { hasText: section }).click();
 const undo = page => page.locator('.proc-dock [aria-label="Undo"]');
 const redo = page => page.locator('.proc-dock [aria-label="Redo"]');
+// The saved processes are in the menu of the split button beside the name (the folder icon became a menu item)
+const openSaved = async page => { await page.getByRole('button', { name: 'More process actions' }).click(); await page.getByRole('menuitem', { name: /Saved processes/ }).click(); await page.getByRole('dialog', { name: 'Saved processes' }).waitFor(); await page.waitForTimeout(700); };
 const view = page => page.evaluate(() => { const stage = document.querySelector('.pmap__stage'); const m = new DOMMatrixReadOnly(getComputedStyle(stage).transform); return { x: m.e, y: m.f, scale: m.a }; });
 const box = async locator => locator.boundingBox();
 const openBlock = async (page, name) => { await block(page, name).locator('.agt__name').click(); await page.locator('.proc-side').waitFor(); };
@@ -363,20 +365,24 @@ const openBlock = async (page, name) => { await block(page, name).locator('.agt_
     await page.screenshot({ path: `${out}/process-local.png` });
   });
   await check('The library lists, switches, duplicates and deletes processes (with confirmation and undo)', async () => {
-    await page.getByRole('button', { name: /Saved processes/ }).click();
+    await openSaved(page);
     const dialog = page.getByRole('dialog', { name: 'Saved processes' });
     const count = await dialog.locator('.proc-library li').count();
     assert.ok(count >= 2);
     await dialog.getByRole('button', { name: 'Launch the pricing page' }).first().click();
     assert.equal(await page.locator('.proc-name input').inputValue(), 'Launch the pricing page');
-    await page.getByRole('button', { name: /Saved processes/ }).click();
+    await openSaved(page);
     await page.getByRole('button', { name: 'Duplicate Launch the pricing page' }).first().click();
     assert.equal(await page.locator('.proc-name input').inputValue(), 'Launch the pricing page (copy)');
+    // the row's delete is a Confirm morph: it unfolds in place, no dialog; the sheet stays open
     await page.getByRole('button', { name: 'Delete Launch the pricing page (copy)' }).click();
-    await page.getByRole('dialog', { name: 'Delete process' }).getByRole('button', { name: 'Delete process', exact: true }).click();
-    await page.waitForFunction(() => !document.querySelector('dialog[open]'));
+    assert.equal(await page.getByRole('dialog', { name: 'Delete process' }).count(), 0);
+    await page.waitForTimeout(400);
+    await page.locator('.psheet-delete .cm__confirm').click();
+    await page.waitForFunction(() => document.querySelectorAll('.proc-library li').length === 2);
+    await page.keyboard.press('Escape'); await page.locator('.bs-sheet').waitFor({ state: 'detached', timeout: 4000 });
     await undo(page).click();
-    await page.getByRole('button', { name: /Saved processes/ }).click();
+    await openSaved(page);
     assert.equal(await page.getByRole('dialog', { name: 'Saved processes' }).locator('.proc-library li').count(), count + 2 - 1);
     await page.keyboard.press('Escape');
   });

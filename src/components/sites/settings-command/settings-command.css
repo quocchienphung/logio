@@ -246,3 +246,114 @@
 }
 @keyframes sc-rise { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 @media (prefers-reduced-motion: reduce) { .sc[data-reveal] :is(.sc-header h2, .sc-trigger-slot, .sc-close, .sc-nav li, .sc-section__head, .sc-row) { animation: none; } }
+
+/* Workspace integration: use the panel's full content width and one responsive type/grid scale. */
+.sc-frame {
+  --sc-label-size: 14px; --sc-hint-size: 13px; --sc-heading-size: 16px;
+  --sc-row-columns: minmax(0, 1.2fr) minmax(240px, .9fr);
+  grid-template-rows: 64px auto minmax(0, 1fr);
+}
+.sc-header { padding-inline: 24px 16px; }
+.sc-header h2 { font-size: 16px; }
+.sc-trigger { height: 38px; font-size: 14px; }
+.sc-nav { padding: 10px 24px; }
+.sc-nav__item { height: 36px; font-size: 14px; }
+.sc-scroller { padding: 0 28px 112px; scrollbar-gutter: stable; }
+.sc-section { width: 100%; max-width: none; padding-top: 28px; }
+.sc-section + .sc-section { margin-top: 24px; }
+.sc-section__head { margin-bottom: 8px; }
+.sc-section__head h3 { font-size: var(--sc-heading-size); line-height: 1.35; }
+.sc-section__head p { margin-top: 4px; font-size: var(--sc-hint-size); line-height: 1.5; }
+.sc-row, .sc-row--wide { grid-template-columns: var(--sc-row-columns); gap: 12px 32px; min-height: 76px; padding-block: 16px; }
+.sc-row__label label { font-size: var(--sc-label-size); line-height: 1.45; }
+.sc-row__text p { margin-top: 4px; font-size: var(--sc-hint-size); line-height: 1.5; }
+.sc-text, .sc-select__trigger { height: 40px; min-height: 40px; }
+.sc-text input, .sc-text__prefix, .sc-select__trigger, .sc-seg__button { font-size: var(--sc-label-size); }
+.sc-row .sc-select { width: 100%; }
+.sc-row .sc-seg { width: 100%; }
+.sc-row .sc-seg__track { width: 100%; }
+.sc-row .sc-seg__button { flex: 1 1 auto; min-height: 32px; }
+.sc-switch { min-height: 40px; }
+.sc-select__content { font-size: 14px; }
+.sc-select__item { min-height: 40px; font-size: 14px; }
+
+/* Embedded account controls inherit Settings tokens; the standalone preview keeps its own skin. */
+.sc .sec-settings.sec-settings--embedded {
+  --sec-ink: var(--sc-fg); --sec-text: var(--sc-text-2); --sec-muted: var(--sc-text-3);
+  --sec-line: var(--sc-border-subtle); --sec-bg: var(--sc-surface); --sec-hover: var(--sc-muted); --sec-danger: var(--sc-danger);
+  max-width: none; border: 0; border-radius: 0; background: transparent;
+  font: inherit; font-size: var(--sc-label-size); letter-spacing: inherit;
+}
+.sc .sec-settings--embedded .sec-header { padding: 12px 0 20px; }
+.sc .sec-settings--embedded .sec-account { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
+.sc .sec-settings--embedded .sec-account p { color: var(--sc-text-2); overflow-wrap: anywhere; }
+.sc .sec-settings--embedded .sec-account strong { color: var(--sc-fg); font-weight: 500; }
+.sc .sec-settings--embedded .sec-preview-note { color: var(--sc-text-3); font-size: var(--sc-hint-size); line-height: 1.5; }
+.sc .sec-settings--embedded .sec-section { padding: 20px 0; }
+.sc .sec-settings--embedded .sec-section-head { display: grid; grid-template-columns: var(--sc-row-columns); gap: 12px 32px; align-items: center; }
+.sc .sec-settings--embedded h4 { font-size: var(--sc-label-size); line-height: 1.45; }
+.sc .sec-settings--embedded .sec-section-text > p { font-size: var(--sc-hint-size); line-height: 1.5; color: var(--sc-text-3); }
+.sc .sec-settings--embedded .sec-section-head > :last-child:not(:first-child) { justify-self: end; }
+.sc .sec-settings--embedded .sec-button { min-height: 40px; font-family: inherit; font-size: var(--sc-label-size); border-color: var(--sc-border); }
+.sc .sec-settings--embedded .sec-button--ghost { border-color: transparent; }
+.sc .sec-settings--embedded .sec-button--primary { background: var(--sc-fg); border-color: var(--sc-fg); color: var(--sc-bg); }
+.sc .sec-settings--embedded .sec-button--primary:hover { background: var(--sc-accent-strong); }
+.sc .sec-settings--embedded :focus-visible { outline-color: var(--sc-accent); }
+.sc .sec-settings--embedded .sec-badge { color: var(--sc-text-2); background: var(--sc-muted); border-color: var(--sc-border); }
+.sc .sec-settings--embedded .sec-badge[data-on] { color: var(--sc-success); background: color-mix(in oklab, var(--sc-success) 10%, var(--sc-surface)); border-color: color-mix(in oklab, var(--sc-success) 25%, var(--sc-border)); }
+.sc .sec-settings--embedded .sec-badge--warning { color: color-mix(in oklab, #bd781c 75%, var(--sc-fg)); background: color-mix(in oklab, #bd781c 10%, var(--sc-surface)); border-color: color-mix(in oklab, #bd781c 22%, var(--sc-border)); }
+.sc .sec-settings--embedded .sec-setup { margin-top: 20px; padding: 20px; border: 1px solid var(--sc-border-subtle); border-radius: 12px; background: var(--sc-muted); }
+.sc .sec-settings--embedded .sec-scan { gap: 24px; }
+.sc .sec-settings--embedded .sec-scan-copy > p { font-size: var(--sc-hint-size); line-height: 1.5; }
+.sc .sec-settings--embedded .sec-rail { flex-wrap: wrap; row-gap: 8px; font-size: 13px; }
+.sc .sec-settings--embedded .sec-rail-mark { border-color: var(--sc-border-strong); }
+.sc .sec-settings--embedded .sec-rail [aria-current] .sec-rail-mark { border-color: var(--sc-fg); }
+.sc .sec-settings--embedded .sec-rail [data-done] .sec-rail-mark { background: var(--sc-fg); color: var(--sc-bg); border-color: var(--sc-fg); }
+.sc .sec-settings--embedded .sec-key-block code { font-size: 13px; }
+.sc .sec-settings--embedded .sec-password-form { max-width: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+.sc .sec-settings--embedded .sec-password-form > :not(.sec-field) { grid-column: 1 / -1; }
+.sc .sec-settings--embedded .sec-field label { font-size: var(--sc-hint-size); }
+.sc .sec-settings--embedded .sec-input-wrap input { height: 40px; border-color: var(--sc-border); border-radius: 9px; }
+.sc .sec-settings--embedded .sec-input-wrap > button { top: 4px; right: 4px; }
+.sc .sec-settings--embedded .sec-requirements { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.sc .sec-settings--embedded .sec-requirements li > span { flex: none; border-color: var(--sc-border-strong); }
+.sc .sec-settings--embedded .sec-enabled { flex-wrap: wrap; }
+.sc .sec-settings--embedded .sec-session-row { min-height: 72px; gap: 16px; padding: 14px 0; }
+.sc .sec-settings--embedded .sec-session-row > svg { width: 18px; height: 18px; color: var(--sc-text-3); }
+.sc .sec-settings--embedded .sec-session-text p, .sc .sec-settings--embedded .sec-session-footer { font-size: var(--sc-hint-size); line-height: 1.5; }
+.sc .sec-settings--embedded .sec-session-footer { display: grid; grid-template-columns: var(--sc-row-columns); gap: 16px 32px; }
+.sc .sec-settings--embedded .sec-session-footer .sec-hold-wrap { justify-self: end; }
+.sc .sec-settings--embedded .sec-feedback { padding-inline: 0; }
+
+@container sc-root (min-width: 900px) {
+  .sc-frame { --sc-label-size: 15px; --sc-hint-size: 14px; --sc-heading-size: 18px; }
+  .sc-scroller { padding-inline: 32px; }
+}
+@container sc-root (max-width: 719px) {
+  .sc-frame { --sc-row-columns: minmax(0,1fr); grid-template-rows: 60px auto minmax(0,1fr); }
+  .sc-header { padding-inline: 20px 12px; }
+  .sc-nav { padding-inline: 20px; }
+  .sc-scroller { padding-inline: 20px; }
+  .sc-row, .sc-row--wide { grid-template-columns: minmax(0,1fr); gap: 10px; }
+  .sc-row[data-kind="switch"] { grid-template-columns: minmax(0,1fr) auto; gap: 20px; }
+  .sc-row__control { justify-content: stretch; }
+  .sc .sec-settings--embedded .sec-section-head > :last-child:not(:first-child), .sc .sec-settings--embedded .sec-session-footer .sec-hold-wrap { justify-self: start; }
+  .sc .sec-settings--embedded .sec-aside { margin-left: 0; }
+  .sc .sec-settings--embedded .sec-password-form { grid-template-columns: minmax(0,1fr); }
+}
+@container sc-root (max-width: 480px) {
+  .sc-header { padding-inline: 16px 10px; }
+  .sc-nav { padding-inline: 12px; }
+  .sc-scroller { padding-inline: 16px; }
+  .sc .sec-settings--embedded .sec-setup { padding: 14px; }
+  .sc .sec-settings--embedded .sec-scan { grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .sc .sec-settings--embedded .sec-requirements { grid-template-columns: minmax(0,1fr); }
+  .sc .sec-settings--embedded .sec-session-row { gap: 10px; }
+  .sc .sec-settings--embedded .sec-session-row > .sec-button { padding-inline: 6px; font-size: 13px; }
+  .sc .sec-settings--embedded .sec-session-footer .sec-hold-wrap, .sc .sec-settings--embedded .sec-session-footer .sec-hold { width: 100%; }
+}
+@container sc-root (max-width: 360px) {
+  .sc .sec-settings--embedded .sec-aside { margin-left: 0; }
+  .sc .sec-settings--embedded .sec-otp { gap: 5px; }
+  .sc .sec-settings--embedded .sec-otp input { flex: 1; min-width: 0; width: 30px; }
+}

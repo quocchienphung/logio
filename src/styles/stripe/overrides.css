@@ -124,18 +124,28 @@
   gap: 6px;
 }
 
-/* Desktop navigation popup: a compositor-only pop (transform + opacity) instead of the reference's
-   clip-path/max-height wipe, which repaints the popup (and the blurred overlay behind it) every frame.
-   The popup drops 8px and grows from 97% under the hovered item with a soft overshoot; switching
-   between menus keeps the reference height glide and content slide. */
+/* Morph nav motion adapted to the existing Stripe layout. Timings/travel were read from UIArc's
+   public preview; see docs/research/morph-nav. Measure intrinsic content, not the animated viewport:
+   stretching the observed child to height:100% made ResizeObserver chase its own transition. */
+@media (min-width: 940px) {
+  .hds-navigation-menu__viewport > .hds-navigation-menu__content {
+    align-self: start;
+    height: max-content;
+  }
+  .hds-navigation-menu__popup {
+    height: var(--hds-navigation-menu-popup-height, auto);
+  }
+  .hds-navigation-menu__content[data-status="close"] {
+    pointer-events: none;
+  }
+}
 @media (min-width: 940px) and (prefers-reduced-motion: no-preference) {
   .hds-navigation-menu__popup {
     clip-path: none;
     max-height: none;
     opacity: 0;
-    transform: translateY(-8px) scale(0.97);
+    transform: translateY(-4px);
     transform-origin: 50% 0;
-    will-change: transform, opacity;
     transition-property: opacity, transform, height;
     transition-duration: var(--interaction-duration-fast), var(--interaction-duration-spring), var(--interaction-duration-spring);
     transition-timing-function: var(--interaction-ease-enter), var(--interaction-ease-spring), var(--interaction-ease-spring);
@@ -148,13 +158,57 @@
   .hds-navigation-menu__popup[data-status="close"] {
     clip-path: none;
     opacity: 0;
-    transform: translateY(-4px) scale(0.985);
+    transform: translateY(-2px);
     transition-duration: var(--interaction-duration-exit), var(--interaction-duration-exit), var(--interaction-duration-exit);
     transition-timing-function: var(--interaction-ease-standard);
   }
   .hds-navigation-menu__overlay {
-    will-change: opacity;
     transition-duration: 180ms;
+  }
+  .hds-navigation-menu__popup .hds-navigation-menu__content[data-status="open"] {
+    opacity: 1;
+    transform: none;
+    transition-duration: 240ms, var(--interaction-duration-spring);
+    transition-delay: 40ms, 0ms;
+    transition-timing-function: var(--interaction-ease-enter), var(--interaction-ease-spring);
+  }
+  .hds-navigation-menu__popup .hds-navigation-menu__content[data-status="close"] {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition-duration: 120ms, var(--interaction-duration-spring);
+    transition-delay: 0ms;
+    transition-timing-function: var(--interaction-ease-standard), var(--interaction-ease-spring);
+  }
+  .hds-navigation-menu__popup[data-activation-direction="following"] .hds-navigation-menu__content[data-status="close"] {
+    transform: translateX(-10px);
+  }
+  .hds-navigation-menu__popup[data-activation-direction="preceding"] .hds-navigation-menu__content[data-status="close"] {
+    transform: translateX(10px);
+  }
+  @starting-style {
+    .hds-navigation-menu__popup .hds-navigation-menu__content[data-status="open"] {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    .hds-navigation-menu__popup[data-activation-direction="following"] .hds-navigation-menu__content[data-status="open"] {
+      transform: translateX(10px);
+    }
+    .hds-navigation-menu__popup[data-activation-direction="preceding"] .hds-navigation-menu__content[data-status="open"] {
+      transform: translateX(-10px);
+    }
+  }
+}
+@media (min-width: 940px) and (prefers-reduced-motion: reduce) {
+  .hds-navigation-menu__popup,
+  .hds-navigation-menu__popup .hds-navigation-menu__content {
+    transform: none;
+    clip-path: none;
+    transition: opacity 120ms linear;
+  }
+  .hds-navigation-menu__popup[data-status="initial"],
+  .hds-navigation-menu__popup[data-status="close"],
+  .hds-navigation-menu__popup .hds-navigation-menu__content[data-status="close"] {
+    opacity: 0;
   }
 }
 
