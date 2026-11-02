@@ -1,0 +1,52 @@
+[
+  {
+    "t": 0,
+    "status": "Target checks all 4 in one pass\nFirst guess rejected, target writes its own\nDraft guesses 4 tokens ahead, target checks them in one pass\nDraft model proposes 4 tokens",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 300,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 700,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 1200,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 1800,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 2600,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 3600,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 5000,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 7000,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  },
+  {
+    "t": 9000,
+    "status": "Done in 6 target passes",
+    "summary": "24 tokens drafted, 16 accepted | 6 passes for 22 tokens"
+  }
+]

@@ -14,6 +14,8 @@ export const guideGroups = [
   { id: "crm", name: "CRM", number: "03", href: "/personalize?section=home", image: null, live: "agent-lanes", sections: ["Home", "Companies", "Contacts", "Deals", "Reports"], pipelines: ["New business", "Renewals", "Partnerships"] },
   { id: "project-management", name: "Project Management", number: "04", href: "/personalize?section=mapping", image: null, live: "delegate-board", sections: ["Mapping", "Process", "Tracing", "Orchestrator"], pipelines: [] },
   { id: "skilled", name: "Skilled", number: "05", href: "/skilled", image: null, live: "context-window", sections: ["Skilled", "Repo", "Storage"], pipelines: [] },
+  // No picture and no live frame yet: the selector draws its neutral frame.
+  { id: "rules", name: "Rules", number: "06", href: "/personalize?section=excel-formation", image: null, sections: ["Excel formation", "JSON formation"], pipelines: [] },
 ] as const satisfies readonly { id: string; name: string; number: string; href: string; image: string | null; live?: LiveFrame; sections: readonly WorkspaceSection[]; pipelines: readonly WorkspaceSection[] }[];
 
 export type GuideGroup = (typeof guideGroups)[number];

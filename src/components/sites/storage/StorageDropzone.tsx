@@ -20,6 +20,12 @@ export interface StorageDropzoneProps {
   entries?: StorageDropzoneEntry[];
   onRemove?: (id: string) => void;
   onRetry?: (id: string) => void;
+  /** Reuse of the same Dropzone by other sections. Every option defaults to what Storage has always shown. */
+  accept?: string;
+  hint?: string;
+  inputLabel?: string;
+  multiple?: boolean;
+  badges?: readonly [string, string];
 }
 
 const extensions = ".pdf,.docx,.txt,.md,.csv,.tsv,.sql,.json,.xlsx";
@@ -49,17 +55,17 @@ function Glyph({ kind }: { kind: "upload" | "check" | "remove" | "retry" }) {
   </svg>;
 }
 
-function DocumentBadge({ type }: { type: "PDF" | "SQL" }) {
+function DocumentBadge({ type, first }: { type: string; first: boolean }) {
   return <svg viewBox="0 0 30 36" className="storage-dropzone__badge" data-type={type.toLowerCase()} aria-hidden="true">
     <path className="storage-dropzone__badge-sheet" d="M5 1h14l10 10v20a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V5a4 4 0 0 1 4-4Z" />
     <path className="storage-dropzone__badge-fold" d="M19 1v6a4 4 0 0 0 4 4h6" />
-    <rect x={type === "PDF" ? 0 : 6.4} y="19" width="23.6" height="11" rx="3" />
-    <text x={type === "PDF" ? 4 : 10.4} y="27.2">{type}</text>
+    <rect x={first ? 0 : 6.4} y="19" width="23.6" height="11" rx="3" />
+    <text x={first ? 4 : 10.4} y="27.2">{type}</text>
   </svg>;
 }
 
 /** Independent reconstruction of affectUI's publicly rendered Dropzone. */
-export function StorageDropzone({ onFiles, disabled = false, entries = [], onRemove, onRetry }: StorageDropzoneProps) {
+export function StorageDropzone({ onFiles, disabled = false, entries = [], onRemove, onRetry, accept = extensions, hint = "PDF, DOCX, TXT, MD, CSV, TSV, SQL, JSON, XLSX · up to 20 MB each", inputLabel = "Choose storage documents", multiple = true, badges = ["PDF", "SQL"] }: StorageDropzoneProps) {
   const { t: uiText } = useWorkspaceI18n();
   const input = useRef<HTMLInputElement>(null);
   const depth = useRef(0);
@@ -116,7 +122,7 @@ export function StorageDropzone({ onFiles, disabled = false, entries = [], onRem
   return <div className="storage-dropzone" data-disabled={disabled || undefined}>
     <div className="storage-dropzone__card">
       <div className="storage-dropzone__body">
-        <input ref={input} className="storage-dropzone__input" type="file" multiple accept={extensions} disabled={disabled} tabIndex={-1} aria-label={uiText("Choose storage documents")} onChange={event => {
+        <input ref={input} className="storage-dropzone__input" type="file" multiple={multiple} accept={accept} disabled={disabled} tabIndex={-1} aria-label={uiText(inputLabel)} onChange={event => {
           receive(Array.from(event.currentTarget.files ?? []));
           event.currentTarget.value = "";
         }} />
@@ -126,15 +132,15 @@ export function StorageDropzone({ onFiles, disabled = false, entries = [], onRem
           onDragLeave={event => { event.preventDefault(); depth.current = Math.max(0, depth.current - 1); if (!depth.current) setDragCount(0); }}
           onDrop={event => { event.preventDefault(); receive(Array.from(event.dataTransfer.files)); }}>
           <span className="storage-dropzone__stack" aria-hidden="true">
-            <span className="storage-dropzone__sheet storage-dropzone__sheet--left"><DocumentBadge type="PDF" /></span>
-            <span className="storage-dropzone__sheet storage-dropzone__sheet--right"><DocumentBadge type="SQL" /></span>
+            <span className="storage-dropzone__sheet storage-dropzone__sheet--left"><DocumentBadge type={badges[0]} first /></span>
+            <span className="storage-dropzone__sheet storage-dropzone__sheet--right"><DocumentBadge type={badges[1]} first={false} /></span>
             <span className="storage-dropzone__sheet storage-dropzone__sheet--middle"><Glyph kind="upload" /></span>
           </span>
           <span className="storage-dropzone__title">{dragCount > 0 ? uiText("Release to add {0} {1}", [dragCount, dragCount === 1 ? "file" : "files"]) : <>
             <span className="storage-dropzone__mouse">{uiText("Drop files here or ")}<span className="storage-dropzone__browse">{uiText("browse")}</span></span>
             <span className="storage-dropzone__touch">{uiText("Tap to ")}<span className="storage-dropzone__browse">{uiText("choose files")}</span></span>
           </>}</span>
-          <span className="storage-dropzone__hint" id={hintId}>{uiText("PDF, DOCX, TXT, MD, CSV, TSV, SQL, JSON, XLSX · up to 20 MB each")}</span>
+          <span className="storage-dropzone__hint" id={hintId}>{uiText(hint)}</span>
         </button>
         <ul className="storage-dropzone__list" aria-label={uiText("Document processing")}>
           {entries.map(item => {

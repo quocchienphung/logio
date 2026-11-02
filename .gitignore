@@ -63,3 +63,16 @@ temp/
 
 # Home-server data written by /api/workspace
 .logio-data/
+
+# Confidential bank/customer reference files and anything generated from them (Credit → Excel repair pipeline).
+# Never commit these; tests use synthetic fixtures only (src/components/sites/credit/**/fixtures-synthetic).
+docs/MAU9_*.xlsx
+docs/D4030*.json
+docs/*.reviewed.xlsx
+*.reviewed.xlsx
+reporting-output.json
+validation-audit.json
+validation-report.csv
+.credit-private/
+temp/
+*.progress.json

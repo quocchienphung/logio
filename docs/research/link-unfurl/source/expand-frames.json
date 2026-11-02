@@ -1,0 +1,767 @@
+[
+  {
+    "t": 9.500000001489752,
+    "transform": "translate3d(297.61px, -76px, 0px)",
+    "clip": "inset(10px 206px 308px 10px round 13px)",
+    "visibility": "hidden",
+    "height": "0px",
+    "plate": "transform: translate3d(307.61px, -66px, 0px); width: 224px; height: 26px; border-radius: 13px; opacity: 0; --lift: 0.000;",
+    "body": "0"
+  },
+  {
+    "t": 26.100000001490116,
+    "transform": "translate3d(297.61px, -76px, 0px)",
+    "clip": "inset(10px 206px 308px 10px round 13px)",
+    "visibility": "hidden",
+    "height": "0px",
+    "plate": "transform: translate3d(307.61px, -66px, 0px); width: 224px; height: 26px; border-radius: 13px; opacity: 0; --lift: 0.000;",
+    "body": "0"
+  },
+  {
+    "t": 42.70000000149048,
+    "transform": "translate3d(297.61px, -76px, 0px)",
+    "clip": "inset(10px 206px 308px 10px round 13px)",
+    "visibility": "hidden",
+    "height": "0px",
+    "plate": "transform: translate3d(307.61px, -66px, 0px); width: 224px; height: 26px; border-radius: 13px; opacity: 0; --lift: 0.000;",
+    "body": "0"
+  },
+  {
+    "t": 59.40000000148939,
+    "transform": "translate3d(285.76px, -75.48px, 0px)",
+    "clip": "inset(9.93px 197.8px 305.87px 9.6px round 13.13px)",
+    "visibility": "visible",
+    "height": "2.44px",
+    "plate": "transform: translate3d(295.36px, -65.54px, 0px); width: 232.6px; height: 28.19px; border-radius: 13.13px; opacity: 0.250694; --lift: 0.079;",
+    "body": "0"
+  },
+  {
+    "t": 76.10000000149012,
+    "transform": "translate3d(266.46px, -74.03px, 0px)",
+    "clip": "inset(9.74px 184.44px 300.03px 8.95px round 13.33px)",
+    "visibility": "visible",
+    "height": "9.16px",
+    "plate": "transform: translate3d(275.42px, -64.29px, 0px); width: 246.61px; height: 34.23px; border-radius: 13.33px; opacity: 0.667574; --lift: 0.208;",
+    "body": "0"
+  },
+  {
+    "t": 92.70000000149048,
+    "transform": "translate3d(243.13px, -71.72px, 0px)",
+    "clip": "inset(9.44px 168.29px 290.66px 8.17px round 13.59px)",
+    "visibility": "visible",
+    "height": "19.93px",
+    "plate": "transform: translate3d(251.3px, -62.28px, 0px); width: 263.54px; height: 43.9px; border-radius: 13.59px; opacity: 1; --lift: 0.364;",
+    "body": "0"
+  },
+  {
+    "t": 109.40000000148939,
+    "transform": "translate3d(218.35px, -68.72px, 0px)",
+    "clip": "inset(9.04px 151.14px 278.49px 7.34px round 13.88px)",
+    "visibility": "visible",
+    "height": "33.91px",
+    "plate": "transform: translate3d(225.69px, -59.68px, 0px); width: 281.53px; height: 56.46px; border-radius: 13.88px; opacity: 1; --lift: 0.525;",
+    "body": "0"
+  },
+  {
+    "t": 126.00000000148975,
+    "transform": "translate3d(193.44px, -65.18px, 0px)",
+    "clip": "inset(8.58px 133.9px 264.14px 6.5px round 14.18px)",
+    "visibility": "visible",
+    "height": "50.41px",
+    "plate": "transform: translate3d(199.94px, -56.6px, 0px); width: 299.6px; height: 71.29px; border-radius: 14.18px; opacity: 1; --lift: 0.675;",
+    "body": "0"
+  },
+  {
+    "t": 142.70000000149048,
+    "transform": "translate3d(169.76px, -61.31px, 0px)",
+    "clip": "inset(8.07px 117.5px 248.48px 5.7px round 14.48px)",
+    "visibility": "visible",
+    "height": "68.41px",
+    "plate": "transform: translate3d(175.46px, -53.25px, 0px); width: 316.79px; height: 87.45px; border-radius: 14.48px; opacity: 1; --lift: 0.801;",
+    "body": "0.079"
+  },
+  {
+    "t": 159.4000000014894,
+    "transform": "translate3d(147.63px, -57.24px, 0px)",
+    "clip": "inset(7.53px 102.19px 231.97px 4.96px round 14.77px)",
+    "visibility": "visible",
+    "height": "87.39px",
+    "plate": "transform: translate3d(152.59px, -49.71px, 0px); width: 332.85px; height: 104.5px; border-radius: 14.77px; opacity: 1; --lift: 0.898;",
+    "body": "0.176"
+  },
+  {
+    "t": 176.10000000149012,
+    "transform": "translate3d(127.53px, -53.1px, 0px)",
+    "clip": "inset(6.99px 88.27px 215.21px 4.29px round 15.06px)",
+    "visibility": "visible",
+    "height": "106.65px",
+    "plate": "transform: translate3d(131.81px, -46.12px, 0px); width: 347.44px; height: 121.8px; border-radius: 15.06px; opacity: 1; --lift: 0.961;",
+    "body": "0.275"
+  },
+  {
+    "t": 192.70000000149048,
+    "transform": "translate3d(109.55px, -49.01px, 0px)",
+    "clip": "inset(6.45px 75.83px 198.6px 3.68px round 15.32px)",
+    "visibility": "visible",
+    "height": "125.74px",
+    "plate": "transform: translate3d(113.24px, -42.56px, 0px); width: 360.49px; height: 138.95px; border-radius: 15.32px; opacity: 1; --lift: 0.994;",
+    "body": "0.373"
+  },
+  {
+    "t": 209.50000000148975,
+    "transform": "translate3d(93.77px, -45.04px, 0px)",
+    "clip": "inset(5.93px 64.91px 182.54px 3.15px round 15.57px)",
+    "visibility": "visible",
+    "height": "144.2px",
+    "plate": "transform: translate3d(96.92px, -39.12px, 0px); width: 371.94px; height: 155.53px; border-radius: 15.57px; opacity: 1; --lift: 0.999;",
+    "body": "0.468"
+  },
+  {
+    "t": 226.10000000149012,
+    "transform": "translate3d(79.81px, -41.2px, 0px)",
+    "clip": "inset(5.42px 55.24px 166.96px 2.68px round 15.8px)",
+    "visibility": "visible",
+    "height": "162.1px",
+    "plate": "transform: translate3d(82.49px, -35.78px, 0px); width: 382.07px; height: 171.62px; border-radius: 15.8px; opacity: 1; --lift: 0.982;",
+    "body": "0.56"
+  },
+  {
+    "t": 242.80000000149084,
+    "transform": "translate3d(67.84px, -37.6px, 0px)",
+    "clip": "inset(4.95px 46.96px 152.37px 2.28px round 16.02px)",
+    "visibility": "visible",
+    "height": "178.87px",
+    "plate": "transform: translate3d(70.12px, -32.65px, 0px); width: 390.76px; height: 186.68px; border-radius: 16.02px; opacity: 1; --lift: 0.948;",
+    "body": "0.646"
+  },
+  {
+    "t": 259.4000000014894,
+    "transform": "translate3d(57.46px, -34.2px, 0px)",
+    "clip": "inset(4.5px 39.78px 138.59px 1.93px round 16.21px)",
+    "visibility": "visible",
+    "height": "194.71px",
+    "plate": "transform: translate3d(59.39px, -29.7px, 0px); width: 398.29px; height: 200.91px; border-radius: 16.21px; opacity: 1; --lift: 0.902;",
+    "body": "0.727"
+  },
+  {
+    "t": 276.1000000014901,
+    "transform": "translate3d(48.61px, -31.05px, 0px)",
+    "clip": "inset(4.09px 33.65px 125.82px 1.63px round 16.39px)",
+    "visibility": "visible",
+    "height": "209.39px",
+    "plate": "transform: translate3d(50.24px, -26.96px, 0px); width: 404.72px; height: 214.1px; border-radius: 16.39px; opacity: 1; --lift: 0.848;",
+    "body": "0.803"
+  },
+  {
+    "t": 292.80000000149084,
+    "transform": "translate3d(41.01px, -28.11px, 0px)",
+    "clip": "inset(3.7px 28.38px 113.92px 1.38px round 16.55px)",
+    "visibility": "visible",
+    "height": "223.06px",
+    "plate": "transform: translate3d(42.38px, -24.41px, 0px); width: 410.24px; height: 226.38px; border-radius: 16.55px; opacity: 1; --lift: 0.790;",
+    "body": "0.873"
+  },
+  {
+    "t": 309.4000000014894,
+    "transform": "translate3d(34.54px, -25.41px, 0px)",
+    "clip": "inset(3.34px 23.9px 102.97px 1.16px round 16.7px)",
+    "visibility": "visible",
+    "height": "235.65px",
+    "plate": "transform: translate3d(35.7px, -22.07px, 0px); width: 414.93px; height: 237.69px; border-radius: 16.7px; opacity: 1; --lift: 0.730;",
+    "body": "0.938"
+  },
+  {
+    "t": 326.00000000148975,
+    "transform": "translate3d(29.08px, -22.94px, 0px)",
+    "clip": "inset(3.02px 20.13px 92.98px 0.98px round 16.83px)",
+    "visibility": "visible",
+    "height": "247.13px",
+    "plate": "transform: translate3d(30.05px, -19.92px, 0px); width: 418.9px; height: 248px; border-radius: 16.83px; opacity: 1; --lift: 0.670;",
+    "body": "0.997"
+  },
+  {
+    "t": 342.7000000014905,
+    "transform": "translate3d(24.45px, -20.69px, 0px)",
+    "clip": "inset(2.72px 16.93px 83.85px 0.82px round 16.95px)",
+    "visibility": "visible",
+    "height": "257.63px",
+    "plate": "transform: translate3d(25.27px, -17.97px, 0px); width: 422.25px; height: 257.43px; border-radius: 16.95px; opacity: 1; --lift: 0.612;",
+    "body": "1"
+  },
+  {
+    "t": 359.4000000014894,
+    "transform": "translate3d(20.52px, -18.62px, 0px)",
+    "clip": "inset(2.45px 14.21px 75.48px 0.69px round 17.06px)",
+    "visibility": "visible",
+    "height": "267.25px",
+    "plate": "transform: translate3d(21.21px, -16.17px, 0px); width: 425.1px; height: 266.07px; border-radius: 17.06px; opacity: 1; --lift: 0.557;",
+    "body": "1"
+  },
+  {
+    "t": 376.1000000014901,
+    "transform": "translate3d(17.21px, -16.75px, 0px)",
+    "clip": "inset(2.2px 11.91px 67.88px 0.58px round 17.16px)",
+    "visibility": "visible",
+    "height": "275.98px",
+    "plate": "transform: translate3d(17.79px, -14.55px, 0px); width: 427.51px; height: 273.92px; border-radius: 17.16px; opacity: 1; --lift: 0.505;",
+    "body": "1"
+  },
+  {
+    "t": 392.7000000014905,
+    "transform": "translate3d(14.42px, -15.05px, 0px)",
+    "clip": "inset(1.98px 9.98px 60.99px 0.48px round 17.25px)",
+    "visibility": "visible",
+    "height": "283.9px",
+    "plate": "transform: translate3d(14.91px, -13.07px, 0px); width: 429.53px; height: 281.03px; border-radius: 17.25px; opacity: 1; --lift: 0.456;",
+    "body": "1"
+  },
+  {
+    "t": 409.4000000014894,
+    "transform": "translate3d(12.09px, -13.52px, 0px)",
+    "clip": "inset(1.78px 8.37px 54.79px 0.41px round 17.32px)",
+    "visibility": "visible",
+    "height": "291.02px",
+    "plate": "transform: translate3d(12.5px, -11.74px, 0px); width: 431.22px; height: 287.43px; border-radius: 17.32px; opacity: 1; --lift: 0.412;",
+    "body": "1"
+  },
+  {
+    "t": 426.1000000014901,
+    "transform": "translate3d(10.12px, -12.13px, 0px)",
+    "clip": "inset(1.6px 7.01px 49.16px 0.34px round 17.4px)",
+    "visibility": "visible",
+    "height": "297.49px",
+    "plate": "transform: translate3d(10.46px, -10.54px, 0px); width: 432.65px; height: 293.24px; border-radius: 17.4px; opacity: 1; --lift: 0.371;",
+    "body": "1"
+  },
+  {
+    "t": 442.7000000014905,
+    "transform": "translate3d(8.47px, -10.88px, 0px)",
+    "clip": "inset(1.43px 5.86px 44.09px 0.28px round 17.46px)",
+    "visibility": "visible",
+    "height": "303.33px",
+    "plate": "transform: translate3d(8.76px, -9.45px, 0px); width: 433.85px; height: 298.48px; border-radius: 17.46px; opacity: 1; --lift: 0.333;",
+    "body": "1"
+  },
+  {
+    "t": 459.4000000014894,
+    "transform": "translate3d(7.09px, -9.76px, 0px)",
+    "clip": "inset(1.28px 4.91px 39.54px 0.24px round 17.52px)",
+    "visibility": "visible",
+    "height": "308.55px",
+    "plate": "transform: translate3d(7.33px, -8.47px, 0px); width: 434.85px; height: 303.18px; border-radius: 17.52px; opacity: 1; --lift: 0.299;",
+    "body": "1"
+  },
+  {
+    "t": 476.1000000014901,
+    "transform": "translate3d(5.93px, -8.74px, 0px)",
+    "clip": "inset(1.15px 4.11px 35.42px 0.2px round 17.57px)",
+    "visibility": "visible",
+    "height": "313.28px",
+    "plate": "transform: translate3d(6.13px, -7.59px, 0px); width: 435.7px; height: 307.43px; border-radius: 17.57px; opacity: 1; --lift: 0.269;",
+    "body": "1"
+  },
+  {
+    "t": 492.7000000014905,
+    "transform": "translate3d(4.96px, -7.83px, 0px)",
+    "clip": "inset(1.03px 3.43px 31.73px 0.17px round 17.61px)",
+    "visibility": "visible",
+    "height": "317.54px",
+    "plate": "transform: translate3d(5.12px, -6.8px, 0px); width: 436.4px; height: 311.24px; border-radius: 17.61px; opacity: 1; --lift: 0.241;",
+    "body": "1"
+  },
+  {
+    "t": 509.4000000014894,
+    "transform": "translate3d(4.15px, -7.01px, 0px)",
+    "clip": "inset(0.92px 2.87px 28.42px 0.14px round 17.65px)",
+    "visibility": "visible",
+    "height": "321.33px",
+    "plate": "transform: translate3d(4.29px, -6.09px, 0px); width: 436.99px; height: 314.66px; border-radius: 17.65px; opacity: 1; --lift: 0.216;",
+    "body": "1"
+  },
+  {
+    "t": 526.1000000014901,
+    "transform": "translate3d(3.47px, -6.28px, 0px)",
+    "clip": "inset(0.83px 2.4px 25.44px 0.12px round 17.69px)",
+    "visibility": "visible",
+    "height": "324.76px",
+    "plate": "transform: translate3d(3.58px, -5.45px, 0px); width: 437.48px; height: 317.74px; border-radius: 17.69px; opacity: 1; --lift: 0.193;",
+    "body": "1"
+  },
+  {
+    "t": 542.7000000014905,
+    "transform": "translate3d(2.9px, -5.62px, 0px)",
+    "clip": "inset(0.74px 2px 22.76px 0.1px round 17.72px)",
+    "visibility": "visible",
+    "height": "327.84px",
+    "plate": "transform: translate3d(2.99px, -4.88px, 0px); width: 437.9px; height: 320.5px; border-radius: 17.72px; opacity: 1; --lift: 0.173;",
+    "body": "1"
+  },
+  {
+    "t": 559.4000000014894,
+    "transform": "translate3d(2.42px, -5.03px, 0px)",
+    "clip": "inset(0.66px 1.68px 20.38px 0.08px round 17.75px)",
+    "visibility": "visible",
+    "height": "330.58px",
+    "plate": "transform: translate3d(2.5px, -4.37px, 0px); width: 438.24px; height: 322.96px; border-radius: 17.75px; opacity: 1; --lift: 0.155;",
+    "body": "1"
+  },
+  {
+    "t": 576.1000000014901,
+    "transform": "translate3d(2.02px, -4.5px, 0px)",
+    "clip": "inset(0.59px 1.4px 18.22px 0.07px round 17.78px)",
+    "visibility": "visible",
+    "height": "333.05px",
+    "plate": "transform: translate3d(2.09px, -3.91px, 0px); width: 438.53px; height: 325.18px; border-radius: 17.78px; opacity: 1; --lift: 0.138;",
+    "body": "1"
+  },
+  {
+    "t": 592.8000000014908,
+    "transform": "translate3d(1.69px, -4.02px, 0px)",
+    "clip": "inset(0.53px 1.17px 16.3px 0.06px round 17.8px)",
+    "visibility": "visible",
+    "height": "335.27px",
+    "plate": "transform: translate3d(1.75px, -3.49px, 0px); width: 438.77px; height: 327.17px; border-radius: 17.8px; opacity: 1; --lift: 0.124;",
+    "body": "1"
+  },
+  {
+    "t": 609.4000000014894,
+    "transform": "translate3d(1.41px, -3.6px, 0px)",
+    "clip": "inset(0.47px 0.98px 14.57px 0.05px round 17.82px)",
+    "visibility": "visible",
+    "height": "337.25px",
+    "plate": "transform: translate3d(1.46px, -3.12px, 0px); width: 438.98px; height: 328.95px; border-radius: 17.82px; opacity: 1; --lift: 0.111;",
+    "body": "1"
+  },
+  {
+    "t": 626.1000000014901,
+    "transform": "translate3d(1.18px, -3.22px, 0px)",
+    "clip": "inset(0.42px 0.82px 13.04px 0.04px round 17.84px)",
+    "visibility": "visible",
+    "height": "339.02px",
+    "plate": "transform: translate3d(1.22px, -2.79px, 0px); width: 439.14px; height: 330.54px; border-radius: 17.84px; opacity: 1; --lift: 0.099;",
+    "body": "1"
+  },
+  {
+    "t": 642.7000000014905,
+    "transform": "translate3d(0.98px, -2.88px, 0px)",
+    "clip": "inset(0.38px 0.68px 11.65px 0.03px round 17.86px)",
+    "visibility": "visible",
+    "height": "340.61px",
+    "plate": "transform: translate3d(1.02px, -2.5px, 0px); width: 439.29px; height: 331.97px; border-radius: 17.86px; opacity: 1; --lift: 0.088;",
+    "body": "1"
+  },
+  {
+    "t": 659.4000000014894,
+    "transform": "translate3d(0.82px, -2.57px, 0px)",
+    "clip": "inset(0.34px 0.57px 10.42px 0.03px round 17.87px)",
+    "visibility": "visible",
+    "height": "342.02px",
+    "plate": "transform: translate3d(0.85px, -2.23px, 0px); width: 439.4px; height: 333.24px; border-radius: 17.87px; opacity: 1; --lift: 0.079;",
+    "body": "1"
+  },
+  {
+    "t": 676.1000000014901,
+    "transform": "translate3d(0.69px, -2.3px, 0px)",
+    "clip": "inset(0.3px 0.48px 9.32px 0.02px round 17.89px)",
+    "visibility": "visible",
+    "height": "343.29px",
+    "plate": "transform: translate3d(0.71px, -2px, 0px); width: 439.5px; height: 334.38px; border-radius: 17.89px; opacity: 1; --lift: 0.071;",
+    "body": "1"
+  },
+  {
+    "t": 692.8000000014908,
+    "transform": "translate3d(0.57px, -2.05px, 0px)",
+    "clip": "inset(0.27px 0.4px 8.33px 0.02px round 17.9px)",
+    "visibility": "visible",
+    "height": "344.43px",
+    "plate": "transform: translate3d(0.59px, -1.78px, 0px); width: 439.58px; height: 335.4px; border-radius: 17.9px; opacity: 1; --lift: 0.063;",
+    "body": "1"
+  },
+  {
+    "t": 709.4000000014894,
+    "transform": "translate3d(0.48px, -1.84px, 0px)",
+    "clip": "inset(0.24px 0.33px 7.44px 0.02px round 17.91px)",
+    "visibility": "visible",
+    "height": "345.45px",
+    "plate": "transform: translate3d(0.49px, -1.59px, 0px); width: 439.65px; height: 336.32px; border-radius: 17.91px; opacity: 1; --lift: 0.056;",
+    "body": "1"
+  },
+  {
+    "t": 726.0000000014898,
+    "transform": "translate3d(0.4px, -1.64px, 0px)",
+    "clip": "inset(0.22px 0.28px 6.65px 0.01px round 17.92px)",
+    "visibility": "visible",
+    "height": "346.35px",
+    "plate": "transform: translate3d(0.41px, -1.43px, 0px); width: 439.71px; height: 337.13px; border-radius: 17.92px; opacity: 1; --lift: 0.050;",
+    "body": "1"
+  },
+  {
+    "t": 742.8000000014908,
+    "transform": "translate3d(0.33px, -1.47px, 0px)",
+    "clip": "inset(0.19px 0.23px 5.95px 0.01px round 17.93px)",
+    "visibility": "visible",
+    "height": "347.16px",
+    "plate": "transform: translate3d(0.35px, -1.27px, 0px); width: 439.76px; height: 337.86px; border-radius: 17.93px; opacity: 1; --lift: 0.045;",
+    "body": "1"
+  },
+  {
+    "t": 759.4000000014894,
+    "transform": "translate3d(0.28px, -1.31px, 0px)",
+    "clip": "inset(0.17px 0.19px 5.31px 0.01px round 17.94px)",
+    "visibility": "visible",
+    "height": "347.9px",
+    "plate": "transform: translate3d(0.29px, -1.14px, 0px); width: 439.8px; height: 338.52px; border-radius: 17.94px; opacity: 1; --lift: 0.040;",
+    "body": "1"
+  },
+  {
+    "t": 776.1000000014901,
+    "transform": "translate3d(0.23px, -1.17px, 0px)",
+    "clip": "inset(0.15px 0.16px 4.75px 0.01px round 17.94px)",
+    "visibility": "visible",
+    "height": "348.54px",
+    "plate": "transform: translate3d(0.24px, -1.02px, 0px); width: 439.83px; height: 339.1px; border-radius: 17.94px; opacity: 1; --lift: 0.036;",
+    "body": "1"
+  },
+  {
+    "t": 792.7000000014905,
+    "transform": "translate3d(0.19px, -1.05px, 0px)",
+    "clip": "inset(0.14px 0.13px 4.24px 0.01px round 17.95px)",
+    "visibility": "visible",
+    "height": "349.12px",
+    "plate": "transform: translate3d(0.2px, -0.91px, 0px); width: 439.86px; height: 339.62px; border-radius: 17.95px; opacity: 1; --lift: 0.032;",
+    "body": "1"
+  },
+  {
+    "t": 809.3000000014908,
+    "transform": "translate3d(0.16px, -0.94px, 0px)",
+    "clip": "inset(0.12px 0.11px 3.79px 0.01px round 17.95px)",
+    "visibility": "visible",
+    "height": "349.64px",
+    "plate": "transform: translate3d(0.17px, -0.81px, 0px); width: 439.88px; height: 340.08px; border-radius: 17.95px; opacity: 1; --lift: 0.029;",
+    "body": "1"
+  },
+  {
+    "t": 826.1000000014901,
+    "transform": "translate3d(0.14px, -0.84px, 0px)",
+    "clip": "inset(0.11px 0.09px 3.39px 0px round 17.96px)",
+    "visibility": "visible",
+    "height": "350.1px",
+    "plate": "transform: translate3d(0.14px, -0.73px, 0px); width: 439.9px; height: 340.5px; border-radius: 17.96px; opacity: 1; --lift: 0.026;",
+    "body": "1"
+  },
+  {
+    "t": 842.7000000014905,
+    "transform": "translate3d(0.11px, -0.75px, 0px)",
+    "clip": "inset(0.1px 0.08px 3.03px 0px round 17.96px)",
+    "visibility": "visible",
+    "height": "350.52px",
+    "plate": "transform: translate3d(0.12px, -0.65px, 0px); width: 439.92px; height: 340.87px; border-radius: 17.96px; opacity: 1; --lift: 0.023;",
+    "body": "1"
+  },
+  {
+    "t": 859.4000000014894,
+    "transform": "translate3d(0.09px, -0.67px, 0px)",
+    "clip": "inset(0.09px 0.07px 2.71px 0px round 17.97px)",
+    "visibility": "visible",
+    "height": "350.89px",
+    "plate": "transform: translate3d(0.1px, -0.58px, 0px); width: 439.93px; height: 341.21px; border-radius: 17.97px; opacity: 1; --lift: 0.020;",
+    "body": "1"
+  },
+  {
+    "t": 876.0000000014898,
+    "transform": "translate3d(0.08px, -0.6px, 0px)",
+    "clip": "inset(0.08px 0.05px 2.42px 0px round 17.97px)",
+    "visibility": "visible",
+    "height": "351.22px",
+    "plate": "transform: translate3d(0.08px, -0.52px, 0px); width: 439.94px; height: 341.5px; border-radius: 17.97px; opacity: 1; --lift: 0.018;",
+    "body": "1"
+  },
+  {
+    "t": 892.8000000014908,
+    "transform": "translate3d(0.07px, -0.53px, 0px)",
+    "clip": "inset(0.07px 0.05px 2.16px 0px round 17.97px)",
+    "visibility": "visible",
+    "height": "351.52px",
+    "plate": "transform: translate3d(0.07px, -0.46px, 0px); width: 439.95px; height: 341.77px; border-radius: 17.97px; opacity: 1; --lift: 0.016;",
+    "body": "1"
+  },
+  {
+    "t": 909.4000000014894,
+    "transform": "translate3d(0.06px, -0.48px, 0px)",
+    "clip": "inset(0.06px 0.04px 1.93px 0px round 17.98px)",
+    "visibility": "visible",
+    "height": "351.78px",
+    "plate": "transform: translate3d(0.06px, -0.41px, 0px); width: 439.96px; height: 342.01px; border-radius: 17.98px; opacity: 1; --lift: 0.015;",
+    "body": "1"
+  },
+  {
+    "t": 926.1000000014901,
+    "transform": "translate3d(0.05px, -0.43px, 0px)",
+    "clip": "inset(0.06px 0.03px 1.72px 0px round 17.98px)",
+    "visibility": "visible",
+    "height": "352.02px",
+    "plate": "transform: translate3d(0.05px, -0.37px, 0px); width: 439.97px; height: 342.22px; border-radius: 17.98px; opacity: 1; --lift: 0.013;",
+    "body": "1"
+  },
+  {
+    "t": 942.7000000014905,
+    "transform": "translate3d(0.04px, -0.38px, 0px)",
+    "clip": "inset(0.05px 0.03px 1.54px 0px round 17.98px)",
+    "visibility": "visible",
+    "height": "352.23px",
+    "plate": "transform: translate3d(0.04px, -0.33px, 0px); width: 439.97px; height: 342.41px; border-radius: 17.98px; opacity: 1; --lift: 0.012;",
+    "body": "1"
+  },
+  {
+    "t": 959.4000000014894,
+    "transform": "translate3d(0.03px, -0.34px, 0px)",
+    "clip": "inset(0.04px 0.02px 1.38px 0px round 17.98px)",
+    "visibility": "visible",
+    "height": "352.42px",
+    "plate": "transform: translate3d(0.03px, -0.29px, 0px); width: 439.98px; height: 342.58px; border-radius: 17.98px; opacity: 1; --lift: 0.010;",
+    "body": "1"
+  },
+  {
+    "t": 976.1000000014901,
+    "transform": "translate3d(0.03px, -0.3px, 0px)",
+    "clip": "inset(0.04px 0.02px 1.23px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "352.59px",
+    "plate": "transform: translate3d(0.03px, -0.26px, 0px); width: 439.98px; height: 342.73px; border-radius: 17.99px; opacity: 1; --lift: 0.009;",
+    "body": "1"
+  },
+  {
+    "t": 992.8000000014908,
+    "transform": "translate3d(0.02px, -0.27px, 0px)",
+    "clip": "inset(0.04px 0.02px 1.1px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "352.74px",
+    "plate": "transform: translate3d(0.02px, -0.24px, 0px); width: 439.98px; height: 342.87px; border-radius: 17.99px; opacity: 1; --lift: 0.008;",
+    "body": "1"
+  },
+  {
+    "t": 1009.4000000014894,
+    "transform": "translate3d(0.02px, -0.24px, 0px)",
+    "clip": "inset(0.03px 0.01px 0.98px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "352.87px",
+    "plate": "transform: translate3d(0.02px, -0.21px, 0px); width: 439.99px; height: 342.99px; border-radius: 17.99px; opacity: 1; --lift: 0.007;",
+    "body": "1"
+  },
+  {
+    "t": 1026.0000000014898,
+    "transform": "translate3d(0.02px, -0.22px, 0px)",
+    "clip": "inset(0.03px 0.01px 0.88px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "352.99px",
+    "plate": "transform: translate3d(0.02px, -0.19px, 0px); width: 439.99px; height: 343.09px; border-radius: 17.99px; opacity: 1; --lift: 0.007;",
+    "body": "1"
+  },
+  {
+    "t": 1042.7000000014905,
+    "transform": "translate3d(0.01px, -0.19px, 0px)",
+    "clip": "inset(0.03px 0.01px 0.78px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "353.1px",
+    "plate": "transform: translate3d(0.01px, -0.17px, 0px); width: 439.99px; height: 343.19px; border-radius: 17.99px; opacity: 1; --lift: 0.006;",
+    "body": "1"
+  },
+  {
+    "t": 1059.4000000014894,
+    "transform": "translate3d(0.01px, -0.17px, 0px)",
+    "clip": "inset(0.02px 0.01px 0.7px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "353.2px",
+    "plate": "transform: translate3d(0.01px, -0.15px, 0px); width: 439.99px; height: 343.28px; border-radius: 17.99px; opacity: 1; --lift: 0.005;",
+    "body": "1"
+  },
+  {
+    "t": 1076.1000000014901,
+    "transform": "translate3d(0.01px, -0.15px, 0px)",
+    "clip": "inset(0.02px 0.01px 0.63px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "353.28px",
+    "plate": "transform: translate3d(0.01px, -0.13px, 0px); width: 439.99px; height: 343.35px; border-radius: 17.99px; opacity: 1; --lift: 0.005;",
+    "body": "1"
+  },
+  {
+    "t": 1092.7000000014905,
+    "transform": "translate3d(0.01px, -0.14px, 0px)",
+    "clip": "inset(0.02px 0.01px 0.56px 0px round 17.99px)",
+    "visibility": "visible",
+    "height": "353.36px",
+    "plate": "transform: translate3d(0.01px, -0.12px, 0px); width: 439.99px; height: 343.42px; border-radius: 17.99px; opacity: 1; --lift: 0.004;",
+    "body": "1"
+  },
+  {
+    "t": 1109.4000000014894,
+    "transform": "translate3d(0.01px, -0.12px, 0px)",
+    "clip": "inset(0.02px 0px 0.5px round 17.99px)",
+    "visibility": "visible",
+    "height": "353.43px",
+    "plate": "transform: translate3d(0.01px, -0.11px, 0px); width: 440px; height: 343.48px; border-radius: 17.99px; opacity: 1; --lift: 0.004;",
+    "body": "1"
+  },
+  {
+    "t": 1126.1000000014901,
+    "transform": "translate3d(0.01px, -0.11px, 0px)",
+    "clip": "inset(0.01px 0px 0.45px round 17.99px)",
+    "visibility": "visible",
+    "height": "353.49px",
+    "plate": "transform: translate3d(0.01px, -0.1px, 0px); width: 440px; height: 343.54px; border-radius: 17.99px; opacity: 1; --lift: 0.003;",
+    "body": "1"
+  },
+  {
+    "t": 1142.8000000014908,
+    "transform": "translate3d(0px, -0.1px, 0px)",
+    "clip": "inset(0.01px 0px 0.4px round 18px)",
+    "visibility": "visible",
+    "height": "353.54px",
+    "plate": "transform: translate3d(0px, -0.09px, 0px); width: 440px; height: 343.59px; border-radius: 18px; opacity: 1; --lift: 0.003;",
+    "body": "1"
+  },
+  {
+    "t": 1159.3000000014908,
+    "transform": "translate3d(0px, -0.09px, 0px)",
+    "clip": "inset(0.01px 0px 0.36px round 18px)",
+    "visibility": "visible",
+    "height": "353.59px",
+    "plate": "transform: translate3d(0px, -0.08px, 0px); width: 440px; height: 343.63px; border-radius: 18px; opacity: 1; --lift: 0.003;",
+    "body": "1"
+  },
+  {
+    "t": 1176.0000000014898,
+    "transform": "translate3d(0px, -0.08px, 0px)",
+    "clip": "inset(0.01px 0px 0.32px round 18px)",
+    "visibility": "visible",
+    "height": "353.63px",
+    "plate": "transform: translate3d(0px, -0.07px, 0px); width: 440px; height: 343.67px; border-radius: 18px; opacity: 1; --lift: 0.002;",
+    "body": "1"
+  },
+  {
+    "t": 1192.7000000014905,
+    "transform": "translate3d(0px, -0.07px, 0px)",
+    "clip": "inset(0.01px 0px 0.28px round 18px)",
+    "visibility": "visible",
+    "height": "353.67px",
+    "plate": "transform: translate3d(0px, -0.06px, 0px); width: 440px; height: 343.71px; border-radius: 18px; opacity: 1; --lift: 0.002;",
+    "body": "1"
+  },
+  {
+    "t": 1209.3000000014908,
+    "transform": "translate3d(0px, -0.06px, 0px)",
+    "clip": "inset(0.01px 0px 0.25px round 18px)",
+    "visibility": "visible",
+    "height": "353.71px",
+    "plate": "transform: translate3d(0px, -0.05px, 0px); width: 440px; height: 343.74px; border-radius: 18px; opacity: 1; --lift: 0.002;",
+    "body": "1"
+  },
+  {
+    "t": 1226.1000000014901,
+    "transform": "translate3d(0px, -0.06px, 0px)",
+    "clip": "inset(0.01px 0px 0.23px round 18px)",
+    "visibility": "visible",
+    "height": "353.74px",
+    "plate": "transform: translate3d(0px, -0.05px, 0px); width: 440px; height: 343.77px; border-radius: 18px; opacity: 1; --lift: 0.002;",
+    "body": "1"
+  },
+  {
+    "t": 1242.7000000014905,
+    "transform": "translate3d(0px, -0.05px, 0px)",
+    "clip": "inset(0.01px 0px 0.2px round 18px)",
+    "visibility": "visible",
+    "height": "353.77px",
+    "plate": "transform: translate3d(0px, -0.04px, 0px); width: 440px; height: 343.79px; border-radius: 18px; opacity: 1; --lift: 0.002;",
+    "body": "1"
+  },
+  {
+    "t": 1259.3000000014908,
+    "transform": "translate3d(0px, -0.04px, 0px)",
+    "clip": "inset(0.01px 0px 0.18px round 18px)",
+    "visibility": "visible",
+    "height": "353.79px",
+    "plate": "transform: translate3d(0px, -0.04px, 0px); width: 440px; height: 343.81px; border-radius: 18px; opacity: 1; --lift: 0.001;",
+    "body": "1"
+  },
+  {
+    "t": 1276.0000000014898,
+    "transform": "translate3d(0px, -0.04px, 0px)",
+    "clip": "inset(0.01px 0px 0.16px round 18px)",
+    "visibility": "visible",
+    "height": "353.81px",
+    "plate": "transform: translate3d(0px, -0.03px, 0px); width: 440px; height: 343.83px; border-radius: 18px; opacity: 1; --lift: 0.001;",
+    "body": "1"
+  },
+  {
+    "t": 1292.7000000014905,
+    "transform": "translate3d(0px, -0.04px, 0px)",
+    "clip": "inset(0px 0px 0.14px round 18px)",
+    "visibility": "visible",
+    "height": "353.83px",
+    "plate": "transform: translate3d(0px, -0.03px, 0px); width: 440px; height: 343.85px; border-radius: 18px; opacity: 1; --lift: 0.001;",
+    "body": "1"
+  },
+  {
+    "t": 1309.4000000014894,
+    "transform": "translate3d(0px, -0.03px, 0px)",
+    "clip": "inset(0px 0px 0.13px round 18px)",
+    "visibility": "visible",
+    "height": "353.85px",
+    "plate": "transform: translate3d(0px, -0.03px, 0px); width: 440px; height: 343.87px; border-radius: 18px; opacity: 1; --lift: 0.001;",
+    "body": "1"
+  },
+  {
+    "t": 1326.1000000014901,
+    "transform": "translate3d(0px, 0px, 0px)",
+    "clip": "inset(0px round 18px)",
+    "visibility": "visible",
+    "height": "354px",
+    "plate": "transform: translate3d(0px, 0px, 0px); width: 440px; height: 344px; border-radius: 18px; opacity: 1; --lift: 0.000;",
+    "body": "1"
+  },
+  {
+    "t": 1342.7000000014905,
+    "transform": "translate3d(0px, 0px, 0px)",
+    "clip": "inset(0px round 18px)",
+    "visibility": "visible",
+    "height": "354px",
+    "plate": "transform: translate3d(0px, 0px, 0px); width: 440px; height: 344px; border-radius: 18px; opacity: 1; --lift: 0.000;",
+    "body": "1"
+  },
+  {
+    "t": 1359.4000000014894,
+    "transform": "translate3d(0px, 0px, 0px)",
+    "clip": "inset(0px round 18px)",
+    "visibility": "visible",
+    "height": "354px",
+    "plate": "transform: translate3d(0px, 0px, 0px); width: 440px; height: 344px; border-radius: 18px; opacity: 1; --lift: 0.000;",
+    "body": "1"
+  },
+  {
+    "t": 1376.1000000014901,
+    "transform": "translate3d(0px, 0px, 0px)",
+    "clip": "inset(0px round 18px)",
+    "visibility": "visible",
+    "height": "354px",
+    "plate": "transform: translate3d(0px, 0px, 0px); width: 440px; height: 344px; border-radius: 18px; opacity: 1; --lift: 0.000;",
+    "body": "1"
+  },
+  {
+    "t": 1392.7000000014905,
+    "transform": "translate3d(0px, 0px, 0px)",
+    "clip": "inset(0px round 18px)",
+    "visibility": "visible",
+    "height": "354px",
+    "plate": "transform: translate3d(0px, 0px, 0px); width: 440px; height: 344px; border-radius: 18px; opacity: 1; --lift: 0.000;",
+    "body": "1"
+  },
+  {
+    "t": 1409.4000000014894,
+    "transform": "translate3d(0px, 0px, 0px)",
+    "clip": "inset(0px round 18px)",
+    "visibility": "visible",
+    "height": "354px",
+    "plate": "transform: translate3d(0px, 0px, 0px); width: 440px; height: 344px; border-radius: 18px; opacity: 1; --lift: 0.000;",
+    "body": "1"
+  }
+]

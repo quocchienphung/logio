@@ -1,0 +1,66 @@
+import fs from 'node:fs';
+import { chromium } from 'playwright';
+
+// Real workbook in the real page: timings, main-thread long tasks and privacy only. No screenshots and no cell values are ever recorded.
+const base = process.argv[2] || 'http://localhost:3000';
+const path = process.argv[3] || 'docs/MAU9_20260930 ok.xlsx';
+if (!fs.existsSync(path)) { console.log('Reference workbook not present; nothing measured.'); process.exit(0); }
+const browser = await chromium.launch({ channel: 'chrome' });
+const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+await context.addInitScript(() => localStorage.setItem('logio-cookie-consent', JSON.stringify({ value: { necessary: true }, version: '1', updatedAt: new Date().toISOString() })));
+const page = await context.newPage();
+const foreign = [], errors = [];
+page.on('request', r => { const u = new URL(r.url()); if (!['localhost', '127.0.0.1'].includes(u.hostname) && u.protocol.startsWith('http')) foreign.push(u.hostname); });
+page.on('pageerror', e => errors.push(e.message.slice(0, 120)));
+await page.goto(`${base}/personalize?section=excel-formation`, { waitUntil: 'networkidle' });
+await page.evaluate(() => { window.__long = []; new PerformanceObserver(list => { for (const e of list.getEntries()) window.__long.push(Math.round(e.duration)); }).observe({ entryTypes: ['longtask'] }); });
+const t0 = Date.now();
+await page.locator('input[type=file]').setInputFiles(path);
+await page.getByRole('button', { name: /See what was found/ }).click();
+await page.locator('.cr-overview').waitFor({ timeout: 180000 });
+const scanMs = Date.now() - t0;
+const longTasks = await page.evaluate(() => window.__long.slice());
+const nums = await page.locator('.cr-stat strong').allInnerTexts();
+console.log(`file → overview: ${scanMs} ms | main-thread long tasks while scanning: ${longTasks.length} (max ${Math.max(0, ...longTasks)} ms) | counts shown: ${nums.join(' / ')}`);
+await page.evaluate(() => { window.__long.length = 0; });
+await page.getByRole('tab', { name: /Review and fix/ }).click();
+await page.locator('.cg-stage').waitFor();
+const rows = await page.locator('.ci-dt tbody tr[aria-rowindex]').count();
+const foot = await page.locator('.ui-dt__foot').innerText();
+console.log(`review opened | DOM rows in the issue table: ${rows} (of ${foot}) | cells in DOM: ${await page.locator('*').count()} elements`);
+// The whole file on the stage: columns, virtual rows, the strip, the magnifier and the first guess, with timings only.
+await page.locator('.sv-row').first().waitFor({ timeout: 60000 });
+const face = await page.evaluate(() => { const st = document.querySelector('.cg-stage').getBoundingClientRect(); const l = [...document.querySelectorAll('.sv-head .sv-letter')].map(n => n.getBoundingClientRect()); return { columns: l.length, allInside: l.every(r => r.left >= st.left - 1 && r.right <= st.right + 1), rowsInDom: document.querySelectorAll('.cg-stage .sv-row').length, strip: document.querySelectorAll('.cg-stage .sv-strip i').length }; });
+const stageBox = await page.locator('.cg-stage').boundingBox();
+const lensStart = performance.now();
+await page.mouse.move(stageBox.x + stageBox.width * 0.5, stageBox.y + stageBox.height * 0.55, { steps: 6 });
+await page.locator('.sv-lens .sv-lcell').first().waitFor({ timeout: 20000 });
+const lensMs = Math.round(performance.now() - lensStart);
+console.log(`whole file on the stage: ${face.columns} columns, all inside the stage: ${face.allInside} | rows in DOM: ${face.rowsInDom} | strip marks: ${face.strip} | magnifier ready after ${lensMs} ms with ${await page.locator('.sv-lens .sv-lcell').count()} real cells`);
+await page.mouse.move(4, 4);
+let guessMs = -1;
+for (let i = 0; i < 60 && guessMs < 0; i++) {
+  if (await page.locator('.sd-card').count()) { const s0 = performance.now(); await page.locator('.sd-card[data-phase="done"]').waitFor({ timeout: 60000 }); guessMs = Math.round(performance.now() - s0); break; }
+  await page.locator('.cg-stage').press('ArrowRight'); await page.waitForTimeout(120);
+}
+console.log(`guess panel: ${guessMs >= 0 ? `first run finished ${guessMs} ms after it appeared (includes learning the file's own text once)` : 'no broken word among the first issues'} | stats shown: ${await page.locator('.sd-stat').count()}`);
+await page.locator('.cg-stage').focus();
+const timeOf = async fn => { const s = performance.now(); await fn(); await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))); return Math.round(performance.now() - s); };
+const filterMs = await timeOf(() => page.getByRole('radio', { name: 'All' }).click());
+const stepMs = [];
+for (let i = 0; i < 8; i++) stepMs.push(await timeOf(() => page.locator('.cg-stage').press('ArrowRight')));
+const approve = await timeOf(async () => { await page.locator('.cd-textarea').fill('x'); });
+console.log(`switch filter: ${filterMs} ms | step 8 issues (median): ${stepMs.sort((a, b) => a - b)[4]} ms | type in the editor: ${approve} ms | long tasks during review: ${(await page.evaluate(() => window.__long.slice())).length}`);
+const exportStart = Date.now();
+await page.locator('.ui-as-side__nav').getByRole('button', { name: 'JSON formation' }).click();
+await page.getByRole('tab', { name: /Export/ }).click();
+await page.locator('.cr-json .cr-checks li[data-ok]').first().waitFor({ timeout: 120000 });
+console.log(`export step: first checks answered after ${Date.now() - exportStart} ms | checks ok ${await page.locator('.cr-checks li[data-ok="true"]').count()} / 9 | statuses: ${(await page.locator('.cr-checks li').evaluateAll(n => n.map(x => x.dataset.ok))).join(',')}`);
+const corrected = Date.now();
+await page.locator('.ui-as-side__nav').getByRole('button', { name: 'Excel formation' }).click();
+await page.getByRole('tab', { name: /Export/ }).click();
+await page.getByRole('button', { name: 'Create corrected workbook' }).click();
+await page.locator('.cr-verify').waitFor({ timeout: 180000 });
+console.log(`corrected workbook (no edits) built and verified in ${Date.now() - corrected} ms | verdict: ${await page.locator('.cr-verify').getAttribute('data-ok') !== null ? 'passed' : 'failed'}`);
+console.log(`requests that left localhost: ${foreign.length} | page errors: ${errors.length}`);
+await browser.close();

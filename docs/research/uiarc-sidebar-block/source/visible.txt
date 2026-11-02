@@ -1,0 +1,551 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+⌘K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Blocks
+131
+Analytics
+13
+Metrics dashboard
+Pro
+KPI drilldown
+Pro
+Metric explorer
+Pro
+Revenue explorer
+Pro
+MRR waterfall
+Pro
+Cohort retention
+Pro
+Usage forecast
+Pro
+Journey flow
+Pro
+Uptime status
+Pro
+Choropleth explorer
+Pro
+Connected scatter
+Pro
+Horizon chart
+Pro
+Account health
+Pro
+Finance
+2
+Market terminal
+Pro
+Budget variance
+Pro
+Line charts
+2
+Small multiples
+Pro
+Line replay
+Pro
+AI
+18
+AI chat
+Pro
+AI composer
+Pro
+AI answer
+Pro
+Model picker
+Pro
+Model arena
+Pro
+Prompt studio
+Pro
+Document extraction
+Pro
+Agent memory
+Pro
+AI side panel
+Pro
+AI inline edit
+New
+Pro
+Research run
+Pro
+AI insight card
+Pro
+Catch up
+Pro
+AI feature launch
+Pro
+AI search bar
+Pro
+AI setup wizard
+Pro
+Call insights
+Pro
+Lead scoring
+Pro
+Agents
+10
+Agent run
+Pro
+Agent tasks
+Pro
+Agent approvals
+Pro
+Agent routines
+Pro
+Agent orchestrator
+Pro
+MCP servers
+Pro
+Knowledge base
+Pro
+Eval suite
+Pro
+Agent builder
+Pro
+Agent gallery
+Pro
+App shell
+7
+Sidebar
+Pro
+4
+Page header
+Command palette
+Notification center
+Selection toolbar
+Pro
+Empty states
+Search results
+Pro
+Auth
+6
+Login and sign up
+5
+, free and Pro variants
+Onboarding illustration
+Pro
+OTP input
+Multi-step form
+Pro
+Two-factor setup
+Pro
+Magic link
+Pro
+Settings
+8
+Settings page
+Pro
+Settings command
+Pro
+Security settings
+Pro
+Billing overview
+Pro
+Usage billing
+Pro
+Cancel flow
+Pro
+Onboarding survey
+Pro
+Spend alert
+Pro
+People
+5
+Team members
+Pro
+Invite people
+Pro
+Team directory
+Pro
+Roles and permissions
+Pro
+Profile page
+Pro
+Developer
+6
+API keys
+Pro
+Webhooks
+Pro
+Integrations
+Pro
+Environment variables
+Pro
+Domain verify
+Pro
+Webhook tester
+Pro
+Pricing
+8
+Plan comparison
+Pricing calculator
+Pro
+Usage pricing
+Pro
+Cart drawer
+Pro
+Checkout summary
+Pro
+Live checkout
+Pro
+Seat manager
+Pro
+Credit top-up
+Pro
+Commerce
+5
+Invoice studio
+Pro
+Wallet card
+Pro
+Delivery tracker
+Pro
+Product listing
+Pro
+Product detail
+Pro
+Support
+6
+Activity feed
+Pro
+Inbox triage
+Pro
+Support conversation
+Pro
+Support widget
+Pro
+Help center
+Pro
+Feature voting
+Pro
+Media
+2
+File upload
+Media player
+Pro
+Projects
+9
+Week calendar
+Pro
+Availability picker
+Pro
+Project board
+Pro
+Release readiness
+Pro
+Kanban board
+Pro
+Feedback board
+New
+Pro
+Smart scheduler
+Pro
+Task breakdown
+Pro
+Goal tracker
+Pro
+Heroes
+2
+Hero section
+Hero signup
+Pro
+Features
+4
+Scroll story
+Pro
+Spotlight grid
+Pro
+Feature bento
+Pro
+Comparison table
+Social proof
+3
+Logo marquee
+Studio perspectives
+Pro
+Stats band
+Content
+5
+Changelog feed
+FAQ section
+Contact section
+Team showcase
+Pro
+Blog grid
+Headers and footers
+4
+Site header
+Site footer
+CTA section
+Newsletter signup
+Showpieces
+6
+Activity terrain
+Pro
+Revenue globe
+Pro
+Customer galaxy
+Pro
+Semantic zoom
+Pro
+Layout morph
+Pro
+Exploded view
+Pro
+Special components
+101
+What’s new
+8 new
+Blocks
+Sidebar
+Sidebar
+Pro
+
+App and docs sidebars: a folding rail, a workspace switcher, a mail shell, and a docs tree.
+
+Copy page
+Copied
+Copy failed
+App rail
+Workspace
+Inbox
+Docs
+4 variants
+
+App rail
+An app shell whose sidebar folds into an icon rail and slides in as a sheet on phones.
+
+Preview
+Code
+Live block · sample data
+Northline
+Product design
+Home
+Inbox
+, 4 unread
+4
+Workspace
+Projects
+Checkout redesign
+Mobile onboarding
+Design system 2.0
+Roadmap
+Research
+Pinned
+Q4 launch plan
+Critique notes
+Settings
+Emma Collins
+Product designer
+Northline
+Projects
+Checkout redesign
+Marcus Johnson
+Jasmine Brooks
+Emma Collins
++1
+Checkout redesign
+
+Fewer steps from bag to confirmation. Beta opens October 14.
+
+Screens
+38
+3
+8
+Open issues
+7
+7
+Days to beta
+22
+2
+2
+Screens in flight
+Address step
+Autocomplete and postcode order
+In review
+Today
+Payment sheet
+Apple Pay and saved cards
+In progress
+Thu
+Confirmation
+Receipt, tracking, and next steps
+Done
+Mon
+
+When to use
+The frame of a product app with a sidebar, breadcrumbs, and content area.
+Apps with nested nav groups that should fold into an icon rail.
+Shells that need a navigation sheet on narrow widths.
+When not to use
+Use workspace-sidebar when workspace switching and favorites matter more than the shell.
+Use docs-sidebar for documentation.
+Use breadcrumb on its own when the page already has navigation.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Sidebar (App rail) is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this block and the rest of the Pro library.
+
+Source and CLI install for Sidebar (App rail)
+All 117 Pro components and 116 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+
+Use this as the frame of a product app. Map the sections to your routes, send selection to your router, and persist the collapsed state per person; press [ to fold the rail.
+
+example.tsx
+Copy
+Copied
+Failed
+1
+import { SidebarRail } from "@/components/arc/blocks/sidebar-rail/sidebar-rail";
+2
+ 
+3
+export default function AppShell() {
+4
+  return (
+5
+    <main>
+6
+      <SidebarRail />
+7
+    </main>
+8
+  );
+9
+}
+Built from
+Tooltip
+Avatar
+Avatar group
+Badge
+Animated counter
+API reference
+SidebarRail
+
+An app shell with a sidebar that folds into an icon rail, nested nav groups, breadcrumbs, and a sheet on narrow widths. Sections and page content are sample data.
+
+No props.
+
+Keyboard interactions
+[
+Folds or unfolds the rail when focus is not in a text field, menu, or dialog.
+Escape
+Closes the navigation sheet on narrow widths.
+Accessibility
+Nav rows set aria-current="page" on the active item and aria-expanded on groups.
+The narrow layout uses a Radix dialog sheet that moves focus to the current item when it opens.
+Rail icons show Radix tooltips with their labels, and section changes are announced in a status region.
+Motion
+The sidebar folds to a rail on a spring and nested groups expand by height.
+The breadcrumb rises into the new section name.
+Reduced motion makes folding and group changes instant.
+Responsive behavior
+Below 640px container width the sidebar is replaced by a menu button that opens a Radix dialog sheet, up to 288px wide.
+The sheet drags closed to the left, and a ResizeObserver closes it when the shell widens past 640px.
+Content rows drop the timestamp below 420px of content width.
+Performance
+The shell has a fixed 640px height and scrolls its content inside, so it does not reflow the page.
+Rail tooltips mount only while shown through Radix.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use as the frame of a product app.
+Map the sections to your routes, send selection to your router, and persist the collapsed state per person.
+Composes Arc tooltip, avatar, avatar-group, badge, and animated-counter.
+/components/blocks/sidebar/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Sidebar: Workspace
+Pro
+Block
+A product sidebar with a workspace switcher, live search, draggable favorites, and inline projects.
+Sidebar: Docs
+Pro
+Block
+A docs layout with a live filtering nav tree, version switcher, and a gliding on this page outline.
+Sidebar: Inbox
+Pro
+Block
+A mail sidebar whose Compose button grows into a composer and whose folders take dropped mail.
+Breadcrumb
+Component
+Show where a page sits in a hierarchy.
+Tooltip
+Component
+Short supporting text for unfamiliar controls.
+Previous
+AI composer
+Next
+Settings page
+Arc · 131 block pages
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Sidebar is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

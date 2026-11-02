@@ -1,0 +1,47 @@
+{
+  "initial": {
+    "min": "2",
+    "max": "8",
+    "now": "4",
+    "text": "4 tokens",
+    "label": null,
+    "orientation": "horizontal"
+  },
+  "switch": {
+    "label": "Compare without speculation",
+    "checked": "false"
+  },
+  "atMin": {
+    "min": "2",
+    "max": "8",
+    "now": "2",
+    "text": "2 tokens",
+    "label": null,
+    "orientation": "horizontal"
+  },
+  "atMax": {
+    "min": "2",
+    "max": "8",
+    "now": "8",
+    "text": "8 tokens",
+    "label": null,
+    "orientation": "horizontal"
+  },
+  "afterLeft": {
+    "min": "2",
+    "max": "8",
+    "now": "7",
+    "text": "7 tokens",
+    "label": null,
+    "orientation": "horizontal"
+  },
+  "twoRight": {
+    "min": "2",
+    "max": "8",
+    "now": "4",
+    "text": "4 tokens",
+    "label": null,
+    "orientation": "horizontal"
+  },
+  "compareOn": "true"
+}

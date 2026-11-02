@@ -1,0 +1,22 @@
+{
+  "results": [
+    "Rules is the sixth row of the selector, numbered (06)",
+    "The existing five rows are still there",
+    "Pointing at Rules moves the selector to its own group",
+    "Its frame is the neutral one (no picture, nothing faked)",
+    "Opening Rules opens Excel formation",
+    "Excel formation opens on the import step, with only Import available",
+    "The sidebar lists only the Rules pages, under the Collateral folder",
+    "The address works after a reload",
+    "Explore pages returns to the selector on the Rules row",
+    "Usage still opens and its group does not list Collateral",
+    "Workspace search finds JSON formation",
+    "Dark theme reaches the page",
+    "No sideways scroll at 390px",
+    "The selector shows six rows without sideways scroll at 390px",
+    "No sideways scroll at 320px",
+    "The selector shows six rows without sideways scroll at 320px",
+    "No page errors or failed requests"
+  ],
+  "errors": []
+}

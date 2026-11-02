@@ -14,3 +14,6 @@
 .workspace-folder__children::before { content: ""; position: absolute; top: 4px; bottom: 4px; left: 14px; width: 1px; background: var(--line, color-mix(in oklab, var(--ink) 11%, transparent)); pointer-events: none; }
 .workspace-folder__children > .ui-as-side__item { width: calc(100% - 22px); margin-left: 22px; padding-left: 10px; }
 @media (pointer: coarse) { .workspace-folder__children > .ui-as-side__item { height: 38px; } }
+
+/* Collateral folder: a green dot on JSON formation once the reporting JSON is ready (the dot of the Sidebar block's rail items) */
+.collateral-nav-dot { flex: none; width: 6px; height: 6px; margin-left: auto; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px color-mix(in oklab, #22c55e 22%, transparent); }

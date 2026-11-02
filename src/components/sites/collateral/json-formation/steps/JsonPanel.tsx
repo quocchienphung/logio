@@ -1,0 +1,85 @@
+"use client";
+
+import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
+import { useState } from "react";
+import { motion } from "motion/react";
+import { Check, Download, Lock, Minus, X } from "lucide-react";
+import { SplitButton } from "../../../split-button/SplitButton";
+import type { CollateralEngine } from "../../useCollateralEngine";
+import type { JsonPlanState } from "../useJsonPlan";
+import type { OrderPolicy, OwnerPolicy } from "../engine/json-report";
+import { downloadBlob } from "../../download";
+
+const CHECK: Record<string, string> = {
+  "serious-issues": "No serious issue is still open",
+  mapping: "Every column the JSON needs is mapped",
+  metadata: "Reporting date and contact details are filled in",
+  grouping: "Every row is placed in the hierarchy",
+  schema: "The JSON matches the reporting schema",
+  utf8: "The file is valid UTF-8 and parses",
+  replay: "The same input gives the same bytes",
+  counts: "Rows, assets and groups add up",
+  ts013: "Approved descriptions are what the JSON holds",
+};
+const FIELDS = [
+  { key: "KB001", label: "Reporting date (YYYYMMDD)", mode: "numeric" as const },
+  { key: "KB002", label: "Prepared by", mode: "text" as const },
+  { key: "KB003", label: "Phone", mode: "tel" as const },
+  { key: "KB004", label: "Email", mode: "email" as const },
+] as const;
+
+/** The reporting JSON. Offered only when every gate holds; the date and contact details are typed here, never copied from an older file. */
+export function JsonPanel({ engine, state, notify }: { engine: CollateralEngine; state: JsonPlanState; notify: (message: string) => void }) {
+  const { t: uiText, locale } = useWorkspaceI18n();
+  const { meta, options, plan, checking } = state;
+  const [busy, setBusy] = useState(false);
+  const [problem, setProblem] = useState("");
+  const n = (value: number) => new Intl.NumberFormat(locale === "vi" ? "vi-VN" : "en-US").format(value);
+  const r = plan?.reconciliation;
+  async function download(kind: "json" | "audit" | "csv") {
+    setBusy(true); setProblem("");
+    try {
+      const result = await engine.jsonPlan(meta, options, kind === "json");
+      if (!result) return;
+      if (kind === "json") {
+        if (!result.plan.ready || !result.bytes) { setProblem(uiText("A check no longer holds")); return; }
+        downloadBlob("reporting-output.json", result.bytes);
+        notify(uiText("Downloaded {0}", ["reporting-output.json"]));
+      } else if (kind === "audit") { downloadBlob("validation-audit.json", new Blob([result.audit], { type: "application/json" })); notify(uiText("Downloaded {0}", ["validation-audit.json"])); }
+      else { downloadBlob("validation-report.csv", new Blob([result.csv], { type: "text/csv;charset=utf-8" })); notify(uiText("Downloaded {0}", ["validation-report.csv"])); }
+    } finally { setBusy(false); }
+  }
+  return <section className="ui-sb-card cr-panel cr-json" aria-labelledby="ex-json" data-ready={plan?.ready || undefined}>
+    <div className="cr-card-top"><h3 className="ui-sb-h2" id="ex-json">{uiText("Reporting JSON")}</h3>{plan?.ready ? <span className="ui-sb-pill" data-tone="green">{uiText("Ready")}</span> : <span className="ui-sb-pill"><Lock size={11} aria-hidden="true" /> {uiText("Locked")}</span>}</div>
+    <form className="cr-meta" onSubmit={event => event.preventDefault()} aria-label={uiText("Report details")}>
+      {FIELDS.map(field => <label key={field.key} className="cr-field"><span className="cd-label">{uiText(field.label)}</span>
+        <input className="ui-sb-input" inputMode={field.mode === "numeric" ? "numeric" : undefined} type={field.mode === "email" ? "email" : "text"} autoComplete="off" maxLength={field.key === "KB001" ? 8 : 120} value={meta[field.key]} aria-invalid={field.key === "KB001" && meta.KB001 !== "" && !/^\d{8}$/.test(meta.KB001)} onChange={event => state.setMeta({ ...meta, [field.key]: event.target.value })} /></label>)}
+    </form>
+    <Policy id="owner-policy" label="Owners when rows of one asset list different people" value={options.ownerPolicy} choices={[["distinct", "Keep every person"], ["first", "First row only"]]} onChange={value => state.setOptions({ ...options, ownerPolicy: value as OwnerPolicy })} />
+    <Policy id="order-policy" label="Order of branches, customers and assets" value={options.order} choices={[["code", "By code (as the reference)"], ["source", "As in the workbook"]]} onChange={value => state.setOptions({ ...options, order: value as OrderPolicy })} />
+
+    <ul className="cr-checks" aria-label={uiText("Checks")} aria-busy={checking}>
+      {Object.keys(CHECK).map(id => { const check = plan?.checks.find(item => item.id === id); return <li key={id} data-ok={check ? check.ok : undefined}><span className="cr-checks__icon" aria-hidden="true">{!check ? <Minus size={13} /> : check.ok ? <Check size={13} /> : <X size={13} />}</span><span>{uiText(CHECK[id])}{check && !check.ok && id === "serious-issues" && check.detail ? ` (${check.detail})` : ""}</span><span className="sr-only">{check ? (check.ok ? uiText("passed") : uiText("not passed")) : uiText("checking")}</span></li>; })}
+    </ul>
+    {plan && plan.problems.length > 0 && <ul className="cr-problems" role="alert">{plan.problems.slice(0, 4).map(text => <li key={text}>{text}</li>)}</ul>}
+    {r && <dl className="cr-facts cr-recon" aria-label={uiText("Reconciliation")}>
+      <div><dt>{uiText("Rows read")}</dt><dd>{n(r.rowsInSheet)}</dd></div><div><dt>{uiText("Branches")}</dt><dd>{n(r.branches)}</dd></div><div><dt>{uiText("Customers")}</dt><dd>{n(r.customers)}</dd></div>
+      <div><dt>{uiText("Assets")}</dt><dd>{n(r.assets)}</dd></div><div><dt>{uiText("Contracts")}</dt><dd>{n(r.contracts)}</dd></div><div><dt>{uiText("Owners")}</dt><dd>{n(r.owners)}</dd></div>
+      <div><dt>{uiText("Unmatched rows")}</dt><dd>{n(r.rowsUnmatched)}</dd></div><div><dt>{uiText("Assets with conflicting values")}</dt><dd>{n(r.assetsWithValueConflicts)}</dd></div><div><dt>{uiText("Edits not used")}</dt><dd>{n(r.patchedCellsNotUsed)}</dd></div>
+    </dl>}
+    <div className="ui-sb-actions cr-downloads">
+      <SplitButton size="sm" icon={<Download size={15} />} disabled={!plan || busy} label={plan?.ready ? uiText("Download reporting-output.json") : uiText("Download audit report (JSON)")} menuLabel={uiText("More downloads")}
+        onClick={() => void download(plan?.ready ? "json" : "audit")}
+        actions={[...(plan?.ready ? [{ id: "audit", label: uiText("Audit report (JSON)"), onSelect: () => void download("audit") }] : []), { id: "csv", label: uiText("Audit report (CSV)"), onSelect: () => void download("csv") }]} />
+    </div>
+    {problem && <p className="cd-note cd-warn" role="alert">{problem}</p>}
+  </section>;
+}
+
+function Policy({ id, label, value, choices, onChange }: { id: string; label: string; value: string; choices: [string, string][]; onChange: (value: string) => void }) {
+  const { t: uiText } = useWorkspaceI18n();
+  return <div className="cr-policy"><span className="cd-label" id={id}>{uiText(label)}</span>
+    <div className="ui-seg" data-size="sm"><div className="ui-seg__scroller"><div className="ui-seg__track" role="radiogroup" aria-labelledby={id}>{choices.map(([key, text]) => <button type="button" key={key} className="ui-seg__opt" role="radio" aria-checked={value === key} data-active={value === key || undefined} tabIndex={value === key ? 0 : -1} onClick={() => onChange(key)}>
+      {value === key && <motion.span className="cr-pill" layoutId={id} transition={{ type: "spring", stiffness: 450, damping: 38 }} />}
+      <span className="ui-seg__content"><span className="ui-seg__label"><span className="ui-seg__text">{uiText(text)}</span><span className="ui-seg__text ui-seg__text-bold" aria-hidden="true">{uiText(text)}</span></span></span></button>)}</div></div></div></div>;
+}

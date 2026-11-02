@@ -1,0 +1,676 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+⌘K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+8
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Toggle group
+New
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+131
+Special components
+101
+Docks and tabs
+6
+Share sheet
+Pro
+Action morph
+Pro
+Morph nav
+Pro
+Dock
+Pro
+Liquid tab bar
+Pro
+Orbit menu
+Pro
+Glass
+4
+Glass menu
+Pro
+Glass segmented
+Pro
+Glass card
+Pro
+Glass tab bar
+Pro
+Surfaces
+6
+Sheet stack
+Pro
+Wallet stack
+Pro
+Control center
+Pro
+Holo card
+Pro
+Card to article
+Pro
+Link unfurl
+Pro
+Galleries
+4
+Product gallery
+Pro
+Lightbox gallery
+Pro
+Photo grid
+Pro
+Cover flow
+Pro
+Audio and video
+3
+Voice orb
+Pro
+Now playing
+Pro
+Voice recorder
+Pro
+Data
+4
+Booking pill
+Pro
+Activity rings
+Pro
+Time dial
+Pro
+Date reel
+Pro
+Type
+4
+Keycap keyboard
+Pro
+Slot text
+Sand text
+Pro
+Typewriter terminal
+Pro
+Loaders
+4
+Stretch refresh
+Pro
+Morph loader
+Pro
+Skeleton morph
+Pro
+Black hole
+Pro
+Playful
+4
+Sticker peel
+Pro
+Page curl
+Pro
+Orbit logos
+Pro
+Prize wheel
+Pro
+Cursor
+4
+Dot grid
+Pro
+Image trail
+Pro
+Gravity well
+Pro
+Ink fluid
+Pro
+AI
+48
+Agent status
+Pro
+Tool call
+Pro
+Agent plan
+Pro
+Agent timeline
+Pro
+Context window
+Pro
+Reasoning block
+Pro
+Source cards
+Pro
+Model card
+Pro
+AI workflow
+Pro
+Code suggestion
+Pro
+Ghost text
+Pro
+Image generation
+Pro
+Dictation button
+Pro
+Speech player
+Pro
+Meeting summary
+Pro
+Reply draft
+Pro
+Agent handoff
+Pro
+PII redaction
+Pro
+Response feedback
+Pro
+LLM cost calculator
+Pro
+Provider keys
+Pro
+Generation stats
+Pro
+AI translate
+Pro
+TL;DR toggle
+Pro
+Connector setup
+Pro
+Smart form fill
+Pro
+Enrich column
+Pro
+Ticket router
+Pro
+Ask your data
+Pro
+Agent cursor
+Pro
+Provider status
+Pro
+Training run
+Pro
+AI command
+Pro
+Starter prompts
+Pro
+AI mascot
+Pro
+Image reveal
+Pro
+AI spark
+Pro
+Pixel mascot
+Pro
+Ghost mascot
+Pro
+Cube mascot
+Pro
+Tone tuner
+Pro
+Upgrade prompt
+Pro
+Referral card
+Pro
+Trial banner
+Pro
+Team switcher
+Pro
+Live visitors
+Pro
+Social proof toast
+Pro
+Install snippet
+Pro
+Illustrations
+10
+Data flow
+Pro
+Payment flow
+Pro
+Model training
+Pro
+Multi-region failover
+Pro
+Vector search
+Pro
+Agent loop
+Pro
+Mixture of experts
+Pro
+Speculative decoding
+Pro
+Prompt cache
+Pro
+Reasoning tree
+Pro
+What’s new
+4 new
+Components
+Card to article
+Card to article
+Pro
+
+Story cards that open into full articles with one seamless morph and shrink back into their exact slot when dragged down.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Case study
+A glass house that stays cool in August
+5 min read
+Travel
+Three slow days in Lisbon
+4 min read
+Changelog
+Menus now update in real time
+2 min read
+Essay
+Why we plan in seasons, not sprints
+6 min read
+When to use
+Blogs, journals, and changelogs where each entry has a strong image.
+Case study and portfolio grids.
+Editorial landing sections that preview stories without leaving the page.
+When not to use
+Use a normal link to a page when articles are long or need their own URL and SEO.
+Use expandable-card for small inline details.
+Text only lists with no imagery.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Card to article is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Card to article
+All 117 Pro components and 116 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { CardToArticle } from "@/components/arc/card-to-article/card-to-article";
+2
+ 
+3
+const posts = [
+4
+  {
+5
+    id: "glass-house",
+6
+    tag: "Case study",
+7
+    title: "A glass house that stays cool in August",
+8
+    meta: "5 min read",
+9
+    image: "/media/photos/pool-house.jpg",
+10
+    imageAlt: "A modern glass house beside a long pool",
+11
+    body: <p>The brief was simple and a little unreasonable...</p>,
+12
+  },
+13
+];
+14
+ 
+15
+export function Journal() {
+16
+  return <CardToArticle items={posts} />;
+17
+}
+API reference
+CardToArticle
+
+A grid of story cards; a card opens into a full scrolling article with a shared element morph and closes back into its slot.
+
+Prop
+Type
+Default
+Description
+items
+Required
+ArticleItem[]
+–
+Each item has id, title, image, imageAlt, body, and optional tag and meta.
+value
+string | null
+–
+Id of the open article. Leave it out for uncontrolled use.
+defaultValue
+string | null
+null
+Initially open article when uncontrolled.
+onValueChange
+(id: string | null) => void
+–
+Called when an article opens or closes.
+aspectRatio
+number
+4 / 3
+Ratio of the card and the article hero. They match, so the morph is a pure scale with no distortion.
+closeLabel
+string
+"Close article"
+Accessible name of the close button.
+className
+string
+–
+Extra class on the root.
+Keyboard interactions
+Enter
+or
+Space
+Opens the focused card.
+Escape
+Closes the article and returns focus to its card.
+Tab
+Stays inside the open article.
+Accessibility
+Cards are buttons with aria-haspopup="dialog" and aria-expanded.
+The open article is a modal dialog labelled by its title, with focus moved to the close button and trapped inside.
+Closing returns focus to the card it came from.
+Page scroll is locked while the article is open, keeping the scrollbar's space so nothing shifts.
+Motion
+The card itself becomes the article: its box and corners spring to the sheet while the hero scales as one piece, so image and title never distort.
+The body rises in after the morph; the close button pops in last.
+Drag down on touch, drag the hero with a mouse, or pull past the top with a trackpad: the sheet shrinks and drops with the gesture and closes past a threshold or on a flick.
+Closing re-measures the card's slot and lands flush in it, no bounce. A reading progress bar tracks the scroll.
+Reduced motion opens and closes without travel.
+Responsive behavior
+Two columns, then one below 520px of container width.
+The article fills the screen with a 12px margin on phones and caps at 680px wide on desktop.
+Title and tag sizes follow the hero's own width through container units.
+Performance
+The morph is one layout animation plus a scale corrected hero; nothing else re-lays out.
+The pull gesture is transform only and runs from motion values.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Keep every image the same ratio as aspectRatio so the hero scales cleanly.
+Titles are drawn on the photo in white over a legibility scrim; pick photos with calm lower areas.
+Use onValueChange to sync the open article with the URL for deep links.
+/components/card-to-article/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Expandable card
+Component
+Give a dense card more room when requested.
+Lightbox gallery
+Pro
+Component
+A masonry grid where photos zoom from their slot into a viewer you can swipe, pinch, and drag away.
+Photo grid
+Pro
+Component
+Pinch through zoom levels and open any photo straight from its cell.
+Dialog
+Component
+A focused surface for decisions that need attention.
+Previous
+Holo card
+Next
+Link unfurl
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Card to article is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro
