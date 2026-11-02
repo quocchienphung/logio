@@ -1,0 +1,473 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+8
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Toggle group
+New
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+131
+Special components
+101
+What’s new
+4 new
+Components
+Card
+Card
+
+A contained group of related content and actions.
+
+$
+pnpm dlx shadcn@latest add @uiarc/card
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Lobby lounge
+
+A deep armchair and ottoman against dark green walls, lit by one window.
+
+Sofia Ramirez
+Updated 2 hours ago
+Updated 2 hours ago
+Save
+When to use
+Browsable items in a grid, such as projects, listings, or posts.
+Items that should open into a larger quick look dialog without leaving the page, via details.
+Content with media, an owner byline, and a status line that updates in place.
+When not to use
+Use expandable-card for inline disclosure without a dialog.
+Use stat-card or metric-card for numbers.
+Use dialog when the content has no card to grow from.
+Installation
+
+Add Card with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/card
+pnpm dlx shadcn@latest add @uiarc/card
+
+Adds the component and its local dependencies, and installs motion, @radix-ui/react-dialog, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/card.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { Card } from "@/components/arc/card/card";
+2
+import { Avatar } from "@/components/arc/avatar/avatar";
+3
+ 
+4
+export function ProjectCard() {
+5
+  return (
+6
+    <Card
+7
+      title="Harbour redesign"
+8
+      description="New booking flow and room pages."
+9
+      media={<img src="/harbour.jpg" alt="" />}
+10
+      avatar={<Avatar name="Maya Chen" size="sm" />}
+11
+      meta="Maya Chen"
+12
+      status="Updated 2 hours ago"
+13
+      details={<p>Scope, milestones, and open questions.</p>}
+14
+    />
+15
+  );
+16
+}
+API reference
+Card
+
+A content card with optional media, byline, and action that can grow into a quick look dialog.
+
+Prop
+Type
+Default
+Description
+title
+Required
+string
+–
+Card heading. Becomes the dialog trigger when details is set.
+description
+string
+–
+Supporting line under the title.
+media
+ReactNode
+–
+Image or visual at the top. Zooms slightly on hover.
+action
+ReactNode
+–
+Trailing footer control, such as a button.
+avatar
+ReactNode
+–
+Small leading visual in the footer, such as the owner's avatar.
+meta
+ReactNode
+–
+Who the card belongs to, shown in the byline.
+status
+string
+–
+Short status under the meta, such as "Updated 2 hours ago". Changes roll in word by word and are announced politely.
+details
+ReactNode
+–
+Quick look content. When set, the card opens into a larger Radix dialog.
+open
+boolean
+–
+Controlled quick look state.
+defaultOpen
+boolean
+false
+Initial quick look state when uncontrolled.
+onOpenChange
+(open: boolean) => void
+–
+Called when the quick look opens or closes.
+children
+ReactNode
+–
+Extra body content between the description and footer.
+...props
+HTMLAttributes<HTMLElement>
+–
+Forwarded to the root article.
+Keyboard interactions
+Enter
+or
+Space
+On the title, opens the quick look when details is set.
+Escape
+Closes the quick look and returns focus to the title.
+Tab
+Stays trapped inside the open quick look.
+Accessibility
+Renders an article with an h3 title; the quick look uses Radix Dialog with the title and description wired as its label and description.
+Only the title becomes a button, so nested actions stay separately focusable.
+Status changes are read through a role="status" region.
+Give media images alt text or an empty alt when decorative, and an aria-label to icon-only actions.
+Motion
+Hover lifts the card 2px and slowly zooms the media.
+The quick look shares layout ids with the card, so surface, photo, title, and byline travel on one spring; details fade in after.
+Reduced motion drops the lift, zoom, and morph, and the dialog simply fades.
+Responsive behavior
+The card fills its grid cell with min-width 0; the quick look panel is min(30rem, 100vw minus a gutter) wide and capped at the viewport height.
+Hover lift and media zoom run only for a mouse; touch and pen never lift.
+Performance
+The quick look shares layout ids with the card, so the morph animates several elements; the dialog mounts only while open.
+The overlay uses a 7px backdrop blur, which can cost frames on low-end devices over busy pages.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for browsable items in a grid: projects, listings, posts. Use expandable-card for inline disclosure without a dialog, and stat-card or metric-card for numbers.
+Add details only when there is real extra content; without it the card is a static article.
+Keep status short and change it in place to get the rolling update.
+/components/card/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Expandable card
+Component
+Give a dense card more room when requested.
+Dialog
+Component
+A focused surface for decisions that need attention.
+Avatar
+Component
+A compact identity marker for people and accounts.
+Photo grid
+Pro
+Component
+Pinch through zoom levels and open any photo straight from its cell.
+More like this in Pro
+Explore Pro
+Data grid
+Pro
+Component
+A spreadsheet grid with range selection, inline editing, a fill handle, and animated sorting.
+Race bar chart
+Pro
+Component
+A ranking over time: bars overtake each other on springs, values count up, and a timeline you can play or scrub.
+Sunburst
+Pro
+Component
+A hierarchy in rings: click a segment and every arc swings around it as the new centre, with a breadcrumb back and a rolling total.
+Previous
+Presence stack
+Next
+Metric card
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+117 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

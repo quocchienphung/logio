@@ -2,6 +2,7 @@ import { agentsRoot, dataRoot, matchesNone, readResource, storeWritable, StoreEr
 import { apiError, authorize, readJson, tokenRequired } from "@/lib/server/api-guard";
 import { deliverToAgent, restrictedAgents } from "@/lib/server/agent-delivery";
 import { knowledgeApi } from "@/lib/server/knowledge-api";
+import { collateralQueueApi } from "@/lib/server/collateral-queue-api";
 import { parseStorageLibrary } from "@/components/sites/storage/storage-model";
 
 /**
@@ -22,7 +23,7 @@ function route(segments: string[]) {
   if (segments[0] === "workspaces" && segments.length >= 3) return { workspaceId: segments[1], name: segments[2], rest: segments.slice(3) };
   return null;
 }
-const reserved = new Set(["queries", "commands", "uploads", "storage"]);
+const reserved = new Set(["queries", "commands", "uploads", "storage", "collateral-queue"]);
 
 async function handle(request: Request, action: () => Promise<Response>) {
   const denied = authorize(request);
@@ -42,6 +43,7 @@ export async function GET(request: Request, context: Context) {
       return Response.json({ data: { ok: true, store: { writable: await storeWritable(), dir: dataRoot() }, agents: { dir: agentsRoot(), restricted: restrictedAgents() }, auth: { tokenRequired: tokenRequired() } } }, { headers: NO_STORE });
     }
     const target = route(segments);
+    if (target?.name === "collateral-queue" && target.workspaceId !== undefined && validWorkspaceId(target.workspaceId)) return collateralQueueApi(request, target.workspaceId, target.rest);
     if (target?.name === "storage" && target.workspaceId !== undefined && validWorkspaceId(target.workspaceId)) return knowledgeApi(request, target.workspaceId, target.rest);
     if (!target || target.rest.length || reserved.has(target.name)) return new Response(null, { status: 404, headers: NO_STORE });
     if (!validName(target.name) || (target.workspaceId !== undefined && !validWorkspaceId(target.workspaceId))) return apiError(400, "Invalid resource.");
@@ -69,6 +71,7 @@ export async function PUT(request: Request, context: Context) {
 export async function DELETE(request: Request, context: Context) {
   return handle(request, async () => {
     const target = route((await context.params).path);
+    if (target?.name === "collateral-queue" && target.workspaceId !== undefined && validWorkspaceId(target.workspaceId)) return collateralQueueApi(request, target.workspaceId, target.rest);
     if (target?.name === "storage" && target.workspaceId !== undefined && validWorkspaceId(target.workspaceId)) return knowledgeApi(request, target.workspaceId, target.rest);
     return apiError(404, "Unknown route.");
   });
@@ -77,11 +80,20 @@ export async function DELETE(request: Request, context: Context) {
 export async function POST(request: Request, context: Context) {
   return handle(request, async () => {
     const target = route((await context.params).path);
+    if (target?.name === "collateral-queue" && target.workspaceId !== undefined && validWorkspaceId(target.workspaceId)) return collateralQueueApi(request, target.workspaceId, target.rest);
     if (target?.workspaceId !== undefined && validWorkspaceId(target.workspaceId) && target.name === "commands" && target.rest.length === 1 && target.rest[0] === "skill.transfer") {
       const receipt = await deliverToAgent(target.workspaceId, await readJson(request, BUNDLE_LIMIT));
       return Response.json({ data: receipt }, { headers: NO_STORE });
     }
     // Uploads, other commands and agent-run actions are not served here: the page falls back (files stay in the saved JSON as data: URLs).
     return apiError(404, "This route is not served by the built-in home server.");
+  });
+}
+
+export async function PATCH(request: Request, context: Context) {
+  return handle(request, async () => {
+    const target = route((await context.params).path);
+    if (target?.name === "collateral-queue" && target.workspaceId !== undefined && validWorkspaceId(target.workspaceId)) return collateralQueueApi(request, target.workspaceId, target.rest);
+    return apiError(404, "Unknown route.");
   });
 }

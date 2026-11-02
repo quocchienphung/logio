@@ -30,23 +30,23 @@ try {
   const page = await context.newPage(); watch(page);
   await page.goto(url, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { level: 1, name: 'Excel formation' }).waitFor();
-  check('Excel formation opens with its four steps and a breadcrumb trail', await page.getByRole('tab').count() === 4 && (await page.locator('.cl-crumbs').innerText()).replace(/\s+/g, ' ').includes('Collateral Excel formation Import'));
+  check('Excel formation opens with hidden steps and a breadcrumb trail', await page.getByRole('tab').count() === 0 && (await page.locator('.cl-crumbs').innerText()).replace(/\s+/g, ' ').includes('Collateral Excel formation Import'));
   const folder = page.locator('.ui-as-side__nav .workspace-folder');
-  check('The sidebar has the Collateral folder, open, with the two sections inside', await folder.count() === 1 && (await folder.innerText()).includes('Collateral') && (await folder.locator('.workspace-folder__children .ui-as-side__item').allInnerTexts()).join('|') === 'Excel formation|JSON formation');
+  check('The sidebar has the Collateral folder, open, with the three sections inside', await folder.count() === 1 && (await folder.innerText()).includes('Collateral') && (await folder.locator('.workspace-folder__children .ui-as-side__item').allInnerTexts()).join('|') === 'Excel formation|JSON formation|Queue');
   await folder.locator('.workspace-folder__head').click();
   await folder.locator('.workspace-folder__children').waitFor({ state: 'detached', timeout: 8000 });
   check('The folder folds', true);
   await folder.locator('.workspace-folder__head').click();
   await folder.locator('.workspace-folder__children').waitFor({ timeout: 8000 });
   check('The folder opens again', true);
-  check('Only Import is available before a file is opened', await tab(page, 'Review and fix').getAttribute('aria-disabled') === 'true' && await tab(page, 'Import').getAttribute('aria-selected') === 'true');
+  check('The stepper stays hidden before a file is processed', await page.getByRole('tab').count() === 0);
   check('The shared Dropzone is reused, with no essay about privacy', (await page.locator('.storage-dropzone').innerText()).includes('up to 120 MB') && await page.locator('.cr-local').count() === 1 && !(await page.locator('.collateral').innerText()).includes('never uploaded'));
   await page.screenshot({ path: `${out}/01-import.png` });
 
   // A wrong file is refused without reading it
   await page.locator('input[type=file]').setInputFiles({ name: 'notes.txt', mimeType: 'text/plain', buffer: Buffer.from('hello') });
   await page.getByText('This file is not an .xlsx workbook.').waitFor();
-  check('A non-xlsx file is refused with a clear message and a way to choose another or retry', await page.getByRole('button', { name: 'Retry' }).count() === 1 && await page.getByText('Choose another file').count() >= 1 && await tab(page, 'Overview').getAttribute('aria-disabled') === 'true');
+  check('A non-xlsx file is refused with a clear message and a way to choose another or retry', await page.getByRole('button', { name: 'Retry' }).count() === 1 && await page.getByText('Choose another file').count() >= 1 && await page.getByRole('tab').count() === 0);
 
   await upload(page);
   check('A valid file waits on Import until the person chooses to see what was found, then the overview opens', await tab(page, 'Overview').getAttribute('aria-selected') === 'true');
@@ -307,7 +307,7 @@ try {
   // Closing the file drops everything
   await page.getByRole('button', { name: 'Close file' }).click();
   await page.waitForTimeout(800);
-  check('Closing the file returns to an empty import and the JSON section asks for a workbook', await page.locator('.storage-dropzone__row').count() === 0 && await tab(page, 'Overview').getAttribute('aria-disabled') === 'true');
+  check('Closing the file returns to an empty import and the JSON section asks for a workbook', await page.locator('.storage-dropzone__row').count() === 0 && await page.getByRole('tab').count() === 0);
   await goJson(page);
   await page.locator('.ui-as-empty').waitFor();
   check('Without a workbook the JSON section shows a gate with a way back', (await page.locator('.ui-as-empty').innerText()).includes('Go to Excel formation'));

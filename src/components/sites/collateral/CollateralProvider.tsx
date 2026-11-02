@@ -1,13 +1,17 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 import { useCollateralEngine, type CollateralEngine } from "./useCollateralEngine";
 import { useJsonPlan, type JsonPlanState } from "./json-formation/useJsonPlan";
 import { defaultFilters, type ReviewFilters } from "./excel-formation/review-filters";
+import { useUploadArchive, queueChanged } from "./queue/useUploadArchive";
+import { queueRequest, readQueueFile } from "./queue/queue-client";
+import type { QueueDeleteReceipt, QueueEntry } from "./queue/queue-model";
 
 /**
  * One workbook, two sections. The file is read and reviewed in a worker of this tab; this provider keeps it alive while the person moves
- * between Excel formation and JSON formation, and drops it with the tab. Nothing here is stored or sent anywhere.
+ * between Excel formation, JSON formation and Queue. The original upload is archived on the home server;
+ * cell analysis and unsaved corrections stay in this tab's worker.
  */
 export interface CollateralValue {
   engine: CollateralEngine;
@@ -16,18 +20,52 @@ export interface CollateralValue {
   setJsonActive: (active: boolean) => void;
   filters: ReviewFilters;
   setFilters: (filters: ReviewFilters) => void;
+  archive: ReturnType<typeof useUploadArchive>["archive"];
+  retryArchive: () => void;
+  openSaved: (entry: QueueEntry) => Promise<void>;
+  deleteSaved: (entry: QueueEntry) => Promise<QueueDeleteReceipt>;
+  restoreSaved: (entry: QueueEntry, receipt: QueueDeleteReceipt) => Promise<QueueEntry>;
 }
 const Context = createContext<CollateralValue | null>(null);
 
-export function CollateralProvider({ children }: { children: ReactNode }) {
-  const engine = useCollateralEngine();
+export function CollateralProvider({ children, workspaceId }: { children: ReactNode; workspaceId: string }) {
+  const rawEngine = useCollateralEngine();
+  const { open: openInWorker, close: closeWorker } = rawEngine;
+  const { archive, save, openSaved: selectSaved, forget, retry } = useUploadArchive(workspaceId, rawEngine);
+  const open = useCallback(async (...args: Parameters<CollateralEngine["open"]>) => {
+    // Invalid selections still get the real worker error; accepted XLSX originals get a history record immediately.
+    if (/\.xlsx$/i.test(args[0].name) && args[0].size > 0 && args[0].size <= 120 * 1024 * 1024) void save(args[0]);
+    else forget();
+    await openInWorker(...args);
+  }, [save, forget, openInWorker]);
+  const close = useCallback(() => { closeWorker(); forget(); }, [closeWorker, forget]);
+  const engine = useMemo(() => ({ ...rawEngine, open, close }), [rawEngine, open, close]);
+  const openSaved = useCallback(async (entry: QueueEntry) => {
+    const file = await readQueueFile(workspaceId, entry);
+    selectSaved(file, entry);
+    await openInWorker(file);
+  }, [workspaceId, selectSaved, openInWorker]);
+  const deleteSaved = useCallback(async (entry: QueueEntry) => {
+    const response = await queueRequest(workspaceId, `/${entry.id}`, { method: "DELETE" });
+    const receipt = (await response.json() as { data: QueueDeleteReceipt }).data;
+    // The in-memory review can continue; deleting the archived original must not discard corrections.
+    if (archive?.entry?.id === entry.id) forget();
+    queueChanged();
+    return receipt;
+  }, [workspaceId, archive?.entry?.id, forget]);
+  const restoreSaved = useCallback(async (entry: QueueEntry, receipt: QueueDeleteReceipt) => {
+    const response = await queueRequest(workspaceId, `/${entry.id}/restore`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ undoToken: receipt.undoToken }) });
+    const restored = (await response.json() as { data: QueueEntry }).data;
+    queueChanged();
+    return restored;
+  }, [workspaceId]);
   const [jsonActive, setJsonActive] = useState(false);
   const json = useJsonPlan(engine, jsonActive);
   // Filters belong to the open file: another file starts from the defaults.
   const fileKey = engine.result?.fileHash ?? "";
   const [box, setBox] = useState<{ key: string; value: ReviewFilters }>({ key: "", value: defaultFilters });
   const filters = box.key === fileKey ? box.value : defaultFilters;
-  const value = useMemo<CollateralValue>(() => ({ engine, json, setJsonActive, filters, setFilters: next => setBox({ key: fileKey, value: next }) }), [engine, json, filters, fileKey]);
+  const value = useMemo<CollateralValue>(() => ({ engine, json, setJsonActive, filters, setFilters: next => setBox({ key: fileKey, value: next }), archive, retryArchive: retry, openSaved, deleteSaved, restoreSaved }), [engine, json, filters, fileKey, archive, retry, openSaved, deleteSaved, restoreSaved]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 

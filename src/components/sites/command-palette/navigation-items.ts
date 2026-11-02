@@ -12,16 +12,16 @@ export interface NavigationItem {
 
 const workspaceDescriptions: Record<string, string> = {
   Invoice: "Create and manage invoices", "New chat": "Talk with your assistant", Files: "Workspace files", Run: "Agent plans and activity",
-  Usage: "Plans, members and API keys", "Excel formation": "Find and repair errors in a workbook", "JSON formation": "Group the repaired data into the reporting JSON", Home: "Your workspace overview", Companies: "Company CRM", Contacts: "People and contact details",
+  Queue: "Saved upload history and original workbooks", Usage: "Plans, members and API keys", "Excel formation": "Find and repair errors in a workbook", "JSON formation": "Group the repaired data into the reporting JSON", Home: "Your workspace overview", Companies: "Company CRM", Contacts: "People and contact details",
   Deals: "Your sales pipeline", Reports: "Analytics and reports", "New business": "New business pipeline", Renewals: "Renewal pipeline", Partnerships: "Partnership pipeline",
   Mapping: "Projects, teams and tasks", Process: "Build and run your process", Tracing: "Inspect process runs", Orchestrator: "A lead agent and parallel workers", Skilled: "Your skill library", Repo: "Workspace activity", Storage: "Document knowledge library",
 };
 const workspaceIcons: Record<string, NavigationItem["icon"]> = {
-  Invoice: "page", "New chat": "chat", Files: "folder", Run: "workflow", Usage: "chart", "Excel formation": "folder", "JSON formation": "code", Home: "home", Companies: "users", Contacts: "users",
+  Invoice: "page", "New chat": "chat", Files: "folder", Run: "workflow", Queue: "folder", Usage: "chart", "Excel formation": "folder", "JSON formation": "code", Home: "home", Companies: "users", Contacts: "users",
   Reports: "chart", Mapping: "workflow", Process: "workflow", Tracing: "workflow", Orchestrator: "workflow", Skilled: "book", Repo: "code", Storage: "folder",
 };
 const aliases: Record<string, readonly string[]> = {
-  Process: ["quy trình", "quy trinh", "workflow", "blocks", "map"], Tracing: ["trace", "theo dõi", "waterfall"], Orchestrator: ["điều phối", "agents", "subagents", "parallel", "timeline"], Storage: ["lưu trữ", "tai lieu", "documents", "knowledge"],
+  Queue: ["upload", "history", "xlsx", "files", "l?ch s?", "h?ng ??i"], Process: ["quy trình", "quy trinh", "workflow", "blocks", "map"], Tracing: ["trace", "theo dõi", "waterfall"], Orchestrator: ["điều phối", "agents", "subagents", "parallel", "timeline"], Storage: ["lưu trữ", "tai lieu", "documents", "knowledge"],
   Skilled: ["skills", "kỹ năng"], Reports: ["báo cáo", "analytics"], Companies: ["công ty", "crm"], Contacts: ["liên hệ"], Invoice: ["hóa đơn", "sales"],
   Usage: ["sử dụng", "plan", "credits"], "Excel formation": ["collateral", "tài sản bảo đảm", "excel", "xlsx", "sửa lỗi", "repair"], "JSON formation": ["collateral", "tài sản bảo đảm", "json", "báo cáo", "report"], Home: ["trang chủ", "dashboard"], "New chat": ["trò chuyện", "assistant", "ai"],
 };

@@ -1,0 +1,8668 @@
+[
+  {
+    "t": 16.40000009536743,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 28.60000009536725,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 34.70000009536761,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 65.00000009536734,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 71.00000009536734,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 77.00000009536734,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 83.10000009536725,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 89.20000009536761,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 95.20000009536761,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 101.40000009536743,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 107.40000009536743,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 113.40000009536743,
+    "tabs": [],
+    "ready": false
+  },
+  {
+    "t": 131.60000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 161.90000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 174.10000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.0652432,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.68204)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 180.10000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.121934,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.00706)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 192.30000009536752,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.231584,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.67726)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 216.50000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.423682,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.67726)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 222.60000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.46633,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.49931)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 228.60000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.505948,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.22559)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 234.60000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.543262,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.91207)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 240.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.578867,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.61446)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 246.80000009536752,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.61217,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.33887)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 252.90000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.643239,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.07767)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 258.90000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.671698,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.83632)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.0147751,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 264.90000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.698162,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.60793)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.0729,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.84284)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 283.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.767569,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.39738)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.239354,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.37817)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 289.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.786966,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.77353)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.289961,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.86338)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 295.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.805163,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.6033)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.339224,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.40887)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 301.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.821664,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.55562)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.385451,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.28347)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 307.40000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.837118,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.32428)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.430124,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.62014)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 313.50000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.851336,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.26512)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.47242,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.44365)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 319.60000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.864409,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.17483)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.512326,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.17222)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 331.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.887285,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.07044)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.584482,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.86138)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 337.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.897272,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.877896)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.616893,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.24808)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 343.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.906598,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.812442)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.647638,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.03448)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 349.90000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.915154,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.74069)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.676245,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.79542)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.0245724,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 355.90000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.922877,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.673292)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.702385,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.57476)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.0824294,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.76216)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 362.00000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.930081,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.612222)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.727031,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.36603)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.139521,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.30072)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 368.10000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.936682,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.554961)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.749836,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.1689)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.194732,
+        "transform": "matrix(1, 0, 0, 1, 0, 6.85794)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 374.10000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.942632,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.503238)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.770577,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.99229)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.247077,
+        "transform": "matrix(1, 0, 0, 1, 0, 6.42331)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 380.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.948175,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.427669)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.790051,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.72252)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.29819,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.73102)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 386.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.953166,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.412876)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.807724,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.67663)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.3463,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.60067)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 392.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.957809,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.373582)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.824286,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.53214)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.392936,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.21269)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 398.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.961986,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.336864)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.839292,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.40353)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.436515,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.85145)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 404.40000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.965865,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.303957)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.853335,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.28233)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.478458,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.49931)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 410.50000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.969405,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.273266)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.866246,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.17483)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.518012,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.17222)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 416.60000009536725,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.972631,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.241291)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.878111,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.05518)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.555193,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.81112)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 422.50000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.975476,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.216105)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.888665,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.963824)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.58893,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.51872)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 428.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.978198,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.192737)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.898856,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.877896)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.622083,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.24808)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 434.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.980628,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.172021)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.908051,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.799754)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.652472,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.9917)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 440.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.982798,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.152845)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.916355,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.728763)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.68029,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.75492)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.0333531,
+        "transform": "matrix(1, 0, 0, 1, 0, 8)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 446.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.984767,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.135924)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.92398,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.662102)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.706141,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.53643)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.0909658,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.68204)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 452.90000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.986579,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.1133)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.931091,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.574982)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.730509,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.23334)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.147788,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.00706)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 459.00000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.988215,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0976214)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.937607,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.512563)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.753052,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.02026)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.20271,
+        "transform": "matrix(1, 0, 0, 1, 0, 6.49443)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 465.00000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.989665,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0933377)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.943481,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.49586)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.77355,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.96459)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.254754,
+        "transform": "matrix(1, 0, 0, 1, 0, 6.3527)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 471.00000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.990971,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0817928)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.948866,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.449654)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.79249,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.79941)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.304731,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.93032)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 477.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.992181,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0717461)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.953956,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.406412)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.810533,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.65194)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.354105,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.53624)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 483.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.993229,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0620972)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.95846,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.367536)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.826616,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.51275)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.399619,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.15128)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 489.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.994179,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.053771)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.962646,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.331222)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.841675,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.38161)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.443554,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.79292)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 495.40000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.995024,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0466028)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.966468,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.29869)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.855527,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.26512)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.485106,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.44365)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 501.40000009536743,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.995761,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0397595)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.9699,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.26836)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.868061,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.15537)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.523647,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.11929)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 507.50000009536734,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.996422,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0339274)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.973082,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.241291)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.879777,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.05518)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.56048,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.81112)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 513.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.996994,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0286954)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.975933,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.216105)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.89037,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.963824)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.594435,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.51872)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 519.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.997502,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0233065)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.978571,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.188853)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.900263,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.864534)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.626704,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.20331)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 525.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.997937,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0194744)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.98093,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.168422)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.9092,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.787199)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.656298,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.95535)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 531.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.998319,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0160872)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.983106,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.150347)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.91754,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.716964)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.68429,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.72052)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 537.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.998647,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0131175)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.985077,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.133613)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.925189,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.653239)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.710265,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.49848)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 543.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.998926,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0105377)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.986859,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.11817)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.932199,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.593407)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.734327,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.29905)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 549.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999157,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0084414)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.988442,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.103965)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.938521,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.537345)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.75623,
+        "transform": "matrix(1, 0, 0, 1, 0, 2.11052)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 556.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999353,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0066434)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.989892,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0915409)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.944412,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.488555)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.776812,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.93715)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 562.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999512,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0051207)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.991176,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0801479)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.949718,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.441112)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.795503,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.77353)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 568.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999643,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0038505)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.992346,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0697417)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.954657,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.400016)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.81303,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.6275)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 574.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999747,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0028099)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.993392,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0607292)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.959172,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.361556)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.829171,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.48971)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 580.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999826,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0020225)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.99431,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0525286)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.963232,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.325644)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.843792,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.36352)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 586.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999887,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0013617)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.99514,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0454739)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.967003,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.293484)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.857474,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.24467)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 592.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999931,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.00089)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.995863,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0387444)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.970388,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.263514)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.869852,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.13931)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 598.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999962,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0005041)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.996512,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0321183)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.973526,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.23232)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.881423,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.02511)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 604.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999981,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0003126)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.997073,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0278794)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.976338,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.211913)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.891883,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.949602)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 610.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999993,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0001347)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.997571,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0228317)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.978939,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.185975)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.901652,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.851308)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 616.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 0.999998,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.91e-05)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.998004,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0188451)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.981301,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.165755)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.910617,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.774777)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 622.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 1.2e-05)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.998371,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0155336)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.983409,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.147058)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.918711,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.705294)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 628.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.98493e-07)"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.998691,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0126347)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.985352,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.130574)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.926262,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.642273)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 634.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.998959,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0102586)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.98708,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.115371)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.933074,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.583123)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 640.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999192,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0080823)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.98869,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.102034)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.939523,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.529636)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 646.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999379,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0063376)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.990094,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0897672)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.945237,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.479524)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 652.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999533,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.004864)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.991356,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0785251)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.950475,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.434356)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 659.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999659,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0036386)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.992508,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0682631)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.955349,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.392116)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 665.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.99976,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0021177)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.993537,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.053771)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.959804,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.331222)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 671.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999837,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0018852)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.994453,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0513055)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.963874,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.320129)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 677.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999895,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0012909)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.995254,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0439971)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.96753,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.288339)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 683.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999936,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0008369)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.995964,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0377468)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.97087,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.258727)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 689.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999966,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0005041)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.996611,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0321183)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.974013,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.23232)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 695.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999984,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0002738)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.997159,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0270791)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.976782,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.207775)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 701.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999994,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0001129)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.997646,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0221316)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.979342,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.182183)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 707.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 0.999999,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.91e-05)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.998062,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0188451)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.981631,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.165755)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 713.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 9.2e-06)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.998427,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0149928)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.983741,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.144622)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 719.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 7.98493e-07)"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.998734,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0126347)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.985622,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.130574)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 725.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.998999,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0098492)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.987351,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.1133)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 731.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999222,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0077334)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.98891,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0994967)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 737.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999407,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0060413)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.990314,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0874383)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 743.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999556,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.004616)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.991554,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0763957)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 750.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999678,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0034346)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.992685,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0668056)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 756.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999773,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0025282)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.993679,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0580536)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 762.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999846,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0017542)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.994566,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0501015)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 768.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999902,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0011895)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.995367,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0429108)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 774.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999942,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0007612)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.996075,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0367664)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 780.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999969,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0004505)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.996688,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0312384)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 786.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999986,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0002499)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.997236,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0262943)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 792.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999995,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0001129)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.997713,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0221316)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 798.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 0.999999,
+        "transform": "matrix(1, 0, 0, 1, 0, 4.16e-05)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.99812,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0182295)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 804.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 9.2e-06)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.998476,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0149928)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 810.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 8.48668e-08)"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.998781,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0118566)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 816.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999035,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0094509)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 822.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999252,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0075065)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 828.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999431,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0058491)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 834.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999575,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0044555)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 840.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999693,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.003303)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 846.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999785,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0023686)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 853.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999856,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0016704)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 859.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999909,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0011249)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 865.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999947,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0007134)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 871.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999972,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0004169)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 877.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999987,
+        "transform": "matrix(1, 0, 0, 1, 0, 0.0002166)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 883.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999996,
+        "transform": "matrix(1, 0, 0, 1, 0, 9.98e-05)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 889.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 0.999999,
+        "transform": "matrix(1, 0, 0, 1, 0, 3.19e-05)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 895.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 5.8e-06)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 901.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "matrix(1, 0, 0, 1, 0, 8.48668e-08)"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 907.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 913.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 919.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 925.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 931.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 937.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 944.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 950.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 956.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 962.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 968.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 974.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 980.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 986.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 992.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 998.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1004.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1010.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1016.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1022.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1028.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1034.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1040.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1047.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1053.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1059.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1065.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1071.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1077.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1083.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1089.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1095.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1101.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1107.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1113.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1119.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1125.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1131.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1137.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1144.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1150.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1156.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1162.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1168.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1174.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1180.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1186.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1192.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1198.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1204.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1210.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1216.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1222.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1228.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1234.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1240.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1247.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1253.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1259.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1265.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1271.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1277.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1283.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1289.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1295.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1301.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1307.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1313.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1319.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1325.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1331.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1338.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1344.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1350.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1356.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1362.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1368.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1374.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1380.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1386.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1392.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1398.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1404.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1410.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1416.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1422.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1428.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1435.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1441.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1447.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1453.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1459.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1465.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1471.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1477.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1483.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1489.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1495.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1501.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1507.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1513.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1519.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1525.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1532.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1538.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1544.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1550.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1556.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1562.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1568.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1574.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1580.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1586.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1592.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1598.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1604.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1610.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1616.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1622.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1629.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1635.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1641.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1647.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1653.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1659.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1665.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1671.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1677.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1683.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1689.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1695.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1701.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1707.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1713.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1719.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1726.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1732.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1738.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1744.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1750.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1756.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1762.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1768.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1774.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1780.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1786.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1792.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1798.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1804.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1810.8000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1816.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1823.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1829.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1835.0000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1841.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1847.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1853.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1859.3000000953675,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1865.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1871.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1877.5000000953673,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1883.5000000953678,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1889.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1895.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1901.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1907.800000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1914.0000000953678,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1919.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1926.0000000953678,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1932.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1938.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1944.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1950.300000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1956.300000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1962.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1968.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1974.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1980.5000000953678,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1986.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1992.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 1998.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2004.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2010.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2016.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2023.0000000953678,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2029.0000000953678,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2035.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2041.1000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2047.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2053.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2059.300000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2065.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2071.500000095368,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2077.500000095368,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2083.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2089.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2095.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2101.800000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2108.000000095368,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2113.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2120.000000095368,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2126.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2132.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2138.2000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2144.300000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2150.300000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2156.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2162.4000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2168.500000095368,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2174.500000095368,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2180.6000000953672,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2186.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2192.7000000953676,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2198.800000095367,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  },
+  {
+    "t": 2204.9000000953674,
+    "tabs": [
+      {
+        "text": "1Import",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "2Overview",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "3Review and fix2",
+        "opacity": 1,
+        "transform": "none"
+      },
+      {
+        "text": "4Export",
+        "opacity": 1,
+        "transform": "none"
+      }
+    ],
+    "ready": true
+  }
+]

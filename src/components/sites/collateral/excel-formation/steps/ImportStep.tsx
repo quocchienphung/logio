@@ -7,6 +7,7 @@ import { StorageDropzone } from "../../../storage/StorageDropzone";
 import type { CollateralEngine } from "../../useCollateralEngine";
 import { WorkbookUnfurl } from "./WorkbookUnfurl";
 import { useImportCopy } from "./import-copy";
+import { ArchiveNotice } from "../../queue/ArchiveNotice";
 import "./import-step.css";
 
 const MESSAGE: Record<string, string> = {
@@ -42,6 +43,7 @@ export function ImportStep({ engine, onReview }: { engine: CollateralEngine; onR
         <label className="cr-switch-row"><button type="button" role="switch" className="cr-switch" aria-label={uiText("Flag accented text")} aria-checked={engine.diacriticPolicy} disabled={scanning} onClick={() => engine.rescan(!engine.diacriticPolicy)}><span className="cr-switch__thumb" /></button><span>{uiText("Flag accented text")}</span></label>
         <p className="cr-local"><Lock size={13} aria-hidden="true" /> {uiText("Processed on this device")}</p>
       </aside>
+      <ArchiveNotice />
     </div>
   </div>;
 }

@@ -5,7 +5,7 @@
     "Pointing at Rules moves the selector to its own group",
     "Its frame is the neutral one (no picture, nothing faked)",
     "Opening Rules opens Excel formation",
-    "Excel formation opens on the import step, with only Import available",
+    "Excel formation opens with the stepper hidden until processing completes",
     "The sidebar lists only the Rules pages, under the Collateral folder",
     "The address works after a reload",
     "Explore pages returns to the selector on the Rules row",

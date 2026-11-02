@@ -41,9 +41,9 @@ try {
   await page.waitForURL(/section=excel-formation/);
   await page.locator('.storage-dropzone').waitFor();
   check('Opening Rules opens Excel formation', await page.getByRole('heading', { level: 1, name: 'Excel formation' }).count() === 1);
-  check('Excel formation opens on the import step, with only Import available', await page.getByRole('tab').count() === 4 && await page.getByRole('tab', { name: /Review and fix/ }).getAttribute('aria-disabled') === 'true' && await page.locator('.storage-dropzone').count() === 1);
+  check('Excel formation opens with the stepper hidden until processing completes', await page.getByRole('tab').count() === 0 && await page.locator('.storage-dropzone').count() === 1);
   const items = await page.locator('.ui-as-side__nav .workspace-nav-label').allInnerTexts();
-  check('The sidebar lists only the Rules pages, under the Collateral folder', items.join('|') === 'Collateral|Excel formation|JSON formation');
+  check('The sidebar lists only the Rules pages, under the Collateral folder', items.join('|') === 'Collateral|Excel formation|JSON formation|Queue');
   await page.waitForTimeout(500);
   await page.screenshot({ path: `${out}/excel-desktop.png` });
 

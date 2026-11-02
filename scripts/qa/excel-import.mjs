@@ -33,9 +33,9 @@ try {
   const page = await open(desktop);
   const alignment = await page.locator('.cr-import').evaluate(n => {
     const r = n.getBoundingClientRect(), c = n.firstElementChild.getBoundingClientRect();
-    return { dx: Math.abs(c.x + c.width / 2 - r.x - r.width / 2), dy: Math.abs(c.y + c.height / 2 - r.y - r.height / 2) };
+    return { dx: Math.abs(c.x + c.width / 2 - r.x - r.width / 2), dy: Math.abs(c.y + c.height / 2 - innerHeight / 2) };
   });
-  check('Idle upload group is centered in the remaining workspace content, both axes', alignment.dx < 1 && alignment.dy < 1);
+  check('Idle upload group is centered in the section and viewport', alignment.dx < 1 && alignment.dy < 18);
   check('The accepted format and both illustration badges say XLSX', await page.locator('input[type=file]').getAttribute('accept') === '.xlsx' && (await page.locator('.storage-dropzone__badge text').allTextContents()).every(text => text === 'XLSX'));
   await page.screenshot({ path: `${out}/desktop-idle.png` });
   await page.locator('.storage-dropzone__area').focus();

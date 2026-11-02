@@ -1,0 +1,231 @@
+Components
+Hover card
+Hover card
+
+Preview a person or link on hover or focus without leaving the page.
+
+$
+pnpm dlx shadcn@latest add @uiarc/hover-card
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Jasmine Brooks
+When to use
+Previews of people behind mentions, avatars, or author names.
+Link or reference previews where the click must stay free for navigation.
+Dense lists where moving between triggers should open cards almost instantly.
+When not to use
+Use tooltip for a plain text label.
+Use popover when the content has buttons or inputs.
+Use user-menu for the account menu on your own avatar.
+Installation
+
+Add Hover card with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/hover-card
+pnpm dlx shadcn@latest add @uiarc/hover-card
+
+Adds the component and its local dependencies, and installs @radix-ui/react-popover, motion. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/hover-card.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { HoverCard, HoverCardProfile } from "@/components/arc/hover-card/hover-card";
+2
+ 
+3
+export function Mention() {
+4
+  return (
+5
+    <HoverCard
+6
+      content={<HoverCardProfile name="Maya Chen" role="Product designer, Payments" stats={[{ label: "Projects", value: 12 }]} />}
+7
+    >
+8
+      <button type="button">@maya</button>
+9
+    </HoverCard>
+10
+  );
+11
+}
+API reference
+
+2 parts. The first is the root.
+
+HoverCard
+
+A read-only preview that opens after a short hover or keyboard focus and stays open while the pointer travels into it.
+
+Prop
+Type
+Default
+Description
+children
+Required
+ReactElement
+–
+The trigger, such as a mention button or link. Must accept a ref and be focusable.
+content
+Required
+ReactNode
+–
+The preview. HoverCardProfile covers people.
+side
+"top" | "bottom" | "left" | "right"
+"bottom"
+Preferred side of the trigger.
+align
+"start" | "center" | "end"
+"start"
+Alignment against the trigger.
+openDelay
+number
+500
+Milliseconds of hover before the first card opens.
+closeDelay
+number
+140
+Grace in milliseconds after the pointer leaves.
+className
+string
+–
+Class on the card surface.
+HoverCardProfile
+
+A person preview: portrait, name, role, bio, stats, and a footer line.
+
+Prop
+Type
+Default
+Description
+name
+Required
+string
+–
+Full name. Initials are derived from it when there is no avatar.
+role
+string
+–
+Role and team.
+avatar
+string | ReactNode
+–
+Portrait URL or your own image element such as next/image.
+bio
+string
+–
+Short bio paragraph.
+stats
+{ label: string; value: string | number }[]
+[]
+Rendered as a definition list.
+meta
+ReactNode
+–
+Footer line such as location and local time.
+Keyboard interactions
+Tab
+Keyboard focus on the trigger opens the card immediately.
+Enter
+Opens the card without the hover delay.
+Escape
+Closes the card and keeps it closed while the pointer rests on the trigger.
+Accessibility
+The card has role="tooltip" and the trigger gets aria-describedby while it is open.
+Focus never moves into the card, so keep its content read only.
+On touch, a tap toggles the card instead of relying on hover.
+Motion
+Grows from the trigger edge: scale from 0.96 and a 4px offset on a smooth spring, with a separate fade. Mid-exit returns retarget instead of jumping.
+Within 300ms of another card, the next opens after 80ms with a fade only. Profile rows settle in with a small stagger.
+Reduced motion drops scale and travel and keeps a short fade.
+Responsive behavior
+The card is 18.5rem wide, capped at the space Radix reports as available or the viewport minus 24px.
+On touch, a tap toggles the card instead of waiting for hover.
+Long names and roles ellipsize and stats wrap onto new lines.
+Performance
+Only one hover card is open on the page, and it mounts in a portal only while open.
+Open and close use timers, not pointer tracking loops; the profile avatar decodes async.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for previews of people, links, or references where the click must stay free for navigation. Use tooltip for plain labels and popover for interactive content.
+Only one hover card is open at a time on the page. Anything actionable belongs behind the trigger itself.
+/components/hover-card/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Tooltip
+Component
+Short supporting text for unfamiliar controls.
+Popover
+Component
+A small anchored surface for contextual information.
+Avatar
+Component
+A compact identity marker for people and accounts.
+User menu
+Component
+Your account, settings, theme, and sign out behind the avatar. Opens as a bottom sheet on phones.
+More like this in Pro
+Explore Pro
+Table of contents progress
+Pro
+Component
+A table of contents that reads along with you: a line bends through the nested headings, fills as you scroll, and carries a marker to the current section, with smooth jumps and a time-left countdown.
+Share access
+Pro
+Component
+A share panel: invite people as validated email chips with suggestions, change roles from a compact menu, remove with undo, switch link access and copy the link, with every change landing in place.
+Confirm popover
+Pro
+Component
+A destructive button that grows into a small confirmation card, with the consequence, optional type-to-confirm, progress on the Confirm button, and a check or error before folding back.
+Previous
+Popover
+Next
+Tooltip
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

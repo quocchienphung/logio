@@ -1,0 +1,218 @@
+[
+  {
+    "t": 7337.400000095367,
+    "class": "dialog_overlay__YK7ov",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 240,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 7337.5,
+    "class": "dialog_content__5Pmf8",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 9232.5,
+    "class": "dialog_overlay__YK7ov",
+    "frames": {
+      "opacity": [
+        1,
+        0
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 9232.5,
+    "class": "dialog_content__5Pmf8",
+    "frames": {
+      "opacity": [
+        1,
+        0
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 10321.799999952316,
+    "class": "dialog_overlay__YK7ov",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 240,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 10321.900000095367,
+    "class": "dialog_content__5Pmf8",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 10351.400000095367,
+    "class": "dialog_overlay__YK7ov",
+    "frames": {
+      "opacity": [
+        0.6767766754637705,
+        0
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 10351.5,
+    "class": "dialog_content__5Pmf8",
+    "frames": {
+      "opacity": [
+        0.8175819598400267,
+        0
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 10664.900000095367,
+    "class": "dialog_overlay__YK7ov",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 240,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 10665,
+    "class": "dialog_content__5Pmf8",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 11544.799999952316,
+    "class": "dialog_overlay__YK7ov",
+    "frames": {
+      "opacity": [
+        1,
+        0
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 11544.900000095367,
+    "class": "dialog_content__5Pmf8",
+    "frames": {
+      "opacity": [
+        1,
+        0
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 160,
+      "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  }
+]

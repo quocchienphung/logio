@@ -23,6 +23,7 @@ export interface ExportedFile { fileName: string; blob: Blob; changedCells: numb
  */
 export function useCollateralEngine() {
   const client = useRef<EngineClient | null>(null);
+  const opening = useRef(0);
   const [phase, setPhase] = useState<Phase>("idle");
   const [progress, setProgress] = useState<Progress>({ phase: "read", fraction: 0 });
   const [failure, setFailure] = useState<EngineFailure | null>(null);
@@ -39,9 +40,11 @@ export function useCollateralEngine() {
   const [openMs, setOpenMs] = useState(0);
 
   const engine = () => client.current ?? (client.current = new EngineClient());
-  useEffect(() => () => { client.current?.cancel(); client.current = null; }, []);
+  useEffect(() => () => { opening.current++; client.current?.cancel(); client.current = null; }, []);
 
   const open = useCallback(async (file: File, policy = diacriticPolicy, overrides: Record<string, number> = {}) => {
+    const run = ++opening.current;
+    client.current?.cancel(); client.current = null;
     lastFile.current = file;
     setFileName(file.name); setFileSize(file.size); setKept(""); setFailure(null); setResult(null); setView(null); setProgress({ phase: "read", fraction: 0 });
     if (!/\.xlsx$/i.test(file.name)) { setPhase("failed"); setFailure({ message: "Only .xlsx workbooks can be opened.", code: "not-xlsx" }); return; }
@@ -50,10 +53,13 @@ export function useCollateralEngine() {
     const started = performance.now();
     try {
       const bytes = await file.arrayBuffer();
+      if (run !== opening.current) return;
       const response = await engine().call({ type: "open", bytes, fileName: file.name, diacriticPolicy: policy, overrides }, { transfer: [bytes], progress: setProgress });
+      if (run !== opening.current) return;
       if (response.type !== "opened") throw new Error("Unexpected answer from the review engine.");
       setResult(response.result); setView(response.view); setPhase("ready"); setOpenMs(Math.round(performance.now() - started));
     } catch (error) {
+      if (run !== opening.current) return;
       if (error instanceof EngineError && error.code === "cancelled") return;
       setPhase("failed");
       setFailure({ message: error instanceof Error ? error.message : String(error), code: error instanceof EngineError ? error.code : undefined });
@@ -62,6 +68,7 @@ export function useCollateralEngine() {
 
   /** Stop a scan, or close the workbook: the worker is terminated, so every byte of the file is dropped. */
   const close = useCallback(() => {
+    opening.current++;
     client.current?.cancel(); client.current = null; lastFile.current = null; setKept("");
     setPhase("idle"); setResult(null); setView(null); setFailure(null); setFileName(""); setFileSize(0); setBusy(false);
   }, []);
