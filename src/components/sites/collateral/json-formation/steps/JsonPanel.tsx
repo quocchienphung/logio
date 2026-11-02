@@ -3,24 +3,14 @@
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Check, Download, Lock, Minus, X } from "lucide-react";
+import { Download, Lock } from "lucide-react";
 import { SplitButton } from "../../../split-button/SplitButton";
 import type { CollateralEngine } from "../../useCollateralEngine";
 import type { JsonPlanState } from "../useJsonPlan";
 import type { OrderPolicy, OwnerPolicy } from "../engine/json-report";
 import { downloadBlob } from "../../download";
+import { JsonPipeline } from "./JsonPipeline";
 
-const CHECK: Record<string, string> = {
-  "serious-issues": "No serious issue is still open",
-  mapping: "Every column the JSON needs is mapped",
-  metadata: "Reporting date and contact details are filled in",
-  grouping: "Every row is placed in the hierarchy",
-  schema: "The JSON matches the reporting schema",
-  utf8: "The file is valid UTF-8 and parses",
-  replay: "The same input gives the same bytes",
-  counts: "Rows, assets and groups add up",
-  ts013: "Approved descriptions are what the JSON holds",
-};
 const FIELDS = [
   { key: "KB001", label: "Reporting date (YYYYMMDD)", mode: "numeric" as const },
   { key: "KB002", label: "Prepared by", mode: "text" as const },
@@ -31,7 +21,7 @@ const FIELDS = [
 /** The reporting JSON. Offered only when every gate holds; the date and contact details are typed here, never copied from an older file. */
 export function JsonPanel({ engine, state, notify }: { engine: CollateralEngine; state: JsonPlanState; notify: (message: string) => void }) {
   const { t: uiText, locale } = useWorkspaceI18n();
-  const { meta, options, plan, checking } = state;
+  const { meta, options, plan } = state;
   const [busy, setBusy] = useState(false);
   const [problem, setProblem] = useState("");
   const n = (value: number) => new Intl.NumberFormat(locale === "vi" ? "vi-VN" : "en-US").format(value);
@@ -58,9 +48,7 @@ export function JsonPanel({ engine, state, notify }: { engine: CollateralEngine;
     <Policy id="owner-policy" label="Owners when rows of one asset list different people" value={options.ownerPolicy} choices={[["distinct", "Keep every person"], ["first", "First row only"]]} onChange={value => state.setOptions({ ...options, ownerPolicy: value as OwnerPolicy })} />
     <Policy id="order-policy" label="Order of branches, customers and assets" value={options.order} choices={[["code", "By code (as the reference)"], ["source", "As in the workbook"]]} onChange={value => state.setOptions({ ...options, order: value as OrderPolicy })} />
 
-    <ul className="cr-checks" aria-label={uiText("Checks")} aria-busy={checking}>
-      {Object.keys(CHECK).map(id => { const check = plan?.checks.find(item => item.id === id); return <li key={id} data-ok={check ? check.ok : undefined}><span className="cr-checks__icon" aria-hidden="true">{!check ? <Minus size={13} /> : check.ok ? <Check size={13} /> : <X size={13} />}</span><span>{uiText(CHECK[id])}{check && !check.ok && id === "serious-issues" && check.detail ? ` (${check.detail})` : ""}</span><span className="sr-only">{check ? (check.ok ? uiText("passed") : uiText("not passed")) : uiText("checking")}</span></li>; })}
-    </ul>
+    {plan ? <JsonPipeline engine={engine} state={state} plan={plan} /> : <p className="ui-sb-muted" role="status">{uiText("Checking…")}</p>}
     {plan && plan.problems.length > 0 && <ul className="cr-problems" role="alert">{plan.problems.slice(0, 4).map(text => <li key={text}>{text}</li>)}</ul>}
     {r && <dl className="cr-facts cr-recon" aria-label={uiText("Reconciliation")}>
       <div><dt>{uiText("Rows read")}</dt><dd>{n(r.rowsInSheet)}</dd></div><div><dt>{uiText("Branches")}</dt><dd>{n(r.branches)}</dd></div><div><dt>{uiText("Customers")}</dt><dd>{n(r.customers)}</dd></div>

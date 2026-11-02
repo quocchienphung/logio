@@ -32,6 +32,8 @@ export const SEARCH_LIMIT = 2000;
 export const ROW_HEIGHT = 30;
 export const TREE_PADDING = 6;
 export const ANIMATED_ROW_LIMIT = 400;
+/** Expand all on a document that answers later stops opening branches once this many rows are drawn (a 27 MB document has hundreds of thousands). */
+export const OPEN_ALL_ROWS = 600;
 
 /**
  * Where a viewer gets its rows from. A value in memory answers at once; a document that lives in a worker answers later, `children` returning
@@ -44,7 +46,11 @@ export interface JsonSource {
   root(): JsonNodeInfo | null;
   children(path: string, from: number, to: number): JsonNodeInfo[] | null;
   request(path: string, from: number, to: number): void;
+  /** How many children of a branch, counted from the first, are already here (a source that answers at once may leave this out). */
+  loaded?(path: string): number;
   subscribe(listener: () => void): () => void;
+  /** Goes up every time new pages arrive: what the viewer reads (with `subscribe`) to know it must ask again. */
+  version(): number;
   search(query: string, max: number): SearchResult | Promise<SearchResult>;
   /** The text the copy buttons put on the clipboard. */
   copyText(path: string, kind: "value" | "path"): string | Promise<string>;
@@ -116,6 +122,7 @@ export function memorySource(data: unknown, rootName: string): JsonSource {
     },
     request() {},
     subscribe: () => () => {},
+    version: () => 0,
     search(query, max) { return searchValue(data, rootName, query, max); },
     copyText: (path, kind) => kind === "path" ? path : copyTextOf(values.get(path)),
     valueOf: path => values.get(path),
@@ -162,22 +169,25 @@ export interface RowModel {
   next?: number;
   hidden?: number;
 }
-export interface RowsInput { source: JsonSource; expanded: ReadonlySet<string>; visible: Readonly<Record<string, number>>; pageSize: number }
+export interface RowsInput { source: JsonSource; /** Open every branch that is shown, as it arrives (Expand all on a source that answers later). */ all?: boolean; expanded: ReadonlySet<string>; visible: Readonly<Record<string, number>>; pageSize: number }
 
 /** The flat list the tree draws: the root, and under every open branch its first page of children, then a "Show N more" row while any are hidden. */
-export function buildRows({ source, expanded, visible, pageSize }: RowsInput): { rows: RowModel[]; missing: { path: string; from: number; to: number }[] } {
+export function buildRows({ source, all, expanded, visible, pageSize }: RowsInput): { rows: RowModel[]; missing: { path: string; from: number; to: number }[] } {
   const rows: RowModel[] = [], missing: { path: string; from: number; to: number }[] = [];
   const root = source.root();
   if (!root) return { rows, missing };
   const walk = (info: JsonNodeInfo, level: number, parent: string | null, posinset: number, setsize: number) => {
-    const branch = isBranch(info.type), open = branch && expanded.has(info.path);
+    const branch = isBranch(info.type), open = branch && (expanded.has(info.path) || (!!all && rows.length < OPEN_ALL_ROWS));
     rows.push({ id: info.path, kind: "node", level, path: info.path, parent, info, open, posinset, setsize, label: rowLabel(info) });
     if (!open) return;
     const shown = Math.min(info.count, visible[info.path] ?? pageSize);
-    const children = info.count ? source.children(info.path, 0, shown) : [];
-    if (children === null) { missing.push({ path: info.path, from: 0, to: shown }); rows.push({ id: `${info.path}\u0001loading`, kind: "loading", level: level + 1, path: info.path, parent: info.path, open: false, posinset: 1, setsize: 1, label: "Loading" }); return; }
+    // What is here is drawn at once; a page still on its way is a "Loading" row after it, so rows already on screen never go away to make room for it.
+    const ready = info.count ? Math.min(shown, source.loaded ? source.loaded(info.path) : shown) : 0;
+    const children = ready ? source.children(info.path, 0, ready) ?? [] : [];
+    if (ready < shown) { missing.push({ path: info.path, from: ready, to: shown }); }
     const hidden = info.count - shown, more = hidden > 0;
-    children.forEach((child, i) => walk(child, level + 1, info.path, i + 1, children.length + (more ? 1 : 0)));
+    children.forEach((child, i) => walk(child, level + 1, info.path, i + 1, children.length + (more || ready < shown ? 1 : 0)));
+    if (ready < shown) { rows.push({ id: `${info.path}\u0001loading`, kind: "loading", level: level + 1, path: info.path, parent: info.path, open: false, posinset: children.length + 1, setsize: children.length + 1, label: "Loading" }); return; }
     if (more) { const next = Math.min(pageSize, hidden); rows.push({ id: `${info.path}\u0001more`, kind: "more", level: level + 1, path: info.path, parent: info.path, open: false, posinset: children.length + 1, setsize: children.length + 1, label: `Show ${next} more, ${hidden} hidden`, next, hidden }); }
   };
   walk(root, 0, null, 1, 1);

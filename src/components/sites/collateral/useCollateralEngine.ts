@@ -35,6 +35,8 @@ export function useCollateralEngine() {
   const lastFile = useRef<File | null>(null);
   /** What the person last put in a file (progress or corrected workbook), so closing the tab only warns about work that is not in one. */
   const [kept, setKept] = useState("");
+  /** How long the file took to open and scan (ms), read off this tab's clock. */
+  const [openMs, setOpenMs] = useState(0);
 
   const engine = () => client.current ?? (client.current = new EngineClient());
   useEffect(() => () => { client.current?.cancel(); client.current = null; }, []);
@@ -45,11 +47,12 @@ export function useCollateralEngine() {
     if (!/\.xlsx$/i.test(file.name)) { setPhase("failed"); setFailure({ message: "Only .xlsx workbooks can be opened.", code: "not-xlsx" }); return; }
     if (file.size > LIMITS.fileBytes) { setPhase("failed"); setFailure({ message: "The file is larger than this tool accepts.", code: "too-large" }); return; }
     setPhase("scanning");
+    const started = performance.now();
     try {
       const bytes = await file.arrayBuffer();
       const response = await engine().call({ type: "open", bytes, fileName: file.name, diacriticPolicy: policy, overrides }, { transfer: [bytes], progress: setProgress });
       if (response.type !== "opened") throw new Error("Unexpected answer from the review engine.");
-      setResult(response.result); setView(response.view); setPhase("ready");
+      setResult(response.result); setView(response.view); setPhase("ready"); setOpenMs(Math.round(performance.now() - started));
     } catch (error) {
       if (error instanceof EngineError && error.code === "cancelled") return;
       setPhase("failed");
@@ -139,6 +142,6 @@ export function useCollateralEngine() {
   const docSearch = useCallback(async (query: string, max: number) => { const r = await engine().call({ type: "docSearch", query, max }); return r.type === "docSearch" ? r : null; }, []);
   const docText = useCallback(async (keys: string[]) => { const r = await engine().call({ type: "docText", keys }); return r.type === "docText" ? r : null; }, []);
 
-  return { docRoot, docChildren, docSearch, docText, unsaved, saveProgress, loadProgress, jsonPlan, phase, progress, failure, result, view, busy, fileName, fileSize, diacriticPolicy, open, close, retry, rescan, edit, reject, reopen, accept, chooseGroup, undo, redo, bulkPlan, bulkApply, rowContext, sheetWindow, gridMeta, gridRows, predict, groupRows, exportXlsx, clearFailure: () => setFailure(null) };
+  return { openMs, docRoot, docChildren, docSearch, docText, unsaved, saveProgress, loadProgress, jsonPlan, phase, progress, failure, result, view, busy, fileName, fileSize, diacriticPolicy, open, close, retry, rescan, edit, reject, reopen, accept, chooseGroup, undo, redo, bulkPlan, bulkApply, rowContext, sheetWindow, gridMeta, gridRows, predict, groupRows, exportXlsx, clearFailure: () => setFailure(null) };
 }
 export type CollateralEngine = ReturnType<typeof useCollateralEngine>;

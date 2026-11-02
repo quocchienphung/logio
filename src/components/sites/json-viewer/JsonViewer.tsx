@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent, type Ref } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type FocusEvent, type KeyboardEvent, type Ref } from "react";
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react";
 import { Check, ChevronDown, ChevronRight, ChevronUp, ChevronsDownUp, ChevronsUpDown, Copy, Link2, Search, X } from "lucide-react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
@@ -67,14 +67,14 @@ export function JsonViewer(props: JsonViewerProps) {
   const memory = useMemo(() => given ? null : memorySource(data, rootName), [given, data, rootName]);
   const source = given ?? memory!;
   const rootPath = source.root()?.path ?? rootName;
-  const [version, setVersion] = useState(0);
-  useEffect(() => source.subscribe(() => setVersion(value => value + 1)), [source]);
+  const version = useSyncExternalStore(source.subscribe, source.version, source.version);
 
   // ---- open branches, pages and the query (each controllable from outside)
   const [innerExpanded, setInnerExpanded] = useState<string[]>(() => props.defaultExpanded ?? initialOpen(source, defaultExpandDepth));
   const expandedList = props.expanded ?? innerExpanded;
   const setExpanded = useCallback((next: string[]) => { if (props.expanded === undefined) setInnerExpanded(next); onExpandedChange?.(next); }, [props.expanded, onExpandedChange]);
   const [visible, setVisible] = useState<Record<string, number>>({});
+  const [allOpen, setAllOpen] = useState(false);
   const [innerQuery, setInnerQuery] = useState(props.defaultQuery ?? "");
   const query = props.query ?? innerQuery;
   const setQuery = (next: string) => { if (props.query === undefined) setInnerQuery(next); onQueryChange?.(next); };
@@ -106,7 +106,7 @@ export function JsonViewer(props: JsonViewerProps) {
   const expanded = useMemo(() => { const set = new Set([...expandedList, ...reveal.open]); for (const path of closedBySearch) set.delete(path); return set; }, [expandedList, reveal.open, closedBySearch]);
   const pages = useMemo(() => { const merged = { ...visible }; for (const [path, count] of Object.entries(reveal.pages)) merged[path] = Math.max(merged[path] ?? 0, count); return merged; }, [visible, reveal.pages]);
   // eslint-disable-next-line react-hooks/exhaustive-deps -- `version` is how a source says "I have new pages".
-  const { rows, missing } = useMemo(() => buildRows({ source, expanded, visible: pages, pageSize }), [source, expanded, pages, pageSize, version]);
+  const { rows, missing } = useMemo(() => buildRows({ source, all: allOpen, expanded, visible: pages, pageSize }), [source, allOpen, expanded, pages, pageSize, version]);
   useEffect(() => { for (const item of missing) source.request(item.path, item.from, item.to); }, [missing, source]);
   const animated = !reduce && rows.length <= ANIMATED_ROW_LIMIT;
 
@@ -114,8 +114,8 @@ export function JsonViewer(props: JsonViewerProps) {
   const [activeBox, setActiveBox] = useState({ id: rootPath, consumed: "" });
   const followsHit = hitKey !== "" && activeBox.consumed !== hitKey;
   const wantedId = followsHit ? hit!.path : activeBox.id;
-  const active = rows.find(row => row.id === wantedId) ?? rows[0];
-  const activeIndex = Math.max(0, rows.indexOf(active));
+  const active: RowModel | undefined = rows.find(row => row.id === wantedId) ?? rows[0];
+  const activeIndex = active ? Math.max(0, rows.indexOf(active)) : 0;
   const rowRefs = useRef(new Map<string, HTMLElement>());
   const treeRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -144,35 +144,41 @@ export function JsonViewer(props: JsonViewerProps) {
   // ---- opening, closing, paging
   const toggle = useCallback((row: RowModel) => {
     if (row.kind !== "node" || !row.info || !isBranch(row.info.type)) return;
-    if (row.open) { setExpanded(expandedList.filter(path => path !== row.path)); if (q) setClosedBox({ query: q, paths: [...closedBySearch, row.path] }); }
+    if (row.open) { if (allOpen) { setAllOpen(false); setExpanded(rows.filter(item => item.open && item.path !== row.path).map(item => item.path)); return; } setExpanded(expandedList.filter(path => path !== row.path)); if (q) setClosedBox({ query: q, paths: [...closedBySearch, row.path] }); }
     else { setExpanded([...expandedList, row.path]); setClosedBox(current => ({ ...current, paths: current.paths.filter(path => path !== row.path) })); }
-  }, [expandedList, setExpanded, q, closedBySearch]);
+  }, [expandedList, setExpanded, q, closedBySearch, allOpen, rows]);
   const showMore = useCallback((row: RowModel) => setVisible(current => ({ ...current, [row.path]: (current[row.path] ?? pageSize) + pageSize })), [pageSize]);
   const expandAll = () => {
+    if (!source.sync) { setAllOpen(true); return; }
     const open: string[] = [], root = source.root();
     const walk = (info: JsonNodeInfo) => { if (!isBranch(info.type) || open.length >= 5000) return; open.push(info.path); const kids = source.children(info.path, 0, Math.min(info.count, pages[info.path] ?? pageSize)); for (const kid of kids ?? []) walk(kid); };
     if (root) walk(root);
     setExpanded(open);
   };
-  const collapseAll = () => { setExpanded([rootPath]); setVisible({}); setClosedBox({ query: "", paths: [] }); if (rows[0]) select(rows[0], { scroll: true }); };
+  const collapseAll = () => { setAllOpen(false); setExpanded([rootPath]); setVisible({}); setClosedBox({ query: "", paths: [] }); if (rows[0]) select(rows[0], { scroll: true }); };
 
   // ---- what happens on the screen after a change of the current row: focus it, and spring the tree to where it will sit once the rows settle
   const scrollAnimation = useRef<{ stop: () => void } | null>(null);
   useLayoutEffect(() => {
     const tree = treeRef.current;
-    if (intent.current.focus) rowRefs.current.get(active.id)?.focus({ preventScroll: true });
-    if (!tree || !intent.current.scroll && !followsHit) return;
+    // An intention is used once: a focus asked for by an arrow key must not follow the person into the search field.
+    const { scroll: wantScroll, focus: wantFocus } = intent.current;
+    intent.current = { scroll: false, focus: false };
+    if (!active) return;
+    if (wantFocus) rowRefs.current.get(active.id)?.focus({ preventScroll: true });
+    if (!tree || !wantScroll && !followsHit) return;
     const to = scrollTarget(activeIndex, tree.scrollTop, tree.clientHeight, TREE_PADDING * 2 + rows.length * ROW_HEIGHT);
     scrollAnimation.current?.stop();
     if (Math.abs(to - tree.scrollTop) < 0.5) return;
     if (!animated) { tree.scrollTop = to; return; }
     scrollAnimation.current = animate(tree.scrollTop, to, { ...SCROLL_SPRING, onUpdate: value => { tree.scrollTop = value; } });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- runs when the current row or the number of rows changes, not on every render
-  }, [active.id, followsHit, hitKey, rows.length]);
+  }, [active?.id, followsHit, hitKey, rows.length]);
 
   const move = (index: number) => { const row = rows[Math.max(0, Math.min(rows.length - 1, index))]; if (row) select(row, { scroll: true, focus: true }); };
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     const row = active;
+    if (!row) return;
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "c") {
       if (!copyable || window.getSelection()?.toString() || row.kind !== "node") return;
       event.preventDefault(); void copy(row.path, event.shiftKey ? "path" : "value", `${row.path}\u0001${event.shiftKey ? "path" : "value"}`); return;
@@ -212,7 +218,7 @@ export function JsonViewer(props: JsonViewerProps) {
   const marked = (text: string, current: boolean) => { let first = true; return markPieces(text, q).map((piece, i) => piece.mark ? <mark key={i} className="jv-mark" data-current={current && first ? (first = false, "true") : undefined}>{piece.text}</mark> : piece.text); };
 
   const renderRow = (row: RowModel) => {
-    const isActive = row.id === active.id, info = row.info;
+    const isActive = row.id === active?.id, info = row.info;
     const common = {
       role: "treeitem" as const, tabIndex: isActive ? 0 : -1, "aria-level": row.level + 1, "aria-posinset": row.posinset, "aria-setsize": row.setsize, "aria-selected": isActive,
       "aria-expanded": row.kind === "node" && info && isBranch(info.type) ? row.open : undefined, "aria-label": row.kind === "more" || row.kind === "loading" ? (row.kind === "more" ? t("Show {0} more, {1} hidden", [row.next ?? 0, row.hidden ?? 0]) : t("Loading")) : row.label,
@@ -222,20 +228,22 @@ export function JsonViewer(props: JsonViewerProps) {
       initial: animated ? { height: 0, opacity: 0, overflow: "hidden" } : false, animate: { height: ROW_HEIGHT, opacity: 1, transitionEnd: { overflow: row.kind === "more" ? "hidden" : "visible" } },
       exit: animated ? { height: 0, opacity: 0, overflow: "hidden" } : undefined,
       transition: animated ? { height: ROW_SPRING, opacity: { duration: 0.16, ease: EASE_STANDARD } } : { duration: 0 },
+      onFocus: (event: FocusEvent<HTMLElement>) => { if (event.target === event.currentTarget && !isActive) select(row); },
       onClick: () => { select(row, { focus: true }); if (row.kind === "more") showMore(row); else toggle(row); },
     };
     if (row.kind === "more") return <motion.div key={row.id} {...common}><span className="jv-line"><span className="jv-more"><span className="jv-moreLabel">{t("Show {0} more", [row.next ?? 0])}</span><span className="jv-muted">{t("{0} hidden", [row.hidden ?? 0])}</span></span></span></motion.div>;
     if (row.kind === "loading") return <motion.div key={row.id} {...common}><span className="jv-line"><span className="jv-loading">{t("Loading")}</span></span></motion.div>;
     const branch = !!info && isBranch(info.type), current = !!hit && hit.path === row.path;
+    const keyHit = !!q && !!info && !info.isIndex && info.key.toLowerCase().includes(q.toLowerCase());
     return <motion.div key={row.id} {...common}>
       {isActive && <motion.span layoutId={`${uid}-highlight`} className="jv-highlight" aria-hidden="true" transition={reduce ? { duration: 0 } : HIGHLIGHT_SPRING} />}
       <span className="jv-line">
         <span className="jv-chevron" data-open={row.open || undefined} data-branch={branch || undefined} aria-hidden="true">{branch && <ChevronRight size={14} strokeWidth={1.75} />}</span>
-        {info!.isIndex ? <span className="jv-index">{info!.key}</span> : <span className="jv-key">{marked(info!.key, current && !branch ? false : current)}</span>}
+        {info!.isIndex ? <span className="jv-index">{info!.key}</span> : <span className="jv-key">{marked(info!.key, current)}</span>}
         <span className="jv-colon" aria-hidden="true">{row.level === 0 ? "" : ":"}</span>
         {branch
           ? <span className="jv-summary">{!row.open && <span className="jv-preview">{info!.preview}</span>}<span className="jv-countLabel">{t(info!.type === "array" ? (info!.count === 1 ? "{0} item" : "{0} items") : (info!.count === 1 ? "{0} key" : "{0} keys"), [info!.count])}</span></span>
-          : <span className="jv-value" data-type={info!.type} title={info!.plain.length > 40 ? info!.plain : undefined}>{info!.type === "string" ? <>&quot;{marked(info!.plain, current)}&quot;</> : marked(info!.text, current)}</span>}
+          : <span className="jv-value" data-type={info!.type} title={info!.plain.length > 40 ? info!.plain : undefined}>{info!.type === "string" ? <>&quot;{marked(info!.plain, current && !keyHit)}&quot;</> : marked(info!.text, current && !keyHit)}</span>}
         {copyable && <span className="jv-actions">{actionButton(row.path, "value", `${row.path}\u0001value`)}{actionButton(row.path, "path", `${row.path}\u0001path`)}</span>}
       </span>
     </motion.div>;
@@ -265,7 +273,7 @@ export function JsonViewer(props: JsonViewerProps) {
     <div id={`${uid}-tree`} ref={treeRef} className="jv-tree" role="tree" aria-label={label} onKeyDown={onKeyDown}>
       <AnimatePresence initial={false}>{rows.map(renderRow)}</AnimatePresence>
     </div>
-    {showPath && <div className="jv-pathBar">
+    {showPath && active && <div className="jv-pathBar">
       <code className="jv-path" title={active.path}>{active.path}</code>
       {active.info && <span className="jv-pathType">{typeLine(active.info)}</span>}
       {copyable && actionButton(active.path, "path", `${active.path}\u0001bar`, " jv-pathCopy")}

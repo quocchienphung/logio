@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { JsonViewer } from "../../../json-viewer/JsonViewer";
 import type { CollateralEngine } from "../../useCollateralEngine";
@@ -20,7 +20,6 @@ export function GroupedPreview({ plan, engine, notify }: { plan: JsonPlan; engin
   const epoch = plan.epoch ?? 0;
   // A new build of the document is a new source; the open branches and the search stay, being kept by the viewer.
   const source = useMemo(() => { void epoch; return remoteSource({ root: docRoot, children: docChildren, search: docSearch, text: docText }, "report"); }, [docRoot, docChildren, docSearch, docText, epoch]);
-  useEffect(() => () => source.dispose(), [source]);
   return <section className="ui-sb-card cr-panel cr-preview" aria-labelledby="gp-title">
     <div className="cr-card-top"><h3 className="ui-sb-h2" id="gp-title">{uiText("Reporting JSON preview")}</h3><span className="ui-sb-pill" data-tone="amber">{uiText("Diagnostic · not the export")}</span></div>
     <p className="ui-sb-muted">{uiText("{0} branches · {1} customers · {2} assets · {3} rows", [n(r.branches), n(r.customers), n(r.assets), n(r.rowsInSheet)])}</p>

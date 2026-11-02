@@ -105,3 +105,13 @@ test("the scroll target keeps a row fully visible with a row of margin (measured
   assert.equal(scrollTarget(100000, 0, viewport, 400), 20, "never past the end");
   assert.equal(rowLabel({ path: "x", key: "k", isIndex: false, type: "number", count: 0, text: "1", plain: "1", preview: "" }), "k: 1");
 });
+
+test("while the next page is on its way, the rows already here stay and a 'Loading' row follows them", () => {
+  const full = memorySource({ list: Array.from({ length: 8 }, (_, i) => i) }, "root");
+  const partial = { ...full, loaded: path => path === "root.list" ? 3 : 8, children: (path, from, to) => full.children(path, from, to) };
+  const { rows, missing } = buildRows({ source: partial, expanded: new Set(["root", "root.list"]), visible: { "root.list": 6 }, pageSize: 50 });
+  const list = rows.filter(r => r.parent === "root.list");
+  assert.deepEqual(list.map(r => r.kind), ["node", "node", "node", "loading"]);
+  assert.deepEqual(missing, [{ path: "root.list", from: 3, to: 6 }]);
+  assert.equal(list[0].setsize, 4);
+});
