@@ -38,7 +38,7 @@ async function audit(route, size) {
       const sideways = window.scrollX;
       window.scrollTo(0, 0);
       const clipped = el => {
-        for (let a = el.parentElement; a && a !== doc; a = a.parentElement) {
+        for (let a = el.parentElement; a && a !== doc && a !== body; a = a.parentElement) {
           const cs = getComputedStyle(a);
           if (cs.overflowX !== "visible" || cs.contain.includes("paint") || cs.clipPath !== "none") { const b = a.getBoundingClientRect(); if (b.right <= vw + 1 && b.left >= -1) return true; }
         }
@@ -85,7 +85,7 @@ async function audit(route, size) {
 
 const jobs = routes.flatMap(route => widths.map(w => [route, w]));
 let next = 0;
-const workers = Array.from({ length: 4 }, async () => { while (next < jobs.length) { const [route, w] = jobs[next++]; out.push(await audit(route, w)); } });
+const workers = Array.from({ length: 4 }, async () => { while (next < jobs.length) { const [route, w] = jobs[next++]; const started = Date.now(); const result = await Promise.race([audit(route, w), new Promise(resolve => setTimeout(() => resolve({ route, w, failed: "timed out after 80 s" }), 80000))]); out.push(result); console.error(`[${out.length}/${jobs.length}] ${route} ${w} ${Math.round((Date.now() - started) / 1000)}s`); } });
 await Promise.all(workers);
 out.sort((a, b) => a.route.localeCompare(b.route) || a.w - b.w);
 await fs.mkdir("docs/research/mobile-lock", { recursive: true });

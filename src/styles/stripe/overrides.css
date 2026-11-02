@@ -251,3 +251,16 @@
     height: calc(var(--navigation-menu-footer-height) + var(--hds-space-core-400));
   }
 }
+
+/* Locked vertical at 280px (a folded foldable): the sticky call-to-action bar of the product pages kept two buttons 4px wider than the screen. */
+@media (max-width: 300px) {
+  .MobileStickyNav__container { gap: 6px; padding-inline: 10px; }
+  .MobileStickyNav__container > * { flex: 0 1 auto; min-width: 0; }
+  .MobileStickyNav__container .CtaButton { padding-inline: 12px; white-space: normal; }
+  /* a single grid column took the width of its widest graphic (278px in a 248px row) */
+  .columns, .side-by-side, .feature-detail-grid { grid-template-columns: minmax(0, 1fr); }
+  .feature-card, .feature-detail { min-width: 0; max-width: 100%; }
+  .feature-card__graphic, .feature-detail__content { overflow-x: clip; }
+  .feature-detail, .feature-detail__content { width: 100%; box-sizing: border-box; }
+  .feature-detail > *, .feature-detail__content > * { min-width: 0; max-width: 100%; }
+}

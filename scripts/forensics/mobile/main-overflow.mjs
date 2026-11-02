@@ -19,7 +19,7 @@ for (const route of routes) {
       const r = el.getBoundingClientRect();
       if (r.width < 1 || r.height < 1 || r.right <= box.right + 1) continue;
       const s = getComputedStyle(el);
-      if (s.position === "fixed" || s.visibility === "hidden" || s.display === "none" || (!window.__all && clipped(el))) continue;
+      if (s.position === "fixed" || s.visibility === "hidden" || s.display === "none" || clipped(el)) continue;
       out.push(`[${clipper(el)}] ${el.tagName.toLowerCase()}.${String(el.className).split(" ").slice(0, 3).join(".")} R${Math.round(r.right)} W${Math.round(r.width)} (parent ${el.parentElement?.className?.toString().split(" ")[0]} ${getComputedStyle(el.parentElement).display})`);
       if (out.length >= 6) break;
     }
