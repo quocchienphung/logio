@@ -45,7 +45,6 @@ try {
     await stage.locator('.sv-row[data-loaded] .sv-cell[data-target]').waitFor();
     await stage.scrollIntoViewIfNeeded();
     check(`${width}: real readable data replaces bars`, await stage.locator('.sv').getAttribute('data-mode') === 'readable' && await stage.locator('.sv-cell > i').count() === 0 && (await stage.locator('.sv-formula__text').innerText()).includes('ho?ch'));
-    if (process.env.DEBUG_VIEWER) { await page.waitForTimeout(500); console.log(await page.evaluate(() => { const m=document.querySelector('.cg-stage .sv-cell[data-target] .cg-mark'), c=m?.closest('.sv-cell'), b=m?.closest('.sv-body'); return {mark:m?.getBoundingClientRect().toJSON(),cell:c?.getBoundingClientRect().toJSON(),body:b?.getBoundingClientRect().toJSON(),focus:b?.dataset.focusDebug,translate:c?.querySelector('.sv-target-text')?.style.translate,scroll:document.querySelector('.cg-stage .sv-scroll')?.scrollLeft}; })); }
     await page.waitForFunction(() => {
       const mark = document.querySelector('.cg-stage .sv-cell[data-target] .cg-mark');
       if (!mark) return false;
@@ -105,16 +104,14 @@ try {
     await dialog.locator('.sv-formula__text').filter({ hasText: 'Draft survives file inspection' }).waitFor();
     check(`${width}: unsaved preview is explicitly labelled`, await dialog.locator('.sv-preview-label').count() === 1);
     check(`${width}: return to issue restores actual source position`, await dialog.locator('.sv-namebox').innerText() === ref);
-    if (width < 1100) await dialog.getByRole('button', { name: 'Review and fix', exact: true }).click();
-    check(`${width}: editor draft survives sheet browsing`, await dialog.locator('.cd-textarea').inputValue() === 'Draft survives file inspection');
-    await dialog.locator('.cd-picker [data-variant=original]').click();
-    await dialog.locator('.sv-formula__text').filter({ hasText: 'ho?ch' }).waitFor({ state: 'attached' });
-    check(`${width}: original view restores file text without overwriting the draft`, await dialog.locator('.sv-preview-label').count() === 0 && await dialog.locator('.cd-textarea').inputValue() === 'Draft survives file inspection');
+    check(`${width}: editor draft survives sheet browsing`, await page.locator('.cd-textarea').inputValue() === 'Draft survives file inspection');
+    check(`${width}: popup contains the file only`, await dialog.locator('.cd-root, .cg-viewer__details, .cg-review-toggle').count() === 0);
+    check(`${width}: underlying editor stays inert`, await page.locator('.cd-textarea').evaluate(n => !!n.closest('[inert]')));
     await page.screenshot({ path: `${out}/popup-${width}.png` });
-    await dialog.locator('.cd-textarea').focus();
+    await dialog.getByRole('textbox', { name: 'Go to cell', exact: true }).focus();
     const counter = await dialog.locator('.cg-counter').innerText();
     await page.keyboard.press('ArrowLeft');
-    check(`${width}: editor arrows keep the selected issue`, await dialog.locator('.cg-counter').innerText() === counter);
+    check(`${width}: file input arrows keep the selected issue`, await dialog.locator('.cg-counter').innerText() === counter);
     await page.keyboard.press('Shift+Tab');
     check(`${width}: focus stays in popup`, await page.evaluate(() => document.querySelector('.cg-viewer').contains(document.activeElement)));
     await page.keyboard.press('Escape');

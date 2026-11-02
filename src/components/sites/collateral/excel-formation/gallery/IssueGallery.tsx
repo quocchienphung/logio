@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight, FileSpreadsheet, Maximize2, ScanSearch } fro
 import type { Issue } from "../engine/types";
 import { Specimen } from "./Specimen";
 import { SheetViewer, type SheetData } from "./SheetViewer";
+import { moveSheetHost } from "./sheet-host";
 import { railWindow, stepIndex, type Rect } from "./gallery-model";
 import { cellRef } from "../../labels";
 import "./gallery.css";
@@ -51,26 +52,19 @@ export function IssueGallery({ items, index, onIndex, details, override, sheet, 
       const host = document.createElement("div"); host.className = "cg-sheet-host"; return host;
     });
   }, []);
-  useLayoutEffect(() => { if (!viewer && sheetHost && sheetHost.parentElement !== sheetSlot.current) sheetSlot.current?.append(sheetHost); }, [viewer, sheetHost, items.length]);
+  useLayoutEffect(() => {
+    if (!viewer && sheetHost && sheetSlot.current) moveSheetHost(sheetHost, sheetSlot.current);
+  }, [viewer, sheetHost, items.length]);
   useEffect(() => () => { sheetHost?.remove(); }, [sheetHost]);
   // The page is inert while the viewer is open, so focus goes back to the stage only after the viewer has left the tree.
   useEffect(() => { if (!viewer && returnFocus.current) { returnFocus.current = false; stageRef.current?.focus(); } }, [viewer]);
-  const detailsSlot = useRef<HTMLDivElement>(null);
-  const [detailsHost, setDetailsHost] = useState<HTMLDivElement | null>(null);
-  // One stable portal host keeps word choices, exception reasons and drafts when the editor moves into the popup.
-  const mountSlot = useCallback((node: HTMLDivElement | null) => {
-    detailsSlot.current = node;
-    if (node) setDetailsHost(current => {
-      if (current) return current;
-      const host = document.createElement("div");
-      host.className = "cg-details-content";
-      return host;
-    });
-  }, []);
-  useEffect(() => () => { detailsHost?.remove(); }, [detailsHost]);
-  useLayoutEffect(() => {
-    if (!viewer && detailsHost) detailsSlot.current?.append(detailsHost);
-  }, [viewer, detailsHost]);
+  const closeViewer = useCallback(() => {
+    // Return the connected host before React removes the dialog; otherwise the browser
+    // discards the detached scroller's position even when its dimensions are identical.
+    if (sheetHost && sheetSlot.current) moveSheetHost(sheetHost, sheetSlot.current);
+    returnFocus.current = true;
+    setViewer(null);
+  }, [sheetHost]);
   const base = items[index];
   const item = base && override !== undefined ? { ...base, text: override } : base;
   const step = useCallback((delta: number) => onIndex(stepIndex(index, delta, items.length)), [index, items.length, onIndex]);
@@ -104,7 +98,7 @@ export function IssueGallery({ items, index, onIndex, details, override, sheet, 
     <p className="cg-empty" role="status">{uiText("No issue matches the filters.")}</p>
     {sheet && <div className="cg-layout"><div className="cg-media"><header className="cg-media__top"><span className="cg-media__title"><FileSpreadsheet size={16} />{sheet.meta.fileName}</span><button type="button" className="cg-expand" aria-haspopup="dialog" aria-expanded={!!viewer} onClick={openViewer}>{uiText("Open fullscreen")}</button></header><div ref={stageRef} className="cg-stage" data-open={!!viewer || undefined} role="group" tabIndex={0} onKeyDown={stageKeys}><div ref={mountSheetSlot} className="cg-sheet-slot" /></div></div></div>}
     {sheet && sheetHost && createPortal(<SheetViewer data={sheet} target={{ row: 1, col: 0, value: "" }} mode={sheetMode} onExpand={viewer ? undefined : openViewer} />, sheetHost)}
-    {viewer && <Viewer items={[]} index={0} onIndex={onIndex} sheet={sheet} sheetHost={sheetHost} readable={sheetMode === "readable"} onReadable={value => setSheetMode(value ? "readable" : "overview")} detailsHost={null} source={stageRef} from={viewer} onClose={() => { returnFocus.current = true; setViewer(null); }} />}
+    {viewer && <Viewer items={[]} index={0} onIndex={onIndex} sheet={sheet} sheetHost={sheetHost} readable={sheetMode === "readable"} onReadable={value => setSheetMode(value ? "readable" : "overview")} source={stageRef} from={viewer} onClose={closeViewer} />}
   </div>;
   const windowed = railWindow(index, items.length, 6);
   const label = uiText("{0} of {1}", [index + 1, items.length]);
@@ -135,11 +129,10 @@ export function IssueGallery({ items, index, onIndex, details, override, sheet, 
           <div className="cg-pagination"><button type="button" className="cg-button" aria-label={uiText("Previous issue")} disabled={index === 0} onClick={() => step(-1)}><ChevronLeft size={16} /></button><p className="cg-hint" aria-live="polite">{label}</p><button type="button" className="cg-button" aria-label={uiText("Next issue")} disabled={index >= items.length - 1} onClick={() => step(1)}><ChevronRight size={16} /></button></div>
         </footer>
       </div>
-      {details && <div ref={mountSlot} className="cg-details" />}
+      {details && <div className="cg-details"><div className="cg-details-content">{details}</div></div>}
     </div>
-    {details && detailsHost && createPortal(details, detailsHost)}
     {sheet && sheetHost && createPortal(<SheetViewer data={sheet} target={target} mode={sheetMode} lens={viewer ? 240 : 176} onSelectCell={onSelectCell} onExpand={viewer ? undefined : openViewer} />, sheetHost)}
-    {viewer && <Viewer detailsHost={details ? detailsHost : null} items={items} index={index} override={override} sheet={sheet} sheetHost={sheetHost} readable={sheetMode === "readable"} onReadable={value => setSheetMode(value ? "readable" : "overview")} source={stageRef} from={viewer} onIndex={onIndex} onClose={() => { returnFocus.current = true; setViewer(null); }} />}
+    {viewer && <Viewer items={items} index={index} override={override} sheet={sheet} sheetHost={sheetHost} readable={sheetMode === "readable"} onReadable={value => setSheetMode(value ? "readable" : "overview")} source={stageRef} from={viewer} onIndex={onIndex} onClose={closeViewer} />}
   </div>;
 }
 

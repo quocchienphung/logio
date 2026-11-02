@@ -31,7 +31,7 @@ Kết quả giữ-ra-ngoài (train 90% dòng, che một nguyên âm/`d` của t�
 
 Dựng độc lập từ preview công khai `https://uiarc.dev/components/speculative-decoding` (chỉ đọc trang đã render; ghi chú ở `docs/research/speculative-decoding/README.md`). `gallery/SpeculativePanel.tsx` + `speculative.css`: hai làn Draft/Target, chip nháp, quét kiểm tra, ô chấp nhận/loại, dòng Output có gạch chân theo nguồn, số liệu (Faster, Drafts accepted, Words per pass), thanh trượt độ dài bản nháp, công tắc so sánh, Play/Pause/Restart, giảm chuyển động thì nhảy đến kết quả.
 
-Nhịp phát lại là **của riêng** (preview không cho khôi phục thời gian). Mỗi lượt 1,84 s; một ô dài (13 từ lỗi, 7 lượt) từng mất ~14 s nên `stageMs` co nhịp để cả lần phát ≤ ~6 s (không dưới 1/3). Các ứng viên và nút dùng được ngay từ giây đầu, không phải đợi hoạt ảnh.
+**Cập nhật 2026-11-02:** nhịp riêng và `playback.ts` đã bị thay bằng nhịp đo trực tiếp từ preview (`engine/run-timeline.ts`; bảng đo ở `docs/research/speculative-decoding/README.md`). Mục này và `speculative.css` cũ đã được thay bởi `SpeculativeRun.tsx` + `speculative-run.css`.
 
 ## 4. Độ tin cậy ("không rollback, không lỗi")
 

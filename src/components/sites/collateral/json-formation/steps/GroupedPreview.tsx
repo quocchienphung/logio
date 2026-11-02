@@ -1,20 +1,30 @@
 "use client";
 
+import { useEffect, useMemo } from "react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
+import { JsonViewer } from "../../../json-viewer/JsonViewer";
+import type { CollateralEngine } from "../../useCollateralEngine";
 import type { JsonPlan } from "../engine/json-session";
+import { remoteSource } from "../remote-source";
 
-/** A small sample of the grouped result: branch > customer > asset. It is a diagnostic view, never the export. */
-export function GroupedPreview({ plan }: { plan: JsonPlan }) {
+/**
+ * The document the export would write, as a tree to explore: every branch, customer and asset of it, read from the worker a page at a time (the
+ * reference file is 27 MB, so it is never parsed here). It is the diagnostic build: it can differ from the file you may download until every
+ * check holds.
+ */
+export function GroupedPreview({ plan, engine, notify }: { plan: JsonPlan; engine: CollateralEngine; notify: (message: string) => void }) {
   const { t: uiText, locale } = useWorkspaceI18n();
   const n = (value: number) => new Intl.NumberFormat(locale === "vi" ? "vi-VN" : "en-US").format(value);
   const r = plan.reconciliation;
+  const { docRoot, docChildren, docSearch, docText } = engine;
+  const epoch = plan.epoch ?? 0;
+  // A new build of the document is a new source; the open branches and the search stay, being kept by the viewer.
+  const source = useMemo(() => { void epoch; return remoteSource({ root: docRoot, children: docChildren, search: docSearch, text: docText }, "report"); }, [docRoot, docChildren, docSearch, docText, epoch]);
+  useEffect(() => () => source.dispose(), [source]);
   return <section className="ui-sb-card cr-panel cr-preview" aria-labelledby="gp-title">
-    <div className="cr-card-top"><h3 className="ui-sb-h2" id="gp-title">{uiText("Grouped preview")}</h3><span className="ui-sb-pill" data-tone="amber">{uiText("Diagnostic · not the export")}</span></div>
+    <div className="cr-card-top"><h3 className="ui-sb-h2" id="gp-title">{uiText("Reporting JSON preview")}</h3><span className="ui-sb-pill" data-tone="amber">{uiText("Diagnostic · not the export")}</span></div>
     <p className="ui-sb-muted">{uiText("{0} branches · {1} customers · {2} assets · {3} rows", [n(r.branches), n(r.customers), n(r.assets), n(r.rowsInSheet)])}</p>
-    <ul className="cr-tree" role="tree" aria-label={uiText("Grouped preview")}>
-      {plan.preview.map(branch => <li key={branch.TTC01} role="treeitem" aria-expanded="true" aria-selected="false"><div className="cr-tree__node"><b>{branch.TTC01}</b> <span>{branch.TTC02}</span><small>{uiText("{0} customers", [n(branch.customerCount)])}</small></div>
-        <ul role="group">{branch.customers.map(customer => <li key={customer.TTC03} role="treeitem" aria-expanded="true" aria-selected="false"><div className="cr-tree__node"><b>{customer.TTC03}</b> <span>{customer.TTC04}</span><small>{uiText("{0} assets", [n(customer.assetCount)])}</small></div>
-          <ul role="group">{customer.assets.map(asset => <li key={asset.TS001} role="treeitem" aria-selected="false"><div className="cr-tree__node cr-tree__leaf"><b>{asset.TS001}</b> <span>{asset.TS013 || <i>{uiText("(empty)")}</i>}</span><small>{uiText("{0} contracts · {1} owners", [asset.TS009.length, asset.owners])}</small></div></li>)}</ul></li>)}</ul></li>)}
-    </ul>
+    <JsonViewer source={source} rootName="report" label={uiText("Reporting JSON")} defaultExpanded={["report", "report.CNTCTD"]} maxHeight={460} pageSize={50}
+      onCopy={({ kind }) => notify(kind === "path" ? uiText("Path copied") : uiText("Value copied"))} />
   </section>;
 }

@@ -49,3 +49,12 @@ The stricter split is a better indication of unseen phrases than a row split con
 - Existing viewer/review suite: 35 checks across those widths, including retained editor identity, exception reason, focus containment, lens edges and readable-column visibility.
 
 This is browser automation and visual inspection, not usability research with recruited users or physical-phone testing.
+
+## Update: the replay returns inside this layout
+
+The sentence above that the table has "no model playback, simulated performance figures, draft-length slider or animated token display" describes the first redesign. The product owner then asked for the Speculative decoding interaction back, built 1:1 from the public preview, **inside this layout** (same stacked blocks, same table, same rules for ambiguous words).
+
+- `gallery/SpeculativeRun.tsx` (+ `speculative-run.css`, `RollingNumber.tsx`, `linked-words.ts`, `engine/run-timeline.ts`) sits between the header of the suggestion card and the table. It replays the real draft and target of the words of the cell; the timings are the ones measured on the preview (`docs/research/speculative-decoding/README.md`). It never changes a value: choosing and approving still go through the table and the existing buttons. It can be folded with its title.
+- The figures describe the replay, not correctness, and say so next to the numbers. Ambiguous or unknown words stay as in the file, in amber, in the output line until chosen; a draft/target agreement on a word the file cannot confirm gets a question mark, not a tick.
+- Table interactions added on top: word hover/focus lights the same word in the output and the other way round, a click on an output word jumps to its row, `1`-`4` choose a candidate, the arrows move between rows, a chosen word flies from its chip into the output with the preview's spring; evidence text shows how often the chosen spelling was seen next to its neighbours.
+- QA: `node scripts/qa/collateral-speculative-run.mjs <base-url>` (50 checks, timings compared with the recording); frame pacing: `node scripts/forensics/speculative-run-fps.mjs <base-url>`. In the correction workbench QA nothing changed. The assertion in `collateral.mjs` that forbade playback controls was replaced by "the table is actionable at once and the replay makes no accuracy claim".

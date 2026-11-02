@@ -22,8 +22,12 @@ export interface JsonPlan {
   /** A small, clearly diagnostic sample of the grouped result. */
   preview: PreviewBranch[];
   options: ReportOptions;
+  /** What each stage of the check took in the worker (ms): the report, the bytes and the replay. */
+  timings?: { build: number; verify: number; replay: number };
+  /** Which build of the document the viewer is reading (a new one every time the plan is made again). */
+  epoch?: number;
 }
-export interface JsonOutput extends JsonPlan { bytes: Uint8Array | null; audit: string; csv: string; fileName: string }
+export interface JsonOutput extends JsonPlan { bytes: Uint8Array | null; audit: string; csv: string; fileName: string; /** The document itself, for the worker to serve to the viewer. Never posted as it is. */ report: ReportOut; /** How long the report took to build, the bytes to verify, and the whole of it again for the replay check (ms). */ timings: { build: number; verify: number; replay: number } }
 
 const valueAtOf = (session: Session, state: ReviewState) => (row: Row, col: number) => state.patches[cellKey(session.workbook.sheets.find(s => s.name === session.wprofile.primary)!.name, row.r, col)]?.value ?? row.cells[col]?.v ?? "";
 const valid = (text: string) => text.trim() !== "";
@@ -43,10 +47,15 @@ export function planJson(session: Session, state: ReviewState, meta: ReportMeta,
   const headerRow = session.wprofile.sheets.find(item => item.name === session.wprofile.primary)?.headerRow ?? 0;
   const dateCol = session.wprofile.mapping?.resolved.find(item => item.spec.header === "NGAYDULIEU")?.col;
   const workbookDate = workbookReportDate(sheet?.rows.filter(row => row.r > headerRow) ?? [], dateCol, valueAt);
+  const clock = [performance.now()];
   const first = buildReport(session.workbook, session.wprofile, session.profile, valueAt, meta, options, patchedKeys);
+  clock.push(performance.now());
   const encoded = encodeAndVerify(first.report);
+  clock.push(performance.now());
   const second = buildReport(session.workbook, session.wprofile, session.profile, valueAt, meta, options, patchedKeys);
   const replay = encodeAndVerify(second.report);
+  clock.push(performance.now());
+  const timings = { build: Math.round(clock[1] - clock[0]), verify: Math.round(clock[2] - clock[1]), replay: Math.round(clock[3] - clock[2]) };
   const rec = first.reconciliation;
 
   // The approved description of every edited representative row must be what the JSON holds (checked on the bytes, not on the objects).
@@ -88,6 +97,7 @@ export function planJson(session: Session, state: ReviewState, meta: ReportMeta,
   return {
     reconciliation: rec, checks, ready, verification: encoded.verification, problems: first.problems, workbookDate: workbookDate.date, preview: previewOf(first.report), options,
     bytes: ready ? encoded.bytes : null, audit: ready || true ? auditJson(session, state, rec, checks, options, meta) : "", csv: auditCsv(session, state), fileName: "reporting-output.json",
+    report: first.report, timings,
   };
 }
 

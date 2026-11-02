@@ -8,6 +8,7 @@ import type { RoundTripReport } from "../excel-formation/engine/xlsx-patcher.ts"
 import type { ProgressFile, RestoreError } from "../excel-formation/engine/progress.ts";
 import type { JsonPlan } from "../json-formation/engine/json-session.ts";
 import type { ReportMeta, ReportOptions } from "../json-formation/engine/json-report.ts";
+import type { JsonNodeInfo, SearchResult } from "../../json-viewer/json-model.ts";
 
 /** What the page needs after a workbook is opened. Nothing here is sent anywhere: it crosses only the worker boundary of this browser tab. */
 export interface OpenResult {
@@ -66,6 +67,10 @@ export type Request =
   | { type: "row"; row: number }
   | { type: "groupRows"; issueId: string }
   | { type: "exportXlsx" }
+  | { type: "docRoot" }
+  | { type: "docChildren"; keys: string[]; from: number; to: number }
+  | { type: "docSearch"; query: string; max: number }
+  | { type: "docText"; keys: string[] }
   | { type: "progressSave" }
   | { type: "progressLoad"; file: unknown }
   | { type: "json"; meta: ReportMeta; options: ReportOptions; final: boolean };
@@ -82,6 +87,10 @@ export type Response =
   | { type: "groupRows"; rows: number[] }
   | { type: "exported"; fileName: string; bytes: ArrayBuffer; changedCells: number; roundTrip: RoundTripReport }
   | { type: "json"; plan: JsonPlan; bytes?: ArrayBuffer; audit: string; csv: string }
+  | { type: "docRoot"; epoch: number; info: JsonNodeInfo | null }
+  | { type: "docChildren"; epoch: number; items: JsonNodeInfo[] }
+  | { type: "docSearch"; epoch: number; result: SearchResult }
+  | { type: "docText"; epoch: number; text: string | null }
   | { type: "progress"; file: ProgressFile }
   | { type: "restored"; view: ReviewView; patches: number; exceptions: number; matches: boolean; rulesChanged: boolean }
   | { type: "restoreRefused"; error: RestoreError; at?: { row: number; col: number } }

@@ -2,6 +2,7 @@
 import { openSession, exportCorrected, type Session } from "../excel-formation/engine/session.ts";
 import { CreditImportError } from "../excel-formation/engine/xlsx-reader.ts";
 import { planJson } from "../json-formation/engine/json-session.ts";
+import { childrenOf, rootInfo, searchDocument, textOf } from "../json-formation/engine/json-doc.ts";
 import { VietnameseModel } from "../excel-formation/engine/predict.ts";
 import { restoreProgress, snapshotProgress } from "../excel-formation/engine/progress.ts";
 import { workbookGridMeta, workbookGridRows } from "../excel-formation/engine/workbook-grid.ts";
@@ -14,6 +15,9 @@ import type { ReviewView, WorkerMessage, WorkerRequest } from "./protocol.ts";
  */
 let session: Session | null = null;
 let history: History = newHistory();
+/** The reporting document of the latest plan, served to the viewer page by page. */
+let document: { report: unknown; epoch: number } | null = null;
+const DOC_ROOT = "report";
 /** Learned from the clean text of this file the first time a prediction is asked for (a second or so on a large file), then kept. */
 let language: VietnameseModel | null = null;
 function languageOf(s: Session): VietnameseModel {
@@ -39,6 +43,7 @@ async function handle(id: number, request: WorkerRequest["request"]) {
     case "open": {
       history = newHistory();
       language = null;
+      document = null;
       session = await openSession(new Uint8Array(request.bytes), request.fileName, { diacriticPolicy: request.diacriticPolicy, overrides: request.overrides, onProgress: (phase, fraction) => post({ id, progress: { phase, fraction } }) });
       const headers: Record<number, string> = {};
       for (const item of session.wprofile.mapping?.resolved ?? []) headers[item.col] = item.spec.header;
@@ -88,11 +93,16 @@ async function handle(id: number, request: WorkerRequest["request"]) {
     }
     case "json": {
       const s = need();
-      const { bytes, audit, csv, ...plan } = planJson(s, history.present, request.meta, request.options, summarize(history.present, s.ctx));
+      const { bytes, audit, csv, report, ...plan } = planJson(s, history.present, request.meta, request.options, summarize(history.present, s.ctx));
+      document = { report, epoch: (document?.epoch ?? 0) + 1 };
       // Only a request marked final, and only when every gate holds, ever carries the bytes of the reporting JSON.
       const out = request.final && plan.ready && bytes ? bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer : undefined;
-      return { type: "json" as const, plan, audit, csv, ...(out ? { bytes: out } : {}) };
+      return { type: "json" as const, plan: { ...plan, epoch: document.epoch }, audit, csv, ...(out ? { bytes: out } : {}) };
     }
+    case "docRoot": return { type: "docRoot" as const, epoch: document?.epoch ?? 0, info: document ? rootInfo(document.report, DOC_ROOT) : null };
+    case "docChildren": return { type: "docChildren" as const, epoch: document?.epoch ?? 0, items: document ? childrenOf(document.report, DOC_ROOT, request.keys, request.from, request.to) : [] };
+    case "docSearch": return { type: "docSearch" as const, epoch: document?.epoch ?? 0, result: document ? searchDocument(document.report, DOC_ROOT, request.query, request.max) : { hits: [], capped: false } };
+    case "docText": return { type: "docText" as const, epoch: document?.epoch ?? 0, text: document ? textOf(document.report, request.keys) : null };
     case "gridMeta": {
       const s = need();
       return { type: "gridMeta" as const, meta: workbookGridMeta(s.workbook, s.wprofile, request.sheet ?? s.wprofile.primary ?? s.workbook.sheets[0].name) };

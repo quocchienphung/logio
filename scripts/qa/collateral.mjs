@@ -88,11 +88,12 @@ try {
   check('The magnifier draws a few real cells at the larger size (no scaled copy of the sheet, so nothing is resampled)', lens.cells >= 1 && lens.cells <= 90 && !/matrix\(([^,]+),/.test(lens.transform.replace(/matrix\(1, 0, 0, 1,.*\)/, 'none')));
   check('The magnifier says where it is looking (cell and zoom)', /^[A-Z]+\d+ · ×[2-8](\.5)?$/.test((await page.locator('.sv-lens__label').innerText()).trim()));
   await page.screenshot({ path: `${out}/04-magnifier.png` });
-  await page.mouse.wheel(0, -200);
-  await page.keyboard.down('Alt'); await page.mouse.wheel(0, -300); await page.keyboard.up('Alt');
-  await page.waitForTimeout(300);
+  const zoomBefore = Number((await page.locator('.sv-lens__label').innerText()).match(/×([\d.]+)/)?.[1]);
+  await page.getByRole('button', { name: 'Zoom in magnifier' }).click();
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5, { steps: 4 });
+  await page.waitForTimeout(350);
   const zoomed = Number((await page.locator('.sv-lens__label').innerText()).match(/×([\d.]+)/)?.[1]);
-  check('Alt + wheel changes the magnifier zoom (2 to 8 times)', zoomed >= 2 && zoomed <= 8 && zoomed !== 5);
+  check('The magnifier has zoom buttons and stays between 2 and 8 times', zoomed >= 2 && zoomed <= 8 && zoomed > zoomBefore);
   await page.mouse.move(5, 5);
   await page.waitForTimeout(400);
   check('The magnifier leaves with the pointer', await page.locator('.sv-lens').count() === 0);

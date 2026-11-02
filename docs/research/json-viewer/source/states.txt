@@ -1,0 +1,119 @@
+
+## initial: 14 rows
+  L1 1/1 exp=true sel=true kind=node ACTIVE tab=0 | order, object, 13 keys | order 13 keys
+  L2 1/13 exp=null sel=false kind=node tab=-1 | id: ord_8Kd2Q7 | id : "ord_8Kd2Q7"
+  L2 2/13 exp=null sel=false kind=node tab=-1 | object: order | object : "order"
+  L2 3/13 exp=null sel=false kind=node tab=-1 | status: fulfilled | status : "fulfilled"
+  L2 4/13 exp=null sel=false kind=node tab=-1 | livemode: false | livemode : false
+  L2 5/13 exp=null sel=false kind=node tab=-1 | created: 1757851200 | created : 1757851200
+  L2 6/13 exp=null sel=false kind=node tab=-1 | currency: usd | currency : "usd"
+  L2 7/13 exp=null sel=false kind=node tab=-1 | amount_total: 48600 | amount_total : 48600
+  L2 8/13 exp=false sel=false kind=node tab=-1 | customer, object, 5 keys | customer : { id, name, email, … } 5 keys
+  L2 9/13 exp=false sel=false kind=node tab=-1 | items, array, 3 items | items : […] 3 items
+  L2 10/13 exp=false sel=false kind=node tab=-1 | shipping, object, 4 keys | shipping : { carrier, service, tracking, … } 4 keys
+  L2 11/13 exp=null sel=false kind=node tab=-1 | discount: null | discount : null
+  L2 12/13 exp=false sel=false kind=node tab=-1 | metadata, object, 2 keys | metadata : { campaign id, gift wrap } 2 keys
+  L2 13/13 exp=false sel=false kind=node tab=-1 | events, array, 180 items | events : […] 180 items
+
+## collapsed branch row html:
+<div role="treeitem" tabindex="-1" aria-level="2" aria-posinset="8" aria-setsize="13" aria-expanded="false" aria-selected="false" aria-label="customer, object, 5 keys" class="jv_row" data-kind="node" style="--level:1;height:30px;opacity:1;overflow:visible"><span class="jv_line"><span class="jv_chevron" data-branch="true" aria-hidden="true"><svg lucide-chevron-right/></span><span class="jv_key">customer</span><span class="jv_colon" aria-hidden="true">:</span><span class="jv_summary"><span class="jv_preview">{ id, name, email, … }</span><span class="jv_countLabel">5 keys</span></span><span class="jv_actions"><button type="button" tabindex="-1" class="jv_action" data-state="idle" aria-label="Copy value" title="Copy value"><span class="jv_actionGlyph" style="opacity:1;transform:none"><svg lucide-copy/></span></button><button type="button" tabindex="-1" class="jv_action" data-state="idle" aria-label="Copy path" title="Copy path"><span class="jv_actionGlyph" style="opacity:1;transform:none"><svg lucide-link-2/></span></button></span></span></div>
+
+## string row html (hover not applied):
+<div role="treeitem" tabindex="-1" aria-level="2" aria-posinset="3" aria-setsize="13" aria-selected="false" aria-label="status: fulfilled" class="jv_row" data-kind="node" style="--level:1;height:30px;opacity:1;overflow:visible"><span class="jv_line"><span class="jv_chevron" aria-hidden="true"></span><span class="jv_key">status</span><span class="jv_colon" aria-hidden="true">:</span><span class="jv_value" data-type="string">"<!-- -->fulfilled<!-- -->"</span><span class="jv_actions"><button type="button" tabindex="-1" class="jv_action" data-state="idle" aria-label="Copy value" title="Copy value"><span class="jv_actionGlyph" style="opacity:1;transform:none"><svg lucide-copy/></span></button><button type="button" tabindex="-1" class="jv_action" data-state="idle" aria-label="Copy path" title="Copy path"><span class="jv_actionGlyph" style="opacity:1;transform:none"><svg lucide-link-2/></span></button></span></span></div>
+
+## below the tree (path bar, status):
+<div class="jv_pathBar"><code class="jv_path" title="order">order</code><span class="jv_pathType">object, 13 keys</span><button type="button" class="jv_action jv_pathCopy" data-state="idle" aria-label="Copy path" title="Copy path"><span class="jv_actionGlyph" style="opacity:1;transform:none"><svg lucide-copy/></span></button></div>
+<span class="jv_srOnly" role="status"></span>
+
+## after opening events (180 items, page 50): 65 rows
+  L1 1/1 exp=true sel=false kind=node tab=-1 | order, object, 13 keys | order 13 keys
+  L2 1/13 exp=null sel=false kind=node tab=-1 | id: ord_8Kd2Q7 | id : "ord_8Kd2Q7"
+  L2 2/13 exp=null sel=false kind=node tab=-1 | object: order | object : "order"
+  L2 3/13 exp=null sel=false kind=node tab=-1 | status: fulfilled | status : "fulfilled"
+  L2 4/13 exp=null sel=false kind=node tab=-1 | livemode: false | livemode : false
+  L2 5/13 exp=null sel=false kind=node tab=-1 | created: 1757851200 | created : 1757851200
+  L2 6/13 exp=null sel=false kind=node tab=-1 | currency: usd | currency : "usd"
+  L2 7/13 exp=null sel=false kind=node tab=-1 | amount_total: 48600 | amount_total : 48600
+  L2 8/13 exp=false sel=false kind=node tab=-1 | customer, object, 5 keys | customer : { id, name, email, … } 5 keys
+  L2 9/13 exp=false sel=false kind=node tab=-1 | items, array, 3 items | items : […] 3 items
+  L2 10/13 exp=false sel=false kind=node tab=-1 | shipping, object, 4 keys | shipping : { carrier, service, tracking, … } 4 keys
+  L2 11/13 exp=null sel=false kind=node tab=-1 | discount: null | discount : null
+  L2 12/13 exp=false sel=false kind=node tab=-1 | metadata, object, 2 keys | metadata : { campaign id, gift wrap } 2 keys
+  L2 13/13 exp=true sel=true kind=node ACTIVE tab=0 | events, array, 180 items | events : 180 items
+  L3 1/51 exp=false sel=false kind=node tab=-1 | 0, object, 4 keys | 0 : { id, type, at, … } 4 keys
+  L3 2/51 exp=false sel=false kind=node tab=-1 | 1, object, 4 keys | 1 : { id, type, at, … } 4 keys
+  L3 3/51 exp=false sel=false kind=node tab=-1 | 2, object, 4 keys | 2 : { id, type, at, … } 4 keys
+  L3 4/51 exp=false sel=false kind=node tab=-1 | 3, object, 4 keys | 3 : { id, type, at, … } 4 keys
+  L3 5/51 exp=false sel=false kind=node tab=-1 | 4, object, 4 keys | 4 : { id, type, at, … } 4 keys
+  L3 6/51 exp=false sel=false kind=node tab=-1 | 5, object, 4 keys | 5 : { id, type, at, … } 4 keys
+  L3 7/51 exp=false sel=false kind=node tab=-1 | 6, object, 4 keys | 6 : { id, type, at, … } 4 keys
+  L3 8/51 exp=false sel=false kind=node tab=-1 | 7, object, 4 keys | 7 : { id, type, at, … } 4 keys
+  L3 9/51 exp=false sel=false kind=node tab=-1 | 8, object, 4 keys | 8 : { id, type, at, … } 4 keys
+  L3 10/51 exp=false sel=false kind=node tab=-1 | 9, object, 4 keys | 9 : { id, type, at, … } 4 keys
+  L3 11/51 exp=false sel=false kind=node tab=-1 | 10, object, 4 keys | 10 : { id, type, at, … } 4 keys
+  L3 12/51 exp=false sel=false kind=node tab=-1 | 11, object, 4 keys | 11 : { id, type, at, … } 4 keys
+  L3 13/51 exp=false sel=false kind=node tab=-1 | 12, object, 4 keys | 12 : { id, type, at, … } 4 keys
+  L3 14/51 exp=false sel=false kind=node tab=-1 | 13, object, 4 keys | 13 : { id, type, at, … } 4 keys
+  L3 15/51 exp=false sel=false kind=node tab=-1 | 14, object, 4 keys | 14 : { id, type, at, … } 4 keys
+  L3 16/51 exp=false sel=false kind=node tab=-1 | 15, object, 4 keys | 15 : { id, type, at, … } 4 keys
+  L3 17/51 exp=false sel=false kind=node tab=-1 | 16, object, 4 keys | 16 : { id, type, at, … } 4 keys
+  L3 18/51 exp=false sel=false kind=node tab=-1 | 17, object, 4 keys | 17 : { id, type, at, … } 4 keys
+  L3 19/51 exp=false sel=false kind=node tab=-1 | 18, object, 4 keys | 18 : { id, type, at, … } 4 keys
+  L3 20/51 exp=false sel=false kind=node tab=-1 | 19, object, 4 keys | 19 : { id, type, at, … } 4 keys
+  L3 21/51 exp=false sel=false kind=node tab=-1 | 20, object, 4 keys | 20 : { id, type, at, … } 4 keys
+  L3 22/51 exp=false sel=false kind=node tab=-1 | 21, object, 4 keys | 21 : { id, type, at, … } 4 keys
+  L3 23/51 exp=false sel=false kind=node tab=-1 | 22, object, 4 keys | 22 : { id, type, at, … } 4 keys
+  L3 24/51 exp=false sel=false kind=node tab=-1 | 23, object, 4 keys | 23 : { id, type, at, … } 4 keys
+  L3 25/51 exp=false sel=false kind=node tab=-1 | 24, object, 4 keys | 24 : { id, type, at, … } 4 keys
+  L3 26/51 exp=false sel=false kind=node tab=-1 | 25, object, 4 keys | 25 : { id, type, at, … } 4 keys
+
+## more row html:
+<div role="treeitem" tabindex="-1" aria-level="3" aria-posinset="51" aria-setsize="51" aria-selected="false" aria-label="Show 50 more, 130 hidden" class="jv_row" data-kind="more" style="--level: 2; height: 30px; opacity: 1; overflow: hidden;"><span class="jv_line"><span class="jv_more"><span class="jv_moreLabel">Show 50 more</span><span class="jv_muted">130 hidden</span></span></span></div>
+
+## after searching "refund": 152 rows
+  L1 1/1 exp=true sel=false kind=node tab=-1 | order, object, 13 keys | order 13 keys
+  L2 1/13 exp=null sel=false kind=node tab=-1 | id: ord_8Kd2Q7 | id : "ord_8Kd2Q7"
+  L2 2/13 exp=null sel=false kind=node tab=-1 | object: order | object : "order"
+  L2 3/13 exp=null sel=false kind=node tab=-1 | status: fulfilled | status : "fulfilled"
+  L2 4/13 exp=null sel=false kind=node tab=-1 | livemode: false | livemode : false
+  L2 5/13 exp=null sel=false kind=node tab=-1 | created: 1757851200 | created : 1757851200
+  L2 6/13 exp=null sel=false kind=node tab=-1 | currency: usd | currency : "usd"
+  L2 7/13 exp=null sel=false kind=node tab=-1 | amount_total: 48600 | amount_total : 48600
+  L2 8/13 exp=false sel=false kind=node tab=-1 | customer, object, 5 keys | customer : { id, name, email, … } 5 keys
+  L2 9/13 exp=false sel=false kind=node tab=-1 | items, array, 3 items | items : […] 3 items
+  L2 10/13 exp=false sel=false kind=node tab=-1 | shipping, object, 4 keys | shipping : { carrier, service, tracking, … } 4 keys
+  L2 11/13 exp=null sel=false kind=node tab=-1 | discount: null | discount : null
+  L2 12/13 exp=false sel=false kind=node tab=-1 | metadata, object, 2 keys | metadata : { campaign id, gift wrap } 2 keys
+  L2 13/13 exp=true sel=false kind=node tab=-1 | events, array, 180 items | events : 180 items
+  L3 1/133 exp=false sel=false kind=node tab=-1 | 0, object, 4 keys | 0 : { id, type, at, … } 4 keys
+  L3 2/133 exp=false sel=false kind=node tab=-1 | 1, object, 4 keys | 1 : { id, type, at, … } 4 keys
+  L3 3/133 exp=false sel=false kind=node tab=-1 | 2, object, 4 keys | 2 : { id, type, at, … } 4 keys
+  L3 4/133 exp=false sel=false kind=node tab=-1 | 3, object, 4 keys | 3 : { id, type, at, … } 4 keys
+  L3 5/133 exp=false sel=false kind=node tab=-1 | 4, object, 4 keys | 4 : { id, type, at, … } 4 keys
+  L3 6/133 exp=false sel=false kind=node tab=-1 | 5, object, 4 keys | 5 : { id, type, at, … } 4 keys
+  L3 7/133 exp=false sel=false kind=node tab=-1 | 6, object, 4 keys | 6 : { id, type, at, … } 4 keys
+  L3 8/133 exp=false sel=false kind=node tab=-1 | 7, object, 4 keys | 7 : { id, type, at, … } 4 keys
+  L3 9/133 exp=false sel=false kind=node tab=-1 | 8, object, 4 keys | 8 : { id, type, at, … } 4 keys
+  L3 10/133 exp=false sel=false kind=node tab=-1 | 9, object, 4 keys | 9 : { id, type, at, … } 4 keys
+  L3 11/133 exp=false sel=false kind=node tab=-1 | 10, object, 4 keys | 10 : { id, type, at, … } 4 keys
+  L3 12/133 exp=false sel=false kind=node tab=-1 | 11, object, 4 keys | 11 : { id, type, at, … } 4 keys
+  L3 13/133 exp=false sel=false kind=node tab=-1 | 12, object, 4 keys | 12 : { id, type, at, … } 4 keys
+  L3 14/133 exp=false sel=false kind=node tab=-1 | 13, object, 4 keys | 13 : { id, type, at, … } 4 keys
+  L3 15/133 exp=false sel=false kind=node tab=-1 | 14, object, 4 keys | 14 : { id, type, at, … } 4 keys
+  L3 16/133 exp=false sel=false kind=node tab=-1 | 15, object, 4 keys | 15 : { id, type, at, … } 4 keys
+  L3 17/133 exp=false sel=false kind=node tab=-1 | 16, object, 4 keys | 16 : { id, type, at, … } 4 keys
+  L3 18/133 exp=false sel=false kind=node tab=-1 | 17, object, 4 keys | 17 : { id, type, at, … } 4 keys
+  L3 19/133 exp=false sel=false kind=node tab=-1 | 18, object, 4 keys | 18 : { id, type, at, … } 4 keys
+  L3 20/133 exp=false sel=false kind=node tab=-1 | 19, object, 4 keys | 19 : { id, type, at, … } 4 keys
+  L3 21/133 exp=false sel=false kind=node tab=-1 | 20, object, 4 keys | 20 : { id, type, at, … } 4 keys
+  L3 22/133 exp=false sel=false kind=node tab=-1 | 21, object, 4 keys | 21 : { id, type, at, … } 4 keys
+  L3 23/133 exp=false sel=false kind=node tab=-1 | 22, object, 4 keys | 22 : { id, type, at, … } 4 keys
+  L3 24/133 exp=false sel=false kind=node tab=-1 | 23, object, 4 keys | 23 : { id, type, at, … } 4 keys
+  L3 25/133 exp=false sel=false kind=node tab=-1 | 24, object, 4 keys | 24 : { id, type, at, … } 4 keys
+  L3 26/133 exp=false sel=false kind=node tab=-1 | 25, object, 4 keys | 25 : { id, type, at, … } 4 keys
+
+## toolbar with matches:
+<div class="jv_toolbar"><label class="jv_search"><svg lucide-search/><input type="search" class="jv_input" placeholder="Search keys and values" aria-label="Search JSON" aria-controls="_R_l6usseinqbsnndb_-tree" spellcheck="false" autocomplete="off" value="refund"><span class="jv_matches" style="opacity: 1; transform: none;"><span class="jv_count" aria-live="polite">1/1</span><button type="button" class="jv_tool" aria-label="Previous match"><svg lucide-chevron-up/></button><button type="button" class="jv_tool" aria-label="Next match"><svg lucide-chevron-down/></button></span></label><span class="jv_divider" aria-hidden="true"></span><button type="button" class="jv_tool" aria-label="Expand all" title="Expand all"><svg lucide-chevrons-up-down/></button><button type="button" class="jv_tool" aria-label="Collapse all" title="Collapse all"><svg lucide-chevrons-down-up/></button></div>
+
+## a mark:
+<span class="jv_value" data-type="string">"<mark class="jv_mark" data-current="true">Refund</mark> requested for damaged lamp shade"</span>

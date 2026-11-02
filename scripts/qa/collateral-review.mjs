@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { buildFixture } from './lib/collateral-fixture.mjs';
 
-// Review usability regressions: inspect edge cells, move the live editor, type safely, close, and use the phone layout.
+// Review usability regressions: file-only popup, retained editor, keyboard, close and phone layout.
 const base = process.argv[2] || 'http://localhost:3002';
 const out = 'docs/research/collateral/review-qa';
 await fs.mkdir(out, { recursive: true });
@@ -53,10 +53,9 @@ try {
     const dialog = page.getByRole('dialog');
     await dialog.waitFor();
     await page.waitForTimeout(1100);
-    if (width < 1100) await dialog.getByRole('button', { name: 'Review and fix', exact: true }).click();
-    check(`${width}: popup uses the same editor with draft and reason intact`, await dialog.locator('.cd-textarea').getAttribute('data-review-identity') === 'same-editor' && await dialog.locator('.cd-textarea').inputValue() === 'Draft kept while inspecting' && await dialog.locator('.cd-exception input').inputValue() === 'Reason kept while inspecting');
+    check(`${width}: file-only popup leaves the same editor and reason intact`, await dialog.locator('.cd-root, .cg-viewer__details').count() === 0 && await page.locator('.cd-textarea').getAttribute('data-review-identity') === 'same-editor' && await page.locator('.cd-textarea').inputValue() === 'Draft kept while inspecting' && await page.locator('.cd-exception input').inputValue() === 'Reason kept while inspecting');
     const count = await dialog.locator('.cg-counter').innerText();
-    await dialog.locator('.cd-textarea').focus();
+    await dialog.getByRole('textbox', { name: 'Go to cell', exact: true }).focus();
     await page.keyboard.press('ArrowLeft');
     check(`${width}: text arrow keys do not change the selected issue`, await dialog.locator('.cg-counter').innerText() === count);
     for (let i = 0; i < 20; i++) {
@@ -66,11 +65,10 @@ try {
     }
     check(`${width}: Shift+Tab cycles inside popup`, true);
     if (width >= 1100) {
-      const file = await dialog.locator('.cg-frame').boundingBox(), details = await dialog.locator('.cg-viewer__details').boundingBox();
-      check('Large popup keeps file and editor apart with surrounding margins', file.x >= 24 && file.x + file.width + 20 <= details.x && details.x + details.width <= width - 24);
+      const file = await dialog.locator('.cg-frame').boundingBox();
+      check('Large popup uses the available width with surrounding margins', file.x >= 24 && file.x + file.width <= width - 24 && file.width > width * .85);
     }
     await page.screenshot({ path: `${out}/popup-${width}.png` });
-    if (width < 1100) await dialog.getByRole('button', { name: 'File preview', exact: true }).click();
     await dialog.getByRole('radio', { name: 'Readable', exact: true }).click();
     check(`${width}: readable view brings the selected column into view`, await dialog.locator('.sv-head .sv-letter[data-target]').evaluate(node => { const r = node.getBoundingClientRect(), frame = document.querySelector('.cg-frame').getBoundingClientRect(); return r.left >= frame.left && r.left < frame.right; }));
     await page.keyboard.press('Escape');

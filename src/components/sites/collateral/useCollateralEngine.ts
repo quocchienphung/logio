@@ -133,6 +133,12 @@ export function useCollateralEngine() {
     return () => window.removeEventListener("beforeunload", warn);
   }, [unsaved]);
 
-  return { unsaved, saveProgress, loadProgress, jsonPlan, phase, progress, failure, result, view, busy, fileName, fileSize, diacriticPolicy, open, close, retry, rescan, edit, reject, reopen, accept, chooseGroup, undo, redo, bulkPlan, bulkApply, rowContext, sheetWindow, gridMeta, gridRows, predict, groupRows, exportXlsx, clearFailure: () => setFailure(null) };
+  /** The reporting document of the latest plan, read a page at a time (the viewer's source). */
+  const docRoot = useCallback(async () => { const r = await engine().call({ type: "docRoot" }); return r.type === "docRoot" ? r : null; }, []);
+  const docChildren = useCallback(async (keys: string[], from: number, to: number) => { const r = await engine().call({ type: "docChildren", keys, from, to }); return r.type === "docChildren" ? r : null; }, []);
+  const docSearch = useCallback(async (query: string, max: number) => { const r = await engine().call({ type: "docSearch", query, max }); return r.type === "docSearch" ? r : null; }, []);
+  const docText = useCallback(async (keys: string[]) => { const r = await engine().call({ type: "docText", keys }); return r.type === "docText" ? r : null; }, []);
+
+  return { docRoot, docChildren, docSearch, docText, unsaved, saveProgress, loadProgress, jsonPlan, phase, progress, failure, result, view, busy, fileName, fileSize, diacriticPolicy, open, close, retry, rescan, edit, reject, reopen, accept, chooseGroup, undo, redo, bulkPlan, bulkApply, rowContext, sheetWindow, gridMeta, gridRows, predict, groupRows, exportXlsx, clearFailure: () => setFailure(null) };
 }
 export type CollateralEngine = ReturnType<typeof useCollateralEngine>;

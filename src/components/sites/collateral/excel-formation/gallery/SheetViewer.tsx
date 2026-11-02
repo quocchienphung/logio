@@ -144,7 +144,6 @@ function SheetSurface({ data, target, mode, lens, sheetPicker, busy, failed, onR
     const bounds = body.current?.getBoundingClientRect(), rect = cell?.getBoundingClientRect();
     const middle = bounds && rect ? (Math.max(rect.left, bounds.left + GUTTER) + Math.min(rect.right, bounds.right - 12)) / 2 - rect.left : 0;
     const next = hasMarks && cell && mark && rect ? Math.max(0, mark.getBoundingClientRect().left - rect.left + focusOffset - middle) : 0;
-    if (body.current) body.current.dataset.focusDebug = JSON.stringify({ next, focusOffset, hasMarks, mark: !!mark, middle });
     if (Math.abs(next - focusOffset) < 1) return;
     const frame = requestAnimationFrame(() => setFocusOffset(next));
     return () => cancelAnimationFrame(frame);

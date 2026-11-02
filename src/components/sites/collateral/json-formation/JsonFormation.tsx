@@ -35,7 +35,7 @@ export function JsonFormation({ notify }: { workspaceId: string; notify: (messag
       <AnimatePresence mode="wait" initial={false}><motion.div className="ui-sb__body" id="json-panel" role="tabpanel" aria-labelledby={`json-tab-${step}`} key={step} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -3 }} transition={{ duration: reduce ? 0 : 0.16 }}>
         <CollateralBoundary resetKey={step}>
         {step === "mapping" && <MappingStep engine={engine} />}
-        {step === "preview" && (json.plan ? <GroupedPreview plan={json.plan} /> : <p className="ui-sb-muted" role="status">{uiText("Building the preview…")}</p>)}
+        {step === "preview" && (json.plan ? <GroupedPreview plan={json.plan} engine={engine} notify={notify} /> : <p className="ui-sb-muted" role="status">{uiText("Building the preview…")}</p>)}
         {step === "export" && <JsonPanel engine={engine} state={json} notify={notify} />}
         </CollateralBoundary>
       </motion.div></AnimatePresence>
