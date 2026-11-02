@@ -31,6 +31,7 @@
 .sv-rn[data-hidden]::after { content: ""; position: absolute; bottom: 2px; width: 10px; border-bottom: 1px dashed var(--muted); }
 .sv-cell { position: absolute; top: 0; height: 100%; min-width: 0; overflow: hidden; padding: 6px 8px; border-right: 1px solid var(--line-soft); display: block; white-space: nowrap; text-overflow: ellipsis; color: var(--ink); font-size: 12px; line-height: 17px; }
 .sv-cell .cg-specimen { display: inline; max-height: none; font-size: inherit; line-height: inherit; font-weight: 400; white-space: nowrap; overflow: visible; }
+.sv-target-text { display: inline-block; flex: none; }
 .sv-row[data-header] .sv-cell { background: var(--tray); font-weight: 600; }
 .sv-cell[data-level] { background: color-mix(in oklab, #f59e0b 13%, var(--card)); }
 .sv-cell[data-level="3"], .sv-cell[data-level="4"] { background: color-mix(in oklab, #ef4444 12%, var(--card)); }

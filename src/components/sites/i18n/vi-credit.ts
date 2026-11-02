@@ -419,4 +419,5 @@ choose a word	chọn từ
 move between words	chuyển giữa các từ
 Click a word in the answer to jump to it	Bấm một từ trong kết quả để nhảy tới hàng của nó
 Checks made	Số lượt kiểm tra
+These numbers describe the replay: how often the quick guess matched the careful check. They do not say whether a word is right; the table and your approval do.	Các con số này mô tả lần phát lại: bản đoán nhanh khớp bản kiểm tra kỹ bao nhiêu lần. Chúng không cho biết một từ có đúng hay không; bảng bên dưới và sự duyệt của bạn mới quyết định.
 `);

@@ -104,6 +104,7 @@ function SheetSurface({ data, target, mode, lens, sheetPicker, busy, failed, onR
   }
   const [expanded, setExpanded] = useState(false), [address, setAddress] = useState("");
   const [badAddress, setBadAddress] = useState(false), [zoom, setZoom] = useState(2);
+  const [focusOffset, setFocusOffset] = useState(0);
   const [hover, setHover] = useState<{ row: number; col: number; x: number; y: number } | null>(null);
   const [lensOn, setLensOn] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -134,6 +135,20 @@ function SheetSurface({ data, target, mode, lens, sheetPicker, busy, failed, onR
   const actual = previewing ? target.value : selectedRow ? selectedRow.values[selection.col] ?? "" : undefined;
   const marks = selection.row === target.row && selection.col === target.col && actual === target.value ? target.marks : undefined;
   const selectedRef = `${meta.columns[selection.col]?.letter ?? "A"}${selection.row}`;
+  // Long descriptions can have their first damaged character beyond the clipped column. Measure the
+  // actual rendered mark and pan only its text, keeping the cell geometry and source value intact.
+  const hasMarks = !!target.marks?.length;
+  useLayoutEffect(() => {
+    const cell = body.current?.querySelector<HTMLElement>(`.sv-cell[data-row="${target.row}"][data-col="${target.col}"]`);
+    const mark = cell?.querySelector<HTMLElement>(".cg-mark, .cg-glyph");
+    const bounds = body.current?.getBoundingClientRect(), rect = cell?.getBoundingClientRect();
+    const middle = bounds && rect ? (Math.max(rect.left, bounds.left + GUTTER) + Math.min(rect.right, bounds.right - 12)) / 2 - rect.left : 0;
+    const next = hasMarks && cell && mark && rect ? Math.max(0, mark.getBoundingClientRect().left - rect.left + focusOffset - middle) : 0;
+    if (body.current) body.current.dataset.focusDebug = JSON.stringify({ next, focusOffset, hasMarks, mark: !!mark, middle });
+    if (Math.abs(next - focusOffset) < 1) return;
+    const frame = requestAnimationFrame(() => setFocusOffset(next));
+    return () => cancelAnimationFrame(frame);
+  }, [target.row, target.col, target.value, hasMarks, rows, widths, focusOffset, scroll.x]);
   const px = useMotionValue(0), py = useMotionValue(0);
   const sx = useSpring(px, LENS_SPRING), sy = useSpring(py, LENS_SPRING);
   const diameter = Math.min(lens, Math.max(76, size.w - 18), Math.max(76, size.h - 38));
@@ -145,9 +160,11 @@ function SheetSurface({ data, target, mode, lens, sheetPicker, busy, failed, onR
   }, [px, py, sx, sy, lensOn, reduce]);
   const spotlight = useRef("");
   useEffect(() => {
-    const id = `${target.row}:${target.col}:${data.epoch}:${mode}`;
+    const id = `${target.row}:${target.col}:${data.epoch}:${mode}:${focusOffset}`;
     if (spotlight.current === id || !rows.has(target.row) || !body.current || !matchMedia("(hover: hover)").matches) return;
-    const x = Math.max(GUTTER + 10, Math.min(size.w - 24, GUTTER + lefts[target.col] - scroll.x + Math.min(widths[target.col] - 16, 10 + (target.marks?.[0]?.start ?? 0) * 7)));
+    const mark = body.current.querySelector<HTMLElement>(`.sv-cell[data-row="${target.row}"][data-col="${target.col}"] .cg-mark, .sv-cell[data-row="${target.row}"][data-col="${target.col}"] .cg-glyph`);
+    const markX = mark ? mark.getBoundingClientRect().left - body.current.getBoundingClientRect().left + mark.clientWidth / 2 : GUTTER + lefts[target.col] - scroll.x + 12;
+    const x = Math.max(GUTTER + 10, Math.min(size.w - 24, markX));
     const y = HEAD + (target.row - meta.firstRow) * ROW - scroll.y + ROW / 2;
     if (y < HEAD || y > size.h - 12) return;
     const frame = requestAnimationFrame(() => {
@@ -156,7 +173,7 @@ function SheetSurface({ data, target, mode, lens, sheetPicker, busy, failed, onR
       timer.current = setTimeout(() => setLensOn(false), 1600);
     });
     return () => cancelAnimationFrame(frame);
-  }, [target, data.epoch, mode, rows, size, lefts, widths, scroll, meta.firstRow, point]);
+  }, [target, data.epoch, mode, rows, size, lefts, widths, scroll, meta.firstRow, point, focusOffset]);
   function locate(event: PointerEvent<HTMLDivElement> | MouseEvent<HTMLDivElement>) {
     const rect = body.current?.getBoundingClientRect();
     if (!rect) return null;
@@ -243,7 +260,7 @@ function SheetSurface({ data, target, mode, lens, sheetPicker, busy, failed, onR
           {shownRows.map(r => { const row = rows.get(r); return <div key={r} role="row" aria-rowindex={r} className="sv-row" data-loaded={!!row || undefined} data-target={r === selection.row || undefined} data-hidden={row?.hidden || undefined} data-header={row?.header || undefined} style={{ top: HEAD + (r - meta.firstRow) * ROW, height: ROW, width: GUTTER + totalW }}>
             <span className="sv-rn" role="rowheader" data-hidden={row?.hidden || undefined} style={{ width: GUTTER }}>{r}</span>
             {columns.map(col => { const value = target.preview && r === target.row && col.col === target.col ? target.value : row?.values[col.col] ?? "", selected = r === selection.row && col.col === selection.col, level = data.issueCells.get(r)?.get(col.col); return <span key={col.col} role="gridcell" aria-colindex={col.col + 1} aria-selected={selected} className="sv-cell" data-row={r} data-col={col.col} data-level={level || undefined} data-target={selected || undefined} data-empty={!value || undefined} style={{ left: GUTTER + lefts[col.col], width: widths[col.col] }}>
-              {r === target.row && col.col === target.col && value === target.value ? <Specimen value={value} marks={target.marks} empty="" /> : value}
+              {r === target.row && col.col === target.col && value === target.value ? <span className="sv-target-text" style={{ translate: `${-focusOffset}px 0` }}><Specimen value={value} marks={target.marks} empty="" /></span> : value}
             </span>; })}
           </div>; })}
         </div>
@@ -258,7 +275,7 @@ function SheetSurface({ data, target, mode, lens, sheetPicker, busy, failed, onR
       {busy && <span className="sv-pending" role="status">{t("Loading worksheet…")}</span>}
       {lensOn && hover && <motion.div className="sv-lens" aria-hidden="true" style={{ x: lx, y: ly, width: diameter, height: diameter, marginLeft: -diameter / 2, marginTop: -diameter / 2 }}>
         <div className="sv-lens__disc"><div className="sv-lens__inner" style={{ left: diameter / 2 - (gx - lefts[lensCol0]) * zoom, top: diameter / 2 - (gy - (lensRow0 - 1) * ROW) * zoom }}>
-          {lensRows.flatMap(r => lensCols.map(col => { const value = target.preview && r === target.row && col.col === target.col ? target.value : rows.get(r)?.values[col.col] ?? ""; return <span key={`${r}:${col.col}`} className="sv-lcell" data-level={data.issueCells.get(r)?.get(col.col) || undefined} data-target={r === selection.row && col.col === selection.col || undefined} style={{ left: (lefts[col.col] - lefts[lensCol0]) * zoom, top: (r - lensRow0) * ROW * zoom, width: widths[col.col] * zoom, height: ROW * zoom, fontSize: 12 * zoom }}><Specimen value={value} marks={r === target.row && col.col === target.col && value === target.value ? target.marks : undefined} lens empty="" /></span>; }))}
+          {lensRows.flatMap(r => lensCols.map(col => { const value = target.preview && r === target.row && col.col === target.col ? target.value : rows.get(r)?.values[col.col] ?? "", isIssue = r === target.row && col.col === target.col && value === target.value; return <span key={`${r}:${col.col}`} className="sv-lcell" data-level={data.issueCells.get(r)?.get(col.col) || undefined} data-target={r === selection.row && col.col === selection.col || undefined} style={{ left: (lefts[col.col] - lefts[lensCol0]) * zoom, top: (r - lensRow0) * ROW * zoom, width: widths[col.col] * zoom, height: ROW * zoom, fontSize: 12 * zoom }}><span className="sv-target-text" style={{ translate: `${isIssue ? -focusOffset * zoom : 0}px 0` }}><Specimen value={value} marks={isIssue ? target.marks : undefined} lens empty="" /></span></span>; }))}
         </div></div>
         <span className="sv-lens__label">{meta.columns[hover.col]?.letter}{hover.row} · ×{zoom}</span>
       </motion.div>}

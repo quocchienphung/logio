@@ -13,6 +13,8 @@ const long = 'Nội dung thật của ô, xuống dòng\n'.repeat(65) + 'END-OF-
 const extraRows = [['TEXT', 'CODE'], ...Array.from({ length: 1200 }, (_, i) => [i === 0 ? long : `Source row ${i + 2}`, `00${String(i + 2).padStart(8, '0')}`]), [], []];
 const extra = unzipSync(buildXlsx([{ name: 'Notes', rows: extraRows }], { shared: false }));
 const files = unzipSync(buildFixture());
+// Place the real damaged character well beyond a column's clipped width.
+files['xl/sharedStrings.xml'] = strToU8(strFromU8(files['xl/sharedStrings.xml']).replace('Ke ho?ch trien khai du an', 'Evidence '.repeat(60) + 'Ke ho?ch trien khai du an'));
 files['xl/worksheets/sheet2.xml'] = extra['xl/worksheets/sheet1.xml'];
 files['xl/workbook.xml'] = strToU8(strFromU8(files['xl/workbook.xml']).replace('</sheets>', '<sheet name="Notes" sheetId="2" r:id="rIdExtra"/></sheets>'));
 files['xl/_rels/workbook.xml.rels'] = strToU8(strFromU8(files['xl/_rels/workbook.xml.rels']).replace('</Relationships>', '<Relationship Id="rIdExtra" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/></Relationships>'));
@@ -43,6 +45,14 @@ try {
     await stage.locator('.sv-row[data-loaded] .sv-cell[data-target]').waitFor();
     await stage.scrollIntoViewIfNeeded();
     check(`${width}: real readable data replaces bars`, await stage.locator('.sv').getAttribute('data-mode') === 'readable' && await stage.locator('.sv-cell > i').count() === 0 && (await stage.locator('.sv-formula__text').innerText()).includes('ho?ch'));
+    if (process.env.DEBUG_VIEWER) { await page.waitForTimeout(500); console.log(await page.evaluate(() => { const m=document.querySelector('.cg-stage .sv-cell[data-target] .cg-mark'), c=m?.closest('.sv-cell'), b=m?.closest('.sv-body'); return {mark:m?.getBoundingClientRect().toJSON(),cell:c?.getBoundingClientRect().toJSON(),body:b?.getBoundingClientRect().toJSON(),focus:b?.dataset.focusDebug,translate:c?.querySelector('.sv-target-text')?.style.translate,scroll:document.querySelector('.cg-stage .sv-scroll')?.scrollLeft}; })); }
+    await page.waitForFunction(() => {
+      const mark = document.querySelector('.cg-stage .sv-cell[data-target] .cg-mark');
+      if (!mark) return false;
+      const r = mark.getBoundingClientRect(), c = mark.closest('.sv-cell').getBoundingClientRect(), b = mark.closest('.sv-body').getBoundingClientRect();
+      return r.left >= Math.max(c.left, b.left + 48) && r.right <= Math.min(c.right, b.right - 12);
+    });
+    check(`${width}: distant damaged character is brought into the visible cell`, true);
     const ref = await stage.locator('.sv-namebox').innerText();
     if (width === 1440) {
       const cell = stage.locator('.sv-cell[data-target]');

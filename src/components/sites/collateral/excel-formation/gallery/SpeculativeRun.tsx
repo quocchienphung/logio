@@ -252,6 +252,7 @@ function Replay({ predictions, picks, draftLength, compare, onRestart, onClose }
         <div className="sdr-stat"><dt className="sdr-statLabel">{t("Drafts accepted")}</dt><dd className="sdr-statValue"><RollingNumber value={acceptedPercent} intDigits={3} suffix="%" label={t("{0} percent", [acceptedPercent ?? 0])} /></dd></div>
         <div className="sdr-stat"><dt className="sdr-statLabel">{t("Words per check")}</dt><dd className="sdr-statValue"><RollingNumber value={perCheck} decimals={1} intDigits={2} label={number(perCheck ?? 0)} /></dd></div>
       </dl>
+      <p className="sdr-note">{t("These numbers describe the replay: how often the quick guess matched the careful check. They do not say whether a word is right; the table and your approval do.")}</p>
     </div>
   </>;
 }

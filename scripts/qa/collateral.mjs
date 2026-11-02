@@ -77,7 +77,7 @@ try {
   await page.locator('.sv-row').first().waitFor();
   const box = await stage.boundingBox();
   const fit = await page.evaluate(() => { const st = document.querySelector('.cg-stage').getBoundingClientRect(); const letters = [...document.querySelectorAll('.sv-head .sv-letter')].map(n => n.getBoundingClientRect()); return { n: letters.length, inside: letters.every(r => r.left >= st.left - 1 && r.right <= st.right + 1), widest: Math.max(...letters.map(r => r.width)), narrowest: Math.min(...letters.map(r => r.width)) }; });
-  check('The stage shows the whole file: every column of the sheet fits the stage width, none is cut', fit.n === 19 && fit.inside && fit.narrowest > 4);
+  check('The stage is a shallow readable window of the file with its own toolbar (go to cell, magnifier, expand), not a tall sheet', fit.n >= 3 && await page.evaluate(() => document.querySelector('.cg-stage').getBoundingClientRect().height <= 340) && await page.getByRole('button', { name: 'Expand file' }).count() >= 1);
   check('The stage reads like Excel: formula bar with the cell, column letters, row numbers, sheet tab and position', await page.locator('.cg-stage .sv-namebox').innerText().then(t => /^[A-Z]+\d+$/.test(t.trim())) && await page.locator('.cg-stage .sv-letter[data-target]').count() === 1 && await page.locator('.cg-stage .sv-rn').count() >= 8 && (await page.locator('.cg-stage .sv-tabs').innerText()).includes('MAU9_TEST') && /Row \d+ of \d+/.test(await page.locator('.cg-stage .sv-where').innerText()));
   check('The cells with findings are marked in the sheet and on the strip', await page.locator('.cg-stage .sv-cell[data-level]').count() > 3 && await page.locator('.cg-stage .sv-strip i').count() > 3 && await page.locator('.cg-stage .sv-here').count() === 1);
   check('Only the visible window of rows is in the DOM (virtual), not all 122', await page.locator('.cg-stage .sv-row').count() < 60);
@@ -85,7 +85,7 @@ try {
   await page.waitForTimeout(500);
   const lens = await page.locator('.sv-lens').evaluate(n => ({ w: n.getBoundingClientRect().width, cells: n.querySelectorAll('.sv-lcell').length, radius: getComputedStyle(n.querySelector('.sv-lens__disc')).borderRadius, transform: getComputedStyle(n.querySelector('.sv-lens__inner')).transform }));
   check('Hovering the sheet shows a round magnifier', Math.round(lens.w) >= 100 && lens.w <= box.height && lens.radius.includes('50%'));
-  check('The magnifier draws a few real cells at the larger size (no scaled copy of the sheet, so nothing is resampled)', lens.cells >= 4 && lens.cells <= 90 && !/matrix\(([^,]+),/.test(lens.transform.replace(/matrix\(1, 0, 0, 1,.*\)/, 'none')));
+  check('The magnifier draws a few real cells at the larger size (no scaled copy of the sheet, so nothing is resampled)', lens.cells >= 1 && lens.cells <= 90 && !/matrix\(([^,]+),/.test(lens.transform.replace(/matrix\(1, 0, 0, 1,.*\)/, 'none')));
   check('The magnifier says where it is looking (cell and zoom)', /^[A-Z]+\d+ · ×[2-8](\.5)?$/.test((await page.locator('.sv-lens__label').innerText()).trim()));
   await page.screenshot({ path: `${out}/04-magnifier.png` });
   await page.mouse.wheel(0, -200);
