@@ -57,3 +57,11 @@ Queue reuses the configured workspace API base/headers/credentials when present 
 - Existing Collateral engine and skeleton tests, Rules navigation QA, import unfurl QA and JSON viewer QA are the regression targets. Commands actually completed and counts are recorded in the final handoff update.
 
 No physical-phone test or full pixel-perfect claim. Source Prompt cache simulates AI cache requests; this implementation deliberately uses the same visual vocabulary for actual uploaded files. Existing unrelated full-suite fixture failures must be reported separately rather than inventing the missing source recordings.
+
+## Update: pop-up instead of the side panel, undoable delete
+
+The 192px "Selected original" panel is gone. Clicking a row opens a quick look that grows out of that row ([source-card/README.md](source-card/README.md): UIArc Card, with the slower pace that was asked for), `queue/QueuePopup.tsx` + `queue-popup.css`. Selection flight, side panel and `HoldToDelete` were removed.
+
+Delete is the shared hold-mode **Confirm morph** (`skilled/ui/ConfirmMorph`, public preview measurements in `source-popup/`): *Delete original* → *Delete this original?* → hold *Delete* 1s → *Deleting* → *Deleted · Undo*. The server already moves the original aside and answers with an undo token (8s, `QUEUE_UNDO_MS`, `restoreQueueUpload`); Undo restores the file, its record and bytes. The row leaves the list at once. Closing the pop-up inside the window keeps an Undo bar under the header; after 8s the files are removed for good (checked on disk). A press that starts inside the pop-up and is released on the scrim (dragging off the hold button) does not close it.
+
+QA: `node --experimental-strip-types scripts/qa/collateral-queue.mjs <base-url>` (45 checks, including the sampled morph frames in `local/queue-popup-morph-frames.json`); server: `node --experimental-strip-types --test src/lib/server/collateral-queue-store.test.mjs`.

@@ -14,7 +14,7 @@
     "Search filters actual saved names",
     "Status filter reports no matches rather than inventing rows",
     "The pop-up grows out of the clicked row (first frame is the row rectangle) and settles on the 480px panel",
-    "The morph never overshoots its final width and settles within 800ms (the dev server adds frame time)",
+    "The morph never overshoots its final width and settles within 1.2s (a calm 0.62s spring; the dev server adds frame time)",
     "Selecting history opens the Card quick look: centred 30rem panel, 34px corners, 22px title, 7px scrim blur, no side panel",
     "The pop-up names the original and holds its facts and actions",
     "Escape closes the pop-up and returns focus to the row",
