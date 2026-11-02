@@ -11,6 +11,7 @@
 | G | Tích hợp, hiệu năng, hồi quy, tài liệu | Xong, kèm các hạn chế dưới đây. |
 | H | Xem toàn bộ tệp, kính lúp ô thật, đoán chữ lỗi (draft/target), giao diện Speculative decoding, lưu/nạp tiến độ, error boundary, cảnh báo rời trang | Xong. `08-whole-file-viewer-and-guessing.md`. QA 87/87, đối chiếu ExcelJS/SheetJS 795.242/795.242 ô. |
 | I | Replay Speculative decoding chép 1:1 từ preview (nhịp đo được, spring 300/36), tích hợp trong layout workbench, dọn code chết | Xong. `SpeculativeRun.tsx`, `run-timeline.ts`, QA 50 kiểm tra; production 60 fps, 0 khung rớt (CPU x4). |
+| J | JSON viewer clone (xem JSON sắp xuất, 27 MB không parse trong trang) + workflow card trên 9 cổng thật | Xong. `11-json-viewer-and-workflow.md`; QA 59/59; tệp thật OK. |
 
 ## Việc chưa làm / hạn chế
 
