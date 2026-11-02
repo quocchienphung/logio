@@ -1,15 +1,12 @@
 import type { Session } from "../../excel-formation/engine/session.ts";
 import type { ReviewState } from "../../excel-formation/engine/review.ts";
 import { allIssues, cellKey, statusOf } from "../../excel-formation/engine/review.ts";
-import { buildReport, defaultReportOptions, encodeAndVerify, reportDateFrom, validYmd, workbookReportDate, type AssetOut, type Reconciliation, type ReportMeta, type ReportOptions, type ReportOut, type Verification } from "./json-report.ts";
+import { buildReport, defaultReportOptions, encodeAndVerify, reportDateFrom, validYmd, workbookReportDate, type Reconciliation, type ReportMeta, type ReportOptions, type ReportOut, type Verification } from "./json-report.ts";
 import { fingerprint, columnLetters } from "../../excel-formation/engine/text.ts";
 import { RULE_VERSION } from "../../excel-formation/engine/detect.ts";
 import type { Row } from "../../excel-formation/engine/types.ts";
 
 export interface ExportCheck { id: string; ok: boolean; detail?: string }
-export interface PreviewAsset { TS001: string; TS002: string; TS005: string; TS006: string; TS009: string[]; owners: number; TS013: string }
-export interface PreviewCustomer { TTC03: string; TTC04: string; assets: PreviewAsset[]; assetCount: number }
-export interface PreviewBranch { TTC01: string; TTC02: string; customers: PreviewCustomer[]; customerCount: number }
 export interface JsonPlan {
   reconciliation: Reconciliation;
   checks: ExportCheck[];
@@ -19,8 +16,6 @@ export interface JsonPlan {
   problems: string[];
   /** The report date the workbook itself carries, to pre-fill the form (null when it holds none or several). */
   workbookDate: string | null;
-  /** A small, clearly diagnostic sample of the grouped result. */
-  preview: PreviewBranch[];
   options: ReportOptions;
   /** What each stage of the check took in the worker (ms): the report, the bytes and the replay. */
   timings?: { build: number; verify: number; replay: number };
@@ -31,13 +26,6 @@ export interface JsonOutput extends JsonPlan { bytes: Uint8Array | null; audit: 
 
 const valueAtOf = (session: Session, state: ReviewState) => (row: Row, col: number) => state.patches[cellKey(session.workbook.sheets.find(s => s.name === session.wprofile.primary)!.name, row.r, col)]?.value ?? row.cells[col]?.v ?? "";
 const valid = (text: string) => text.trim() !== "";
-
-function previewOf(report: ReportOut): PreviewBranch[] {
-  return report.CNTCTD.slice(0, 4).map(branch => ({
-    TTC01: branch.TTC01, TTC02: branch.TTC02, customerCount: branch.KHACHHANG.length,
-    customers: branch.KHACHHANG.slice(0, 3).map(customer => ({ TTC03: customer.TTC03, TTC04: customer.TTC04, assetCount: customer.THONGTINBD.length, assets: customer.THONGTINBD.slice(0, 3).map((asset: AssetOut) => ({ TS001: asset.TS001, TS002: asset.TS002, TS005: asset.TS005.$num, TS006: asset.TS006.$num, TS009: asset.TS009.slice(0, 4), owners: asset.TS012.length, TS013: asset.TS013 })) })),
-  }));
-}
 
 /** Run every gate for the JSON export. Builds the report twice (deterministic replay) and checks the bytes it would offer. */
 export function planJson(session: Session, state: ReviewState, meta: ReportMeta, options: ReportOptions = defaultReportOptions, summary: { blocking: number }): JsonOutput {
@@ -95,7 +83,7 @@ export function planJson(session: Session, state: ReviewState, meta: ReportMeta,
   ];
   const ready = checks.every(check => check.ok);
   return {
-    reconciliation: rec, checks, ready, verification: encoded.verification, problems: first.problems, workbookDate: workbookDate.date, preview: previewOf(first.report), options,
+    reconciliation: rec, checks, ready, verification: encoded.verification, problems: first.problems, workbookDate: workbookDate.date, options,
     bytes: ready ? encoded.bytes : null, audit: ready || true ? auditJson(session, state, rec, checks, options, meta) : "", csv: auditCsv(session, state), fileName: "reporting-output.json",
     report: first.report, timings,
   };

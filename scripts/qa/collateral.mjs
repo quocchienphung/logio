@@ -272,7 +272,8 @@ try {
   await small.locator('.ui-as-side__nav').getByRole('button', { name: 'JSON formation' }).click();
   await small.getByRole('tab', { name: /Preview/ }).click();
   await small.locator('.cr-preview').waitFor();
-  check('The grouped preview lists the hierarchy', await small.locator('.cr-tree__leaf').count() >= 2);
+  await small.locator('.jv-row').nth(2).waitFor({ timeout: 20000 });
+  check('The preview is the JSON viewer on the real document: the report, its keys and its branches', (await small.locator('.jv-row').first().getAttribute('aria-label')).startsWith('report, object') && await small.locator('.jv-row').count() >= 5);
   await small.getByRole('tab', { name: /Export/ }).click();
   await small.locator('.cr-json').waitFor();
   check('All serious issues resolved, but the metadata is still missing, so the JSON stays locked', await small.getByRole('button', { name: 'Download reporting-output.json' }).count() === 0);

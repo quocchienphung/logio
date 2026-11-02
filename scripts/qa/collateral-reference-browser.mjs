@@ -40,10 +40,10 @@ console.log(`whole file on the stage: ${face.columns} columns, all inside the st
 await page.mouse.move(4, 4);
 let guessMs = -1;
 for (let i = 0; i < 60 && guessMs < 0; i++) {
-  if (await page.locator('.sd-card').count()) { const s0 = performance.now(); await page.locator('.sd-card[data-phase="done"]').waitFor({ timeout: 60000 }); guessMs = Math.round(performance.now() - s0); break; }
+  if (await page.locator('.sd-card').count()) { const s0 = performance.now(); await page.locator('.sdr-summary').waitFor({ timeout: 60000 }); guessMs = Math.round(performance.now() - s0); break; }
   await page.locator('.cg-stage').press('ArrowRight'); await page.waitForTimeout(120);
 }
-console.log(`guess panel: ${guessMs >= 0 ? `first run finished ${guessMs} ms after it appeared (includes learning the file's own text once)` : 'no broken word among the first issues'} | stats shown: ${await page.locator('.sd-stat').count()}`);
+console.log(`guess panel: ${guessMs >= 0 ? `first run finished ${guessMs} ms after it appeared (includes learning the file's own text once)` : 'no broken word among the first issues'} | stats shown: ${await page.locator('.sdr-stat').count()}`);
 await page.locator('.cg-stage').focus();
 const timeOf = async fn => { const s = performance.now(); await fn(); await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))); return Math.round(performance.now() - s); };
 const filterMs = await timeOf(() => page.getByRole('radio', { name: 'All' }).click());
@@ -51,6 +51,32 @@ const stepMs = [];
 for (let i = 0; i < 8; i++) stepMs.push(await timeOf(() => page.locator('.cg-stage').press('ArrowRight')));
 const approve = await timeOf(async () => { await page.locator('.cd-textarea').fill('x'); });
 console.log(`switch filter: ${filterMs} ms | step 8 issues (median): ${stepMs.sort((a, b) => a - b)[4]} ms | type in the editor: ${approve} ms | long tasks during review: ${(await page.evaluate(() => window.__long.slice())).length}`);
+// The viewer on the real document (27 MB, never parsed in the page): first rows, open, search, expand all. Counts and timings only.
+await page.evaluate(() => { window.__long.length = 0; });
+await page.locator('.ui-as-side__nav').getByRole('button', { name: 'JSON formation' }).click();
+const previewStart = Date.now();
+await page.getByRole('tab', { name: /Preview/ }).click();
+await page.locator('.jv-row').nth(3).waitFor({ timeout: 180000 });
+console.log(`json viewer: first rows after ${Date.now() - previewStart} ms | rows ${await page.locator('.jv-row').count()} | root says "${(await page.locator('.jv-row').first().getAttribute('aria-label'))?.replace(/\d+/g, '#')}"`);
+await page.waitForTimeout(1200);
+const rowsOf = () => page.locator('.jv-row').count();
+const openStart = Date.now();
+await page.locator('.jv-row').filter({ hasText: /^0\s*:/ }).first().click();
+await page.locator('.jv-row[aria-level="4"]').first().waitFor({ timeout: 60000 });
+console.log(`open the first branch: ${Date.now() - openStart} ms | rows ${await rowsOf()}`);
+const searchStart = Date.now();
+await page.locator('.jv-input').fill('TS013');
+await page.locator('.jv-count').filter({ hasText: /\d+\/\d+/ }).waitFor({ timeout: 120000 });
+console.log(`search "TS013": count shown after ${Date.now() - searchStart} ms | ${(await page.locator('.jv-count').innerText()).replace(/\d+(?=\/)/, '#')} | rows ${await rowsOf()} | current row is a match: ${await page.locator('.jv-row[data-active]').evaluate(n => /TS013/.test(n.getAttribute('aria-label') ?? ''))}`);
+await page.locator('.jv-input').fill('');
+await page.waitForTimeout(800);
+const expandStart = Date.now();
+await page.getByRole('button', { name: 'Expand all' }).click();
+await page.waitForFunction(() => document.querySelectorAll('.jv-row').length > 300, null, { timeout: 60000 });
+console.log(`expand all: ${Date.now() - expandStart} ms | rows ${await rowsOf()} | main-thread long tasks while exploring: ${(await page.evaluate(() => window.__long.slice())).length} (max ${Math.max(0, ...(await page.evaluate(() => window.__long.slice())))} ms)`);
+await page.getByRole('tab', { name: /Export/ }).click();
+await page.locator('.wf-root').waitFor({ timeout: 120000 });
+console.log(`pipeline: ${await page.locator('.wf-item').count()} steps | step times: ${(await page.locator('.wf-statusInner[data-status="done"], .wf-statusInner[data-status="error"]').allInnerTexts()).join(' / ')}`);
 const exportStart = Date.now();
 await page.locator('.ui-as-side__nav').getByRole('button', { name: 'JSON formation' }).click();
 await page.getByRole('tab', { name: /Export/ }).click();

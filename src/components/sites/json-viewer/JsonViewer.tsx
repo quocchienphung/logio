@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type FocusEvent, type KeyboardEvent, type Ref } from "react";
+import { memo, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties, type FocusEvent, type KeyboardEvent, type Ref } from "react";
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react";
 import { Check, ChevronDown, ChevronRight, ChevronUp, ChevronsDownUp, ChevronsUpDown, Copy, Link2, Search, X } from "lucide-react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
@@ -215,40 +215,11 @@ export function JsonViewer(props: JsonViewerProps) {
     const state = copyStates[slot] ?? "idle", name = actionLabel(slot, kind);
     return <button type="button" className={`jv-action${extra}`} tabIndex={-1} data-state={state} aria-label={name} title={name} onClick={event => { event.stopPropagation(); void copy(path, kind, slot); }}>{copyGlyph(slot, kind === "value" ? Copy : Link2)}</button>;
   };
-  const marked = (text: string, current: boolean) => { let first = true; return markPieces(text, q).map((piece, i) => piece.mark ? <mark key={i} className="jv-mark" data-current={current && first ? (first = false, "true") : undefined}>{piece.text}</mark> : piece.text); };
 
-  const renderRow = (row: RowModel) => {
-    const isActive = row.id === active?.id, info = row.info;
-    const common = {
-      role: "treeitem" as const, tabIndex: isActive ? 0 : -1, "aria-level": row.level + 1, "aria-posinset": row.posinset, "aria-setsize": row.setsize, "aria-selected": isActive,
-      "aria-expanded": row.kind === "node" && info && isBranch(info.type) ? row.open : undefined, "aria-label": row.kind === "more" || row.kind === "loading" ? (row.kind === "more" ? t("Show {0} more, {1} hidden", [row.next ?? 0, row.hidden ?? 0]) : t("Loading")) : row.label,
-      className: "jv-row", "data-kind": row.kind, "data-active": isActive || undefined,
-      style: { "--level": row.level, overflow: row.kind === "more" ? "hidden" : "visible" } as CSSProperties,
-      ref: (node: HTMLElement | null) => { if (node) rowRefs.current.set(row.id, node); else rowRefs.current.delete(row.id); },
-      initial: animated ? { height: 0, opacity: 0, overflow: "hidden" } : false, animate: { height: ROW_HEIGHT, opacity: 1, transitionEnd: { overflow: row.kind === "more" ? "hidden" : "visible" } },
-      exit: animated ? { height: 0, opacity: 0, overflow: "hidden" } : undefined,
-      transition: animated ? { height: ROW_SPRING, opacity: { duration: 0.16, ease: EASE_STANDARD } } : { duration: 0 },
-      onFocus: (event: FocusEvent<HTMLElement>) => { if (event.target === event.currentTarget && !isActive) select(row); },
-      onClick: () => { select(row, { focus: true }); if (row.kind === "more") showMore(row); else toggle(row); },
-    };
-    if (row.kind === "more") return <motion.div key={row.id} {...common}><span className="jv-line"><span className="jv-more"><span className="jv-moreLabel">{t("Show {0} more", [row.next ?? 0])}</span><span className="jv-muted">{t("{0} hidden", [row.hidden ?? 0])}</span></span></span></motion.div>;
-    if (row.kind === "loading") return <motion.div key={row.id} {...common}><span className="jv-line"><span className="jv-loading">{t("Loading")}</span></span></motion.div>;
-    const branch = !!info && isBranch(info.type), current = !!hit && hit.path === row.path;
-    const keyHit = !!q && !!info && !info.isIndex && info.key.toLowerCase().includes(q.toLowerCase());
-    return <motion.div key={row.id} {...common}>
-      {isActive && <motion.span layoutId={`${uid}-highlight`} className="jv-highlight" aria-hidden="true" transition={reduce ? { duration: 0 } : HIGHLIGHT_SPRING} />}
-      <span className="jv-line">
-        <span className="jv-chevron" data-open={row.open || undefined} data-branch={branch || undefined} aria-hidden="true">{branch && <ChevronRight size={14} strokeWidth={1.75} />}</span>
-        {info!.isIndex ? <span className="jv-index">{info!.key}</span> : <span className="jv-key">{marked(info!.key, current)}</span>}
-        <span className="jv-colon" aria-hidden="true">{row.level === 0 ? "" : ":"}</span>
-        {branch
-          ? <span className="jv-summary">{!row.open && <span className="jv-preview">{info!.preview}</span>}<span className="jv-countLabel">{t(info!.type === "array" ? (info!.count === 1 ? "{0} item" : "{0} items") : (info!.count === 1 ? "{0} key" : "{0} keys"), [info!.count])}</span></span>
-          : <span className="jv-value" data-type={info!.type} title={info!.plain.length > 40 ? info!.plain : undefined}>{info!.type === "string" ? <>&quot;{marked(info!.plain, current && !keyHit)}&quot;</> : marked(info!.text, current && !keyHit)}</span>}
-        {copyable && <span className="jv-actions">{actionButton(row.path, "value", `${row.path}\u0001value`)}{actionButton(row.path, "path", `${row.path}\u0001path`)}</span>}
-      </span>
-    </motion.div>;
-  };
-
+  // Rows are components that redraw only when something about them changed; what they call lives in one object that always holds the latest handlers.
+  const api = useRef<RowApi>({ select: () => {}, toggle: () => {}, showMore: () => {}, copy: () => {}, setRef: () => {} });
+  useLayoutEffect(() => { api.current = { select, toggle, showMore, copy: (path, kind, slot) => void copy(path, kind, slot), setRef: (id, node) => { if (node) rowRefs.current.set(id, node); else rowRefs.current.delete(id); } }; });
+  const keyOf = (path: string, kind: "value" | "path") => `${path}\u0001${kind}`;
   return <div ref={props.ref} className={`jv-root${className ? ` ${className}` : ""}`} style={{ "--json-max-height": maxHeightStyle } as CSSProperties}>
     {searchable && <div className="jv-toolbar">
       <label className="jv-search">
@@ -271,7 +242,8 @@ export function JsonViewer(props: JsonViewerProps) {
       <button type="button" className="jv-tool" aria-label={t("Collapse all")} title={t("Collapse all")} onClick={collapseAll}><ChevronsDownUp size={15} strokeWidth={1.75} aria-hidden="true" /></button>
     </div>}
     <div id={`${uid}-tree`} ref={treeRef} className="jv-tree" role="tree" aria-label={label} onKeyDown={onKeyDown}>
-      <AnimatePresence initial={false}>{rows.map(renderRow)}</AnimatePresence>
+      <AnimatePresence initial={false}>{rows.map(row => <RowView key={row.id} row={row} api={api} uid={uid} isActive={row.id === active?.id} current={!!hit && hit.path === row.path} query={q} animated={animated} reduce={reduce} copyable={copyable}
+        copyValue={copyStates[keyOf(row.path, "value")]} copyPath={copyStates[keyOf(row.path, "path")]} t={t} />)}</AnimatePresence>
     </div>
     {showPath && active && <div className="jv-pathBar">
       <code className="jv-path" title={active.path}>{active.path}</code>
@@ -281,3 +253,55 @@ export function JsonViewer(props: JsonViewerProps) {
     <span className="jv-srOnly" role="status">{status}</span>
   </div>;
 }
+
+interface RowApi { select: (row: RowModel, how?: { scroll?: boolean; focus?: boolean }) => void; toggle: (row: RowModel) => void; showMore: (row: RowModel) => void; copy: (path: string, kind: "value" | "path", slot: string) => void; setRef: (id: string, node: HTMLElement | null) => void }
+type Translate = ReturnType<typeof useWorkspaceI18n>["t"];
+interface RowViewProps { row: RowModel; api: { current: RowApi }; uid: string; isActive: boolean; current: boolean; query: string; animated: boolean; reduce: boolean; copyable: boolean; copyValue?: "done" | "error"; copyPath?: "done" | "error"; t: Translate }
+
+const sameInfo = (a?: JsonNodeInfo, b?: JsonNodeInfo) => a === b || (!!a && !!b && a.path === b.path && a.count === b.count && a.text === b.text && a.preview === b.preview && a.type === b.type);
+const rowEqual = (a: RowViewProps, b: RowViewProps) => a.row.id === b.row.id && a.row.kind === b.row.kind && a.row.level === b.row.level && a.row.open === b.row.open && a.row.posinset === b.row.posinset && a.row.setsize === b.row.setsize && a.row.label === b.row.label
+  && a.row.next === b.row.next && a.row.hidden === b.row.hidden && sameInfo(a.row.info, b.row.info) && a.isActive === b.isActive && a.current === b.current && a.query === b.query && a.animated === b.animated && a.reduce === b.reduce
+  && a.copyable === b.copyable && a.copyValue === b.copyValue && a.copyPath === b.copyPath && a.t === b.t && a.uid === b.uid;
+
+function CopyGlyph({ state, idle: Idle, reduce }: { state?: "done" | "error"; idle: typeof Copy; reduce: boolean }) {
+  const Glyph = state === "done" ? Check : state === "error" ? X : Idle;
+  return <AnimatePresence mode="popLayout" initial={false}>
+    <motion.span key={state ?? "idle"} className="jv-actionGlyph" initial={reduce ? false : { opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1, transition: { duration: reduce ? 0 : 0.16, ease: EASE_ENTER } }} exit={{ opacity: 0, transition: { duration: reduce ? 0 : 0.1, ease: EASE_STANDARD } }}><Glyph size={14} strokeWidth={1.75} aria-hidden="true" /></motion.span>
+  </AnimatePresence>;
+}
+const RowView = memo(function RowView({ row, api, uid, isActive, current, query, animated, reduce, copyable, copyValue, copyPath, t }: RowViewProps) {
+  const info = row.info;
+  const mark = (text: string, isCurrent: boolean) => { let first = true; return markPieces(text, query).map((piece, i) => piece.mark ? <mark key={i} className="jv-mark" data-current={isCurrent && first ? (first = false, "true") : undefined}>{piece.text}</mark> : piece.text); };
+  const button = (kind: "value" | "path", state: "done" | "error" | undefined) => {
+    const name = state === "done" ? t("Copied") : state === "error" ? t("Copy failed") : kind === "value" ? t("Copy value") : t("Copy path");
+    return <button type="button" className="jv-action" tabIndex={-1} data-state={state ?? "idle"} aria-label={name} title={name} onClick={event => { event.stopPropagation(); api.current.copy(row.path, kind, `${row.path}\u0001${kind}`); }}><CopyGlyph state={state} idle={kind === "value" ? Copy : Link2} reduce={reduce} /></button>;
+  };
+  const common = {
+    role: "treeitem" as const, tabIndex: isActive ? 0 : -1, "aria-level": row.level + 1, "aria-posinset": row.posinset, "aria-setsize": row.setsize, "aria-selected": isActive,
+    "aria-expanded": row.kind === "node" && info && isBranch(info.type) ? row.open : undefined, "aria-label": row.kind === "more" ? t("Show {0} more, {1} hidden", [row.next ?? 0, row.hidden ?? 0]) : row.kind === "loading" ? t("Loading") : row.label,
+    className: "jv-row", "data-kind": row.kind, "data-active": isActive || undefined,
+    style: { "--level": row.level, overflow: row.kind === "more" ? "hidden" : "visible" } as CSSProperties,
+    ref: (node: HTMLElement | null) => api.current.setRef(row.id, node),
+    initial: animated ? { height: 0, opacity: 0, overflow: "hidden" } : false, animate: { height: ROW_HEIGHT, opacity: 1, transitionEnd: { overflow: row.kind === "more" ? "hidden" : "visible" } },
+    exit: animated ? { height: 0, opacity: 0, overflow: "hidden" } : undefined,
+    transition: animated ? { height: ROW_SPRING, opacity: { duration: 0.16, ease: EASE_STANDARD } } : { duration: 0 },
+    onFocus: (event: FocusEvent<HTMLElement>) => { if (event.target === event.currentTarget && !isActive) api.current.select(row); },
+    onClick: () => { api.current.select(row, { focus: true }); if (row.kind === "more") api.current.showMore(row); else api.current.toggle(row); },
+  };
+  if (row.kind === "more") return <motion.div {...common}><span className="jv-line"><span className="jv-more"><span className="jv-moreLabel">{t("Show {0} more", [row.next ?? 0])}</span><span className="jv-muted">{t("{0} hidden", [row.hidden ?? 0])}</span></span></span></motion.div>;
+  if (row.kind === "loading") return <motion.div {...common}><span className="jv-line"><span className="jv-loading">{t("Loading")}</span></span></motion.div>;
+  const branch = !!info && isBranch(info.type);
+  const keyHit = !!query && !!info && !info.isIndex && info.key.toLowerCase().includes(query.toLowerCase());
+  return <motion.div {...common}>
+    {isActive && <motion.span layoutId={`${uid}-highlight`} className="jv-highlight" aria-hidden="true" transition={reduce ? { duration: 0 } : HIGHLIGHT_SPRING} />}
+    <span className="jv-line">
+      <span className="jv-chevron" data-open={row.open || undefined} data-branch={branch || undefined} aria-hidden="true">{branch && <ChevronRight size={14} strokeWidth={1.75} />}</span>
+      {info!.isIndex ? <span className="jv-index">{info!.key}</span> : <span className="jv-key">{mark(info!.key, current)}</span>}
+      <span className="jv-colon" aria-hidden="true">{row.level === 0 ? "" : ":"}</span>
+      {branch
+        ? <span className="jv-summary">{!row.open && <span className="jv-preview">{info!.preview}</span>}<span className="jv-countLabel">{t(info!.type === "array" ? (info!.count === 1 ? "{0} item" : "{0} items") : (info!.count === 1 ? "{0} key" : "{0} keys"), [info!.count])}</span></span>
+        : <span className="jv-value" data-type={info!.type} title={info!.plain.length > 40 ? info!.plain : undefined}>{info!.type === "string" ? <>&quot;{mark(info!.plain, current && !keyHit)}&quot;</> : mark(info!.text, current && !keyHit)}</span>}
+      {copyable && <span className="jv-actions">{button("value", copyValue)}{button("path", copyPath)}</span>}
+    </span>
+  </motion.div>;
+}, rowEqual);

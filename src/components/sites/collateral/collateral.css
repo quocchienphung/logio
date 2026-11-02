@@ -165,12 +165,6 @@
 .collateral .cr-recon { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .collateral .cr-recon dd { font-size: 17px; }
 .collateral .cr-downloads { flex-wrap: wrap; }
-.collateral .cr-tree, .collateral .cr-tree ul { margin: 0; padding: 0; list-style: none; }
-.collateral .cr-tree ul { margin-left: 14px; padding-left: 12px; border-left: 1px solid var(--line-soft); }
-.collateral .cr-tree__node { display: flex; align-items: baseline; gap: 8px; min-height: 30px; font-size: 13px; }
-.collateral .cr-tree__node span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
-.collateral .cr-tree__node small { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.collateral .cr-tree__leaf b { font-weight: 500; font-variant-numeric: tabular-nums; }
 @container ui-as (max-width: 600px) { .collateral .cr-meta, .collateral .cr-recon { grid-template-columns: minmax(0, 1fr); } }
 
 /* Shell: breadcrumbs, file chip, header (rebuilt from the topbar of UIArc's Sidebar block: 13px crumbs separated by a slash, last crumb swaps) */

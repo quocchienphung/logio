@@ -1,6 +1,9 @@
 /* Folder row of the workspace sidebar (Techniques). Geometry measured from UIArc's App rail preview:
    32px head, 30px children, 1px tree line under the folder icon, children inset past it. */
 .workspace-folder { display: flex; flex-direction: column; }
+/* Translated labels stay on one line when a trailing count takes up space. */
+.workspace-folder .workspace-nav-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.workspace-folder .ui-as-side__item > svg, .workspace-folder .ui-as-side__count { flex: none; }
 .workspace-folder__head { position: relative; }
 .workspace-folder__head > .crm-icon, .workspace-folder__head > svg, .workspace-folder__head > .workspace-folder__chevron { position: relative; z-index: 1; }
 .workspace-folder__head[data-lit] { color: var(--ink); }

@@ -420,4 +420,56 @@ move between words	chuyển giữa các từ
 Click a word in the answer to jump to it	Bấm một từ trong kết quả để nhảy tới hàng của nó
 Checks made	Số lượt kiểm tra
 These numbers describe the replay: how often the quick guess matched the careful check. They do not say whether a word is right; the table and your approval do.	Các con số này mô tả lần phát lại: bản đoán nhanh khớp bản kiểm tra kỹ bao nhiêu lần. Chúng không cho biết một từ có đúng hay không; bảng bên dưới và sự duyệt của bạn mới quyết định.
+Copy value	Sao chép giá trị
+Copy path	Sao chép đường dẫn
+Value copied	Đã sao chép giá trị
+Path copied	Đã sao chép đường dẫn
+Show {0} more, {1} hidden	Hiện thêm {0}, còn ẩn {1}
+Show {0} more	Hiện thêm {0}
+{0} item	{0} phần tử
+{0} items	{0} phần tử
+{0} key	{0} khóa
+{0} keys	{0} khóa
+Search keys and values	Tìm khóa và giá trị
+Search JSON	Tìm trong JSON
+Previous match	Kết quả trước
+Next match	Kết quả sau
+Collapse all	Thu gọn tất cả
+Run checks	Chạy kiểm tra
+Skipped	Bỏ qua
+Checking step {0} of {1}	Đang kiểm tra bước {0} trên {1}
+Every check holds · {0}	Mọi kiểm tra đều đạt · {0}
+Every check holds	Mọi kiểm tra đều đạt
+1 step needs attention	1 bước cần chú ý
+{0} steps need attention	{0} bước cần chú ý
+Running the checks	Đang chạy các kiểm tra
+The checks finished	Các kiểm tra đã xong
+The run was stopped	Đã dừng lần chạy
+Workbook opened	Đã mở bảng tính
+rows	dòng
+{0} branches · {1} customers · {2} assets	{0} chi nhánh · {1} khách hàng · {2} tài sản
+{0} serious issues are still open. Resolve them or accept them with a reason.	Còn {0} lỗi nghiêm trọng đang mở. Hãy sửa hoặc chấp nhận kèm lý do.
+The reporting date (YYYYMMDD) and the three contact fields must be filled in.	Cần điền ngày báo cáo (YYYYMMDD) và ba trường liên hệ.
+A column the JSON needs is not mapped.	Có cột mà JSON cần chưa được ánh xạ.
+Rows could not all be placed in the hierarchy.	Không phải dòng nào cũng xếp được vào cấu trúc phân cấp.
+Open review	Mở phần rà soát
+Fill in	Điền vào
+Ready to export?	Đã sẵn sàng xuất?
+every check holds	mọi kiểm tra đều đạt
+{0} checks do not hold	{0} kiểm tra chưa đạt
+can be downloaded below	có thể tải xuống bên dưới
+is locked until every check holds	bị khóa cho tới khi mọi kiểm tra đạt
+Nothing blocks the export.	Không có gì chặn việc xuất.
+Checks before the export	Kiểm tra trước khi xuất
+Run in this tab. Nothing leaves it.	Chạy ngay trong thẻ này. Không có gì rời khỏi nó.
+Reporting JSON preview	Xem trước JSON báo cáo
+Map columns	Ánh xạ cột
+Review issues	Rà soát lỗi
+Group rows	Gom nhóm dòng
+Validate the JSON	Kiểm tra JSON
+the columns the JSON needs	các cột mà JSON cần
+nothing serious left open	không còn lỗi nghiêm trọng
+date and contacts	ngày và thông tin liên hệ
+branch, customer, asset	chi nhánh, khách hàng, tài sản
+schema, bytes, replay	lược đồ, byte, phát lại
 `);
