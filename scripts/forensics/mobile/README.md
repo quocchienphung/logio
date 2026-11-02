@@ -16,6 +16,10 @@ first (default `http://localhost:3000`, use a production `next start` for timing
 | `height-drift.mjs`, `book-size.mjs` | page / section heights at load vs after a scroll sweep; the reserved cover box vs the reference rules |
 | `resize-sync.mjs`, `resize-anim.mjs`, `devtools-emulate.mjs` | resizing a loaded page (DevTools responsive mode, rotation) ends in the same layout as a fresh load |
 | `swipe.mjs` | raw touch swipes on every horizontal scroller, and on the page |
+| `vertical-lock.mjs [base] [widths] [filter]` | "locked vertical": for every route (site pages, guide, every workspace section, Settings, Usage tabs) at 280 to 844x390: document and body not wider than the screen, no sideways scroll, nothing unclipped past the edge, the workspace panel not wider than itself, fixed parts inside the screen; lists the inner scrollers (carousels, tables, the timeline) to judge. Known false positive: `/payments` `PaymentsStickyNav__track` (a scroller with an 8px bleed) |
+| `main-overflow.mjs [base] [width] [urls]` | which element makes the workspace panel wider than its box |
+| `cut-off.mjs [base] [widths] [filter]` | content cut by an `overflow: hidden` ancestor (marquees, animated graphics and the orchestrator's ticker are intended) |
+| `overlays.mjs [base] [widths]` | menus, sheets, dialogs, the drawer and Settings stay inside the screen |
 | `phone-checks.mjs` | viewport meta, input font sizes (iOS zooms below 16px), tap targets |
 | `first-seconds.mjs`, `viewport-shots.mjs` | what a phone shows over the first seconds / down the page at DPR 2 |
 | `webkit.mjs`, `duo-probe.mjs` | the page in WebKit as an iPhone; where the iPhone Duo's CSS3D screen lands in Chromium vs WebKit |

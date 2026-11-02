@@ -92,3 +92,25 @@
 .crm-page .ui-as-main { overflow-x: hidden; overscroll-behavior-x: none; }
 /* the hidden "move to" menu of a board card is positioned against the card, so the board's own scroller clips it (against the panel it stretched the panel to 1160px) */
 .crm-page .ui-as-board__card { position: relative; }
+
+/* The narrowest phones (a folded foldable is 280px): the panel is 232px wide there. Pages give up their side padding and let their rows wrap, so nothing is wider than the panel. */
+@container ui-as-main (max-width: 300px) {
+  .crm-page .workspace-surface > * { min-width: 0; }
+  .crm-page .workspace-page { padding-inline: 12px; }
+  .crm-page .workspace-contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .crm-page .workspace-card, .crm-page .ui-as-board__col { min-width: 0; }
+  .crm-page .trc__empty-art { width: 100%; max-width: 220px; }
+  .crm-page .trc, .crm-page .trc__empty { min-width: 0; }
+  .crm-page .assistant-home .ui-as-composer__bar, .crm-page .assistant-home .ui-as-composer__tray { flex-wrap: wrap; min-width: 0; }
+  .crm-page .assistant-home .ui-as-composer__end { margin-left: auto; }
+  .crm-page .at__inner, .crm-page .at__header, .crm-page .at__toolbar, .crm-page .sb, .crm-page .sb__head, .crm-page .sb__readout { min-width: 0; max-width: 100%; }
+  .crm-page .at__inner { padding-inline: 12px; }
+  .crm-page .ui-um__foot { flex-wrap: wrap; }
+  .crm-page .ui-sb { width: calc(100% - 32px); }
+  .crm-page .sb__readoutLine { flex-wrap: wrap; min-width: 0; }
+  .crm-page .ui-kpi__plot { overflow-x: clip; }
+  .crm-page .ui-sb-card, .crm-page .ui-sb-card > *, .crm-page .ui-sb-plan__top { min-width: 0; }
+  .crm-page .ui-sb-plan__top, .crm-page .ui-sb-actions { flex-wrap: wrap; }
+  /* the screen-reader copy of the treemap is positioned where it would have been in the flow: from the panel's edge it cannot reach past it */
+  .crm-page .stg-sr-only { left: 0; top: 0; }
+}

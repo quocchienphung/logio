@@ -8,3 +8,6 @@
 @import "../styles/page-transition.css";
 @import "../styles/motion.css";
 @import "../styles/interaction.css";
+
+/* Locked vertical: no page of the site slides sideways, whatever sticks out of it. `clip` makes no scroll container, so position: sticky and the page's own scrollers keep working. */
+html, body { overflow-x: clip; overscroll-behavior-x: none; }
