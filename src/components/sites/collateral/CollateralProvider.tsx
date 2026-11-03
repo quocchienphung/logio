@@ -10,7 +10,7 @@ import type { QueueDeleteReceipt, QueueEntry } from "./queue/queue-model";
 
 /**
  * One workbook, two sections. The file is read and reviewed in a worker of this tab; this provider keeps it alive while the person moves
- * between Excel formation, JSON formation and Queue. The original upload is archived on the home server;
+ * between Excel formation, JSON formation and Queue. Archiving requires an explicit action;
  * cell analysis and unsaved corrections stay in this tab's worker.
  */
 export interface CollateralValue {
@@ -22,6 +22,7 @@ export interface CollateralValue {
   setFilters: (filters: ReviewFilters) => void;
   archive: ReturnType<typeof useUploadArchive>["archive"];
   retryArchive: () => void;
+  saveToQueue: () => void;
   openSaved: (entry: QueueEntry) => Promise<void>;
   deleteSaved: (entry: QueueEntry) => Promise<QueueDeleteReceipt>;
   restoreSaved: (entry: QueueEntry, receipt: QueueDeleteReceipt) => Promise<QueueEntry>;
@@ -32,16 +33,18 @@ export function CollateralProvider({ children, workspaceId }: { children: ReactN
   const rawEngine = useCollateralEngine();
   const { open: openInWorker, close: closeWorker } = rawEngine;
   const { archive, save, openSaved: selectSaved, forget, retry } = useUploadArchive(workspaceId, rawEngine);
+  const [localFile, setLocalFile] = useState<File | null>(null);
   const open = useCallback(async (...args: Parameters<CollateralEngine["open"]>) => {
-    // Invalid selections still get the real worker error; accepted XLSX originals get a history record immediately.
-    if (/\.xlsx$/i.test(args[0].name) && args[0].size > 0 && args[0].size <= 120 * 1024 * 1024) void save(args[0]);
-    else forget();
+    forget();
+    setLocalFile(args[0]);
     await openInWorker(...args);
-  }, [save, forget, openInWorker]);
-  const close = useCallback(() => { closeWorker(); forget(); }, [closeWorker, forget]);
+  }, [forget, openInWorker]);
+  const saveToQueue = useCallback(() => { if (localFile && rawEngine.phase === "ready") void save(localFile); }, [localFile, rawEngine.phase, save]);
+  const close = useCallback(() => { closeWorker(); forget(); setLocalFile(null); }, [closeWorker, forget]);
   const engine = useMemo(() => ({ ...rawEngine, open, close }), [rawEngine, open, close]);
   const openSaved = useCallback(async (entry: QueueEntry) => {
     const file = await readQueueFile(workspaceId, entry);
+    setLocalFile(file);
     selectSaved(file, entry);
     await openInWorker(file);
   }, [workspaceId, selectSaved, openInWorker]);
@@ -65,7 +68,7 @@ export function CollateralProvider({ children, workspaceId }: { children: ReactN
   const fileKey = engine.result?.fileHash ?? "";
   const [box, setBox] = useState<{ key: string; value: ReviewFilters }>({ key: "", value: defaultFilters });
   const filters = box.key === fileKey ? box.value : defaultFilters;
-  const value = useMemo<CollateralValue>(() => ({ engine, json, setJsonActive, filters, setFilters: next => setBox({ key: fileKey, value: next }), archive, retryArchive: retry, openSaved, deleteSaved, restoreSaved }), [engine, json, filters, fileKey, archive, retry, openSaved, deleteSaved, restoreSaved]);
+  const value = useMemo<CollateralValue>(() => ({ engine, json, setJsonActive, filters, setFilters: next => setBox({ key: fileKey, value: next }), archive, retryArchive: retry, saveToQueue, openSaved, deleteSaved, restoreSaved }), [engine, json, filters, fileKey, archive, retry, saveToQueue, openSaved, deleteSaved, restoreSaved]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 

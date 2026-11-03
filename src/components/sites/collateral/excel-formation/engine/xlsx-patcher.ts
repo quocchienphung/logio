@@ -1,7 +1,9 @@
-import { unzipSync, zipSync } from "fflate";
+import { zipSync } from "fflate";
 import type { Workbook } from "./types.ts";
 import { readWorkbook } from "./xlsx-reader.ts";
 import { columnIndex, columnLetters, writeXmlText } from "./text.ts";
+import { scanXml } from "./xml-scan.ts";
+import { unzipBounded } from "./xlsx-zip.ts";
 
 /**
  * Corrected-copy export. The approved patches are written into the original file's XML at their exact cell: styles, filters, hidden rows,
@@ -74,6 +76,27 @@ function insertionPoint(xml: string, from: number, rowNumber: number, dataEnd: n
 
 /** One forward pass over the sheet: untouched XML is copied as it is, only the rows with approved patches are rewritten. */
 function patchSheet(xml: string, patches: CellPatch[]): string {
+  const spans = cellSpans(xml);
+  const writes: { start: number; end: number; value: string }[] = [];
+  const missing: CellPatch[] = [];
+  for (const patch of patches) {
+    const ref = columnLetters(patch.col) + patch.row, span = spans.get(ref);
+    if (!span) { missing.push(patch); continue; }
+    const raw = xml.slice(span.start, span.end), headEnd = span.headEnd - span.start;
+    if (/<(?:\w+:)?(?:f|r|extLst)\b/.test(raw)) throw new PatchError("Unsupported formula or rich-text target.");
+    const prefix = span.qname.includes(":") ? span.qname.split(":")[0] + ":" : "";
+    const head = raw.slice(0, headEnd).replace(/\s+t\s*=\s*(["'])[\s\S]*?\1/, "").replace(/\/$/, "");
+    const value = patch.asNumber ? `${head}><${prefix}v>${patch.value.trim()}</${prefix}v></${span.qname}>` : `${head} t="inlineStr"><${prefix}is><${prefix}t xml:space="preserve">${writeXmlText(patch.value)}</${prefix}t></${prefix}is></${span.qname}>`;
+    writes.push({ start: span.start, end: span.end, value });
+  }
+  if (!missing.length) {
+    let at = 0; const out: string[] = [];
+    for (const write of writes.sort((a, b) => a.start - b.start)) { out.push(xml.slice(at, write.start), write.value); at = write.end; }
+    out.push(xml.slice(at)); return out.join("");
+  }
+  // Legacy explicit human edits may create a cell/row; only the canonical representation supports insertion.
+  if (writes.length) return patchSheet(patchSheet(xml, patches.filter(p => spans.has(columnLetters(p.col) + p.row))), missing);
+  if (/<(?:\w+:)(?:row|c)\b/.test(xml) || /\br\s*=\s*'/.test(xml)) throw new PatchError("This representation does not support inserting cells.");
   const byRow = new Map<number, CellPatch[]>();
   for (const patch of patches) (byRow.get(patch.row) ?? byRow.set(patch.row, []).get(patch.row)!).push(patch);
   const dataStart = xml.indexOf("<sheetData");
@@ -100,7 +123,21 @@ function patchSheet(xml: string, patches: CellPatch[]): string {
 }
 
 export function patchWorkbookBytes(original: Uint8Array, workbook: Workbook, patches: CellPatch[]): PatchReport {
-  const files = unzipSync(original);
+  const rowIndex = new Map(workbook.sheets.map(sheet => [sheet.name, new Map(sheet.rows.map(row => [row.r, row]))]));
+  const seen = new Set<string>();
+  for (const patch of patches) {
+    const sheet = workbook.sheets.find(item => item.name === patch.sheet);
+    if (!sheet) throw new PatchError("Sheet was not found in the workbook.");
+    const key = `${patch.sheet}\u0001${patch.row}\u0001${patch.col}`;
+    if (seen.has(key)) throw new PatchError("Duplicate patch target.");
+    seen.add(key);
+    const target = rowIndex.get(patch.sheet)?.get(patch.row)?.cells[patch.col];
+    if (target?.f) throw new PatchError("Formula cells cannot be patched.");
+    if (target?.protectedText) throw new PatchError("Merged, rich-text or dependent formula cells cannot be patched.");
+    if (!sheet || patch.row < 1 || patch.row > 1048576 || !Number.isInteger(patch.row) || patch.col < 0 || patch.col >= 16384 || !Number.isInteger(patch.col) || patch.value.length > 32767) throw new PatchError("Invalid patch target or text length.");
+    if (patch.asNumber && !/^-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/.test(patch.value.trim())) throw new PatchError("Invalid numeric patch.");
+  }
+  const files = unzipBounded(original);
   const bySheet = new Map<string, CellPatch[]>();
   for (const patch of patches) (bySheet.get(patch.sheet) ?? bySheet.set(patch.sheet, []).get(patch.sheet)!).push(patch);
   const touched: string[] = [];
@@ -115,7 +152,7 @@ export function patchWorkbookBytes(original: Uint8Array, workbook: Workbook, pat
   return { bytes, changedCells: patches.length, sheetsTouched: touched };
 }
 
-export interface RoundTripReport { ok: boolean; changedCells: number; wrongValues: number; unexpectedChanges: number; sheetsCompared: number }
+export interface RoundTripReport { ok: boolean; changedCells: number; /** Cells whose value was MEASURED to differ between the input and the re-read output (not the number of patches asked for). */ cellsChanged: number; wrongValues: number; unexpectedChanges: number; sheetsCompared: number }
 /**
  * Re-read the exported bytes and compare them with the original workbook: every patched cell must hold exactly its approved value and every
  * other cell must be identical. Fails closed: a single difference makes `ok` false.
@@ -123,7 +160,7 @@ export interface RoundTripReport { ok: boolean; changedCells: number; wrongValue
 export function verifyRoundTrip(before: Workbook, exported: Uint8Array, patches: CellPatch[]): RoundTripReport {
   const after = readWorkbook(exported, { fileName: before.fileName, fileHash: before.fileHash });
   const patched = new Map(patches.map(patch => [`${patch.sheet}\u0001${patch.row}\u0001${patch.col}`, patch]));
-  let wrong = 0, unexpected = 0;
+  let wrong = 0, unexpected = 0, measured = 0;
   for (const sheet of before.sheets) {
     const other = after.sheets.find(item => item.name === sheet.name);
     if (!other) { unexpected++; continue; }
@@ -137,15 +174,69 @@ export function verifyRoundTrip(before: Workbook, exported: Uint8Array, patches:
         const key = `${sheet.name}\u0001${row.r}\u0001${col}`;
         const patch = patched.get(key);
         const a = row.cells[col], b = twin?.cells[col];
-        if (patch) { seen.add(key); if ((b?.v ?? "") !== (patch.asNumber ? patch.value.trim() : patch.value)) wrong++; }
-        else if ((a?.v ?? "") !== (b?.v ?? "") || (a?.t === "n") !== (b?.t === "n")) unexpected++;
+        if (patch) { seen.add(key); if ((b?.v ?? "") !== (patch.asNumber ? patch.value.trim() : patch.value)) wrong++; if ((a?.v ?? "") !== (b?.v ?? "")) measured++; }
+        else if (a?.v !== b?.v || a?.t !== b?.t || a?.s !== b?.s || a?.f !== b?.f) unexpected++;
       }
     }
     // A patched cell in a row that did not exist before.
     for (const [key, patch] of patched) if (patch.sheet === sheet.name && !seen.has(key)) { const cell = rows.get(patch.row)?.cells[patch.col]; if ((cell?.v ?? "") !== (patch.asNumber ? patch.value.trim() : patch.value)) wrong++; }
     if (other.hiddenRows !== sheet.hiddenRows || other.autoFilter !== sheet.autoFilter || other.mergeCount !== sheet.mergeCount) unexpected++;
   }
-  return { ok: wrong === 0 && unexpected === 0, changedCells: patches.length, wrongValues: wrong, unexpectedChanges: unexpected, sheetsCompared: before.sheets.length };
+  return { ok: wrong === 0 && unexpected === 0, changedCells: patches.length, cellsChanged: measured, wrongValues: wrong, unexpectedChanges: unexpected, sheetsCompared: before.sheets.length };
 }
 
 export const exportName = (fileName: string) => fileName.replace(/\.xlsx$/i, "") + ".reviewed.xlsx";
+
+interface CellSpan { start: number; headEnd: number; end: number; qname: string }
+function cellSpans(xml: string): Map<string, CellSpan> {
+  const spans = new Map<string, CellSpan>(); let open: { ref: string; start: number; headEnd: number; qname: string } | null = null;
+  for (const token of scanXml(xml)) {
+    if (token.kind === "start" && token.name === "c") {
+      const ref = token.attrs.r;
+      if (!ref || spans.has(ref) || open) throw new PatchError("Unsupported or duplicate cell reference.");
+      if (token.empty) spans.set(ref, { start: token.start, headEnd: token.end - 1, end: token.end, qname: token.qname });
+      else open = { ref, start: token.start, headEnd: token.end - 1, qname: token.qname };
+    } else if (token.kind === "end" && token.name === "c") {
+      if (!open) throw new PatchError("Malformed cell.");
+      spans.set(open.ref, { start: open.start, headEnd: open.headEnd, end: token.end, qname: open.qname }); open = null;
+    }
+  }
+  return spans;
+}
+
+/** Structural verifier separate from the cell reader: unchanged package entries and XML outside approved cell spans are byte equal. */
+export function verifyPackageIntegrity(before: Uint8Array, after: Uint8Array, workbook: Workbook, patches: CellPatch[]): boolean {
+  const a = unzipBounded(before), b = unzipBounded(after);
+  if (Object.keys(a).sort().join("\u0000") !== Object.keys(b).sort().join("\u0000")) return false;
+  const byPart = new Map<string, Set<string>>();
+  for (const patch of patches) {
+    const part = workbook.sheets.find(s => s.name === patch.sheet)?.part; if (!part) return false;
+    const refs = byPart.get(part) ?? new Set(); refs.add(columnLetters(patch.col) + patch.row); byPart.set(part, refs);
+  }
+  for (const part of Object.keys(a)) {
+    const refs = byPart.get(part);
+    if (!refs) { if (a[part].length !== b[part].length || !a[part].every((v, i) => v === b[part][i])) return false; continue; }
+    const x = new TextDecoder().decode(a[part]), y = new TextDecoder().decode(b[part]);
+    const strip = (xml: string) => {
+      let at = 0; const out: string[] = [];
+      for (const [ref, span] of cellSpans(xml)) if (refs.has(ref)) {
+        const head = xml.slice(span.start, span.headEnd).replace(/\s+t\s*=\s*(["'])[\s\S]*?\1/, "").replace(/\/$/, "");
+        // Preserve every attribute except t, which intentionally changes from shared/numeric to inline text.
+        out.push(xml.slice(at, span.start), head, "<approved-cell/>"); at = span.end;
+      }
+      out.push(xml.slice(at)); return out.join("");
+    };
+    if (strip(x) !== strip(y)) return false;
+  }
+  return true;
+}
+
+export type PackageVerdict = "CONTENT_CHANGED" | "RECOMPRESSED_ONLY" | "BYTE_IDENTICAL";
+/** Compare the UNCOMPRESSED parts of two packages: a ZIP that was only re-compressed has different bytes but identical parts. */
+export function comparePackageParts(before: Uint8Array, after: Uint8Array): { verdict: PackageVerdict; parts: number; changedParts: number } {
+  const a = unzipBounded(before), b = unzipBounded(after), names = new Set([...Object.keys(a), ...Object.keys(b)]);
+  let changed = 0;
+  for (const name of names) { const x = a[name], y = b[name]; if (!x || !y || x.length !== y.length || !x.every((v, i) => v === y[i])) changed++; }
+  const identicalBytes = before.length === after.length && before.every((v, i) => v === after[i]);
+  return { verdict: changed ? "CONTENT_CHANGED" : identicalBytes ? "BYTE_IDENTICAL" : "RECOMPRESSED_ONLY", parts: names.size, changedParts: changed };
+}

@@ -62,14 +62,12 @@ export function fingerprint(text: string, salt = ""): string {
   return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16).padStart(14, "0");
 }
 
-/** SHA-256 where the browser offers it (secure origins), otherwise a double cyrb fingerprint, labelled so the two are never confused. */
+/** Internal file identity for explicit progress replay. Never export in a redacted audit. No insecure fallback. */
 export async function fingerprintBytes(bytes: Uint8Array): Promise<string> {
   const subtle = (globalThis as { crypto?: { subtle?: SubtleCrypto } }).crypto?.subtle;
   if (subtle) {
     const digest = new Uint8Array(await subtle.digest("SHA-256", bytes as BufferSource));
     return "sha256:" + Array.from(digest, byte => byte.toString(16).padStart(2, "0")).join("");
   }
-  let a = 0x811c9dc5, b = 0x01000193 ^ bytes.length;
-  for (let i = 0; i < bytes.length; i++) { a = Math.imul(a ^ bytes[i], 16777619); b = Math.imul(b + bytes[i] + i, 2246822519); }
-  return "fp53:" + (a >>> 0).toString(16).padStart(8, "0") + (b >>> 0).toString(16).padStart(8, "0") + bytes.length.toString(16);
+  throw new Error("Secure local processing requires HTTPS or localhost (Web Crypto is unavailable).");
 }

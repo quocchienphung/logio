@@ -171,7 +171,7 @@ try {
   await page.getByRole('tab', { name: /Export/ }).click();
   await page.locator('.wf-root').waitFor();
   check('The workflow card is the preview\'s: a labelled section, an ordered list of steps on a rail, a header with Run and a footer', await page.locator('.wf-root[aria-labelledby]').count() === 1 && await page.locator('ol.wf-list > li.wf-item').count() === 7 && await page.locator('.wf-head, .wf-tail').count() >= 6 && await page.locator('.wf-footer .wf-summaryInner').count() === 1);
-  check('Each step is a real result: 9 checks inside the steps, each with its own state', await page.locator('.cr-checks li[data-ok]').count() === 9 && await page.locator('.wf-statusInner[data-status="error"], .wf-statusInner[data-status="done"]').count() >= 6);
+  check('Each step is a real result: 11 checks inside the steps, each with its own state', await page.locator('.cr-checks li[data-ok]').count() === 11 && await page.locator('.wf-statusInner[data-status="error"], .wf-statusInner[data-status="done"]').count() >= 6);
   check('A step that failed says why, and offers where to fix it', (await page.locator('.wf-errorText').first().innerText()).length > 10 && await page.locator('.wf-retry').count() >= 1);
   check('The step that was timed shows the milliseconds the worker took, the others say "Done"', /\d+ms|<1ms|\d\.\ds/.test(await page.locator('.wf-statusInner[data-status="done"]').first().innerText()));
   check('The branch has tabs (Ready, Blocked) as a radio group, the taken path selected', await page.locator('.wf-tabs[role=radiogroup] [role=radio][aria-checked="true"]').innerText() === 'Blocked');

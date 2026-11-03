@@ -1,6 +1,6 @@
 import type { IssueStatus } from "./types.ts";
 import { RULE_VERSION } from "./detect.ts";
-import { allIssues, applyEdits, emptyReview, summarize, type IssueState, type Patch, type ReviewContext, type ReviewState, type ReviewSummary } from "./review.ts";
+import { allIssues, applyEdits, emptyReview, summarize, validExceptionReason, type IssueState, type Patch, type ReviewContext, type ReviewState, type ReviewSummary } from "./review.ts";
 
 /**
  * Review progress as a small file the person keeps. The workbook itself is never written into it: only the corrections (cell, original text, new
@@ -39,7 +39,7 @@ export type RestoreResult =
   | { ok: true; state: ReviewState; patches: number; exceptions: number; /** The counts after the replay equal the counts saved with the file. */ matches: boolean; rulesChanged: boolean }
   | { ok: false; error: RestoreError; at?: { row: number; col: number } };
 
-const SOURCES = new Set<Patch["source"]>(["typed", "suggestion", "fix", "bulk", "twin", "group"]);
+const SOURCES = new Set<Patch["source"]>(["typed", "suggestion", "fix", "bulk", "twin", "group", "auto_source", "auto_model"]);
 const STATUSES = new Set<IssueStatus>(["open", "edited", "verified", "accepted_exception"]);
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null && !Array.isArray(value);
 
@@ -50,6 +50,7 @@ export function restoreProgress(raw: unknown, ctx: ReviewContext): RestoreResult
   if (raw.fileHash !== ctx.fileHash) return { ok: false, error: "other-file" };
   if (!Array.isArray(raw.patches) || !isRecord(raw.states) || !isRecord(raw.counts)) return { ok: false, error: "damaged" };
   const edits: { sheet: string; row: number; col: number; value: string; source: Patch["source"] }[] = [];
+  const provenance = new Map<string, Pick<Patch, "modelVersion" | "policyVersion" | "evidenceSourceId">>();
   const seen = new Set<string>();
   for (const item of raw.patches) {
     if (!isRecord(item) || typeof item.sheet !== "string" || !Number.isInteger(item.row) || !Number.isInteger(item.col) || typeof item.value !== "string" || typeof item.original !== "string" || !SOURCES.has(item.source as Patch["source"])) return { ok: false, error: "damaged" };
@@ -59,8 +60,13 @@ export function restoreProgress(raw: unknown, ctx: ReviewContext): RestoreResult
     // The correction was made on this cell of this file: if its text is not what the correction started from, the file is not the one it was made on.
     if (ctx.original(item.sheet, row, col) !== item.original) return { ok: false, error: "changed-cell", at: { row, col } };
     edits.push({ sheet: item.sheet, row, col, value: item.value, source: item.source as Patch["source"] });
+    if (item.source === "auto_source" || item.source === "auto_model") {
+      if (typeof item.modelVersion !== "string" || typeof item.policyVersion !== "string" || typeof item.evidenceSourceId !== "string") return { ok: false, error: "damaged" };
+      provenance.set(id, { modelVersion: item.modelVersion, policyVersion: item.policyVersion, evidenceSourceId: item.evidenceSourceId });
+    }
   }
   let state = applyEdits(emptyReview(), ctx, edits);
+  for (const [key, metadata] of provenance) if (state.patches[key]) Object.assign(state.patches[key], metadata);
   const known = new Set(allIssues(state, ctx).map(issue => issue.id));
   const states = { ...state.states };
   let exceptions = 0;
@@ -69,7 +75,7 @@ export function restoreProgress(raw: unknown, ctx: ReviewContext): RestoreResult
     if (!known.has(id)) continue;
     const before = states[id];
     if (item.status === "accepted_exception") {
-      if (typeof item.exceptionReason !== "string" || item.exceptionReason.trim().length < 3) return { ok: false, error: "damaged" };
+      if (typeof item.exceptionReason !== "string" || !validExceptionReason(item.exceptionReason)) return { ok: false, error: "damaged" };
       states[id] = { ...before, status: "accepted_exception", exceptionReason: item.exceptionReason, ...(typeof item.reviewedAt === "string" ? { reviewedAt: item.reviewedAt } : {}) };
       exceptions++;
     }

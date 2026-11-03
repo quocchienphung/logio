@@ -2,12 +2,15 @@
 import { openSession, exportCorrected, type Session } from "../excel-formation/engine/session.ts";
 import { CreditImportError } from "../excel-formation/engine/xlsx-reader.ts";
 import { planJson } from "../json-formation/engine/json-session.ts";
+import { makeZip, zipHolds } from "../json-formation/engine/json-package.ts";
 import { childrenOf, rootInfo, searchDocument, textOf } from "../json-formation/engine/json-doc.ts";
 import { VietnameseModel } from "../excel-formation/engine/predict.ts";
 import { restoreProgress, snapshotProgress } from "../excel-formation/engine/progress.ts";
 import { workbookGridMeta, workbookGridRows } from "../excel-formation/engine/workbook-grid.ts";
 import { acceptException, applyBulk, applyEdits, chooseForGroup, commit, groupRows, newHistory, planBulk, redo, rejectSuggestion, reopen, summarize, undo, type History } from "../excel-formation/engine/review.ts";
 import type { ReviewView, WorkerMessage, WorkerRequest } from "./protocol.ts";
+import { autoRepair } from "../excel-formation/engine/auto-repair.ts";
+import { planDuplicateRepair, applyDuplicateRepair } from "../excel-formation/engine/duplicate-repairs.ts";
 
 /**
  * Every byte of the workbook lives only in this worker: it is read, scanned, reviewed and exported here, and nothing is stored or sent
@@ -15,6 +18,7 @@ import type { ReviewView, WorkerMessage, WorkerRequest } from "./protocol.ts";
  */
 let session: Session | null = null;
 let history: History = newHistory();
+let repair: { cancelled: boolean } | null = null;
 /** The reporting document of the latest plan, served to the viewer page by page. */
 let document: { report: unknown; epoch: number } | null = null;
 const DOC_ROOT = "report";
@@ -39,7 +43,29 @@ const need = () => { if (!session) throw new Error("No workbook is open."); retu
 const issueOf = (id: string) => need().scan.issues.find(item => item.id === id) ?? Object.values(history.present.introduced).flat().find(item => item.id === id);
 
 async function handle(id: number, request: WorkerRequest["request"]) {
+  if (repair && !["cancelRepair", "grid", "gridMeta", "row", "window", "view", "predict", "docRoot", "docChildren", "docSearch", "docText"].includes(request.type)) throw new Error("Wait for automatic repair or cancel it before changing the workbook.");
   switch (request.type) {
+    case "duplicatePlan": {
+      const issue = issueOf(request.issueId);
+      return { type: "duplicatePlan" as const, plan: issue ? planDuplicateRepair(need(), history.present, issue.sheet, issue.row, issue.col, request.includeTwin) : null };
+    }
+    case "duplicateApply": {
+      const issue = issueOf(request.issueId); if (!issue) throw new Error("This issue is no longer available.");
+      const result = applyDuplicateRepair(need(), history.present, issue.sheet, issue.row, issue.col, request.value, request.includeTwin);
+      history = commit(history, result.state); document = null;
+      return { type: "duplicateApplied" as const, view: view(), rows: result.plan.rows.length, changedCells: result.changedCells };
+    }
+    case "cancelRepair": if (repair) repair.cancelled = true; return { type: "repairCancelRequested" as const };
+    case "autoRepair": {
+      const task = { cancelled: false }; repair = task;
+      try {
+        const out = await autoRepair(need(), history.present, { cancelled: () => task.cancelled, onProgress: progress => post({ id, repairProgress: progress }) });
+        history = commit(history, out.state);
+        document = null;
+        const bytes = out.bytes.buffer.slice(out.bytes.byteOffset, out.bytes.byteOffset + out.bytes.byteLength) as ArrayBuffer;
+        return { type: "repaired" as const, fileName: out.fileName, bytes, report: out.report, view: view() };
+      } finally { repair = null; }
+    }
     case "open": {
       history = newHistory();
       language = null;
@@ -96,7 +122,13 @@ async function handle(id: number, request: WorkerRequest["request"]) {
       const { bytes, audit, csv, report, ...plan } = planJson(s, history.present, request.meta, request.options, summarize(history.present, s.ctx));
       document = { report, epoch: (document?.epoch ?? 0) + 1 };
       // Only a request marked final, and only when every gate holds, ever carries the bytes of the reporting JSON.
-      const out = request.final && plan.ready && bytes ? bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer : undefined;
+      let offered = request.final && plan.ready && bytes ? bytes : null;
+      if (offered && request.zip) {
+        const zipped = makeZip(plan.fileName!, offered, request.meta.KB001);
+        if (!zipHolds(zipped, plan.fileName!, offered)) throw new Error("The zip could not be verified; no download was produced.");
+        offered = zipped;
+      }
+      const out = offered ? offered.buffer.slice(offered.byteOffset, offered.byteOffset + offered.byteLength) as ArrayBuffer : undefined;
       return { type: "json" as const, plan: { ...plan, epoch: document.epoch }, audit, csv, ...(out ? { bytes: out } : {}) };
     }
     case "docRoot": return { type: "docRoot" as const, epoch: document?.epoch ?? 0, info: document ? rootInfo(document.report, DOC_ROOT) : null };
@@ -164,7 +196,7 @@ self.onmessage = async (event: MessageEvent<WorkerRequest>) => {
   const { id, request } = event.data;
   try {
     const response = await handle(id, request);
-    post({ id, ok: true, response }, response.type === "exported" ? [response.bytes] : response.type === "json" && response.bytes ? [response.bytes] : []);
+    post({ id, ok: true, response }, response.type === "exported" || response.type === "repaired" ? [response.bytes] : response.type === "json" && response.bytes ? [response.bytes] : []);
   } catch (error) {
     post({ id, ok: false, error: error instanceof Error ? error.message : String(error), ...(error instanceof CreditImportError ? { code: error.code } : {}) });
   }

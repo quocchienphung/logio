@@ -131,6 +131,7 @@ export function ReviewStep({ engine, filters, onFilters, notify }: { engine: Col
 
   const resumeInput = useRef<HTMLInputElement>(null);
   async function saveProgress() {
+    if (!window.confirm("This progress file includes original and corrected cell text and exception reasons. It may contain sensitive data. Export this local file?")) return;
     const saved = await engine.saveProgress();
     if (!saved) return;
     downloadBlob(saved.fileName, saved.blob);

@@ -1,4 +1,5 @@
 import type { Request, Response, WorkerMessage } from "./protocol.ts";
+import type { RepairProgress } from "../excel-formation/engine/auto-repair.ts";
 
 /** Thin promise wrapper around the worker. `cancel()` terminates it: the only way to stop a synchronous scan, and it also drops all data. */
 export class EngineError extends Error {
@@ -10,7 +11,7 @@ export type ProgressListener = (progress: { phase: "read" | "scan"; fraction: nu
 export class EngineClient {
   private worker: Worker | null = null;
   private next = 1;
-  private pending = new Map<number, { resolve: (response: Response) => void; reject: (error: Error) => void; progress?: ProgressListener }>();
+  private pending = new Map<number, { resolve: (response: Response) => void; reject: (error: Error) => void; progress?: ProgressListener; repairProgress?: (p: RepairProgress) => void }>();
 
   private ensure(): Worker {
     if (this.worker) return this.worker;
@@ -19,6 +20,7 @@ export class EngineClient {
       const message = event.data;
       const entry = this.pending.get(message.id);
       if (!entry) return;
+      if ("repairProgress" in message) { entry.repairProgress?.(message.repairProgress); return; }
       if ("progress" in message) { entry.progress?.(message.progress); return; }
       this.pending.delete(message.id);
       if (message.ok) entry.resolve(message.response); else entry.reject(new EngineError(message.error, message.code));
@@ -29,11 +31,11 @@ export class EngineClient {
   }
   private failAll(error: Error) { for (const entry of this.pending.values()) entry.reject(error); this.pending.clear(); }
 
-  call(request: Request, options: { progress?: ProgressListener; transfer?: Transferable[] } = {}): Promise<Response> {
+  call(request: Request, options: { progress?: ProgressListener; transfer?: Transferable[]; repairProgress?: (p: RepairProgress) => void } = {}): Promise<Response> {
     const worker = this.ensure();
     const id = this.next++;
     return new Promise((resolve, reject) => {
-      this.pending.set(id, { resolve, reject, progress: options.progress });
+      this.pending.set(id, { resolve, reject, progress: options.progress, repairProgress: options.repairProgress });
       worker.postMessage({ id, request }, options.transfer ?? []);
     });
   }

@@ -14,7 +14,9 @@ export const CHECK: Record<string, string> = {
   mapping: "Every column the JSON needs is mapped",
   metadata: "Reporting date and contact details are filled in",
   grouping: "Every row is placed in the hierarchy",
+  "file-name": "The file name follows D40 + TCTD code + date + sequence",
   schema: "The JSON matches the reporting schema",
+  template: "Every key is where Mẫu số 09 puts it",
   utf8: "The file is valid UTF-8 and parses",
   replay: "The same input gives the same bytes",
   counts: "Rows, assets and groups add up",
@@ -23,9 +25,9 @@ export const CHECK: Record<string, string> = {
 const GROUPS: { id: string; title: string; detail: string; checks: string[]; mark: typeof Columns3 }[] = [
   { id: "mapping", title: "Map columns", detail: "the columns the JSON needs", checks: ["mapping"], mark: Columns3 },
   { id: "review", title: "Review issues", detail: "nothing serious left open", checks: ["serious-issues"], mark: ShieldCheck },
-  { id: "details", title: "Report details", detail: "date and contacts", checks: ["metadata"], mark: ClipboardList },
+  { id: "details", title: "Report details", detail: "date, contacts and file name", checks: ["metadata", "file-name"], mark: ClipboardList },
   { id: "group", title: "Group rows", detail: "branch, customer, asset", checks: ["grouping", "counts"], mark: Boxes },
-  { id: "validate", title: "Validate the JSON", detail: "schema, bytes, replay", checks: ["schema", "utf8", "replay", "ts013"], mark: FileJson },
+  { id: "validate", title: "Validate the JSON", detail: "schema, template, bytes, replay", checks: ["schema", "template", "utf8", "replay", "ts013"], mark: FileJson },
 ];
 
 /**
@@ -60,7 +62,7 @@ export function JsonPipeline({ engine, state, plan }: { engine: CollateralEngine
       const timing = group.id === "group" ? timings?.build : group.id === "validate" && timings ? timings.verify + timings.replay : undefined;
       const detail = group.id === "review" ? t("{0} serious open", [open]) : group.id === "group" ? t("{0} branches · {1} customers · {2} assets", [n(r.branches), n(r.customers), n(r.assets)]) : t(group.detail);
       const why = ok ? undefined : group.id === "review" ? t("{0} serious issues are still open. Resolve them or accept them with a reason.", [open])
-        : group.id === "details" ? t("The reporting date (YYYYMMDD) and the three contact fields must be filled in.")
+        : group.id === "details" ? t("The reporting date (YYYYMMDD), the three contact fields, the TCTD code and the 3-character sequence must be filled in.")
         : group.id === "mapping" ? t("A column the JSON needs is not mapped.")
         : group.id === "group" ? (p.problems[0] ?? t("Rows could not all be placed in the hierarchy."))
         : (bad?.detail ?? t("A check no longer holds"));
@@ -75,7 +77,7 @@ export function JsonPipeline({ engine, state, plan }: { engine: CollateralEngine
       id: "export", mark: <FileJson size={16} strokeWidth={1.75} />, title: t("Ready to export?"), detail: p.ready ? t("every check holds") : t("{0} checks do not hold", [failing.length]), result: p.ready ? "ok" : "error",
       taken: p.ready ? "ready" : "blocked",
       paths: [
-        { id: "ready", label: t("Ready"), body: <div className="wf-outLine"><span className="wf-label"><span className="wf-labelDot" />reporting-output.json</span><span className="wf-muted">{p.ready ? t("can be downloaded below") : t("is locked until every check holds")}</span></div> },
+        { id: "ready", label: t("Ready"), body: <div className="wf-outLine"><span className="wf-label"><span className="wf-labelDot" />{p.fileName ?? "D40…json"}</span><span className="wf-muted">{p.ready ? t("can be downloaded below") : t("is locked until every check holds")}</span></div> },
         { id: "blocked", label: t("Blocked"), body: failing.length ? <ul className="cr-checks" aria-label={t("Checks")}>{failing.map(check => <li key={check.id} className="wf-outLine"><span className="wf-labelDot" data-tone="bad" aria-hidden="true" /><span className="wf-name">{t(CHECK[check.id])}</span></li>)}</ul> : <span className="wf-muted">{t("Nothing blocks the export.")}</span> },
       ],
     });

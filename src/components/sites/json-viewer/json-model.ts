@@ -130,13 +130,15 @@ export function memorySource(data: unknown, rootName: string): JsonSource {
 }
 
 /** Every key and primitive value that holds the query (case-insensitive), in document order, stopping at `max`. Array indexes are not searched (inferred). */
-export function searchValue(data: unknown, rootName: string, query: string, max = SEARCH_LIMIT): SearchResult {
+export function searchValue(data: unknown, rootName: string, query: string, max = SEARCH_LIMIT, unwrap?: (value: unknown) => unknown): SearchResult {
   const needle = query.trim().toLowerCase();
   const hits: SearchHit[] = [];
   if (!needle) return { hits, capped: false };
   let capped = false;
-  const walk = (value: unknown, path: string, key: string, isIndex: boolean, trail: SearchStep[]): void => {
+  const walk = (raw: unknown, path: string, key: string, isIndex: boolean, trail: SearchStep[]): void => {
     if (capped) return;
+    // `unwrap` lets a source show a stored value as another one (a number kept as its exact text, say) without copying the document.
+    const value = unwrap ? unwrap(raw) : raw;
     const type = typeOf(value);
     const keyHit = !isIndex && key.toLowerCase().includes(needle);
     const valueHit = !isBranch(type) && primitiveText(value, type).plain.toLowerCase().includes(needle);

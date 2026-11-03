@@ -1,8 +1,10 @@
 import type { Session } from "../../excel-formation/engine/session.ts";
 import type { ReviewState } from "../../excel-formation/engine/review.ts";
-import { allIssues, cellKey, statusOf } from "../../excel-formation/engine/review.ts";
+import { allIssues, cellKey, statusOf, summarize } from "../../excel-formation/engine/review.ts";
+import { otherCellBlockers } from "../../excel-formation/engine/workbook-coverage.ts";
 import { buildReport, defaultReportOptions, encodeAndVerify, reportDateFrom, validYmd, workbookReportDate, type Reconciliation, type ReportMeta, type ReportOptions, type ReportOut, type Verification } from "./json-report.ts";
-import { fingerprint, columnLetters } from "../../excel-formation/engine/text.ts";
+import { packageName } from "./json-package.ts";
+import { columnLetters } from "../../excel-formation/engine/text.ts";
 import { RULE_VERSION } from "../../excel-formation/engine/detect.ts";
 import type { Row } from "../../excel-formation/engine/types.ts";
 
@@ -17,18 +19,22 @@ export interface JsonPlan {
   /** The report date the workbook itself carries, to pre-fill the form (null when it holds none or several). */
   workbookDate: string | null;
   options: ReportOptions;
+  /** The names the form asks for (`D40<TCTD code><date>.<zzz>.json` and `.zip`); null until the parts typed at export are valid. */
+  fileName: string | null;
+  zipName: string | null;
   /** What each stage of the check took in the worker (ms): the report, the bytes and the replay. */
   timings?: { build: number; verify: number; replay: number };
   /** Which build of the document the viewer is reading (a new one every time the plan is made again). */
   epoch?: number;
 }
-export interface JsonOutput extends JsonPlan { bytes: Uint8Array | null; audit: string; csv: string; fileName: string; /** The document itself, for the worker to serve to the viewer. Never posted as it is. */ report: ReportOut; /** How long the report took to build, the bytes to verify, and the whole of it again for the replay check (ms). */ timings: { build: number; verify: number; replay: number } }
+export interface JsonOutput extends JsonPlan { bytes: Uint8Array | null; audit: string; csv: string; /** The document itself, for the worker to serve to the viewer. Never posted as it is. */ report: ReportOut; /** How long the report took to build, the bytes to verify, and the whole of it again for the replay check (ms). */ timings: { build: number; verify: number; replay: number } }
 
 const valueAtOf = (session: Session, state: ReviewState) => (row: Row, col: number) => state.patches[cellKey(session.workbook.sheets.find(s => s.name === session.wprofile.primary)!.name, row.r, col)]?.value ?? row.cells[col]?.v ?? "";
 const valid = (text: string) => text.trim() !== "";
 
 /** Run every gate for the JSON export. Builds the report twice (deterministic replay) and checks the bytes it would offer. */
 export function planJson(session: Session, state: ReviewState, meta: ReportMeta, options: ReportOptions = defaultReportOptions, summary: { blocking: number }): JsonOutput {
+  const blocking = Math.max(summary.blocking, summarize(state, session.ctx).blocking) + otherCellBlockers(session, state);
   const valueAt = valueAtOf(session, state);
   const patchedKeys = new Set(Object.keys(state.patches));
   const sheet = session.workbook.sheets.find(item => item.name === session.wprofile.primary);
@@ -70,12 +76,15 @@ export function planJson(session: Session, state: ReviewState, meta: ReportMeta,
     }
   }
   const ymdOk = validYmd(meta.KB001);
+  const packaged = packageName(options.file, meta.KB001);
   const checks: ExportCheck[] = [
-    { id: "serious-issues", ok: summary.blocking === 0, detail: String(summary.blocking) },
+    { id: "serious-issues", ok: blocking === 0, detail: String(blocking) },
     { id: "mapping", ok: session.scan.blockers.length === 0, detail: session.scan.blockers[0] },
     { id: "metadata", ok: ymdOk && valid(meta.KB002) && valid(meta.KB003) && valid(meta.KB004), detail: !ymdOk ? "KB001" : undefined },
-    { id: "grouping", ok: first.problems.length === 0, detail: first.problems[0] },
-    { id: "schema", ok: encoded.verification.ok, detail: encoded.verification.schemaErrors[0] },
+    { id: "grouping", ok: first.problems.length === 0 && rec.assetsWithValueConflicts === 0, detail: first.problems[0] ?? (rec.assetsWithValueConflicts ? "Conflicting asset values require resolution." : undefined) },
+    { id: "file-name", ok: packaged.name !== null, detail: packaged.problems[0] },
+    { id: "schema", ok: encoded.verification.parses && encoded.verification.schemaErrors.length === 0, detail: encoded.verification.schemaErrors[0] },
+    { id: "template", ok: encoded.verification.parses && encoded.verification.keyOrderOk, detail: encoded.verification.templateErrors[0] },
     { id: "utf8", ok: encoded.verification.utf8 && encoded.verification.parses },
     { id: "replay", ok: encoded.bytes.length === replay.bytes.length && encoded.bytes.every((byte, index) => byte === replay.bytes[index]) },
     { id: "counts", ok: rec.rowsGrouped + rec.rowsUnmatched === rec.rowsInSheet && Object.values(rec.rowsPerAsset).reduce((a, b) => a + b, 0) === rec.assets && rec.assets > 0 },
@@ -84,37 +93,39 @@ export function planJson(session: Session, state: ReviewState, meta: ReportMeta,
   const ready = checks.every(check => check.ok);
   return {
     reconciliation: rec, checks, ready, verification: encoded.verification, problems: first.problems, workbookDate: workbookDate.date, options,
-    bytes: ready ? encoded.bytes : null, audit: ready || true ? auditJson(session, state, rec, checks, options, meta) : "", csv: auditCsv(session, state), fileName: "reporting-output.json",
+    bytes: ready ? encoded.bytes : null, audit: auditJson(session, state, rec, checks, options, meta), csv: auditCsv(session, state), fileName: packaged.name?.json ?? null, zipName: packaged.name?.zip ?? null,
     report: first.report, timings,
   };
 }
 
 const iso = () => new Date().toISOString();
-/** The audit report: which issue was decided how, by fingerprint only. No cell value, name or code is in it unless a reviewer typed it into an exception reason. */
+/** Redacted audit: ordinal IDs and coordinates only, without value hashes or freeform reasons. */
 export function auditJson(session: Session, state: ReviewState, reconciliation: Reconciliation, checks: ExportCheck[], options: ReportOptions, meta: ReportMeta): string {
-  const issues = allIssues(state, session.ctx).map(issue => {
+  void meta;
+  const sheets = new Map(session.workbook.sheets.map((sheet, index) => [sheet.name, `sheet-${index + 1}`]));
+  const issues = allIssues(state, session.ctx).map((issue, index) => {
     const decided = state.states[issue.id];
     return {
-      id: issue.id, sheet: issue.sheet, row: issue.row, column: issue.column, field: issue.field, category: issue.category, severity: issue.severity, status: statusOf(state, issue),
-      originalValueFingerprint: issue.originalValueFingerprint, ...(decided?.correctedValue !== undefined ? { correctedValueFingerprint: fingerprint(decided.correctedValue, session.workbook.fileHash) } : {}),
-      ...(decided?.exceptionReason ? { exceptionReason: decided.exceptionReason } : {}), ...(decided?.reviewedAt ? { reviewedAt: decided.reviewedAt } : {}), ruleVersion: issue.ruleVersion,
+      id: `issue-${index + 1}`, sheet: sheets.get(issue.sheet), row: issue.row, column: issue.column, category: issue.category, severity: issue.severity, status: statusOf(state, issue),
+      exceptionRecorded: !!decided?.exceptionReason, ...(decided?.reviewedAt ? { reviewedAt: decided.reviewedAt } : {}), ruleVersion: issue.ruleVersion,
     };
   });
-  const patches = Object.values(state.patches).map(patch => ({ sheet: patch.sheet, row: patch.row, column: columnLetters(patch.col), originalFingerprint: fingerprint(patch.original, session.workbook.fileHash), newFingerprint: fingerprint(patch.value, session.workbook.fileHash), source: patch.source, at: patch.at }));
+  const patches = Object.values(state.patches).map(patch => ({ sheet: sheets.get(patch.sheet), row: patch.row, column: columnLetters(patch.col), source: patch.source, at: patch.at }));
   return JSON.stringify({
     tool: "collateral-pipeline", generatedAt: iso(), ruleVersion: RULE_VERSION, mappingProfile: { id: session.profile.id, version: session.profile.version },
-    file: { name: session.workbook.fileName, size: session.workbook.size, hash: session.workbook.fileHash },
-    decisions: { ownerPolicy: options.ownerPolicy, reportDate: meta.KB001, contractOrder: "first-seen", valueRules: { TS005: "first row", TS006: "sum of rows", TS013: "MOTABDS of the first row" } },
+    file: { size: session.workbook.size, sheets: session.workbook.sheets.length },
+    decisions: { ownerPolicy: options.ownerPolicy, contractOrder: "first-seen", valueRules: { TS005: "first row", TS006: "exact decimal sum; no rounding policy", TS013: "MOTABDS of the first row", "TS010/TS011": "distinct values of every row", "TS014/TS015/TS016": "one entry per distinct set of columns, every row" } },
     reconciliation, checks: checks.map(({ id, ok }) => ({ id, ok })), issueCount: issues.length, patchCount: patches.length, issues, patches,
-    privacy: { cellValuesIncluded: false, note: "Values are represented by fingerprints. Exception reasons are the text a reviewer typed." },
+    privacy: { cellValuesIncluded: false, note: "No values, value hashes, file names, sheet names, metadata or freeform reasons are exported." },
   }, null, 2) + "\n";
 }
 export function auditCsv(session: Session, state: ReviewState): string {
   const esc = (v: string | number) => { const s = String(v); return /[",\n]/.test(s) ? `"${s.replaceAll("\"", "\"\"")}"` : s; };
-  const lines = [["sheet", "row", "column", "field", "category", "severity", "status", "original_fingerprint", "corrected_fingerprint", "exception_reason"].join(",")];
+  const sheets = new Map(session.workbook.sheets.map((sheet, index) => [sheet.name, `sheet-${index + 1}`]));
+  const lines = [["sheet", "row", "column", "category", "severity", "status", "exception_recorded"].join(",")];
   for (const issue of allIssues(state, session.ctx)) {
     const decided = state.states[issue.id];
-    lines.push([issue.sheet, issue.row, issue.column, issue.field, issue.category, issue.severity, statusOf(state, issue), issue.originalValueFingerprint, decided?.correctedValue !== undefined ? fingerprint(decided.correctedValue, session.workbook.fileHash) : "", decided?.exceptionReason ?? ""].map(esc).join(","));
+    lines.push([sheets.get(issue.sheet) ?? "unknown", issue.row, issue.column, issue.category, issue.severity, statusOf(state, issue), decided?.exceptionReason ? "yes" : "no"].map(esc).join(","));
   }
   return lines.join("\n") + "\n";
 }

@@ -2,11 +2,12 @@ import type { Workbook } from "./types.ts";
 import { readWorkbook } from "./xlsx-reader.ts";
 import { fingerprintBytes } from "./text.ts";
 import { MAU9_PROFILE, type MappingProfile } from "./mapping-profiles.ts";
-import { profileWorkbook, type WorkbookProfile } from "./profile.ts";
+import { profileWorkbook, resolveMapping, type WorkbookProfile } from "./profile.ts";
 import { detectIssues, groupKey, type ScanResult } from "./detect.ts";
 import type { Issue } from "./types.ts";
 import type { ReviewContext, ReviewState } from "./review.ts";
 import { cellKey } from "./review.ts";
+import { resolveBlocks } from "./blocks.ts";
 import { patchWorkbookBytes, verifyRoundTrip, exportName, type CellPatch, type RoundTripReport } from "./xlsx-patcher.ts";
 
 /** Everything the engine holds about one opened workbook. It lives in memory (a Web Worker) and is never saved or sent anywhere. */
@@ -25,22 +26,25 @@ export function buildContext(workbook: Workbook, wprofile: WorkbookProfile, prof
   const sheet = workbook.sheets.find(item => item.name === wprofile.primary);
   const resolved = wprofile.mapping?.resolved ?? [];
   const byCol = new Map(resolved.map(item => [item.col, item.spec]));
+  const sheetSpecs = new Map(wprofile.sheets.map(s => [s.name, new Map((s.name === wprofile.primary ? resolved : resolveMapping(s.headers, profile).resolved).map(item => [item.col, item.spec]))]));
   const colOf = (header: string) => resolved.find(item => item.spec.header === header)?.col;
   const pair = profile.descriptionPair;
   const primary = pair ? colOf(pair.primary) : undefined, secondary = pair ? colOf(pair.secondary) : undefined;
   const branch = colOf(profile.groupBy.branch), customer = colOf(profile.groupBy.customer), asset = colOf(profile.groupBy.asset);
-  const rows = new Map(sheet?.rows.map(row => [row.r, row]) ?? []);
+  const sheetRows = new Map(workbook.sheets.map(s => [s.name, new Map(s.rows.map(row => [row.r, row]))]));
   const byCell = new Map<string, Issue[]>();
   for (const issue of scan.issues) { const key = `${issue.row}\u0001${issue.col}`; const list = byCell.get(key); if (list) list.push(issue); else byCell.set(key, [issue]); }
+  const blocks = resolveBlocks(profile, resolved);
   const members = new Map<string, number[]>();
+  if (sheet && branch !== undefined && customer !== undefined && asset !== undefined) {
+    for (const row of sheet.rows) for (const [level, cols] of [["branch", [branch]], ["customer", [branch, customer]], ["asset", [branch, customer, asset]]] as const) {
+      const key = `${level}\u0000${groupKey(row, [...cols])}`;
+      const list = members.get(key); if (list) list.push(row.r); else members.set(key, [row.r]);
+    }
+  }
   const groupRowsOf = (issue: Issue): number[] => {
     if (!issue.group || !sheet || branch === undefined || customer === undefined || asset === undefined) return [issue.row];
-    const cached = members.get(issue.id);
-    if (cached) return cached;
-    const cols = issue.group.level === "asset" ? [branch, customer, asset] : issue.group.level === "customer" ? [branch, customer] : [branch];
-    const found = sheet.rows.filter(row => groupKey(row, cols) === issue.group!.key).map(row => row.r);
-    members.set(issue.id, found);
-    return found;
+    return members.get(`${issue.group.level}\u0000${issue.group.key}`) ?? [];
   };
   let conflictIndex: Map<string, Issue[]> | null = null;
   const conflictsAt = (row: number, col: number): Issue[] => {
@@ -54,8 +58,18 @@ export function buildContext(workbook: Workbook, wprofile: WorkbookProfile, prof
     groupRowsOf, conflictsAt, issuesAt: (sheetName, row, col) => sheetName === sheet?.name ? byCell.get(`${row}\u0001${col}`) ?? [] : [],
     fileHash: workbook.fileHash, issues: scan.issues, sheet,
     specOfCol: col => byCol.get(col), corpus: col => scan.corpora.get(col),
-    original: (sheetName, row, col) => sheetName === sheet?.name ? rows.get(row)?.cells[col]?.v ?? "" : workbook.sheets.find(item => item.name === sheetName)?.rows.find(r => r.r === row)?.cells[col]?.v ?? "",
+    specOfCell: (sheetName, col) => sheetSpecs.get(sheetName)?.get(col),
+    twinOfCell: (sheetName, col) => {
+      const specs = sheetSpecs.get(sheetName);
+      if (!pair || !specs) return undefined;
+      const entries = [...specs];
+      const a = entries.find(([, spec]) => spec.header === pair.primary)?.[0], b = entries.find(([, spec]) => spec.header === pair.secondary)?.[0];
+      return col === a ? b : col === b ? a : undefined;
+    },
+    original: (sheetName, row, col) => sheetRows.get(sheetName)?.get(row)?.cells[col]?.v ?? "",
+    isFormula: (sheetName, row, col) => !!sheetRows.get(sheetName)?.get(row)?.cells[col]?.f,
     groupCols: branch !== undefined && customer !== undefined && asset !== undefined ? { branch, customer, asset } : null,
+    blocksOf: col => blocks.filter(block => block.anchor === col || block.members.includes(col)),
     twinOf: col => primary !== undefined && secondary !== undefined ? (col === primary ? secondary : col === secondary ? primary : undefined) : undefined,
     diacriticPolicy,
   };
@@ -81,6 +95,7 @@ export function exportCorrected(session: Session, state: ReviewState): ExportedW
   const patches = patchesOf(state);
   const report = patchWorkbookBytes(session.bytes, session.workbook, patches);
   const roundTrip = verifyRoundTrip(session.workbook, report.bytes, patches);
+  if (!roundTrip.ok) throw new Error("Workbook validation failed; no download was produced.");
   return { fileName: exportName(session.workbook.fileName), bytes: report.bytes, changedCells: report.changedCells, roundTrip };
 }
 export { cellKey };

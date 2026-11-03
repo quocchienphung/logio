@@ -15,7 +15,7 @@
 
 - Gốc: `KB001` (ngày `YYYYMMDD`), `KB002..KB004` (siêu dữ liệu người lập – **không sao chép từ file cũ**), `CNTCTD[]`.
 - Phân cấp: `CNTCTD[] (TTC01,TTC02,KHACHHANG[]) → KHACHHANG[] (TTC03,TTC04,THONGTINBD[]) → THONGTINBD[]` với 16 khóa theo thứ tự cố định `TS001..TS008, TS013, TS009..TS012, TS014..TS016`.
-- Kiểu: `TS005/TS006/TS008` là **number**, mọi `TS00x` khác dạng chuỗi/mảng; `TS010/011/014/015/016` luôn là **mảng rỗng**; `TS012` = mảng chủ sở hữu `{TS0121,TS0122,TS0123}` (chuỗi).
+- Kiểu: `TS005/TS006/TS008` là **number**, mọi `TS00x` khác dạng chuỗi/mảng; `TS010/TS011` là mảng chuỗi; `TS012` = mảng chủ sở hữu `{TS0121,TS0122,TS0123}`; `TS014/TS015/TS016` là mảng đối tượng theo **Mẫu số 09** (xem dưới). Trong file tham chiếu cũ cả năm nhánh này luôn rỗng vì dữ liệu mẫu không có cột tương ứng.
 - Định dạng: thụt đầu dòng bằng **tab**, LF, không BOM.
 - **Mã hóa: KHÔNG phải UTF-8 hợp lệ.** Khoảng 60% byte ≥0x80 là chuỗi không hợp lệ; chúng nằm ở `TS013`, `TS009[]`, `TS0121/2`, `TTC04`. Không có bằng chứng đủ để khẳng định code page (cp1258/cp1252/cp850 đều giải mã "trông giống tiếng Việt" vì phép thử quá lỏng). → Coi file là **oracle cấu trúc**, không phải văn bản sạch; JSON xuất ra luôn UTF-8 nghiêm ngặt. Ký tự `?` literal rất phổ biến (≈1/10 `TS013`).
 
@@ -44,3 +44,18 @@ Số bản ghi: nhóm theo bộ ba cho **đúng bằng** số tài sản của J
 3. **Tên chi nhánh khác nhau cho cùng `MACNTCTD`**: gắn cờ, người dùng chọn.
 4. **`KB002..KB004`**: nhập tay lúc xuất (không lấy từ file cũ).
 5. Cột `MOTABD` vs `MOTABDS` khi khác nhau: người dùng chọn nguồn cho `TS013`.
+
+## Mẫu số 09 (nguồn chính thức, ghi lại từ biểu mẫu giấy, 2026-11-03)
+
+Cấu trúc đầy đủ nằm trong `json-formation/engine/template-mau09.ts` (khóa, thứ tự, kiểu) và được kiểm tra trên **mọi đối tượng** của tài liệu xuất, không chỉ tài sản đầu tiên. Tên tệp: `D40<Mã TCTD đầu mối báo cáo><ngày báo cáo>.<zzz>.json`, tệp nén `.zip` cùng tên.
+
+| Nhánh | Cấu trúc | Cột Excel |
+| --- | --- | --- |
+| `TS010[]` | chuỗi: mã chi nhánh TCTD khác nhận TSBĐ chung | `TSCHUNGMATCTD` |
+| `TS011[]` | chuỗi: mã khách hàng chung TSBĐ | `TSCHUNGMAKH` |
+| `TS014[]` | `{TS0141[], TS0142…TS0148}`; mỗi bộ cột dự án khác nhau là một phần tử | `TENDA`, `VITRIDA`, `MATINHDTU`, `GIAYPHEP`, `GIATRIDA` (số), `THOIHANDA`, `MOTADA` |
+| `TS014[].TS0141[]` | `{TS01411…TS01414}` chủ đầu tư | `CHUDA`, `GIAYTOCHUDA`, `MSTCHUDA`, `DIACHICHUDA` |
+| `TS015[]` | `{TS0151…TS0154}` | `GIAYCN`, `DIACHI`, `MATINH`, `MOTABD` (mô tả; không tự tạo phần tử vì dòng nào cũng có mô tả) |
+| `TS016[]` | `{TS0161…TS0163}` | `LOAIPT`, `GIAYDK`, `BIENKS` |
+
+Giả định cần người có thẩm quyền xác nhận: `TS0154` lấy từ `MOTABD` (cột song sinh của `MOTABDS`); tổng đầu tư rỗng thì `TS0146` = 0; tên tệp: mã TCTD 1–20 ký tự chữ/số, `<zzz>` đúng 3 ký tự chữ/số, cả hai nhập khi xuất (không có trong workbook).

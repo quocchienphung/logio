@@ -11,6 +11,9 @@ import type { Issue, IssueStatus } from "./engine/types";
 import type { IssueState } from "./engine/review";
 import type { RowContext } from "../engine/protocol";
 import type { CollateralEngine } from "../useCollateralEngine";
+import { DuplicateRepairDialog } from "./DuplicateRepairDialog";
+import type { DuplicatePlan } from "./engine/duplicate-repairs";
+import { matchesMask } from "./engine/corruption-span";
 import { CATEGORY_LABEL, SEVERITY_LABEL, STATUS_LABEL, cellRef, issueReason, severityTone, statusTone } from "../labels";
 
 export type Variant = "original" | "suggested" | "new";
@@ -45,6 +48,8 @@ export function IssueDetails({ issue, status, state, current, variant, onVariant
   const [prediction, setPrediction] = useState<Prediction | null>(null);
   const [predictionPending, setPredictionPending] = useState(issue.category === "QUESTION_MARK_IN_WORD");
   const [predictionAttempt, setPredictionAttempt] = useState(0);
+  const [approvalEpoch, setApprovalEpoch] = useState(0);
+  const [duplicate, setDuplicate] = useState<{ plan: DuplicatePlan; value: string; source: "typed" | "suggestion" | "fix"; includeTwin: boolean } | null>(null);
   const [predictPicks, setPredictPicks] = useState<Record<number, string>>({});
   const wantsPrediction = issue.category === "QUESTION_MARK_IN_WORD";
   const variants: Variant[] = suggestion ? ["original", "suggested", "new"] : ["original", "new"];
@@ -74,11 +79,21 @@ export function IssueDetails({ issue, status, state, current, variant, onVariant
   const changed = draft !== current;
   const twinWritable = !!twin && twin.sameText && issue.category !== "DESCRIPTION_CONFLICT";
 
-  async function approve(value = draft, source: "typed" | "suggestion" | "fix" = "typed") {
-    const edits = [{ row: issue.row, col: issue.col, value, source }, ...(twinWritable && alsoTwin ? [{ row: twin!.issue.row, col: twin!.issue.col, value, source: "twin" as const }] : [])];
-    await engine.edit(edits);
+  async function approveSingle(value: string, source: "typed" | "suggestion" | "fix", includeTwin: boolean): Promise<boolean> {
+    const edits = [{ row: issue.row, col: issue.col, value, source }, ...(twinWritable && includeTwin ? [{ row: twin!.issue.row, col: twin!.issue.col, value, source: "twin" as const }] : [])];
+    const response = await engine.edit(edits);
+    if (response?.type !== "view") return false;
     notify(uiText("Value approved for {0}", [cellRef(issue)]));
+    setDuplicate(null);
     onApproved();
+    return true;
+  }
+  async function approve(value = draft, source: "typed" | "suggestion" | "fix" = "typed") {
+    if (issue.category === "QUESTION_MARK_IN_WORD" && matchesMask(issue.originalValue, value)) {
+      const plan = await engine.duplicatePlan(issue.id, twinWritable && alsoTwin);
+      if (plan?.canPropagate) { setDuplicate({ plan, value, source, includeTwin: twinWritable && alsoTwin }); return; }
+    }
+    await approveSingle(value, source, alsoTwin);
   }
   async function submitException() {
     if (!(await engine.accept(issue.id, reason))) { setReasonError(true); return; }
@@ -149,7 +164,7 @@ export function IssueDetails({ issue, status, state, current, variant, onVariant
     {twinWritable && <label className="cd-check"><input type="checkbox" checked={alsoTwin} onChange={event => setAlsoTwin(event.target.checked)} />{uiText("Also apply to {0} (same text)", [twin!.issue.field])}</label>}
 
     <div className="cd-actions">
-      <ActionButton size="sm" label={uiText("Approve value")} pendingLabel={uiText("Saving…")} successLabel={uiText("Approved")} resetAfterMs={0} disabled={engine.busy || !changed} onAction={() => approve()} />
+      <ActionButton key={approvalEpoch} size="sm" label={uiText("Approve value")} pendingLabel={uiText("Saving…")} successLabel={uiText("Approved")} resetAfterMs={0} disabled={engine.busy || !changed} onAction={() => approve()} />
       {suggestion && !wantsPrediction && <button type="button" className="ui-button" data-variant="secondary" data-size="sm" disabled={engine.busy} onClick={() => { onDraft(suggestion.value); onVariant("suggested"); }}><span className="ui-button__label">{uiText("Use suggestion")}</span></button>}
       {suggestion && !wantsPrediction && !state?.suggestionRejected && <button type="button" className="ui-button" data-variant="ghost" data-size="sm" disabled={engine.busy} onClick={() => void engine.reject(issue.id)}><span className="ui-button__label">{uiText("Reject suggestion")}</span></button>}
       {(status === "verified" || status === "edited" || status === "accepted_exception") && <button type="button" className="ui-button" data-variant="ghost" data-size="sm" disabled={engine.busy} onClick={() => { if (status === "accepted_exception") void engine.reopen(issue.id); else { onDraft(issue.originalValue); void engine.edit([{ row: issue.row, col: issue.col, value: issue.originalValue }]); } onVariant("original"); }}><span className="ui-button__icon"><RotateCcw size={14} /></span><span className="ui-button__label">{status === "accepted_exception" ? uiText("Remove exception") : uiText("Restore original")}</span></button>}
@@ -176,5 +191,14 @@ export function IssueDetails({ issue, status, state, current, variant, onVariant
     {rowOpen && <dl className="cd-context" aria-label={uiText("Row {0}", [issue.row])}>
       {context?.cells.map(cell => <div key={cell.col}><dt>{cell.header || cell.col}</dt><dd>{cell.value}</dd></div>) ?? <div><dd>{uiText("Loading…")}</dd></div>}
     </dl>}
+    {duplicate && <DuplicateRepairDialog plan={duplicate.plan} busy={engine.busy}
+      onClose={() => { setDuplicate(null); setApprovalEpoch(epoch => epoch + 1); }}
+      onSingle={() => approveSingle(duplicate.value, duplicate.source, duplicate.includeTwin)}
+      onAll={async () => {
+        const result = await engine.duplicateApply(issue.id, duplicate.value, duplicate.includeTwin);
+        if (!result) return false;
+        notify(`Đã sửa chung ${result.rows} dòng / ${result.changedCells} ô cùng tài sản.`);
+        setDuplicate(null); onApproved(); return true;
+      }} />}
   </div>;
 }

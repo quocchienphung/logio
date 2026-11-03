@@ -28,6 +28,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && npm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

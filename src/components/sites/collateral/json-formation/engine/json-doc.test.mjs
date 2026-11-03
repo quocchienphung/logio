@@ -28,3 +28,21 @@ test("copy: the text of a value, and a refusal above the limit", () => {
   const huge = { a: "x".repeat(COPY_LIMIT + 10) };
   assert.equal(textOf(huge, ["a"]), null); assert.equal(textOf(huge, []), null);
 });
+
+test("numbers kept as exact text in the report are numbers in the viewer, in search and in copy (the exported file has no $num)", () => {
+  const withNumbers = { KB001: "20260930", CNTCTD: [{ TTC01: "1", KHACHHANG: [{ TTC03: "C", THONGTINBD: [{ TS001: "A", TS005: { $num: "318244" }, TS006: { $num: "1000.4" }, TS008: { $num: "0" }, TS009: [] }] }] }] };
+  const keys = ["CNTCTD", "0", "KHACHHANG", "0", "THONGTINBD", "0"];
+  const asset = childrenOf(withNumbers, "report", keys, 0, 10);
+  const ts005 = asset.find(item => item.key === "TS005");
+  assert.deepEqual([ts005.type, ts005.text, ts005.plain, ts005.count, ts005.preview], ["number", "318244", "318244", 0, ""], "a leaf, not an object with a $num key");
+  assert.equal(childrenOf(withNumbers, "report", [...keys, "TS005"], 0, 5).length, 0, "nothing to open under a number");
+  assert.equal(asset.find(item => item.key === "TS006").text, "1000.4");
+  assert.equal(rootInfo(withNumbers, "report").count, 2);
+  const hit = searchDocument(withNumbers, "report", "318244");
+  assert.deepEqual(hit.hits.map(item => item.path), ["report.CNTCTD[0].KHACHHANG[0].THONGTINBD[0].TS005"], "found on the field itself, never on $num");
+  assert.equal(searchDocument(withNumbers, "report", "$num").hits.length, 0);
+  assert.equal(textOf(withNumbers, [...keys, "TS006"]), "1000.4");
+  const piece = textOf(withNumbers, keys);
+  assert.ok(piece.includes('"TS005": 318244') && piece.includes('"TS006": 1000.4') && !piece.includes("$num"));
+  assert.deepEqual(JSON.parse(piece).TS005, 318244, "what is copied parses as the file would");
+});

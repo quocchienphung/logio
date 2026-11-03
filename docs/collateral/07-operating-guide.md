@@ -7,7 +7,7 @@
    - **Accept as legitimate** cần lý do. **Bulk fixes** chỉ cho phép thay đổi chính xác (khoảng trắng, ký tự độ rộng 0).
    - Chuột phải vào dòng trong bảng: Orbit menu. `Ctrl/Cmd+Z` hoàn tác.
 4. **Export** (Excel formation): *Create corrected workbook* → tải `<tên>.reviewed.xlsx` (đã đọc lại để kiểm chứng).
-5. **JSON formation**: *Mapping* (cột → trường JSON), *Preview* (chẩn đoán, không phải bản xuất), *Export*: nhập ngày báo cáo và thông tin người lập, chọn chính sách chủ sở hữu/thứ tự; khi 9 kiểm tra đạt mới tải `reporting-output.json`. Báo cáo kiểm toán (JSON/CSV) tải được bất cứ lúc nào.
+5. **JSON formation**: *Mapping* (cột → trường JSON), *Preview* (chẩn đoán, không phải bản xuất), *Export*: nhập ngày báo cáo, thông tin người lập, **mã TCTD và số thứ tự 3 ký tự** (tên tệp `D40<mã><ngày>.<zzz>.json`), chọn chính sách chủ sở hữu/thứ tự; khi 11 kiểm tra đạt mới tải `.json` hoặc `.zip` cùng tên. Bước *Mapping* hiện quy tắc của từng cột và giá trị ở dòng ví dụ (dòng dữ liệu đầu tiên). Báo cáo kiểm toán (JSON/CSV) tải được bất cứ lúc nào.
 
 Chạy kiểm thử: `npm test`; `node --experimental-strip-types scripts/qa/collateral.mjs http://localhost:3000`; số liệu trên file thật (cục bộ): `node scripts/qa/collateral-reference.mjs` và `node scripts/qa/collateral-reference-browser.mjs`.
 

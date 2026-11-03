@@ -146,7 +146,7 @@ test("the corrected workbook contains exactly the approved values and nothing el
   const out = exportCorrected(s, state);
   assert.equal(out.fileName, "synthetic.reviewed.xlsx");
   assert.equal(out.changedCells, 2);
-  assert.deepEqual(out.roundTrip, { ok: true, changedCells: 2, wrongValues: 0, unexpectedChanges: 0, sheetsCompared: 1 });
+  assert.deepEqual(out.roundTrip, { ok: true, changedCells: 2, cellsChanged: 2, wrongValues: 0, unexpectedChanges: 0, sheetsCompared: 1 });
   const reopened = await openSession(out.bytes, out.fileName);
   assert.equal(reopened.scan.issues.some(i => i.category === "QUESTION_MARK_IN_WORD"), false, "the corrected file no longer has the problem");
   assert.equal(reopened.workbook.sheets[0].hiddenRows, 1, "hidden rows are kept");

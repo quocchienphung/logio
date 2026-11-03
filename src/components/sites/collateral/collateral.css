@@ -203,3 +203,6 @@
 /* A grid with one implicit column grows to the widest nowrap content: the track is held to the container instead, so a phone never scrolls sideways. */
 .collateral .cr-review { grid-template-columns: minmax(0, 1fr); }
 .collateral .cr-review > * { min-width: 0; }
+
+.collateral .cr-filename { margin: 4px 0 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; overflow-wrap: anywhere; }
+.collateral .cr-map-table td { vertical-align: top; }

@@ -20,6 +20,7 @@ export interface SheetProfile {
   columns: Record<number, ColumnStats>;
   /** Known headers found / known headers in the profile; how well the sheet matches. */
   match: number;
+  ambiguousHeader?: boolean;
 }
 export interface ResolvedColumn { spec: ColumnSpec; col: number }
 export interface MappingResolution {
@@ -45,16 +46,18 @@ export interface WorkbookProfile {
 
 export const normalizeHeader = (text: string) => text.normalize("NFKC").trim().replace(/\s+/g, " ").toUpperCase();
 
-function findHeaderRow(sheet: Sheet, known: Set<string>): { row: number; match: number } | null {
+function findHeaderRow(sheet: Sheet, known: Set<string>): { row: number; match: number; ambiguous: boolean } | null {
   let best: { row: number; match: number; score: number } | null = null;
+  let ambiguous = false;
   for (const row of sheet.rows.slice(0, 15)) {
     const texts = row.cells.filter((cell): cell is Cell => !!cell && cell.v !== "" && cell.t !== "n");
     if (texts.length < 3) continue;
     const match = texts.filter(cell => known.has(normalizeHeader(cell.v))).length;
     const score = match * 10 + new Set(texts.map(cell => normalizeHeader(cell.v))).size / texts.length;
-    if (!best || score > best.score) best = { row: row.r, match, score };
+    if (!best || score > best.score) { best = { row: row.r, match, score }; ambiguous = false; }
+    else if (score === best.score && match >= 3) ambiguous = true;
   }
-  return best ? { row: best.row, match: best.match } : null;
+  return best ? { row: best.row, match: best.match, ambiguous } : null;
 }
 
 /** A sheet whose only real column holds whole CSV lines ("a","b","c") rather than separate cells. */
@@ -86,7 +89,7 @@ export function profileSheet(sheet: Sheet, profile: MappingProfile): SheetProfil
     stats.types[cell.t] = (stats.types[cell.t] ?? 0) + 1;
     if (cell.t !== "n" && /^0\d+$/.test(cell.v)) stats.leadingZero++;
   }
-  return { ...base, role: header.match >= 3 ? "primary" : "other", headerRow: header.row, headers, dataRows: data.length, columns, match: header.match };
+  return { ...base, role: header.match >= 3 ? "primary" : "other", headerRow: header.row, headers, dataRows: data.length, columns, match: header.match, ...(header.ambiguous ? { ambiguousHeader: true } : {}) };
 }
 
 /** Auto-map only exact (normalised) header matches; a header present twice is reported as ambiguous instead of being chosen. */

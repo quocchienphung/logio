@@ -2,8 +2,9 @@ import type { Cell, Fix, FixKind, Issue, IssueCategory, Severity, Sheet, Suggest
 import type { ColumnSpec, FieldRole, MappingProfile } from "./mapping-profiles.ts";
 import type { WorkbookProfile } from "./profile.ts";
 import { columnLetters, fingerprint } from "./text.ts";
+import { incompleteAt, resolveBlocks } from "./blocks.ts";
 
-export const RULE_VERSION = "rules-2026.11.1";
+export const RULE_VERSION = "rules-2026.11.4";
 const RANK: Record<Severity, number> = { critical: 4, high: 3, medium: 2, low: 1 };
 export const maxSeverity = (a: Severity, b: Severity): Severity => RANK[a] >= RANK[b] ? a : b;
 export const isBlocking = (severity: Severity) => severity === "critical" || severity === "high";
@@ -113,6 +114,7 @@ export interface Finding {
   proposedValue?: string;
   suggestions?: Suggestion[];
   tokens?: TokenCandidates[];
+  block?: Issue["block"];
 }
 export interface AnalyzeOptions { corpus?: Corpus; diacriticPolicy?: boolean }
 
@@ -201,7 +203,7 @@ function questionMarkFinding(value: string, role: FieldRole, corpus?: Corpus): F
     const interior = /[A-Za-z0-9]\?+[A-Za-z0-9]/.test(text);
     const stripped = text.replace(/^\?+|\?+$/g, "");
     // A word that ends in one `?` and is itself a known clean word is most likely a real question.
-    if (!interior && /^[^?]+\?$/.test(text) && corpus && corpus.count(stripped) >= 3) { severity = maxSeverity(severity, "low"); continue; }
+    if (!interior && /^[^?]+\?$/.test(text) && value.slice(end).trim() === "" && corpus && corpus.count(stripped) >= 3) { severity = maxSeverity(severity, "low"); continue; }
     suspicious++;
     severity = maxSeverity(severity, interior ? "critical" : "high");
     const found = corpus?.candidates(text) ?? [];
@@ -261,6 +263,8 @@ export function detectIssues(workbook: Workbook, wprofile: WorkbookProfile, prof
     return { issues: [], stats: { ...empty, ms: Date.now() - started }, blockers: ["No worksheet matches the mapping profile, so no data can be checked."], corpora: new Map() };
   }
   const mapping = wprofile.mapping;
+  if (sheetProfile.ambiguousHeader) blockers.push("More than one row matches the header; resolve the header ambiguity before export.");
+  if (wprofile.sheets.filter(item => item.role === "primary" && item.match === sheetProfile.match).length > 1) blockers.push("More than one worksheet matches the profile equally; select an unambiguous source before JSON export.");
   for (const spec of mapping.missing) if (spec.required) blockers.push(`Required column ${spec.header} is missing.`);
   for (const item of mapping.ambiguous) blockers.push(`Column ${item.spec.header} appears ${item.cols.length} times; choose the right one.`);
   const issues: Issue[] = [];
@@ -274,7 +278,7 @@ export function detectIssues(workbook: Workbook, wprofile: WorkbookProfile, prof
       id, fileHash: workbook.fileHash, sheet: sheet.name, row, column: columnLetters(col), col, field: spec.header, category: finding.category, severity: finding.severity,
       originalValueFingerprint: fingerprint(value, workbook.fileHash), originalValue: value, reason: finding.reason, status: "open", ruleVersion: RULE_VERSION,
       ...(finding.marks ? { marks: finding.marks } : {}), ...(finding.fix ? { fix: finding.fix } : {}), ...(finding.proposedValue !== undefined ? { proposedValue: finding.proposedValue } : {}),
-      ...(finding.suggestions ? { suggestions: finding.suggestions } : {}), ...(finding.tokens ? { tokens: finding.tokens } : {}), ...(finding.related ? { related: finding.related } : {}), ...(finding.group ? { group: finding.group } : {}),
+      ...(finding.suggestions ? { suggestions: finding.suggestions } : {}), ...(finding.tokens ? { tokens: finding.tokens } : {}), ...(finding.related ? { related: finding.related } : {}), ...(finding.group ? { group: finding.group } : {}), ...(finding.block ? { block: finding.block } : {}),
     });
   };
 
@@ -318,6 +322,15 @@ export function detectIssues(workbook: Workbook, wprofile: WorkbookProfile, prof
     if (a === b) continue;
     const bothFilled = a !== "" && b !== "";
     push(row.r, primaryCol.col, primaryCol.spec, a, { category: "DESCRIPTION_CONFLICT", severity: bothFilled ? "high" : "medium", reason: bothFilled ? "The two description columns differ" : "Only one description column is filled", related: [{ row: row.r, column: columnLetters(secondaryCol.col), value: b }] });
+    affected.add(row.r);
+  }
+
+  // Pass 4a: an entry of the JSON (project, land title, vehicle) whose key column is empty while its other columns hold values.
+  for (const block of resolveBlocks(profile, mapping.resolved)) for (const row of dataRows) {
+    const at = incompleteAt(block, col => row.cells[col]?.v ?? "");
+    if (at === null) continue;
+    const target = mapping.resolved.find(item => item.col === at)!;
+    push(row.r, at, target.spec, row.cells[at]?.v ?? "", { category: "INCOMPLETE_GROUP", severity: "high", reason: "The key column of the entry is empty", block: { id: block.id, anchor: block.anchorHeader } });
     affected.add(row.r);
   }
 
@@ -376,7 +389,7 @@ function groupRules(rows: Sheet["rows"], headerRow: number, resolved: { spec: Co
         if (values.size < 2) continue;
         const anchor = members[0];
         push(anchor.r, target.col, target.spec, text(anchor, target.col), {
-          category: "CONFLICTING_DUPLICATE", severity: "medium", reason: `${header} differs between rows of the same ${label}`,
+          category: "CONFLICTING_DUPLICATE", severity: "high", reason: `${header} differs between rows of the same ${label}`,
           related: [...values].slice(0, 8).map(([value, r]) => ({ row: r, column: columnLetters(target.col), value })), group: { level, key: groupKey },
         });
         affected.add(anchor.r);

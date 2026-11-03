@@ -13,6 +13,8 @@ export interface Cell {
   s: number;
   /** The cell holds a formula (the cached result is in `v`). */
   f?: true;
+  /** Unsupported mutation targets remain readable and are explicitly reported. */
+  protectedText?: true;
 }
 export interface Row {
   /** 1-based Excel row number. */
@@ -35,6 +37,8 @@ export interface Sheet {
   formulaCount: number;
   /** Rows present in the XML that hold no value at all. */
   emptyRows: number;
+  /** Explicit blank cells in skipped formatting-only rows; preserved in XML and included in repair accounting. */
+  emptyCells?: number;
   maxCol: number;
 }
 export interface Workbook {
@@ -53,7 +57,7 @@ export type IssueStatus = "open" | "edited" | "verified" | "accepted_exception";
 export type IssueCategory =
   | "QUESTION_MARK_IN_WORD" | "UNICODE_REPLACEMENT" | "ENCODING_MOJIBAKE" | "INVISIBLE_OR_CONTROL" | "DIACRITIC_POLICY" | "WHITESPACE_ANOMALY"
   | "DESCRIPTION_CONFLICT" | "INVALID_CODE_OR_DATE" | "MISSING_REQUIRED" | "CONFLICTING_DUPLICATE" | "ARRAY_PARSE_AMBIGUOUS"
-  | "UNKNOWN_COLUMN" | "TYPE_MISMATCH" | "FORMULA_UNRESOLVED" | "DUPLICATE_HEADER";
+  | "UNKNOWN_COLUMN" | "TYPE_MISMATCH" | "FORMULA_UNRESOLVED" | "DUPLICATE_HEADER" | "INCOMPLETE_GROUP";
 
 /** A suggestion is evidence-based and never applied by itself. */
 export interface Suggestion {
@@ -99,6 +103,8 @@ export interface Issue {
   marks?: { start: number; end: number; label?: string }[];
   /** The group of rows a consistency issue is about, so one choice can be applied to all of them on request. */
   group?: { level: "asset" | "branch" | "customer"; key: string };
+  /** For INCOMPLETE_GROUP: the block of columns (a project, a land title, a vehicle) and the key header that is empty. */
+  block?: { id: string; anchor: string };
   /** The other cell involved (twin description, conflicting rows). */
   related?: { row: number; column: string; value?: string }[];
   status: IssueStatus;

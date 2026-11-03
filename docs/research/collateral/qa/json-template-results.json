@@ -1,0 +1,25 @@
+{
+  "results": [
+    "The mapping shows the Excel column, header, JSON field, rule, the example row and the status",
+    "It lists every column of the profile",
+    "A project column points at TS014 with its rule and what row 2 puts there",
+    "The twin description fills TS0154",
+    "Only the two constant columns stay out of the JSON",
+    "Without the TCTD code and the sequence the JSON stays locked and no D40 file is offered",
+    "A sequence of 2 characters is refused",
+    "The name the form asks for is shown as soon as it is valid",
+    "All eleven checks hold",
+    "The reconciliation counts the entries of the form",
+    "The downloaded file is named D40 + code + date + sequence",
+    "Every object of the file has the keys of Mau so 09 in its order",
+    "TS010, TS011 and the TS014 project with its investors are filled from the rows",
+    "TS015 holds the land title with the description, TS016 the two vehicles",
+    "An asset without those columns keeps the empty lists",
+    "No review metadata is in the contractual file",
+    "The zip has the same name with .zip",
+    "It holds exactly that one JSON, byte for byte",
+    "No $num key is shown in the preview",
+    "No page errors"
+  ],
+  "errors": []
+}

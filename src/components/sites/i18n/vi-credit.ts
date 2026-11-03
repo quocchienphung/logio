@@ -472,4 +472,50 @@ nothing serious left open	không còn lỗi nghiêm trọng
 date and contacts	ngày và thông tin liên hệ
 branch, customer, asset	chi nhánh, khách hàng, tài sản
 schema, bytes, replay	lược đồ, byte, phát lại
+Entry without its key column	Mục thiếu cột khóa
+{0} is empty, but this entry has values in other columns	{0} đang trống, nhưng mục này có giá trị ở các cột khác
+TCTD code (file name)	Mã TCTD (tên tệp)
+Sequence, 3 characters (file name)	Số thứ tự, 3 ký tự (tên tệp)
+The file name is D40 + TCTD code + report date + . + sequence + .json	Tên tệp là D40 + mã TCTD + ngày báo cáo + . + số thứ tự + .json
+Assets with a project (TS014)	Tài sản có dự án (TS014)
+Assets with a land title (TS015)	Tài sản có giấy chứng nhận đất (TS015)
+Assets with a vehicle (TS016)	Tài sản có phương tiện (TS016)
+Assets with shared collateral (TS010, TS011)	Tài sản bảo đảm chung (TS010, TS011)
+The file name follows D40 + TCTD code + date + sequence	Tên tệp theo dạng D40 + mã TCTD + ngày + số thứ tự
+Every key is where Mẫu số 09 puts it	Mọi khóa đúng vị trí như Mẫu số 09
+date, contacts and file name	ngày, thông tin liên hệ và tên tệp
+schema, template, bytes, replay	lược đồ, mẫu, byte, phát lại
+The reporting date (YYYYMMDD), the three contact fields, the TCTD code and the 3-character sequence must be filled in.	Phải điền ngày báo cáo (YYYYMMDD), ba trường liên hệ, mã TCTD và số thứ tự 3 ký tự.
+Example: Excel row {0}	Ví dụ: dòng Excel {0}
+Rule	Quy tắc
+In the example row	Ở dòng ví dụ
+Entries of the JSON built from several columns	Các mục của JSON được ghép từ nhiều cột
+key column {0}	cột khóa {0}
+an entry without its key column is a problem to review; its values are kept	mục thiếu cột khóa là vấn đề cần rà soát; giá trị của nó vẫn được giữ
+File name: TCTD code and sequence are entered at export	Tên tệp: mã TCTD và số thứ tự được nhập khi xuất
+The one date of the workbook as YYYYMMDD; confirmed at export	Ngày duy nhất của sổ làm việc, dạng YYYYMMDD; xác nhận khi xuất
+Groups the rows into branches	Gom các dòng thành chi nhánh
+First row of the branch	Dòng đầu của chi nhánh
+Groups the rows into customers of a branch	Gom các dòng thành khách hàng của chi nhánh
+First row of the customer	Dòng đầu của khách hàng
+Groups the rows into assets of a customer	Gom các dòng thành tài sản của khách hàng
+First row of the asset	Dòng đầu của tài sản
+First row of the asset (empty text when empty)	Dòng đầu của tài sản (chuỗi rỗng khi trống)
+First row of the asset, as a number	Dòng đầu của tài sản, dạng số
+Exact sum of every row of the asset, as a number	Tổng chính xác mọi dòng của tài sản, dạng số
+First row of the asset, as a number (0 when empty)	Dòng đầu của tài sản, dạng số (0 khi trống)
+Every distinct contract of the asset, first seen first; never split on /	Mọi hợp đồng khác nhau của tài sản, theo thứ tự xuất hiện; không bao giờ tách theo /
+One owner per distinct person of the asset	Mỗi người khác nhau của tài sản là một chủ sở hữu
+Same owner entry	Cùng mục chủ sở hữu
+Every distinct value of the asset, first seen first	Mọi giá trị khác nhau của tài sản, theo thứ tự xuất hiện
+Description of the land title entry (the twin of MOTABDS)	Mô tả của mục giấy chứng nhận đất (cột song sinh của MOTABDS)
+One investor per distinct set of investor columns	Mỗi bộ cột chủ đầu tư khác nhau là một chủ đầu tư
+Same investor entry	Cùng mục chủ đầu tư
+One project per distinct set of project columns	Mỗi bộ cột dự án khác nhau là một dự án
+Same project entry	Cùng mục dự án
+Same project entry, as a number (0 when empty)	Cùng mục dự án, dạng số (0 khi trống)
+One land title entry per distinct set of land title columns	Mỗi bộ cột giấy chứng nhận đất khác nhau là một mục
+Same land title entry	Cùng mục giấy chứng nhận đất
+One vehicle per distinct set of vehicle columns	Mỗi bộ cột phương tiện khác nhau là một phương tiện
+Same vehicle entry	Cùng mục phương tiện
 `);

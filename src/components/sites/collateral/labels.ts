@@ -17,6 +17,7 @@ export const CATEGORY_LABEL: Record<IssueCategory, string> = {
   TYPE_MISMATCH: "Wrong cell type",
   FORMULA_UNRESOLVED: "Formula without result",
   DUPLICATE_HEADER: "Duplicate header",
+  INCOMPLETE_GROUP: "Entry without its key column",
 };
 export const SEVERITY_LABEL: Record<Severity, string> = { critical: "Critical", high: "High", medium: "Medium", low: "Low" };
 export const STATUS_LABEL: Record<IssueStatus, string> = { open: "Open", edited: "Edited", verified: "Verified", accepted_exception: "Exception" };
@@ -37,6 +38,7 @@ export function issueReason(issue: Issue, t: T): string {
       : t("The two description columns differ");
   }
   if (issue.category === "CONFLICTING_DUPLICATE") return t("{0} differs between rows of the same group", [issue.field]);
+  if (issue.category === "INCOMPLETE_GROUP") return t("{0} is empty, but this entry has values in other columns", [issue.block?.anchor ?? ""]);
   if (issue.category === "UNKNOWN_COLUMN") return t("Column is not in the mapping profile");
   return t(issue.reason);
 }

@@ -195,7 +195,7 @@ test("issue ids are stable between runs and carry provenance, hashes and the rul
   const issue = a.issues[0];
   assert.equal(issue.fileHash, "sha256:test");
   assert.equal(issue.sheet, "MAU9_TEST");
-  assert.equal(issue.ruleVersion, "rules-2026.11.1");
+  assert.equal(issue.ruleVersion, "rules-2026.11.4");
   assert.match(issue.originalValueFingerprint, /^[0-9a-f]{14}$/);
   assert.notEqual(issue.originalValueFingerprint, issue.originalValue);
   assert.equal(new Set(a.issues.map(i => i.id)).size, a.issues.length);

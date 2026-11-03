@@ -3,12 +3,13 @@ import type { ColumnSpec } from "./mapping-profiles.ts";
 import { analyzeValue, applyFix, BULK_FIXES, Corpus, isBlocking, RULE_VERSION } from "./detect.ts";
 import { columnLetters, fingerprint } from "./text.ts";
 import type { Sheet } from "./types.ts";
+import { incompleteAt, type ResolvedBlock } from "./blocks.ts";
 
 /**
  * The human review layer. The original workbook is never changed: every correction is a patch on top of it, and the status of every issue is
  * derived from what the patches leave behind. Pure functions over an immutable state, so undo/redo is a stack of states.
  */
-export interface Patch { sheet: string; row: number; col: number; value: string; original: string; asNumber: boolean; source: "typed" | "suggestion" | "fix" | "bulk" | "twin" | "group"; at: string }
+export interface Patch { sheet: string; row: number; col: number; value: string; original: string; asNumber: boolean; source: "typed" | "suggestion" | "fix" | "bulk" | "twin" | "group" | "auto_source" | "auto_model"; at: string; modelVersion?: string; policyVersion?: string; evidenceSourceId?: string }
 export interface IssueState { status: IssueStatus; correctedValue?: string; exceptionReason?: string; reviewedAt?: string; suggestionRejected?: boolean; stillPresent?: boolean }
 export interface ReviewState {
   patches: Record<string, Patch>;
@@ -25,9 +26,11 @@ export interface ReviewContext {
   /** Issues found by the scan, indexed for lookup. */
   issues: Issue[];
   specOfCol: (col: number) => ColumnSpec | undefined;
+  specOfCell?: (sheet: string, col: number) => ColumnSpec | undefined;
   corpus: (col: number) => Corpus | undefined;
   /** The text of a cell in the ORIGINAL workbook. */
   original: (sheet: string, row: number, col: number) => string;
+  isFormula?: (sheet: string, row: number, col: number) => boolean;
   sheet: Sheet | undefined;
   /** Resolved columns of the primary sheet: used to find the other rows of a group. */
   groupCols: { branch: number; customer: number; asset: number } | null;
@@ -39,10 +42,13 @@ export interface ReviewContext {
   issuesAt: (sheet: string, row: number, col: number) => Issue[];
   /** The column that is the twin of another (MOTABDS ↔ MOTABD). */
   twinOf: (col: number) => number | undefined;
+  twinOfCell?: (sheet: string, col: number) => number | undefined;
+  /** The blocks of columns (project, land title, vehicle) a column belongs to. */
+  blocksOf?: (col: number) => ResolvedBlock[];
   diacriticPolicy: boolean;
 }
 
-const MIN_REASON = 3;
+export const validExceptionReason = (reason: string) => reason.trim().length >= 12 && (reason.match(/[\p{L}\p{N}]+/gu)?.length ?? 0) >= 3 && !/^(abc|test|placeholder|n\/?a)\b/i.test(reason.trim());
 const now = () => new Date().toISOString();
 
 export const valueOf = (state: ReviewState, ctx: ReviewContext, sheet: string, row: number, col: number) => state.patches[cellKey(sheet, row, col)]?.value ?? ctx.original(sheet, row, col);
@@ -56,8 +62,8 @@ const validDate = (text: string) => {
 };
 
 /** Is the problem of `issue` still present in `value`? Each category has its own check; nothing here guesses. */
-export function stillPresent(issue: Pick<Issue, "category" | "row" | "col" | "sheet">, value: string, ctx: ReviewContext, state: ReviewState): boolean {
-  const spec = ctx.specOfCol(issue.col);
+export function stillPresent(issue: Pick<Issue, "category" | "row" | "col" | "sheet" | "block">, value: string, ctx: ReviewContext, state: ReviewState): boolean {
+  const spec = ctx.specOfCell ? ctx.specOfCell(issue.sheet, issue.col) : ctx.specOfCol(issue.col);
   const text = value.trim();
   switch (issue.category) {
     case "MISSING_REQUIRED": return text === "";
@@ -65,13 +71,18 @@ export function stillPresent(issue: Pick<Issue, "category" | "row" | "col" | "sh
     case "TYPE_MISMATCH": return spec?.role === "amount" ? !(text !== "" && Number.isFinite(Number(text))) : spec?.role === "date" ? !validDate(text) : false;
     case "ARRAY_PARSE_AMBIGUOUS": return /[\s,;|+]/.test(text);
     case "DESCRIPTION_CONFLICT": {
-      const twin = ctx.twinOf(issue.col);
+      const twin = ctx.twinOfCell ? ctx.twinOfCell(issue.sheet, issue.col) : ctx.twinOf(issue.col);
       return twin === undefined ? false : valueOf(state, ctx, issue.sheet, issue.row, twin) !== value;
     }
     case "CONFLICTING_DUPLICATE": {
       // Resolved when every row of the group now holds the same value (or by an accepted exception).
       const values = new Set(ctx.groupRowsOf(issue as Issue).map(row => valueOf(state, ctx, issue.sheet, row, issue.col)));
       return values.size > 1;
+    }
+    case "INCOMPLETE_GROUP": {
+      // Judged on the whole entry as it is now: it is settled by filling the key column or by emptying the other cells.
+      const block = ctx.blocksOf?.(issue.col).find(item => item.id === issue.block?.id);
+      return block ? incompleteAt(block, col => valueOf(state, ctx, issue.sheet, issue.row, col)) !== null : false;
     }
     case "UNKNOWN_COLUMN": case "DUPLICATE_HEADER": case "FORMULA_UNRESOLVED": return true;
     default: {
@@ -96,20 +107,28 @@ function settleCell(state: ReviewState, ctx: ReviewContext, sheet: string, row: 
     const twin = issue.category === "DESCRIPTION_CONFLICT" ? ctx.twinOf(col) : undefined;
     const twinPatched = (twin !== undefined && !!state.patches[cellKey(sheet, row, twin)])
       || (issue.category === "CONFLICTING_DUPLICATE" && ctx.groupRowsOf(issue).some(member => !!state.patches[cellKey(sheet, member, col)]));
-    if (!patch && !twinPatched) { states[issue.id] = { ...(before?.suggestionRejected ? { suggestionRejected: true } : {}), status: "open" }; continue; }
+    const blockPatched = issue.category === "INCOMPLETE_GROUP" && (ctx.blocksOf?.(col) ?? []).some(block => block.id === issue.block?.id && [block.anchor, ...block.members].some(member => !!state.patches[cellKey(sheet, row, member)]));
+    if (!patch && !twinPatched && !blockPatched) { states[issue.id] = { ...(before?.suggestionRejected ? { suggestionRejected: true } : {}), status: "open" }; continue; }
     const present = stillPresent(issue, value, ctx, state);
-    states[issue.id] = { ...before, status: present ? "edited" : "verified", correctedValue: value, stillPresent: present, reviewedAt: now() };
+    // A prediction of the local model is applied but never counts as verified: the issue stays `edited` until a person confirms it.
+    states[issue.id] = { ...before, status: present || patch?.source === "auto_model" ? "edited" : "verified", correctedValue: value, stillPresent: present, reviewedAt: now() };
   }
   const introduced = copy ? { ...state.introduced } : state.introduced;
   delete introduced[key];
-  const spec = ctx.specOfCol(col);
+  const spec = ctx.specOfCell ? ctx.specOfCell(sheet, col) : ctx.specOfCol(col);
   if (patch && spec) {
     const known = new Set<IssueCategory>(existing.map(issue => issue.category));
     const fresh = analyzeValue(patch.value, spec, { corpus: ctx.corpus(col), diacriticPolicy: ctx.diacriticPolicy }).filter(finding => !known.has(finding.category));
+    // An edit can leave an entry without its key column (a value typed into a project column of a row that names no project).
+    for (const block of ctx.blocksOf?.(col) ?? []) {
+      if (col === block.anchor || incompleteAt(block, member => valueOf(state, ctx, sheet, row, member)) === null) continue;
+      if ([block.anchor, ...block.members].some(member => ctx.issuesAt(sheet, row, member).some(issue => issue.category === "INCOMPLETE_GROUP" && issue.block?.id === block.id))) continue;
+      fresh.push({ category: "INCOMPLETE_GROUP", severity: "high", reason: "The key column of the entry is empty", block: { id: block.id, anchor: block.anchorHeader } });
+    }
     if (fresh.length) introduced[key] = fresh.map(finding => ({
       id: fingerprint(`${sheet}\u0001${row}\u0001${col}\u0001${finding.category}\u0001introduced`, ctx.fileHash), fileHash: ctx.fileHash, sheet, row, column: columnLetters(col), col, field: spec.header,
       category: finding.category, severity: finding.severity, originalValueFingerprint: fingerprint(patch.value, ctx.fileHash), originalValue: patch.value, reason: finding.reason,
-      ...(finding.marks ? { marks: finding.marks } : {}), ...(finding.fix ? { fix: finding.fix } : {}), ...(finding.proposedValue !== undefined ? { proposedValue: finding.proposedValue } : {}),
+      ...(finding.marks ? { marks: finding.marks } : {}), ...(finding.fix ? { fix: finding.fix } : {}), ...(finding.proposedValue !== undefined ? { proposedValue: finding.proposedValue } : {}), ...(finding.block ? { block: finding.block } : {}),
       status: "open", ruleVersion: RULE_VERSION,
     }));
   }
@@ -122,17 +141,20 @@ export interface Edit { sheet: string; row: number; col: number; value: string; 
 export function applyEdits(state: ReviewState, ctx: ReviewContext, edits: Edit[]): ReviewState {
   const next: ReviewState = { patches: { ...state.patches }, states: { ...state.states }, introduced: { ...state.introduced } };
   for (const edit of edits) {
+    if (ctx.isFormula?.(edit.sheet, edit.row, edit.col)) throw new Error("Formula cells cannot be edited.");
     const key = cellKey(edit.sheet, edit.row, edit.col);
     const original = ctx.original(edit.sheet, edit.row, edit.col);
     if (edit.value === original) delete next.patches[key];
-    else next.patches[key] = { sheet: edit.sheet, row: edit.row, col: edit.col, value: edit.value, original, asNumber: ctx.specOfCol(edit.col)?.role === "amount" && edit.value.trim() !== "" && Number.isFinite(Number(edit.value)), source: edit.source ?? "typed", at: now() };
+    else next.patches[key] = { sheet: edit.sheet, row: edit.row, col: edit.col, value: edit.value, original, asNumber: (ctx.specOfCell ? ctx.specOfCell(edit.sheet, edit.col) : ctx.specOfCol(edit.col))?.role === "amount" && edit.value.trim() !== "" && Number.isFinite(Number(edit.value)), source: edit.source ?? "typed", at: now() };
   }
   for (const edit of edits) {
     settleCell(next, ctx, edit.sheet, edit.row, edit.col, false);
     // A description conflict lives on one cell of the pair but depends on both.
-    const twin = ctx.twinOf(edit.col);
+    const twin = ctx.twinOfCell ? ctx.twinOfCell(edit.sheet, edit.col) : ctx.twinOf(edit.col);
     if (twin !== undefined) settleCell(next, ctx, edit.sheet, edit.row, twin, false);
-    for (const conflict of ctx.conflictsAt(edit.row, edit.col)) if (conflict.row !== edit.row) settleCell(next, ctx, conflict.sheet, conflict.row, conflict.col, false);
+    // An entry of the JSON depends on all of its columns: the issue sits on one cell but is settled by an edit of any other.
+    for (const block of ctx.blocksOf?.(edit.col) ?? []) for (const member of [block.anchor, ...block.members]) if (member !== edit.col) settleCell(next, ctx, edit.sheet, edit.row, member, false);
+    if (edit.sheet === ctx.sheet?.name) for (const conflict of ctx.conflictsAt(edit.row, edit.col)) if (conflict.row !== edit.row) settleCell(next, ctx, conflict.sheet, conflict.row, conflict.col, false);
   }
   return next;
 }
@@ -144,7 +166,7 @@ export function rejectSuggestion(state: ReviewState, issueId: string): ReviewSta
 export type ExceptionResult = { ok: true; state: ReviewState } | { ok: false; error: "reason-required" };
 /** Accept a value as legitimate. The reason is mandatory and is kept in the audit report. */
 export function acceptException(state: ReviewState, issueId: string, reason: string): ExceptionResult {
-  if (reason.trim().length < MIN_REASON) return { ok: false, error: "reason-required" };
+  if (!validExceptionReason(reason)) return { ok: false, error: "reason-required" };
   return { ok: true, state: { ...state, states: { ...state.states, [issueId]: { ...state.states[issueId], status: "accepted_exception", exceptionReason: reason.trim(), reviewedAt: now() } } } };
 }
 /** Take an exception back; the issue is judged again against the cell's current value. */

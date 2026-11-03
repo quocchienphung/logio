@@ -9,6 +9,8 @@ import type { ProgressFile, RestoreError } from "../excel-formation/engine/progr
 import type { JsonPlan } from "../json-formation/engine/json-session.ts";
 import type { ReportMeta, ReportOptions } from "../json-formation/engine/json-report.ts";
 import type { JsonNodeInfo, SearchResult } from "../../json-viewer/json-model.ts";
+import type { RepairProgress, RepairReport } from "../excel-formation/engine/auto-repair.ts";
+import type { DuplicatePlan } from "../excel-formation/engine/duplicate-repairs.ts";
 
 /** What the page needs after a workbook is opened. Nothing here is sent anywhere: it crosses only the worker boundary of this browser tab. */
 export interface OpenResult {
@@ -51,6 +53,10 @@ export interface GridMeta { fileName: string; sheet: string; sheets?: string[]; 
 export interface GridRow { r: number; hidden: boolean; header: boolean; values: string[] }
 
 export type Request =
+  | { type: "duplicatePlan"; issueId: string; includeTwin: boolean }
+  | { type: "duplicateApply"; issueId: string; value: string; includeTwin: boolean }
+  | { type: "autoRepair" }
+  | { type: "cancelRepair" }
   | { type: "window"; row: number; col: number }
   | { type: "gridMeta"; sheet?: string }
   | { type: "grid"; from: number; count: number; sheet?: string }
@@ -73,9 +79,13 @@ export type Request =
   | { type: "docText"; keys: string[] }
   | { type: "progressSave" }
   | { type: "progressLoad"; file: unknown }
-  | { type: "json"; meta: ReportMeta; options: ReportOptions; final: boolean };
+  | { type: "json"; meta: ReportMeta; options: ReportOptions; final: boolean; /** With `final`: the bytes come back as the zip of the JSON (`…<zzz>.zip`), read back and compared before they are offered. */ zip?: boolean };
 
 export type Response =
+  | { type: "duplicatePlan"; plan: DuplicatePlan | null }
+  | { type: "duplicateApplied"; view: ReviewView; rows: number; changedCells: number }
+  | { type: "repaired"; fileName: string; bytes: ArrayBuffer; report: RepairReport; view: ReviewView }
+  | { type: "repairCancelRequested" }
   | { type: "opened"; result: OpenResult; view: ReviewView }
   | { type: "view"; view: ReviewView }
   | { type: "bulkPlan"; items: BulkItem[] }
@@ -97,6 +107,7 @@ export type Response =
   | { type: "refused"; reason: "reason-required" };
 
 export type WorkerMessage =
+  | { id: number; repairProgress: RepairProgress }
   | { id: number; ok: true; response: Response }
   | { id: number; ok: false; error: string; code?: string }
   | { id: number; progress: { phase: "read" | "scan"; fraction: number } };

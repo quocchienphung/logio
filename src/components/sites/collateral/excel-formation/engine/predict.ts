@@ -51,6 +51,10 @@ export interface WordPrediction {
   basis: "context" | "frequency" | "none" | "clean";
   /** Observed adjacent pairs supporting the chosen spelling, not a probability. */
   contextSupport?: number;
+  /** Score gap between the best and the second candidate (Infinity when only one candidate fits). A ranking distance, not a probability. */
+  margin?: number;
+  /** True when no word of the file fits the vowel/d pool and the candidates came from the open alphabet or digits: never trustworthy. */
+  fallback?: boolean;
 }
 
 export class VietnameseModel {
@@ -127,7 +131,7 @@ export class VietnameseModel {
   predict(text: string): WordPrediction[] {
     const words = wordsOf(text);
     if (!words.length) return [];
-    const pruned = new Set<number>();
+    const pruned = new Set<number>(), fallback = new Set<number>();
     // Bound the lattice by local evidence first; decode the whole phrase in both directions.
     // Adjacent damaged words therefore help one another instead of inheriting an early greedy mistake.
     const choices = words.map((word, index) => {
@@ -135,8 +139,8 @@ export class VietnameseModel {
       if (!pattern.includes("?")) return [pattern];
       let fit = this.candidates(pattern);
       // A digit can follow an m: m? is m2 or m3. Only if nothing of the file fits.
-      if (!fit.length && /\bm\?$/i.test(pattern)) fit = this.candidates(pattern, "23");
-      if (!fit.length) fit = this.candidates(pattern, "abcdefghijklmnopqrstuvwxyz0123456789");
+      if (!fit.length && /\bm\?$/i.test(pattern)) { fit = this.candidates(pattern, "23"); if (fit.length) fallback.add(index); }
+      if (!fit.length) { fit = this.candidates(pattern, "abcdefghijklmnopqrstuvwxyz0123456789"); fallback.add(index); }
       const next = words[index + 1] && words[index + 1].text.indexOf("?") < 0 ? stripMarks(words[index + 1].text).toLowerCase() : words[index + 1] ? null : SENTENCE_END;
       const previous = index === 0 ? SENTENCE_START : !words[index - 1].text.includes("?") ? stripMarks(words[index - 1].text).toLowerCase() : "";
       if (fit.length > 32) pruned.add(index);
@@ -174,7 +178,8 @@ export class VietnameseModel {
       return { index, ...word, broken: true, draft: draft ? this.cased(pattern, draft) : "", target: top ? this.cased(pattern, targetWord) : "",
         alternatives: ranked.slice(0, 4).map(item => ({ text: this.cased(pattern, item.w), score: item.score, support: this.count(item.w) })),
         confident: !!top && !pruned.has(index) && this.count(targetWord) >= 3 && (!second || top.score - second.score > Math.log(4)),
-        basis: !top ? "none" as const : contextSupport ? "context" as const : "frequency" as const, contextSupport };
+        basis: !top ? "none" as const : contextSupport ? "context" as const : "frequency" as const, contextSupport,
+        margin: top ? (second ? top.score - second.score : Infinity) : 0, fallback: fallback.has(index) };
     });
   }
 }

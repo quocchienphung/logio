@@ -4,12 +4,15 @@ import { buildXlsx } from "../../excel-formation/engine/xlsx-builder.mjs";
 import { openSession } from "../../excel-formation/engine/session.ts";
 import { applyEdits, emptyReview, summarize, acceptException } from "../../excel-formation/engine/review.ts";
 import { buildReport, encodeAndVerify, numberLiteral, reportDateFrom, reportSchema, stringifyReport, sumDecimals, ASSET_KEYS } from "./json-report.ts";
-import { planJson, auditJson } from "./json-session.ts";
+import { planJson as planJsonRaw, auditJson } from "./json-session.ts";
 
 const HEADERS = ["NGAYDULIEU", "MACNTCTD", "TENCNTCTD", "MAKH", "TENKH", "MASOBD", "MALOAIBD", "NGBDAU", "NGKT", "GIATRI", "GIATRIBDKV", "NGDINHGIA", "GTKHAUTRU", "DSSOHD", "HOTENCSH", "GIAYTOCNCSH", "MSTCSH", "MOTABD", "MOTABDS"];
 const row = (o = {}) => { const base = { NGAYDULIEU: "30/09/2026", MACNTCTD: "00000001", TENCNTCTD: "CN MOT", MAKH: "00000123", TENKH: "Cong ty A", MASOBD: "D0001", MALOAIBD: "303", NGBDAU: "20200101", NGKT: null, GIATRI: { n: "1000" }, GIATRIBDKV: { n: "500.10" }, NGDINHGIA: "20210101", GTKHAUTRU: null, DSSOHD: "00901H6568/10R", HOTENCSH: "Nguyen Van A", GIAYTOCNCSH: "001234567890", MSTCSH: null, MOTABD: "May moc", MOTABDS: "May moc", ...o }; return HEADERS.map(h => base[h]); };
 const open = rows => openSession(buildXlsx([{ name: "MAU9_TEST", rows: [HEADERS, ...rows] }]), "synthetic.xlsx");
 const META = { KB001: "20260930", KB002: "Test User", KB003: "0900000000", KB004: "test@example.invalid" };
+const EXPORT_OPTIONS = { ownerPolicy: "distinct", order: "code", file: { tctd: "SYNTH", sequence: "001" } };
+// Synthetic valid naming data for tests whose subject is a different gate. The real default is tested separately below.
+const planJson = (session, state, meta, options = EXPORT_OPTIONS, summary) => planJsonRaw(session, state, meta, options, summary);
 const valueAt = (session, state = emptyReview()) => (r, col) => state.patches[`MAU9_TEST\u0001${r.r}\u0001${col}`]?.value ?? r.cells[col]?.v ?? "";
 const build = (session, options, state) => buildReport(session.workbook, session.wprofile, session.profile, valueAt(session, state), META, options);
 const rowsOf = () => [
@@ -114,7 +117,8 @@ test("the schema is strict: extra keys, wrong types and bad dates are refused, s
   const tree = a => ({ ...good, CNTCTD: [{ TTC01: "1", TTC02: "n", KHACHHANG: [{ TTC03: "2", TTC04: "m", THONGTINBD: [a] }] }] });
   assert.equal(reportSchema.safeParse(tree(asset)).success, true);
   assert.equal(reportSchema.safeParse(tree({ ...asset, TS005: "1" })).success, false, "an amount must be a number");
-  assert.equal(reportSchema.safeParse(tree({ ...asset, TS010: ["x"] })).success, false);
+  assert.equal(reportSchema.safeParse(tree({ ...asset, TS010: ["x"] })).success, true, "shared-branch entries are now mapped strings");
+  assert.equal(reportSchema.safeParse(tree({ ...asset, TS010: [1] })).success, false, "shared-branch entries must be strings");
   assert.equal(reportSchema.safeParse(tree({ ...asset, extra: 1 })).success, false);
   assert.equal(reportSchema.safeParse(tree({ ...asset, TS003: "2020-01-01" })).success, false);
 });
@@ -146,7 +150,7 @@ test("the JSON stays locked while a serious issue is open, and opens when it is 
   assert.equal(ready.ready, true, JSON.stringify(ready.checks.filter(c => !c.ok)));
   assert.ok(ready.bytes.length > 100);
   assert.equal(JSON.parse(new TextDecoder().decode(ready.bytes)).CNTCTD[0].KHACHHANG[0].THONGTINBD[0].TS013, "Ke hoach");
-  assert.deepEqual(ready.checks.map(c => c.id), ["serious-issues", "mapping", "metadata", "grouping", "schema", "utf8", "replay", "counts", "ts013"]);
+  assert.deepEqual(ready.checks.map(c => c.id), ["serious-issues", "mapping", "metadata", "grouping", "file-name", "schema", "template", "utf8", "replay", "counts", "ts013"]);
 });
 test("an accepted exception unlocks the export and stays visible in the audit report", async () => {
   const s = await open([row({ MOTABD: "Hop dong co dung?", MOTABDS: "Hop dong co dung?" })]);
@@ -155,7 +159,8 @@ test("an accepted exception unlocks the export and stays visible in the audit re
   const plan = planJson(s, st, META, undefined, summarize(st, s.ctx));
   assert.equal(plan.ready, true);
   const audit = JSON.parse(plan.audit);
-  assert.ok(audit.issues.some(i => i.status === "accepted_exception" && i.exceptionReason === "A real question"));
+  assert.ok(audit.issues.some(i => i.status === "accepted_exception" && i.exceptionRecorded));
+  assert.ok(!plan.audit.includes("A real question"));
 });
 test("metadata is required and is never taken from anywhere else", async () => {
   const s = await open([row()]);
@@ -163,7 +168,14 @@ test("metadata is required and is never taken from anywhere else", async () => {
   for (const bad of [{ ...META, KB002: "" }, { ...META, KB001: "20260231" }, { ...META, KB004: "  " }]) assert.equal(planJson(s, st, bad, undefined, summarize(st, s.ctx)).checks.find(c => c.id === "metadata").ok, false);
   assert.equal(planJson(s, st, META, undefined, summarize(st, s.ctx)).workbookDate, "20260930", "the date the workbook carries is offered to pre-fill the form");
 });
-test("the audit report names issues and decisions by fingerprint and holds no cell text", async () => {
+test("the real default export remains blocked until explicit file-naming metadata is supplied", async () => {
+  const s = await open([row()]), state = emptyReview();
+  const plan = planJsonRaw(s, state, META, undefined, summarize(state, s.ctx));
+  assert.equal(plan.ready, false);
+  assert.equal(plan.bytes, null);
+  assert.equal(plan.checks.find(c => c.id === "file-name").ok, false);
+});
+test("the audit report has coordinates and opaque IDs, without cell fingerprints or text", async () => {
   const s = await open([row({ TENKH: "Cong ty Bi Mat", MOTABD: "Ke ho?ch bi mat", MOTABDS: "Ke ho?ch bi mat" })]);
   const st = applyEdits(emptyReview(), s.ctx, [{ sheet: "MAU9_TEST", row: 2, col: HEADERS.indexOf("MOTABDS"), value: "Ke hoach bi mat" }]);
   const plan = planJson(s, st, META, undefined, summarize(st, s.ctx));
@@ -171,8 +183,9 @@ test("the audit report names issues and decisions by fingerprint and holds no ce
   const audit = JSON.parse(plan.audit);
   assert.equal(audit.privacy.cellValuesIncluded, false);
   assert.equal(audit.patchCount, 1);
-  assert.match(audit.patches[0].newFingerprint, /^[0-9a-f]{14}$/);
-  assert.equal(audit.file.hash, s.workbook.fileHash);
-  assert.ok(plan.csv.startsWith("sheet,row,column,field"));
+  assert.equal(audit.patches[0].newFingerprint, undefined);
+  assert.equal(audit.file.hash, undefined);
+  assert.ok(!plan.audit.includes(s.workbook.fileHash));
+  assert.ok(plan.csv.startsWith("sheet,row,column,category"));
   assert.ok(typeof auditJson === "function");
 });
