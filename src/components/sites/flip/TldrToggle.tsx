@@ -2,7 +2,7 @@
 
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion } from "motion/react";
 import { AlertCircle, Check, CircleCheck, CircleDashed, CircleStop, Copy, FileText, RotateCcw, Square } from "lucide-react";
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button, EASE_STANDARD, SPRING_HEIGHT, SegmentedControl, Slider, TextShimmer, Tip } from "./primitives";
 import { cacheKey, chunkWords, countWords, defaultCount, defaultReadout, pointCountFor, readingMinutes, simulateTldr, streamResult, targetWordsFor, type Random, type TldrKeyPoint, type TldrLength, type TldrMode, type TldrParagraph, type TldrRequest, type TldrStreamEvent } from "./tldr-model";
 import "./tldr-toggle.css";
@@ -200,7 +200,9 @@ export function TldrToggle(props: TldrToggleProps) {
       controls?.stop();
       if (first || cut || reduce) { first = false; cut = false; height.set(target); setSized(true); flushSettle(); return; }
       if (Math.abs(height.get() - target) < 0.5) { flushSettle(); return; }
-      controls = animate(height, target, { ...SPRING_HEIGHT, onComplete: flushSettle });
+      // a jump waits for "settled", which the original reads at about 97% of the way (a critically damped spring takes much longer to be exactly there)
+      const from = height.get(), near = Math.max(3, Math.abs(target - from) * 0.03);
+      controls = animate(height, target, { ...SPRING_HEIGHT, onUpdate: value => { if (Math.abs(value - target) <= near) flushSettle(); }, onComplete: flushSettle });
     };
     const bodyObserver = new ResizeObserver(apply);
     const rootObserver = new ResizeObserver(() => { if (root.offsetWidth !== lastWidth) { lastWidth = root.offsetWidth; cut = true; } });
@@ -226,13 +228,24 @@ export function TldrToggle(props: TldrToggleProps) {
     window.setTimeout(() => { if (pendingJump.current) flushSettle(); }, 900);
   };
 
-  const keyDown = (event: KeyboardEvent) => { if (event.key === "Escape" && (live.status === "thinking" || live.status === "streaming")) { event.stopPropagation(); stop(); } };
   const copy = async () => {
     const text = mode === "points" ? live.points.map(point => `- ${point.chunks.join("")}`).join("\n") : flat(live);
     try { await navigator.clipboard.writeText(text); setCopied(true); clearTimeout(copyTimer.current); copyTimer.current = setTimeout(() => setCopied(false), 1400); } catch { /* the page has no clipboard permission: nothing to confirm */ }
   };
 
   const running = live.status === "thinking" || live.status === "streaming";
+  // Escape stops a running stream while focus is in the card, or nowhere (the button that started the run has just been replaced by Stop)
+  useEffect(() => {
+    if (!running) return;
+    const onKey = (event: globalThis.KeyboardEvent) => {
+      if (event.key !== "Escape" || event.defaultPrevented) return;
+      const active = document.activeElement;
+      if (active && active !== document.body && !rootRef.current?.contains(active)) return;
+      stop();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [running, stop]);
   const resultMode = mode === "full" ? null : mode;
   const viewKey = mode === "full" ? "full" : `${mode}:${length}:${generation}`;
   const articleParagraphs = article.paragraphs;
@@ -274,7 +287,7 @@ export function TldrToggle(props: TldrToggleProps) {
   })();
   const actionKind = running ? "running" : live.status === "error" ? "error" : live.status === "done" || live.status === "stopped" ? "result" : null;
 
-  return <div ref={rootRef} className={["tt-root", className].filter(Boolean).join(" ")} onKeyDown={keyDown}>
+  return <div ref={rootRef} className={["tt-root", className].filter(Boolean).join(" ")}>
     <article className="tt-card" aria-busy={running || undefined} aria-label={article.title}>
       <header className="tt-head">
         {article.source && <div className="tt-source">{article.source.mark && <span className="tt-sourceMark" aria-hidden="true">{article.source.mark}</span>}<span className="tt-truncate">{article.source.name}</span></div>}

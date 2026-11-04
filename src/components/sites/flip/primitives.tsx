@@ -28,11 +28,14 @@ export function SegmentedControl<T extends string>({ options, value, onChange, l
   const left = useMotionValue(0), width = useMotionValue(0);
   const [ready, setReady] = useState(false);
   const first = useRef(true);
+  /** Where the pill is going: a resize that leaves it unchanged must not cut the spring short. */
+  const aim = useRef({ left: -1, width: -1 });
   const key = options.map(option => option.value).join("|");
   useLayoutEffect(() => {
     const button = refs.current[options.findIndex(option => option.value === value)];
     if (!button) return;
     const target = { left: button.offsetLeft, width: button.offsetWidth };
+    aim.current = target;
     if (first.current || reduce) { first.current = false; left.set(target.left); width.set(target.width); setReady(true); return; }
     const a = animate(left, target.left, SPRING_PILL), b = animate(width, target.width, SPRING_PILL);
     return () => { a.stop(); b.stop(); };
@@ -41,7 +44,12 @@ export function SegmentedControl<T extends string>({ options, value, onChange, l
   useEffect(() => {
     const track = pill.current?.parentElement;
     if (!track || typeof ResizeObserver === "undefined") return;
-    const observer = new ResizeObserver(() => { const button = refs.current[options.findIndex(option => option.value === value)]; if (button) { left.set(button.offsetLeft); width.set(button.offsetWidth); } });
+    const observer = new ResizeObserver(() => {
+      const button = refs.current[options.findIndex(option => option.value === value)];
+      if (!button || (Math.abs(button.offsetLeft - aim.current.left) < 0.5 && Math.abs(button.offsetWidth - aim.current.width) < 0.5)) return;
+      aim.current = { left: button.offsetLeft, width: button.offsetWidth };
+      left.set(button.offsetLeft); width.set(button.offsetWidth);
+    });
     observer.observe(track);
     return () => observer.disconnect();
   // eslint-disable-next-line react-hooks/exhaustive-deps
