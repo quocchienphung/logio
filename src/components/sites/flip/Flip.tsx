@@ -148,7 +148,7 @@ function FlipStage({ fileName, fileSize, notify }: { fileName: string; fileSize:
     labels: {
       join: row => row === 1 ? uiText("Joining the header") : uiText("Joining row {0}", [excelRow(row)]),
       quote: (reason: QuoteReason) => reason === "delimiter" ? uiText("Quoting a cell with a {0}", [delimiterName]) : reason === "quote" ? uiText("Doubling a quote") : uiText("Keeping a line break"),
-      summary: uiText("{0} rows in all, {1} columns.", [totalRows, totalColumns]),
+      summary: uiText("{0} rows in all, {1} columns.", [totalRows, totalColumns]), summaryLabel: uiText("Adding a summary line"),
     },
   }), [rows, delimiter, sheetName, option.name, finalName, totalRows, totalColumns, uiText, delimiterName, excelRow]);
 
@@ -179,9 +179,9 @@ function FlipStage({ fileName, fileSize, notify }: { fileName: string; fileSize:
   }), [uiText, option.name, length, rows.length, excelRow]);
   const agentLabels = useMemo(() => ({
     reading: uiText("Reading the sheet"), stop: uiText("Stop"), runAgain: uiText("Run again"), ask: uiText("Show me"), retry: uiText("Retry"), undo: uiText("Undo"), accept: uiText("Accept changes"),
-    ready: (count: number) => uiText("{0} rows ready for review", [count]), accepted: (count: number) => uiText("Accepted {0} rows", [count]), reverted: (count: number) => uiText("Undid {0} rows", [count]),
-    stoppedEarly: uiText("Stopped before any rows"), stoppedAfter: (count: number) => uiText("Stopped after {0} rows", [count]), failed: uiText("Connection lost"), empty: uiText("Nothing to change"),
-    barCount: (count: number) => uiText("{0} rows", [count]), by: (agent: string) => uiText(" by {0}", [agent]), review: uiText("Review rows"),
+    ready: (count: number) => uiText("{0} changes ready for review", [count]), accepted: (count: number) => uiText("Accepted {0} changes", [count]), reverted: (count: number) => uiText("Undid {0} changes", [count]),
+    stoppedEarly: uiText("Stopped before any changes"), stoppedAfter: (count: number) => uiText("Stopped after {0} changes", [count]), failed: uiText("Connection lost"), empty: uiText("Nothing to change"),
+    barCount: (count: number) => uiText("{0} changes", [count]), by: (agent: string) => uiText(" by {0}", [agent]), review: uiText("Review changes"),
     rewrite: uiText("Joining a row"), insert: () => uiText("Adding a line"), fix: uiText("Quoting a cell"),
   }), [uiText]);
 

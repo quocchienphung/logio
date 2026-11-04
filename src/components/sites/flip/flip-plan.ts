@@ -78,7 +78,9 @@ export interface PlanLabels {
   /** The status while a row is joined: `row` is the row number in the sheet, 1 for the header. */
   join: (row: number) => string;
   quote: (reason: QuoteReason) => string;
+  /** The line added at the end, and what the agent says while it adds it. */
   summary: string;
+  summaryLabel: string;
 }
 export interface FlipDoc { blocks: DocBlockLike[]; edits: AgentEditLike[]; /** The text each row block ends with. */ final: Record<string, string>; quoted: number; shown: number }
 
@@ -114,7 +116,7 @@ export function flipDoc(rows: readonly (readonly string[])[], delimiter: string,
     final[id] = segments.join(delimiter);
   }
   const lastRow = rowId(shown);
-  edits.push({ type: "insert", after: lastRow, block: { id: "summary", type: "paragraph", text: options.labels.summary }, label: options.labels.summary });
+  edits.push({ type: "insert", after: lastRow, block: { id: "summary", type: "paragraph", text: options.labels.summary }, label: options.labels.summaryLabel });
   return { blocks, edits, final, quoted, shown };
 }
 
