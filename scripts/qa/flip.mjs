@@ -245,7 +245,7 @@ try {
   const ac = page.locator('.ac-root');
   await ac.scrollIntoViewIfNeeded();
   const labelsSeen = [];
-  const watcher = page.evaluate(() => new Promise(resolve => { const seen = []; const poll = () => { const label = document.querySelector('.ac-statusLabel')?.textContent ?? ''; if (label && seen.at(-1) !== label) seen.push(label); if (document.querySelector('.ac-bar')) { setTimeout(() => resolve(seen), 600); return; } setTimeout(poll, 30); }; poll(); setTimeout(() => resolve(seen), 40000); }));
+  const watcher = page.evaluate(() => new Promise(resolve => { const seen = []; const poll = () => { const label = document.querySelector('.ac-statusLabel')?.textContent ?? ''; if (label && seen.at(-1) !== label) seen.push(label); if (document.querySelector('.ac-bar')) { barAt ??= performance.now(); if (performance.now() - barAt > 700) { resolve(seen); return; } } setTimeout(poll, 30); }; let barAt; poll(); setTimeout(() => resolve(seen), 40000); }));
   const cursorSeries = sample(page, `() => { const c = document.querySelector('.ac-cursor[data-agent=true]'); const m = new DOMMatrix(getComputedStyle(c).transform); return [m.m41, m.m42, +getComputedStyle(c).opacity]; }`, 16000);
   const selWatch = sample(page, `() => [...document.querySelectorAll('.ac-selection')].map(s => { const r = s.getBoundingClientRect(); return Math.round(r.width); }).join(',')`, 16000);
   const seen = await watcher;

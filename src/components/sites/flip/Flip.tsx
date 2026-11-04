@@ -189,8 +189,8 @@ function FlipStage({ fileName, fileSize, notify }: { fileName: string; fileSize:
     <section className="fl-block" aria-labelledby="fl-name-title">
       <header className="fl-block__head"><h2 id="fl-name-title">{uiText("Output file")}</h2><p>{uiText("Name the file the sheet will become, and pick how its cells are separated.")}</p></header>
       <GhostText value={name} onValueChange={setName} multiline={false} rows={1} delay={450} minLength={3} placeholder={uiText("File name")} aria-label={uiText("Output file name")} model={{ name: uiText("This workbook"), mark }}
-        suggest={text => suggestName(text, suggestRef.current.names, suggestRef.current.ext)} labels={ghostLabels}
-        footer={<span className="fl-ext">{uiText("Saved as")} <b>{finalName}</b></span>} />
+        suggest={text => suggestName(text, suggestRef.current.names, suggestRef.current.ext)} labels={ghostLabels} />
+      <p className="fl-ext">{uiText("Saved as")} <b>{finalName}</b></p>
       <div className="fl-format"><SegmentedControl label={uiText("Format")} value={format} onChange={setFormat} options={FORMATS.map(item => ({ value: item.code, label: item.name }))} /><span className="fl-format__note">{uiText("Separated by a {0}", [delimiterName])}</span></div>
     </section>
 

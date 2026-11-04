@@ -34,7 +34,8 @@
 .ac-heading[data-fading="true"], .ac-paragraph[data-fading="true"], .ac-title[data-fading="true"] { opacity: 0; }
 .ac-title { font-size: 20px; font-weight: 500; line-height: 28px; letter-spacing: -0.01em; text-wrap: balance; }
 .ac-heading { font-size: 15px; font-weight: 500; line-height: 24px; }
-.ac-paragraph { font-size: 15px; font-weight: 400; line-height: 24px; text-wrap: pretty; overflow-wrap: anywhere; }
+/* pre-wrap: a tab between two cells of a TSV line stays a tab on the page instead of collapsing into a space */
+.ac-paragraph { font-size: 15px; font-weight: 400; line-height: 24px; text-wrap: pretty; overflow-wrap: anywhere; white-space: pre-wrap; tab-size: 6; }
 .ac-meta { padding-top: 4px; font-size: 13px; line-height: 20px; color: var(--text-muted); }
 .ac-chunk, .ac-tint { -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: opacity 0.14s ease-out, background-color 0.24s ease-out; }
 .ac-tint { border-radius: 3px; }

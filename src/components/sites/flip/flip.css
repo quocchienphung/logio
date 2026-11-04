@@ -8,7 +8,7 @@
 .cr-flip .fl-block__head p { margin: 2px 0 0; font-size: 0.8125rem; line-height: 20px; color: var(--muted); text-wrap: pretty; }
 .cr-flip .fl-block__head--row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 16px; }
 .cr-flip .fl-block__head--row > div { flex: 1 1 340px; min-width: 0; }
-.cr-flip .fl-ext { font-size: 0.75rem; color: var(--muted); }
+.cr-flip .fl-ext { margin: -4px 0 0; padding-left: 2px; font-size: 0.75rem; line-height: 18px; color: var(--muted); }
 .cr-flip .fl-ext b { font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .cr-flip .fl-format { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
 .cr-flip .fl-format__note { font-size: 0.75rem; color: var(--muted); }
