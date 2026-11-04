@@ -121,7 +121,8 @@ export function groupLines(rects: readonly { left: number; top: number; width: n
   const lines: { left: number; top: number; width: number; height: number }[] = [];
   for (const rect of [...rects].filter(item => item.width > 0.5 && item.height > 0.5).sort((a, b) => a.top - b.top || a.left - b.left)) {
     const line = lines.find(item => Math.abs(item.top - rect.top) < 2 || (rect.top >= item.top && rect.top + rect.height <= item.top + item.height + 1));
-    if (!line) { lines.push({ ...rect }); continue; }
+    // a DOMRect keeps its fields on the prototype: copy them out by name, a spread would lose them
+    if (!line) { lines.push({ left: rect.left, top: rect.top, width: rect.width, height: rect.height }); continue; }
     const right = Math.max(line.left + line.width, rect.left + rect.width);
     line.left = Math.min(line.left, rect.left); line.width = right - line.left; line.height = Math.max(line.height, rect.height);
   }

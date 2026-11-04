@@ -46,7 +46,7 @@ export function Flip({ notify }: { workspaceId: string; notify: (message: string
   const step: Step = ready ? chosen : "upload";
   const steps: StepSpec<Step>[] = (Object.keys(LABEL) as Step[]).map(id => ({ id, label: LABEL[id] }));
   return <LayoutGroup id="flip"><div className="ui-sb collateral cr-flip" data-upload-only={!ready}>
-    <SectionHeader trail={[LABEL[step]]} title="Flip" file={ready ? <FileChip name={engine.fileName} detail={formatBytes(engine.fileSize)} onClose={engine.close} /> : undefined} />
+    <SectionHeader trail={["Flip", LABEL[step]]} title="Flip" file={ready ? <FileChip name={engine.fileName} detail={formatBytes(engine.fileSize)} onClose={engine.close} /> : undefined} />
     <AnimatePresence>{ready && <Stepper steps={steps} current={step} onChange={setStep} available={() => true} group="flip" reveal />}</AnimatePresence>
     <AnimatePresence mode="wait" initial={false}><motion.div className="ui-sb__body" id="flip-panel" role={ready ? "tabpanel" : undefined} aria-labelledby={ready ? `flip-tab-${step}` : undefined} key={step} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -3 }} transition={{ duration: reduce ? 0 : 0.16 }}>
       <CollateralBoundary resetKey={step}>

@@ -50,3 +50,9 @@ test("rects of one line become one line, and a wrapped range becomes one rect pe
   const lines = groupLines([{ left: 10, top: 100, width: 50, height: 20 }, { left: 60, top: 101, width: 40, height: 20 }, { left: 10, top: 124, width: 30, height: 20 }, { left: 0, top: 130, width: 0, height: 20 }]);
   assert.equal(lines.length, 2); assert.deepEqual(lines[0], { left: 10, top: 100, width: 90, height: 20 });
 });
+
+test("rects whose fields are getters on a prototype (a DOMRect) are copied out whole", () => {
+  class Rect { constructor(l, t, w, h) { this._ = [l, t, w, h]; } get left() { return this._[0]; } get top() { return this._[1]; } get width() { return this._[2]; } get height() { return this._[3]; } }
+  const lines = groupLines([new Rect(5, 10, 100, 20), new Rect(105, 10, 30, 20), new Rect(5, 40, 60, 20)]);
+  assert.deepEqual(lines, [{ left: 5, top: 10, width: 130, height: 20 }, { left: 5, top: 40, width: 60, height: 20 }]);
+});
