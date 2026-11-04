@@ -21,7 +21,7 @@ import "../collateral.css";
 type Step = "import" | "overview" | "review" | "export";
 const LABEL: Record<Step, string> = { import: "Import", overview: "Overview", review: "Review and fix", export: "Export" };
 
-/** Collateral › Excel formation: open a workbook, find its character and data errors, repair them by hand, export the corrected copy. */
+/** Excel formation UI with disposable sample review state. */
 export function ExcelFormation({ notify }: { workspaceId: string; notify: (message: string) => void }) {
   const { t: uiText } = useWorkspaceI18n();
   const reduce = useReducedMotion();

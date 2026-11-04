@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { AlertTriangle, ArrowDownToLine, ArrowUpRight, Check, Copy, FileSpreadsheet, HardDrive, RefreshCw, Search, Trash2, Upload } from "lucide-react";
 import { useWorkspaceI18n } from "../../i18n/WorkspaceI18n";
@@ -8,8 +8,6 @@ import { useWorkspaceRoute } from "../../affectui-crm/workspace-state";
 import { WorkspaceLink } from "../../guide-navigation/WorkspaceLink";
 import { useCollateral } from "../CollateralProvider";
 import { SectionHeader } from "../shell";
-import { downloadBlob } from "../download";
-import { listQueue, readQueueFile } from "./queue-client";
 import { filterQueue, queueBytes, type QueueDeleteReceipt, type QueueEntry } from "./queue-model";
 import { useQueueCopy } from "./queue-copy";
 import { QueuePopup } from "./QueuePopup";
@@ -24,47 +22,33 @@ type Popup = { entry: QueueEntry; open: boolean };
 type Removal = { entry: QueueEntry; receipt: QueueDeleteReceipt };
 const tone = (entry: QueueEntry) => entry.status === "ready" ? "scanned" : entry.status === "failed" ? "failed" : "saved";
 
-/** Prompt cache's public visual grammar applied to real upload history, never simulated cache/token/cost data. */
-export function Queue({ workspaceId }: { workspaceId: string }) {
+/** Queue visual interactions over disposable sample entries. */
+export function Queue(_props: { workspaceId: string }) {
+  void _props;
   const copy = useQueueCopy();
   const { locale } = useWorkspaceI18n();
   const reduce = useReducedMotion();
   const { navigate } = useWorkspaceRoute();
-  const { openSaved, deleteSaved, restoreSaved, engine } = useCollateral();
-  const [entries, setEntries] = useState<QueueEntry[]>([]);
-  const [loaded, setLoaded] = useState(false), [refreshing, setRefreshing] = useState(false);
+  const { openSaved, deleteSaved, restoreSaved, entries } = useCollateral();
+  const [refreshing, setRefreshing] = useState(false);
+  const [downloadPreview, setDownloadPreview] = useState(false);
   const [error, setError] = useState("");
-  const [loadError, setLoadError] = useState("");
   const [search, setSearch] = useState(""), [status, setStatus] = useState("all");
   const [busy, setBusy] = useState<string | null>(null);
   const [popup, setPopup] = useState<Popup | null>(null), [removal, setRemoval] = useState<Removal | null>(null);
   const sawResult = useRef(false), removalRef = useRef<Removal | null>(null);
   const [morphEpoch, setMorphEpoch] = useState(0);
-  const generation = useRef(0), mounted = useRef(true);
-  const abort = useRef<AbortController | null>(null);
-  const refresh = useCallback(async (visible = false) => {
-    const run = ++generation.current;
-    abort.current?.abort(); abort.current = new AbortController();
-    if (visible) { setRefreshing(true); setError(""); }
-    try {
-      const data = await listQueue(workspaceId, abort.current.signal);
-      if (run !== generation.current || !mounted.current) return;
-      setEntries(data); setLoaded(true); setLoadError("");
-    } catch (failure) {
-      if (run === generation.current && mounted.current && !(failure instanceof Error && failure.name === "AbortError")) {
-        setLoadError(failure instanceof Error ? failure.message : "Queue could not be loaded."); setLoaded(true);
-      }
-    } finally { if (run === generation.current && mounted.current) setRefreshing(false); }
-  }, [workspaceId]);
+  const mounted = useRef(true);
+  const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const refresh = () => {
+    setRefreshing(true); setError("");
+    if (refreshTimer.current) clearTimeout(refreshTimer.current);
+    refreshTimer.current = setTimeout(() => setRefreshing(false), 450);
+  };
   useEffect(() => {
     mounted.current = true;
-    const update = () => { void refresh(); };
-    const focus = () => { if (!document.hidden) update(); };
-    update();
-    window.addEventListener("collateral-queue-changed", update); window.addEventListener("focus", focus);
-    const interval = setInterval(focus, 5000);
-    return () => { mounted.current = false; abort.current?.abort(); clearInterval(interval); window.removeEventListener("collateral-queue-changed", update); window.removeEventListener("focus", focus); };
-  }, [refresh]);
+    return () => { mounted.current = false; if (refreshTimer.current) clearTimeout(refreshTimer.current); };
+  }, []);
 
   const visible = filterQueue(entries, search, status);
   // The pop-up keeps showing a file the moment it is deleted, so its Undo has something to bring back.
@@ -82,28 +66,21 @@ export function Queue({ workspaceId }: { workspaceId: string }) {
   const closePopup = () => setPopup(current => current && { ...current, open: false });
   const reopen = async (entry: QueueEntry, section: "Excel formation" | "JSON formation") => {
     if (busy) return;
-    if (engine.unsaved && !window.confirm(locale === "vi" ? "Mở lại tệp gốc sẽ bỏ các thay đổi chưa xuất. Tiếp tục?" : "Reopening the original discards unexported corrections. Continue?")) return;
     setBusy(entry.id); setError("");
     try { await openSaved(entry); if (mounted.current) { closePopup(); navigate(section); } }
     catch (failure) { if (mounted.current) setError(failure instanceof Error ? failure.message : "The original could not be opened."); }
     finally { if (mounted.current) setBusy(null); }
   };
-  const download = async (entry: QueueEntry) => {
-    if (busy) return;
-    setBusy(entry.id); setError("");
-    try { const file = await readQueueFile(workspaceId, entry); downloadBlob(entry.name, file); }
-    catch (failure) { if (mounted.current) setError(failure instanceof Error ? failure.message : "The original could not be downloaded."); }
-    finally { if (mounted.current) setBusy(null); }
-  };
-  // The server moves the original aside and answers with an undo token; the file is gone for good once its window (8 s) has passed.
+  const download = () => { setDownloadPreview(true); };
+  // Confirm and Undo only alter the provider's in-memory sample list.
   const remove = async (entry: QueueEntry) => {
     const receipt = await deleteSaved(entry);
-    removalRef.current = { entry, receipt }; setRemoval(removalRef.current); setEntries(current => current.filter(item => item.id !== entry.id));
+    removalRef.current = { entry, receipt }; setRemoval(removalRef.current);
   };
   const restore = async (item: Removal) => {
     await restoreSaved(item.entry, item.receipt);
     if (!mounted.current) return;
-    setRemoval(current => current?.entry.id === item.entry.id ? null : current); setError(""); void refresh();
+    setRemoval(current => current?.entry.id === item.entry.id ? null : current); setError("");
   };
   const removalPhase = (phase: ConfirmPhase) => {
     if (phase === "done") sawResult.current = true;
@@ -118,9 +95,10 @@ export function Queue({ workspaceId }: { workspaceId: string }) {
   return <div className="ui-sb collateral queue-page">
     <SectionHeader title="Queue" trail={["Collateral", "Queue"]} />
     <p className="queue-page__intro">{copy("subtitle")}</p>
+    {downloadPreview && <p role="status" className="queue-caption">{locale === "vi" ? "Mô phỏng tải xuống · không tạo tệp." : "Download preview · no file is created."}</p>}
     <div className="queue-card">
       <header className="queue-card__header"><div><h2>{copy("history")}</h2><p><HardDrive size={14} />{copy("originals")}<span>·</span>{entries.length}</p></div>
-        <div className="queue-card__controls"><button type="button" className="queue-icon" disabled={refreshing || !!busy} aria-label={copy("refresh")} onClick={() => { void refresh(true); }}><RefreshCw size={16} className={refreshing ? "queue-spin" : undefined} /></button><WorkspaceLink href="/personalize?section=excel-formation" className="queue-icon" aria-label={copy("import")}><Upload size={16} /></WorkspaceLink></div>
+        <div className="queue-card__controls"><button type="button" className="queue-icon" disabled={refreshing || !!busy} aria-label={copy("refresh")} onClick={() => { void refresh(); }}><RefreshCw size={16} className={refreshing ? "queue-spin" : undefined} /></button><WorkspaceLink href="/personalize?section=excel-formation" className="queue-icon" aria-label={copy("import")}><Upload size={16} /></WorkspaceLink></div>
       </header>
       <ul className="queue-legend">{totals.map(item => <li key={item.status}><span className="queue-swatch" data-tone={item.status === "ready" ? "scanned" : item.status === "failed" ? "failed" : "saved"} />{copy(item.status)}<span>{item.count}</span></li>)}</ul>
       <section className="queue-summary" aria-label={copy("savedBytes")}><div className="queue-summary__head"><span className="queue-ring"><HardDrive size={18} /></span><div><strong>{copy("originals")}</strong><span>{queueBytes(total)} · {entries.length} {locale === "vi" ? "tệp" : "files"}</span></div></div>
@@ -128,9 +106,9 @@ export function Queue({ workspaceId }: { workspaceId: string }) {
         <p>{copy("originalOnly")}</p>
       </section>
       <div className="queue-filters"><label className="queue-search"><Search size={15} /><input type="search" aria-label={copy("search")} placeholder={copy("search")} value={search} onChange={event => setSearch(event.target.value)} /></label><select aria-label={locale === "vi" ? "Lọc trạng thái" : "Filter status"} value={status} onChange={event => setStatus(event.target.value)}><option value="all">{copy("all")}</option>{groups.map(value => <option key={value} value={value}>{copy(value)}</option>)}</select></div>
-      {(error || loadError) && <div className="queue-error" role="alert"><span>{error || loadError}</span><button type="button" onClick={() => { void refresh(true); }}>{copy("retry")}</button></div>}
+      {error && <div className="queue-error" role="alert"><span>{error}</span><button type="button" onClick={() => { void refresh(); }}>{copy("retry")}</button></div>}
       {removal && !popup?.open && <div className="queue-undo" role="status"><span><strong>{removal.entry.name}</strong> {copy("removedNote")}</span><button type="button" onClick={() => { void restore(removal).then(() => setMorphEpoch(epoch => epoch + 1)).catch(failure => setError(failure instanceof Error ? failure.message : copy("restoreError"))); }}>{copy("undo")}</button></div>}
-      {!loaded ? <p role="status">{copy("loading")}</p> : !entries.length && !loadError ? <div className="queue-empty"><FileSpreadsheet size={30} strokeWidth={1.3} /><h3>{copy("empty")}</h3><p>{copy("emptyHint")}</p><WorkspaceLink href="/personalize?section=excel-formation"><Upload size={14} />{copy("import")}</WorkspaceLink></div> : <div className="queue-main">
+      {!entries.length ? <div className="queue-empty"><FileSpreadsheet size={30} strokeWidth={1.3} /><h3>{copy("empty")}</h3><p>{copy("emptyHint")}</p><WorkspaceLink href="/personalize?section=excel-formation"><Upload size={14} />{copy("import")}</WorkspaceLink></div> : <div className="queue-main">
         <div className="queue-list"><div className="queue-list__head"><span>{copy("originals")}</span><span>{locale === "vi" ? "Dung lượng" : "Size"}</span><span>{locale === "vi" ? "Đã tải lên" : "Uploaded"}</span></div>
           {visible.length === 0 && <p>{copy("noMatches")}</p>}
           <div className="queue-rows" role="list"><AnimatePresence initial={false}>{visible.map((entry, index) => <motion.div className="queue-row" role="listitem" key={entry.id} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, height: 0, marginBottom: 0, filter: reduce ? "none" : "blur(2px)" }} transition={{ duration: .24, delay: reduce ? 0 : Math.min(index, 5) * .03, ease }}>
@@ -163,7 +141,7 @@ export function Queue({ workspaceId }: { workspaceId: string }) {
               {selected.error && <><dt>{copy("problemLabel")}</dt><dd data-problem="">{selected.error}</dd></>}
               <dt>{copy("fingerprintLabel")}</dt><dd><span className="queue-pop__hash" title={selected.sha256}>{selected.sha256.slice(0, 16)}…<button type="button" className="queue-pop__copy" aria-label={copy("copyHash")} onClick={() => { void navigator.clipboard?.writeText(selected.sha256); }}><Copy size={14} /></button></span></dd>
             </dl>
-            <div className="queue-pop__secondary"><button type="button" disabled={!!busy || selected.status === "failed"} onClick={() => { void reopen(selected, "JSON formation"); }}>{copy("openJson")}<ArrowUpRight size={14} /></button><button type="button" disabled={!!busy} onClick={() => { void download(selected); }}>{copy("download")}<ArrowDownToLine size={14} /></button></div>
+            <div className="queue-pop__secondary"><button type="button" disabled={!!busy || selected.status === "failed"} onClick={() => { void reopen(selected, "JSON formation"); }}>{copy("openJson")}<ArrowUpRight size={14} /></button><button type="button" disabled={!!busy} onClick={() => { download(); }}>{copy("download")}<ArrowDownToLine size={14} /></button></div>
           </div>
           <div className="queue-pop__delete"><p>{copy("consequence")}</p>
             <ConfirmMorph key={`${selected.id}:${morphEpoch}`} label={copy("delete")} icon={<Trash2 size={14} />} prompt={copy("deletePrompt")} confirmMode="hold" confirmLabel={copy("deleteConfirm")} pendingLabel={copy("deleting")} doneLabel={copy("deleted")} undoLabel={copy("undo")} undoingLabel={copy("restoring")} errorLabel={copy("removeError")}

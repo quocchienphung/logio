@@ -1,0 +1,16 @@
+H1 Agent cursor
+H3 Usage-based billing launch
+H4 Goals
+H2 When to use
+H2 When not to use
+H2 Installation
+H2 Usage
+H2 API reference
+H3 AgentCursor
+H2 Keyboard interactions
+H2 Accessibility
+H2 Motion
+H2 Responsive behavior
+H2 Performance
+H2 Notes for AI
+H2 Related

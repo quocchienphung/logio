@@ -3,7 +3,7 @@
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { ChevronDown } from "lucide-react";
-import type { Issue, IssueStatus } from "./engine/types";
+import type { Issue, IssueStatus } from "../simulation/types";
 import { CATEGORY_LABEL, SEVERITY_LABEL, STATUS_LABEL, cellRef, severityTone, statusTone } from "../labels";
 
 const ROW = 44; // the data table's row height (affectui-crm/reference.css): the virtual window below depends on it

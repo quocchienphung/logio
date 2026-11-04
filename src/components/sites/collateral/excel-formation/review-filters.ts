@@ -1,4 +1,4 @@
-import type { IssueCategory, Severity } from "./engine/types";
+import type { IssueCategory, Severity } from "../simulation/types";
 import { SEVERITIES } from "../labels";
 
 export type StatusFilter = "todo" | "done" | "all";

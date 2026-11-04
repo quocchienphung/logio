@@ -4,10 +4,9 @@ import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useState } from "react";
 import { Download, FileSpreadsheet } from "lucide-react";
 import { ActionButton } from "../../../skilled/ui/ActionButton";
-import type { CollateralEngine, ExportedFile } from "../../useCollateralEngine";
-import { downloadBlob } from "../../download";
+import type { CollateralSimulation, ExportedFile } from "../../useCollateralSimulation";
 
-export function ExportStep({ engine, notify }: { engine: CollateralEngine; notify: (message: string) => void }) {
+export function ExportStep({ engine, notify }: { engine: CollateralSimulation; notify: (message: string) => void }) {
   const { t: uiText } = useWorkspaceI18n();
   const view = engine.view!;
   const [file, setFile] = useState<ExportedFile | null>(null);
@@ -16,7 +15,7 @@ export function ExportStep({ engine, notify }: { engine: CollateralEngine; notif
     const made = await engine.exportXlsx();
     setFile(made);
     if (!made?.ok) { notify(uiText("Check failed")); throw new Error("The corrected workbook did not pass its check."); }
-    notify(uiText("Corrected workbook verified"));
+    notify(uiText("Workbook preview ready"));
   }
   return <div className="cr-export">
     <section className="ui-sb-card cr-panel" aria-labelledby="ex-xlsx">
@@ -25,9 +24,9 @@ export function ExportStep({ engine, notify }: { engine: CollateralEngine; notif
       {changed === 0 && <p className="ui-sb-muted" role="status">{uiText("No changes yet")}</p>}
       <div className="ui-sb-actions">
         <ActionButton size="sm" label={uiText("Create corrected workbook")} pendingLabel={uiText("Building…")} successLabel={uiText("Verified")} resetAfterMs={2400} disabled={engine.busy} onAction={build} onActionError={() => {}} />
-        {file && <button type="button" className="ui-button" data-variant="secondary" data-size="sm" disabled={!file.ok} onClick={() => { downloadBlob(file.fileName, file.blob); notify(uiText("Downloaded {0}", [file.fileName])); }}><span className="ui-button__icon"><Download size={15} /></span><span className="ui-button__label">{uiText("Download")} {file.fileName}</span></button>}
+        {file && <button type="button" className="ui-button" data-variant="secondary" data-size="sm" disabled={!file.ok} onClick={() => { notify(uiText("Simulation · {0}", [file.fileName])); }}><span className="ui-button__icon"><Download size={15} /></span><span className="ui-button__label">{uiText("Download")} {file.fileName}</span></button>}
       </div>
-      {file && <p className="cr-verify" data-ok={file.ok || undefined} role="status">{file.ok ? uiText("Verified: {0} cells match, nothing else changed", [file.changedCells]) : uiText("Check failed: {0} wrong, {1} unexpected", [file.wrongValues, file.unexpectedChanges])}</p>}
+      {file && <p className="cr-verify" data-ok={file.ok || undefined} role="status">{file.ok ? uiText("Simulation · {0} sample cells changed", [file.changedCells]) : uiText("Check failed: {0} wrong, {1} unexpected", [file.wrongValues, file.unexpectedChanges])}</p>}
     </section>
   </div>;
 }

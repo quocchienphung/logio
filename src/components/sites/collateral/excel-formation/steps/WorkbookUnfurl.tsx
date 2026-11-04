@@ -4,16 +4,18 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type PointerEvent 
 import { ArrowRight, Check, ChevronUp, FileSpreadsheet, RotateCcw, X } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
-import type { CollateralEngine } from "../../useCollateralEngine";
-import type { OpenResult, SheetWindow } from "../../engine/protocol";
+import type { CollateralSimulation } from "../../useCollateralSimulation";
+import type { OpenResult, SheetWindow } from "../../simulation/types";
 import { COLLAPSE_FRAMES, EXPAND_FRAMES, unfurlFrame, type UnfurlFrame } from "./import-motion";
+import { useCollateral } from "../../CollateralProvider";
 import { useImportCopy } from "./import-copy";
 
 export function WorkbookUnfurl({ engine, error, onReplace, onReview }: {
-  engine: CollateralEngine; error?: string; onReplace: () => void; onReview: () => void;
+  engine: CollateralSimulation; error?: string; onReplace: () => void; onReview: () => void;
 }) {
   const { t, locale } = useWorkspaceI18n();
   const copy = useImportCopy();
+  const { isSimulation } = useCollateral();
   const reduce = useReducedMotion();
   const [expanded, setExpanded] = useState(true);
   const root = useRef<HTMLDivElement>(null);
@@ -36,7 +38,7 @@ export function WorkbookUnfurl({ engine, error, onReplace, onReview }: {
   const number = (n: number) => n.toLocaleString(locale === "vi" ? "vi-VN" : "en-US");
   const size = engine.fileSize < 1048576 ? `${number(Math.max(1, Math.round(engine.fileSize / 1024)))} KB` : `${(engine.fileSize / 1048576).toFixed(1)} MB`;
   const progress = Math.round(Math.max(0, Math.min(100, engine.progress.phase === "read" ? engine.progress.fraction * 45 : 45 + engine.progress.fraction * 55)));
-  const status = scanning ? t(engine.progress.phase === "read" ? "Reading the workbook…" : "Checking every cell…") : ready ? copy("ready") : copy("failed");
+  const status = scanning ? (isSimulation ? (locale === "vi" ? "Đang chạy mô phỏng…" : "Playing simulation…") : t(engine.progress.phase === "read" ? "Reading the workbook…" : "Checking every cell…")) : ready ? copy("ready") : copy("failed");
 
   useLayoutEffect(() => { chip.current?.focus({ preventScroll: true }); }, []);
 
@@ -44,7 +46,7 @@ export function WorkbookUnfurl({ engine, error, onReplace, onReview }: {
     const primary = result?.profile.sheets.find(sheet => sheet.name === result.profile.primary);
     if (!ready || !result || !primary) return;
     let active = true;
-    // Existing local worker API, never a remote file/URL resolver. A late result is ignored.
+    // Ask the active preview source; ignore late replies.
     void sheetWindow((primary.headerRow ?? 1) + 1, primary.headers[0]?.col ?? 0)
       .then(sheet => { if (active && sheet) setSnapshot({ result, sheet }); })
       .catch(() => { /* The verified worksheet inventory remains available without a cell preview. */ });

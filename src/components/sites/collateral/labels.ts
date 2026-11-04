@@ -1,4 +1,4 @@
-import type { Issue, IssueCategory, IssueStatus, Severity } from "./excel-formation/engine/types";
+import type { Issue, IssueCategory, IssueStatus, Severity } from "./simulation/types";
 
 /** English source strings; the page runs every one of them through `uiText`, so the Vietnamese catalog (i18n/vi-credit.ts) covers them. */
 export const CATEGORY_LABEL: Record<IssueCategory, string> = {

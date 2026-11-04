@@ -4,9 +4,10 @@ import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { useEffect, useRef } from "react";
 import { Lock } from "lucide-react";
 import { StorageDropzone } from "../../../storage/StorageDropzone";
-import type { CollateralEngine } from "../../useCollateralEngine";
+import type { CollateralSimulation } from "../../useCollateralSimulation";
 import { WorkbookUnfurl } from "./WorkbookUnfurl";
 import { useImportCopy } from "./import-copy";
+import { useCollateral } from "../../CollateralProvider";
 import { ArchiveNotice } from "../../queue/ArchiveNotice";
 import "./import-step.css";
 
@@ -17,8 +18,9 @@ const MESSAGE: Record<string, string> = {
   corrupt: "The workbook could not be opened. It may be damaged.", "no-workbook": "This archive is not an Excel workbook.", "no-sheets": "The workbook has no worksheets.",
 };
 
-export function ImportStep({ engine, onReview }: { engine: CollateralEngine; onReview: () => void }) {
-  const { t: uiText } = useWorkspaceI18n();
+export function ImportStep({ engine, onReview }: { engine: CollateralSimulation; onReview: () => void }) {
+  const { t: uiText, locale } = useWorkspaceI18n();
+  const { isSimulation } = useCollateral();
   const copy = useImportCopy();
   const input = useRef<HTMLInputElement>(null);
   const drop = useRef<HTMLDivElement>(null);
@@ -39,9 +41,10 @@ export function ImportStep({ engine, onReview }: { engine: CollateralEngine; onR
           <WorkbookUnfurl key={engine.fileName} engine={engine} error={error} onReplace={() => input.current?.click()} onReview={onReview} />
         </> : <StorageDropzone entries={[]} multiple={false} accept=".xlsx" badges={["XLSX", "XLSX"]} inputLabel="Choose an Excel workbook" hint={copy("limits")} onFiles={receive} />}
       </div>
+      {isSimulation && !engine.fileName && <div className="ui-sb-actions cr-import__demo"><button type="button" className="ui-button" data-variant="primary" data-size="sm" onClick={() => void engine.open()}><span className="ui-button__label">{locale === "vi" ? "Chạy mô phỏng" : "Run simulation"}</span></button></div>}
       <aside className="cr-import__options" aria-label={uiText("Options")}>
         <label className="cr-switch-row"><button type="button" role="switch" className="cr-switch" aria-label={uiText("Flag accented text")} aria-checked={engine.diacriticPolicy} disabled={scanning} onClick={() => engine.rescan(!engine.diacriticPolicy)}><span className="cr-switch__thumb" /></button><span>{uiText("Flag accented text")}</span></label>
-        <p className="cr-local"><Lock size={13} aria-hidden="true" /> {uiText("Processed on this device")}</p>
+        <p className="cr-local"><Lock size={13} aria-hidden="true" /> {isSimulation ? (locale === "vi" ? "Chỉ dùng dữ liệu mẫu" : "Sample data only") : uiText("Processed on this device")}</p>
       </aside>
       <ArchiveNotice />
     </div>

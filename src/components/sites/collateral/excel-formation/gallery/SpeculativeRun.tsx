@@ -4,9 +4,9 @@ import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "re
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react";
 import { Check, ChevronDown, CircleHelp, Pause, Play, RotateCcw, X } from "lucide-react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
-import type { WordPrediction } from "../engine/predict";
-import { simulate } from "../engine/speculative";
-import { FLIGHT_SPRING, TIMING, shimmerAt, snapshotAt, timelineOf, type Snapshot, type StatusKind } from "../engine/run-timeline";
+import type { WordPrediction } from "../../simulation/review-choices";
+import { simulate } from "../../simulation/speculative";
+import { FLIGHT_SPRING, TIMING, shimmerAt, snapshotAt, timelineOf, type Snapshot, type StatusKind } from "../../simulation/run-timeline";
 import { RollingNumber } from "./RollingNumber";
 import "./speculative-run.css";
 

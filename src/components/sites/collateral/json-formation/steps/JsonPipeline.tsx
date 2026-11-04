@@ -5,9 +5,9 @@ import { Boxes, ClipboardList, Columns3, FileJson, FileSpreadsheet, ShieldCheck 
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { Workflow, type WorkflowLabels, type WorkflowStep } from "../../../json-pipeline/Workflow";
 import { WorkspaceLink } from "../../../guide-navigation/WorkspaceLink";
-import type { CollateralEngine } from "../../useCollateralEngine";
+import type { CollateralSimulation } from "../../useCollateralSimulation";
 import type { JsonPlanState } from "../useJsonPlan";
-import type { JsonPlan } from "../engine/json-session";
+import type { JsonPlan } from "../../simulation/types";
 
 export const CHECK: Record<string, string> = {
   "serious-issues": "No serious issue is still open",
@@ -30,11 +30,8 @@ const GROUPS: { id: string; title: string; detail: string; checks: string[]; mar
   { id: "validate", title: "Validate the JSON", detail: "schema, template, bytes, replay", checks: ["schema", "template", "utf8", "replay", "ts013"], mark: FileJson },
 ];
 
-/**
- * The nine checks of the export as a workflow: each step is the real result of its checks, and its time is how long the worker really took (the
- * steps that were not timed say "Done"). Run checks asks the worker again, then replays the result one step at a time.
- */
-export function JsonPipeline({ engine, state, plan }: { engine: CollateralEngine; state: JsonPlanState; plan: JsonPlan }) {
+/** Scripted workflow playback over sample checks. No business validation. */
+export function JsonPipeline({ engine, state, plan }: { engine: CollateralSimulation; state: JsonPlanState; plan: JsonPlan }) {
   const { t, locale } = useWorkspaceI18n();
   const n = (value: number) => new Intl.NumberFormat(locale === "vi" ? "vi-VN" : "en-US").format(value);
   const labels: WorkflowLabels = useMemo(() => ({
@@ -85,5 +82,5 @@ export function JsonPipeline({ engine, state, plan }: { engine: CollateralEngine
   };
   const steps = stepsFrom(plan);
   const onRun = async () => { const result = await engine.jsonPlan(state.meta, state.options); return result ? stepsFrom(result.plan) : undefined; };
-  return <Workflow title={t("Checks before the export")} description={t("Run in this tab. Nothing leaves it.")} steps={steps} labels={labels} onRun={onRun} />;
+  return <Workflow title={t("Checks before the export")} description={t("UI simulation · scripted checks only")} steps={steps} labels={labels} onRun={onRun} />;
 }

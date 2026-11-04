@@ -5,11 +5,10 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Download, Lock } from "lucide-react";
 import { SplitButton } from "../../../split-button/SplitButton";
-import type { CollateralEngine } from "../../useCollateralEngine";
+import type { CollateralSimulation } from "../../useCollateralSimulation";
 import type { JsonPlanState } from "../useJsonPlan";
-import type { OrderPolicy, OwnerPolicy } from "../engine/json-report";
-import { emptyFileNaming } from "../engine/report-options";
-import { downloadBlob } from "../../download";
+import type { OrderPolicy, OwnerPolicy } from "../../simulation/types";
+import { emptyFileNaming } from "../../simulation/report-options";
 import { JsonPipeline } from "./JsonPipeline";
 
 const FIELDS = [
@@ -25,7 +24,7 @@ const NAME_FIELDS = [
 ] as const;
 
 /** The reporting JSON. Offered only when every gate holds; the date and contact details are typed here, never copied from an older file. */
-export function JsonPanel({ engine, state, notify }: { engine: CollateralEngine; state: JsonPlanState; notify: (message: string) => void }) {
+export function JsonPanel({ engine, state, notify }: { engine: CollateralSimulation; state: JsonPlanState; notify: (message: string) => void }) {
   const { t: uiText, locale } = useWorkspaceI18n();
   const { meta, options, plan } = state;
   const [busy, setBusy] = useState(false);
@@ -39,11 +38,10 @@ export function JsonPanel({ engine, state, notify }: { engine: CollateralEngine;
       if (!result) return;
       if (kind === "json" || kind === "zip") {
         const name = kind === "zip" ? result.plan.zipName : result.plan.fileName;
-        if (!result.plan.ready || !result.bytes || !name) { setProblem(uiText("A check no longer holds")); return; }
-        downloadBlob(name, result.bytes);
-        notify(uiText("Downloaded {0}", [name]));
-      } else if (kind === "audit") { downloadBlob("validation-audit.json", new Blob([result.audit], { type: "application/json" })); notify(uiText("Downloaded {0}", ["validation-audit.json"])); }
-      else { downloadBlob("validation-report.csv", new Blob([result.csv], { type: "text/csv;charset=utf-8" })); notify(uiText("Downloaded {0}", ["validation-report.csv"])); }
+        if (!result.plan.ready || !name) { setProblem(uiText("A check no longer holds")); return; }
+        notify(uiText("Simulation · {0}", [name]));
+      } else if (kind === "audit") { notify(uiText("Simulation · {0}", ["validation-audit.json"])); }
+      else { notify(uiText("Simulation · {0}", ["validation-report.csv"])); }
     } finally { setBusy(false); }
   }
   return <section className="ui-sb-card cr-panel cr-json" aria-labelledby="ex-json" data-ready={plan?.ready || undefined}>

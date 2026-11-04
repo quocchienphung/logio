@@ -5,7 +5,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState, type Keyboar
 import { createPortal } from "react-dom";
 import { motion, useReducedMotion } from "motion/react";
 import { ChevronLeft, ChevronRight, FileSpreadsheet, Maximize2, ScanSearch } from "lucide-react";
-import type { Issue } from "../engine/types";
+import type { Issue } from "../../simulation/types";
 import { Specimen } from "./Specimen";
 import { SheetViewer, type SheetData } from "./SheetViewer";
 import { moveSheetHost } from "./sheet-host";

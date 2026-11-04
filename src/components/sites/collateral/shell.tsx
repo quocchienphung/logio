@@ -27,6 +27,6 @@ export function FileChip({ name, detail, onClose }: { name: string; detail: stri
 }
 
 export function SectionHeader({ trail, title, file }: { trail: string[]; title: string; file?: ReactNode }) {
-  const { t: uiText } = useWorkspaceI18n();
-  return <header className="cl-header"><div className="cl-topbar"><Breadcrumbs trail={trail} />{file}</div><h1 className="ui-as-page-title">{uiText(title)}</h1></header>;
+  const { t: uiText, locale } = useWorkspaceI18n();
+  return <header className="cl-header"><div className="cl-topbar"><Breadcrumbs trail={trail} />{file}</div><h1 className="ui-as-page-title">{uiText(title)}</h1>{!trail.includes("Flip") && <p className="cl-simulation" role="note">{locale === "vi" ? "Mô phỏng UI · dữ liệu mẫu · không xử lý hoặc lưu tệp thật" : "UI simulation · sample data · no real file processing or storage"}</p>}</header>;
 }

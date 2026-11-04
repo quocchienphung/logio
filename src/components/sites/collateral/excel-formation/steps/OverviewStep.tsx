@@ -3,15 +3,15 @@
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { motion, useReducedMotion } from "motion/react";
 import { SplitBar } from "../../../skilled/split-bar/SplitBar";
-import type { CollateralEngine } from "../../useCollateralEngine";
-import type { Severity } from "../engine/types";
+import type { CollateralSimulation } from "../../useCollateralSimulation";
+import type { Severity } from "../../simulation/types";
 import { CATEGORY_LABEL, SEVERITIES, SEVERITY_LABEL, severityTone } from "../../labels";
-import type { IssueCategory } from "../engine/types";
+import type { IssueCategory } from "../../simulation/types";
 import type { ReviewFilters } from "../review-filters";
 
 const num = (value: number, locale: string) => new Intl.NumberFormat(locale === "vi" ? "vi-VN" : "en-US").format(value);
 
-export function OverviewStep({ engine, onReview }: { engine: CollateralEngine; onReview: (patch: Partial<ReviewFilters>) => void }) {
+export function OverviewStep({ engine, onReview }: { engine: CollateralSimulation; onReview: (patch: Partial<ReviewFilters>) => void }) {
   const { t: uiText, locale } = useWorkspaceI18n();
   const reduce = useReducedMotion();
   const result = engine.result!, view = engine.view!;

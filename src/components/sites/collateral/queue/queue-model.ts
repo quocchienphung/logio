@@ -10,7 +10,7 @@ export interface QueueEntry {
   rows?: number;
 }
 
-export interface QueueDeleteReceipt { undoToken: string; expiresAt: string }
+export interface QueueDeleteReceipt { expiresAt: string }
 
 export function queueBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;

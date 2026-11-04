@@ -3,17 +3,14 @@
 import { useEffect, useState } from "react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
 import { Combobox } from "../../../affectui-combobox/Combobox";
-import { MAU9_PROFILE } from "../../excel-formation/engine/mapping-profiles";
-import { columnLetters } from "../../excel-formation/engine/text";
-import type { CollateralEngine } from "../../useCollateralEngine";
+import { MAU9_PROFILE } from "../../simulation/mapping-sample";
+import { columnLetters } from "../../simulation/display";
+import type { CollateralSimulation } from "../../useCollateralSimulation";
 
 const SHOWN = 36;
 
-/**
- * The mapping the engine used, column by column: which Excel column fills which attribute of Mẫu số 09, by which rule, and what the first data
- * row of the open workbook puts there. Only exact header matches were mapped; a header that appears twice is left for the reviewer.
- */
-export function MappingStep({ engine }: { engine: CollateralEngine }) {
+/** Static sample mapping table with the original display interactions. */
+export function MappingStep({ engine }: { engine: CollateralSimulation }) {
   const { t: uiText } = useWorkspaceI18n();
   const profile = engine.result!.profile, mapping = profile.mapping;
   const sheetProfile = profile.sheets.find(item => item.name === profile.primary);

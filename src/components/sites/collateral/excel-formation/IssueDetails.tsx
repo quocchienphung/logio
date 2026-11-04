@@ -7,13 +7,12 @@ import { RotateCcw, ShieldCheck, X } from "lucide-react";
 import { ActionButton } from "../../skilled/ui/ActionButton";
 import { SpeculativePanel, type Prediction } from "./gallery/SpeculativePanel";
 import { Specimen } from "./gallery/Specimen";
-import type { Issue, IssueStatus } from "./engine/types";
-import type { IssueState } from "./engine/review";
-import type { RowContext } from "../engine/protocol";
-import type { CollateralEngine } from "../useCollateralEngine";
+import type { Issue, IssueStatus } from "../simulation/types";
+import type { IssueState } from "../simulation/types";
+import type { RowContext } from "../simulation/types";
+import type { CollateralSimulation } from "../useCollateralSimulation";
 import { DuplicateRepairDialog } from "./DuplicateRepairDialog";
-import type { DuplicatePlan } from "./engine/duplicate-repairs";
-import { matchesMask } from "./engine/corruption-span";
+import type { DuplicatePlan } from "../simulation/types";
 import { CATEGORY_LABEL, SEVERITY_LABEL, STATUS_LABEL, cellRef, issueReason, severityTone, statusTone } from "../labels";
 
 export type Variant = "original" | "suggested" | "new";
@@ -32,7 +31,7 @@ export function composeFromPicks(value: string, tokens: NonNullable<Issue["token
  */
 export function IssueDetails({ issue, status, state, current, variant, onVariant, draft, onDraft, twin, engine, notify, onApproved, onSkip }: {
   issue: Issue; status: IssueStatus; state?: IssueState; current: string; variant: Variant; onVariant: (variant: Variant) => void; draft: string; onDraft: (value: string) => void;
-  twin?: Twin; engine: CollateralEngine; notify: (message: string) => void; onApproved: () => void; onSkip?: () => void;
+  twin?: Twin; engine: CollateralSimulation; notify: (message: string) => void; onApproved: () => void; onSkip?: () => void;
 }) {
   const { t: uiText } = useWorkspaceI18n();
   const id = useId();
@@ -89,7 +88,7 @@ export function IssueDetails({ issue, status, state, current, variant, onVariant
     return true;
   }
   async function approve(value = draft, source: "typed" | "suggestion" | "fix" = "typed") {
-    if (issue.category === "QUESTION_MARK_IN_WORD" && matchesMask(issue.originalValue, value)) {
+    if (issue.category === "QUESTION_MARK_IN_WORD") {
       const plan = await engine.duplicatePlan(issue.id, twinWritable && alsoTwin);
       if (plan?.canPropagate) { setDuplicate({ plan, value, source, includeTwin: twinWritable && alsoTwin }); return; }
     }

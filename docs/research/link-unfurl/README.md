@@ -1,3 +1,5 @@
+> **Superseded 2026-11-04:** Excel formation, JSON formation and Queue are UI-only simulations. The processing/persistence behavior and historical QA below no longer describe those pages. Current contract: [UI simulation](../../collateral/12-ui-simulation.md). Flip keeps its separate read-only workbook preview.
+
 # Excel formation · Import / Link unfurl
 
 Scope and ownership (2026-11-02): Codex changes only `collateral/excel-formation/steps/ImportStep.tsx`, the import-step advance effect in `ExcelFormation.tsx`, new `steps/import-*` and `steps/WorkbookUnfurl.tsx`, this research folder, and dedicated `link-unfurl` forensic / `excel-import` QA scripts. Claude's engine, Overview, Review, Export, JSON formation, navigation, dictionaries and shared StorageDropzone are outside this change. Do not reset, overwrite, stage or commit the other in-progress files.

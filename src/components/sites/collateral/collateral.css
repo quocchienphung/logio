@@ -206,3 +206,7 @@
 
 .collateral .cr-filename { margin: 4px 0 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; overflow-wrap: anywhere; }
 .collateral .cr-map-table td { vertical-align: top; }
+
+/* Demo status stays scoped to the three simulation pages. */
+.collateral .cl-simulation { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.collateral .cr-import__demo { justify-content: center; margin-top: 16px; }

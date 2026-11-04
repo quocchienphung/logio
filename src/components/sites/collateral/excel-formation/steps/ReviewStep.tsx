@@ -7,18 +7,17 @@ import { OrbitMenu } from "../../../orbit-menu/OrbitMenu";
 import type { OrbitBoundary, OrbitPoint } from "../../../orbit-menu/orbit-geometry";
 import { Combobox, type ComboboxOption } from "../../../affectui-combobox/Combobox";
 import { WorkspaceDialog } from "../../../affectui-crm/WorkspaceDialog";
-import type { Issue, IssueCategory, IssueStatus, FixKind, Severity } from "../engine/types";
-import type { BulkItem } from "../engine/review";
-import { MAU9_PROFILE } from "../engine/mapping-profiles";
+import type { Issue, IssueCategory, IssueStatus, FixKind, Severity } from "../../simulation/types";
+import type { BulkItem } from "../../simulation/types";
+import { MAU9_PROFILE } from "../../simulation/mapping-sample";
 import { IssueGallery, type GalleryItem } from "../gallery/IssueGallery";
-import type { GridMeta } from "../../engine/protocol";
+import type { GridMeta } from "../../simulation/types";
 import type { SheetData } from "../gallery/SheetViewer";
 import { IssueDetails, type Twin, type Variant } from "../IssueDetails";
 import { IssueTable, type SortKey, type SortState, type TableRow } from "../IssueTable";
 import { CATEGORIES, CATEGORY_LABEL, SEVERITIES, SEVERITY_LABEL, severityTone } from "../../labels";
-import type { CollateralEngine } from "../../useCollateralEngine";
+import type { CollateralSimulation } from "../../useCollateralSimulation";
 import type { ReviewFilters } from "../review-filters";
-import { downloadBlob } from "../../download";
 
 const BULK: { kind: FixKind; label: string; hint: string }[] = [
   { kind: "trim", label: "Trim spaces at the edges", hint: "Removes spaces before and after the text." },
@@ -28,7 +27,7 @@ const BULK: { kind: FixKind; label: string; hint: string }[] = [
 ];
 const doneStatus = (status: IssueStatus) => status === "verified" || status === "accepted_exception";
 
-export function ReviewStep({ engine, filters, onFilters, notify }: { engine: CollateralEngine; filters: ReviewFilters; onFilters: (filters: ReviewFilters) => void; notify: (message: string) => void }) {
+export function ReviewStep({ engine, filters, onFilters, notify }: { engine: CollateralSimulation; filters: ReviewFilters; onFilters: (filters: ReviewFilters) => void; notify: (message: string) => void }) {
   const { t: uiText } = useWorkspaceI18n();
   const result = engine.result!, view = engine.view!;
   const all = useMemo(() => [...result.issues, ...view.introduced], [result.issues, view.introduced]);
@@ -131,23 +130,12 @@ export function ReviewStep({ engine, filters, onFilters, notify }: { engine: Col
 
   const resumeInput = useRef<HTMLInputElement>(null);
   async function saveProgress() {
-    if (!window.confirm("This progress file includes original and corrected cell text and exception reasons. It may contain sensitive data. Export this local file?")) return;
     const saved = await engine.saveProgress();
-    if (!saved) return;
-    downloadBlob(saved.fileName, saved.blob);
-    notify(uiText("Progress saved: {0} corrections. Keep the file next to your workbook.", [saved.patches]));
+    notify(`Simulation · ${saved.patches} sample corrections · no file created`);
   }
   async function resumeProgress(file: File) {
-    const outcome = await engine.loadProgress(file);
-    if (outcome.ok) {
-      notify(outcome.matches ? uiText("Resumed {0} corrections and {1} exceptions. Undo goes back.", [outcome.patches, outcome.exceptions]) : uiText("Resumed {0} corrections, but the counts differ from the saved file: check the review.", [outcome.patches]));
-      return;
-    }
-    notify(outcome.error === "other-file" ? uiText("This progress belongs to another workbook. Nothing was changed.")
-      : outcome.error === "changed-cell" ? uiText("A cell of this workbook is not what the progress started from (row {0}). Nothing was changed.", [outcome.at?.row ?? 0])
-      : outcome.error === "version" ? uiText("This progress file is from another version. Nothing was changed.")
-      : outcome.error === "too-large" ? uiText("This file is too large to be a progress file.")
-      : outcome.error === "not-progress" ? uiText("This is not a progress file.") : uiText("This progress file is damaged. Nothing was changed."));
+    await engine.loadProgress(file);
+    notify("Simulation · sample progress resumed");
   }
   async function openBulk() {
     setBulkOpen(true); setBulkKind(null); setBulkItems([]);

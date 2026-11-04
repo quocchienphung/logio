@@ -3,14 +3,14 @@
 import { useId, useRef } from "react";
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { useWorkspaceI18n } from "@/components/sites/i18n/WorkspaceI18n";
-import { applyReviewChoices, type WordPrediction } from "../engine/predict";
+import { applyReviewChoices, type WordPrediction } from "../../simulation/review-choices";
 import { SpeculativeRun } from "./SpeculativeRun";
 import { useLinkedWords } from "./linked-words";
 import "./speculative.css";
 
 export interface Prediction { text: string; predictions: WordPrediction[]; modelWords: number }
 
-/** A review workbench: real evidence, explicit choices and a draft the person must approve. */
+/** Sample suggestion controls and the recorded speculative-decoding animation. */
 export function SpeculativePanel({ prediction, loading, picks, onPick, onUse, onRetry }: {
   prediction: Prediction | null; loading: boolean; picks: Record<number, string>;
   onPick: (index: number, text: string) => void; onUse: (value: string) => void; onRetry: () => void;
@@ -47,6 +47,6 @@ export function SpeculativePanel({ prediction, loading, picks, onPick, onUse, on
     </div>
     <p className="sd-keys" aria-hidden="true"><span><kbd>1</kbd>–<kbd>4</kbd> {t("choose a word")}</span><span><kbd>↑</kbd> <kbd>↓</kbd> {t("move between words")}</span><span>{t("Click a word in the answer to jump to it")}</span></p>
     <footer className="sd-use"><div><button type="button" className="ui-button" data-variant="secondary" data-size="sm" disabled={reading === prediction.text} onClick={() => onUse(reading)}><span className="ui-button__label">{t("Use this reading")}</span><ArrowRight size={14} aria-hidden="true" /></button><span className="sd-note" role="status">{unresolved ? t("{0} words still need your choice", [unresolved]) : t("Ready to copy into the final value")}</span></div><small>{t("This fills the draft. Approve below to save the change.")}</small></footer>
-    <details className="sd-method"><summary>{t("Where do these suggestions come from?")}<ChevronDown size={13} aria-hidden="true" /></summary><p>{t("Matching words and phrases in this workbook. Counts show occurrences, not accuracy. Uncertain words stay unchanged until you choose. No file content leaves this browser.")}</p></details>
+    <details className="sd-method"><summary>{t("Where do these suggestions come from?")}<ChevronDown size={13} aria-hidden="true" /></summary><p>{t("Scripted sample words and counts for the UI simulation. No file is analyzed and no prediction model runs.")}</p></details>
   </section>;
 }

@@ -1,5 +1,5 @@
 // A SYNTHETIC workbook for the Collateral QA: made-up names and codes only, shaped like the real template (same headers, same kinds of defects).
-import { buildXlsx } from '../../../src/components/sites/collateral/excel-formation/engine/xlsx-builder.mjs';
+import { buildXlsx } from './xlsx-builder.mjs';
 
 export const HEADERS = ['NGAYDULIEU', 'MACNTCTD', 'TENCNTCTD', 'MAKH', 'TENKH', 'MASOBD', 'MALOAIBD', 'NGBDAU', 'NGKT', 'GIATRI', 'GIATRIBDKV', 'NGDINHGIA', 'GTKHAUTRU', 'DSSOHD', 'HOTENCSH', 'GIAYTOCNCSH', 'MSTCSH', 'MOTABD', 'MOTABDS'];
 const PHRASES = ['Ke hoach trien khai du an', 'May moc thiet bi san xuat', 'Xe tai 5 tan nhan hieu Hyundai', 'Nha xuong va quyen su dung dat', 'Tai san dam bao theo hop dong'];

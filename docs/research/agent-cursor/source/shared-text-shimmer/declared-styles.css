@@ -1,0 +1,17 @@
+.text-shimmer_shimmer__1kvWK { --ts-highlight: var(--text-shimmer-highlight,currentColor); --ts-base: var(--text-shimmer-base,color-mix(in oklab,currentColor 12%,var(--text-muted))); }
+
+.text-shimmer_stage__N5E60 { position: relative; display: inline-block; max-width: 100%; }
+
+.text-shimmer_label__MoEWd { display: inline-block; max-width: 100%; background-repeat: no-repeat; background-clip: text; -webkit-text-fill-color: transparent; }
+
+.text-shimmer_stage__N5E60[data-sizing] .text-shimmer_label__MoEWd { max-width: none; white-space: nowrap; }
+
+.text-shimmer_label__MoEWd::selection { -webkit-text-fill-color: currentcolor; }
+
+@supports not (color:color-mix(in oklab,red,blue)) {
+  .text-shimmer_label__MoEWd { -webkit-text-fill-color: currentcolor; background: none !important; }
+}
+
+@media (forced-colors: active) {
+  .text-shimmer_label__MoEWd { -webkit-text-fill-color: currentcolor; background: none !important; }
+}

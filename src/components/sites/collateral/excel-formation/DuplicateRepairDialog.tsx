@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { WorkspaceDialog } from "../../affectui-crm/WorkspaceDialog";
-import type { DuplicatePlan } from "./engine/duplicate-repairs";
+import type { DuplicatePlan } from "../simulation/types";
 import "./auto-repair.css";
 
 /** A confirmation overlay only: the existing suggestion panel does not change its geometry. */

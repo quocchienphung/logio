@@ -1,3 +1,5 @@
+> **Superseded 2026-11-04:** Excel formation, JSON formation and Queue are UI-only simulations. The processing/persistence behavior and historical QA below no longer describe those pages. Current contract: [UI simulation](12-ui-simulation.md). Flip keeps its separate read-only workbook preview.
+
 # Checklist theo Gate
 
 | Gate | Nội dung | Trạng thái |

@@ -18,7 +18,7 @@ import "../collateral.css";
 type Step = "mapping" | "preview" | "export";
 const LABEL: Record<Step, string> = { mapping: "Mapping", preview: "Preview", export: "Export" };
 
-/** Collateral › JSON formation: check the column mapping, look at the grouped result, then export the reporting JSON once every check holds. */
+/** JSON formation UI over the fixed sample document and scripted workflow. */
 export function JsonFormation({ notify }: { workspaceId: string; notify: (message: string) => void }) {
   const { t: uiText } = useWorkspaceI18n();
   const reduce = useReducedMotion();

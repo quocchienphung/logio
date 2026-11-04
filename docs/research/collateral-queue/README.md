@@ -1,3 +1,5 @@
+> **Superseded 2026-11-04:** Excel formation, JSON formation and Queue are UI-only simulations. The processing/persistence behavior and historical QA below no longer describe those pages. Current contract: [UI simulation](../../collateral/12-ui-simulation.md). Flip keeps its separate read-only workbook preview.
+
 # Collateral: upload, Queue, Excel and JSON
 
 2026-11-02. Requested change to the existing three connected pages. Implementation is local React/CSS/Motion and the app's home-server filesystem API. No new dependencies.

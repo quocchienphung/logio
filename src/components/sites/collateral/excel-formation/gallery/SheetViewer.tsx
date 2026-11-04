@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent, type PointerEvent, type ReactNode } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { ChevronDown, LocateFixed, Search, ZoomIn, ZoomOut } from "lucide-react";
-import type { GridMeta, GridRow } from "../../engine/protocol";
+import type { GridMeta, GridRow } from "../../simulation/types";
 import { Specimen } from "./Specimen";
 import { LENS, LENS_SPRING } from "./gallery-model";
-import { columnAt, columnLefts, columnWidths, issueStrip, rowOfStrip, stripOfRow } from "../engine/sheet-geometry";
+import { columnAt, columnLefts, columnWidths, issueStrip, rowOfStrip, stripOfRow } from "../../simulation/sheet-geometry";
 import { useViewerText } from "./viewer-labels";
 
 export interface SheetTarget { row: number; col: number; value: string; preview?: boolean; marks?: { start: number; end: number; label?: string }[] }

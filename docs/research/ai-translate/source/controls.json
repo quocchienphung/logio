@@ -1,0 +1,7 @@
+{
+ "trigger": "Translate\nEnglish\nDeutsch\nEspañol\n日本語\nPortuguês",
+ "buttons": [
+  "Translate to, Deutsch|TranslateEnglishDeutschEspañol日本語Português|menu|",
+  "|Show originalShow translation||false"
+ ]
+}
