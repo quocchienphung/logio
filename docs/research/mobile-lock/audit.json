@@ -1,0 +1,389 @@
+[
+ {
+  "route": "/",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "ul.carousel__scroller.case-study-carousel__scroller 280/2128",
+   "div.testimonial-carousel__cards 280/1120",
+   "ul.carousel__scroller.mobile-carousel__scroller 280/2128"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/authorization-boost",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 122/212",
+   "div.TestimonialCarousel__track 248/992",
+   "div.FullWidthCarousel__track 280/776"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/billing",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "ul.carousel__scroller.case-study-carousel__scroller 280/808",
+   "ul.carousel__scroller.product-eco-carousel__scroller 280/1584",
+   "div.carousel__scroller.resource-carousel__scroller 280/808"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/billing/subscriptions",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "ul.carousel__scroller.case-study-carousel__scroller 280/1600",
+   "ul.carousel__scroller.product-eco-carousel__scroller 280/1584",
+   "div.carousel__scroller.resource-carousel__scroller 280/808"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/billing/usage-based-billing",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.carousel__scroller.ubb-launch-graphics__scroller 248/512",
+   "ul.carousel__scroller.case-study-carousel__scroller 280/1336",
+   "ul.carousel__scroller.product-eco-carousel__scroller 280/1584",
+   "div.carousel__scroller.resource-carousel__scroller 280/808"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/data-pipeline",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 151/212",
+   "div.HorizontalOverflowContainer__track 248/484",
+   "div.CaseStudyCarousel__track 280/640"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/financial-connections",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 126/212",
+   "div.HorizontalOverflowContainer__track 248/890",
+   "code.CodeEditor__scrollContainer 238/464",
+   "div.TestimonialCarousel__track 248/496"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/invoicing",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 173/574",
+   "div.HorizontalOverflowContainer__track 248/595"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/managed-payments",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "ul.carousel__scroller.reduce-overhead-carousel 280/688",
+   "div.testimonial-carousel__cards 280/560"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/payments",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [
+   "div.PaymentsStickyNav__track L-8 R264"
+  ],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 148/590",
+   "div.FullWidthCarousel__track 280/1024",
+   "div.TestimonialCarousel__track 248/992",
+   "div.HorizontalOverflowContainer__track 248/604",
+   "div.CustomersCaseStudyCarousel__track 248/992",
+   "div.FullWidthCarousel__track 280/1024"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/payments/checkout",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 248/419",
+   "div.FullWidthCarousel__track 280/1024",
+   "div.HorizontalOverflowContainer__track 246/500",
+   "div.TestimonialCarousel__track 248/992"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/payments/elements",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 248/458",
+   "div.FullWidthCarousel__track 280/1024",
+   "div.TestimonialCarousel__track 248/992",
+   "div.FullWidthCarousel__track 280/1024"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/payments/link",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.CaseStudyCarousel__track 280/640"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/payments/payment-links",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 246/500",
+   "div.TestimonialCarousel__track 248/496",
+   "div.FullWidthCarousel__track 280/1024"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/payments/payment-methods",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 148/590",
+   "div.HorizontalOverflowContainer__track 248/604",
+   "div.CaseStudyCarousel__track 280/1360"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/personalize?section=usage&settings-tab=billing",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.ui-as-tabs 200/289",
+   "div.ui-sb-table-wrap 200/486"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/revenue-recognition",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 128/212",
+   "div.RevRecRevenueReportTable__table 226/1632",
+   "div.RevRecAuditLayout 248/1280",
+   "div.HorizontalOverflowContainer__track 248/487",
+   "div.TestimonialCarousel__track 248/992"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/sigma",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 153/212",
+   "div.HorizontalOverflowContainer__track 248/587",
+   "div.FullWidthCarousel__track 280/2760",
+   "div.TestimonialCarousel__track 248/992"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/tax",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 192/212",
+   "div.HorizontalOverflowContainer__track 248/335",
+   "div.TestimonialCarousel__track 248/992"
+  ],
+  "errors": []
+ },
+ {
+  "route": "/terminal",
+  "w": "280",
+  "fixed": [],
+  "mainSpill": "",
+  "vw": 280,
+  "docW": 280,
+  "bodyW": 280,
+  "sideways": 0,
+  "htmlOx": "clip",
+  "bodyOx": "clip",
+  "culprits": [],
+  "scrollers": [
+   "div.HorizontalOverflowContainer__track 156/283",
+   "div.TestimonialCarousel__track 248/992",
+   "div.CaseStudyCarousel__track 280/1360"
+  ],
+  "errors": []
+ }
+]

@@ -57,7 +57,7 @@ export function S14WhatsIncluded() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/tax/set-up#integrate" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/tax/set-up" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"No-code"}
                                 </a>
                                 {" setup"}
@@ -73,7 +73,7 @@ export function S14WhatsIncluded() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/tax/set-up#integrate" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/tax/set-up" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Low-code"}
                                 </a>
                                 {" setup"}
@@ -89,7 +89,7 @@ export function S14WhatsIncluded() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/tax/custom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/tax/custom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"API integration"}
                                 </a>
                                 <br />
@@ -105,7 +105,7 @@ export function S14WhatsIncluded() {
                               {" "}
                               <span className="ListItem__label">
                                 {"API integration for "}
-                                <a className="Link" href="https://stripe.com/docs/tax/tax-for-platforms" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/tax/tax-for-platforms" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Platforms"}
                                 </a>
                                 {" and marketplaces"}
@@ -228,7 +228,7 @@ export function S14WhatsIncluded() {
                                 </g>
                               </svg>
                               {" "}
-                              <a className="Link ListItem__label" href="https://docs.stripe.com/tax/tax-codes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="calculation_and_collection__product_tax_categories">
+                              <a className="Link ListItem__label" href="/unavailable/stripe/docs.stripe.com/tax/tax-codes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="calculation_and_collection__product_tax_categories">
                                 {"600+ product tax categories"}
                               </a>
                             </li>
@@ -318,7 +318,7 @@ export function S14WhatsIncluded() {
                                 </g>
                               </svg>
                               {" "}
-                              <a className="Link ListItem__label" href="https://docs.stripe.com/tax/file-with-taxjar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="us_filing_from">
+                              <a className="Link ListItem__label" href="/unavailable/stripe/docs.stripe.com/tax/file-with-taxjar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="us_filing_from">
                                 {"US filing from the Stripe Dashboard, powered by TaxJar"}
                               </a>
                             </li>

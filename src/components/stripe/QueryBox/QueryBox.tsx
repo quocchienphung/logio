@@ -268,7 +268,7 @@ export function QueryBox() {
           <p className="LegalDisclaimer">
             {"By messaging, you understand how "}
             <a
-              href="https://support.stripe.com/questions/use-of-artificial-intelligence-(ai)-in-stripe-services"
+              href="/unavailable/stripe/support.stripe.com/questions/use-of-artificial-intelligence-(ai)-in-stripe-services"
               target="_blank"
               rel="noopener noreferrer"
             >

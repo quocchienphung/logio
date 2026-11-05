@@ -1,0 +1,101 @@
+Docs
+Motion
+Motion
+
+Spring presets, easing and duration tokens, and reduced motion.
+
+Principles
+Motion explains cause and effect: what opened, what changed, and where it came from.
+Animate transform and opacity. Nothing resizes in a single frame; widths and heights follow on a spring.
+Actions repeated many times a minute, like keyboard navigation, do not animate.
+Every animation keeps working when interrupted and has a reduced motion branch.
+Springs
+
+Springs live in components/arc/lib/motion-tokens.ts and come with every Arc install.
+
+Preset
+Values
+Use it for
+spring.snappy
+visualDuration: 0.26, bounce: 0
+Presses, toggles, thumbs, and small indicators.
+spring.smooth
+visualDuration: 0.4, bounce: 0
+Panels, height changes, and layout shifts. Never overshoots.
+spring.morph
+visualDuration: 0.42, bounce: 0
+Shared highlights, shape changes, and widths that follow content.
+spring.responsive
+stiffness: 520, damping: 44
+Direct manipulation that must track the pointer closely.
+spring.gentle
+stiffness: 340, damping: 34
+Larger layout changes that should feel calm.
+Easing and duration
+
+CSS transitions use the matching variables from the foundation.
+
+Token
+Use it for
+--ease-standard
+Default for UI transitions.
+--ease-enter
+Elements arriving on screen.
+--ease-spring
+A gentle settle, paired with --duration-spring.
+--duration-fast
+160ms. Hover, color, and small state changes.
+--duration-standard
+240ms. Panels and menus.
+--duration-considered
+480ms. Rare, introductory reveals.
+Using the tokens
+toggle.tsx
+Copy
+Copied
+Failed
+import { motion, useReducedMotion } from "motion/react";
+import { motionTokens } from "@/lib/motion-tokens";
+ 
+export function Thumb({ on }: { on: boolean }) {
+  const reduce = useReducedMotion();
+  return (
+    <motion.span
+      animate={{ x: on ? 20 : 0 }}
+      transition={reduce ? { duration: 0 } : motionTokens.spring.snappy}
+    />
+  );
+}
+card.module.css
+Copy
+Copied
+Failed
+.card {
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+Reduced motion
+
+When someone asks for reduced motion, keep the end state, focus, and feedback, and remove travel, looping, and parallax. A short opacity change is fine. In CSS:
+
+panel.module.css
+Copy
+Copied
+Failed
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+}
+Previous
+Theming
+Next
+AI and MCP
+
+On this page
+
+Principles
+Springs
+Easing and duration
+Using the tokens
+Reduced motion
+Back to top

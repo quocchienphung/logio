@@ -1,0 +1,541 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+133
+Blocks
+130
+Analytics
+13
+Metrics dashboard
+Pro
+KPI drilldown
+Pro
+Metric explorer
+Pro
+Revenue explorer
+Pro
+MRR waterfall
+Pro
+Cohort retention
+Pro
+Usage forecast
+Pro
+Journey flow
+Pro
+Uptime status
+Pro
+Choropleth explorer
+Pro
+Connected scatter
+Pro
+Horizon chart
+Pro
+Account health
+New
+Pro
+Finance
+2
+Market terminal
+Pro
+Budget variance
+Pro
+Line charts
+2
+Small multiples
+Pro
+Line replay
+Pro
+AI
+17
+AI chat
+Pro
+AI composer
+Pro
+AI answer
+Pro
+Model picker
+Pro
+Model arena
+Pro
+Prompt studio
+Pro
+Document extraction
+Pro
+Agent memory
+Pro
+AI side panel
+Pro
+Research run
+Pro
+AI insight card
+New
+Pro
+Catch up
+New
+Pro
+AI feature launch
+New
+Pro
+AI search bar
+New
+Pro
+AI setup wizard
+New
+Pro
+Call insights
+New
+Pro
+Lead scoring
+New
+Pro
+Agents
+10
+Agent run
+Pro
+Agent tasks
+Pro
+Agent approvals
+Pro
+Agent routines
+Pro
+Agent orchestrator
+Pro
+MCP servers
+Pro
+Knowledge base
+Pro
+Eval suite
+Pro
+Agent builder
+New
+Pro
+Agent gallery
+New
+Pro
+App shell
+7
+Sidebar
+Pro
+4
+Page header
+Command palette
+Notification center
+Selection toolbar
+Pro
+Empty states
+Search results
+Pro
+Auth
+6
+Login and sign up
+5
+, free and Pro variants
+Onboarding illustration
+Pro
+OTP input
+Multi-step form
+Pro
+Two-factor setup
+New
+Pro
+Magic link
+New
+Pro
+Settings
+8
+Settings page
+Pro
+Settings command
+Pro
+Security settings
+Pro
+Billing overview
+Pro
+Usage billing
+Pro
+Cancel flow
+Pro
+Onboarding survey
+New
+Pro
+Spend alert
+New
+Pro
+People
+5
+Team members
+Pro
+Invite people
+Pro
+Team directory
+Pro
+Roles and permissions
+Pro
+Profile page
+Pro
+Developer
+6
+API keys
+Pro
+Webhooks
+Pro
+Integrations
+Pro
+Environment variables
+Pro
+Domain verify
+New
+Pro
+Webhook tester
+New
+Pro
+Pricing
+8
+Plan comparison
+Pricing calculator
+Pro
+Usage pricing
+Pro
+Cart drawer
+Pro
+Checkout summary
+Pro
+Live checkout
+Pro
+Seat manager
+New
+Pro
+Credit top-up
+New
+Pro
+Commerce
+5
+Invoice studio
+Pro
+Wallet card
+Pro
+Delivery tracker
+Pro
+Product listing
+Pro
+Product detail
+Pro
+Support
+6
+Activity feed
+New
+Pro
+Inbox triage
+Pro
+Support conversation
+Pro
+Support widget
+Pro
+Help center
+Pro
+Feature voting
+New
+Pro
+Media
+2
+File upload
+Media player
+Pro
+Projects
+9
+Week calendar
+Pro
+Availability picker
+Pro
+Project board
+Pro
+Release readiness
+Pro
+Kanban board
+Pro
+Feedback board
+New
+Pro
+Smart scheduler
+New
+Pro
+Task breakdown
+New
+Pro
+Goal tracker
+New
+Pro
+Heroes
+2
+Hero section
+Hero signup
+Pro
+Features
+4
+Scroll story
+Pro
+Spotlight grid
+Pro
+Feature bento
+Pro
+Comparison table
+Social proof
+3
+Logo marquee
+Studio perspectives
+Pro
+Stats band
+Content
+5
+Changelog feed
+FAQ section
+Contact section
+Team showcase
+Pro
+Blog grid
+Headers and footers
+4
+Site header
+Site footer
+CTA section
+Newsletter signup
+Showpieces
+6
+Activity terrain
+Pro
+Revenue globe
+Pro
+Customer galaxy
+Pro
+Semantic zoom
+Pro
+Layout morph
+Pro
+Exploded view
+Pro
+Special components
+104
+What’s new
+76 new
+Blocks
+Security settings
+Security settings
+Pro
+
+An account security page with guided two-factor setup, password change and active sessions.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live block · sample data
+Security
+
+Control how you sign in to Fieldnote as maya@fieldnote.example.
+
+Two-factor authentication
+
+Ask for a code from your authenticator app when you sign in on a new device.
+
+Off
+Enable
+Password
+
+Last changed March 4, 2026
+Last changed March 4, 2026
+
+Change password
+Active sessions
+5
+5
+
+Devices signed in to your account in the last 30 days.
+
+MacBook Pro
+This device
+Chrome 129 · San Francisco, US · Active now
+iPhone 15 Pro
+Fieldnote for iOS · San Francisco, US · 2 hours ago
+Revoke
+Windows desktop
+Edge 128 · Austin, US · Yesterday at 4:12 PM
+Revoke
+iPad Air
+Safari 18 · Lisbon, PT · Sep 14
+Revoke
+ThinkPad X1
+New location
+Firefox 130 · Berlin, DE · Sep 9
+Revoke
+
+You stay signed in on this device
+You stay signed in on this device
+
+Sign out of other sessions
+Sign out of other sessions
+Press and hold for 1.2 seconds to confirm. With a keyboard, hold Space or Enter.
+
+When to use
+The security tab of account settings with two-factor setup, password change, and sessions.
+Guided TOTP setup that walks through scan, verify, and backup codes.
+When not to use
+Use settings-page for general account and workspace settings.
+Use api-keys for managing developer tokens.
+Use audit-log for the history of security events.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Security settings is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this block and the rest of the Pro library.
+
+Source and CLI install for Security settings
+All 120 Pro components and 115 Pro blocks
+Fixes and updates for every Pro piece
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+
+Use this as the security tab of account settings. Connect Verify to your TOTP check, the backup codes to your generator, Update password to your password endpoint, and Revoke and Sign out to your session API.
+
+example.tsx
+Copy
+Copied
+Failed
+1
+import { SecuritySettings } from "@/components/arc/blocks/security-settings/security-settings";
+2
+ 
+3
+export default function SecurityTab() {
+4
+  return (
+5
+    <section>
+6
+      <SecuritySettings />
+7
+    </section>
+8
+  );
+9
+}
+Built from
+Button
+Badge
+Checkbox
+Copy button
+Hold to confirm
+OTP input
+Password field
+Password strength
+API reference
+SecuritySettings
+
+An account security page with guided two-factor setup (scan, verify, backup codes), password change with strength meter, and active sessions you can revoke. Account, setup key, demo code (246810), backup codes and initialSessions are sample data in security-settings.tsx.
+
+No props.
+
+Accessibility
+Password errors render in a role="alert" linked with aria-describedby and aria-invalid; the field uses autoComplete="current-password".
+After revoking a session, focus moves to the neighbouring Revoke button or the sessions heading.
+A polite live region announces saves, verification and session changes.
+Motion
+Two-factor steps advance along a rail with a gliding marker, and sections expand with a height spring.
+Reduced motion uses instant transitions and skips height animation.
+Responsive behavior
+Below a 640px container backup codes drop to two columns.
+Below 560px the QR code stacks above the setup key and section padding tightens.
+Performance
+Sections are plain DOM with height springs when expanding; there is no loop or observer cost.
+The session list is not virtualized, which is fine for the handful of sessions an account normally has.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use as the security tab of account settings.
+Verification, backup code download, password update and session revoke are simulated with timers; replace them with your TOTP check, code generator, password endpoint and session API.
+Replace the in-file ACCOUNT, SETUP_KEY, QR pattern and initialSessions with real data from props or a fetch.
+Composes Arc Button, Badge, Checkbox, Copy button, Hold to confirm, OTP input, Password field and Password strength.
+/components/blocks/security-settings/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Settings page
+Pro
+Block
+Account settings with a gliding section nav and a save bar that morphs in as you edit.
+API keys
+Pro
+Block
+API key management where Create key unfolds into its form and each secret is shown once.
+Password strength
+Component
+Show how strong a new password is while it is typed.
+OTP input
+Block
+A six digit verification flow with paste support and keyboard navigation.
+Previous
+Empty states
+Next
+Cancel flow
+Arc · 130 block pages
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Security settings is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

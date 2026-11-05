@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- three r186 is the release chuspeeism/iphone-duo bundles; its USDLoader reads the flattened USDC. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      import * as THREE from "three";
+      import { USDLoader } from "three/addons/loaders/USDLoader.js";
+      import { GLTFExporter } from "three/addons/exporters/GLTFExporter.js";
+
+      const SCREENS = { UXtsBZYlaUvHoEh: "inner", hhgAIoCGsHXeDPY: "outer" };
+      const COVER = "upTUAKvMVkPOMKq";
+      const BASE = "SiftyleUEEZwLhF";
+
+      const model = await new USDLoader().loadAsync("./iPhone_Duo_Render.usdc");
+      model.scale.multiplyScalar(100);
+      model.updateMatrixWorld(true);
+
+      const out = new THREE.Scene();
+      out.name = "iPhoneDuo";
+      const measures = {};
+      model.traverse((o) => {
+        if (!o.isMesh) return;
+        // Bake world transforms and centre the device vertically, as the reference app does.
+        const geometry = o.geometry.clone().applyMatrix4(o.matrixWorld);
+        geometry.translate(0, -5.8974, 0);
+        let a = o;
+        while (a && a.name !== COVER && a.name !== BASE) a = a.parent;
+        const screen = SCREENS[o.name];
+        // The screens carry Apple wallpaper imagery: ship them as plain black glass.
+        const material = screen
+          ? new THREE.MeshPhysicalMaterial({ color: 0x000000, roughness: 0.25, name: `screen-${screen}` })
+          : o.material.clone();
+        for (const v of Object.values(material)) if (v && v.isTexture) v.userData.mimeType = "image/webp";
+        if (screen) {
+          geometry.computeBoundingBox();
+          const p = geometry.attributes.position;
+          const b = geometry.boundingBox;
+          let corner = -Infinity;
+          for (let i = 0; i < p.count; i++) corner = Math.max(corner, p.getX(i) + p.getY(i));
+          measures[screen] = { min: b.min.toArray(), max: b.max.toArray(), radius: (b.max.x + b.max.y - corner) / (2 - Math.SQRT2) };
+        }
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.name = o.name;
+        mesh.userData.part = a?.name === COVER ? "cover" : "base";
+        if (screen) mesh.userData.screen = screen;
+        out.add(mesh);
+      });
+      const glb = await new GLTFExporter().parseAsync(out, { binary: true, maxTextureSize: 2048 });
+
+      // Status glyph: the white Wi-Fi + battery ring in the overlay's top-right corner.
+      const img = new Image();
+      img.src = "./clock-inner.avif";
+      await img.decode();
+      const c = document.createElement("canvas");
+      c.width = img.width;
+      c.height = img.height;
+      const ctx = c.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      const W = img.width, RW = 320, RH = 260;
+      const d = ctx.getImageData(W - RW, 0, RW, RH).data;
+      let x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
+      for (let y = 0; y < RH; y++)
+        for (let x = 0; x < RW; x++)
+          if (d[(y * RW + x) * 4 + 3] > 24) {
+            x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
+          }
+      x0 += W - RW; x1 += W - RW;
+      const pad = 2, cw = x1 - x0 + 1 + pad * 2, ch = y1 - y0 + 1 + pad * 2;
+      const ring = document.createElement("canvas");
+      ring.width = cw;
+      ring.height = ch;
+      ring.getContext("2d").drawImage(c, x0 - pad, y0 - pad, cw, ch, 0, 0, cw, ch);
+      measures.ring = { x0, y0, x1, y1, width: W, height: img.height };
+
+      const bytes = new Uint8Array(glb);
+      let s = "";
+      for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+      window.__result = { glb: btoa(s), ring: ring.toDataURL("image/png"), measures };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+Components
+Popover
+Popover
+
+A small anchored surface for contextual information.
+
+$
+pnpm dlx shadcn@latest add @uiarc/popover
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Why this status?
+Anchored context stays close to its trigger
+When to use
+Click-opened panels with interactive content, like share settings or a small filter form.
+Non-modal helpers that should stay open while people interact with the rest of the page.
+Custom pickers built from your own controls anchored to a button.
+When not to use
+Use tooltip for short hover labels.
+Use hover-card for read-only previews that open on hover.
+Use dialog when the choice must block the page, and dropdown-menu for a list of commands.
+Installation
+
+Add Popover with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/popover
+pnpm dlx shadcn@latest add @uiarc/popover
+
+Adds the component and its local dependencies, and installs @radix-ui/react-popover. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/popover.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/arc/popover/popover";
+2
+import { Button } from "@/components/arc/button/button";
+3
+ 
+4
+export function ShareMenu() {
+5
+  return (
+6
+    <Popover>
+7
+      <PopoverTrigger asChild><Button variant="secondary">Share</Button></PopoverTrigger>
+8
+      <PopoverContent>
+9
+        <p>Anyone with the link can view.</p>
+10
+      </PopoverContent>
+11
+    </Popover>
+12
+  );
+13
+}
+API reference
+
+4 parts. The first is the root.
+
+Popover
+
+Radix Popover.Root. Holds open state.
+
+Prop
+Type
+Default
+Description
+open
+boolean
+–
+Controlled open state.
+defaultOpen
+boolean
+false
+Initial open state when uncontrolled.
+onOpenChange
+(open: boolean) => void
+–
+Called when the popover opens or closes.
+modal
+boolean
+false
+Traps focus and blocks outside interaction when true.
+PopoverTrigger
+
+Radix trigger that opts out of press-scale so the panel does not shift on open.
+
+Prop
+Type
+Default
+Description
+...props
+ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger>
+–
+Radix trigger props, including asChild and ref.
+PopoverContent
+
+Portaled floating panel anchored to the trigger.
+
+Prop
+Type
+Default
+Description
+align
+"start" | "center" | "end"
+"start"
+Alignment against the trigger.
+sideOffset
+number
+6
+Gap from the trigger in px.
+collisionPadding
+number
+10
+Minimum distance from viewport edges in px.
+...props
+ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+–
+Radix content props such as side, className, and onOpenAutoFocus.
+PopoverClose
+
+Radix Popover.Close for an explicit dismiss button.
+
+Prop
+Type
+Default
+Description
+...props
+ComponentPropsWithoutRef<typeof PopoverPrimitive.Close>
+–
+Radix close props, including asChild.
+Keyboard interactions
+Enter
+or
+Space
+Opens the popover from the trigger.
+Escape
+Closes the popover and returns focus to the trigger.
+Accessibility
+Radix sets aria-expanded, aria-controls, and aria-haspopup="dialog" on the trigger.
+Focus moves into the content on open and back to the trigger on close.
+Content is non-modal by default; give it a heading or aria-label when it holds controls.
+Motion
+CSS transitions: the panel fades and settles from 5px toward its trigger at 0.97 scale on a spring; it leaves in 140ms.
+Transitions instead of keyframes, so a reopen mid-close reverses from where the panel is.
+Reduced motion drops the transform and keeps a short opacity fade.
+Responsive behavior
+The panel is at least 12rem and at most min(22rem, 100vw minus 20px), so it never overflows a phone screen.
+Radix collision handling keeps it 10px from viewport edges by default and flips sides when needed.
+Performance
+Pure CSS transitions with no motion runtime; content mounts in a portal only while open.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for click-opened, non-modal panels with interactive content. Use tooltip for short hover labels, hover-card for read-only previews, dialog when the choice must block.
+Compose Popover > PopoverTrigger asChild + PopoverContent. Pass side for placement.
+/components/popover/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Tooltip
+Component
+Short supporting text for unfamiliar controls.
+Hover card
+Component
+Preview a person or link on hover or focus without leaving the page.
+Dialog
+Component
+A focused surface for decisions that need attention.
+Dropdown menu
+Component
+A focused list of actions anchored to a trigger.
+More like this in Pro
+Explore Pro
+Table of contents progress
+Pro
+Component
+A table of contents that reads along with you: a line bends through the nested headings, fills as you scroll, and carries a marker to the current section, with smooth jumps and a time-left countdown.
+Share access
+Pro
+Component
+A share panel: invite people as validated email chips with suggestions, change roles from a compact menu, remove with undo, switch link access and copy the link, with every change landing in place.
+Confirm popover
+Pro
+Component
+A destructive button that grows into a small confirmation card, with the consequence, optional type-to-confirm, progress on the Confirm button, and a check or error before folding back.
+Previous
+Bottom sheet
+Next
+Hover card
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

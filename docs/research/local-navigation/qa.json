@@ -1,0 +1,115 @@
+{
+  "base": "http://localhost:3001",
+  "noJavaScriptRoutes": [],
+  "interactiveRoutes": [
+    {
+      "route": "/",
+      "destinations": 193
+    },
+    {
+      "route": "/:menu=Products",
+      "destinations": 227
+    },
+    {
+      "route": "/:menu=Solutions",
+      "destinations": 219
+    },
+    {
+      "route": "/:menu=Developers",
+      "destinations": 208
+    },
+    {
+      "route": "/:menu=Resources",
+      "destinations": 207
+    },
+    {
+      "route": "/payments/payment-methods",
+      "destinations": 136
+    },
+    {
+      "route": "/invoicing",
+      "destinations": 139
+    },
+    {
+      "route": "/billing",
+      "destinations": 169
+    },
+    {
+      "route": "/personalize?section=run",
+      "destinations": 1
+    }
+  ],
+  "blockedRequests": [
+    {
+      "destination": "/unavailable/stripe",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe",
+      "method": "HEAD",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe",
+      "method": "OPTIONS",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/docs.stripe.com/api?next=https://stripe.com",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/docs.stripe.com/api?next=https://stripe.com",
+      "method": "HEAD",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/docs.stripe.com/api?next=https://stripe.com",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/docs.stripe.com/api?next=https://stripe.com",
+      "method": "OPTIONS",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/stripe.com/%2F%2Fstripe.com",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/stripe.com/%2F%2Fstripe.com",
+      "method": "HEAD",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/stripe.com/%2F%2Fstripe.com",
+      "method": "POST",
+      "status": 404
+    },
+    {
+      "destination": "/unavailable/stripe/stripe.com/%2F%2Fstripe.com",
+      "method": "OPTIONS",
+      "status": 404
+    },
+    {
+      "destination": "/https%3A%2F%2Fstripe.com/pricing",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "destination": "/stripe.com/pricing",
+      "method": "GET",
+      "status": 404
+    }
+  ],
+  "runtimeErrors": []
+}

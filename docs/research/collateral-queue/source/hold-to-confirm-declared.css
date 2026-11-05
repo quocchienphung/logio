@@ -1,0 +1,33 @@
+.hold-to-confirm_button__Rqnpy { --hold-ink: var(--foreground); --hold-fill: var(--accent); --hold-on-fill: var(--accent-foreground); --hold-border: var(--border-strong); position: relative; display: inline-flex; min-height: var(--control-height-md); align-items: center; justify-content: center; padding: 0 var(--space-5); border: 1px solid var(--hold-border); border-radius: var(--radius-control); background: var(--surface); color: var(--hold-ink); font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); cursor: pointer; user-select: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard),border-color var(--duration-fast) var(--ease-standard),opacity var(--duration-fast) var(--ease-standard); }
+.hold-to-confirm_button__Rqnpy[data-tone="danger"] { --hold-ink: var(--danger); --hold-fill: var(--danger); --hold-on-fill: var(--background); --hold-border: color-mix(in oklab,var(--danger) 32%,var(--border)); }
+.hold-to-confirm_button__Rqnpy[data-tone="neutral"] { --hold-ink: var(--foreground); --hold-fill: var(--foreground); --hold-on-fill: var(--background); --hold-border: var(--border-strong); }
+@media (hover: hover) and (pointer: fine) {
+  .hold-to-confirm_button__Rqnpy:not(:disabled):not([aria-disabled="true"]):hover { background: color-mix(in oklab,var(--hold-fill) 6%,var(--surface)); }
+}
+.hold-to-confirm_button__Rqnpy[aria-disabled="true"] { cursor: default; }
+.hold-to-confirm_button__Rqnpy:disabled { cursor: not-allowed; opacity: 0.5; }
+.hold-to-confirm_face__IVZkD { display: inline-flex; align-items: center; gap: var(--space-2); white-space: nowrap; }
+.hold-to-confirm_fill__Ba1n6 { position: absolute; inset: -1px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-control); background: var(--hold-fill); color: var(--hold-on-fill); pointer-events: none; }
+.hold-to-confirm_iconSlot__oBW4_ { display: grid; width: 18px; height: 18px; flex: 0 0 auto; place-items: center; }
+.hold-to-confirm_iconPhase__vOO2e { display: grid; grid-area: 1 / 1; place-items: center; }
+.hold-to-confirm_iconPhase__vOO2e svg { width: 18px; height: 18px; }
+.hold-to-confirm_labelFrame__AlR19 { position: relative; display: inline-flex; min-width: 0px; clip-path: inset(-0.6em -3px); }
+.hold-to-confirm_label__lVSii { display: block; white-space: nowrap; }
+.hold-to-confirm_measure__QkDsN { position: absolute; top: 0px; left: 0px; visibility: hidden; white-space: nowrap; pointer-events: none; }
+.hold-to-confirm_srOnly__S3ap9 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+  .hold-to-confirm_button__Rqnpy { transition: none; }
+}
+.hold-to-confirm_stage__8w90r { display: grid; width: 100%; min-height: 240px; align-content: center; justify-items: center; gap: var(--space-3); padding: var(--space-6) var(--space-4); box-sizing: border-box; font-family: var(--font-body); letter-spacing: var(--tracking-body); }
+.hold-to-confirm_hold__5kiBt { display: flex; max-width: 100%; }
+.hold-to-confirm_below__f_gIu { position: relative; display: grid; min-height: var(--control-height-sm,36px); place-items: center; }
+.hold-to-confirm_below__f_gIu > * { grid-area: 1 / 1; }
+.hold-to-confirm_hint__D64FA { margin: 0px; color: var(--text-muted); font-size: var(--text-sm); line-height: var(--leading-body); text-align: center; white-space: nowrap; }
+.hold-to-confirm_restore__qgZYT { display: inline-flex; min-height: var(--control-height-sm,36px); align-items: center; gap: var(--space-2); padding: 0 var(--space-3); border: 0px; border-radius: var(--radius-control); background: transparent; color: var(--text-secondary); font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-body); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard); }
+.hold-to-confirm_restore__qgZYT:active { background: var(--surface-muted); color: var(--foreground); }
+@media (hover: hover) and (pointer: fine) {
+  .hold-to-confirm_restore__qgZYT:hover { background: var(--surface-muted); color: var(--foreground); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hold-to-confirm_restore__qgZYT { transition: none; }
+}

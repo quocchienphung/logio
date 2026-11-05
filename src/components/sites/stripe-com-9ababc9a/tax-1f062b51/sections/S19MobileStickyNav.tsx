@@ -5,7 +5,7 @@ export function S19MobileStickyNav() {
   return (
     <div className="MobileStickyNav" data-js-controller="MobileStickyNav">
       <div className="MobileStickyNav__container" data-js-target="MobileStickyNav.container">
-        <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register/tax" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="primary_cta">
+        <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="primary_cta">
           {"Start now"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -17,7 +17,7 @@ export function S19MobileStickyNav() {
           </span>
         </a>
         {" "}
-        <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="secondary_cta_tax_contact_sales">
+        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="secondary_cta_tax_contact_sales">
           {"Contact sales"}
           <span className="nobr">
             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

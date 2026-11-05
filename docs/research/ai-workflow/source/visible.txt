@@ -1,0 +1,369 @@
+Components
+AI workflow
+AI workflow
+Pro
+
+A Linear-style AI workflow card where a Gmail trigger, a Claude step, a branch and Slack and Linear actions sit on one hairline rail, and a test run glides down it, opening each step's output inline. Steps are added from a compact command menu with real app marks.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Passes
+Fails
+Loading
+Empty
+Escalate urgent support email
+
+Runs on every new email to support@northwind.dev
+
+Run again
+
+New email in Gmail
+, Gmail, Done in 420ms
+
+support@northwind.dev
+Fetching the latest email
+
+420ms
+
+Maya Chen
+maya.chen@ledgerline.io
+
+SSO sign-in broken for our whole team since this morning
+
+Since the 2.14 update none of our 42 seats can sign in through Okta. We demo to our board on Thursday, can someone look today?
+
+Classify with Claude Sonnet 5.5
+, Claude, Done in 1.1s
+
+Urgent, billing, question or feedback
+Reading the email
+
+1.1s
+
+Urgent
+0.96 confidence
+
+Full team lockout after the 2.14 release, 42 seats affected and a board demo on Thursday. Route to on-call now.
+
+Route by label
+, Branch, Done in 261ms
+
+If label is Urgent
+Checking the rule
+
+261ms
+Urgent
+Everything else
+
+Post to #support in Slack
+, Slack, Done in 621ms
+
+As Triage bot, mentions @oncall
+Posting the message
+
+621ms
+
+Triage bot
+#support
+now
+
+Urgent from Ledgerline: SSO sign-in fails for all 42 seats since 2.14. Maya Chen is waiting on a reply. @oncall
+
+Create Linear issue
+, Linear, Done in 701ms
+
+Support team, priority Urgent
+Creating the issue
+
+701ms
+
+SUP-482
+SSO sign-in fails for Ledgerline after 2.14
+
+Urgent · Assigned to Priya Raman
+
+Passed in 3.1s, simulated, nothing was sent
+
+Add to Urgent
+
+Test run passed in 3.1s. Simulated, nothing was sent.
+
+When to use
+An automation or integrations page where people assemble a short trigger, AI step and action flow and want to test it in place.
+Onboarding or marketing surfaces that show how an AI step slots between real apps, with a working test run.
+Reviewing what an existing workflow does and seeing a sample run's outputs step by step.
+When not to use
+Large free-form graphs with many branches, loops or merges: use a canvas editor instead.
+Showing a single tool call or a live agent's steps: use tool-call or agent-run.
+Scheduling recurring agent jobs: use agent-routines.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+AI workflow is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for AI workflow
+All 117 Pro components and 116 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { useState } from "react";
+2
+import { AiWorkflow, workflowSampleSteps } from "@/components/arc/ai-workflow/ai-workflow";
+3
+import type { WorkflowStep } from "@/components/arc/ai-workflow/ai-workflow";
+4
+ 
+5
+export function SupportAutomation() {
+6
+  const [steps, setSteps] = useState<WorkflowStep[]>(workflowSampleSteps);
+7
+  return (
+8
+    <AiWorkflow
+9
+      title="Escalate urgent support email"
+10
+      steps={steps}
+11
+      onStepsChange={setSteps}
+12
+      autoPlay={false}
+13
+      onRunStep={async (step, { signal, previous }) => {
+14
+        const res = await fetch(`/api/workflows/test/${step.id}`, { method: "POST", body: JSON.stringify({ previous }), signal });
+15
+        if (!res.ok) throw new Error((await res.json()).message);
+16
+        return res.json();
+17
+      }}
+18
+    />
+19
+  );
+20
+}
+API reference
+
+2 parts. The first is the root.
+
+AiWorkflow
+
+A compact, Linear-style automation builder card with an AI step. Steps are 32px rows on one 1px hairline rail: a trigger (New email in Gmail), an AI step (Classify with Claude Sonnet 5.5), a branch (Route by label) whose paths switch with small tabs, and actions (Post to #support in Slack, Create Linear issue). Test run glides a small accent dot down each connector while the line behind it fills; each step crossfades to Running with a shimmering activity line, then shows its duration and an inline output preview in small muted text (the email, the label with a streamed reason, the posted message, the created issue). The untaken path is marked Skipped. A failing step shows its error and Retry, which resumes the run from that step. Steps are added from a command menu (search field, compact rows with real app marks and number shortcuts) and removed with a small button. With no props it plays the sample flow, simulated, and says so.
+
+Prop
+Type
+Default
+Description
+title
+string
+"Escalate urgent support email"
+Workflow name in the header.
+description
+string
+"Runs on every new email to support@northwind.dev"
+One line of context under the name.
+steps
+WorkflowStep[]
+–
+Controlled steps. Pair with onStepsChange so adding and removing keep working. Each step has id, kind ("trigger" | "ai" | "action" | "branch"), app (a built-in id or { name, mark }), title, and optional detail, activity, output, durationMs and error. A branch carries paths: { id, label, steps }[] and must be the last top-level step.
+defaultSteps
+WorkflowStep[]
+workflowSampleSteps
+Initial steps when uncontrolled. Pass [] for the empty state, which lists the catalog's triggers as compact rows.
+onStepsChange
+(steps: WorkflowStep[]) => void
+–
+Called after a step is added or removed. New steps land at the end of the flow, or at the end of the visible path when the flow ends in a branch.
+catalog
+WorkflowCatalogItem[]
+workflowSampleCatalog
+Entries for the add step command menu: the same shape as a step without id. Triggers are offered in the empty state; everything else goes in the menu. Pass [] to hide the menu.
+onRunStep
+(step: WorkflowStep, context: { signal: AbortSignal; previous: Record<string, WorkflowOutput>; attempt: number }) => Promise<WorkflowOutput | void>
+–
+Runs one step for real and returns its output. Throw to fail the step with the error message. A branch returns { type: "route", pathId } to pick its path. The signal aborts on Stop, a new run or unmount. Without it, runs are simulated from each step's sample output and durationMs.
+onRunComplete
+(result: { status: "passed" | "failed"; durationMs: number; outputs: Record<string, WorkflowOutput>; failedStepId?: string }) => void
+–
+Called when a test run passes or stops on a failed step.
+loading
+boolean
+false
+Shows three skeleton steps while your flow loads. Test run and the add menu are unavailable.
+autoPlay
+boolean
+true
+Plays a test run once the card is in view and repeats it after a short pause until someone presses or types inside the card. Nothing is scheduled while the card is off screen.
+editable
+boolean
+true
+Shows the add step menu and the remove buttons. Triggers cannot be removed.
+className
+string
+–
+Class on the root section.
+WorkflowOutput
+
+The output preview union a step can return, rendered inline in small muted text under the step, aligned with its title.
+
+Prop
+Type
+Default
+Description
+email
+{ type: "email"; from: string; address?: string; subject: string; preview: string }
+–
+Sender, subject on one line and a two line preview.
+label
+{ type: "label"; label: string; confidence?: number; reason?: string }
+–
+A hairline label with a status dot, confidence (0 to 1) in monospace, and a reason that streams in fast chunks.
+route
+{ type: "route"; pathId: string; note?: string }
+–
+Which branch path ran.
+message
+{ type: "message"; channel: string; author: string; text: string }
+–
+A posted chat message.
+record
+{ type: "record"; id: string; title: string; meta?: string }
+–
+A created or updated record: an issue key, a row, a ticket or a page.
+text
+{ type: "text"; text: string }
+–
+Free text such as a drafted reply, streamed in fast chunks.
+Keyboard interactions
+Tab
+Moves through Test run (or Stop), each step's remove button, the branch path tabs, Retry on a failed step, and the Add step button.
+Enter
+or
+Space
+Starts or stops a test run, removes a step, retries a failed step, or opens the add step menu.
+Arrow keys
+Move between paths in the branch tabs (Home and End jump to the ends). In the open menu, Up and Down move the highlighted row.
+Type
+Filters the add step menu by step title, app or detail.
+Enter (menu)
+Adds the highlighted step and closes the menu.
+1 to 9 (menu)
+With an empty search, adds the step with that shortcut.
+Escape
+Closes the add step menu and returns focus to its trigger.
+Accessibility
+The card is a labelled section with aria-busy while a run is in progress or steps are loading; steps are an ordered list, and each branch path is its own labelled list.
+Every step title carries its app and status for screen readers ("Create Linear issue, Linear, Done in 700ms"). Status is shown as an icon plus a short label, never color alone.
+A polite live region announces run start, each step's result, failures with their message, and the outcome, including "Simulated, nothing was sent" when no onRunStep is wired.
+The add step menu is a combobox: the search field owns focus and points at the highlighted option with aria-activedescendant; options are a listbox. Branch paths are a radio group with roving focus.
+Remove buttons are named per step ("Remove Create Linear issue") and are hidden only visually on hover devices until the row is hovered or the button is focused.
+Brand marks are decorative next to the visible step title; marks whose brand color is near black draw in currentColor so they keep contrast in dark mode.
+Motion
+A test run moves one thing at a time: a 5px accent dot glides down the next connector in 240ms while the line behind it fills, then the step crossfades to Running (icon and label) and its detail line crossfades to a shimmering activity line.
+Everything is bounce-free and 100 to 240ms. Output previews and added or removed steps open and close on measured height with a critically damped spring (visualDuration 0.22, bounce 0); switching paths crossfades the lists (100ms out, 160ms in) while the container height follows, and the tab highlight slides on the same spring.
+Status labels crossfade in a fixed 72px slot, so titles never shift. Reasons and drafts stream five words every 34ms, each chunk only fading in, with the final layout reserved from the first frame.
+The add step menu fades and settles in 150 to 180ms with no spring overshoot; filtering animates the list to its new measured height.
+Autoplay pauses while the card is off screen and stops for good after the first press or key inside the card.
+Reduced motion drops the traveling dot, line growth and height animation; states, outputs and the live region stay the same.
+Responsive behavior
+Fills its container up to 640px. Above 480px each step is one 32px row with the detail inline after the title; below that rows grow to 44px and stack the detail under the title, the status slot narrows to 64px and the header wraps to two lines.
+The empty state's trigger rows drop their detail text below 480px of card width.
+Remove buttons are always visible on touch screens and appear on hover or focus with a fine pointer.
+Performance
+One state update per step change; the rail and dot animate transform and opacity in CSS, and previews animate measured height only.
+Streaming renders the whole text once and toggles chunk opacity, so it never reflows. Autoplay timers stop off screen via IntersectionObserver.
+Marks are inline SVG with no network requests.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Pick this to show or edit an automation that mixes app triggers, an LLM step and app actions, such as triage, routing or enrichment flows, inside a product settings page or onboarding.
+Wire onRunStep to a test endpoint and return the WorkflowOutput union so previews render; throw to show the failure state with Retry. Keep autoPlay off in real products.
+Use only current model names in AI step titles (Claude Sonnet 5.5, GPT-6.1 Sol, Gemini 4 Argon). Built-in app ids: gmail, slack, linear, claude, notion, sheets, hubspot, zendesk, github, stripe, branch; pass { name, mark } for anything else.
+One branch per flow, as the last top-level step. For multi-agent graphs or a run log, choose agent-orchestrator or agent-run instead.
+/components/ai-workflow/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Agent run
+Pro
+Block
+A single card that follows one AI coding agent through a task: steps stream in with the live one shimmering, tool calls open in place, and the agent stops on a two-file diff for you to approve or send back before it writes. When the run ends, the steps fold into one line and a result shows the files changed, the checks that passed and a pull request button.
+Agent plan
+Pro
+Component
+The plan an agent writes before it acts: edit, reorder or add steps while it is a draft, then watch it work through them as a live checklist.
+Tool call
+Pro
+Component
+A tool call row for agent transcripts: the tool's mark and the call in plain words, a live state while it runs, and the input and output a click away, with approval and retry when needed.
+Agent routines
+Pro
+Block
+Scheduled agents in one card: each routine reads as a sentence with its schedule, next run countdown, connectors and destination, and opens smoothly to edit or run it now.
+Connector setup
+Pro
+Component
+A "Connect your tools" card for an AI assistant. Each app connects inline: it redirects, authorizes and runs a first sync with a progress hairline, then lists the scopes it was granted and offers Disconnect with an inline confirm.
+Agent orchestrator
+Pro
+Block
+A lead agent splits a goal into a plan, fans the subtasks out to parallel worker lanes and merges what comes back, with each lane's model, progress and result in view.
+Previous
+Model card
+Next
+Code suggestion
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

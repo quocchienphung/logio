@@ -1,0 +1,190 @@
+{
+  "stage": {
+    "x": 482.34375,
+    "y": 0.25,
+    "width": 537.3125,
+    "height": 671.640625
+  },
+  "samples": [
+    {
+      "target": [
+        0.2,
+        0.2
+      ],
+      "delay": 16,
+      "lens": {
+        "x": 568,
+        "y": 156,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 85.2041, 155.897)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.2,
+        0.2
+      ],
+      "delay": 60,
+      "lens": {
+        "x": 524,
+        "y": 83,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 41.3384, 82.7879)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.2,
+        0.2
+      ],
+      "delay": 140,
+      "lens": {
+        "x": 504,
+        "y": 49,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 21.1973, 49.2194)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.2,
+        0.2
+      ],
+      "delay": 320,
+      "lens": {
+        "x": 502,
+        "y": 47,
+        "w": 175.99996948242188,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 19.4656, 46.3332)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.2,
+        0.2
+      ],
+      "delay": 700,
+      "lens": {
+        "x": 502,
+        "y": 47,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 19.4625, 46.3281)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.8,
+        0.7
+      ],
+      "delay": 16,
+      "lens": {
+        "x": 556,
+        "y": 104,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 74.1457, 103.29)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.8,
+        0.7
+      ],
+      "delay": 60,
+      "lens": {
+        "x": 734,
+        "y": 289,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 251.77, 288.316)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.8,
+        0.7
+      ],
+      "delay": 140,
+      "lens": {
+        "x": 819,
+        "y": 377,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 336.675, 376.758)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.8,
+        0.7
+      ],
+      "delay": 320,
+      "lens": {
+        "x": 824,
+        "y": 382,
+        "w": 176,
+        "h": 176.00003051757812,
+        "transform": "matrix(1, 0, 0, 1, 341.841, 382.139)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    },
+    {
+      "target": [
+        0.8,
+        0.7
+      ],
+      "delay": 700,
+      "lens": {
+        "x": 824,
+        "y": 382,
+        "w": 176,
+        "h": 176,
+        "transform": "matrix(1, 0, 0, 1, 341.85, 382.148)",
+        "opacity": "1",
+        "radius": "50%",
+        "bg": "auto 0% 0%",
+        "shadow": "oklch(0 0 0 / 0.105) 0px 20px 48px 0px, oklch(0 0 0 / 0.045) 0px 3px 10px 0px"
+      }
+    }
+  ]
+}

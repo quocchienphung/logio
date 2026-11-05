@@ -1,0 +1,251 @@
+{
+  "base": "http://localhost:3100",
+  "environment": "Chrome headless, 1440x1000, native GPU, no CPU throttling; rAF intervals are not presented-frame FPS",
+  "results": [
+    {
+      "route": "/",
+      "samples": [
+        {
+          "y": 0,
+          "actualY": 0,
+          "p95FrameMs": 6.199999999999818,
+          "framesOver33ms": 0,
+          "longTasks": []
+        },
+        {
+          "y": 1600,
+          "actualY": 1600,
+          "p95FrameMs": 6.200000000000728,
+          "framesOver33ms": 5,
+          "longTasks": [
+            {
+              "at": 7586.5,
+              "ms": 109
+            }
+          ]
+        },
+        {
+          "y": 3400,
+          "actualY": 3400,
+          "p95FrameMs": 6.200000000000728,
+          "framesOver33ms": 1,
+          "longTasks": [
+            {
+              "at": 11559.400000000023,
+              "ms": 80
+            },
+            {
+              "at": 11640.300000000047,
+              "ms": 88
+            }
+          ]
+        },
+        {
+          "y": 4800,
+          "actualY": 4800,
+          "p95FrameMs": 6.200000000000728,
+          "framesOver33ms": 1,
+          "longTasks": []
+        },
+        {
+          "y": 10000,
+          "actualY": 10000,
+          "p95FrameMs": 6.200000000000728,
+          "framesOver33ms": 1,
+          "longTasks": []
+        }
+      ],
+      "metrics": {
+        "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "nodes": 3960,
+        "scriptsEncodedBytes": 558314,
+        "scriptsDecodedBytes": 2114551,
+        "longTasks": [
+          {
+            "at": 107.5,
+            "ms": 173
+          },
+          {
+            "at": 304.0999999999767,
+            "ms": 182
+          },
+          {
+            "at": 502,
+            "ms": 64
+          },
+          {
+            "at": 602.5,
+            "ms": 83
+          },
+          {
+            "at": 745.9000000000233,
+            "ms": 85
+          },
+          {
+            "at": 1467.5999999999767,
+            "ms": 64
+          },
+          {
+            "at": 1683.1999999999534,
+            "ms": 89
+          },
+          {
+            "at": 1881.8000000000466,
+            "ms": 84
+          },
+          {
+            "at": 2067.3000000000466,
+            "ms": 68
+          },
+          {
+            "at": 2440.5999999999767,
+            "ms": 154
+          },
+          {
+            "at": 2600.8000000000466,
+            "ms": 55
+          },
+          {
+            "at": 2663.0999999999767,
+            "ms": 135
+          },
+          {
+            "at": 2991.3000000000466,
+            "ms": 109
+          },
+          {
+            "at": 7586.5,
+            "ms": 109
+          },
+          {
+            "at": 11559.400000000023,
+            "ms": 80
+          },
+          {
+            "at": 11640.300000000047,
+            "ms": 88
+          }
+        ],
+        "canvases": [
+          {
+            "width": 1702,
+            "height": 2114,
+            "className": "hero-wave-animation__canvas"
+          },
+          {
+            "width": 447,
+            "height": 728,
+            "className": "agentic-graphic__background-canvas"
+          },
+          {
+            "width": 447,
+            "height": 728,
+            "className": "issuing-graphic__background-canvas"
+          },
+          {
+            "width": 447,
+            "height": 728,
+            "className": "globe__canvas"
+          },
+          {
+            "width": 1234,
+            "height": 519,
+            "className": "data-viz__canvas"
+          },
+          {
+            "width": 1264,
+            "height": 20,
+            "className": "divider-canvas"
+          },
+          {
+            "width": 1264,
+            "height": 20,
+            "className": "divider-canvas"
+          },
+          {
+            "width": 1264,
+            "height": 20,
+            "className": "divider-canvas"
+          },
+          {
+            "width": 1232,
+            "height": 460,
+            "className": "developers-wave-animation__canvas"
+          },
+          {
+            "width": 1264,
+            "height": 20,
+            "className": "divider-canvas"
+          },
+          {
+            "width": 1232,
+            "height": 460,
+            "className": "squeezy-carousel__canvas"
+          },
+          {
+            "width": 1264,
+            "height": 20,
+            "className": "divider-canvas"
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "route": "/personalize",
+      "samples": [
+        {
+          "y": 0,
+          "actualY": 0,
+          "p95FrameMs": 6.200000000000273,
+          "framesOver33ms": 0,
+          "longTasks": []
+        }
+      ],
+      "metrics": {
+        "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "nodes": 851,
+        "scriptsEncodedBytes": 149730,
+        "scriptsDecodedBytes": 498721,
+        "longTasks": [
+          {
+            "at": 223.80000000004657,
+            "ms": 71
+          }
+        ],
+        "canvases": []
+      },
+      "errors": []
+    },
+    {
+      "route": "/personalize?section=reports",
+      "samples": [
+        {
+          "y": 0,
+          "actualY": 0,
+          "p95FrameMs": 6.2000000000000455,
+          "framesOver33ms": 0,
+          "longTasks": []
+        }
+      ],
+      "metrics": {
+        "renderer": "ANGLE (AMD, AMD Radeon(TM) Graphics (0x00001681) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "nodes": 729,
+        "scriptsEncodedBytes": 149730,
+        "scriptsDecodedBytes": 498721,
+        "longTasks": [
+          {
+            "at": 96.30000000004657,
+            "ms": 66
+          },
+          {
+            "at": 236.09999999997672,
+            "ms": 66
+          }
+        ],
+        "canvases": []
+      },
+      "errors": []
+    }
+  ]
+}

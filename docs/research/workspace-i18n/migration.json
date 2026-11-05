@@ -1,0 +1,389 @@
+{
+  "changed": [
+    {
+      "file": "src/components/sites/guide-navigation/GuideNavigation.tsx",
+      "boundaries": 5
+    },
+    {
+      "file": "src/components/sites/shimmer-loader/SectionSkeleton.tsx",
+      "boundaries": 3
+    },
+    {
+      "file": "src/components/sites/affectui-agent-plan/AgentPlan.tsx",
+      "boundaries": 40
+    },
+    {
+      "file": "src/components/sites/affectui-writing-assistant/WritingAssistant.tsx",
+      "boundaries": 15
+    },
+    {
+      "file": "src/components/sites/affectui-delegate-board/DelegateBoard.tsx",
+      "boundaries": 35
+    },
+    {
+      "file": "src/components/sites/affectui-agent-lanes/AgentLanes.tsx",
+      "boundaries": 32
+    },
+    {
+      "file": "src/components/sites/affectui-context-window/ContextWindow.tsx",
+      "boundaries": 22
+    },
+    {
+      "file": "src/components/sites/affectui-crm/Crm.tsx",
+      "boundaries": 50
+    },
+    {
+      "file": "src/components/sites/affectui-crm/AccountTheme.tsx",
+      "boundaries": 3
+    },
+    {
+      "file": "src/components/sites/affectui-crm/SidebarFolder.tsx",
+      "boundaries": 2
+    },
+    {
+      "file": "src/components/sites/affectui-crm/CrmTable.tsx",
+      "boundaries": 24
+    },
+    {
+      "file": "src/components/sites/affectui-analytics/Analytics.tsx",
+      "boundaries": 41
+    },
+    {
+      "file": "src/components/sites/affectui-analytics/AnalyticsChart.tsx",
+      "boundaries": 10
+    },
+    {
+      "file": "src/components/sites/affectui-crm/WorkspaceDialog.tsx",
+      "boundaries": 2
+    },
+    {
+      "file": "src/lib/workspace-backend/SyncStatus.tsx",
+      "boundaries": 9
+    },
+    {
+      "file": "src/components/sites/affectui-crm/WorkspaceDocuments.tsx",
+      "boundaries": 25
+    },
+    {
+      "file": "src/components/sites/affectui-combobox/Combobox.tsx",
+      "boundaries": 20
+    },
+    {
+      "file": "src/components/sites/affectui-crm/WorkspaceEditors.tsx",
+      "boundaries": 14
+    },
+    {
+      "file": "src/components/sites/affectui-crm/WorkspacePages.tsx",
+      "boundaries": 44
+    },
+    {
+      "file": "src/components/sites/affectui-crm/CrmViews.tsx",
+      "boundaries": 14
+    },
+    {
+      "file": "src/components/sites/affectui-run/RunDraft.tsx",
+      "boundaries": 20
+    },
+    {
+      "file": "src/components/sites/affectui-settings/SettingsBilling.tsx",
+      "boundaries": 70
+    },
+    {
+      "file": "src/components/sites/affectui-usage-meter/UsageMeter.tsx",
+      "boundaries": 42
+    },
+    {
+      "file": "src/components/sites/affectui-settings/SettingsTabs.tsx",
+      "boundaries": 75
+    },
+    {
+      "file": "src/components/sites/settings-command/SettingsOverlay.tsx",
+      "boundaries": 1
+    },
+    {
+      "file": "src/components/sites/settings-command/SettingsCommand.tsx",
+      "boundaries": 16
+    },
+    {
+      "file": "src/components/sites/settings-command/Controls.tsx",
+      "boundaries": 11
+    },
+    {
+      "file": "src/components/sites/settings-command/SaveBar.tsx",
+      "boundaries": 10
+    },
+    {
+      "file": "src/components/sites/settings-command/SettingsPalette.tsx",
+      "boundaries": 13
+    },
+    {
+      "file": "src/components/sites/security-settings/SecuritySettings.tsx",
+      "boundaries": 69
+    },
+    {
+      "file": "src/components/sites/security-settings/HoldAction.tsx",
+      "boundaries": 3
+    },
+    {
+      "file": "src/components/sites/affectui-run/AgentRun.tsx",
+      "boundaries": 39
+    },
+    {
+      "file": "src/components/sites/affectui-run/RunPlan.tsx",
+      "boundaries": 21
+    },
+    {
+      "file": "src/components/sites/affectui-run/RunClock.tsx",
+      "boundaries": 1
+    },
+    {
+      "file": "src/components/sites/affectui-run/RunActivity.tsx",
+      "boundaries": 23
+    },
+    {
+      "file": "src/components/sites/affectui-run/RunApproval.tsx",
+      "boundaries": 17
+    },
+    {
+      "file": "src/components/sites/mapping/Mapping.tsx",
+      "boundaries": 89
+    },
+    {
+      "file": "src/components/sites/mapping/MappingEditor.tsx",
+      "boundaries": 73
+    },
+    {
+      "file": "src/components/sites/invoice/Invoice.tsx",
+      "boundaries": 71
+    },
+    {
+      "file": "src/components/sites/invoice/InvoiceBlock.tsx",
+      "boundaries": 84
+    },
+    {
+      "file": "src/components/sites/invoice/InvoiceEditor.tsx",
+      "boundaries": 68
+    },
+    {
+      "file": "src/components/sites/invoice/StampStage.tsx",
+      "boundaries": 26
+    },
+    {
+      "file": "src/components/sites/invoice/DateWheel.tsx",
+      "boundaries": 3
+    },
+    {
+      "file": "src/components/sites/tracing/TracingPage.tsx",
+      "boundaries": 65
+    },
+    {
+      "file": "src/components/sites/affectui-trace-waterfall/TraceWaterfall.tsx",
+      "boundaries": 47
+    },
+    {
+      "file": "src/components/sites/process/ProcessPage.tsx",
+      "boundaries": 80
+    },
+    {
+      "file": "src/components/sites/orbit-menu/OrbitMenu.tsx",
+      "boundaries": 9
+    },
+    {
+      "file": "src/components/sites/affectui-agent-tree/AgentTree.tsx",
+      "boundaries": 7
+    },
+    {
+      "file": "src/components/sites/affectui-agent-tree/agent-bar.tsx",
+      "boundaries": 20
+    },
+    {
+      "file": "src/components/sites/affectui-agent-tree/agent-card.tsx",
+      "boundaries": 16
+    },
+    {
+      "file": "src/components/sites/affectui-notification-stack/NotificationStack.tsx",
+      "boundaries": 12
+    },
+    {
+      "file": "src/components/sites/process/NodeInspector.tsx",
+      "boundaries": 106
+    },
+    {
+      "file": "src/components/sites/process/ProcessPermissions.tsx",
+      "boundaries": 24
+    },
+    {
+      "file": "src/components/sites/affectui-permission-request/PermissionRequest.tsx",
+      "boundaries": 24
+    },
+    {
+      "file": "src/components/sites/process/ProcessDialogs.tsx",
+      "boundaries": 36
+    },
+    {
+      "file": "src/components/sites/process/ProcessSheets.tsx",
+      "boundaries": 16
+    },
+    {
+      "file": "src/components/sites/bottom-sheet/BottomSheet.tsx",
+      "boundaries": 5
+    },
+    {
+      "file": "src/components/sites/skilled/ui/ConfirmMorph.tsx",
+      "boundaries": 14
+    },
+    {
+      "file": "src/components/sites/split-button/SplitButton.tsx",
+      "boundaries": 9
+    },
+    {
+      "file": "src/components/sites/process/ProcessMap.tsx",
+      "boundaries": 30
+    },
+    {
+      "file": "src/components/sites/process/LinkEditor.tsx",
+      "boundaries": 23
+    },
+    {
+      "file": "src/components/sites/process/NoticeSparks.tsx",
+      "boundaries": 4
+    },
+    {
+      "file": "src/components/sites/process/ProcessRunMonitor.tsx",
+      "boundaries": 76
+    },
+    {
+      "file": "src/components/sites/affectui-assistant/AssistantHome.tsx",
+      "boundaries": 55
+    },
+    {
+      "file": "src/components/sites/affectui-assistant/AssistantMenu.tsx",
+      "boundaries": 3
+    },
+    {
+      "file": "src/components/sites/affectui-model-picker/ModelPicker.tsx",
+      "boundaries": 21
+    },
+    {
+      "file": "src/components/sites/skilled/Skilled.tsx",
+      "boundaries": 85
+    },
+    {
+      "file": "src/components/sites/skilled/RealtimeStream.tsx",
+      "boundaries": 29
+    },
+    {
+      "file": "src/components/sites/skilled/SkillMenu.tsx",
+      "boundaries": 13
+    },
+    {
+      "file": "src/components/sites/skilled/SkillCard.tsx",
+      "boundaries": 20
+    },
+    {
+      "file": "src/components/sites/skilled/SkillEditor.tsx",
+      "boundaries": 15
+    },
+    {
+      "file": "src/components/sites/skilled/ui/ActionButton.tsx",
+      "boundaries": 5
+    },
+    {
+      "file": "src/components/sites/skilled/SkillOverview.tsx",
+      "boundaries": 7
+    },
+    {
+      "file": "src/components/sites/skilled/terrain/Segmented.tsx",
+      "boundaries": 2
+    },
+    {
+      "file": "src/components/sites/skilled/ui/MetricCard.tsx",
+      "boundaries": 6
+    },
+    {
+      "file": "src/components/sites/skilled/ui/Sparkline.tsx",
+      "boundaries": 1
+    },
+    {
+      "file": "src/components/sites/skilled/SkillTimeline.tsx",
+      "boundaries": 7
+    },
+    {
+      "file": "src/components/sites/skilled/ui/Timeline.tsx",
+      "boundaries": 16
+    },
+    {
+      "file": "src/components/sites/storage/Storage.tsx",
+      "boundaries": 125
+    },
+    {
+      "file": "src/components/sites/storage/StorageOnboarding.tsx",
+      "boundaries": 12
+    },
+    {
+      "file": "src/components/sites/storage/StorageDropzone.tsx",
+      "boundaries": 18
+    },
+    {
+      "file": "src/components/sites/storage/StorageRun.tsx",
+      "boundaries": 17
+    },
+    {
+      "file": "src/components/sites/storage/StorageTreemap.tsx",
+      "boundaries": 46
+    },
+    {
+      "file": "src/components/sites/storage/StorageCategorySelect.tsx",
+      "boundaries": 1
+    },
+    {
+      "file": "src/components/interaction/AnimatedSelect.tsx",
+      "boundaries": 4
+    },
+    {
+      "file": "src/components/sites/storage/StorageControls.tsx",
+      "boundaries": 19
+    },
+    {
+      "file": "src/components/sites/storage/StorageDocumentEditor.tsx",
+      "boundaries": 9
+    },
+    {
+      "file": "src/components/sites/repo/Repo.tsx",
+      "boundaries": 3
+    },
+    {
+      "file": "src/components/sites/skilled/terrain/ActivityTerrain.tsx",
+      "boundaries": 65
+    },
+    {
+      "file": "src/components/sites/skilled/split-bar/SplitBar.tsx",
+      "boundaries": 14
+    },
+    {
+      "file": "src/components/sites/affectui-files/Files.tsx",
+      "boundaries": 72
+    },
+    {
+      "file": "src/components/sites/affectui-files/FilesDialogs.tsx",
+      "boundaries": 29
+    },
+    {
+      "file": "src/components/sites/command-palette/CommandPalette.tsx",
+      "boundaries": 1
+    },
+    {
+      "file": "src/components/sites/command-palette/CommandPanel.tsx",
+      "boundaries": 14
+    }
+  ],
+  "skipped": [
+    "src/components/sites/affectui-delegate-board/DelegateBoard.tsx:72",
+    "src/components/sites/affectui-model-picker/ModelPicker.tsx:48"
+  ],
+  "reviewedExceptions": [
+    "Brand SVGs keep their brand names.",
+    "operationTimeline localizes field terms through its caller; record values stay original.",
+    "Orchestrator source is explicitly excluded."
+  ]
+}

@@ -53,6 +53,8 @@ full-page PNGs, topology JSON, partitioned CSS, extracted bundle modules + GLSL)
      `npm run build` passes.
 
 ## Remaining work
+Homepage Guide me now opens the collaborative painting intro at `/guide`, then continues to `/personalize?browse=1`. The source/adaptation notes, local artwork provenance and QA are documented in [guide-intro/README.md](research/guide-intro/README.md).
+
 Nothing structural is outstanding: topology matches at 1440/1280/1024/768/390 (the only flagged rows in
 `topology-check.mjs` are index offsets from zero-height wrapper elements). Candidates for further polish:
 - Frame-phase differences of time-driven animations (hero ribbon, globe rotation) are load-time dependent,

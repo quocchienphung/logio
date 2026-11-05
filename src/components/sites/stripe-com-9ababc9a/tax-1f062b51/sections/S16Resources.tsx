@@ -49,7 +49,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://docs.stripe.com/billing/subscriptions/tax/automatic-tax" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_for_billing">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/docs.stripe.com/billing/subscriptions/tax/automatic-tax" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_for_billing">
                             {"Setting up Tax for Stripe Billing"}
                           </a>
                         </li>
@@ -61,7 +61,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://docs.stripe.com/payments/checkout/automatic_taxes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_for_checkout">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/docs.stripe.com/payments/checkout/automatic_taxes" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_for_checkout">
                             {"Setting up Tax for Stripe Checkout"}
                           </a>
                         </li>
@@ -73,7 +73,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://docs.stripe.com/tax/invoicing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_for_invoicing">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/docs.stripe.com/tax/invoicing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_for_invoicing">
                             {"Setting up Tax for Stripe Invoicing"}
                           </a>
                         </li>
@@ -85,7 +85,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://docs.stripe.com/tax/custom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_with_custom_checkout_or_payment_flows">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/docs.stripe.com/tax/custom" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="setting_up_stripe_tax_with_custom_checkout_or_payment_flows">
                             {"Setting up Tax with custom checkout or payment flows"}
                           </a>
                         </li>
@@ -97,7 +97,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/how-to-file-sales-tax-us" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="how_to_file_sales_tax_returns_in_the_us">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/how-to-file-sales-tax-us" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="how_to_file_sales_tax_returns_in_the_us">
                             {"How to file sales tax returns in the US"}
                           </a>
                         </li>
@@ -109,7 +109,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://docs.stripe.com/tax/reports" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="using_stripes_reports_to_file_taxes">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/docs.stripe.com/tax/reports" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="using_stripes_reports_to_file_taxes">
                             {"Using Stripe’s reports to file taxes"}
                           </a>
                         </li>
@@ -121,7 +121,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/tools/sales-tax-calculator" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="sales_tax_calculator">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/tools/sales-tax-calculator" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="sales_tax_calculator">
                             {"Sales tax calculator"}
                           </a>
                         </li>
@@ -133,7 +133,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/tools/vat-calculator" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="vat_calculator">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/tools/vat-calculator" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="vat_calculator">
                             {"VAT calculator"}
                           </a>
                         </li>
@@ -145,13 +145,13 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/tools/gst-calculator" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="gst_calculator">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/tools/gst-calculator" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="gst_calculator">
                             {"GST calculator"}
                           </a>
                         </li>
                       </ul>
                       <div className="CtaGroup CtaGroup--inline List__ctaGroup">
-                        <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/guides/tax-guides" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sales_tax_vat__see_all_tax_guides">
+                        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/guides/tax-guides" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sales_tax_vat__see_all_tax_guides">
                           {"See all tax guides"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -176,7 +176,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href={"https://stripe.com/guides/introduction-to-sales-tax-vat-and-gst-compliance?utm_medium=earned-event&utm_source=5f6d&utm_campaign=GLOBAL_461f&utm_content=a9d2&utm_term=0d80e72007d8"} data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="guide_to_sales_tax_vat_and_gst_compliance">
+                          <a className="Link ListItem__label" href={"/unavailable/stripe/stripe.com/guides/introduction-to-sales-tax-vat-and-gst-compliance"} data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="guide_to_sales_tax_vat_and_gst_compliance">
                             {"Guide to sales tax, VAT, and GST compliance"}
                           </a>
                         </li>
@@ -188,7 +188,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/introduction-to-eu-vat-and-vat-oss" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="understanding_eu_vat_and_vat_oss">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/introduction-to-eu-vat-and-vat-oss" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="understanding_eu_vat_and_vat_oss">
                             {"Understanding EU VAT and VAT OSS"}
                           </a>
                         </li>
@@ -200,7 +200,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href={"https://stripe.com/guides/introduction-to-us-sales-tax-and-economic-nexus?utm_medium=earned-event&utm_source=9209&utm_campaign=GLOBAL_47c4&utm_content=978a&utm_term=ae22bb043e68"} data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="understanding_us_sales_tax_and_economic_nexus">
+                          <a className="Link ListItem__label" href={"/unavailable/stripe/stripe.com/guides/introduction-to-us-sales-tax-and-economic-nexus"} data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="understanding_us_sales_tax_and_economic_nexus">
                             {"Understanding US sales tax and economic nexus"}
                           </a>
                         </li>
@@ -212,7 +212,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/blog/building-stripe-tax" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="understanding_how_we_built_stripe_tax">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/blog/building-stripe-tax" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="understanding_how_we_built_stripe_tax">
                             {"Understanding how we built Stripe Tax"}
                           </a>
                         </li>
@@ -224,7 +224,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/sales-tax-registration-process-us" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="navigating_the_sales_tax_registration_process_in_the_us">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/sales-tax-registration-process-us" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="navigating_the_sales_tax_registration_process_in_the_us">
                             {"Navigating the sales tax registration process in the US"}
                           </a>
                         </li>
@@ -236,7 +236,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/tax-registration-process-europe" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="navigating_the_tax_registration_process_in_europe">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/tax-registration-process-europe" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="navigating_the_tax_registration_process_in_europe">
                             {"Navigating the tax registration process in Europe"}
                           </a>
                         </li>
@@ -248,7 +248,7 @@ export function S16Resources() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/guides/tax-registration-process-canada" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="navigating_the_tax_registration_process_in_canada">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/guides/tax-registration-process-canada" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="navigating_the_tax_registration_process_in_canada">
                             {"Navigating the tax registration process in Canada"}
                           </a>
                         </li>
@@ -263,7 +263,7 @@ export function S16Resources() {
                         <div className="CopyBody CopyBody--variantDetail CopyBody--anchored">
                           <p>
                             {"If you’re looking for help with 1099 tax forms for platforms, learn about "}
-                            <a className="Link" href="https://stripe.com/connect/1099" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/connect/1099" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                               {"Connect capabilities"}
                             </a>
                             {"."}

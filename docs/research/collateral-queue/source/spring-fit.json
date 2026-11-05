@@ -1,0 +1,37 @@
+{
+  "note": "Least-squares critically damped approximations of rendered frame samples, not access to private spring parameters. Press uses a critical approximation; its observed curve may differ.",
+  "rewind": {
+    "startMs": 589.9,
+    "omega": 13.05,
+    "mass": 1,
+    "stiffness": 170.3,
+    "damping": 26.1,
+    "rmse": 0.00137,
+    "maxError": 0.00924,
+    "samples": 109,
+    "peakMs": 588.4000000953674,
+    "peakProgress": 0.46167
+  },
+  "press": {
+    "startMs": 15,
+    "omega": 20.15,
+    "mass": 1,
+    "stiffness": 406.02,
+    "damping": 40.3,
+    "rmse": 0.0013,
+    "maxError": 0.00348,
+    "samples": 49
+  },
+  "completionWidth": {
+    "startMs": 1223.5,
+    "omega": 12.45,
+    "mass": 1,
+    "stiffness": 155,
+    "damping": 24.9,
+    "rmse": 0.00177,
+    "maxError": 0.01516,
+    "samples": 99,
+    "from": 90.8594,
+    "to": 50.4688
+  }
+}

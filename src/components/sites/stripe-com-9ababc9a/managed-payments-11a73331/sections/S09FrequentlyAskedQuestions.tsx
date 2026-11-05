@@ -203,14 +203,14 @@ export function S09FrequentlyAskedQuestions() {
                   </p>
                 </div>
                 <div className="section-row managed-payments-resources__cta">
-                  <a className="hds-button hds-button--secondary-on-quiet" href="https://stripe.com/resources/more/merchant-of-record" data-analytics-label="what_businesses_need__read_the_guide">
+                  <a className="hds-button hds-button--secondary-on-quiet" href="/unavailable/stripe/stripe.com/resources/more/merchant-of-record" data-analytics-label="what_businesses_need__read_the_guide">
                     {"Read the guide"}
                   </a>
                 </div>
               </div>
             </div>
             <div className="managed-payments-resources__guide-card">
-              <a href="https://stripe.com/resources/more/merchant-of-record" className="guide-card guide-card--compact guide-card--desktop-cta-hidden" aria-labelledby=":R2tar6l6:-title" aria-describedby=":R2tar6l6:-desc" data-analytics-label="resources__guide_card">
+              <a href="/unavailable/stripe/stripe.com/resources/more/merchant-of-record" className="guide-card guide-card--compact guide-card--desktop-cta-hidden" aria-labelledby=":R2tar6l6:-title" aria-describedby=":R2tar6l6:-desc" data-analytics-label="resources__guide_card">
                 <div className="guide-card__content">
                   <h3 className="hds-text guide-card__eyebrow hds-text--sm hds-text--soft">
                     {"Industry updates"}

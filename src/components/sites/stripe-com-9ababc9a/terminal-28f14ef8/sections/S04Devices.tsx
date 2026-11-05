@@ -39,7 +39,7 @@ export function S04Devices() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/terminal/devices" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="take_payments_in__see_all_devices">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/terminal/devices" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="take_payments_in__see_all_devices">
                           {"See all devices"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

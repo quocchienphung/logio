@@ -90,7 +90,7 @@ export function S06WhatsIncluded() {
                             </g>
                           </svg>
                           {" "}
-                          <a className="Link ListItem__label" href="https://stripe.com/billing/features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="create_invoices__recurring_billing">
+                          <a className="Link ListItem__label" href="/unavailable/stripe/stripe.com/billing/features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="create_invoices__recurring_billing">
                             {"Recurring billing"}
                           </a>
                         </li>

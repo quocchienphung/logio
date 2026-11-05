@@ -604,6 +604,9 @@ vec3 surfaceColor(vec2 uv, vec3 pos, float pdy, float deep) {
   vec3 color = vec3(monoValue(texture2D(u_paletteTexture, vec2(uv.x, uv.y)).rgb, deep));
 
   float strength = 0.2;
+  #ifdef HERO_REFINED_FIBERS
+  strength = 0.09;
+  #endif
   float freq = 600.0;
   float colorAtten = 0.9;
   float paraPow = 3.0;
@@ -628,8 +631,14 @@ vec3 surfaceColor(vec2 uv, vec3 pos, float pdy, float deep) {
 
   float p = 1.0 - parabola(uv.x, paraPow);
   float n0 = simplexNoise(vec2(v_uv.x * 0.1, v_uv.y * 0.5));
-  float n1 = simplexNoise(vec2(v_uv.x * (freq + (freq * 0.5 * n0)), v_uv.y * 4.0 * n0));
+  vec2 fiberUv = vec2(v_uv.x * (freq + (freq * 0.5 * n0)), v_uv.y * 4.0 * n0);
+  float n1 = simplexNoise(fiberUv);
   n1 = mapLinear(n1, -1.0, 1.0, 0.0, 1.0);
+  #ifdef HERO_REFINED_FIBERS
+  // Subpixel fibers blend into their average at grazing folds instead of crawling/shimmering.
+  float footprint = max(length(dFdx(fiberUv)), length(dFdy(fiberUv)));
+  n1 = mix(0.5, n1, 1.0 - smoothstep(0.35, 1.0, footprint));
+  #endif
 
   vec3 textureColor = color;
   textureColor += (n1 * strength * (1.0 - textureColor.b * colorAtten) * pdy * p);

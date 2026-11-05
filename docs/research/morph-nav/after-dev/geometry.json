@@ -1,0 +1,4181 @@
+{
+  "idle": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(0, 0, 0)",
+        "radius": "4px"
+      }
+    ],
+    "popup": null,
+    "content": null,
+    "natural": null,
+    "links": []
+  },
+  "Products": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        692
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        692.328125
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        692.328125
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/payments",
+        "text": "PaymentsOnline payments",
+        "rect": [
+          121,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/managed-payments",
+        "text": "Managed PaymentsMerchant of record solution",
+        "rect": [
+          121,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/payment-links",
+        "text": "Payment linksNo-code payments",
+        "rect": [
+          121,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/checkout",
+        "text": "CheckoutPrebuilt payment UIs",
+        "rect": [
+          121,
+          304.578125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/elements",
+        "text": "ElementsFlexible UI components",
+        "rect": [
+          121,
+          358.171875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/payment-methods",
+        "text": "Payment methodsAccess to 125+",
+        "rect": [
+          121,
+          411.765625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/terminal",
+        "text": "TerminalIn-person payments",
+        "rect": [
+          121,
+          465.359375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/authorization-boost",
+        "text": "Authorization BoostAcceptance optimizations",
+        "rect": [
+          121,
+          518.953125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/link",
+        "text": "LinkAccelerated checkout",
+        "rect": [
+          121,
+          572.546875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/financial-connections",
+        "text": "Financial ConnectionsLinked financial account data",
+        "rect": [
+          121,
+          626.140625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/billing",
+        "text": "BillingRecurring revenue",
+        "rect": [
+          364,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/billing/usage-based-billing",
+        "text": "MetronomeUsage-based billing",
+        "rect": [
+          364,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/billing/subscriptions",
+        "text": "SubscriptionsSubscription management",
+        "rect": [
+          364,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/invoicing",
+        "text": "InvoicingOne-time or recurring",
+        "rect": [
+          364,
+          304.578125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/tax",
+        "text": "TaxSales tax & VAT automation",
+        "rect": [
+          364,
+          358.171875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/revenue-recognition",
+        "text": "Revenue RecognitionAccounting automation",
+        "rect": [
+          364,
+          411.765625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/sigma",
+        "text": "Stripe SigmaCustom reports",
+        "rect": [
+          364,
+          465.359375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/data-pipeline",
+        "text": "Data PipelineData sync",
+        "rect": [
+          364,
+          518.953125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/treasury",
+        "text": "TreasuryBusiness finances",
+        "rect": [
+          607,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payouts",
+        "text": "Global PayoutsPayouts to third parties",
+        "rect": [
+          607,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/capital",
+        "text": "CapitalBusiness financing",
+        "rect": [
+          607,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/crypto",
+        "text": "CryptoWallet, stablecoin issuing, and card infrastructure",
+        "rect": [
+          607,
+          304.578125,
+          203,
+          61.1875
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/crypto-onramp",
+        "text": "Crypto OnrampEmbeddable crypto purchases",
+        "rect": [
+          607,
+          377.765625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/connect",
+        "text": "ConnectPayments for platforms",
+        "rect": [
+          850,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/capital/platforms",
+        "text": "Capital for platformsCustomer financing",
+        "rect": [
+          850,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/treasury/platforms",
+        "text": "Treasury for platformsEmbedded financial services",
+        "rect": [
+          850,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/issuing",
+        "text": "IssuingPhysical and virtual cards",
+        "rect": [
+          850,
+          304.578125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/roadmap",
+        "text": "Product roadmapSee what’s ahead",
+        "rect": [
+          1126,
+          143.796875,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/radar",
+        "text": "RadarFraud prevention",
+        "rect": [
+          1126,
+          197.390625,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/atlas",
+        "text": "AtlasStartup incorporation",
+        "rect": [
+          1126,
+          250.984375,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/climate",
+        "text": "ClimateCarbon removal",
+        "rect": [
+          1126,
+          304.578125,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/identity",
+        "text": "IdentityOnline identity verification",
+        "rect": [
+          1126,
+          358.171875,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/sessions/2026",
+        "text": "Watch now",
+        "rect": [
+          1143,
+          696.328125,
+          159,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/personalize",
+        "text": "Find what's right for you",
+        "rect": [
+          893.65625,
+          720.53125,
+          159.34375,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  },
+  "Solutions": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        439
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        438.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        438.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/enterprise",
+        "text": "Enterprises",
+        "rect": [
+          121,
+          143.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/startups",
+        "text": "Startups",
+        "rect": [
+          121,
+          173.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/agentic-commerce",
+        "text": "Agentic commerce",
+        "rect": [
+          437.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/crypto",
+        "text": "Crypto",
+        "rect": [
+          437.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/ecommerce",
+        "text": "Ecommerce",
+        "rect": [
+          437.5,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/embedded-finance",
+        "text": "Embedded finance",
+        "rect": [
+          437.5,
+          233.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/finance-automation",
+        "text": "Finance automation",
+        "rect": [
+          437.5,
+          263.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/global-businesses",
+        "text": "Global businesses",
+        "rect": [
+          437.5,
+          293.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/in-app-payments",
+        "text": "In-app payments",
+        "rect": [
+          437.5,
+          323.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/marketplaces",
+        "text": "Marketplaces",
+        "rect": [
+          437.5,
+          353.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/money-management/availability",
+        "text": "Money management",
+        "rect": [
+          437.5,
+          383.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/platforms",
+        "text": "Platforms",
+        "rect": [
+          437.5,
+          413.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/saas",
+        "text": "SaaS",
+        "rect": [
+          437.5,
+          443.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/ai",
+        "text": "AI companies",
+        "rect": [
+          753,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/creator-economy",
+        "text": "Creator economy",
+        "rect": [
+          753,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/fintech",
+        "text": "Fintech",
+        "rect": [
+          753,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/gaming",
+        "text": "Gaming",
+        "rect": [
+          753,
+          233.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/travel",
+        "text": "Hospitality, travel, and leisure",
+        "rect": [
+          753,
+          263.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/insurance",
+        "text": "Insurance",
+        "rect": [
+          753,
+          293.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/media-entertainment",
+        "text": "Media and entertainment",
+        "rect": [
+          753,
+          323.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/nonprofits",
+        "text": "Nonprofits",
+        "rect": [
+          753,
+          353.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/professional-services",
+        "text": "Professional services",
+        "rect": [
+          753,
+          383.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/public-sector",
+        "text": "Public sector",
+        "rect": [
+          753,
+          413.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/retail",
+        "text": "Retail",
+        "rect": [
+          753,
+          443.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/partners",
+        "text": "Partners",
+        "rect": [
+          1068.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/marketplace.stripe.com/",
+        "text": "Stripe App Marketplace",
+        "rect": [
+          1068.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  },
+  "Developers": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        319
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        318.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        318.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/",
+        "text": "Stripe docs",
+        "rect": [
+          121,
+          143.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/api",
+        "text": "API reference",
+        "rect": [
+          121,
+          173.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/development",
+        "text": "Libraries and SDKs",
+        "rect": [
+          121,
+          203.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/apps",
+        "text": "Stripe Apps",
+        "rect": [
+          121,
+          233.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/payments",
+        "text": "Accept online payments",
+        "rect": [
+          542.65625,
+          143.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/payments/checkout",
+        "text": "Implement a prebuilt checkout",
+        "rect": [
+          542.65625,
+          173.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/connect",
+        "text": "Build a platform or marketplace",
+        "rect": [
+          542.65625,
+          203.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/billing",
+        "text": "Manage subscriptions",
+        "rect": [
+          542.65625,
+          233.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/billing/subscriptions/usage-based",
+        "text": "Offer usage-based billing",
+        "rect": [
+          542.65625,
+          263.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/treasury/stablecoins",
+        "text": "Issue stablecoin-backed cards",
+        "rect": [
+          542.65625,
+          293.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/projects",
+        "text": "Provision and manage services with agents",
+        "rect": [
+          542.65625,
+          323.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/marketplace.stripe.com/",
+        "text": "App integrations",
+        "rect": [
+          963.328125,
+          143.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "https://github.com/stripe-samples",
+        "text": "Code samples",
+        "rect": [
+          963.328125,
+          173.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "https://stripe.dev/",
+        "text": "Developer blog",
+        "rect": [
+          963.328125,
+          203.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/status.stripe.com/",
+        "text": "API status",
+        "rect": [
+          963.328125,
+          233.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  },
+  "Resources": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        289
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        288.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        288.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/blog",
+        "text": "Blog",
+        "rect": [
+          121,
+          143.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/customers",
+        "text": "Customer stories",
+        "rect": [
+          121,
+          173.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/guides",
+        "text": "Guides",
+        "rect": [
+          121,
+          203.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/support.stripe.com/",
+        "text": "Get support",
+        "rect": [
+          437.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/support-plans",
+        "text": "Managed support plans",
+        "rect": [
+          437.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/professional-services",
+        "text": "Professional services",
+        "rect": [
+          437.5,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/roadmap",
+        "text": "Product roadmap",
+        "rect": [
+          753,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/sessions",
+        "text": "Sessions annual conference",
+        "rect": [
+          753,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/careers",
+        "text": "Careers",
+        "rect": [
+          753,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/newsroom",
+        "text": "Newsroom",
+        "rect": [
+          753,
+          233.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/press.stripe.com/",
+        "text": "Stripe Press",
+        "rect": [
+          753,
+          263.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/about",
+        "text": "About",
+        "rect": [
+          753,
+          293.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/contact/sales",
+        "text": "Contact sales",
+        "rect": [
+          1068.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/partners/become-a-partner",
+        "text": "Become a partner",
+        "rect": [
+          1068.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  },
+  "isolated-Products": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        692
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        692.328125
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        692.328125
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/payments",
+        "text": "PaymentsOnline payments",
+        "rect": [
+          121,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/managed-payments",
+        "text": "Managed PaymentsMerchant of record solution",
+        "rect": [
+          121,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/payment-links",
+        "text": "Payment linksNo-code payments",
+        "rect": [
+          121,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/checkout",
+        "text": "CheckoutPrebuilt payment UIs",
+        "rect": [
+          121,
+          304.578125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/elements",
+        "text": "ElementsFlexible UI components",
+        "rect": [
+          121,
+          358.171875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/payment-methods",
+        "text": "Payment methodsAccess to 125+",
+        "rect": [
+          121,
+          411.765625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/terminal",
+        "text": "TerminalIn-person payments",
+        "rect": [
+          121,
+          465.359375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/authorization-boost",
+        "text": "Authorization BoostAcceptance optimizations",
+        "rect": [
+          121,
+          518.953125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payments/link",
+        "text": "LinkAccelerated checkout",
+        "rect": [
+          121,
+          572.546875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/financial-connections",
+        "text": "Financial ConnectionsLinked financial account data",
+        "rect": [
+          121,
+          626.140625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/billing",
+        "text": "BillingRecurring revenue",
+        "rect": [
+          364,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/billing/usage-based-billing",
+        "text": "MetronomeUsage-based billing",
+        "rect": [
+          364,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/billing/subscriptions",
+        "text": "SubscriptionsSubscription management",
+        "rect": [
+          364,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/invoicing",
+        "text": "InvoicingOne-time or recurring",
+        "rect": [
+          364,
+          304.578125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/tax",
+        "text": "TaxSales tax & VAT automation",
+        "rect": [
+          364,
+          358.171875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/revenue-recognition",
+        "text": "Revenue RecognitionAccounting automation",
+        "rect": [
+          364,
+          411.765625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/sigma",
+        "text": "Stripe SigmaCustom reports",
+        "rect": [
+          364,
+          465.359375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/data-pipeline",
+        "text": "Data PipelineData sync",
+        "rect": [
+          364,
+          518.953125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/treasury",
+        "text": "TreasuryBusiness finances",
+        "rect": [
+          607,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/payouts",
+        "text": "Global PayoutsPayouts to third parties",
+        "rect": [
+          607,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/capital",
+        "text": "CapitalBusiness financing",
+        "rect": [
+          607,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/crypto",
+        "text": "CryptoWallet, stablecoin issuing, and card infrastructure",
+        "rect": [
+          607,
+          304.578125,
+          203,
+          61.1875
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/crypto-onramp",
+        "text": "Crypto OnrampEmbeddable crypto purchases",
+        "rect": [
+          607,
+          377.765625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/connect",
+        "text": "ConnectPayments for platforms",
+        "rect": [
+          850,
+          143.796875,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/capital/platforms",
+        "text": "Capital for platformsCustomer financing",
+        "rect": [
+          850,
+          197.390625,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/treasury/platforms",
+        "text": "Treasury for platformsEmbedded financial services",
+        "rect": [
+          850,
+          250.984375,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/issuing",
+        "text": "IssuingPhysical and virtual cards",
+        "rect": [
+          850,
+          304.578125,
+          203,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/roadmap",
+        "text": "Product roadmapSee what’s ahead",
+        "rect": [
+          1126,
+          143.796875,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/radar",
+        "text": "RadarFraud prevention",
+        "rect": [
+          1126,
+          197.390625,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/atlas",
+        "text": "AtlasStartup incorporation",
+        "rect": [
+          1126,
+          250.984375,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/climate",
+        "text": "ClimateCarbon removal",
+        "rect": [
+          1126,
+          304.578125,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/identity",
+        "text": "IdentityOnline identity verification",
+        "rect": [
+          1126,
+          358.171875,
+          193,
+          41.59375
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/sessions/2026",
+        "text": "Watch now",
+        "rect": [
+          1143,
+          696.328125,
+          159,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/personalize",
+        "text": "Find what's right for you",
+        "rect": [
+          893.65625,
+          720.53125,
+          159.34375,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  },
+  "isolated-Solutions": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        439
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        438.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        438.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/enterprise",
+        "text": "Enterprises",
+        "rect": [
+          121,
+          143.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/startups",
+        "text": "Startups",
+        "rect": [
+          121,
+          173.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/agentic-commerce",
+        "text": "Agentic commerce",
+        "rect": [
+          437.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/crypto",
+        "text": "Crypto",
+        "rect": [
+          437.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/ecommerce",
+        "text": "Ecommerce",
+        "rect": [
+          437.5,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/embedded-finance",
+        "text": "Embedded finance",
+        "rect": [
+          437.5,
+          233.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/finance-automation",
+        "text": "Finance automation",
+        "rect": [
+          437.5,
+          263.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/global-businesses",
+        "text": "Global businesses",
+        "rect": [
+          437.5,
+          293.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/in-app-payments",
+        "text": "In-app payments",
+        "rect": [
+          437.5,
+          323.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/marketplaces",
+        "text": "Marketplaces",
+        "rect": [
+          437.5,
+          353.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/money-management/availability",
+        "text": "Money management",
+        "rect": [
+          437.5,
+          383.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/platforms",
+        "text": "Platforms",
+        "rect": [
+          437.5,
+          413.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/saas",
+        "text": "SaaS",
+        "rect": [
+          437.5,
+          443.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/ai",
+        "text": "AI companies",
+        "rect": [
+          753,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/use-cases/creator-economy",
+        "text": "Creator economy",
+        "rect": [
+          753,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/fintech",
+        "text": "Fintech",
+        "rect": [
+          753,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/gaming",
+        "text": "Gaming",
+        "rect": [
+          753,
+          233.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/travel",
+        "text": "Hospitality, travel, and leisure",
+        "rect": [
+          753,
+          263.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/insurance",
+        "text": "Insurance",
+        "rect": [
+          753,
+          293.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/media-entertainment",
+        "text": "Media and entertainment",
+        "rect": [
+          753,
+          323.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/nonprofits",
+        "text": "Nonprofits",
+        "rect": [
+          753,
+          353.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/professional-services",
+        "text": "Professional services",
+        "rect": [
+          753,
+          383.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/public-sector",
+        "text": "Public sector",
+        "rect": [
+          753,
+          413.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/industries/retail",
+        "text": "Retail",
+        "rect": [
+          753,
+          443.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/partners",
+        "text": "Partners",
+        "rect": [
+          1068.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/marketplace.stripe.com/",
+        "text": "Stripe App Marketplace",
+        "rect": [
+          1068.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  },
+  "isolated-Developers": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        319
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        318.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        318.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/",
+        "text": "Stripe docs",
+        "rect": [
+          121,
+          143.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/api",
+        "text": "API reference",
+        "rect": [
+          121,
+          173.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/development",
+        "text": "Libraries and SDKs",
+        "rect": [
+          121,
+          203.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/apps",
+        "text": "Stripe Apps",
+        "rect": [
+          121,
+          233.796875,
+          356.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/payments",
+        "text": "Accept online payments",
+        "rect": [
+          542.65625,
+          143.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/payments/checkout",
+        "text": "Implement a prebuilt checkout",
+        "rect": [
+          542.65625,
+          173.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/connect",
+        "text": "Build a platform or marketplace",
+        "rect": [
+          542.65625,
+          203.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/billing",
+        "text": "Manage subscriptions",
+        "rect": [
+          542.65625,
+          233.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/billing/subscriptions/usage-based",
+        "text": "Offer usage-based billing",
+        "rect": [
+          542.65625,
+          263.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/treasury/stablecoins",
+        "text": "Issue stablecoin-backed cards",
+        "rect": [
+          542.65625,
+          293.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/docs.stripe.com/projects",
+        "text": "Provision and manage services with agents",
+        "rect": [
+          542.65625,
+          323.796875,
+          355.671875,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/marketplace.stripe.com/",
+        "text": "App integrations",
+        "rect": [
+          963.328125,
+          143.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "https://github.com/stripe-samples",
+        "text": "Code samples",
+        "rect": [
+          963.328125,
+          173.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "https://stripe.dev/",
+        "text": "Developer blog",
+        "rect": [
+          963.328125,
+          203.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/status.stripe.com/",
+        "text": "API status",
+        "rect": [
+          963.328125,
+          233.796875,
+          355.65625,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  },
+  "isolated-Resources": {
+    "header": {
+      "rect": [
+        0,
+        0,
+        1440,
+        76
+      ],
+      "font": "",
+      "color": "rgb(0, 0, 0)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(0, 0, 0)",
+      "radius": "0px"
+    },
+    "triggers": [
+      {
+        "label": "Products",
+        "rect": [
+          193,
+          18,
+          76.671875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Solutions",
+        "rect": [
+          293.671875,
+          18,
+          78.484375,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Developers",
+        "rect": [
+          396.15625,
+          18,
+          91.03125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Resources",
+        "rect": [
+          511.1875,
+          18,
+          85.921875,
+          40
+        ],
+        "font": "",
+        "color": "rgb(8, 8, 8)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(8, 8, 8)",
+        "radius": "4px"
+      },
+      {
+        "label": "Pricing",
+        "rect": [
+          621.109375,
+          19,
+          44.296875,
+          38
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Guide me",
+        "rect": [
+          705.40625,
+          18,
+          81.953125,
+          40
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "Sign in",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      },
+      {
+        "label": "",
+        "rect": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "font": "",
+        "color": "rgb(112, 112, 112)",
+        "background": "rgb(241, 241, 241)",
+        "border": "0px none rgb(112, 112, 112)",
+        "radius": "4px"
+      }
+    ],
+    "popup": {
+      "rect": [
+        89,
+        70,
+        1262,
+        289
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgb(255, 255, 255)",
+      "border": "",
+      "radius": "0px 0px 6px 6px",
+      "transition": "opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%), height 0.58s linear(0 0%, 0.0213 2.77778%, 0.0739 5.55556%, 0.1443 8.33333%, 0.2235 11.1111%, 0.305 13.8889%, 0.3849 16.6667%, 0.4606 19.4444%, 0.5305 22.2222%, 0.594 25%, 0.6508 27.7778%, 0.7011 30.5556%, 0.7452 33.3333%, 0.7836 36.1111%, 0.8168 38.8889%, 0.8454 41.6667%, 0.8699 44.4444%, 0.8907 47.2222%, 0.9084 50%, 0.9234 52.7778%, 0.9361 55.5556%, 0.9467 58.3333%, 0.9557 61.1111%, 0.9632 63.8889%, 0.9694 66.6667%, 0.9747 69.4444%, 0.979 72.2222%, 0.9826 75%, 0.9857 77.7778%, 0.9882 80.5556%, 0.9902 83.3333%, 0.992 86.1111%, 0.9934 88.8889%, 0.9946 91.6667%, 0.9955 94.4444%, 0.9963 97.2222%, 1 100%)",
+      "willChange": "auto"
+    },
+    "content": {
+      "rect": [
+        89,
+        71,
+        1262,
+        288.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "natural": {
+      "rect": [
+        89,
+        71,
+        1262,
+        288.796875
+      ],
+      "font": "",
+      "color": "rgb(8, 8, 8)",
+      "background": "rgba(0, 0, 0, 0)",
+      "border": "0px none rgb(8, 8, 8)",
+      "radius": "0px"
+    },
+    "links": [
+      {
+        "href": "/blog",
+        "text": "Blog",
+        "rect": [
+          121,
+          143.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/customers",
+        "text": "Customer stories",
+        "rect": [
+          121,
+          173.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/guides",
+        "text": "Guides",
+        "rect": [
+          121,
+          203.796875,
+          251.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/support.stripe.com/",
+        "text": "Get support",
+        "rect": [
+          437.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/support-plans",
+        "text": "Managed support plans",
+        "rect": [
+          437.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/professional-services",
+        "text": "Professional services",
+        "rect": [
+          437.5,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/roadmap",
+        "text": "Product roadmap",
+        "rect": [
+          753,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/sessions",
+        "text": "Sessions annual conference",
+        "rect": [
+          753,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/careers",
+        "text": "Careers",
+        "rect": [
+          753,
+          203.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/newsroom",
+        "text": "Newsroom",
+        "rect": [
+          753,
+          233.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/unavailable/stripe/press.stripe.com/",
+        "text": "Stripe Press",
+        "rect": [
+          753,
+          263.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/about",
+        "text": "About",
+        "rect": [
+          753,
+          293.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/contact/sales",
+        "text": "Contact sales",
+        "rect": [
+          1068.5,
+          143.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      },
+      {
+        "href": "/partners/become-a-partner",
+        "text": "Become a partner",
+        "rect": [
+          1068.5,
+          173.796875,
+          250.5,
+          18
+        ],
+        "font": "",
+        "color": "rgb(51, 51, 51)",
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(51, 51, 51)",
+        "radius": "0px"
+      }
+    ]
+  }
+}

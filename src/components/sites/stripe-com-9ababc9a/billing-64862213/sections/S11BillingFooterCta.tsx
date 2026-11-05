@@ -15,7 +15,7 @@ export function S11BillingFooterCta() {
             </p>
           </div>
           <div className="hds-button-group">
-            <a className="hds-button hds-button--primary" href="https://dashboard.stripe.com/register/billing" data-analytics-label="ready_to_get__start_now">
+            <a className="hds-button hds-button--primary" href="/signup" data-analytics-label="ready_to_get__start_now">
               {"Start now"}
               <span className="hds-nowrap-svg">
                 <svg className="hds-icon hds-icon-hover-arrow" width="5" height="8" fill="none" viewBox="0 0.5 5 8">
@@ -33,7 +33,7 @@ export function S11BillingFooterCta() {
                 </svg>
               </span>
             </a>
-            <a className="hds-button hds-button--secondary" href="https://stripe.com/contact/sales" data-analytics-label="ready_to_get__contact_sales">
+            <a className="hds-button hds-button--secondary" href="/unavailable/stripe/stripe.com/contact/sales" data-analytics-label="ready_to_get__contact_sales">
               {"Contact sales"}
             </a>
           </div>
@@ -82,7 +82,7 @@ export function S11BillingFooterCta() {
                 </p>
               </div>
               <div className="feature-detail__footer">
-                <a className="hds-link hds-link--callout" href="https://stripe.com/pricing" data-analytics-label="ready_to_get__see_pricing">
+                <a className="hds-link hds-link--callout" href="/unavailable/stripe/stripe.com/pricing" data-analytics-label="ready_to_get__see_pricing">
                   {"See pricing"}
                   <span className="hds-nowrap-svg">
                     <span className="hds-nowrap-svg">

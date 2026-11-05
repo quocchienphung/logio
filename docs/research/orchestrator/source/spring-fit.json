@@ -1,0 +1,50 @@
+{
+ "orchestrator transcript open (height)": {
+  "rmse": 0.002111457910658533,
+  "omega": 19,
+  "zeta": 0.9600000000000005,
+  "shift": 0.005000000000000005,
+  "stiffness": 361,
+  "damping": 36.48000000000002
+ },
+ "orchestrator transcript open (opacity)": {
+  "rmse": 0.00723853666678986,
+  "omega": 140,
+  "zeta": 1.640000000000001,
+  "shift": 0.005000000000000005,
+  "stiffness": 19600,
+  "damping": 459.2000000000003
+ },
+ "orchestrator transcript close (height)": {
+  "rmse": 0.0019978458177173494,
+  "omega": 21,
+  "zeta": 1.0200000000000005,
+  "shift": 0.005000000000000005,
+  "stiffness": 441,
+  "damping": 42.84000000000002
+ },
+ "tool group unfold (height)": {
+  "rmse": 0.0019198846746412406,
+  "omega": 13.5,
+  "zeta": 1.0200000000000005,
+  "shift": 0.010000000000000005,
+  "stiffness": 182.25,
+  "damping": 27.540000000000013
+ },
+ "tool group fold (height)": {
+  "rmse": 0.002603963450631447,
+  "omega": 13,
+  "zeta": 0.9800000000000005,
+  "shift": 0.010000000000000005,
+  "stiffness": 169,
+  "damping": 25.480000000000015
+ },
+ "plan item opacity": {
+  "rmse": 0.00899073084485399,
+  "omega": 99.5,
+  "zeta": 1.3000000000000007,
+  "shift": 0.010000000000000005,
+  "stiffness": 9900.25,
+  "damping": 258.70000000000016
+ }
+}

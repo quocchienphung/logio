@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';
+import { chromium } from 'playwright';
+const out = 'docs/research/morph-nav'; await fs.mkdir(out, { recursive: true });
+const browser = await chromium.launch({ channel: 'chrome' });
+const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+await page.goto('https://uiarc.dev/components/morph-nav', { waitUntil: 'domcontentloaded' }); await page.waitForTimeout(1600);
+await fs.writeFile(`${out}/source-page.txt`, await page.locator('body').innerText());
+const nodes = page.locator('[class*="morph-nav_"]');
+console.log('classes', await nodes.evaluateAll(es => [...new Set(es.map(e => typeof e.className === 'string' ? e.className : 'svg'))].slice(0,35)));
+console.log('controls', await nodes.locator('button').evaluateAll(es => es.map(e => ({ text: e.innerText, label: e.getAttribute('aria-label'), cls: e.className }))));
+await page.screenshot({ path: `${out}/source-page.png` });
+await browser.close();

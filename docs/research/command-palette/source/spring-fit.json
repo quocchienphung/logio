@@ -1,0 +1,19 @@
+{
+  "note": "Least-squares fits of public rendered motion, unit mass. Estimates, not recovered internal constants.",
+  "entry": {
+    "stiffness": 165,
+    "damping": 25.5,
+    "offset": 187.79999997615823,
+    "error": 0.000006880607780465788,
+    "normalizedRMSE": 0.0026230912642273407,
+    "samples": 64
+  },
+  "highlight": {
+    "stiffness": 390,
+    "damping": 39,
+    "offset": 1,
+    "error": 0.0000020198111831048954,
+    "normalizedRMSE": 0.0014212006132509568,
+    "samples": 60
+  }
+}

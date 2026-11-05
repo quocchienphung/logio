@@ -42,7 +42,7 @@ export function S05Pricing() {
                           </div>
                           <div className="PricingGridHeader__body"></div>
                           <div className="PricingGridHeader__ctaContainer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_pricing_cta">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_pricing_cta">
                               {"Pricing details"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -62,7 +62,7 @@ export function S05Pricing() {
                             <div className="PricingGridRow__body">
                               <p>
                                 {"Payment Links are included in Stripe's integrated pricing and let you accept credit cards, debit cards, mobile wallets and more. "}
-                                <a className="Link" href="https://stripe.com/billing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/billing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Stripe Billing pricing"}
                                 </a>
                                 {" applies to recurring charges."}
@@ -100,7 +100,7 @@ export function S05Pricing() {
                           </div>
                           <div className="PricingGridHeader__body"></div>
                           <div className="PricingGridHeader__ctaContainer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://support.stripe.com/questions/custom-domain-on-stripe-checkout-faq" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_learn_more">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/support.stripe.com/questions/custom-domain-on-stripe-checkout-faq" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_links_learn_more">
                               {"Learn more"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -153,7 +153,7 @@ export function S05Pricing() {
                           </div>
                           <div className="PricingGridHeader__body"></div>
                           <div className="PricingGridHeader__ctaContainer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/checkout/post-payment-invoices" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Payment_links_post-payment_invoices_learn_more_link">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/checkout/post-payment-invoices" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Payment_links_post-payment_invoices_learn_more_link">
                               {"Learn more"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -219,7 +219,7 @@ export function S05Pricing() {
                           </div>
                           <div className="PricingGridHeader__body"></div>
                           <div className="PricingGridHeader__ctaContainer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Payment_links_adaptive_pricing_learn_more_link">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Payment_links_adaptive_pricing_learn_more_link">
                               {"Learn more"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

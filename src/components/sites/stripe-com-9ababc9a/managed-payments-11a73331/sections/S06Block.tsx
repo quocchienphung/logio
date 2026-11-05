@@ -17,7 +17,7 @@ export function S06Block() {
                 </p>
               </div>
               <div className="section-row section-row-gap" style={{ "--section-row-gap-mb": "var(--hds-space-core-300)", "--section-row-gap-tb": "var(--hds-space-core-400)" }}>
-                <a className="hds-button hds-button--secondary-on-quiet" href="https://stripe.com/use-cases/in-app-payments" data-analytics-label="maximise_your_inapp__accept_inapp_payments">
+                <a className="hds-button hds-button--secondary-on-quiet" href="/unavailable/stripe/stripe.com/use-cases/in-app-payments" data-analytics-label="maximise_your_inapp__accept_inapp_payments">
                   {"Accept in-app payments"}
                 </a>
               </div>

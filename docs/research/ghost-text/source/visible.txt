@@ -1,0 +1,341 @@
+Components
+Ghost text
+Ghost text
+Pro
+
+An inline AI autocomplete where muted ghost text continues your sentence exactly at the caret and Tab turns it solid in place. Cmd+Right takes it one word at a time, Escape fades it away, and a calm chip shows the model behind it.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Fix double charge on mid-cycle upgrades
+#4127
+Daniel Kim wants to merge fix/proration into main
+Customers who upgraded mid-cycle were charged twice for the days left in their billing period. The credit for the old plan used the invoice date instead of​
+Autoplay. Click to type.
+Claude Haiku 5.5
+Suggestions appear when you pause. Tab accepts, Command or Control Right Arrow accepts one word, Escape dismisses.
+Suggestion accepted.
+When to use
+Long-form fields people write in product: pull request descriptions, emails, support replies, issue bodies, release notes, CRM notes.
+Short single-line fields where a likely completion saves typing, such as an email subject or a commit message.
+Anywhere you want AI help that stays out of the way until the person pauses, and never changes their text without an explicit key press.
+When not to use
+Use ai-composer for a chat-style prompt box that sends a message to an assistant.
+Use code-suggestion for code diffs with accept and reject per hunk.
+Use a combobox or command menu when the person picks from a list of known options rather than free text.
+Avoid it in fields with sensitive content (passwords, card numbers, health data) unless your model provider and data policy allow it.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Ghost text is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Ghost text
+All 118 Pro components and 117 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { GhostText, ClaudeMark } from "@/components/arc/ghost-text/ghost-text";
+2
+ 
+3
+// Stream a continuation from your API route (any model works).
+4
+async function* suggest(text: string, signal: AbortSignal) {
+5
+  const response = await fetch("/api/autocomplete", { method: "POST", body: JSON.stringify({ text }), signal });
+6
+  if (!response.ok || !response.body) throw new Error("Autocomplete is unavailable");
+7
+  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+8
+  for (;;) {
+9
+    const { value, done } = await reader.read();
+10
+    if (done) return;
+11
+    yield value;
+12
+  }
+13
+}
+14
+ 
+15
+export function PullRequestDescription() {
+16
+  const [body, setBody] = useState("");
+17
+  return (
+18
+    <GhostText
+19
+      value={body}
+20
+      onValueChange={setBody}
+21
+      suggest={suggest}
+22
+      rows={6}
+23
+      placeholder="Describe what changed and why"
+24
+      label="Description"
+25
+      model={{ name: "Claude Haiku 5.5", mark: <ClaudeMark style={{ color: "#D97757" }} /> }}
+26
+      onAccept={(text, mode) => track("autocomplete_accept", { mode, chars: text.length })}
+27
+    />
+28
+  );
+29
+}
+30
+ 
+Show all 41 lines
+API reference
+
+2 parts. The first is the root.
+
+GhostText
+
+Inline AI autocomplete for a textarea or a single-line input. When the person pauses, muted ghost text continues their sentence right at the caret, streamed from your suggest(text, signal) function. Tab accepts the whole suggestion, Cmd+Right (Ctrl+Right on Windows, Option or Alt+Right too) accepts one word at a time, Escape dismisses it, and typing the same characters as the ghost keeps it in place instead of asking again. A small chip in the corner shows the model's mark and name, a shimmering Thinking while it waits, a Tab key cap and "to accept" when a suggestion is ready (a tap target on touch screens), Accepted with a check after Tab, and No suggestion with Retry when your function throws. Accepted text settles from ghost ink to text ink in place, with no flicker or movement. Works controlled or uncontrolled, as a bordered field or flush inside your own card (variant="plain"). With no props it plays a simulated pull request card that types, pauses, accepts and loops, and you can take it over by clicking it.
+
+Prop
+Type
+Default
+Description
+suggest
+(text: string, signal: AbortSignal) => string | null | Promise<string | null> | AsyncIterable<string>
+–
+Returns a continuation for the text before the caret. Return a string or a promise of one for a whole suggestion, or an async iterable (an async generator over your model's stream) to stream it in chunk by chunk. Return null synchronously to skip without showing Thinking. Abort your request when signal fires: the person kept typing, moved the caret or left the field. A thrown error shows No suggestion with Retry.
+value
+string
+–
+The text, for a controlled field. Pair with onValueChange. Programmatic changes run through the same logic as typing, so a parent can drive the field.
+defaultValue
+string
+""
+The starting text for an uncontrolled field.
+onValueChange
+(value: string) => void
+–
+Called with the new text on every edit and every accepted suggestion or word.
+delay
+number
+450
+Milliseconds of pause before suggest is called. Every keystroke resets it.
+minLength
+number
+3
+Trimmed characters needed before suggestions start.
+multiline
+boolean
+true
+A growing textarea with a footer row, or a single-line input with the chip inline at its end. Line breaks pasted into a single-line field become spaces.
+variant
+"field" | "plain"
+"field"
+field draws its own 1px border, hover and keyboard focus ring. plain drops the border, background and ring so the text sits flush inside a card you already have (a compose panel, a PR form); give the card its own focus style.
+rows
+number
+3
+Minimum visible lines of a multi-line field.
+maxRows
+number
+10
+Lines before a multi-line field stops growing and scrolls, keeping the caret in view.
+placeholder
+string
+–
+Placeholder text for the empty field.
+label
+ReactNode
+–
+A quiet row above the text, such as a field name with an icon. It labels the field unless aria-label is set. Multi-line only.
+footer
+ReactNode
+–
+Content at the start of the footer row, such as a character count, a note or a send button. Multi-line only.
+model
+{ name: string; mark?: ReactNode }
+{ name: "Autocomplete" }
+The model behind the suggestions. The name shows in the idle chip and the mark at 12px in every chip state. Give a mono mark its brand color, for example the Claude mark in #D97757.
+hint
+boolean
+true
+Shows the chip, the Cmd+Right and Escape key hints next to it on wide fields, and a screen reader description of the keys.
+onAccept
+(accepted: string, mode: "all" | "word") => void
+–
+Called with the text that was accepted: the whole suggestion (all) or the next word (word). Useful for acceptance-rate analytics.
+onDismiss
+(suggestion: string) => void
+–
+Called with the suggestion the person dismissed with Escape.
+onStatusChange
+(status: "idle" | "loading" | "ready" | "error") => void
+–
+Called when the suggestion status changes.
+disabled
+boolean
+false
+Disables the field and stops suggestions.
+name, id, autoFocus, aria-label
+string | boolean
+–
+Passed to the textarea or input.
+notice
+string
+–
+A one-off message for screen readers, joined to the field's own announcements.
+ref
+Ref<GhostTextHandle>
+–
+Imperative handle: focus(), acceptAll(), acceptWord(), dismiss(), request() to ask now without waiting for a pause, and getState() returning { status, suggestion, streaming }. Use it for an Accept button of your own or for tests.
+className
+string
+–
+Class on the root element.
+createDemoSuggest
+
+The rule based stand in for a model used by the preview, exported for prototypes and tests. It streams PR writing continuations in 3 to 6 word chunks after a short think, completes partial words from a small vocabulary, and fails with a timeout when the text contains the word timeout so the error state can be seen. Nothing is sent anywhere.
+
+Prop
+Type
+Default
+Description
+scriptedOnly
+boolean
+false
+Only answer the autoplay script's contexts and return null for everything else.
+Keyboard interactions
+Tab
+Accepts the whole suggestion and keeps the caret at the end. With no suggestion showing, Tab moves focus as usual.
+Cmd
++
+Right
+or
+Ctrl
++
+Right
+Accepts the next word of the suggestion; the rest stays. Option+Right and Alt+Right work too. With no suggestion showing, the keys move the caret as usual.
+Escape
+Dismisses the suggestion. With no suggestion showing, Escape is left alone, so a surrounding dialog can still close.
+Typing
+Characters that match the start of the ghost consume it in place; anything else clears it and a new suggestion is asked for after the next pause.
+Arrow keys, click
+Moving the caret away from the end of the text clears the suggestion; suggestions only continue from the end.
+Accessibility
+The field is a native textarea (or input), labelled by aria-label or the label row, and described by a hidden sentence that explains Tab, Cmd or Ctrl+Right and Escape.
+The ghost text lives in an aria-hidden mirror behind the field, so it is never read as content. A polite status region reads the finished suggestion ("Suggestion: date the plan changed. Press Tab to accept."), then Suggestion accepted, Suggestion dismissed or Couldn't get a suggestion.
+The chip is a button with a clear name in each state (Accept suggestion, Retry suggestion). It is reachable with Tab only in the error state, where Retry is the action; in the ready state Tab itself accepts. Pressing the chip never steals focus from the field.
+State is never shown by color alone: Thinking, the Tab key cap with "to accept", Accepted with a check and No suggestion with an alert icon all carry words.
+Keyboard focus draws Arc's focus ring around the whole field; pointer focus does not.
+On touch screens, where there is no Tab key, the chip reads Tap to accept.
+Motion
+Ghost text only fades in, chunk by chunk as it streams (140ms each, opacity only, no blur or slide), so a suggestion settles without any movement. Escape and leaving the field fade it out in 110ms; typing a different character clears it at once so nothing lingers over new text.
+Accepting turns the ghost solid in place: for 200ms an aria-hidden mirror with the field's exact metrics draws the text while the native glyphs go transparent (the caret stays), and the accepted range eases from muted to text color. Cmd+Right does the same per word, and the rest of the ghost never re-fades.
+The field's height follows the text, ghost included, on a 180ms tween and never bounces. The box is clipped while it grows, so the browser cannot scroll it under the caret mid-tween.
+Chip states crossfade in place (old out in 100ms, new in 160ms) while the chip's width follows on a 200ms tween, anchored to its right edge. Key caps press for 160ms when their key or the matching handle method fires. Thinking carries a calm shimmer.
+Reduced motion removes the fades, the ink merge, the shimmer and the height tween and keeps every state, text and announcement. The preview plays once and stops instead of looping, and it pauses while off screen.
+Responsive behavior
+The field fills its container's width; the text and ghost wrap identically at any width, so the suggestion always starts at the caret.
+Below 520px of field width the Cmd+Right and Escape hints step aside and only the chip remains; the footer note truncates with an ellipsis.
+On touch screens the chip reads Tap to accept and accepts on tap.
+The single-line variant scrolls sideways with the caret and keeps the chip inline at its end.
+Performance
+One debounced request at a time: each keystroke clears the timer and aborts the in-flight request, so a fast typist triggers nothing until they pause.
+Typing through a matching suggestion trims it locally without a new request.
+The ghost renders as a few spans in a mirror behind a native textarea, so typing stays native-fast and works with spellcheck, IME, undo and autofill.
+The height and the chip width animate motion values directly; ResizeObserver measures, never a layout read mid-animation.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use a fast, cheap model for suggest (Claude Haiku 5.5, Gemini 3.8 Flash or DeepSeek V4.1 Flash): people expect ghost text within about half a second of pausing. Cap max tokens to a sentence or a short line.
+Prompt for a continuation only: no preamble, no repetition of the input, and include a leading space when the text ends mid-sentence without one. The component strips a leading space if the text already ends with whitespace.
+Always pass signal to fetch. The component aborts on every keystroke, caret move, blur and accept, and ignores late chunks.
+Return null synchronously for contexts you never want to complete (inside a code block, after a URL), so no Thinking state flashes.
+Log onAccept and onDismiss to measure acceptance rate per model and prompt.
+/components/ghost-text/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Textarea
+Component
+A multiline field for notes, descriptions, and longer text.
+Input
+Component
+A single line field with clear labels and useful states.
+AI composer
+Pro
+Block
+The prompt box at the bottom of an AI app: files upload in place, / opens commands, @ inserts mentions, a model and effort menu sits in the toolbar, and the send button turns into a stop control ringed by the reply's progress.
+Code suggestion
+Pro
+Component
+An AI code edit suggestion where the model's proposed changes stream into a small editor panel as inline diff hunks, and you accept or reject each one, or all at once with Cmd+Enter. Accepted hunks fold into the file with a smooth height change.
+Text shimmer
+Component
+Show ongoing work with a calm light across the words.
+AI chat
+Pro
+Block
+A full-screen AI chat where answers stream in as markdown with folding reasoning, tool chips and cited sources. People can switch chats and models, edit or retry a message into versions, rate replies and stop a reply mid-stream.
+Previous
+Code suggestion
+Next
+Image generation
+Arc · 239 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

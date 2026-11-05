@@ -1,0 +1,32 @@
+{
+  "checks": [
+    "Split menu ArrowDown opens and focuses first enabled item",
+    "Desktop menu stays inside viewport",
+    "Menu keyboard skips disabled export",
+    "Menu End selects last enabled item",
+    "Menu Escape restores trigger focus",
+    "Split alternative performs its action and dismisses popover",
+    "Async action processes and stores actual documents",
+    "Filter group updates actual results",
+    "Expanding row action grows on hover",
+    "Selected floating toolbar supports arrow navigation",
+    "Floating Clear changes real selection",
+    "Copy button writes exact actual SHA-256",
+    "Copy text writes actual extracted content",
+    "Confirm Escape cancels inline confirmation and keeps detail modal",
+    "Confirm Cancel preserves the document",
+    "A quick click on Delete does not remove the document (hold mode)",
+    "Holding Delete removes the document from the library at once and the dialog shows Removed · Undo",
+    "The original and its index stay in storage during the Undo window",
+    "Undo brings the document back in its old place, still readable",
+    "After the Undo window the dialog closes and the removal is final",
+    "Final removal deletes the original and its index from storage",
+    "Phone menu stays inside viewport",
+    "Phone floating toolbar stays inside viewport",
+    "Real account preference enables dark controls",
+    "Native popover inherits dark surface and light text",
+    "Copied icon retains visible currentColor stroke in dark mode",
+    "No browser runtime errors"
+  ],
+  "errors": []
+}

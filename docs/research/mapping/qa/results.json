@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "name": "fills the workspace panel with no container, header or title",
+      "pass": true
+    },
+    {
+      "name": "starter data is generic: User 1..N, no copied names, nothing stored until an edit",
+      "pass": true
+    },
+    {
+      "name": "keyboard hierarchy and animated camera",
+      "pass": true
+    },
+    {
+      "name": "canvas checklist toggles update rollups and persist across reload",
+      "pass": true
+    },
+    {
+      "name": "edit tab changes names, text, health, dates, status and checklist; the map follows",
+      "pass": true
+    },
+    {
+      "name": "add team, project and task; the camera flies to each; delete needs a second click",
+      "pass": true
+    },
+    {
+      "name": "people: new users count upward (User n+1), rename, remove clears assignments",
+      "pass": true
+    },
+    {
+      "name": "drag a team on the map to rearrange; Move later/earlier works from the editor",
+      "pass": true
+    },
+    {
+      "name": "wheel anchored zoom, pan drag and minimap",
+      "pass": true
+    },
+    {
+      "name": "tour advances and user input stops it",
+      "pass": true
+    },
+    {
+      "name": "export, import, invalid import, clear everything and reload the sample",
+      "pass": true
+    },
+    {
+      "name": "a second tab sees the edit through the data source subscription; workspaces stay separate",
+      "pass": true
+    },
+    {
+      "name": "existing Reports, Run, Settings and Companies navigation",
+      "pass": true
+    },
+    {
+      "name": "mobile layout and reduced motion keyboard",
+      "pass": true
+    },
+    {
+      "name": "touch tap and two-finger pinch",
+      "pass": true
+    },
+    {
+      "name": "zoomed-out task blocks: done is green, blocked is red, everything else stays neutral, and a status change recolors live",
+      "pass": true
+    },
+    {
+      "name": "no request ever leaves localhost (no ARC or other remote API)",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "outbound": []
+}

@@ -1,0 +1,36 @@
+{
+  "checks": [
+    "Storage routes enforce the shared token and same-origin write guard",
+    "API file storage starts only after the person approves the actual review",
+    "approved original, complete text index and metadata are durable on server",
+    "a clean second device can load and search text beyond the excerpt without IndexedDB",
+    "server originals are workspace isolated and referenced files cannot be deleted",
+    "server full-text failures are visible and Retry search recovers",
+    "upload works with unavailable device cache, failure and retry use the real API",
+    "live resource polling updates the first device after a second device upload",
+    "remote ZIP export fetches authenticated byte-checked originals without local cache",
+    "removal keeps the server original through the Undo window; a refused server deletion is kept visible and its Retry succeeds",
+    "backend clients send auth on every request and pages have no runtime errors"
+  ],
+  "errors": [],
+  "httpErrors": [
+    {
+      "path": "/api/workspace/workspaces/acme/storage/search",
+      "status": 503,
+      "body": "{\"error\":{\"message\":\"Search temporarily unavailable\"}}"
+    },
+    {
+      "path": "/api/workspace/workspaces/acme/storage/documents/00f6e608-9e2d-4e26-91e2-264a108a3e47",
+      "status": 403,
+      "body": "{\"error\":{\"message\":\"Upload denied for test\"}}"
+    },
+    {
+      "path": "/api/workspace/workspaces/acme/storage/documents/18566753-84cd-4168-a39b-c614f488faf3",
+      "status": 503,
+      "body": "{\"error\":{\"message\":\"Delete temporarily unavailable\"}}"
+    }
+  ],
+  "serverOutput": "▲ Next.js 16.3.8\n- Local:         http://localhost:3102\n- Network:       http://192.168.50.245:3102\n✓ Ready in 124ms\n✓ Running next.config.ts took 22ms\n⚠ \"next start\" does not work with \"output: standalone\" configuration. Use \"node .next/standalone/server.js\" instead.\n",
+  "authRequests": 96,
+  "allRequestsAuthenticated": true
+}

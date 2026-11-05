@@ -1,0 +1,42 @@
+[
+  {
+    "state": "idle",
+    "geometryIdentical": true,
+    "width": 1440,
+    "height": 80,
+    "differentPixels": 16,
+    "percent": 0.013888888888888888
+  },
+  {
+    "state": "isolated-Products",
+    "geometryIdentical": true,
+    "width": 1262,
+    "height": 692,
+    "differentPixels": 2170,
+    "percent": 0.24848162839057192
+  },
+  {
+    "state": "isolated-Solutions",
+    "geometryIdentical": true,
+    "width": 1262,
+    "height": 439,
+    "differentPixels": 443,
+    "percent": 0.07996130089636076
+  },
+  {
+    "state": "isolated-Developers",
+    "geometryIdentical": true,
+    "width": 1262,
+    "height": 319,
+    "differentPixels": 3,
+    "percent": 0.0007451972040200905
+  },
+  {
+    "state": "isolated-Resources",
+    "geometryIdentical": true,
+    "width": 1262,
+    "height": 289,
+    "differentPixels": 347,
+    "percent": 0.09514200012064115
+  }
+]

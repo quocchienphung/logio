@@ -1,0 +1,15 @@
+{
+  "errors": [],
+  "passed": [
+    "three onboarding steps",
+    "arrow navigation",
+    "Escape dismiss",
+    "manual reopening",
+    "dismissal persistence",
+    "real upload and review",
+    "expanded disclosure",
+    "approval and completed progress",
+    "mobile no overflow",
+    "dark/reduced-motion render"
+  ]
+}

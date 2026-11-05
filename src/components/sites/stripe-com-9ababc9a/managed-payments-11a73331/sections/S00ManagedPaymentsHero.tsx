@@ -28,7 +28,7 @@ export function S00ManagedPaymentsHero() {
                   </li>
                   <li className="hero-subnav-item">
                     <span className="hds-text hds-text--sm">
-                      <a className="hds-link hero-subnav-item__link" href="https://stripe.com/pricing#managed-payments" data-analytics-label="hero__top_nav__pricing">
+                      <a className="hds-link hero-subnav-item__link" href="/unavailable/stripe/stripe.com/pricing" data-analytics-label="hero__top_nav__pricing">
                         {"Pricing"}
                       </a>
                     </span>
@@ -40,7 +40,7 @@ export function S00ManagedPaymentsHero() {
               <ul className="hero-subnav-items">
                 <li className="hero-subnav-item">
                   <span className="hds-text hds-text--sm">
-                    <a className="hds-link hero-subnav-item__link" href="https://docs.stripe.com/payments/managed-payments" data-analytics-label="hero__top_nav__docs">
+                    <a className="hds-link hero-subnav-item__link" href="/unavailable/stripe/docs.stripe.com/payments/managed-payments" data-analytics-label="hero__top_nav__docs">
                       {"Docs"}
                       <span className="hero-subnav-item__icon-end">
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon" aria-hidden="true">
@@ -83,7 +83,7 @@ export function S00ManagedPaymentsHero() {
                       </li>
                       <li className="hero-subnav-item">
                         <span className="hds-text hds-text--sm">
-                          <a className="hds-link hero-subnav-item__link" href="https://stripe.com/pricing#managed-payments" data-analytics-label="hero__top_nav__pricing">
+                          <a className="hds-link hero-subnav-item__link" href="/unavailable/stripe/stripe.com/pricing" data-analytics-label="hero__top_nav__pricing">
                             {"Pricing"}
                           </a>
                         </span>
@@ -95,7 +95,7 @@ export function S00ManagedPaymentsHero() {
                   <ul className="hero-subnav-items">
                     <li className="hero-subnav-item">
                       <span className="hds-text hds-text--sm">
-                        <a className="hds-link hero-subnav-item__link" href="https://docs.stripe.com/payments/managed-payments" data-analytics-label="hero__top_nav__docs">
+                        <a className="hds-link hero-subnav-item__link" href="/unavailable/stripe/docs.stripe.com/payments/managed-payments" data-analytics-label="hero__top_nav__docs">
                           {"Docs"}
                           <span className="hero-subnav-item__icon-end">
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon" aria-hidden="true">
@@ -107,7 +107,7 @@ export function S00ManagedPaymentsHero() {
                     </li>
                   </ul>
                   <div className="hds-button-group">
-                    <a className="hds-button hds-button--primary hds-button--compact" href="https://dashboard.stripe.com/register/managed_payments" data-analytics-label="hero__sticky_sub_nav__start_now">
+                    <a className="hds-button hds-button--primary hds-button--compact" href="/signup" data-analytics-label="hero__sticky_sub_nav__start_now">
                       {"Start now"}
                       <span className="hds-nowrap-svg">
                         <svg className="hds-icon hds-icon-hover-arrow" width="5" height="8" fill="none" viewBox="0 0.5 5 8">
@@ -143,7 +143,7 @@ export function S00ManagedPaymentsHero() {
             </p>
           </div>
           <div className="hds-button-group">
-            <a className="hds-button hds-button--primary" href="https://dashboard.stripe.com/register/managed_payments" data-analytics-label="hero__start_now">
+            <a className="hds-button hds-button--primary" href="/signup" data-analytics-label="hero__start_now">
               {"Start now"}
               <span className="hds-nowrap-svg">
                 <svg className="hds-icon hds-icon-hover-arrow" width="5" height="8" fill="none" viewBox="0 0.5 5 8">
@@ -161,7 +161,7 @@ export function S00ManagedPaymentsHero() {
                 </svg>
               </span>
             </a>
-            <a className="hds-button hds-button--secondary" href="https://stripe.com/contact/sales" data-analytics-label="hero__contact_sales">
+            <a className="hds-button hds-button--secondary" href="/unavailable/stripe/stripe.com/contact/sales" data-analytics-label="hero__contact_sales">
               {"Contact sales"}
             </a>
           </div>

@@ -1,0 +1,11 @@
+{
+  "open": {
+    "label": "Close dialog",
+    "text": ""
+  },
+  "closed": {
+    "label": null,
+    "text": "Review changes"
+  },
+  "backdropClosed": true
+}

@@ -97,7 +97,7 @@ export function S08IntegrationOptions() {
                             </title>
                           </svg>
                         </div>
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/terminal#integration-options" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="easily_integrate__read_the_docs">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/terminal" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="easily_integrate__read_the_docs">
                           {"Read the docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

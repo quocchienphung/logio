@@ -1,0 +1,32 @@
+{
+  "checks": [
+    "Excel identifies itself as a UI simulation",
+    "File selection keeps its label while previewing the fixed sample",
+    "Overview uses the six-row sample",
+    "Review can approve an editable sample",
+    "Export shows a simulated result",
+    "JSON keeps the expandable sample tree",
+    "JSON plays scripted checks without validating real data",
+    "Queue starts with three sample states",
+    "Search filters the sample list",
+    "Holding Delete removes only a sample row",
+    "Undo restores the sample row",
+    "The three sections made no Queue API requests",
+    "No file content was read",
+    "The demo created neither downloads nor workbook workers",
+    "excel-formation fits a reduced-motion phone viewport",
+    "json-formation fits a reduced-motion phone viewport",
+    "queue fits a reduced-motion phone viewport",
+    "Reload resets Queue to the sample fixtures",
+    "The retired Queue API rejects GET",
+    "The retired Queue API rejects POST",
+    "The retired Queue API rejects PUT",
+    "The retired Queue API rejects DELETE",
+    "The retired Queue API rejects PATCH",
+    "No uncaught browser errors"
+  ],
+  "errors": [],
+  "requests": [],
+  "downloads": [],
+  "workers": []
+}

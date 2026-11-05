@@ -1,0 +1,104 @@
+Add rate limiting to the public API
+Claude Sonnet 5.5
+Waiting for you
+0:06
+Planned the change
+1.2s
+
+The public API has no rate limiting yet. I'll check how the routes are mounted, look for existing middleware, and see whether Redis is available so a limit holds across every instance.
+
+Read
+src/api/routes.ts
+0.9s
+Searched for
+rate limit middleware
+1.0s
+Read
+package.json
+0.7s
+Read
+src/lib/redis.ts
+0.7s
+Searched for
+the API key on requests
+0.9s
+Review
+changes to 2 files
+
+Add a Redis rate limiter, 60 requests a minute per API key, and put it in front of every API route.
+
+rate-limit.ts
+15 added
++15
+routes.ts
+2 added
++2
+, 1 removed
+−1
+1
++
+Added:
+import type { RequestHandler } from "express";
+2
++
+Added:
+import { redis } from "../lib/redis";
+3
++
+Added:
+ 
+4
++
+Added:
+const WINDOW = 60; // seconds
+5
++
+Added:
+const LIMIT = 60;
+6
++
+Added:
+ 
+7
++
+Added:
+export const rateLimit: RequestHandler = async (req, res, next) => {
+8
++
+Added:
+  const key = `rate:${req.apiKey ?? req.ip}`;
+9
++
+Added:
+  const count = await redis.incr(key);
+10
++
+Added:
+  if (count === 1) await redis.expire(key, WINDOW);
+11
++
+Added:
+  res.set("RateLimit-Remaining", String(Math.max(0, LIMIT - count)));
+12
++
+Added:
+  if (count <= LIMIT) return next();
+13
++
+Added:
+  res.set("Retry-After", String(WINDOW));
+14
++
+Added:
+  res.status(429).json({ error: "Too many requests" });
+15
++
+Added:
+};
+
+Nothing is written until you approve.
+
+Reject
+Approve
+
+Waiting for you. Review the changes to 2 files, then approve or reject.

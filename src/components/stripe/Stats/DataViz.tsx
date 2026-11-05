@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { runHeavy } from "@/lib/pageSettled";
 import type { TimeOfDay } from "./dataviz/core";
 
 // Official no-WebGL renderings of the data visualisation, one per stat.
@@ -64,17 +65,19 @@ export function DataViz({ activeIndex, timeOfDay, desktop }: DataVizProps) {
     io.observe(canvas);
     let disposed = false;
     import("./dataviz/DataVizController")
-      .then(({ DataVizController }) => {
-        if (disposed) return;
-        try {
-          const controller = new DataVizController(canvas);
-          controller.setTimeOfDay(initialTimeOfDay.current, false);
-          controllerRef.current = controller;
-          setReady(true);
-        } catch {
-          setFailed(true);
-        }
-      })
+      .then(({ DataVizController }) =>
+        runHeavy(() => {
+          if (disposed) return;
+          try {
+            const controller = new DataVizController(canvas);
+            controller.setTimeOfDay(initialTimeOfDay.current, false);
+            controllerRef.current = controller;
+            setReady(true);
+          } catch {
+            setFailed(true);
+          }
+        }),
+      )
       .catch(() => setFailed(true));
     const ro = new ResizeObserver(() => controllerRef.current?.debouncedResize());
     ro.observe(document.body);

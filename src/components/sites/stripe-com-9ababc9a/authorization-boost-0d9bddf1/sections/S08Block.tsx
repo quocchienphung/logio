@@ -40,7 +40,7 @@ export function S08Block() {
                                   {" Twilio SendGrid increased conversion by 2% with Stripe’s Authorization Boost, including Adaptive Acceptance, network tokens, and card account updater. "}
                                 </p>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/twilio" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonal_twilio_read_more">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/twilio" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonal_twilio_read_more">
                                 {"Read the full story"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -72,7 +72,7 @@ export function S08Block() {
                                   {" With Stripe managing both one-time payments and recurring subscriptions, CLEAR has achieved higher conversion rates. Stripe’s card account updater and network tokenization help CLEAR protect revenue, increase authorization rates, and reduce churn caused by changes in customers’ credit cards. "}
                                 </p>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/newsroom/news/clear-and-stripe" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonials_clear_read_the_full_story">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/newsroom/news/clear-and-stripe" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonials_clear_read_the_full_story">
                                 {"Read the full story"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

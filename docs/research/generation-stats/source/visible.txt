@@ -1,0 +1,327 @@
+Components
+Generation stats
+Generation stats
+Pro
+
+A live stats strip for a streaming LLM response where time to first token, speed with a sparkline, output tokens and cost count up in tabular numerals beside the model's real mark, then settle and open into a latency and token cost breakdown.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+GPT-6.1 Sol
+stats
+Done in 3.60s
+First token
+690ms
+Speed
+109
+tok/s
+Output tokens
+318
+Cost
+$0.0106
+Details
+First token
+690ms
+Generation
+2.91s
+Total
+3.60s
+Token usage and cost
+Type	Tokens	Rate	Cost
+Input	1,388	$2.50/M	$0.0035
+Cached input	2,560	$0.25/M	$0.0006
+Output	318	$12.00/M	$0.0038
+Reasoning	224	$12.00/M	$0.0027
+Total	4,490		$0.0106
+
+Simulated run with sample rates. Nothing was sent.
+
+Simulated run with sample rates. Nothing was sent.
+When to use
+Under assistant messages in a chat product that shows people what a response cost or how fast it was.
+Playgrounds, eval runners and internal dev panels comparing models on latency, throughput and cost.
+Admin or debugging views that inspect a single request's token usage and cache hit rate.
+When not to use
+Use context-window to show how much of a model's context a conversation has used.
+Use a chart or table for spend across many requests or days; this strip describes one response.
+Use agent-status for a long running agent with steps; this measures one model call.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Generation stats is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Generation stats
+All 118 Pro components and 117 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { GenerationStats } from "@/components/arc/generation-stats/generation-stats";
+2
+ 
+3
+// Under an assistant message, fed by your streaming handler.
+4
+export function MessageStats({ run }) {
+5
+  return (
+6
+    <GenerationStats
+7
+      variant="inline"
+8
+      model={{ name: "Claude Sonnet 5.5", provider: "anthropic", id: "claude-sonnet-5-5" }}
+9
+      status={run.status}                 // "waiting" | "streaming" | "done" | "stopped" | "error"
+10
+      startedAt={run.startedAt}           // Date.now() when the request went out
+11
+      usage={{
+12
+        inputTokens: run.usage.input_tokens + run.usage.cache_read_input_tokens,
+13
+        cachedTokens: run.usage.cache_read_input_tokens,
+14
+        outputTokens: run.outputTokens,   // update on every chunk
+15
+        ttftMs: run.ttftMs,               // set on the first token
+16
+        durationMs: run.durationMs,       // set on the last
+17
+      }}
+18
+      pricing={{ input: 3, cachedInput: 0.3, output: 15 }}
+19
+      error={run.error}
+20
+      onRetry={() => run.retry()}
+21
+    />
+22
+  );
+23
+}
+24
+ 
+25
+// A dev panel card with the breakdown open.
+26
+<GenerationStats model={model} status="done" usage={usage} pricing={pricing} defaultExpanded />
+27
+ 
+28
+// With no props it plays the sample runs.
+29
+<GenerationStats />
+API reference
+
+2 parts. The first is the root.
+
+GenerationStats
+
+A live stats strip for a streaming LLM response. The head shows the model's real mark, its name and a status with icon and label (Waiting, Streaming, Done in 4.18s, Stopped at 1.90s, Failed). Below it four cells split by hairlines: time to first token, speed in tokens per second with a small sparkline, output tokens and cost. While the response streams every number counts up in tabular numerals and the sparkline draws; when it ends the numbers settle on exact values. Details opens a breakdown with a latency bar (first token, generation, total) and a token table (input, cached input, output, reasoning, total) with rates and cost. A failed response gets a reason row with Retry. With no props it plays four sample runs (Claude Sonnet 5.5, GPT-6.1 Sol, Gemini 3.8 Flash and Mistral Large 4, which fails once and retries).
+
+Prop
+Type
+Default
+Description
+status
+"idle" | "waiting" | "streaming" | "done" | "stopped" | "error"
+–
+Where the response is: waiting until the first token, streaming until the last. Leave it out to play the built in sample runs.
+model
+{ name: string; provider: GenerationProvider; id?: string }
+–
+The model that answered. provider picks the mark: "anthropic", "openai", "google", "xai", "mistral", "deepseek", "meta" or "qwen". id goes into the copied JSON.
+startedAt
+number
+–
+Epoch ms when the request was sent. While waiting, time to first token counts live from here; while streaming, total latency does.
+usage
+GenerationUsage
+{}
+inputTokens (cached included), cachedTokens, outputTokens, reasoningTokens, ttftMs, durationMs, tokensPerSecond, costUsd. All optional. Update outputTokens as chunks arrive and set ttftMs on the first token and durationMs on the last; speed and cost are derived unless you pass tokensPerSecond or costUsd.
+pricing
+{ input: number; cachedInput?: number; output: number }
+–
+USD per million tokens. Enables the Rate and Cost columns and the live cost. Reasoning tokens bill at the output rate; cachedInput defaults to the input rate.
+speedSamples
+number[]
+–
+Speed readings in tokens per second, oldest first, for the sparkline. By default the component reads speed every 160ms while outputTokens grows, smoothed, and keeps the whole run's shape.
+error
+string
+–
+The reason shown in the error row when status is "error".
+onRetry
+() => void
+–
+Shows Retry in the error row.
+variant
+"card" | "inline"
+"card"
+card is a bordered strip for dev panels and run views. inline is one quiet wrapping line ("412ms to first token · 88 tok/s · 284 tokens · $0.0077") for the space under a chat message; the breakdown opens as a panel below it.
+expanded
+boolean
+–
+Controls the breakdown. Pair with onExpandedChange.
+defaultExpanded
+boolean
+false
+Opens the breakdown on first render when uncontrolled.
+onExpandedChange
+(expanded: boolean) => void
+–
+Called when Details is pressed.
+note
+ReactNode
+–
+A footnote under the breakdown, for example "Rates from your Anthropic contract, updated Oct 1, 2026". The preview uses it to say the run is simulated.
+className
+string
+–
+Class on the root element.
+useGenerationSimulation
+
+The simulated stream behind the preview, exported for prototypes and tests. Returns { frame, cueOpen, retry, next }, where frame holds model, pricing, status, startedAt, usage and error in exactly the shape GenerationStats takes. Output ramps up, wavers a few percent and arrives in chunks of four or more tokens, like a real stream. Nothing is sent anywhere.
+
+Prop
+Type
+Default
+Description
+runs
+GenerationSampleRun[]
+generationSampleRuns
+The runs to play in order. A run with failAtTokens fails there once and succeeds when retried.
+active
+boolean
+true
+Ticks only while true; pass false when the card is off screen.
+hold
+boolean
+false
+Keeps a settled run on screen instead of moving on.
+loop
+boolean
+true
+Plays the runs in a loop.
+Keyboard interactions
+Tab
+Moves to Details, then Retry when a response failed, then the copy button inside an open breakdown.
+Enter, Space
+Opens or closes the breakdown, retries, or copies the stats as JSON.
+Accessibility
+The strip is a group named after the model ("Claude Sonnet 5.5 stats"). The four stats are a description list, so each value is read with its label: "First token, 412ms".
+Details is a button with aria-expanded and aria-controls; at narrow widths it becomes an icon button that keeps the name Show details or Hide details.
+A polite status region announces settled outcomes ("Claude Sonnet 5.5 done in 4.18s, 284 output tokens at 88 tokens per second, $0.0077"), failures and stops, never the live counts. The self-playing preview says once that it is simulated and stays quiet until someone interacts with it.
+Status never relies on color: a spinner, drawn check, alert or square always sits next to a word. The latency bar is decorative; its values are listed beside it in text.
+The breakdown is a real table with column and row headers and a caption, so screen readers can navigate tokens, rates and cost by cell.
+Pointer focus draws no ring; keyboard focus shows Arc's shared focus ring.
+Motion
+Numbers glide toward each new value in about 100ms per step with tabular numerals in reserved cells, so chunks of tokens read as one smooth count and nothing beside them moves. A drop, like a new request, cuts straight to the new value instead of counting down.
+While streaming, speed is measured when each chunk lands, so it holds still between chunks instead of sagging and jumping. The sparkline adds a smoothed reading every 160ms and compresses to keep the whole run's shape.
+Status labels swap with a single crossfade (out in 100ms, in over 160ms with a 2px rise); the done check draws itself once.
+The breakdown and the error row open on a 260ms critically damped spring for height with a 160ms fade. Nothing bounces.
+The preview loop pauses off screen and holds on a settled run while someone has the breakdown open.
+Reduced motion shows final values at once, drops the spinner, the check drawing and the height springs, and stops the preview on a settled run.
+Responsive behavior
+The card's four cells sit in one row above 600px of width and in a two by two grid below it, so the speed cell keeps room for its sparkline.
+Below 440px Details becomes an icon button and the Rate column hides; the model name truncates with an ellipsis rather than wrapping.
+The inline variant wraps its stats onto a second line on phones instead of scrolling; the breakdown spans the full width under it.
+Performance
+The live clock runs on requestAnimationFrame only while waiting or streaming, and each counting number re-renders only itself.
+The speed series is sampled on a 160ms interval only while streaming and capped at 48 points.
+The preview's simulation ticks every 40ms in virtual time and only while the card is on screen.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Wire it to the stream you already have: set startedAt when the request leaves, status "waiting" until the first chunk, then "streaming" while you add to outputTokens, then "done" with durationMs. Speed, latency and cost follow.
+Map provider usage fields: Anthropic input_tokens plus cache_read_input_tokens is inputTokens and cache_read_input_tokens is cachedTokens; OpenAI prompt_tokens and prompt_tokens_details.cached_tokens map the same way, and completion_tokens_details.reasoning_tokens is reasoningTokens.
+Pass pricing from your own config. If your provider already reports cost, pass usage.costUsd and leave pricing out; the Rate column then hides.
+Use variant="inline" under chat messages and the card in eval views, playgrounds and admin panels. Keep the model name as people know it ("Claude Sonnet 5.5"), and put the API id in model.id.
+When the person stops a response, set status "stopped" with durationMs; when the request fails, set status "error" with a short, specific reason and onRetry.
+/components/generation-stats/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Context window
+Pro
+Component
+An AI context window as a grid of 200 cells: the system prompt, tools, files, summary and messages fill it in order, a threshold row marks where compaction starts, and sending a message, attaching a file or compacting shows exactly how much still fits.
+Tool call
+Pro
+Component
+A tool call row for agent transcripts: the tool's mark and the call in plain words, a live state while it runs, and the input and output a click away, with approval and retry when needed.
+Agent status
+Pro
+Component
+A compact live status pill for a running AI agent: the agent's mark in a live ring, the current activity and an elapsed timer, opening into the steps so far.
+AI chat
+Pro
+Block
+A full-screen AI chat where answers stream in as markdown with folding reasoning, tool chips and cited sources. People can switch chats and models, edit or retry a message into versions, rate replies and stop a reply mid-stream.
+Model picker
+Pro
+Block
+A model picker in one quiet pill: open it to choose from featured models with a one line note each, set the reasoning effort, or browse every other model by provider, and the pill swaps to your choice in place.
+Text shimmer
+Component
+Show ongoing work with a calm light across the words.
+Copy button
+Component
+Copy a value with immediate confirmation.
+Previous
+Provider keys
+Next
+AI translate
+Arc · 239 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

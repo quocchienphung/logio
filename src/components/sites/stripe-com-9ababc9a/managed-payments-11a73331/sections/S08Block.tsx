@@ -17,7 +17,7 @@ export function S08Block() {
                 </p>
               </div>
               <div className="section-row section-row-gap" style={{ "--section-row-gap-mb": "var(--hds-space-core-300)", "--section-row-gap-tb": "var(--hds-space-core-400)" }}>
-                <a className="hds-button hds-button--secondary-on-quiet" href="https://docs.stripe.com/payments/managed-payments/update-checkout" data-analytics-label="managed_payments__get_started__update_checkout">
+                <a className="hds-button hds-button--secondary-on-quiet" href="/unavailable/stripe/docs.stripe.com/payments/managed-payments/update-checkout" data-analytics-label="managed_payments__get_started__update_checkout">
                   {"Explore the docs"}
                 </a>
               </div>

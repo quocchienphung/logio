@@ -6,6 +6,7 @@
 //    on desktop the sticky nav hosts the drawer in its drawer slot.
 
 import { breakpoint, debounce, Disposer, listen, onBreakpointChange, throttle, type Cleanup } from "./env";
+import { animateMenu, wireMenuHighlight } from "@/components/interaction/menu-motion";
 
 const SHIFT_VAR = "--hero-subnav-dropdown-item-shift";
 const HOVER_DELAY = 30; // from source: setTimeout(..., 30)
@@ -40,6 +41,10 @@ function mountDropdown(li: HTMLElement, host: DropdownHost): DropdownApi {
   const drawer = li.querySelector<HTMLElement>(".hero-subnav-dropdown-item__drawer");
   const list = drawer?.querySelector<HTMLElement>(".hero-subnav-dropdown-item__list") ?? null;
   if (!trigger || !drawer || !list) return { close: () => {}, sync: () => {}, dispose: () => {} };
+  list.dataset.interactionMenu = "";
+  list.querySelectorAll("a").forEach(link => link.setAttribute("data-menu-item", ""));
+  const unhighlight = wireMenuHighlight(list);
+  let animation: ReturnType<typeof animateMenu> | undefined;
   let open = false;
   let timer: number | undefined;
   let pointerInside = false;
@@ -87,9 +92,15 @@ function mountDropdown(li: HTMLElement, host: DropdownHost): DropdownApi {
     if (open) {
       list.removeAttribute("hidden");
       list.removeAttribute("inert");
+      animation?.cancel(); animation = animateMenu(list, true);
     } else {
-      list.setAttribute("hidden", "");
       list.setAttribute("inert", "");
+      if (!list.hidden) {
+        const style = getComputedStyle(list), from = { opacity: style.opacity, transform: style.transform };
+        animation?.cancel();
+        const closing = animateMenu(list, false, "bottom", from); animation = closing;
+        void closing.finished.then(() => { if (!open && animation === closing) { list.hidden = true; closing.cancel(); } }, () => {});
+      }
     }
   };
 
@@ -304,6 +315,8 @@ function mountDropdown(li: HTMLElement, host: DropdownHost): DropdownApi {
     },
     dispose: () => {
       clearTimer();
+      animation?.cancel(); unhighlight(); list.removeAttribute("data-interaction-menu");
+      list.querySelectorAll("[data-menu-item]").forEach(link => link.removeAttribute("data-menu-item"));
       docCleanup?.run();
       if (drawer.parentElement !== li) li.appendChild(drawer);
       d.run();

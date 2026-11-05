@@ -36,7 +36,7 @@ export function S10ReadyToGetStarted() {
                     </div>
                     <footer className="Copy__footer">
                       <div className="CtaGroup CtaGroup--inline">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register?redirect=%2Fsettings%2Fstripe-data-pipeline" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="footer__start_free_trial">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="footer__start_free_trial">
                           {"Start free trial"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -48,7 +48,7 @@ export function S10ReadyToGetStarted() {
                           </span>
                         </a>
                         {" "}
-                        <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_contact_sales">
+                        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="data_pipeline_contact_sales">
                           {"Contact sales"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

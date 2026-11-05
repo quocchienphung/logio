@@ -77,7 +77,7 @@ export function S08UnifiedPlatform() {
                             </div>
                             <span className="PaymentsUptimeGraphic__details">
                               {" historical uptime for "}
-                              <a className="Link" href="https://status.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="move_faster_with__reliability_is_revenue__stripe_services">
+                              <a className="Link" href="/unavailable/stripe/status.stripe.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="move_faster_with__reliability_is_revenue__stripe_services">
                                 {"Stripe services"}
                               </a>
                             </span>

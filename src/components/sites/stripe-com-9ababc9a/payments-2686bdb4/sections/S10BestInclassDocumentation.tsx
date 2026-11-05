@@ -66,7 +66,7 @@ export function S10BestInclassDocumentation() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/stripe-cli" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/stripe-cli" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"CLI for development and testing"}
                                 </a>
                                 <br />
@@ -78,7 +78,7 @@ export function S10BestInclassDocumentation() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/upgrades" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/upgrades" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Versioned API changes"}
                                 </a>
                                 <br />
@@ -90,7 +90,7 @@ export function S10BestInclassDocumentation() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/webhooks" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/webhooks" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Webhooks"}
                                 </a>
                                 <br />
@@ -102,7 +102,7 @@ export function S10BestInclassDocumentation() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/testing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/testing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Test environment"}
                                 </a>
                                 <br />
@@ -114,7 +114,7 @@ export function S10BestInclassDocumentation() {
                               </svg>
                               {" "}
                               <span className="ListItem__label">
-                                <a className="Link" href="https://stripe.com/docs/payments/charges-api#storing-information-in-metadata" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/charges-api" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Metadata support"}
                                 </a>
                                 <br />
@@ -122,7 +122,7 @@ export function S10BestInclassDocumentation() {
                             </li>
                           </ul>
                         </section>
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/payments" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_developers_explore_the_docs">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_developers_explore_the_docs">
                           {"Explore the docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -241,7 +241,7 @@ export function S10BestInclassDocumentation() {
                             </div>
                             <footer className="Copy__footer">
                               <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                                <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/libraries" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="developer_centric_to__comprehensive_libraries__learn_more">
+                                <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/libraries" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="developer_centric_to__comprehensive_libraries__learn_more">
                                   {"Learn more"}
                                   <span className="nobr">
                                     <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

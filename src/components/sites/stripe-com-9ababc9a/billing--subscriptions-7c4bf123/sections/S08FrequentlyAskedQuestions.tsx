@@ -50,7 +50,7 @@ export function S08FrequentlyAskedQuestions() {
                   <div className="hds-details-content">
                     <p className="hds-text hds-text--md hds-text--soft">
                       {"With Stripe’s subscriptions solution, you get tools designed to help you handle recurring billing. This includes 15+ pre-built pricing models (from usage-based and hybrid models to sales-sold contracts), revenue retention automations, centralized analytics, and automated invoicing. Pricing is available as a monthly-paid annual plan or a pay-as-you-go plan. For details on pricing and regional considerations, visit the "}
-                      <a className="hds-link hds-link--secondary" href="https://stripe.com/pricing#billing">
+                      <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/pricing">
                         {"Billing section"}
                       </a>
                       {" of our pricing page."}
@@ -141,7 +141,7 @@ export function S08FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":Rreur6l6H1:">
                             {"Discover proven strategies to effectively measure and reduce involuntary subscription churn."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":Rreur6l6H1:" aria-labelledby=":Rreur6l6:" href="https://stripe.com/lp/churn-benchmarks" data-analytics-label="more_resources__the_stripe_guide">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":Rreur6l6H1:" aria-labelledby=":Rreur6l6:" href="/unavailable/stripe/stripe.com/lp/churn-benchmarks" data-analytics-label="more_resources__the_stripe_guide">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">
@@ -188,7 +188,7 @@ export function S08FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":R1beur6l6H1:">
                             {"Our survey of 2,000+ business leaders reveals how top companies stay competitive."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1beur6l6H1:" aria-labelledby=":R1beur6l6:" href="https://stripe.com/lp/pricing-trends" data-analytics-label="more_resources__five_pricing_trends">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1beur6l6H1:" aria-labelledby=":R1beur6l6:" href="/unavailable/stripe/stripe.com/lp/pricing-trends" data-analytics-label="more_resources__five_pricing_trends">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">
@@ -235,7 +235,7 @@ export function S08FrequentlyAskedQuestions() {
                           <p className="hds-text hds-resource-card__text hds-text--md hds-text--soft" id=":R1reur6l6H1:">
                             {"Read up on Stripe Billing’s most recent product roadmap updates."}
                           </p>
-                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1reur6l6H1:" aria-labelledby=":R1reur6l6:" href="https://stripe.com/blog/create-new-monetization-opportunities-with-recent-stripe-billing-upgrades" data-analytics-label="more_resources__create_new_monetization">
+                          <a className="hds-link hds-resource-card__link hds-link--callout" aria-describedby=":R1reur6l6H1:" aria-labelledby=":R1reur6l6:" href="/unavailable/stripe/stripe.com/blog/create-new-monetization-opportunities-with-recent-stripe-billing-upgrades" data-analytics-label="more_resources__create_new_monetization">
                             <span className="hds-resource-card__link-content">
                               {"Read more"}
                               <span className="hds-nowrap-svg">

@@ -50,7 +50,7 @@ export function S01IncreaseAuthorizationRatesWith() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="https://stripe.com/authorization#ai-powered" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_ai_powered_jump">
+                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="/unavailable/stripe/stripe.com/authorization" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_ai_powered_jump">
                           {"Explore"}
                           <svg className="JumpArrow" width="28" height="28" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                             <rect width="28" height="28" rx="14" className="JumpArrow__iconRect" />
@@ -86,7 +86,7 @@ export function S01IncreaseAuthorizationRatesWith() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="https://stripe.com/authorization#cost-optimization" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_cost_optimization_jump">
+                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="/unavailable/stripe/stripe.com/authorization" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_cost_optimization_jump">
                           {"Explore"}
                           <svg className="JumpArrow" width="28" height="28" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                             <rect width="28" height="28" rx="14" className="JumpArrow__iconRect" />
@@ -123,7 +123,7 @@ export function S01IncreaseAuthorizationRatesWith() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="https://stripe.com/authorization#lifecycle-management" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_lifecycle_management_jump">
+                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="/unavailable/stripe/stripe.com/authorization" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_lifecycle_management_jump">
                           {"Explore"}
                           <svg className="JumpArrow" width="28" height="28" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                             <rect width="28" height="28" rx="14" className="JumpArrow__iconRect" />
@@ -159,7 +159,7 @@ export function S01IncreaseAuthorizationRatesWith() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="https://stripe.com/authorization#analytics" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_analytics_jump">
+                        <a className="CtaButton variant--Link CtaButton--arrow CtaButton--jumpArrowLink" href="/unavailable/stripe/stripe.com/authorization" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="authorization_analytics_jump">
                           {"Explore"}
                           <svg className="JumpArrow" width="28" height="28" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                             <rect width="28" height="28" rx="14" className="JumpArrow__iconRect" />

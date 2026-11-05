@@ -1,0 +1,198 @@
+Components
+Expandable card
+Expandable card
+
+Give a dense card more room when requested.
+
+$
+pnpm dlx shadcn@latest add @uiarc/expandable-card
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Launch checklist
+4 of 6 items complete
+4 of 6 items complete
+Two small steps remain
+Invite reviewers and add a release note before publishing.
+Invite reviewers
+Maya Chen, Jonas Weber
+Add a release note
+Draft started Tuesday
+When to use
+A single summary card with optional details, like a plan, order, or log entry.
+Cards whose summary line updates and should roll changed words in place.
+When not to use
+Use accordion for a list of mutually exclusive sections.
+Use card when there is nothing to reveal.
+Use card-stack for browsing several cards in one spot.
+Installation
+
+Add Expandable card with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/expandable-card
+pnpm dlx shadcn@latest add @uiarc/expandable-card
+
+Adds the component and its local dependencies, and installs motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/expandable-card.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { ExpandableCard } from "@/components/arc/expandable-card/expandable-card";
+2
+ 
+3
+export function PlanDetails() {
+4
+  return (
+5
+    <ExpandableCard title="Pro plan" description="Billed yearly, renews March 4" width={400} expandedWidth={600}>
+6
+      <ul>
+7
+        <li>Unlimited projects</li>
+8
+        <li>Priority support</li>
+9
+      </ul>
+10
+    </ExpandableCard>
+11
+  );
+12
+}
+API reference
+ExpandableCard
+
+A card whose header toggles a details panel beneath it.
+
+Prop
+Type
+Default
+Description
+title
+Required
+string
+–
+Card heading, shown in the toggle.
+description
+string
+–
+Summary line. Changed words roll in when it updates.
+children
+Required
+ReactNode
+–
+Details revealed when expanded.
+defaultExpanded
+boolean
+false
+Starts expanded.
+width
+number
+–
+Collapsed width cap in px. The card is centered and never wider than its container. Fills the container when omitted.
+expandedWidth
+number
+–
+Expanded width cap in px, so the card grows sideways into more room when opened. Defaults to width.
+Keyboard interactions
+Enter
+or
+Space
+Toggles the card from its header button.
+Escape
+Closes the card while focus is inside it and returns focus to the header.
+Accessibility
+The header is a native button with aria-expanded and aria-controls pointing at the panel.
+The rolling description keeps a screen-reader-only copy of the full text; animated words are aria-hidden.
+The collapsed panel is inert, so its content is not reachable by keyboard or screen readers while closed.
+Motion
+Open and close are one morph: width and height move together on the smooth spring, which never overshoots, and the arrow turns on the same spring.
+Details fade in once the box has made room and fade out before it shrinks. They are laid out at their open width throughout, so text never reflows or stretches.
+Clicking again mid-animation reverses from the current size with its velocity. Changed words in the description rise in; unchanged words hold still.
+Reduced motion applies end states instantly and swaps the description without animation.
+Responsive behavior
+Without width caps the card fills its container. With width and expandedWidth it stays centered and grows sideways to the open cap, never wider than its container, so on a phone it simply uses the full width.
+The whole header is the toggle with a 64px minimum height, so it is an easy touch target.
+Performance
+The panel stays mounted but inert at zero height when collapsed, so a second click mid-animation reverses smoothly.
+Width and height are animated for real on one spring rather than scaled, so text and corners never stretch; keep the details short.
+The description splits into one span per word for the roll; keep it to a short line.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for a single standalone expandable summary such as a plan, order, or log entry. Use accordion for a list of mutually exclusive sections.
+State is internal; there is no controlled prop.
+/components/expandable-card/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Accordion
+Component
+Progressively reveal supporting information in place.
+Card
+Component
+A contained group of related content and actions.
+Card stack
+Component
+Review a deck one card at a time, with a throw and an undo.
+More like this in Pro
+Explore Pro
+Table of contents progress
+Pro
+Component
+A table of contents that reads along with you: a line bends through the nested headings, fills as you scroll, and carries a marker to the current section, with smooth jumps and a time-left countdown.
+Share access
+Pro
+Component
+A share panel: invite people as validated email chips with suggestions, change roles from a compact menu, remove with undo, switch link access and copy the link, with every change landing in place.
+Confirm popover
+Pro
+Component
+A destructive button that grows into a small confirmation card, with the consequence, optional type-to-confirm, progress on the Confirm button, and a check or error before folding back.
+Previous
+Accordion
+Next
+Resizable panels
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

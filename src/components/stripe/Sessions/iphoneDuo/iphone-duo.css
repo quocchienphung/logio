@@ -1,0 +1,102 @@
+/* Homepage iPhone Duo stage (replaces the Sessions on-demand banner). */
+
+.iphone-duo {
+  position: relative;
+  width: 100%;
+  /* the unfolded device (16.61 x 11.84 units); the renderer fits it with a 4% margin */
+  aspect-ratio: 16.613 / 11.84;
+}
+/* a screen too small to use stays visible but out of reach (tap-to-expand opens it instead) */
+.iphone-duo[data-interactive="false"] .iphone-duo__screen {
+  pointer-events: none !important;
+}
+
+.iphone-duo__canvas,
+.iphone-duo__overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.iphone-duo[data-status="ready"] :is(.iphone-duo__canvas, .iphone-duo__overlay) {
+  opacity: 1;
+}
+
+.iphone-duo__screen {
+  overflow: hidden;
+  border-radius: var(--screen-radius);
+  backface-visibility: hidden;
+}
+
+.iphone-duo__flat {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.iphone-duo__flat .iphone-duo__screen {
+  flex: none;
+  box-shadow: 0 0 0 8px #0b0b0c, 0 0 0 11px #e4ded3, 0 40px 80px -30px rgba(0, 0, 0, 0.35);
+}
+
+/* The display. */
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--screen-radius);
+}
+.phone-screen .um-stage {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.phone-screen .um-stage::-webkit-scrollbar {
+  display: none;
+}
+
+/* System status: "9:41" over the Wi-Fi + battery ring (Apple's lock-screen glyph used as a mask, so it
+   follows the stage theme like the real status bar). */
+.phone-status {
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  color: #0a0a0a;
+  pointer-events: none;
+}
+.phone-screen[data-theme="dark"] .phone-status {
+  color: #ededed;
+}
+.phone-status__time,
+.phone-status__ring {
+  position: absolute;
+  transform: translate(50%, -50%);
+}
+.phone-status__time {
+  top: var(--status-time-top);
+  right: var(--status-time-right);
+  font-family: -apple-system, "SF Pro Text", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--status-time-size);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.phone-status__ring {
+  top: var(--status-ring-top);
+  right: var(--status-ring-right);
+  width: var(--status-ring-size);
+  height: var(--status-ring-size);
+  background: currentColor;
+  -webkit-mask: url("/sites/iphone-duo/status-ring.png") center / contain no-repeat;
+  mask: url("/sites/iphone-duo/status-ring.png") center / contain no-repeat;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iphone-duo__canvas,
+  .iphone-duo__overlay {
+    transition: none;
+  }
+}

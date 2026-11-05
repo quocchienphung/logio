@@ -30,7 +30,7 @@ export function S13MoreResources() {
                   </header>
                 </section>
                 <div className="GridLayout" style={{ "--columnGap": "var(--columnPaddingNormal)", "--gridPadding": "var(--columnPaddingNormal)" }} data-columns="1,1,1">
-                  <a className="Link ContentRecommendationCard__link" href="https://stripe.com/guides/optimizing-payments-at-scale" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="authorization_boost_guide_optimizing_payments">
+                  <a className="Link ContentRecommendationCard__link" href="/unavailable/stripe/stripe.com/guides/optimizing-payments-at-scale" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="authorization_boost_guide_optimizing_payments">
                     <div className="Card Card--shadowSmall ContentRecommendationCard">
                       <span className="Badge Badge--accented ContentRecommendationCard__badge">
                         {" Guide "}
@@ -46,7 +46,7 @@ export function S13MoreResources() {
                     </div>
                   </a>
                   {" "}
-                  <a className="Link ContentRecommendationCard__link" href="https://stripe.com/blog/using-ai-optimize-payments-performance-payments-intelligence-suite" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_using_ai_optimize_payments">
+                  <a className="Link ContentRecommendationCard__link" href="/unavailable/stripe/stripe.com/blog/using-ai-optimize-payments-performance-payments-intelligence-suite" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="more_resources_using_ai_optimize_payments">
                     <div className="Card Card--shadowSmall ContentRecommendationCard">
                       <span className="Badge Badge--accented ContentRecommendationCard__badge">
                         {" Blog "}

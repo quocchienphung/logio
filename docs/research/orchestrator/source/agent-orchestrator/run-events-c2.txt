@@ -1,0 +1,416 @@
+     0 run button: Run again
+     0 lead status: Done11.4s
+     0 plan items: 4
+     0 summary status: Merged 4 results
+     0 summary hint: 
+     0 summary text starts
+     0 totals: Tokens119.7kCost$0.19Wall time11.4sIn sequence32.8s2.9x faster than running in sequenceCopy summaryCopiedFailedCopy summary
+     0 announce: 
+     0 lane1 phase: done
+     0 lane1 activity: Returned after 4 tool calls [undefined]
+     0 lane1 title: Notewise seat pricing
+     0 lane1 metrics: 31.2k tokens$0.079
+     0 lane2 phase: done
+     0 lane2 activity: Returned after 4 tool calls [undefined]
+     0 lane2 title: Paperlane free tier
+     0 lane2 metrics: 19.5k tokens$0.002
+     0 lane3 phase: done
+     0 lane3 activity: Returned after 4 tool calls [undefined]
+     0 lane3 title: Quillstack discounts
+     0 lane3 metrics: 28.9k tokens$0.012
+     0 lane4 phase: done
+     0 lane4 activity: Returned after 4 tool calls [undefined]
+     0 lane4 title: Driftboard add-ons
+     0 lane4 metrics: 24.7k tokens$0.012
+    75 run button: Run againStop
+    75 lead status: DonePlanning0.0s
+    75 summary status: Merged 4 resultsWaits for 4 results
+    75 summary hint: The lead merges what the subagents return here.
+    75 lane1 phase: waiting
+    75 lane1 metrics hidden: true
+    75 lane1 log rows: 0
+    75 lane2 phase: waiting
+    75 lane2 metrics hidden: true
+    75 lane2 log rows: 0
+    75 lane3 phase: waiting
+    75 lane3 metrics hidden: true
+    75 lane3 log rows: 0
+    75 lane4 phase: waiting
+    75 lane4 metrics hidden: true
+    75 lane4 log rows: 0
+    75 branch0 off
+    75 branch1 off
+    75 branch2 off
+    75 branch3 off
+    75 port0 off
+    75 port1 off
+    75 port2 off
+    75 port3 off
+   174 run button: Stop
+   174 lead status: Planning0.0s
+   174 summary status: Waits for 4 results
+   174 lane1 activity: Waiting for the plan [undefined]
+   174 lane1 title: Unassigned
+   174 lane1 output cleared
+   174 lane1 settled: false
+   174 lane2 activity: Waiting for the plan [undefined]
+   174 lane2 title: Unassigned
+   174 lane2 output cleared
+   174 lane2 settled: false
+   174 lane3 activity: Waiting for the plan [undefined]
+   174 lane3 title: Unassigned
+   174 lane3 output cleared
+   174 lane3 settled: false
+   174 lane4 activity: Waiting for the plan [undefined]
+   174 lane4 title: Unassigned
+   174 lane4 output cleared
+   174 lane4 settled: false
+   184 lead status: Planning0.1s
+   274 lead status: Planning0.2s
+   377 lead status: Planning0.3s
+   473 lead status: Planning0.4s
+   473 plan items: 0
+   570 announce: Planning. This is a simulated run; nothing is sent.
+   576 lead status: Planning0.5s
+   590 plan items: 1
+   590 lane1 phase: planned
+   673 lead status: Planning0.6s
+   698 lane1 activity: Planned [undefined]
+   698 lane1 title: Notewise seat pricing
+   698 lane1 output starts
+   776 lead status: Planning0.7s
+   820 plan items: 2
+   820 lane2 phase: planned
+   874 lead status: Planning0.8s
+   929 lane2 activity: Planned [undefined]
+   929 lane2 title: Paperlane free tier
+   929 lane2 output starts
+   977 lead status: Planning0.9s
+  1051 plan items: 3
+  1051 lane3 phase: planned
+  1073 lead status: Planning1.0s
+  1159 lane3 activity: Planned [undefined]
+  1159 lane3 title: Quillstack discounts
+  1159 lane3 output starts
+  1177 lead status: Planning1.1s
+  1273 lead status: Planning1.2s
+  1281 plan items: 4
+  1281 lane4 phase: planned
+  1376 lead status: Planning1.3s
+  1389 lane4 activity: Planned [undefined]
+  1389 lane4 title: Driftboard add-ons
+  1389 lane4 output starts
+  1474 lead status: Planning1.4s
+  1577 lead status: Planning1.5s
+  1645 lead status: Planning1 working1.5s
+  1645 summary status: Waits for 4 results0 of 4 returned
+  1645 announce: Plan ready. Dispatching 4 subtasks.
+  1645 lane1 phase: starting
+  1645 lane1 metrics hidden: false
+  1650 pulse added (1) oklch(0.58 0.15 250),0,18px, 166px,32,158,22,127
+  1674 lead status: Planning1 working1.6s
+  1753 lead status: 1 working1.6s
+  1753 summary status: 0 of 4 returned
+  1753 lane1 activity: Starting [spin]
+  1760 lead status: 1 working2 working, 2 queued1.6s
+  1760 lane2 phase: starting
+  1760 lane2 metrics hidden: false
+  1760 lane3 phase: queued
+  1760 lane4 phase: queued
+  1765 pulse added (2) oklch(0.45 0.19 307),0,18px, 312px,32,158,22,273
+  1777 lead status: 1 working2 working, 2 queued1.7s
+  1868 lead status: 2 working, 2 queued1.7s
+  1868 lane2 activity: Starting [spin]
+  1868 lane3 activity: Queued, next in line [undefined]
+  1868 lane4 activity: Queued, 2nd in line [undefined]
+  1873 lead status: 2 working, 2 queued1.8s
+  1976 lead status: 2 working, 2 queued1.9s
+  2073 lead status: 2 working, 2 queued2.0s
+  2105 lane1 phase: working
+  2105 lane1 log rows: 1
+  2105 branch0 on
+  2105 port0 on
+  2116 pulse removed (1)
+  2176 lead status: 2 working, 2 queued2.1s
+  2214 lane1 activity: Web search · notewise pricing per seat 2026 [lucide lucide-search]
+  2220 lane2 phase: working
+  2220 lane2 log rows: 1
+  2220 branch1 on
+  2220 port1 on
+  2231 pulse removed (0)
+  2279 lead status: 2 working, 2 queued2.2s
+  2328 lane2 activity: Fetch page · paperlane.com/pricing [lucide lucide-globe]
+  2376 lead status: 2 working, 2 queued2.3s
+  2482 lead status: 2 working, 2 queued2.4s
+  2577 lead status: 2 working, 2 queued2.5s
+  2680 lead status: 2 working, 2 queued2.6s
+  2776 lead status: 2 working, 2 queued2.7s
+  2880 lead status: 2 working, 2 queued2.8s
+  2977 lead status: 2 working, 2 queued2.9s
+  3073 lead status: 2 working, 2 queued3.0s
+  3177 lead status: 2 working, 2 queued3.1s
+  3274 lead status: 2 working, 2 queued3.2s
+  3377 lead status: 2 working, 2 queued3.3s
+  3480 lead status: 2 working, 2 queued3.4s
+  3577 lead status: 2 working, 2 queued3.5s
+  3613 lane1 log rows: 2
+  3674 lead status: 2 working, 2 queued3.6s
+  3717 lane1 activity: Fetch page · notewise.io/pricing [lucide lucide-globe]
+  3777 lead status: 2 working, 2 queued3.7s
+  3880 lead status: 2 working, 2 queued3.8s
+  3977 lead status: 2 working, 2 queued3.9s
+  4074 lead status: 2 working, 2 queued4.0s
+  4135 lane2 log rows: 2
+  4177 lead status: 2 working, 2 queued4.1s
+  4239 lane2 activity: Web search · paperlane free plan limits [lucide lucide-search]
+  4274 lead status: 2 working, 2 queued4.2s
+  4377 lead status: 2 working, 2 queued4.3s
+  4480 lead status: 2 working, 2 queued4.4s
+  4577 lead status: 2 working, 2 queued4.5s
+  4675 lead status: 2 working, 2 queued4.6s
+  4777 lead status: 2 working, 2 queued4.7s
+  4874 lead status: 2 working, 2 queued4.8s
+  4977 lead status: 2 working, 2 queued4.9s
+  5080 lead status: 2 working, 2 queued5.0s
+  5177 lead status: 2 working, 2 queued5.1s
+  5275 lead status: 2 working, 2 queued5.2s
+  5378 lead status: 2 working, 2 queued5.3s
+  5474 lead status: 2 working, 2 queued5.4s
+  5577 lead status: 2 working, 2 queued5.5s
+  5639 lane2 log rows: 3
+  5674 lead status: 2 working, 2 queued5.6s
+  5741 lane2 activity: Read file · docs/pricing.md [lucide lucide-file-text]
+  5777 lead status: 2 working, 2 queued5.7s
+  5881 lead status: 2 working, 2 queued5.8s
+  5917 lane1 log rows: 3
+  5977 lead status: 2 working, 2 queued5.9s
+  6021 lane1 activity: Read file · docs/pricing.md [lucide lucide-file-text]
+  6074 lead status: 2 working, 2 queued6.0s
+  6177 lead status: 2 working, 2 queued6.1s
+  6275 lead status: 2 working, 2 queued6.2s
+  6372 lead status: 2 working, 2 queued6.3s
+  6475 lead status: 2 working, 2 queued6.4s
+  6577 lead status: 2 working, 2 queued6.5s
+  6675 lead status: 2 working, 2 queued6.6s
+  6778 lead status: 2 working, 2 queued6.7s
+  6875 lead status: 2 working, 2 queued6.8s
+  6948 lane2 log rows: 4
+  6977 lead status: 2 working, 2 queued6.9s
+  7051 lane2 activity: Write findings [lucide lucide-file-pen lucide-file-edit]
+  7075 lead status: 2 working, 2 queued7.0s
+  7178 lead status: 2 working, 2 queued7.1s
+  7275 lead status: 2 working, 2 queued7.2s
+  7378 lead status: 2 working, 2 queued7.3s
+  7475 lead status: 2 working, 2 queued7.4s
+  7524 lane1 log rows: 4
+  7578 lead status: 2 working, 2 queued7.5s
+  7633 lane1 activity: Write findings [lucide lucide-file-pen lucide-file-edit]
+  7675 lead status: 2 working, 2 queued7.6s
+  7778 lead status: 2 working, 2 queued7.7s
+  7875 lead status: 2 working, 2 queued7.8s
+  7978 lead status: 2 working, 2 queued7.9s
+  8075 lead status: 2 working, 2 queued8.0s
+  8178 lead status: 2 working, 2 queued8.1s
+  8275 lead status: 2 working, 2 queued8.2s
+  8378 lead status: 2 working, 2 queued8.3s
+  8475 lead status: 2 working, 2 queued8.4s
+  8555 lead status: 2 working, 2 queued2 working, 1 queued8.4s
+  8555 summary status: 0 of 4 returned1 of 4 returned
+  8555 announce: Claude Haiku 5.5 returned. 1 of 4 done.
+  8555 lane2 phase: done
+  8555 lane2 log rows: 5
+  8555 lane3 phase: starting
+  8555 lane3 metrics hidden: false
+  8560 pulse added (2) oklch(0.72 0.18 74),0,18px, 451px,32,158,22,412
+  8572 lead status: 2 working, 2 queued2 working, 1 queued8.5s
+  8658 lead status: 2 working, 1 queued8.5s
+  8658 summary status: 1 of 4 returned
+  8658 lane2 activity: Returned after 4 tool calls [undefined]
+  8658 lane2 settled: true
+  8658 lane3 activity: Starting [spin]
+  8658 lane4 activity: Queued, next in line [undefined]
+  8675 lead status: 2 working, 1 queued8.6s
+  8772 lead status: 2 working, 1 queued8.7s
+  8875 lead status: 2 working, 1 queued8.8s
+  8978 lead status: 2 working, 1 queued8.9s
+  9015 lane3 phase: working
+  9015 lane3 log rows: 1
+  9015 branch2 on
+  9015 port2 on
+  9027 pulse removed (0)
+  9075 lead status: 2 working, 1 queued9.0s
+  9118 lane3 activity: Web search · quillstack annual billing discount [lucide lucide-search]
+  9178 lead status: 2 working, 1 queued9.1s
+  9275 lead status: 2 working, 1 queued9.2s
+  9378 lead status: 2 working, 1 queued9.3s
+  9440 lead status: 2 working, 1 queued2 working9.3s
+  9440 summary status: 1 of 4 returned2 of 4 returned
+  9440 announce: Claude Sonnet 5.5 returned. 2 of 4 done.
+  9440 lane1 phase: done
+  9440 lane1 log rows: 5
+  9440 lane4 phase: starting
+  9440 lane4 metrics hidden: false
+  9445 pulse added (2) oklch(0.58 0.21 182),0,18px, 590px,32,158,22,551
+  9476 lead status: 2 working, 1 queued2 working9.4s
+  9549 lead status: 2 working9.4s
+  9549 summary status: 2 of 4 returned
+  9549 lane1 activity: Returned after 4 tool calls [undefined]
+  9549 lane1 settled: true
+  9549 lane4 activity: Starting [spin]
+  9579 lead status: 2 working9.5s
+  9675 lead status: 2 working9.6s
+  9773 lead status: 2 working9.7s
+  9875 lead status: 2 working9.8s
+  9900 lane4 phase: working
+  9900 lane4 log rows: 1
+  9900 branch3 on
+  9900 port3 on
+  9917 pulse removed (0)
+  9978 lead status: 2 working9.9s
+ 10003 lane4 activity: Web search · driftboard business plan sso [lucide lucide-search]
+ 10076 lead status: 2 working10.0s
+ 10178 lead status: 2 working10.1s
+ 10275 lead status: 2 working10.2s
+ 10378 lead status: 2 working10.3s
+ 10421 lane3 log rows: 2
+ 10476 lead status: 2 working10.4s
+ 10531 lane3 activity: Fetch page · quillstack.dev/pricing [lucide lucide-globe]
+ 10578 lead status: 2 working10.5s
+ 10675 lead status: 2 working10.6s
+ 10772 lead status: 2 working10.7s
+ 10876 lead status: 2 working10.8s
+ 10979 lead status: 2 working10.9s
+ 11075 lead status: 2 working11.0s
+ 11178 lead status: 2 working11.1s
+ 11275 lead status: 2 working11.2s
+ 11307 lane4 log rows: 2
+ 11379 lead status: 2 working11.3s
+ 11410 lane4 activity: Fetch page · driftboard.app/pricing [lucide lucide-globe]
+ 11475 lead status: 2 working11.4s
+ 11578 lead status: 2 working11.5s
+ 11675 lead status: 2 working11.6s
+ 11709 announce: Gemini 3.8 Flash hit an error: The page returned 503 Service Unavailable. Retrying.
+ 11709 lane3 phase: error
+ 11779 lead status: 2 working11.7s
+ 11816 lane3 activity: Failed, retrying in 2s [undefined]
+ 11876 lead status: 2 working11.8s
+ 11973 lead status: 2 working11.9s
+ 12075 lead status: 2 working12.0s
+ 12172 lead status: 2 working12.1s
+ 12275 lead status: 2 working12.2s
+ 12379 lead status: 2 working12.3s
+ 12476 lead status: 2 working12.4s
+ 12578 lead status: 2 working12.5s
+ 12675 lead status: 2 working12.6s
+ 12718 lane3 activity: Failed, retrying in 1s [undefined]
+ 12778 lead status: 2 working12.7s
+ 12875 lead status: 2 working12.8s
+ 12979 lead status: 2 working12.9s
+ 13075 lead status: 2 working13.0s
+ 13179 lead status: 2 working13.1s
+ 13276 lead status: 2 working13.2s
+ 13379 lead status: 2 working13.3s
+ 13415 lane4 log rows: 3
+ 13476 lead status: 2 working13.4s
+ 13519 lane4 activity: Read file · docs/pricing.md [lucide lucide-file-text]
+ 13573 lead status: 2 working13.5s
+ 13675 lead status: 2 working13.6s
+ 13713 announce: Gemini 3.8 Flash is retrying
+ 13713 lane3 phase: working
+ 13713 lane3 log rows: 4
+ 13773 lead status: 2 working13.7s
+ 13816 lane3 activity: Fetch page, attempt 2 · quillstack.dev/pricing [lucide lucide-globe]
+ 13876 lead status: 2 working13.8s
+ 13979 lead status: 2 working13.9s
+ 14076 lead status: 2 working14.0s
+ 14173 lead status: 2 working14.1s
+ 14276 lead status: 2 working14.2s
+ 14379 lead status: 2 working14.3s
+ 14476 lead status: 2 working14.4s
+ 14573 lead status: 2 working14.5s
+ 14678 lead status: 2 working14.6s
+ 14773 lead status: 2 working14.7s
+ 14823 lane4 log rows: 4
+ 14876 lead status: 2 working14.8s
+ 14926 lane4 activity: Write findings [lucide lucide-file-pen lucide-file-edit]
+ 14974 lead status: 2 working14.9s
+ 15076 lead status: 2 working15.0s
+ 15179 lead status: 2 working15.1s
+ 15276 lead status: 2 working15.2s
+ 15374 lead status: 2 working15.3s
+ 15429 lane3 log rows: 5
+ 15477 lead status: 2 working15.4s
+ 15532 lane3 activity: Write findings [lucide lucide-file-pen lucide-file-edit]
+ 15573 lead status: 2 working15.5s
+ 15677 lead status: 2 working15.6s
+ 15779 lead status: 2 working15.7s
+ 15876 lead status: 2 working15.8s
+ 15979 lead status: 2 working15.9s
+ 16076 lead status: 2 working16.0s
+ 16173 lead status: 2 working16.1s
+ 16276 lead status: 2 working16.2s
+ 16379 lead status: 2 working16.3s
+ 16476 lead status: 2 working16.4s
+ 16538 lead status: 2 working1 working16.4s
+ 16538 summary status: 2 of 4 returned3 of 4 returned
+ 16538 announce: GPT-6 Luna returned. 3 of 4 done.
+ 16538 lane4 phase: done
+ 16538 lane4 log rows: 5
+ 16543 pulse added (1) oklch(0.58 0.21 182),0,18px, 157px,32,708,22,118
+ 16574 lead status: 2 working1 working16.5s
+ 16641 lead status: 1 working16.5s
+ 16641 summary status: 3 of 4 returned
+ 16641 lane4 activity: Returned after 4 tool calls [undefined]
+ 16641 lane4 settled: true
+ 16677 lead status: 1 working16.6s
+ 16780 lead status: 1 working16.7s
+ 16870 lead status: 1 working16.8s
+ 16938 lead status: 1 workingMerging results16.8s
+ 16938 summary status: 3 of 4 returned4 of 4 returned
+ 16938 announce: Gemini 3.8 Flash returned. 4 of 4 done.
+ 16938 lane3 phase: done
+ 16938 lane3 log rows: 6
+ 16938 pulse added (2) oklch(0.72 0.18 74),0,18px, 296px,32,569,22,257
+ 16974 lead status: 1 workingMerging results16.9s
+ 17010 pulse removed (1)
+ 17042 lead status: Merging results16.9s
+ 17042 summary status: 4 of 4 returned
+ 17042 lane3 activity: Returned after 4 tool calls [undefined]
+ 17042 lane3 settled: true
+ 17077 lead status: Merging results17.0s
+ 17175 lead status: Merging results17.1s
+ 17277 lead status: Merging results17.2s
+ 17380 lead status: Merging results17.3s
+ 17410 pulse removed (0)
+ 17477 lead status: Merging results17.4s
+ 17541 lead status: Merging resultsWriting summary17.4s
+ 17541 summary status: 4 of 4 returnedMerging 4 results
+ 17541 announce: Every subagent returned. Writing the summary.
+ 17557 summary text starts
+ 17574 lead status: Merging resultsWriting summary17.5s
+ 17648 lead status: Writing summary17.5s
+ 17648 summary status: Merging 4 results
+ 17648 summary hint: 
+ 17677 lead status: Writing summary17.6s
+ 17774 lead status: Writing summary17.7s
+ 17877 lead status: Writing summary17.8s
+ 17976 lead status: Writing summary17.9s
+ 18077 lead status: Writing summary18.0s
+ 18122 run button: StopRun again
+ 18122 lead status: Writing summaryDone18.1s
+ 18122 summary status: Merging 4 resultsMerged 4 results
+ 18165 totals: Tokens119.7kCost$0.19Wall time18.1sIn sequence32.8s1.8x faster than running in sequenceCopy summaryCopiedFailedCopy summary
+ 18165 announce: 
+ 18230 run button: Run again
+ 18230 lead status: Done18.1s
+ 18230 summary status: Merged 4 results
+
+final lanes:
+1 done Notewise seat pricing | Returned after 4 tool calls | Notewise undercuts our Team plan by $2 per seat and adds unlimited guests. | 31.2k tokens$0.079 | 7.8s
+2 done Paperlane free tier | Returned after 4 tool calls | Paperlane fits 5 members on its free plan where ours stops at 3. | 19.5k tokens$0.002 | 6.8s
+3 done Quillstack discounts | Returned after 4 tool calls | Quillstack leads with a 20 percent yearly saving, and we never show ours. | 28.9k tokens$0.012 | 8.4s
+4 done Driftboard add-ons | Returned after 4 tool calls | Driftboard sells SSO as a $4 add-on, while ours needs a sales call. | 24.7k tokens$0.012 | 7.1s
+final totals: [
+  115,
+  'Tokens119.7kCost$0.19Wall time18.1sIn sequence32.8s1.8x faster than running in sequenceCopy summaryCopiedFailedCopy summary'
+] | lead: Done18.1s 18.1s

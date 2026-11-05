@@ -1,0 +1,56 @@
+[
+  {
+    "t": 3971,
+    "class": "card_overlay__Rg2Ns",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 0,
+      "duration": 240,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 3971,
+    "class": "card_closeSlot__b0VKS",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 120,
+      "duration": 160,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  },
+  {
+    "t": 3971.0999999046326,
+    "class": "card_details__ZEjgp",
+    "frames": {
+      "opacity": [
+        0,
+        1
+      ]
+    },
+    "options": {
+      "delay": 120,
+      "duration": 240,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "fill": "both",
+      "iterations": 1,
+      "direction": "normal"
+    }
+  }
+]

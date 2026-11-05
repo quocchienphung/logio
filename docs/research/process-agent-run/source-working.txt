@@ -1,0 +1,37 @@
+Add rate limiting to the public API
+Claude Sonnet 5.5
+Working
+0:07
+Planned the change
+1.2s
+
+The public API has no rate limiting yet. I'll check how the routes are mounted, look for existing middleware, and see whether Redis is available so a limit holds across every instance.
+
+Read
+src/api/routes.ts
+0.9s
+Searched for
+rate limit middleware
+1.0s
+Read
+package.json
+0.7s
+Read
+src/lib/redis.ts
+0.7s
+Searched for
+the API key on requests
+0.9s
+Approved
+changes to 2 files
+0.8s
+Wrote
+src/middleware/rate-limit.ts
+0.9s
+Editing
+Edited
+src/api/routes.ts
+0.7s
+Checking types
+
+Checking types

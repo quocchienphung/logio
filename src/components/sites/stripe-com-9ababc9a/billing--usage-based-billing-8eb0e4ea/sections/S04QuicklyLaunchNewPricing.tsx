@@ -740,7 +740,7 @@ export function S04QuicklyLaunchNewPricing() {
                       <div className="hds-details-content stepper-item__content">
                         <p className="hds-text hds-text--md hds-text--soft">
                           {"Reduce involuntary churn and optimize collections with AI-powered "}
-                          <a className="hds-link hds-link--secondary" href="https://docs.stripe.com/billing/revenue-recovery/smart-retries" data-analytics-label="usage_based_billing__smart_retries__learn_more_link">
+                          <a className="hds-link hds-link--secondary" href="/unavailable/stripe/docs.stripe.com/billing/revenue-recovery/smart-retries" data-analytics-label="usage_based_billing__smart_retries__learn_more_link">
                             {"Smart Retries"}
                           </a>
                           {", automatic card updates, and tailored recovery automations—all through the native Stripe Invoicing integration."}

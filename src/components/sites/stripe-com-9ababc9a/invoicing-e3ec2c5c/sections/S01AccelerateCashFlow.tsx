@@ -155,7 +155,7 @@ export function S01AccelerateCashFlow() {
                       <div className="Copy__body">
                         <p>
                           {"Invoice customers in 25+ languages, "}
-                          <a className="Link" href="https://stripe.com/docs/currencies" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/currencies" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"135+ currencies"}
                           </a>
                           {", and "}

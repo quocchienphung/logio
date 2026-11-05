@@ -45,7 +45,7 @@ export function S13ReadyToGetStarted() {
                         </span>
                       </a>
                       {" "}
-                      <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/checkout" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="ready_to_get__explore_the_docs">
+                      <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/checkout" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="ready_to_get__explore_the_docs">
                         {"Explore the docs"}
                         <span className="nobr">
                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

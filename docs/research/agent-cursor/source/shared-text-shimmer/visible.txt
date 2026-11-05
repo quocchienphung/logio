@@ -1,0 +1,250 @@
+Components
+Agent cursor
+Agent cursor
+Pro
+
+A live document where Claude edits like a collaborator. Its labeled cursor comes out of its avatar, selects a paragraph and streams in a rewrite, adds a heading and fixes a typo, while a teammate's cursor reads along. Changes stay tinted until someone accepts or undoes them from a floating review bar.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Accepted 3 edits
+Accepted 3 edits. Simulated, nothing was saved.
+Run again
+Usage-based billing launch
+Emma Collins · Target Nov 18, 2026
+
+On November 18 every Team workspace moves to usage-based billing: seats plus metered agent runs, invoiced monthly through Stripe.
+
+Goals
+
+Customers should see what they will pay before the invoice arrives. Surprise bills drove 31% of billing tickets in Q3, so a live usage meter and spend alerts ship on day one.
+
+Rollout
+
+Week one goes to 5% of 
+workspaces
+ behind the usage_billing flag. We widen to 50% once refund requests stay under 0.4% for seven days, then ship to everyone on December 2.
+
+Emma
+Claude
+Edits land
+Connection drops
+When to use
+Showing an AI writing assistant that edits a doc alongside people, with accept and undo.
+Landing or onboarding sections that demo a collaborative AI editor in motion.
+A product surface that streams structured edits from an agent and needs a human review step.
+When not to use
+Free form chat or Q&A: use a chat transcript component.
+A real rich text editor: wire your editor's own collaboration cursors; this card renders read-only blocks.
+Long documents with many sections: the card is built for a short excerpt of five to ten blocks.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Agent cursor is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Agent cursor
+All 118 Pro components and 117 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { AgentCursor, type AgentEdit, type DocBlock } from "@/components/arc/agent-cursor/agent-cursor";
+2
+ 
+3
+const [doc, setDoc] = useState<DocBlock[]>(initialDoc);
+4
+ 
+5
+<AgentCursor
+6
+  blocks={doc}
+7
+  run={async signal => {
+8
+    const res = await fetch("/api/agent/edits", { method: "POST", body: JSON.stringify(doc), signal });
+9
+    return (await res.json()) as AgentEdit[];
+10
+  }}
+11
+  collaborator={{ name: "Emma Collins", avatar: "/media/people/emma-collins.svg" }}
+12
+  onAccept={setDoc}
+13
+/>
+API reference
+AgentCursor
+
+A document card where an AI agent edits live with a labeled cursor beside a human collaborator, then hands the changes over for review. With no props it plays a simulated run on a sample launch brief.
+
+Prop
+Type
+Default
+Description
+blocks
+DocBlock[]
+sample launch brief
+The document as title, heading and paragraph blocks with stable ids. Compared by content, so an inline array is fine.
+meta
+string
+–
+A muted line under the title, such as the owner and a target date.
+edits
+AgentEdit[]
+sample edits
+Edits to play in order: rewrite (select a block and stream new text), insert (add a block after another) and fix (replace a word, flagged with a wavy underline first). Ignored when run is set.
+run
+(signal: AbortSignal) => Promise<AgentEdit[]>
+–
+Fetches edits from your agent. The signal aborts when someone presses Stop. A rejected promise shows the error with a Retry button.
+agent
+{ name: string; mark?: ReactNode; color?: string }
+Claude, #D97757
+The agent's name, 24 × 24 currentColor mark, and the color used for its cursor, selection and change tint.
+collaborator
+{ name: string; avatar?: string; color?: string } | null
+Emma Collins
+A human in the doc, drawn as a second cursor with their portrait and first name. Null hides it.
+autoPlay
+boolean
+true
+Starts a run as soon as the card is on screen. Off, the header shows an Ask button instead.
+loop
+boolean
+true for the sample
+Replays the run: the collaborator accepts after a short pause (never while you hover or focus the card), then the doc resets.
+speed
+number
+1
+Playback speed multiplier for cursor travel, streaming and pauses.
+onAccept
+(blocks: DocBlock[]) => void
+–
+Called with the edited document when someone accepts. Store it and pass it back as blocks.
+onUndo
+(blocks: DocBlock[]) => void
+–
+Called with the restored document when someone undoes the edits.
+onPhaseChange
+(phase: AgentCursorPhase) => void
+–
+Fires on idle, thinking, editing, review, accepted, reverted, stopped, empty and error.
+simulated
+boolean
+true for the sample
+Adds "Simulated, nothing was saved" to the screen reader status.
+className
+string
+–
+Extra class on the card.
+Keyboard interactions
+Tab
+Moves between Stop or Run again in the header, then Undo and Accept changes in the review bar.
+Enter
+or
+Space
+Activates the focused button.
+Accessibility
+A polite live region announces each step (reading, the current edit, edits ready, accepted, undone, errors), and adds "Simulated, nothing was saved" for simulated runs.
+Cursors, selections and the visual status line are decorative and hidden from assistive tech; the document stays real headings and paragraphs, marked aria-busy while the agent edits.
+Status never relies on color: every terminal state pairs an icon with a label, and pending changes are tinted and listed in the review bar with a count.
+Focus inside the card or a hovering pointer holds the looping demo in review, so nobody loses the bar mid reach.
+Motion
+Cursors glide on a gentle quadratic arc with an ease-in-out curve, 280 to 600ms by distance, driven by motion values so nothing re-renders per frame.
+Selections fill line by line in step with the drag. Rewrites fade the old text out in 110ms, then stream 3 to 6 words every 34ms, each chunk fading in over 140ms with no blur or slide.
+Block heights follow measured content with a bounce-free spring (0.24s); inserted blocks grow from zero, then their text fades in.
+Status labels crossfade (100ms out, 160ms in). The review bar rises 8px and fades in 200ms.
+Reduced motion: cursors jump to each target, text appears whole, the loop and idle drift stop, and every end state stays.
+Playback pauses while the card is off screen.
+Responsive behavior
+Fluid up to 680px wide; under 480px the doc padding tightens and the review bar drops "by Claude" to stay on one line.
+Cursor tags flip to the left of the arrow near the right edge, and resting cursors re-anchor when the card resizes.
+Works at 360px with no horizontal scroll; text wraps and the selection and cursor targets are measured from live line boxes.
+Performance
+Cursor positions are motion values, so travel never re-renders React. Streaming re-renders one block per tick.
+Selection and target geometry come from Range.getClientRects on demand, not on every frame.
+Loops, idle drift and timers stop when the card is off screen or unmounted; Stop aborts the run's signal.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Pick this to show an AI agent editing a shared document in place, Notion or Google Docs style, with a review step. For a chat transcript use ai-chat; for a single text diff use a diff view.
+Feed real edits through run (async, abortable) or edits (static). Edits address blocks by id; fix edits need the exact word to replace inside the block text.
+Persist accepted text from onAccept and pass it back as blocks; the doc only resets to blocks when no run is using it.
+Set agent to another provider with its own mark and brand color; the cursor, selection and tint all follow agent.color.
+/components/agent-cursor/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Agent status
+Pro
+Component
+A compact live status pill for a running AI agent: the agent's mark in a live ring, the current activity and an elapsed timer, opening into the steps so far.
+Tool call
+Pro
+Component
+A tool call row for agent transcripts: the tool's mark and the call in plain words, a live state while it runs, and the input and output a click away, with approval and retry when needed.
+Text shimmer
+Component
+Show ongoing work with a calm light across the words.
+Avatar
+Component
+A compact identity marker for people and accounts.
+Button
+Component
+A clear, responsive action with quiet secondary states.
+Previous
+Ask your data
+Next
+Provider status
+Arc · 239 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

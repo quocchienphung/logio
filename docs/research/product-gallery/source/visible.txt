@@ -1,0 +1,787 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+⌘K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+8
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Toggle group
+New
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+New
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+131
+Special components
+101
+Docks and tabs
+6
+Share sheet
+Pro
+Action morph
+Pro
+Morph nav
+Pro
+Dock
+Pro
+Liquid tab bar
+Pro
+Orbit menu
+Pro
+Glass
+4
+Glass menu
+Pro
+Glass segmented
+Pro
+Glass card
+Pro
+Glass tab bar
+Pro
+Surfaces
+6
+Sheet stack
+Pro
+Wallet stack
+Pro
+Control center
+Pro
+Holo card
+Pro
+Card to article
+Pro
+Link unfurl
+Pro
+Galleries
+4
+Product gallery
+Pro
+Lightbox gallery
+Pro
+Photo grid
+Pro
+Cover flow
+Pro
+Audio and video
+3
+Voice orb
+Pro
+Now playing
+Pro
+Voice recorder
+Pro
+Data
+4
+Booking pill
+Pro
+Activity rings
+Pro
+Time dial
+Pro
+Date reel
+Pro
+Type
+4
+Keycap keyboard
+Pro
+Slot text
+Sand text
+Pro
+Typewriter terminal
+Pro
+Loaders
+4
+Stretch refresh
+Pro
+Morph loader
+Pro
+Skeleton morph
+Pro
+Black hole
+Pro
+Playful
+4
+Sticker peel
+Pro
+Page curl
+Pro
+Orbit logos
+Pro
+Prize wheel
+New
+Pro
+Cursor
+4
+Dot grid
+Pro
+Image trail
+New
+Pro
+Gravity well
+Pro
+Ink fluid
+Pro
+AI
+48
+Agent status
+Pro
+Tool call
+Pro
+Agent plan
+Pro
+Agent timeline
+Pro
+Context window
+Pro
+Reasoning block
+Pro
+Source cards
+Pro
+Model card
+Pro
+AI workflow
+Pro
+Code suggestion
+Pro
+Ghost text
+Pro
+Image generation
+Pro
+Dictation button
+Pro
+Speech player
+Pro
+Meeting summary
+Pro
+Reply draft
+Pro
+Agent handoff
+Pro
+PII redaction
+Pro
+Response feedback
+Pro
+LLM cost calculator
+Pro
+Provider keys
+Pro
+Generation stats
+Pro
+AI translate
+Pro
+TL;DR toggle
+Pro
+Connector setup
+Pro
+Smart form fill
+Pro
+Enrich column
+Pro
+Ticket router
+Pro
+Ask your data
+Pro
+Agent cursor
+Pro
+Provider status
+Pro
+Training run
+Pro
+AI command
+Pro
+Starter prompts
+Pro
+AI mascot
+Pro
+Image reveal
+Pro
+AI spark
+Pro
+Pixel mascot
+Pro
+Ghost mascot
+Pro
+Cube mascot
+Pro
+Tone tuner
+Pro
+Upgrade prompt
+Pro
+Referral card
+Pro
+Trial banner
+Pro
+Team switcher
+Pro
+Live visitors
+Pro
+Social proof toast
+Pro
+Install snippet
+Pro
+Illustrations
+10
+Data flow
+Pro
+Payment flow
+Pro
+Model training
+Pro
+Multi-region failover
+Pro
+Vector search
+Pro
+Agent loop
+Pro
+Mixture of experts
+Pro
+Speculative decoding
+Pro
+Prompt cache
+Pro
+Reasoning tree
+Pro
+What’s new
+8 new
+Components
+Product gallery
+Product gallery
+Pro
+
+A product gallery with a hover magnifier, gliding thumbnails, and color and size variants that crossfade photos.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Washed linen duvet set
+0
+
+$248
+From $188 · queen shown
+
+Stonewashed European flax that softens with every wash. Hover the photo to look closer, or open it fullscreen.
+
+Color
+Oat
+
+Size
+Select a size
+
+Twin
+Full
+Queen
+King
+Cal king
+Add to bag
+Sold out in oat: Cal king
+When to use
+Product detail pages with several photos per color and a size picker.
+Stores where shoppers need to zoom into fabric, texture, or small print.
+Variants that sell out per color and should be struck through, not hidden.
+When not to use
+Use lightbox-gallery for a photo grid that opens into a viewer, with no variants.
+Use carousel for marketing slides or cards.
+Use photo-grid for a masonry of images without a main photo.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Product gallery is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Product gallery
+All 117 Pro components and 116 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { useState } from "react";
+2
+import { ProductGallery } from "@/components/arc/product-gallery/product-gallery";
+3
+import Button from "@/components/arc/button/button";
+4
+ 
+5
+export function ProductPage() {
+6
+  const [size, setSize] = useState<string | null>(null);
+7
+  return (
+8
+    <ProductGallery
+9
+      label="Field jacket"
+10
+      colors={[
+11
+        { value: "olive", label: "Olive", swatch: "#6b6a4a", images: [{ src: "/jacket/olive-1.jpg", alt: "Olive jacket, front" }, { src: "/jacket/olive-2.jpg", alt: "Olive jacket, back" }] },
+12
+        { value: "navy", label: "Navy", swatch: "#27304a", images: [{ src: "/jacket/navy-1.jpg", alt: "Navy jacket, front" }] },
+13
+      ]}
+14
+      sizes={[
+15
+        { value: "s", label: "S" },
+16
+        { value: "m", label: "M", soldOut: ["navy"] },
+17
+        { value: "l", label: "L" },
+18
+      ]}
+19
+      size={size}
+20
+      onSizeChange={setSize}
+21
+      header={<><h1>Field jacket</h1><p>$240</p></>}
+22
+      footer={<Button disabled={!size}>Add to bag</Button>}
+23
+    />
+24
+  );
+25
+}
+API reference
+
+2 parts. The first is the root.
+
+ProductGallery
+
+A product media gallery with a hover magnifier, a thumbnail rail, swipe on touch, a fullscreen zoom viewer, and a color and size picker.
+
+Prop
+Type
+Default
+Description
+colors
+Required
+ProductGalleryColor[]
+–
+Colors: { value, label, swatch, images, soldOut? }. Each carries its own images: { src, alt, srcSet? }.
+sizes
+ProductGallerySize[]
+–
+Sizes: { value, label, soldOut? }. soldOut is true for every color or a list of color values.
+color
+string
+–
+Controlled color value.
+defaultColor
+string
+–
+Starting color when uncontrolled. Defaults to the first color.
+onColorChange
+(color: string) => void
+–
+Called when a swatch is chosen.
+size
+string | null
+–
+Controlled size value, or null for none.
+defaultSize
+string | null
+null
+Starting size when uncontrolled.
+onSizeChange
+(size: string | null) => void
+–
+Called when a size is chosen or cleared, including when a color change sells it out.
+index
+number
+–
+Controlled index of the photo on show.
+defaultIndex
+number
+0
+Starting photo when uncontrolled.
+onIndexChange
+(index: number) => void
+–
+Called when the photo changes.
+zoom
+number
+2.4
+Magnification of the hover lens and the fullscreen zoom.
+magnifier
+boolean
+true
+Turns the hover lens on or off.
+aspectRatio
+number
+4 / 5
+Aspect ratio of the main photo and thumbnails, as width / height.
+label
+string
+"Product photos"
+Product name, used to name the gallery and its viewer.
+header
+ReactNode
+–
+Content above the picker, such as the name and price.
+footer
+ReactNode
+–
+Content under the picker, such as add to bag.
+className
+string
+–
+Class on the root.
+ref
+Ref<HTMLDivElement>
+–
+The root element.
+isSoldOut
+
+Whether a size is sold out in a given color.
+
+Prop
+Type
+Default
+Description
+size
+Required
+ProductGallerySize
+–
+The size entry.
+color
+Required
+string
+–
+The color value.
+Keyboard interactions
+ArrowLeft
+or
+ArrowRight
+Steps photos on the main photo, the thumbnail rail, and in the viewer.
+Arrow keys
+or
+Home
+or
+End
+Move and select within the thumbnail rail, swatches, and sizes; sold-out sizes are skipped.
+Enter
+or
+Space
+Opens the fullscreen viewer from the main photo.
+Escape
+Zooms out in the viewer, then closes it and returns focus to the photo.
+Tab
+Cycles within the viewer's buttons while it is open.
+Accessibility
+The main photo is a button labelled with the photo's alt text, its position, and Open fullscreen.
+Thumbnails are a tablist; swatches and sizes are radiogroups with roving tabindex, and sold-out sizes use aria-disabled.
+The viewer is a modal dialog that focuses Close on open, traps Tab, locks body scroll, and announces the photo count politely.
+Every image needs a meaningful alt; thumbnails and the lens are decorative copies.
+Motion
+The photo track springs to the photo on show and follows a finger one to one, with rubber-band edges; one flick moves one photo.
+The lens rides a spring behind the pointer; rail, swatch, and size highlights glide to the active option.
+The viewer grows out of the photo's own rectangle with counter-scaled corners and returns to it on close; zoom scales on a spring and pans after the pointer.
+Changing color crossfades every photo from a blur. Reduced motion jumps the track, lens, and zoom, and replaces the viewer flight with a fade.
+Responsive behavior
+The root is a container: photos and details sit side by side above 680px, stack at 680px and below, and the rail moves under the photo at 520px and below.
+On touch screens (hover: none) the photo shows dots and a permanent expand icon; the lens is mouse only.
+The viewer frame sizes to fit the viewport at the photo's ratio, with 12px padding under 640px and 48px above; it refits on resize.
+Performance
+Only the photo on show loads eagerly; the rest and every thumbnail are lazy with async decoding.
+Each highlight (rail, swatches, sizes) and the stage run one ResizeObserver; the lens reuses the current image at zoom size.
+The viewer is portaled to the body only while open.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use on a product detail page. Put the name, price, and reviews in header and purchase buttons in footer.
+Give each color its own photos; if a size is sold out in the new color, the selection clears through onSizeChange.
+Photos are plain img tags; pass optimized src and srcSet URLs. Set magnifier={false} for photos without fine detail.
+For a general photo grid with a lightbox use lightbox-gallery; for a simple slide rotation use carousel.
+/components/product-gallery/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Lightbox gallery
+Pro
+Component
+A masonry grid where photos zoom from their slot into a viewer you can swipe, pinch, and drag away.
+Carousel
+Component
+Browse a row of slides by dragging, flicking, or arrowing through them.
+Photo grid
+Pro
+Component
+Pinch through zoom levels and open any photo straight from its cell.
+Segmented control
+Component
+Switch between a small set of related views.
+Radio group
+Component
+Choose one option from a visible set.
+Previous
+Link unfurl
+Next
+Lightbox gallery
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Product gallery is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro
