@@ -19,6 +19,8 @@ export interface GhostTextProps {
   delay?: number; minLength?: number; multiline?: boolean; variant?: "field" | "plain"; rows?: number; maxRows?: number;
   placeholder?: string; label?: ReactNode; footer?: ReactNode; model?: { name: string; mark?: ReactNode }; hint?: boolean;
   onAccept?: (accepted: string, mode: "all" | "word") => void; onDismiss?: (suggestion: string) => void; onStatusChange?: (status: GhostStatus) => void;
+  /** The key that accepts the whole suggestion. Tab is the preview's; an app that keeps bare Tab for itself uses ArrowRight (at the end of the text). */
+  acceptKey?: "Tab" | "ArrowRight";
   disabled?: boolean; name?: string; id?: string; autoFocus?: boolean; "aria-label"?: string; notice?: string; labels?: Partial<GhostTextLabels>; className?: string; ref?: Ref<GhostTextHandle>;
 }
 
@@ -36,7 +38,7 @@ const nextWord = (ghost: string) => ghost.match(/^\s*\S+/)?.[0] ?? ghost;
  * behind a native textarea, so typing stays native (spellcheck, IME, undo). It suggests only what `suggest` returns.
  */
 export function GhostText(props: GhostTextProps) {
-  const { suggest, delay = 450, minLength = 3, multiline = true, variant = "field", rows = 3, maxRows = 10, placeholder, label, footer, hint = true, disabled, className } = props;
+  const { suggest, delay = 450, minLength = 3, multiline = true, variant = "field", rows = 3, maxRows = 10, placeholder, label, footer, hint = true, disabled, className, acceptKey = "Tab" } = props;
   const model = props.model ?? { name: "Autocomplete" };
   const labels = useMemo<GhostTextLabels>(() => ({ ...DEFAULT_LABELS, ...props.labels }), [props.labels]);
   const reduce = useReducedMotion() ?? false;
@@ -141,7 +143,7 @@ export function GhostText(props: GhostTextProps) {
   };
   const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     const node = event.currentTarget, atEnd = node.selectionStart === node.value.length && node.selectionEnd === node.value.length;
-    if (event.key === "Tab" && !event.shiftKey && !event.metaKey && !event.ctrlKey && !event.altKey && ghost && atEnd) { event.preventDefault(); acceptAll(); }
+    if (event.key === acceptKey && !event.shiftKey && !event.metaKey && !event.ctrlKey && !event.altKey && ghost && atEnd) { event.preventDefault(); acceptAll(); }
     else if (event.key === "ArrowRight" && (event.metaKey || event.ctrlKey || event.altKey) && !event.shiftKey && ghost && atEnd) { event.preventDefault(); acceptWord(); }
     else if (event.key === "Escape" && ghost) { event.preventDefault(); event.stopPropagation(); dismiss(); }
     else if (event.key === "Enter" && !multiline) event.preventDefault();
@@ -175,7 +177,7 @@ export function GhostText(props: GhostTextProps) {
       <span className="gt-mark" aria-hidden="true" style={{ color: undefined }}>{model.mark}</span>
       {key === "idle" && <span className="gt-chipName">{model.name}</span>}
       {key === "loading" && <span className="gt-thinking">{labels.thinking}</span>}
-      {key === "ready" && <><span className="gt-desk"><kbd className="gt-kbd" data-pressed={pressed === "tab" || undefined}>Tab</kbd><span>{labels.toAccept}</span></span><span className="gt-touch">{labels.tapToAccept}</span></>}
+      {key === "ready" && <><span className="gt-desk"><kbd className="gt-kbd" data-pressed={pressed === "tab" || undefined}>{acceptKey === "Tab" ? "Tab" : "→"}</kbd><span>{labels.toAccept}</span></span><span className="gt-touch">{labels.tapToAccept}</span></>}
       {key === "accepted" && <><Check className="gt-okIcon" aria-hidden="true" /><span>{labels.accepted}</span></>}
       {key === "error" && <><AlertTriangle className="gt-alertIcon" aria-hidden="true" /><span>{labels.noSuggestion}</span><span className="gt-retry">{labels.retry}</span></>}
     </span>

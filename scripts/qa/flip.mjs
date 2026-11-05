@@ -301,9 +301,9 @@ try {
   await field.fill('');
   await field.pressSequentially('Lookups', { delay: 30 });
   await page.waitForTimeout(900);
-  check('Ghost text completes a name from the workbook\'s own names (a sheet), with the extension, and Tab accepts it', (await page.locator('.gt-ghost').first().innerText().catch(() => '')) === '.csv' && (await page.locator('.cr-flip .fl-ext b').innerText()) === 'Lookups.csv');
-  await page.keyboard.press('Tab'); await page.waitForTimeout(400);
-  check('After Tab the name holds the extension', (await field.inputValue()) === 'Lookups.csv');
+  check('Ghost text completes a name from the workbook\'s own names (a sheet), with the extension, and Right Arrow accepts it', (await page.locator('.gt-ghost').first().innerText().catch(() => '')) === '.csv' && (await page.locator('.cr-flip .fl-ext b').innerText()) === 'Lookups.csv');
+  await page.keyboard.press('ArrowRight'); await page.waitForTimeout(400);
+  check('After Right Arrow the name holds the extension', (await field.inputValue()) === 'Lookups.csv', JSON.stringify(await field.inputValue()));
   await page.getByRole('button', { name: 'TSV', exact: true }).click(); await page.waitForTimeout(400);
   check('Changing the format changes the extension of the output name (.tsv)', /Lookups\.csv|\.tsv/.test(await page.locator('.cr-flip .fl-ext b').innerText()));
   await tt3.getByRole('button', { name: 'Notes', exact: true }).click();
@@ -336,8 +336,8 @@ try {
   await upload(page);
   await page.waitForTimeout(800);
   const colours = await page.evaluate(() => ({ card: getComputedStyle(document.querySelector('.tt-card')).backgroundColor, ac: getComputedStyle(document.querySelector('.ac-root')).backgroundColor, text: getComputedStyle(document.querySelector('.tt-title')).color }));
-  const lightness = value => Number(/\d+/.exec(value)?.[0] ?? 255);
-  check('In the dark theme both cards are dark with light text', lightness(colours.card) < 80 && lightness(colours.ac) < 80 && lightness(colours.text) > 150, JSON.stringify(colours));
+  const lightness = value => /^lab\(/.test(value) ? Number(/[\d.]+/.exec(value)[0]) : (([r, g, b] = (value.match(/[\d.]+/g) ?? [255, 255, 255]).map(Number)) => (0.2126 * r + 0.7152 * g + 0.0722 * b) / 2.55)();
+  check('In the dark theme both cards are dark with light text', lightness(colours.card) < 30 && lightness(colours.ac) < 30 && lightness(colours.text) > 70, JSON.stringify(colours));
   await page.screenshot({ path: `${out}/07-dark.png`, clip: await page.locator('.cr-flip .fl-stage').boundingBox() });
   await ctx.close();
   ({ ctx, page } = await open({ reduced: true }));

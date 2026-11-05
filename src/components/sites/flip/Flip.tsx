@@ -166,7 +166,7 @@ function FlipStage({ fileName, fileSize, notify }: { fileName: string; fileSize:
     total: sheets.length > 1 ? { label: uiText("Total"), cells: [allRows.toLocaleString(), ""] } : undefined,
   };
   const copyValue = { file: fileName, sizeBytes: result?.size ?? fileSize, readMs: engine.openMs, rows: allRows, cells: result?.stats.cellsScanned ?? 0, sheets: sheets.map(item => ({ name: item.name, rows: item.dataRows, columns: item.headers.length })) };
-  const ghostLabels = useMemo(() => ({ hint: uiText("Suggestions appear when you pause. Tab accepts, Command or Control Right Arrow accepts one word, Escape dismisses."), thinking: uiText("Thinking"), toAccept: uiText("to accept"), accepted: uiText("Accepted"), noSuggestion: uiText("No suggestion"), retry: uiText("Retry"), byModel: (model: string) => uiText("Suggested from {0}", [model]) }), [uiText]);
+  const ghostLabels = useMemo(() => ({ hint: uiText("Suggestions appear when you pause. Right Arrow accepts, Command or Control Right Arrow accepts one word, Escape dismisses."), thinking: uiText("Thinking"), toAccept: uiText("to accept"), accepted: uiText("Accepted"), noSuggestion: uiText("No suggestion"), retry: uiText("Retry"), byModel: (model: string) => uiText("Suggested from {0}", [model]) }), [uiText]);
   const tldrLabels = useMemo(() => ({
     mode: uiText("View"), full: uiText("Sheet"), summary: option.name, points: uiText("Notes"), length: uiText("Lines"),
     readingParagraphs: (count: number) => uiText("Reading {0} rows", [count]), findingPoints: uiText("Checking the cells"), thinking: uiText("Thinking"), writing: uiText("Writing"),
@@ -181,14 +181,14 @@ function FlipStage({ fileName, fileSize, notify }: { fileName: string; fileSize:
     reading: uiText("Reading the sheet"), stop: uiText("Stop"), runAgain: uiText("Run again"), ask: uiText("Show me"), retry: uiText("Retry"), undo: uiText("Undo"), accept: uiText("Accept changes"),
     ready: (count: number) => uiText("{0} changes ready for review", [count]), accepted: (count: number) => uiText("Accepted {0} changes", [count]), reverted: (count: number) => uiText("Undid {0} changes", [count]),
     stoppedEarly: uiText("Stopped before any changes"), stoppedAfter: (count: number) => uiText("Stopped after {0} changes", [count]), failed: uiText("Connection lost"), empty: uiText("Nothing to change"),
-    barCount: (count: number) => uiText("{0} changes", [count]), by: (agent: string) => uiText(" by {0}", [agent]), review: uiText("Review changes"),
+    barCount: (count: number) => uiText("{0} changes", [count]), by: (agent: string) => uiText("by {0}", [agent]), review: uiText("Review changes"),
     rewrite: uiText("Joining a row"), insert: () => uiText("Adding a line"), fix: uiText("Quoting a cell"),
   }), [uiText]);
 
   return <div className="fl-stage">
     <section className="fl-block" aria-labelledby="fl-name-title">
       <header className="fl-block__head"><h2 id="fl-name-title">{uiText("Output file")}</h2><p>{uiText("Name the file the sheet will become, and pick how its cells are separated.")}</p></header>
-      <GhostText value={name} onValueChange={setName} multiline={false} rows={1} delay={450} minLength={3} placeholder={uiText("File name")} aria-label={uiText("Output file name")} model={{ name: uiText("This workbook"), mark }}
+      <GhostText acceptKey="ArrowRight" value={name} onValueChange={setName} multiline={false} rows={1} delay={450} minLength={3} placeholder={uiText("File name")} aria-label={uiText("Output file name")} model={{ name: uiText("This workbook"), mark }}
         suggest={text => suggestName(text, suggestRef.current.names, suggestRef.current.ext)} labels={ghostLabels} />
       <p className="fl-ext">{uiText("Saved as")} <b>{finalName}</b></p>
       <div className="fl-format"><SegmentedControl label={uiText("Format")} value={format} onChange={setFormat} options={FORMATS.map(item => ({ value: item.code, label: item.name }))} /><span className="fl-format__note">{uiText("Separated by a {0}", [delimiterName])}</span></div>

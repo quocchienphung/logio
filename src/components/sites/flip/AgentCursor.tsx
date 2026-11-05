@@ -19,7 +19,7 @@ const DEFAULT_LABELS: AgentCursorLabels = {
   reading: "Reading the doc", stop: "Stop", runAgain: "Run again", ask: "Ask", retry: "Retry", undo: "Undo", accept: "Accept changes",
   ready: count => `${count} ${count === 1 ? "edit" : "edits"} ready for review`, accepted: count => `Accepted ${count} ${count === 1 ? "edit" : "edits"}`, reverted: count => `Undid ${count} ${count === 1 ? "edit" : "edits"}`,
   stoppedEarly: "Stopped before any edits", stoppedAfter: count => `Stopped after ${count} ${count === 1 ? "edit" : "edits"}`, failed: "Connection lost", empty: "Nothing to change",
-  barCount: count => `${count} ${count === 1 ? "edit" : "edits"}`, by: name => ` by ${name}`, review: "Review edits", simulated: "Simulated, nothing was saved.",
+  barCount: count => `${count} ${count === 1 ? "edit" : "edits"}`, by: name => `by ${name}`, review: "Review edits", simulated: "Simulated, nothing was saved.",
   rewrite: "Rewriting", insert: type => type === "heading" ? "Adding a heading" : "Adding a paragraph", fix: "Fixing a typo",
 };
 export interface AgentCursorProps {
@@ -455,7 +455,7 @@ export function AgentCursor(props: AgentCursorProps) {
       {view.map(block => <div key={block.id} className="ac-block" data-type={block.type}><Fit block={block} reduce={reduce} busy={busy}><div className="ac-pad">{textFor(block)}</div>{block.type === "title" && meta && <div className="ac-meta">{meta}</div>}</Fit></div>)}
     </article>
     <div className="ac-barWrap"><AnimatePresence>{bar && <motion.div key="bar" className="ac-bar" role="group" aria-label={labels.review} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.2, ease: EASE_STANDARD } }} exit={{ opacity: 0, transition: { duration: reduce ? 0 : 0.12 } }}>
-      <span className="ac-barLabel"><span className="ac-barMark">{agent.mark ?? AGENT_MARK}</span><span className="ac-barCount">{labels.barCount(doneCount)}<span className="ac-barBy">{labels.by(agent.name)}</span></span></span>
+      <span className="ac-barLabel"><span className="ac-barMark">{agent.mark ?? AGENT_MARK}</span><span className="ac-barCount">{labels.barCount(doneCount)}<span className="ac-barBy">{" "}{labels.by(agent.name)}</span></span></span>
       <Button tone="ghost" onClick={undo}><span className="ac-buttonInner"><Undo2 aria-hidden="true" />{labels.undo}</span></Button>
       <Button ref={acceptRef} tone="primary" onClick={accept}><span className="ac-buttonInner"><Check aria-hidden="true" />{labels.accept}</span></Button>
     </motion.div>}</AnimatePresence></div>
