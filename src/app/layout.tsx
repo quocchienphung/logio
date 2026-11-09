@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <PageTransitionScript />
         <MotionScript />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <WorkspaceI18nProvider>
         <div id="__next">{children}</div>
         <InteractionRuntime />
