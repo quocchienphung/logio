@@ -1,0 +1,307 @@
+[
+  {
+    "text": "",
+    "label": "Open library navigation",
+    "class": "page_mobileMenu__QUBJa"
+  },
+  {
+    "text": "Search⌘ K",
+    "label": "Search pages and components",
+    "class": "global-command-menu_launcher__grAw_"
+  },
+  {
+    "text": "Appearance",
+    "label": "Customize appearance",
+    "class": "page_customizeButton__RKmW3"
+  },
+  {
+    "text": "",
+    "label": "Switch to dark mode",
+    "class": "button_button__dxFOF button_secondary__ElDub button_sm__z2SdE theme-switch_themeSwitch__ZvNpz theme-switch_rise__KvE46 theme-switch_iconOnly__J9s8A theme-switch_settled__pnEva"
+  },
+  {
+    "text": "All",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "Free",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "Pro",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "More",
+    "label": null,
+    "class": "library-sidebar_tierMore__dj_Qz"
+  },
+  {
+    "text": "Docs",
+    "label": null,
+    "class": "library-sidebar_sectionHead___A06N"
+  },
+  {
+    "text": "Components134",
+    "label": null,
+    "class": "library-sidebar_sectionHead___A06N"
+  },
+  {
+    "text": "Buttons11",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Gestures3",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Menus3",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Text fields7",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Special inputs7",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Selects5",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Toggles8",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Sliders4",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Pickers6",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Editors4",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Navigation5",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Expand5",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Overlays8",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Messages6",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Progress6",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Avatars4",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Cards4",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Charts14",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Advanced charts7",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Tables7",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Activity3",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Media3",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Text effects4",
+    "label": null,
+    "class": "library-sidebar_groupHead__o7GWW"
+  },
+  {
+    "text": "Blocks131",
+    "label": null,
+    "class": "library-sidebar_sectionHead___A06N"
+  },
+  {
+    "text": "Special components101",
+    "label": null,
+    "class": "library-sidebar_sectionHead___A06N"
+  },
+  {
+    "text": "",
+    "label": "Copy install command",
+    "class": "docs_copy__At0Np docs_copyIconOnly__X5yic "
+  },
+  {
+    "text": "Copy pageCopiedCopy failed",
+    "label": null,
+    "class": "docs_splitMain__52aTO"
+  },
+  {
+    "text": "",
+    "label": "More page actions",
+    "class": "docs_splitTrigger__KvSZI"
+  },
+  {
+    "text": "Preview",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "Code",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "",
+    "label": "Fit",
+    "class": "preview-shell_option__gxVA2"
+  },
+  {
+    "text": "",
+    "label": "Mobile",
+    "class": "preview-shell_option__gxVA2"
+  },
+  {
+    "text": "",
+    "label": "Fullscreen preview",
+    "class": "preview-shell_expand__fXEJp"
+  },
+  {
+    "text": "Delete project",
+    "label": null,
+    "class": "confirm-morph_trigger__eeQS_"
+  },
+  {
+    "text": "Click",
+    "label": null,
+    "class": "segmented-control_button__66qu5"
+  },
+  {
+    "text": "Hold",
+    "label": null,
+    "class": "segmented-control_button__66qu5"
+  },
+  {
+    "text": "Countdown",
+    "label": null,
+    "class": "segmented-control_button__66qu5"
+  },
+  {
+    "text": "Succeeds",
+    "label": null,
+    "class": "segmented-control_button__66qu5"
+  },
+  {
+    "text": "Fails",
+    "label": null,
+    "class": "segmented-control_button__66qu5"
+  },
+  {
+    "text": "CLI",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "Manual",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "pnpm",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "npm",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "yarn",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "bun",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "CopyCopiedFailed",
+    "label": null,
+    "class": "docs_copy__At0Np  "
+  },
+  {
+    "text": "",
+    "label": "Copy command with URL",
+    "class": "docs_copy__At0Np docs_copyIconOnly__X5yic "
+  },
+  {
+    "text": "CopyCopiedFailed",
+    "label": null,
+    "class": "docs_copy__At0Np  "
+  },
+  {
+    "text": "Copy URLCopiedFailed",
+    "label": null,
+    "class": "docs_copy__At0Np  "
+  },
+  {
+    "text": "Back to top ",
+    "label": null,
+    "class": ""
+  },
+  {
+    "text": "",
+    "label": "Hide for a week",
+    "class": "pro-dock_close__6UKoX"
+  }
+]

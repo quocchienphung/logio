@@ -96,10 +96,13 @@ export const SegmentedControl: Controller = (el) => {
   if (!multi) {
     selected = [0];
     // Supporting labels behind the clipped pill layer (the container is aria-hidden, so they are
-    // kept out of the tab order; keyboard users operate the original buttons).
-    buttons.forEach((b) => {
+    // kept out of the tab order; keyboard users operate the original buttons). The labels are read
+    // before any copy is inserted: innerText needs layout, and reading it between inserts forced a
+    // fresh layout of the page per button.
+    const labels = buttons.map((b) => b.innerText.trim());
+    labels.forEach((label) => {
       const s = document.createElement("button");
-      s.innerText = b.innerText.trim();
+      s.innerText = label;
       s.classList.add("SegmentedControlButton");
       s.tabIndex = -1;
       offs.push(listen(s, "click", onClick), listen(s, "mouseenter", onEnter));

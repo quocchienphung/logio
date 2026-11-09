@@ -1,0 +1,544 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+8
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Toggle group
+New
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+131
+Special components
+101
+What’s new
+4 new
+Components
+Confirm morph
+Confirm morph
+
+A destructive button that morphs into an inline confirmation, a spinner, and a result with undo.
+
+$
+pnpm dlx shadcn@latest add @uiarc/confirm-morph
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Northwind redesign
+Delete project
+Click
+Hold
+Countdown
+Succeeds
+Fails
+When to use
+Deleting a selection in a table or file list, right where the button sits.
+Revoking access, removing a member, or discarding a draft.
+Actions that should offer Undo in place after they finish.
+When not to use
+Use dialog when the consequence needs more than one line, or when typing a name to confirm is required.
+Use action-button for safe async actions that need no question.
+Use hold-to-confirm when an accidental tap must be nearly impossible.
+Installation
+
+Add Confirm morph with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/confirm-morph
+pnpm dlx shadcn@latest add @uiarc/confirm-morph
+
+Adds the component and its local dependencies, and installs motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/confirm-morph.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { Trash2 } from "lucide-react";
+2
+import { ConfirmMorph } from "@/components/arc/confirm-morph/confirm-morph";
+3
+ 
+4
+export function DeleteSelection({ ids }: { ids: string[] }) {
+5
+  return (
+6
+    <ConfirmMorph
+7
+      label="Delete files"
+8
+      icon={<Trash2 size={16} strokeWidth={1.75} />}
+9
+      prompt={`Delete ${ids.length} files?`}
+10
+      confirmMode="hold"
+11
+      onConfirm={() => deleteFiles(ids)}
+12
+      onUndo={() => restoreFiles(ids)}
+13
+    />
+14
+  );
+15
+}
+API reference
+ConfirmMorph
+
+A button for destructive or important actions that morphs in place into an inline question, then a spinner, then a result with Undo. Answer it with a click, a press and hold, or a click and a short countdown.
+
+Prop
+Type
+Default
+Description
+label
+Required
+ReactNode
+–
+The resting label, such as "Delete project".
+icon
+ReactNode
+–
+A plain icon before the resting label.
+prompt
+ReactNode
+–
+The question while confirming, such as "Delete 3 files?". Defaults to the label with a question mark.
+confirmLabel
+string
+"Delete"
+Confirm button label.
+cancelLabel
+string
+"Cancel"
+Cancel button label.
+pendingLabel
+string
+"Deleting"
+Shown beside the spinner while onConfirm resolves.
+doneLabel
+string
+"Deleted"
+Result label.
+errorLabel
+string
+"Couldn’t finish"
+Error label.
+retryLabel
+string
+"Retry"
+Retry button label on the error face.
+undoLabel
+string
+"Undo"
+Undo button label.
+undoingLabel
+string
+"Restoring"
+Shown beside the spinner while onUndo resolves.
+tone
+"danger" | "neutral"
+"danger"
+danger gives the confirm button the danger colour, for actions that destroy something; neutral gives it the accent, for important actions that can be reversed. The resting button is neutral either way.
+confirmMode
+"press" | "hold" | "countdown"
+"press"
+press confirms on a press. hold asks for the confirm button to be held for holdDuration while it fills. countdown confirms, then counts down countdown seconds that Cancel or Escape can still stop.
+holdDuration
+number
+1000
+Milliseconds the confirm button must be held in hold mode.
+countdown
+number
+3
+Seconds counted down before the action runs in countdown mode.
+countdownLabel
+string
+–
+Text before the seconds in countdown mode, such as "Deleting in". Defaults to pendingLabel followed by "in".
+onConfirm
+() => void | Promise<unknown>
+–
+Runs on confirm. Return a promise to show the pending face; a rejection shows the error face with Retry.
+onUndo
+() => void | Promise<unknown>
+–
+Adds Undo to the result. Return a promise to show a pending face while it runs.
+onCancel
+() => void
+–
+Called when the question is cancelled, including by Escape, outside press, or timeout.
+state
+"idle" | "confirming" | "pending" | "done" | "error"
+–
+Controlled state. Pair it with onStateChange.
+defaultState
+"idle" | "confirming" | "pending" | "done" | "error"
+"idle"
+Starting state when uncontrolled.
+onStateChange
+(state: ConfirmMorphState) => void
+–
+Called on every state change.
+confirmTimeout
+number
+6000
+Milliseconds before an unanswered question returns to rest. Hovering pauses it; 0 turns it off.
+resultTimeout
+number
+5000
+Milliseconds a result stays before returning to rest. Hovering pauses it; 0 turns it off.
+cancelOnOutsidePress
+boolean
+true
+A press outside the control cancels an open question.
+disabled
+boolean
+false
+Disables the resting button.
+className
+string
+–
+Class on the root.
+ref
+Ref<HTMLDivElement>
+–
+The root element, which also takes focus while the action is pending.
+Keyboard interactions
+Enter
+or
+Space
+Presses the focused face button: start, Confirm, Cancel, Undo, or Retry. In hold mode, holding Enter or Space on Confirm fills it.
+Enter
+While asking, confirms from the question (Confirm takes focus when it opens); during a countdown, runs the action now.
+Tab
+or
+Shift
++
+Tab
+Moves between Cancel and Confirm while asking.
+Escape
+Cancels the question or the countdown, or dismisses a result back to rest.
+Accessibility
+The question face is a group labelled by the prompt. Confirm takes focus so Enter answers yes, but a press within 280ms of opening and auto-repeated keys are ignored, so a double click or a held Enter never confirms by accident.
+Focus follows the morph: Confirm while asking, the root during a countdown or while pending (with aria-busy), Undo or Retry on a result, and the trigger back at rest.
+In hold mode the confirm button is described as "Press and hold", and letting go early announces that it needs a longer hold.
+Prompts, pending labels, results, and "Undo is available" are announced through a polite live region.
+Timeouts pause while the pointer rests on the control and while the tab is hidden.
+Motion
+Only the pill's width moves, on the morph spring growing and the smooth spring shrinking, so corners and text never scale or wobble and nothing around it jumps.
+Every face sits at its natural width against the pill's leading edge: the question starts where the label was and the springing edge reveals the rest, so text never squashes, slides, or leaves its baseline.
+The new face's parts arrive in reading order, each clearing a small blur; the old face fades out where it stood. The done check pops and draws itself, and countdown digits swap on tabular figures.
+In hold mode a solid danger copy of the button is revealed from the left as the hold fills and drains back on a spring if released early.
+Reduced motion removes the width spring, blur, and draw; faces crossfade and the spinner slows. The hold fill and countdown ring still show progress.
+Responsive behavior
+The control is as wide as its current face; leave room beside it for the question face, which is wider than the resting button.
+Hover styles apply only on hover-capable fine pointers; the control keeps the small control height, so give Cancel and Confirm some space from nearby targets on touch layouts.
+Performance
+Only the current face and the one leaving render; a ResizeObserver per face measures width for the spring.
+The timeout is a single linear motion value animation that pauses and resumes, not a timer per frame.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for destructive or important actions that deserve a second press but not a modal: delete, revoke, discard.
+Return the real promise from onConfirm; rejections show the error face with Retry, which reruns the same handler.
+Offer onUndo when the action can be reversed; then consider a short confirmTimeout or skipping the question in your own flow.
+Use confirmMode="hold" for the riskiest deletes and "countdown" when there is no Undo; use dialog when the consequence needs a full explanation.
+Keep the resting button neutral; tone="danger" only colours the confirm answer, and tone="neutral" moves it to the accent for reversible actions.
+/components/confirm-morph/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Hold to confirm
+Component
+Confirm a destructive action by holding, not tapping.
+Action button
+Component
+A compact button for frequent toolbar actions.
+Action morph
+Pro
+Component
+A floating button that morphs into a quick-action menu, then an inline form, then back with a check.
+Dialog
+Component
+A focused surface for decisions that need attention.
+Toast
+Component
+Brief confirmation for a completed background action.
+More like this in Pro
+Explore Pro
+Wallet stack
+Pro
+Component
+Fan a stack of cards and lift one out to see its activity.
+Liquid tab bar
+Pro
+Component
+Tabs with a lens selection that slides between them, swaps labels cleanly, and fills in icons as it passes.
+Cover flow
+Pro
+Component
+A depth rail of images you can throw, with soft grounded shadows and a quiet reflection.
+Previous
+Icon morph
+Next
+Hold to confirm
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+117 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

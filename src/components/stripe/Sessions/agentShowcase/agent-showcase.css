@@ -1,0 +1,273 @@
+/* Homepage Agent Steering showcase around the stationary iPhone Duo. Surfaces follow the page: white
+   cards, hairline borders, soft low shadows, Sohne at small sizes, the accent used sparingly. */
+
+.agent-showcase {
+  --showcase-ink: var(--hds-color-text-solid, #0a2540);
+  --showcase-muted: var(--hds-color-text-subdued, #50617a);
+  --showcase-line: rgba(10, 37, 64, 0.1);
+  --showcase-accent: rgba(0, 96, 226, 0.765);
+  --showcase-ease: cubic-bezier(0.25, 1, 0.5, 1);
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.agent-showcase__head {
+  max-width: 720px;
+  text-align: center;
+  text-wrap: balance;
+}
+.agent-showcase__head > * {
+  margin: 0;
+}
+
+.agent-showcase__stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+.agent-showcase__device {
+  position: relative;
+  width: min(100%, 790px);
+}
+
+/* ---- annotations ---- */
+.agent-notes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.agent-note {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px 13px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--showcase-line), 0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px -12px rgba(10, 37, 64, 0.18);
+  color: var(--showcase-muted);
+  font-size: 13px;
+  line-height: 18px;
+  opacity: 0;
+  translate: 0 8px;
+  transition:
+    opacity 500ms var(--showcase-ease),
+    translate 500ms var(--showcase-ease),
+    box-shadow 200ms ease;
+}
+.agent-note[data-shown] {
+  opacity: 1;
+  translate: none;
+}
+.agent-note[data-active] {
+  box-shadow: 0 0 0 1px rgba(0, 96, 226, 0.35), 0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px -12px rgba(10, 37, 64, 0.22);
+}
+.agent-note__index {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--showcase-accent);
+  font-variant-numeric: tabular-nums;
+}
+.agent-note__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--showcase-ink);
+}
+
+.agent-notes--aside {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.agent-notes--aside .agent-note {
+  position: absolute;
+  width: 208px;
+  pointer-events: auto;
+}
+.agent-notes__leaders {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+.agent-notes__leader {
+  opacity: 0;
+  transition: opacity 500ms var(--showcase-ease) 120ms;
+}
+.agent-notes__leader[data-shown] {
+  opacity: 1;
+}
+.agent-notes__leader polyline {
+  fill: none;
+  stroke: rgba(10, 37, 64, 0.28);
+  stroke-width: 1;
+}
+.agent-notes__leader circle {
+  fill: #fff;
+  stroke: var(--showcase-accent);
+  stroke-width: 1.5;
+}
+.agent-notes__leader[data-active] polyline {
+  stroke: var(--showcase-accent);
+}
+
+.agent-notes--strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: min(100%, 790px);
+}
+@media (max-width: 719px) {
+  .agent-notes--strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* the part of the screen an annotation explains (hovering the note) */
+.agent-screen[data-highlight] :is(.ui-stc__field, .ui-stc__hint, .ui-stc__plan) {
+  transition: box-shadow 200ms ease;
+}
+.agent-screen[data-highlight="compose"] .ui-stc__field,
+.agent-screen[data-highlight="keys"] .ui-stc__hint,
+.agent-screen[data-highlight="plan"] .ui-stc__plan {
+  border-radius: 8px;
+  box-shadow: 0 0 0 2px rgba(0, 96, 226, 0.28);
+}
+
+/* ---- actions ---- */
+.agent-showcase__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 10px;
+  color: var(--showcase-muted);
+  font-size: 13px;
+}
+.agent-showcase__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--showcase-line), 0 1px 2px rgba(10, 37, 64, 0.05);
+  color: var(--showcase-ink);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+.agent-showcase__action:hover {
+  background: #f6f9fc;
+}
+.agent-showcase__action:active {
+  transform: scale(0.97);
+}
+.agent-showcase__action:focus-visible,
+.agent-showcase__expand:focus-visible {
+  outline: 2px solid rgba(0, 96, 226, 0.45);
+  outline-offset: 2px;
+}
+.agent-showcase__disclaimer {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: var(--showcase-muted);
+}
+
+/* ---- tap to expand (narrow screens) ---- */
+.agent-showcase__expand {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: end center;
+  padding-bottom: 14%;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.agent-showcase__expand span {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(10, 37, 64, 0.88);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 6px 20px -8px rgba(0, 0, 0, 0.45);
+}
+
+.agent-sheet {
+  /* the page reset drops the UA's centring of modal dialogs */
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  width: min(100vw - 24px, 520px);
+  max-height: calc(100dvh - 24px);
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: #fafafa;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.45);
+  overflow: auto;
+}
+.agent-sheet::backdrop {
+  background: rgba(10, 37, 64, 0.45);
+}
+.agent-sheet__bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 16px;
+  background: inherit;
+  color: var(--showcase-ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+.agent-sheet__close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--showcase-line);
+  color: var(--showcase-ink);
+  cursor: pointer;
+}
+
+/* ---- the screen inside the device ---- */
+.agent-screen {
+  --um-stage-pad: 20px 56px 18px;
+  --um-tools-top: calc(var(--status-bottom, 70px) + 14px);
+  --um-tools-right: calc(var(--status-column, 40px) - 16px);
+}
+.agent-screen[data-variant="sheet"] {
+  --um-stage-pad: 4px 12px 16px;
+  height: auto;
+}
+.agent-screen .steer-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 460px);
+  justify-content: center;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-note,
+  .agent-notes__leader {
+    transition: none;
+  }
+}

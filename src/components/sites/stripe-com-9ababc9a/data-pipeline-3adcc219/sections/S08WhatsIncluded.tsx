@@ -57,11 +57,11 @@ export function S08WhatsIncluded() {
                       <div className="Copy__body">
                         <p>
                           {"Connect with leading "}
-                          <a className="Link" href="https://stripe.com/docs/stripe-data/access-data-in-warehouse#database-support" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/stripe-data/access-data-in-warehouse" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"data warehouses"}
                           </a>
                           {" and "}
-                          <a className="Link" href="https://docs.stripe.com/stripe-data/access-data-in-warehouse/cloud-storage" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/stripe-data/access-data-in-warehouse/cloud-storage" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"cloud storage"}
                           </a>
                           {" destinations, including:"}
@@ -188,7 +188,7 @@ export function S08WhatsIncluded() {
                       <div className="Copy__body">
                         <p>
                           {"Export "}
-                          <a className="Link" href="https://stripe.com/docs/reports" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/reports" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"reports"}
                           </a>
                           {" that help you reconcile your account activity."}
@@ -286,11 +286,11 @@ export function S08WhatsIncluded() {
                       <div className="Copy__body">
                         <p>
                           {"Access the most complete "}
-                          <a className="Link" href="https://docs.stripe.com/stripe-data/schema" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/stripe-data/schema" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Stripe dataset"}
                           </a>
                           {" in your own data warehouse and cloud storage destinations. Fresh data is made "}
-                          <a className="Link" href="https://docs.stripe.com/stripe-data/available-data" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/stripe-data/available-data" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"available regularly"}
                           </a>
                           {"."}
@@ -309,7 +309,7 @@ export function S08WhatsIncluded() {
                               {" "}
                               <span className="ListItem__label">
                                 {"All your Stripe data mapped 1:1 to the "}
-                                <a className="Link" href="https://docs.stripe.com/stripe-data/schema" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                <a className="Link" href="/unavailable/stripe/docs.stripe.com/stripe-data/schema" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                   {"Stripe API schema"}
                                 </a>
                                 <br />

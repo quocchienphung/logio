@@ -31,15 +31,15 @@ export function S04Global() {
                     </header>
                     <div className="Copy__body">
                       {" Checkout supports "}
-                      <a className="Link" href="https://support.stripe.com/questions/supported-languages-for-stripe-checkout" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_for_global__30_languages">
+                      <a className="Link" href="/unavailable/stripe/support.stripe.com/questions/supported-languages-for-stripe-checkout" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_for_global__30_languages">
                         {"30+ languages"}
                       </a>
                       {", "}
-                      <a className="Link" href="https://docs.stripe.com/currencies" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_for_global__135_currencies">
+                      <a className="Link" href="/unavailable/stripe/docs.stripe.com/currencies" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_for_global__135_currencies">
                         {"135+ currencies"}
                       </a>
                       {", localizes pricing with "}
-                      <a className="Link" href="https://docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_for_global__adaptive_pricing">
+                      <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="built_for_global__adaptive_pricing">
                         {"Adaptive Pricing"}
                       </a>
                       {", and dynamically shows "}

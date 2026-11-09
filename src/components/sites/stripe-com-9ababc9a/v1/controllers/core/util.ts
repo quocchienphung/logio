@@ -13,12 +13,20 @@ let softwareRenderer: boolean | undefined;
 export function isSoftwareRenderer(): boolean {
   if (softwareRenderer !== undefined) return softwareRenderer;
   softwareRenderer = false;
+  // Probing creates a WebGL context and reads its renderer, synchronous round trips to the GPU process
+  // that stall for 100+ ms while it draws the page transition: the answer is kept for the session.
+  const KEY = "v1-software-renderer";
+  try {
+    const known = sessionStorage.getItem(KEY);
+    if (known !== null) return (softwareRenderer = known === "1");
+  } catch {}
   try {
     const gl = document.createElement("canvas").getContext("webgl");
     const ext = gl?.getExtension("WEBGL_debug_renderer_info");
     const renderer = gl && ext ? String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) ?? "") : "";
     softwareRenderer = /swiftshade/i.test(renderer);
     gl?.getExtension("WEBGL_lose_context")?.loseContext();
+    if (gl) sessionStorage.setItem(KEY, softwareRenderer ? "1" : "0");
   } catch {
     softwareRenderer = false;
   }

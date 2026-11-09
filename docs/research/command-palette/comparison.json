@@ -1,0 +1,238 @@
+{
+  "reports": [
+    {
+      "selector": ".cp-palette",
+      "property": "fontSize",
+      "value": "16px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-palette",
+      "property": "fontWeight",
+      "value": "400",
+      "matches": true
+    },
+    {
+      "selector": ".cp-palette",
+      "property": "lineHeight",
+      "value": "22.4px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-palette",
+      "property": "letterSpacing",
+      "value": "-0.16px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-palette",
+      "property": "borderRadius",
+      "value": "26px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-palette",
+      "property": "color",
+      "value": "lab(3.04863 0 0)",
+      "matches": true
+    },
+    {
+      "selector": ".cp-palette",
+      "property": "boxShadow",
+      "value": "lab(0 0 0 / 0.105) 0px 20px 48px 0px, lab(0 0 0 / 0.045) 0px 3px 10px 0px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-search",
+      "property": "padding",
+      "value": "8px 14px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-search",
+      "property": "gap",
+      "value": "10px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-heading",
+      "property": "padding",
+      "value": "8px 10px 4px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-heading",
+      "property": "fontSize",
+      "value": "12px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-heading",
+      "property": "fontWeight",
+      "value": "500",
+      "matches": true
+    },
+    {
+      "selector": ".cp-heading",
+      "property": "lineHeight",
+      "value": "16.8px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-heading",
+      "property": "color",
+      "value": "lab(52.44 0 -0.0000119209)",
+      "matches": true
+    },
+    {
+      "selector": ".cp-result",
+      "property": "padding",
+      "value": "0px 10px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-result",
+      "property": "gap",
+      "value": "10px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-result",
+      "property": "borderRadius",
+      "value": "8px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-label",
+      "property": "fontSize",
+      "value": "14px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-label",
+      "property": "fontWeight",
+      "value": "400",
+      "matches": true
+    },
+    {
+      "selector": ".cp-label",
+      "property": "lineHeight",
+      "value": "19.6px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-description",
+      "property": "fontSize",
+      "value": "12px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-description",
+      "property": "fontWeight",
+      "value": "400",
+      "matches": true
+    },
+    {
+      "selector": ".cp-description",
+      "property": "lineHeight",
+      "value": "16.8px",
+      "matches": true
+    },
+    {
+      "selector": ".cp-description",
+      "property": "color",
+      "value": "lab(37.36 0.0000149012 -0.00000596046)",
+      "matches": true
+    },
+    {
+      "selector": ".cp-item-icon",
+      "property": "color",
+      "value": "lab(3.04863 0 0)",
+      "matches": true
+    },
+    {
+      "selector": ".cp-highlight",
+      "property": "borderRadius",
+      "value": "8px",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-palette",
+      "property": "color",
+      "value": "lab(95.36 0.0000596046 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-palette",
+      "property": "backgroundColor",
+      "value": "lab(8.94 0 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-search",
+      "property": "color",
+      "value": "lab(95.36 0.0000596046 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-search",
+      "property": "backgroundColor",
+      "value": "rgba(0, 0, 0, 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-heading",
+      "property": "color",
+      "value": "lab(58.24 0 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-heading",
+      "property": "backgroundColor",
+      "value": "rgba(0, 0, 0, 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-description",
+      "property": "color",
+      "value": "lab(73.32 -0.0000298023 -0.0000119209)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-description",
+      "property": "backgroundColor",
+      "value": "rgba(0, 0, 0, 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-highlight",
+      "property": "color",
+      "value": "lab(95.36 0.0000596046 0)",
+      "matches": true
+    },
+    {
+      "theme": "dark",
+      "selector": ".cp-highlight",
+      "property": "backgroundColor",
+      "value": "lab(14.16 0 0)",
+      "matches": true
+    }
+  ],
+  "empty": {
+    "width": 440,
+    "height": 203,
+    "comparedPixels": 86226,
+    "differentPixels": 1355,
+    "percent": 1.5714517662885903,
+    "note": "Rounded host corners and the adapted Tab hint masked. Comparison host shifted by half a pixel to align the inline reference capture; application centering is unchanged."
+  }
+}

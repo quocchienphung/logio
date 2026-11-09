@@ -124,6 +124,9 @@ export class AgenticParticlesRenderer {
     this.hoverRoot?.addEventListener("mousemove", this.onMouseMove);
     this.hoverRoot?.addEventListener("mouseover", this.onMouseOver);
     this.hoverRoot?.addEventListener("mouseout", this.onMouseOut);
+    // link the program in parallel before the first draw (see IphoneDuoRenderer)
+    await this.renderer.compileAsync(this.scene, this.camera).catch(() => {});
+    if (this.disposed) return;
     this.loaded = true;
     this.loop.start();
     if (this.paused) this.render();

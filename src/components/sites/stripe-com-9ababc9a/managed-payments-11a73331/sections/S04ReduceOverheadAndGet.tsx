@@ -209,7 +209,7 @@ export function S04ReduceOverheadAndGet() {
                       </h4>
                       <p className="hds-text hds-text--md hds-text--inline hds-text--soft">
                         {"Let your customers manage purchases, update payment methods, handle subscriptions, and access 24/7 multilingual support in their "}
-                        <a className="hds-link hds-link--secondary" href="https://link.com/" data-analytics-label="managed_payments__global_revenue__link">
+                        <a className="hds-link hds-link--secondary" href="/unavailable/stripe/link.com/" data-analytics-label="managed_payments__global_revenue__link">
                           {"Link"}
                         </a>
                         {" account."}
@@ -636,7 +636,7 @@ export function S04ReduceOverheadAndGet() {
                         </p>
                       </div>
                       <div className="feature-card__footer">
-                        <a className="hds-link" href="https://docs.stripe.com/payments/managed-payments/how-it-works" data-analytics-label="managed_payments__reduce_overhead__fraud_prevention">
+                        <a className="hds-link" href="/unavailable/stripe/docs.stripe.com/payments/managed-payments/how-it-works" data-analytics-label="managed_payments__reduce_overhead__fraud_prevention">
                           {"Learn more"}
                           <span className="hds-nowrap-svg">
                             <span className="hds-nowrap-svg">
@@ -772,7 +772,7 @@ export function S04ReduceOverheadAndGet() {
                         </p>
                       </div>
                       <div className="feature-card__footer">
-                        <a className="hds-link" href="https://docs.stripe.com/payments/managed-payments/how-it-works#handle-disputes" data-analytics-label="managed_payments__reduce_overhead__dispute_management">
+                        <a className="hds-link" href="/unavailable/stripe/docs.stripe.com/payments/managed-payments/how-it-works" data-analytics-label="managed_payments__reduce_overhead__dispute_management">
                           {"Learn more"}
                           <span className="hds-nowrap-svg">
                             <span className="hds-nowrap-svg">
@@ -914,7 +914,7 @@ export function S04ReduceOverheadAndGet() {
                         </p>
                       </div>
                       <div className="feature-card__footer">
-                        <a className="hds-link" href="https://docs.stripe.com/payouts" data-analytics-label="managed_payments__reduce_overhead__faster_payouts">
+                        <a className="hds-link" href="/unavailable/stripe/docs.stripe.com/payouts" data-analytics-label="managed_payments__reduce_overhead__faster_payouts">
                           {"Learn more"}
                           <span className="hds-nowrap-svg">
                             <span className="hds-nowrap-svg">

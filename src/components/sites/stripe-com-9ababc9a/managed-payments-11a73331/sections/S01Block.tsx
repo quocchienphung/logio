@@ -96,7 +96,7 @@ export function S01Block() {
                 </div>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/lovable" data-analytics-label="managed_payments__lovable" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/lovable" data-analytics-label="managed_payments__lovable" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Lovable">
                       <g transform="translate(0, -1.2)">
@@ -314,7 +314,7 @@ export function S01Block() {
                 </div>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/lovable" data-analytics-label="managed_payments__lovable" data-analytics-category="Carousels" tabIndex={-1} draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/lovable" data-analytics-label="managed_payments__lovable" data-analytics-category="Carousels" tabIndex={-1} draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Lovable">
                       <g transform="translate(0, -1.2)">

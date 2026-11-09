@@ -1,0 +1,22 @@
+Add rate limiting to the public API
+Claude Sonnet 5.5
+Working
+0:05
+Planned the change
+1.2s
+Read
+src/api/routes.ts
+0.9s
+Searched for
+rate limit middleware
+1.0s
+Read
+package.json
+0.7s
+Read
+src/lib/redis.ts
+0.7s
+Searching for
+the API key on requests
+
+Searching for the API key on requests

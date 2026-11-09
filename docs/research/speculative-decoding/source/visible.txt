@@ -1,0 +1,833 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+⌘K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+8
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Toggle group
+New
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+131
+Special components
+101
+Docks and tabs
+6
+Share sheet
+Pro
+Action morph
+Pro
+Morph nav
+Pro
+Dock
+Pro
+Liquid tab bar
+Pro
+Orbit menu
+Pro
+Glass
+4
+Glass menu
+Pro
+Glass segmented
+Pro
+Glass card
+Pro
+Glass tab bar
+Pro
+Surfaces
+6
+Sheet stack
+Pro
+Wallet stack
+Pro
+Control center
+Pro
+Holo card
+Pro
+Card to article
+Pro
+Link unfurl
+Pro
+Galleries
+4
+Product gallery
+Pro
+Lightbox gallery
+Pro
+Photo grid
+Pro
+Cover flow
+Pro
+Audio and video
+3
+Voice orb
+Pro
+Now playing
+Pro
+Voice recorder
+Pro
+Data
+4
+Booking pill
+Pro
+Activity rings
+Pro
+Time dial
+Pro
+Date reel
+Pro
+Type
+4
+Keycap keyboard
+Pro
+Slot text
+Sand text
+Pro
+Typewriter terminal
+Pro
+Loaders
+4
+Stretch refresh
+Pro
+Morph loader
+Pro
+Skeleton morph
+Pro
+Black hole
+Pro
+Playful
+4
+Sticker peel
+Pro
+Page curl
+Pro
+Orbit logos
+Pro
+Prize wheel
+Pro
+Cursor
+4
+Dot grid
+Pro
+Image trail
+Pro
+Gravity well
+Pro
+Ink fluid
+Pro
+AI
+48
+Agent status
+Pro
+Tool call
+Pro
+Agent plan
+Pro
+Agent timeline
+Pro
+Context window
+Pro
+Reasoning block
+Pro
+Source cards
+Pro
+Model card
+Pro
+AI workflow
+Pro
+Code suggestion
+Pro
+Ghost text
+Pro
+Image generation
+Pro
+Dictation button
+Pro
+Speech player
+Pro
+Meeting summary
+Pro
+Reply draft
+Pro
+Agent handoff
+Pro
+PII redaction
+Pro
+Response feedback
+Pro
+LLM cost calculator
+Pro
+Provider keys
+Pro
+Generation stats
+Pro
+AI translate
+Pro
+TL;DR toggle
+Pro
+Connector setup
+Pro
+Smart form fill
+Pro
+Enrich column
+Pro
+Ticket router
+Pro
+Ask your data
+Pro
+Agent cursor
+Pro
+Provider status
+Pro
+Training run
+Pro
+AI command
+Pro
+Starter prompts
+Pro
+AI mascot
+Pro
+Image reveal
+Pro
+AI spark
+Pro
+Pixel mascot
+Pro
+Ghost mascot
+Pro
+Cube mascot
+Pro
+Tone tuner
+Pro
+Upgrade prompt
+Pro
+Referral card
+Pro
+Trial banner
+Pro
+Team switcher
+Pro
+Live visitors
+Pro
+Social proof toast
+Pro
+Install snippet
+Pro
+Illustrations
+10
+Data flow
+Pro
+Payment flow
+Pro
+Model training
+Pro
+Multi-region failover
+Pro
+Vector search
+Pro
+Agent loop
+Pro
+Mixture of experts
+Pro
+Speculative decoding
+Pro
+Prompt cache
+Pro
+Reasoning tree
+Pro
+What’s new
+4 new
+Components
+Speculative decoding
+Speculative decoding
+Pro
+
+An illustration of speculative decoding: a fast draft model guesses a few tokens, the target model checks them in one pass, and accepted guesses join the answer.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+
+Speculative decoding
+
+Done in 6 target passes
+
+Draft model
+Small, fast
+Target model
+Large
+24 tokens drafted, 16 accepted
+6 passes for 22 tokens
+
+Output
+6 passes
+
+Your preview deploy finished in 42 seconds, and all 318 checks passed, so the branch is ready to merge.
+
+Faster
+–
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+×
+2.6 times
+Drafts accepted
+–
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+%
+67 percent
+Tokens per pass
+–
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+3.7
+Draft length
+4
+ 
+t
+o
+k
+e
+n
+s
+Compare without speculation
+
+Done. 22 tokens in 6 target passes, 2.6 times faster than the target alone.
+
+When to use
+Explaining why a product answers faster: docs, model pages, inference dashboards and blog posts about latency.
+Showing a recorded speculative run from your own server, with acceptance and tokens per pass for a chosen draft length.
+Teaching the trade off between draft length, acceptance rate and speedup with a slider people can try.
+When not to use
+Use text-stream to show an answer streaming to a user; this card explains the mechanism behind the speed.
+Use token-inspector to look at token probabilities and alternatives for one answer.
+Use model-router to explain how requests are sent to different models; speculative decoding runs two models on every request.
+Use attention-map or mixture-of-experts for what happens inside a single forward pass.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Speculative decoding is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Speculative decoding
+All 117 Pro components and 116 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { SpeculativeDecoding } from "@/components/arc/speculative-decoding/speculative-decoding";
+2
+ 
+3
+// Simulated: pass the answer and let the seeded draft guess.
+4
+<SpeculativeDecoding
+5
+  tokens={[{ text: "The" }, { text: " build", ease: 0.6, miss: " deploy" }, { text: " passed" }, { text: "." }]}
+6
+  defaultDraftLength={5}
+7
+  defaultCompare
+8
+/>
+9
+ 
+10
+// Replayed: pass rounds recorded from your own server.
+11
+<SpeculativeDecoding
+12
+  rounds={[
+13
+    { draft: ["The", " build", " failed"], accepted: 2, target: " passed" },
+14
+    { draft: [], accepted: 0, target: "." },
+15
+  ]}
+16
+  onComplete={stats => console.log(stats.speedup)}
+17
+/>
+API reference
+SpeculativeDecoding
+
+An illustration of speculative decoding in one card. A draft model lane proposes a few ghost tokens quickly; a target model lane checks them in one sweep. Accepted guesses get a check and travel into the answer, the first miss is struck through and replaced by the target's token, and the rest fade away. Rounds repeat until the sentence is done. A compare switch races a second line where the target writes one token per pass, while the speedup, the share of drafts accepted and the tokens per target pass roll up below. Every token in the answer is underlined in the color of the model that wrote it.
+
+Prop
+Type
+Default
+Description
+tokens
+DecodeToken[]
+sampleTokens
+The target model's answer, one entry per token with its leading space ({ text: " deploy" }). Optional ease (0 to 1) is how likely the draft guesses the token, and miss is what it proposes instead.
+rounds
+DecodeRound[]
+–
+A recorded run to replay instead of the simulation: per round the draft tokens, how many were accepted from the start, and the target's own token. Hides the draft length slider.
+draftLength
+number
+–
+Tokens the draft guesses per round, 2 to 8 (controlled). Changing it replans and replays from the start.
+defaultDraftLength
+number
+4
+Draft length on first render.
+onDraftLengthChange
+(length: number) => void
+–
+Called when the slider moves.
+compare
+boolean
+–
+Shows the target only line and races it on the same clock (controlled).
+defaultCompare
+boolean
+false
+Compare state on first render.
+onCompareChange
+(compare: boolean) => void
+–
+Called when the compare switch changes.
+autoplay
+boolean
+true
+Starts the run once, when the card is mostly in view. Never starts on its own with reduced motion.
+seed
+number
+12
+Seed for the simulated guesses. The same seed, tokens and draft length always give the same run.
+draftCost
+number
+0.1
+Cost of one draft token as a share of a target pass. It sets how long drafting takes on screen and counts toward the speedup.
+passDuration
+number
+640
+Milliseconds one target pass takes on screen.
+title
+string
+"Speculative decoding"
+Card title and the group's accessible name.
+draftLabel / draftDetail
+string
+"Draft model" / "Small, fast"
+Name and detail of the draft lane. Keep them generic or clearly illustrative.
+targetLabel / targetDetail
+string
+"Target model" / "Large"
+Name and detail of the target lane.
+status
+"ready" | "loading" | "error"
+"ready"
+Loading dims the lanes and shimmers the status line; error shows the message with a retry. Controls are disabled in both.
+error
+string
+–
+Message shown when status is "error".
+onRetry
+() => void
+–
+Called by the retry button in the error state. The button is hidden without it.
+onComplete
+(stats: DecodeStats) => void
+–
+Called each time the speculative line finishes, with passes, drafted, accepted, tokens, acceptance, tokensPerPass and speedup.
+className
+string
+–
+Class on the root element.
+style
+CSSProperties
+–
+Inline style on the root element.
+Keyboard interactions
+Tab
+Moves through play or pause, restart, the draft length slider and the compare switch.
+Enter, Space
+On play or pause and restart, activates them. On the compare switch, toggles the race.
+Arrow left
+or
+Arrow right, Home, End
+On the draft length slider, changes the length by one or jumps to 2 or 8. The run replays with the new length.
+Accessibility
+The card is a named group. The lanes are hidden from assistive technology and summarized in hidden text once each round has its verdicts: what the draft proposed, how many the target accepted and which token it wrote instead.
+Each output line carries the text written so far as its accessible name, so a screen reader reads words instead of tokens.
+Stats are a description list with spoken values ("2.6 times", "67 percent"); the rolling digits are decorative.
+Verdicts never rely on color: accepted columns show a check, the rejected guess is struck through with an x beside the target's token, and discarded guesses fade.
+A polite live region announces play, pause, restart, the comparison, a new draft length with its expected acceptance and speedup, and the finished result. It never announces every round.
+Pointer focus draws no ring; keyboard focus shows Arc's shared focus ring.
+Motion
+Draft chips appear one by one, fading in from 4px to the left, with a short shimmer on the text while they wait.
+The target's sweep fills each cell in order from a per frame CSS variable; verdict icons and the replacement token crossfade in as the sweep reaches them, and the strike draws from the left.
+Accepted tokens and the target's token travel from their chips into their slot in the answer on a critically damped spring, about 20ms apart. The answer is laid out in full from the start, so the line never reflows.
+Lane height follows wrapping chips on the smooth spring; the target only line opens and closes on the same spring. Stats roll per digit with tabular numerals.
+Status text swaps with a short crossfade; no character morphs, blur or typewriter effects.
+Reduced motion never autoplays; when played, tokens appear in place without travel, the sweep steps per column, and the shimmer, slide and rolls are off.
+Responsive behavior
+Lane and line labels sit in a 120px column on wide cards. Below 560px the lane labels become a legend above the columns and line labels sit above their text with the pass count on the right.
+Draft columns wrap onto a second line when they run out of room; the lane height follows on a spring.
+The status line reserves two lines on narrow cards so wrapping copy never moves the lanes. Stats stay three across; the slider takes a full row above the compare switch.
+Performance
+The clock runs on requestAnimationFrame in a ref. React state changes only when something on screen changes (a chip, a verdict, a landed token); the sweep is a CSS variable written each frame.
+Plans are memoized on a serialized copy of the inputs, so an inline tokens array does not restart the run each render.
+The loop stops when the run ends or is paused, and frame steps are capped so a background tab never jumps ahead.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+This is an explainer, not a live decoder. With tokens it simulates a draft model from ease values and a seed; with rounds it replays a real run. Say "illustrative" when the numbers are simulated.
+Token text keeps its leading space, as tokenizers do. Punctuation without a space stays on the same line as the word before it.
+The speedup counts draft time: tokens divided by the sum of one pass per round plus draftCost per drafted token. Longer drafts accept a smaller share because everything after the first miss is discarded, so the speedup peaks at a middle length.
+Keep model names generic (Draft model, Target model) unless the run really came from named models.
+The simulation always leaves the final token to the target, so every round ends with a token from the target.
+/components/speculative-decoding/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Mixture of experts
+Pro
+Component
+An illustration of mixture of experts routing: each token is scored by a router, travels to its top experts, and their outputs merge into the token's result.
+Context window
+Pro
+Component
+An AI context window as a grid of 200 cells: the system prompt, tools, files, summary and messages fill it in order, a threshold row marks where compaction starts, and sending a message, attaching a file or compacting shows exactly how much still fits.
+Previous
+Mixture of experts
+Next
+Prompt cache
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Speculative decoding is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

@@ -7,9 +7,9 @@ import { Hero } from "@/components/stripe/Hero/Hero";
 import { News } from "@/components/stripe/News/News";
 import { Navigation } from "@/components/stripe/Navigation/Navigation";
 import { QueryBox } from "@/components/stripe/QueryBox/QueryBox";
-import { SessionsBanner } from "@/components/stripe/Sessions/SessionsBanner";
 import { Solutions } from "@/components/stripe/Solutions/Solutions";
 import { Stats } from "@/components/stripe/Stats/Stats";
+import { WarmChunks } from "@/components/stripe/WarmChunks";
 
 export default function Home() {
   return (
@@ -20,7 +20,6 @@ export default function Home() {
         <Hero />
         <Solutions />
         <QueryBox />
-        <SessionsBanner />
         <Stats />
         <BusinessSizes />
         <Developers />
@@ -29,6 +28,7 @@ export default function Home() {
       </main>
       <Footer />
       <DomGraphicsRuntime />
+      <WarmChunks />
     </>
   );
 }

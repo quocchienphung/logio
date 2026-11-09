@@ -1,0 +1,536 @@
+{
+ "vars": {
+  "--now": "26.4",
+  "--axis": "26.4",
+  "--rows-h": "226px",
+  "--row": "44px",
+  "--bar": "16px",
+  "--pad": "6px",
+  "--axis-h": "30px"
+ },
+ "labels": [
+  {
+   "name": "Orchestrator",
+   "model": "Claude Opus 5.5",
+   "c": "--c:var(--text-secondary)"
+  },
+  {
+   "name": "Checker",
+   "model": "GPT-6 Luna",
+   "c": "--c:var(--series-1)"
+  },
+  {
+   "name": "Researcher",
+   "model": "Claude Sonnet 5.5",
+   "c": "--c:var(--series-2)"
+  },
+  {
+   "name": "Analyst",
+   "model": "Claude Haiku 5.5",
+   "c": "--c:var(--series-3)"
+  },
+  {
+   "name": "Writer",
+   "model": "Gemini 3.8 Flash",
+   "c": "--c:var(--series-4)"
+  }
+ ],
+ "rows": [
+  {
+   "top": "6px",
+   "c": "--c:var(--text-secondary);top:6px",
+   "spans": [
+    {
+     "id": "lead-0",
+     "kind": "thinking",
+     "state": "done",
+     "s": "0",
+     "d": "2",
+     "label": "Orchestrator, Thinking: Split the investigation into three tracks, 0.0s to 2.0s, 1,920 tokens",
+     "extra": []
+    },
+    {
+     "id": "lead-1",
+     "kind": "waiting",
+     "state": "done",
+     "s": "2",
+     "d": "12.6",
+     "label": "Orchestrator, Waiting: Waiting on the analyst, researcher and checker, 2.0s to 14.6s",
+     "extra": []
+    },
+    {
+     "id": "lead-2",
+     "kind": "thinking",
+     "state": "done",
+     "s": "14.6",
+     "d": "2.200000000000001",
+     "label": "Orchestrator, Thinking: Merged findings: PR #4812 broke address autofill in Safari, 14.6s to 16.8s, 4,380 tokens",
+     "extra": []
+    },
+    {
+     "id": "lead-3",
+     "kind": "waiting",
+     "state": "done",
+     "s": "16.8",
+     "d": "6.199999999999999",
+     "label": "Orchestrator, Waiting: Waiting on the writer, 16.8s to 23.0s",
+     "extra": []
+    },
+    {
+     "id": "lead-4",
+     "kind": "thinking",
+     "state": "done",
+     "s": "23",
+     "d": "2.1999999999999993",
+     "label": "Orchestrator, Thinking: Reviewed the draft and tightened the timeline, 23.0s to 25.2s, 3,140 tokens",
+     "extra": []
+    },
+    {
+     "id": "lead-5",
+     "kind": "tool",
+     "state": "done",
+     "s": "25.2",
+     "d": "1.1999999999999993",
+     "label": "Orchestrator, Tool call, Notion: Published the summary to the incidents page, 25.2s to 26.4s, 260 tokens",
+     "extra": []
+    }
+   ]
+  },
+  {
+   "top": "50px",
+   "c": "--c:var(--series-1);top:50px",
+   "spans": [
+    {
+     "id": "checker-6",
+     "kind": "thinking",
+     "state": "done",
+     "s": "3.5",
+     "d": "0.5999999999999996",
+     "label": "Checker, Thinking: Listed outside causes to rule out, 3.5s to 4.1s, 480 tokens",
+     "extra": []
+    },
+    {
+     "id": "checker-7",
+     "kind": "tool",
+     "state": "done",
+     "s": "4.1",
+     "d": "1.5",
+     "label": "Checker, Tool call, Web search: Searched for payment provider incidents on Oct 14, 4.1s to 5.6s, 3,920 tokens",
+     "extra": []
+    },
+    {
+     "id": "checker-8",
+     "kind": "thinking",
+     "state": "done",
+     "s": "5.6",
+     "d": "0.7000000000000002",
+     "label": "Checker, Thinking: Checked browser releases next, 5.6s to 6.3s, 610 tokens",
+     "extra": []
+    },
+    {
+     "id": "checker-9",
+     "kind": "tool",
+     "state": "done",
+     "s": "6.3",
+     "d": "1.4000000000000004",
+     "label": "Checker, Tool call, Web search: Searched browser release notes for autofill changes, 6.3s to 7.7s, 4,460 tokens",
+     "extra": []
+    },
+    {
+     "id": "checker-10",
+     "kind": "thinking",
+     "state": "done",
+     "s": "7.7",
+     "d": "1.3999999999999995",
+     "label": "Checker, Thinking: Ruled out causes outside the codebase, 7.7s to 9.1s, 1,180 tokens",
+     "extra": []
+    }
+   ]
+  },
+  {
+   "top": "94px",
+   "c": "--c:var(--series-2);top:94px",
+   "spans": [
+    {
+     "id": "researcher-11",
+     "kind": "thinking",
+     "state": "done",
+     "s": "2.9",
+     "d": "0.6000000000000001",
+     "label": "Researcher, Thinking: Planned the code search, 2.9s to 3.5s, 620 tokens",
+     "extra": []
+    },
+    {
+     "id": "researcher-12",
+     "kind": "tool",
+     "state": "done",
+     "s": "3.5",
+     "d": "1.2999999999999998",
+     "label": "Researcher, Tool call, GitHub: Listed 14 merged PRs touching checkout since Oct 10, 3.5s to 4.8s, 2,140 tokens",
+     "extra": []
+    },
+    {
+     "id": "researcher-13",
+     "kind": "thinking",
+     "state": "done",
+     "s": "4.8",
+     "d": "0.7000000000000002",
+     "label": "Researcher, Thinking: Narrowed to 3 PRs shipped Oct 13 and 14, 4.8s to 5.5s, 980 tokens",
+     "extra": []
+    },
+    {
+     "id": "researcher-14",
+     "kind": "tool",
+     "state": "done",
+     "s": "5.5",
+     "d": "2",
+     "label": "Researcher, Tool call, GitHub: Read the diff of PR #4812, an address autofill refactor, 5.5s to 7.5s, 6,850 tokens",
+     "extra": []
+    },
+    {
+     "id": "researcher-15",
+     "kind": "thinking",
+     "state": "done",
+     "s": "7.5",
+     "d": "1",
+     "label": "Researcher, Thinking: Traced the change to the Safari autofill path, 7.5s to 8.5s, 1,410 tokens",
+     "extra": []
+    },
+    {
+     "id": "researcher-16",
+     "kind": "tool",
+     "state": "done",
+     "s": "8.5",
+     "d": "1.1999999999999993",
+     "label": "Researcher, Tool call, GitHub: Checked deploys: #4812 shipped Oct 13 at 21:40, 8.5s to 9.7s, 1,760 tokens",
+     "extra": []
+    },
+    {
+     "id": "researcher-17",
+     "kind": "thinking",
+     "state": "done",
+     "s": "9.7",
+     "d": "2.200000000000001",
+     "label": "Researcher, Thinking: Wrote up the suspect change with evidence, 9.7s to 11.9s, 2,230 tokens",
+     "extra": []
+    }
+   ]
+  },
+  {
+   "top": "138px",
+   "c": "--c:var(--series-3);top:138px",
+   "spans": [
+    {
+     "id": "analyst-18",
+     "kind": "thinking",
+     "state": "done",
+     "s": "2.3",
+     "d": "0.7000000000000002",
+     "label": "Analyst, Thinking: Wrote a conversion query for Oct 7 to 15, 2.3s to 3.0s, 540 tokens",
+     "extra": []
+    },
+    {
+     "id": "analyst-19",
+     "kind": "tool",
+     "state": "done",
+     "s": "3",
+     "d": "2.0999999999999996",
+     "label": "Analyst, Tool call, PostgreSQL, failed: Conversion query timed out, 3.0s to 5.1s, 410 tokens",
+     "failed": true,
+     "extra": [
+      "data-failed"
+     ]
+    },
+    {
+     "id": "analyst-20",
+     "kind": "thinking",
+     "state": "done",
+     "s": "5.1",
+     "d": "0.6000000000000005",
+     "label": "Analyst, Thinking: Rewrote the query to use the date index, 5.1s to 5.7s, 380 tokens",
+     "extra": []
+    },
+    {
+     "id": "analyst-21",
+     "kind": "tool",
+     "state": "done",
+     "s": "5.7",
+     "d": "1.5999999999999996",
+     "label": "Analyst, Tool call, PostgreSQL: Retried: conversion by day and platform, 5.7s to 7.3s, 1,960 tokens",
+     "extra": []
+    },
+    {
+     "id": "analyst-22",
+     "kind": "thinking",
+     "state": "done",
+     "s": "7.3",
+     "d": "1.0000000000000009",
+     "label": "Analyst, Thinking: Found the drop is Safari only, down 9.2%, 7.3s to 8.3s, 720 tokens",
+     "extra": []
+    },
+    {
+     "id": "analyst-23",
+     "kind": "tool",
+     "state": "done",
+     "s": "8.3",
+     "d": "1.5999999999999996",
+     "label": "Analyst, Tool call, PostgreSQL: Pulled checkout errors by step for Safari, 8.3s to 9.9s, 2,310 tokens",
+     "extra": []
+    },
+    {
+     "id": "analyst-24",
+     "kind": "thinking",
+     "state": "done",
+     "s": "9.9",
+     "d": "1.9000000000000004",
+     "label": "Analyst, Thinking: Traced the failures to the address step, 9.9s to 11.8s, 860 tokens",
+     "extra": []
+    },
+    {
+     "id": "analyst-25",
+     "kind": "tool",
+     "state": "done",
+     "s": "11.8",
+     "d": "1.1999999999999993",
+     "label": "Analyst, Tool call, PostgreSQL: Counted affected orders: 1,284, 11.8s to 13.0s, 1,140 tokens",
+     "extra": []
+    },
+    {
+     "id": "analyst-26",
+     "kind": "thinking",
+     "state": "done",
+     "s": "13",
+     "d": "1.3000000000000007",
+     "label": "Analyst, Thinking: Summarized the numbers, 13.0s to 14.3s, 640 tokens",
+     "extra": []
+    }
+   ]
+  },
+  {
+   "top": "182px",
+   "c": "--c:var(--series-4);top:182px",
+   "spans": [
+    {
+     "id": "writer-27",
+     "kind": "thinking",
+     "state": "done",
+     "s": "17.1",
+     "d": "0.7999999999999972",
+     "label": "Writer, Thinking: Read the merged findings, 17.1s to 17.9s, 1,850 tokens",
+     "extra": []
+    },
+    {
+     "id": "writer-28",
+     "kind": "tool",
+     "state": "done",
+     "s": "17.9",
+     "d": "0.9000000000000021",
+     "label": "Writer, Tool call, GitHub: Pulled the PR #4812 description for context, 17.9s to 18.8s, 1,120 tokens",
+     "extra": []
+    },
+    {
+     "id": "writer-29",
+     "kind": "thinking",
+     "state": "done",
+     "s": "18.8",
+     "d": "3.8999999999999986",
+     "label": "Writer, Thinking: Drafted the incident summary, 412 words, 18.8s to 22.7s, 2,940 tokens",
+     "extra": []
+    }
+   ]
+  }
+ ],
+ "links": [
+  {
+   "shape": "out",
+   "dir": "down",
+   "draw": "true",
+   "style": "--c: var(--series-3); top: 36px; height: 124.75px; left: calc(2 / var(--axis) * 100% - 0.75px); width: calc(0.2999999999999998 / var(--axis) * 100% + 0.75px);"
+  },
+  {
+   "shape": "out",
+   "dir": "down",
+   "draw": "true",
+   "style": "--c: var(--series-2); top: 36px; height: 80.75px; left: calc(2.6 / var(--axis) * 100% - 0.75px); width: calc(0.2999999999999998 / var(--axis) * 100% + 0.75px);"
+  },
+  {
+   "shape": "out",
+   "dir": "down",
+   "draw": "true",
+   "style": "--c: var(--series-1); top: 36px; height: 36.75px; left: calc(3.2 / var(--axis) * 100% - 0.75px); width: calc(0.2999999999999998 / var(--axis) * 100% + 0.75px);"
+  },
+  {
+   "shape": "in",
+   "dir": "up",
+   "draw": "true",
+   "style": "--c: var(--series-1); top: 36px; height: 36.75px; left: calc(9.1 / var(--axis) * 100% - 0px); width: calc(0.3000000000000007 / var(--axis) * 100% + 0.75px);"
+  },
+  {
+   "shape": "in",
+   "dir": "up",
+   "draw": "true",
+   "style": "--c: var(--series-2); top: 36px; height: 80.75px; left: calc(11.9 / var(--axis) * 100% - 0px); width: calc(0.29999999999999893 / var(--axis) * 100% + 0.75px);"
+  },
+  {
+   "shape": "in",
+   "dir": "up",
+   "draw": "true",
+   "style": "--c: var(--series-3); top: 36px; height: 124.75px; left: calc(14.3 / var(--axis) * 100% - 0px); width: calc(0.29999999999999893 / var(--axis) * 100% + 0.75px);"
+  },
+  {
+   "shape": "out",
+   "dir": "down",
+   "draw": "true",
+   "style": "--c: var(--series-4); top: 36px; height: 168.75px; left: calc(16.8 / var(--axis) * 100% - 0.75px); width: calc(0.3000000000000007 / var(--axis) * 100% + 0.75px);"
+  },
+  {
+   "shape": "in",
+   "dir": "up",
+   "draw": "true",
+   "style": "--c: var(--series-4); top: 36px; height: 168.75px; left: calc(22.7 / var(--axis) * 100% - 0px); width: calc(0.3000000000000007 / var(--axis) * 100% + 0.75px);"
+  }
+ ],
+ "ports": [
+  {
+   "cls": "agent-timeline_ports__AAq57",
+   "style": null
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-3); top: 36px; left: calc(2 / var(--axis) * 100%); --delay: 0ms;"
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-2); top: 36px; left: calc(2.6 / var(--axis) * 100%); --delay: 0ms;"
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-1); top: 36px; left: calc(3.2 / var(--axis) * 100%); --delay: 0ms;"
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-1); top: 36px; left: calc(9.4 / var(--axis) * 100%); --delay: 260ms;"
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-2); top: 36px; left: calc(12.2 / var(--axis) * 100%); --delay: 260ms;"
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-3); top: 36px; left: calc(14.6 / var(--axis) * 100%); --delay: 260ms;"
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-4); top: 36px; left: calc(16.8 / var(--axis) * 100%); --delay: 0ms;"
+  },
+  {
+   "cls": "agent-timeline_port__pdfiC",
+   "style": "--c: var(--series-4); top: 36px; left: calc(23 / var(--axis) * 100%); --delay: 260ms;"
+  }
+ ],
+ "axis": [
+  {
+   "text": "0s",
+   "style": "left:calc(0 / var(--axis) * 100%)"
+  },
+  {
+   "text": "5s",
+   "style": "left:calc(5 / var(--axis) * 100%)"
+  },
+  {
+   "text": "10s",
+   "style": "left:calc(10 / var(--axis) * 100%)"
+  },
+  {
+   "text": "15s",
+   "style": "left:calc(15 / var(--axis) * 100%)"
+  },
+  {
+   "text": "20s",
+   "style": "left:calc(20 / var(--axis) * 100%)"
+  },
+  {
+   "text": "25s",
+   "style": "left:calc(25 / var(--axis) * 100%)"
+  }
+ ],
+ "classes": [
+  "agent-timeline_inner_",
+  "agent-timeline_header_",
+  "agent-timeline_title_",
+  "agent-timeline_status_",
+  "agent-timeline_layer_",
+  "agent-timeline_word_",
+  "agent-timeline_wordItem_",
+  "text-shimmer_shimmer_",
+  "text-shimmer_stage_",
+  "text-shimmer_label_",
+  "agent-timeline_sep_",
+  "agent-timeline_part_",
+  "agent-timeline_count_",
+  "agent-timeline_countValue_",
+  "agent-timeline_unit_",
+  "lucide",
+  "lucide-circle-check",
+  "lucide-check-circle-2",
+  "agent-timeline_doneIcon_",
+  "agent-timeline_srOnly_",
+  "agent-timeline_scroller_",
+  "agent-timeline_body_",
+  "agent-timeline_labels_",
+  "agent-timeline_label_",
+  "agent-timeline_dot_",
+  "agent-timeline_labelText_",
+  "agent-timeline_name_",
+  "agent-timeline_model_",
+  "agent-timeline_mark_",
+  "agent-timeline_modelName_",
+  "agent-timeline_track_",
+  "agent-timeline_plot_",
+  "agent-timeline_grid_",
+  "agent-timeline_gridline_",
+  "agent-timeline_links_",
+  "agent-timeline_link_",
+  "agent-timeline_row_",
+  "agent-timeline_span_",
+  "lucide-circle-x",
+  "lucide-x-circle",
+  "agent-timeline_spanIcon_",
+  "lucide-rotate-cw",
+  "agent-timeline_ports_",
+  "agent-timeline_port_",
+  "agent-timeline_playhead_",
+  "agent-timeline_axis_",
+  "agent-timeline_tick_",
+  "agent-timeline_knob_",
+  "agent-timeline_footer_",
+  "agent-timeline_controls_",
+  "button_button_",
+  "button_secondary_",
+  "button_sm_",
+  "agent-timeline_iconButton_",
+  "button_labelSlot_",
+  "button_labelContent_",
+  "button_labelPhase_",
+  "agent-timeline_glyph_",
+  "lucide-play",
+  "agent-timeline_glyphPlay_",
+  "lucide-pause",
+  "agent-timeline_glyphPause_",
+  "button_ghost_",
+  "lucide-rotate-ccw",
+  "segmented-control_root_",
+  "segmented-control_track_",
+  "segmented-control_button_",
+  "segmented-control_selection_",
+  "segmented-control_label_",
+  "agent-timeline_legend_",
+  "agent-timeline_swatch_",
+  "lucide-corner-down-right",
+  "agent-timeline_legendIcon_",
+  "agent-timeline_legendFailed_"
+ ],
+ "legend": "ThinkingTool callWaitingHandoffFailed",
+ "controls": "1x2x",
+ "statusDone": "Finished: 5 agents · 26.4s · 1.5x faster than sequential · $0.16"
+}

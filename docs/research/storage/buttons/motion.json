@@ -1,0 +1,633 @@
+{
+  "expandingHover": {
+    "text": "Reply\nForward\nArchive\nSnooze\nDelete\nDownload\nCopy link\nRename\nPublish\nDuplicate\nPin\nDelete",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-reply\" aria-hidden=\"true\"><path d=\"M20 18v-2a4 4 0 0 0-4-4H4\"></path><path d=\"m9 17-5-5 5-5\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-forward\" aria-hidden=\"true\"><path d=\"m15 17 5-5-5-5\"></path><path d=\"M4 18v-2a4 4 0 0 1 4-4h12\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-archive\" aria-hidden=\"true\"><rect width=\"20\" height=\"5\" x=\"2\" y=\"3\" rx=\"1\"></rect><path d=\"M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8\"></path><path d=\"M10 12h4\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-clock-3\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 6v6h4\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-trash lucide-trash-2\" aria-hidden=\"true\"><path d=\"M10 11v6\"></path><path d=\"M14 11v6\"></path><path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6\"></path><path d=\"M3 6h18\"></path><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-download\" aria-hidden=\"true\"><path d=\"M12 15V3\"></path><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"></path><path d=\"m7 10 5 5 5-5\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-link-2\" aria-hidden=\"true\"><path d=\"M9 17H7A5 5 0 0 1 7 7h2\"></path><path d=\"M15 7h2a5 5 0 1 1 0 10h-2\"></path><line x1=\"8\" x2=\"16\" y1=\"12\" y2=\"12\"></line></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-pencil-line\" aria-hidden=\"true\"><path d=\"M13 21h8\"></path><path d=\"m15 5 4 4\"></path><path d=\"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-globe\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20\"></path><path d=\"M2 12h20\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-copy\" aria-hidden=\"true\"><rect width=\"14\" height=\"14\" x=\"8\" y=\"8\" rx=\"2\" ry=\"2\"></rect><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-pin\" aria-hidden=\"true\"><path d=\"M12 17v5\"></path><path d=\"M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-trash lucide-trash-2\" aria-hidden=\"true\"><path d=\"M10 11v6\"></path><path d=\"M14 11v6\"></path><path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6\"></path><path d=\"M3 6h18\"></path><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Reply",
+        "label": "Reply",
+        "style": "",
+        "rect": "{\"x\":549,\"y\":551.5,\"width\":36.234375,\"height\":36,\"top\":551.5,\"right\":585.234375,\"bottom\":587.5,\"left\":549}"
+      },
+      {
+        "text": "Forward",
+        "label": "Forward",
+        "style": "",
+        "rect": "{\"x\":587.234375,\"y\":551.5,\"width\":117.375,\"height\":36,\"top\":551.5,\"right\":704.609375,\"bottom\":587.5,\"left\":587.234375}"
+      },
+      {
+        "text": "Archive",
+        "label": "Archive",
+        "style": "",
+        "rect": "{\"x\":706.609375,\"y\":551.5,\"width\":36,\"height\":36,\"top\":551.5,\"right\":742.609375,\"bottom\":587.5,\"left\":706.609375}"
+      },
+      {
+        "text": "Snooze",
+        "label": "Snooze",
+        "style": "",
+        "rect": "{\"x\":744.609375,\"y\":551.5,\"width\":36,\"height\":36,\"top\":551.5,\"right\":780.609375,\"bottom\":587.5,\"left\":744.609375}"
+      },
+      {
+        "text": "Delete",
+        "label": "Delete",
+        "style": "",
+        "rect": "{\"x\":782.609375,\"y\":551.5,\"width\":36,\"height\":36,\"top\":551.5,\"right\":818.609375,\"bottom\":587.5,\"left\":782.609375}"
+      },
+      {
+        "text": "Download",
+        "label": "Download",
+        "style": "",
+        "rect": "{\"x\":549,\"y\":615.5,\"width\":107.765625,\"height\":28,\"top\":615.5,\"right\":656.765625,\"bottom\":643.5,\"left\":549}"
+      },
+      {
+        "text": "Copy link",
+        "label": "Copy link",
+        "style": "",
+        "rect": "{\"x\":658.765625,\"y\":615.5,\"width\":28,\"height\":28,\"top\":615.5,\"right\":686.765625,\"bottom\":643.5,\"left\":658.765625}"
+      },
+      {
+        "text": "Rename",
+        "label": "Rename",
+        "style": "",
+        "rect": "{\"x\":688.765625,\"y\":615.5,\"width\":28,\"height\":28,\"top\":615.5,\"right\":716.765625,\"bottom\":643.5,\"left\":688.765625}"
+      },
+      {
+        "text": "Publish",
+        "label": "Publish",
+        "style": "",
+        "rect": "{\"x\":549,\"y\":671.5,\"width\":111.703125,\"height\":36,\"top\":671.5,\"right\":660.703125,\"bottom\":707.5,\"left\":549}"
+      },
+      {
+        "text": "Duplicate",
+        "label": "Duplicate",
+        "style": "",
+        "rect": "{\"x\":662.703125,\"y\":671.5,\"width\":36,\"height\":36,\"top\":671.5,\"right\":698.703125,\"bottom\":707.5,\"left\":662.703125}"
+      },
+      {
+        "text": "Pin",
+        "label": "Pin",
+        "style": "",
+        "rect": "{\"x\":700.703125,\"y\":671.5,\"width\":36,\"height\":36,\"top\":671.5,\"right\":736.703125,\"bottom\":707.5,\"left\":700.703125}"
+      },
+      {
+        "text": "Delete",
+        "label": "Delete",
+        "style": "",
+        "rect": "{\"x\":738.703125,\"y\":671.5,\"width\":36,\"height\":36,\"top\":671.5,\"right\":774.703125,\"bottom\":707.5,\"left\":738.703125}"
+      }
+    ]
+  },
+  "iconSVG": {
+    "text": "Menu\nPaused\nAdd to list\nCopy command\nLight\nShow details\nAlerts on\n128 likes",
+    "svg": [
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE\"><path d=\"M4 6h16\" style=\"transform:none;transform-origin:50% 50%;transform-box:fill-box\"></path><path d=\"M4 12h16\" style=\"transform:none;opacity:1;transform-origin:50% 50%;transform-box:fill-box\"></path><path d=\"M4 18h16\" style=\"transform:none;transform-origin:50% 50%;transform-box:fill-box\"></path></svg>",
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE\"><path d=\"M7 4.5 L12 7.42 L12 16.58 L7 19.5 Z\" fill=\"currentColor\" stroke-width=\"1.5\"></path><path d=\"M12 7.42 L19.5 11.8 L19.5 12.2 L12 16.58 Z\" fill=\"currentColor\" stroke-width=\"1.5\"></path></svg>",
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE\"><path d=\"M12 5 L12 19\"></path><path d=\"M5 12 L19 12\"></path></svg>",
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE\"><path d=\"M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2\" style=\"transform:none;opacity:1;transform-origin:50% 50%;transform-box:fill-box\"></path><rect x=\"8\" y=\"8\" width=\"14\" height=\"14\" rx=\"2\" style=\"transform:none;opacity:1;transform-origin:50% 50%;transform-box:fill-box\"></rect><path d=\"M5 12.5 L9.5 17 L19 7.5\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"0 1\" style=\"opacity:0\"></path></svg>",
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE\"><defs><mask id=\"Rld6usseinqbsnndb-bite\" maskUnits=\"userSpaceOnUse\" x=\"-8\" y=\"-8\" width=\"40\" height=\"40\"><rect x=\"-8\" y=\"-8\" width=\"40\" height=\"40\" fill=\"white\" stroke=\"none\"></rect><circle cx=\"30\" cy=\"-6\" r=\"6.5\" fill=\"black\" stroke=\"none\"></circle></mask><clipPath id=\"Rld6usseinqbsnndb-disc\"><circle cx=\"12\" cy=\"12\" r=\"4.5\"></circle></clipPath></defs><circle cx=\"12\" cy=\"12\" r=\"4.5\" mask=\"url(#Rld6usseinqbsnndb-bite)\"></circle><circle cx=\"30\" cy=\"-6\" r=\"6.5\" clip-path=\"url(#Rld6usseinqbsnndb-disc)\"></circle><g style=\"transform:none;opacity:1;transform-origin:50% 50%;transform-box:fill-box\"><path d=\"M19.5 12 L22 12\"></path><path d=\"M17.3 17.3 L19.07 19.07\"></path><path d=\"M12 19.5 L12 22\"></path><path d=\"M6.7 17.3 L4.93 19.07\"></path><path d=\"M4.5 12 L2 12\"></path><path d=\"M6.7 6.7 L4.93 4.93\"></path><path d=\"M12 4.5 L12 2\"></path><path d=\"M17.3 6.7 L19.07 4.93\"></path></g></svg>",
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE\"><path d=\"M6 9 L12 15 L18 9\" style=\"transform-origin:50% 50%;transform:none;transform-box:fill-box\"></path></svg>",
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE\"><defs><mask id=\"Rnd6usseinqbsnndb-cut\" maskUnits=\"userSpaceOnUse\" x=\"-4\" y=\"-4\" width=\"32\" height=\"32\"><rect x=\"-4\" y=\"-4\" width=\"32\" height=\"32\" fill=\"white\" stroke=\"none\"></rect><path d=\"M3 3 L21 21\" stroke=\"black\" stroke-width=\"5\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"0 1\" style=\"opacity:0\"></path></mask></defs><g mask=\"url(#Rnd6usseinqbsnndb-cut)\"><g style=\"transform-origin:50% 50%;transform:none;transform-box:fill-box\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\"></path></g><path d=\"M10.3 21a1.94 1.94 0 0 0 3.4 0\" style=\"transform:none;transform-origin:50% 50%;transform-box:fill-box\"></path></g><path d=\"M3 3 L21 21\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"0 1\" style=\"opacity:0\"></path></svg>",
+      "<svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" focusable=\"false\" class=\"icon-morph_icon__JpzwE icon-morph_heart___kCcX\" overflow=\"visible\"><g style=\"transform-origin:50% 50%;transform:none;transform-box:fill-box\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\" fill=\"currentColor\" fill-opacity=\"0\"></path></g></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Menu",
+        "label": "Open menu",
+        "style": "",
+        "rect": "{\"x\":433,\"y\":491.5,\"width\":134,\"height\":134,\"top\":491.5,\"right\":567,\"bottom\":625.5,\"left\":433}"
+      },
+      {
+        "text": "Paused",
+        "label": "Play",
+        "style": "",
+        "rect": "{\"x\":575,\"y\":491.5,\"width\":134,\"height\":134,\"top\":491.5,\"right\":709,\"bottom\":625.5,\"left\":575}"
+      },
+      {
+        "text": "Add to list",
+        "label": "Add to list",
+        "style": "",
+        "rect": "{\"x\":717,\"y\":491.5,\"width\":134,\"height\":134,\"top\":491.5,\"right\":851,\"bottom\":625.5,\"left\":717}"
+      },
+      {
+        "text": "Copy command",
+        "label": "Copy install command",
+        "style": "",
+        "rect": "{\"x\":859,\"y\":491.5,\"width\":134,\"height\":134,\"top\":491.5,\"right\":993,\"bottom\":625.5,\"left\":859}"
+      },
+      {
+        "text": "Light",
+        "label": "Switch tile to dark",
+        "style": "",
+        "rect": "{\"x\":433,\"y\":633.5,\"width\":134,\"height\":134,\"top\":633.5,\"right\":567,\"bottom\":767.5,\"left\":433}"
+      },
+      {
+        "text": "Show details",
+        "label": "Show details",
+        "style": "",
+        "rect": "{\"x\":575,\"y\":633.5,\"width\":134,\"height\":134,\"top\":633.5,\"right\":709,\"bottom\":767.5,\"left\":575}"
+      },
+      {
+        "text": "Alerts on",
+        "label": "Turn alerts off",
+        "style": "",
+        "rect": "{\"x\":717,\"y\":633.5,\"width\":134,\"height\":134,\"top\":633.5,\"right\":851,\"bottom\":767.5,\"left\":717}"
+      },
+      {
+        "text": "128 likes",
+        "label": "Like",
+        "style": "",
+        "rect": "{\"x\":859,\"y\":633.5,\"width\":134,\"height\":134,\"top\":633.5,\"right\":993,\"bottom\":767.5,\"left\":859}"
+      }
+    ]
+  },
+  "ClickOpen": {
+    "text": "Northwind redesign\nDelete project?\nCancel\nDelete\nDelete project?\nClick\nHold\nCountdown\nSucceeds\nFails",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-closed confirm-morph_icon__X4eoq\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path><path d=\"M2 10h20\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Cancel",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":797.828125,\"y\":585.5,\"width\":69.640625,\"height\":28,\"top\":585.5,\"right\":867.46875,\"bottom\":613.5,\"left\":797.828125}"
+      },
+      {
+        "text": "Delete",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":869.46875,\"y\":585.5,\"width\":66.09375,\"height\":28,\"top\":585.5,\"right\":935.5625,\"bottom\":613.5,\"left\":869.46875}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":523.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":579.8125,\"bottom\":785.5,\"left\":523.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":581.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":636.25,\"bottom\":785.5,\"left\":581.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":638.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":737.921875,\"bottom\":785.5,\"left\":638.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":757.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":846.921875,\"bottom\":785.5,\"left\":757.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":848.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":902.625,\"bottom\":785.5,\"left\":848.921875}"
+      }
+    ]
+  },
+  "ClickAfter": {
+    "text": "Northwind redesign\nDeleting\nDeleting\nClick\nHold\nCountdown\nSucceeds\nFails",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-closed confirm-morph_icon__X4eoq\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path><path d=\"M2 10h20\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-loader-circle lucide-loader-2 confirm-morph_spinner__BSoYI\" aria-hidden=\"true\"><path d=\"M21 12a9 9 0 1 1-6.219-8.56\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":523.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":579.8125,\"bottom\":785.5,\"left\":523.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":581.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":636.25,\"bottom\":785.5,\"left\":581.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":638.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":737.921875,\"bottom\":785.5,\"left\":638.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":757.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":846.921875,\"bottom\":785.5,\"left\":757.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":848.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":902.625,\"bottom\":785.5,\"left\":848.921875}"
+      }
+    ]
+  },
+  "HoldOpen": {
+    "text": "Northwind redesign\nDelete project?\nCancel\nDelete\nDelete\nPress and hold\nDelete project?\nClick\nHold\nCountdown\nSucceeds\nFails",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-closed confirm-morph_icon__X4eoq\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path><path d=\"M2 10h20\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Cancel",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":797.828125,\"y\":585.5,\"width\":69.640625,\"height\":28,\"top\":585.5,\"right\":867.46875,\"bottom\":613.5,\"left\":797.828125}"
+      },
+      {
+        "text": "Delete\nDelete",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":869.46875,\"y\":585.5,\"width\":66.09375,\"height\":28,\"top\":585.5,\"right\":935.5625,\"bottom\":613.5,\"left\":869.46875}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":523.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":579.8125,\"bottom\":785.5,\"left\":523.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":581.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":636.25,\"bottom\":785.5,\"left\":581.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":638.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":737.921875,\"bottom\":785.5,\"left\":638.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":757.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":846.921875,\"bottom\":785.5,\"left\":757.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":848.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":902.625,\"bottom\":785.5,\"left\":848.921875}"
+      }
+    ]
+  },
+  "HoldAfter": {
+    "text": "No projects\nDeleted\nUndo\nDeleted. Undo is available.\nClick\nHold\nCountdown\nSucceeds\nFails\nRestore",
+    "svg": [
+      "<svg class=\"confirm-morph_check__TjD3_\" viewBox=\"0 0 18 18\" fill=\"none\" aria-hidden=\"true\"><circle class=\"confirm-morph_checkDisc__a3PHN\" cx=\"9\" cy=\"9\" r=\"8\" style=\"transform-origin: 50% 50%; transform: none; opacity: 1; transform-box: fill-box;\"></circle><path class=\"confirm-morph_checkTick__joxNE\" d=\"M5.6 9.3 7.8 11.4 12.4 6.7\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"1 1\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-rotate-ccw\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path><path d=\"M3 3v5h5\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Undo",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":777.609375,\"y\":585.5,\"width\":59.34375,\"height\":28,\"top\":585.5,\"right\":836.953125,\"bottom\":613.5,\"left\":777.609375}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":467.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":523.8125,\"bottom\":785.5,\"left\":467.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":525.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":580.25,\"bottom\":785.5,\"left\":525.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":582.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":681.921875,\"bottom\":785.5,\"left\":582.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":701.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":790.921875,\"bottom\":785.5,\"left\":701.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":792.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":846.625,\"bottom\":785.5,\"left\":792.921875}"
+      },
+      {
+        "text": "Restore",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":862.625,\"y\":749.5,\"width\":99.984375,\"height\":36,\"top\":749.5,\"right\":962.609375,\"bottom\":785.5,\"left\":862.625}"
+      }
+    ]
+  },
+  "CountdownOpen": {
+    "text": "Northwind redesign\nDelete project?\nCancel\nDelete\nDelete project?\nClick\nHold\nCountdown\nSucceeds\nFails",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-closed confirm-morph_icon__X4eoq\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path><path d=\"M2 10h20\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Cancel",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":797.828125,\"y\":585.5,\"width\":69.640625,\"height\":28,\"top\":585.5,\"right\":867.46875,\"bottom\":613.5,\"left\":797.828125}"
+      },
+      {
+        "text": "Delete",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":869.46875,\"y\":585.5,\"width\":66.09375,\"height\":28,\"top\":585.5,\"right\":935.5625,\"bottom\":613.5,\"left\":869.46875}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":523.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":579.8125,\"bottom\":785.5,\"left\":523.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":581.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":636.25,\"bottom\":785.5,\"left\":581.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":638.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":737.921875,\"bottom\":785.5,\"left\":638.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":757.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":846.921875,\"bottom\":785.5,\"left\":757.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":848.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":902.625,\"bottom\":785.5,\"left\":848.921875}"
+      }
+    ]
+  },
+  "CountdownAt200": {
+    "text": "Northwind redesign\nDeleting in\n3\nCancel\nDeleting in 3 seconds\nClick\nHold\nCountdown\nSucceeds\nFails",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-closed confirm-morph_icon__X4eoq\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path><path d=\"M2 10h20\"></path></svg>",
+      "<svg class=\"confirm-morph_ring__fgLQX\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><circle class=\"confirm-morph_ringTrack__axg_V\" cx=\"8\" cy=\"8\" r=\"6.25\" stroke-width=\"1.75\"></circle><circle class=\"confirm-morph_ringFill__EcWls\" cx=\"8\" cy=\"8\" r=\"6.25\" stroke-width=\"1.75\" stroke-linecap=\"round\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"0.9253333333333333 1\" style=\"transform-origin: 50% 50%; transform: rotate(-90deg); transform-box: fill-box;\"></circle></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Cancel",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":803.171875,\"y\":585.5,\"width\":69.640625,\"height\":28,\"top\":585.5,\"right\":872.8125,\"bottom\":613.5,\"left\":803.171875}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":523.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":579.8125,\"bottom\":785.5,\"left\":523.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":581.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":636.25,\"bottom\":785.5,\"left\":581.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":638.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":737.921875,\"bottom\":785.5,\"left\":638.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":757.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":846.921875,\"bottom\":785.5,\"left\":757.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":848.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":902.625,\"bottom\":785.5,\"left\":848.921875}"
+      }
+    ]
+  },
+  "CountdownAt900": {
+    "text": "Northwind redesign\nDeleting in\n3\n2\nCancel\nDeleting in 3 seconds\nClick\nHold\nCountdown\nSucceeds\nFails",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-closed confirm-morph_icon__X4eoq\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path><path d=\"M2 10h20\"></path></svg>",
+      "<svg class=\"confirm-morph_ring__fgLQX\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><circle class=\"confirm-morph_ringTrack__axg_V\" cx=\"8\" cy=\"8\" r=\"6.25\" stroke-width=\"1.75\"></circle><circle class=\"confirm-morph_ringFill__EcWls\" cx=\"8\" cy=\"8\" r=\"6.25\" stroke-width=\"1.75\" stroke-linecap=\"round\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"0.604 1\" style=\"transform-origin: 50% 50%; transform: rotate(-90deg); transform-box: fill-box;\"></circle></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Cancel",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":803.171875,\"y\":585.5,\"width\":69.640625,\"height\":28,\"top\":585.5,\"right\":872.8125,\"bottom\":613.5,\"left\":803.171875}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":523.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":579.8125,\"bottom\":785.5,\"left\":523.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":581.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":636.25,\"bottom\":785.5,\"left\":581.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":638.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":737.921875,\"bottom\":785.5,\"left\":638.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":757.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":846.921875,\"bottom\":785.5,\"left\":757.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":848.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":902.625,\"bottom\":785.5,\"left\":848.921875}"
+      }
+    ]
+  },
+  "CountdownAt1000": {
+    "text": "Northwind redesign\nDeleting in\n1\nCancel\nDeleting in 3 seconds\nClick\nHold\nCountdown\nSucceeds\nFails",
+    "svg": [
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-folder-closed confirm-morph_icon__X4eoq\" aria-hidden=\"true\"><path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"></path><path d=\"M2 10h20\"></path></svg>",
+      "<svg class=\"confirm-morph_ring__fgLQX\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><circle class=\"confirm-morph_ringTrack__axg_V\" cx=\"8\" cy=\"8\" r=\"6.25\" stroke-width=\"1.75\"></circle><circle class=\"confirm-morph_ringFill__EcWls\" cx=\"8\" cy=\"8\" r=\"6.25\" stroke-width=\"1.75\" stroke-linecap=\"round\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"0.2483333333333333 1\" style=\"transform-origin: 50% 50%; transform: rotate(-90deg); transform-box: fill-box;\"></circle></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Cancel",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":803.171875,\"y\":585.5,\"width\":69.640625,\"height\":28,\"top\":585.5,\"right\":872.8125,\"bottom\":613.5,\"left\":803.171875}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":523.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":579.8125,\"bottom\":785.5,\"left\":523.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":581.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":636.25,\"bottom\":785.5,\"left\":581.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":638.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":737.921875,\"bottom\":785.5,\"left\":638.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":757.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":846.921875,\"bottom\":785.5,\"left\":757.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":848.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":902.625,\"bottom\":785.5,\"left\":848.921875}"
+      }
+    ]
+  },
+  "CountdownAt1800": {
+    "text": "No projects\nDeleted\nUndo\nDeleted. Undo is available.\nClick\nHold\nCountdown\nSucceeds\nFails\nRestore",
+    "svg": [
+      "<svg class=\"confirm-morph_check__TjD3_\" viewBox=\"0 0 18 18\" fill=\"none\" aria-hidden=\"true\"><circle class=\"confirm-morph_checkDisc__a3PHN\" cx=\"9\" cy=\"9\" r=\"8\" style=\"transform-origin: 50% 50%; transform: scale(0.968191); opacity: 1; transform-box: fill-box;\"></circle><path class=\"confirm-morph_checkTick__joxNE\" d=\"M5.6 9.3 7.8 11.4 12.4 6.7\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"0.8486155165737728 1\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-rotate-ccw\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path><path d=\"M3 3v5h5\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Undo",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":777.609375,\"y\":585.5,\"width\":59.34375,\"height\":28,\"top\":585.5,\"right\":836.953125,\"bottom\":613.5,\"left\":777.609375}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":467.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":523.8125,\"bottom\":785.5,\"left\":467.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":525.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":580.25,\"bottom\":785.5,\"left\":525.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":582.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":681.921875,\"bottom\":785.5,\"left\":582.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":701.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":790.921875,\"bottom\":785.5,\"left\":701.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":792.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":846.625,\"bottom\":785.5,\"left\":792.921875}"
+      },
+      {
+        "text": "Restore",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":862.625,\"y\":749.5,\"width\":99.984375,\"height\":36,\"top\":749.5,\"right\":962.609375,\"bottom\":785.5,\"left\":862.625}"
+      }
+    ]
+  },
+  "CountdownAfter": {
+    "text": "No projects\nDeleted\nUndo\nDeleted. Undo is available.\nClick\nHold\nCountdown\nSucceeds\nFails\nRestore",
+    "svg": [
+      "<svg class=\"confirm-morph_check__TjD3_\" viewBox=\"0 0 18 18\" fill=\"none\" aria-hidden=\"true\"><circle class=\"confirm-morph_checkDisc__a3PHN\" cx=\"9\" cy=\"9\" r=\"8\" style=\"transform-origin: 50% 50%; transform: none; opacity: 1; transform-box: fill-box;\"></circle><path class=\"confirm-morph_checkTick__joxNE\" d=\"M5.6 9.3 7.8 11.4 12.4 6.7\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" pathLength=\"1\" stroke-dashoffset=\"0\" stroke-dasharray=\"1 1\"></path></svg>",
+      "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-rotate-ccw\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path><path d=\"M3 3v5h5\"></path></svg>"
+    ],
+    "controls": [
+      {
+        "text": "Undo",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":777.609375,\"y\":585.5,\"width\":59.34375,\"height\":28,\"top\":585.5,\"right\":836.953125,\"bottom\":613.5,\"left\":777.609375}"
+      },
+      {
+        "text": "Click",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":467.375,\"y\":749.5,\"width\":56.4375,\"height\":36,\"top\":749.5,\"right\":523.8125,\"bottom\":785.5,\"left\":467.375}"
+      },
+      {
+        "text": "Hold",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":525.8125,\"y\":749.5,\"width\":54.4375,\"height\":36,\"top\":749.5,\"right\":580.25,\"bottom\":785.5,\"left\":525.8125}"
+      },
+      {
+        "text": "Countdown",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":582.25,\"y\":749.5,\"width\":99.671875,\"height\":36,\"top\":749.5,\"right\":681.921875,\"bottom\":785.5,\"left\":582.25}"
+      },
+      {
+        "text": "Succeeds",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":701.921875,\"y\":749.5,\"width\":89,\"height\":36,\"top\":749.5,\"right\":790.921875,\"bottom\":785.5,\"left\":701.921875}"
+      },
+      {
+        "text": "Fails",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":792.921875,\"y\":749.5,\"width\":53.703125,\"height\":36,\"top\":749.5,\"right\":846.625,\"bottom\":785.5,\"left\":792.921875}"
+      },
+      {
+        "text": "Restore",
+        "label": null,
+        "style": "",
+        "rect": "{\"x\":862.625,\"y\":749.5,\"width\":99.984375,\"height\":36,\"top\":749.5,\"right\":962.609375,\"bottom\":785.5,\"left\":862.625}"
+      }
+    ]
+  }
+}

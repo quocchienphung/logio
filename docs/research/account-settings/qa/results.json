@@ -1,0 +1,46 @@
+{
+  "results": [
+    {
+      "name": "Account menu removes Profile, Help and the compact preferences popup; keeps Theme and Settings",
+      "ok": true
+    },
+    {
+      "name": "Theme changes immediately, stays open, supports keyboard and persists across reload",
+      "ok": true
+    },
+    {
+      "name": "Where you log lives inside the existing Settings, and search jumps to it",
+      "ok": true
+    },
+    {
+      "name": "Two-factor preview supports scan, OTP error, paste, code download and acknowledged completion",
+      "ok": true
+    },
+    {
+      "name": "Password preview validates, shows visibility/strength and never persists entered passwords",
+      "ok": true
+    },
+    {
+      "name": "Revoke removes one sample session; hold-to-sign-out cancels early and completes after 1.2s",
+      "ok": true
+    },
+    {
+      "name": "Mobile 390: Settings and Where you log fit; security sections expand without horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "Mobile 320: Settings and Where you log fit; security sections expand without horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion disables section travel and the theme thumb transition",
+      "ok": true
+    },
+    {
+      "name": "No page errors or external requests",
+      "ok": true
+    }
+  ],
+  "errors": [],
+  "external": []
+}

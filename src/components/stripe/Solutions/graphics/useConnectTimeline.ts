@@ -161,7 +161,7 @@ export function useConnectTimeline(root: RefObject<HTMLElement | null>) {
         ],
         [
           `${a} .connect-platform-graphic__payment-screen--order-details`,
-          { opacity: 1, transform: "translateY(0)" },
+          { opacity: 1, transform: "translateY(0px)" },
           { duration: 0 },
         ],
         [
@@ -229,12 +229,12 @@ export function useConnectTimeline(root: RefObject<HTMLElement | null>) {
         ],
         [
           `${a} .connect-platform-graphic__payment-screen--success .connect-platform-graphic__payment-screen-summary`,
-          { opacity: 1, transform: "translateY(0)" },
+          { opacity: 1, transform: "translateY(0px)" },
           { ease: EASE.easeOutQuadratic, duration: 0.2, at: "+0.05" },
         ],
         [
           `${a} .connect-platform-graphic__payment-summary-table-row`,
-          { opacity: 1, transform: "translateY(0)" },
+          { opacity: 1, transform: "translateY(0px)" },
           {
             ease: EASE.easeOutQuadratic,
             duration: 0.18,
@@ -325,7 +325,7 @@ export function useConnectTimeline(root: RefObject<HTMLElement | null>) {
       return run([
         [
           ".connect-platform-graphic__payment-screen--order-details",
-          { opacity: 1, transform: "translateY(0)" },
+          { opacity: 1, transform: "translateY(0px)" },
           { duration: 0 },
         ],
         [

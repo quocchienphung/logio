@@ -1,0 +1,26 @@
+import fs from 'node:fs/promises';
+import { chromium } from 'playwright';
+// Public rendered preview only: dark tokens, checked switch, ghost button hover.
+const directory = 'docs/research/cookie-consent/source';
+const browser = await chromium.launch({ channel: 'chrome' });
+const page = await (await browser.newContext({ viewport: { width: 1440, height: 1000 } })).newPage();
+await page.goto('https://uiarc.dev/components/cookie-consent', { waitUntil: 'networkidle' }); await page.waitForTimeout(1500);
+await page.locator('[class*="cookie-consent_stage"]').scrollIntoViewIfNeeded();
+const out = {};
+const grab = () => page.evaluate(() => { const g = s => { const n = document.querySelector(s); if (!n) return null; const c = getComputedStyle(n); return { bg: c.backgroundColor, color: c.color, border: c.borderColor, shadow: c.boxShadow, bgImage: c.backgroundImage }; };
+  const root = getComputedStyle(document.querySelector('[class*="cookie-consent_demo"]'));
+  return { vars: Object.fromEntries(['--surface-raised', '--border', '--border-subtle', '--foreground', '--text-secondary', '--text-muted', '--surface-muted', '--shadow-floating', '--border-strong', '--accent', '--accent-foreground', '--leading-body', '--tracking-body', '--space-2', '--space-3', '--space-4'].map(k => [k, root.getPropertyValue(k).trim()])), surface: g('[class*="cookie-consent_surface"]'), message: g('[class*="cookie-consent_message"]') }; });
+out.lightVars = await grab();
+await page.getByRole('button', { name: 'Customize', exact: true }).hover(); await page.waitForTimeout(400);
+out.ghostHover = await page.getByRole('button', { name: 'Customize', exact: true }).evaluate(n => { const c = getComputedStyle(n); return { bg: c.backgroundColor, color: c.color }; });
+await page.getByRole('button', { name: 'Customize', exact: true }).click(); await page.waitForTimeout(1200);
+await page.getByRole('switch').nth(0).click(); await page.mouse.move(2, 2); await page.waitForTimeout(700);
+out.switchOn = await page.getByRole('switch').nth(0).evaluate(n => { const all = [...n.querySelectorAll('*')].map(e => { const c = getComputedStyle(e); return { cls: String(e.className), bg: c.backgroundColor, tf: c.transform, tr: c.transition.slice(0, 120), shadow: c.boxShadow }; }); const c = getComputedStyle(n); return { root: { bg: c.backgroundColor, attrs: n.getAttributeNames().map(a => `${a}=${n.getAttribute(a)}`) }, all }; });
+await page.getByRole('button', { name: 'Switch to dark mode' }).click().catch(() => {}); await page.waitForTimeout(800);
+out.darkVars = await grab();
+out.darkSwitch = await page.getByRole('switch').nth(0).evaluate(n => [...n.querySelectorAll('*')].map(e => { const c = getComputedStyle(e); return { cls: String(e.className), bg: c.backgroundColor }; }));
+out.darkButtons = await page.locator('[class*="cookie-consent_panelActions"] button').evaluateAll(ns => ns.map(n => { const c = getComputedStyle(n); return { bg: c.backgroundColor, color: c.color, border: c.borderColor }; }));
+out.darkIcon = await page.locator('[class*="cookie-consent_iconButton"]').evaluate(n => getComputedStyle(n).color);
+await fs.writeFile(`${directory}/tokens-and-switch.json`, JSON.stringify(out, null, 1));
+console.log(JSON.stringify(out, null, 1).slice(0, 5000));
+await browser.close();

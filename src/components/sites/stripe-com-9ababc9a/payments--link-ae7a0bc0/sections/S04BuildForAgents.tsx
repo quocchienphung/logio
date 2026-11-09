@@ -39,7 +39,7 @@ export function S04BuildForAgents() {
                     </div>
                   </section>
                   <div className="CtaGroup ComposableFeatureHighlight__buttonGroup">
-                    <a className="CtaButton variant--Button CtaButton--arrow" href="https://link.com/agents" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="enable_agentic_payments__learn_more">
+                    <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/link.com/agents" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="enable_agentic_payments__learn_more">
                       {"Learn more"}
                       <span className="nobr">
                         <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

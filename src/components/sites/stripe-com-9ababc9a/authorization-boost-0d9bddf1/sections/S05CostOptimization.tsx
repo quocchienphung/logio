@@ -66,7 +66,7 @@ export function S05CostOptimization() {
                       <div className="Copy__body">
                         <p>
                           {"Predict and "}
-                          <a className="Link" href="https://docs.stripe.com/payments/analytics/optimization#authorization-boost-features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/analytics/optimization" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"proactively decline"}
                           </a>
                           {" charges most likely to be rejected, while balancing impact to your auth rates."}
@@ -82,7 +82,7 @@ export function S05CostOptimization() {
                       <div className="Copy__body">
                         <p>
                           {"Avoid network penalties by automatically preventing "}
-                          <a className="Link" href="https://docs.stripe.com/payments/analytics/optimization#authorization-boost-features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/analytics/optimization" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"excessive retries"}
                           </a>
                           {" and declining previously rejected charges."}
@@ -98,7 +98,7 @@ export function S05CostOptimization() {
                       <div className="Copy__body">
                         <p>
                           {"Tap into possible interchange rate and scheme fee reductions with "}
-                          <a className="Link" href="https://stripe.com/guides/understanding-benefits-of-network-tokens#lower-costs" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/guides/understanding-benefits-of-network-tokens" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"network tokens"}
                           </a>
                           {"."}

@@ -1,3 +1,4 @@
+import { SplitWords } from "@/components/motion/SplitWords";
 import { ButtonArrow } from "@/components/stripe/icons";
 import { GdpCounter } from "./GdpCounter";
 import { HeroWave } from "./HeroWave";
@@ -41,11 +42,13 @@ function Title({ variant }: { variant: "background" | "foreground" }) {
       aria-hidden={variant === "foreground"}
     >
       <em className="hero-section__title-main">
-        Financial infrastructure to grow your revenue.
+        <SplitWords text="Financial infrastructure to grow your revenue." />
       </em>{" "}
       <span className="hero-section__title-copy">
-        Accept payments, offer financial services, and implement custom revenue
-        models—from your first transaction to your billionth.
+        <SplitWords
+          start={6}
+          text="Accept payments, offer financial services, and implement custom revenue models—from your first transaction to your billionth."
+        />
       </span>
     </h1>
   );
@@ -62,14 +65,14 @@ export function Hero() {
           <div className="hds-button-group hero-section__actions">
             <a
               className="hds-button hds-button--primary"
-              href="https://dashboard.stripe.com/register"
+              href="/signup"
             >
               Get started
               <ButtonArrow />
             </a>
             <a
               className="hds-button hero-section__button--google hds-button--secondary"
-              href="https://dashboard.stripe.com/login/oauth/google/init"
+              href="/login"
             >
               <GoogleIcon />
               Sign up with Google

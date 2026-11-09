@@ -1,0 +1,588 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+133
+Blocks
+130
+Analytics
+13
+Metrics dashboard
+Pro
+KPI drilldown
+Pro
+Metric explorer
+Pro
+Revenue explorer
+Pro
+MRR waterfall
+Pro
+Cohort retention
+Pro
+Usage forecast
+Pro
+Journey flow
+Pro
+Uptime status
+Pro
+Choropleth explorer
+Pro
+Connected scatter
+Pro
+Horizon chart
+Pro
+Account health
+New
+Pro
+Finance
+2
+Market terminal
+Pro
+Budget variance
+Pro
+Line charts
+2
+Small multiples
+Pro
+Line replay
+Pro
+AI
+17
+AI chat
+Pro
+AI composer
+Pro
+AI answer
+Pro
+Model picker
+Pro
+Model arena
+Pro
+Prompt studio
+Pro
+Document extraction
+Pro
+Agent memory
+Pro
+AI side panel
+Pro
+Research run
+Pro
+AI insight card
+New
+Pro
+Catch up
+New
+Pro
+AI feature launch
+New
+Pro
+AI search bar
+New
+Pro
+AI setup wizard
+New
+Pro
+Call insights
+New
+Pro
+Lead scoring
+New
+Pro
+Agents
+10
+Agent run
+Pro
+Agent tasks
+Pro
+Agent approvals
+Pro
+Agent routines
+Pro
+Agent orchestrator
+Pro
+MCP servers
+Pro
+Knowledge base
+Pro
+Eval suite
+Pro
+Agent builder
+New
+Pro
+Agent gallery
+New
+Pro
+App shell
+7
+Sidebar
+Pro
+4
+Page header
+Command palette
+Notification center
+Selection toolbar
+Pro
+Empty states
+Search results
+Pro
+Auth
+6
+Login and sign up
+5
+, free and Pro variants
+Onboarding illustration
+Pro
+OTP input
+Multi-step form
+Pro
+Two-factor setup
+New
+Pro
+Magic link
+New
+Pro
+Settings
+8
+Settings page
+Pro
+Settings command
+Pro
+Security settings
+Pro
+Billing overview
+Pro
+Usage billing
+Pro
+Cancel flow
+Pro
+Onboarding survey
+New
+Pro
+Spend alert
+New
+Pro
+People
+5
+Team members
+Pro
+Invite people
+Pro
+Team directory
+Pro
+Roles and permissions
+Pro
+Profile page
+Pro
+Developer
+6
+API keys
+Pro
+Webhooks
+Pro
+Integrations
+Pro
+Environment variables
+Pro
+Domain verify
+New
+Pro
+Webhook tester
+New
+Pro
+Pricing
+8
+Plan comparison
+Pricing calculator
+Pro
+Usage pricing
+Pro
+Cart drawer
+Pro
+Checkout summary
+Pro
+Live checkout
+Pro
+Seat manager
+New
+Pro
+Credit top-up
+New
+Pro
+Commerce
+5
+Invoice studio
+Pro
+Wallet card
+Pro
+Delivery tracker
+Pro
+Product listing
+Pro
+Product detail
+Pro
+Support
+6
+Activity feed
+New
+Pro
+Inbox triage
+Pro
+Support conversation
+Pro
+Support widget
+Pro
+Help center
+Pro
+Feature voting
+New
+Pro
+Media
+2
+File upload
+Media player
+Pro
+Projects
+9
+Week calendar
+Pro
+Availability picker
+Pro
+Project board
+Pro
+Release readiness
+Pro
+Kanban board
+Pro
+Feedback board
+New
+Pro
+Smart scheduler
+New
+Pro
+Task breakdown
+New
+Pro
+Goal tracker
+New
+Pro
+Heroes
+2
+Hero section
+Hero signup
+Pro
+Features
+4
+Scroll story
+Pro
+Spotlight grid
+Pro
+Feature bento
+Pro
+Comparison table
+Social proof
+3
+Logo marquee
+Studio perspectives
+Pro
+Stats band
+Content
+5
+Changelog feed
+FAQ section
+Contact section
+Team showcase
+Pro
+Blog grid
+Headers and footers
+4
+Site header
+Site footer
+CTA section
+Newsletter signup
+Showpieces
+6
+Activity terrain
+Pro
+Revenue globe
+Pro
+Customer galaxy
+Pro
+Semantic zoom
+Pro
+Layout morph
+Pro
+Exploded view
+Pro
+Special components
+104
+What’s new
+76 new
+Blocks
+Command palette
+Command palette
+
+A complete keyboard driven action surface with search, grouped results, and shortcuts.
+
+$
+pnpm dlx shadcn@latest add @uiarc/command-palette
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Pattern · live
+Open command palette
+When to use
+App-wide command search opened with Cmd or Ctrl plus K.
+Jumping to pages, creating items, and running actions from one input.
+Inline search panels that group results with shortcuts.
+When not to use
+Use combobox to pick a value inside a form.
+Use dropdown-menu for a short list of actions.
+Use expanding-search or search-field to search page content.
+Installation
+
+Add Command palette with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/command-palette
+pnpm dlx shadcn@latest add @uiarc/command-palette
+
+Adds the block and its local dependencies, and installs motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/command-palette.json
+Usage
+
+Use it for product wide actions and navigation. Provide meaningful groups, icons, keyboard shortcuts, and handlers.
+
+example.tsx
+Copy
+Copied
+Failed
+1
+import { CommandPalette, type CommandItem } from "@/components/arc/command-palette/command-palette";
+2
+ 
+3
+const items: CommandItem[] = [
+4
+  { id: "new", label: "New project", group: "Create", shortcut: "N" },
+5
+  { id: "invite", label: "Invite teammate", group: "Team", keywords: ["member"] },
+6
+  { id: "theme", label: "Toggle theme", description: "Switch light and dark" },
+7
+];
+8
+ 
+9
+export function Palette({ onClose }: { onClose: () => void }) {
+10
+  return <CommandPalette items={items} onSelect={item => run(item.id)} onClose={onClose} />;
+11
+}
+Built from
+Search
+Keyboard navigation
+Action list
+Examples
+Inside a dialog
+example.tsx
+Copy
+Copied
+Failed
+1
+<Dialog open={open} onOpenChange={setOpen}>
+2
+  <DialogContent title="Command palette">
+3
+    <CommandPalette
+4
+      items={items}
+5
+      onSelect={item => { run(item.id); setOpen(false); }}
+6
+      onClose={() => setOpen(false)}
+7
+    />
+8
+  </DialogContent>
+9
+</Dialog>
+API reference
+
+2 parts. The first is the root.
+
+CommandPalette
+
+An inline search-and-run panel: a combobox input over grouped, filtered results with one highlight that follows the active row.
+
+Prop
+Type
+Default
+Description
+items
+Required
+CommandItem[]
+–
+Commands to search. Every word of the query must match: anywhere in the label, at a word start in the description or keywords, or as letters in order across the label ("shpr" finds Share project). Label prefixes rank first, groups follow their best match, and the matched letters render in medium weight.
+placeholder
+string
+"Search commands"
+Input placeholder.
+onSelect
+(item: CommandItem) => void
+–
+Called on click or Enter. The query then clears and focus returns to the input.
+onClose
+() => void
+–
+Called on Escape with an empty query. Also renders an Esc close button.
+label
+string
+"Command palette"
+Visually hidden label for the input.
+autoFocus
+boolean
+false
+Focuses the search input on mount, for a palette that opens on demand.
+CommandItem
+
+Item type: { id: string; label: string; description?: string; group?: string; keywords?: string[]; icon?: ReactNode; shortcut?: string }. Items without a group land under Actions. A shortcut such as "⇧ N" or "Shift+N" renders one keycap per key.
+
+No props.
+
+Keyboard interactions
+Cmd/Ctrl
++
+K
+Focuses the search input from anywhere on the page.
+ArrowDown
+or
+ArrowUp
+Moves the active result.
+Home
+or
+End
+Jumps to the first or last result.
+Enter
+Runs the active result. The first result is active as soon as results show.
+Escape
+Clears the query, or calls onClose when it is already empty.
+Accessibility
+The input is a combobox with aria-controls and aria-activedescendant pointing at the listbox option, so focus never leaves the input.
+Results are role=option buttons with aria-selected, grouped in labelled role=group containers.
+A polite live region announces the result count, or No results, as the query changes.
+It renders inline, not in a modal. Put it in a dialog yourself if it should trap focus and close on outside click.
+Motion
+The panel rises in on a spring; the results frame springs to the list height as the query filters.
+Remaining rows glide into place when the shift is small and snap when it is a long jump; the highlight follows the active row on the snappy spring for pointer and arrow keys.
+Reduced motion removes the entrance, glides, and highlight travel.
+Responsive behavior
+It fills its container width; below 480px shortcut hints are hidden and padding tightens.
+Below 340px the footer drops its last hint.
+Results scroll inside a 342px maximum height, and long labels ellipsize.
+Performance
+Filtering is a simple substring match over label, description, group, and keywords on every keystroke.
+Rows are not virtualized and animate with layout; keep lists to a few hundred items or filter on the server.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for app-wide command search. For picking a value inside a form use combobox; for a small list of actions use dropdown-menu.
+Wrap it in dialog and pass onClose to close the dialog; map onSelect to your router or action handlers by item.id.
+/components/blocks/command-palette/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Dialog
+Component
+A focused surface for decisions that need attention.
+Combobox
+Component
+Search and select from a list without leaving the field.
+Dropdown menu
+Component
+A focused list of actions anchored to a trigger.
+Expanding search
+Component
+An icon that morphs into a search field with results beneath it.
+Search field
+Component
+A recognizable search entry point with clear affordances.
+More like this in Pro
+Explore Pro
+Selection toolbar
+Pro
+Block
+A contextual batch action surface that appears when items are selected.
+Sidebar
+Pro
+Block
+App and docs sidebars: a folding rail, a workspace switcher, a mail shell, and a docs tree.
+Search results
+Pro
+Block
+A faceted workspace search page with suggestions, facet counts that follow the query, filter chips, mixed doc, person and file results with highlighted matches, a gliding keyboard cursor and a preview pane.
+Previous
+Inbox triage
+Next
+Notification center
+Arc · 130 block pages
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+Examples
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+120 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

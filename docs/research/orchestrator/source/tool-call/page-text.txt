@@ -1,0 +1,932 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+133
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+7
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+New
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+New
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+130
+Special components
+104
+Docks and tabs
+6
+Share sheet
+Pro
+Action morph
+Pro
+Morph nav
+Pro
+Dock
+Pro
+Liquid tab bar
+Pro
+Orbit menu
+Pro
+Glass
+4
+Glass menu
+Pro
+Glass segmented
+Pro
+Glass card
+Pro
+Glass tab bar
+Pro
+Surfaces
+6
+Sheet stack
+Pro
+Wallet stack
+Pro
+Control center
+Pro
+Holo card
+Pro
+Card to article
+Pro
+Link unfurl
+Pro
+Galleries
+4
+Product gallery
+Pro
+Lightbox gallery
+Pro
+Photo grid
+Pro
+Cover flow
+Pro
+Audio and video
+3
+Voice orb
+Pro
+Now playing
+Pro
+Voice recorder
+Pro
+Data
+4
+Booking pill
+Pro
+Activity rings
+Pro
+Time dial
+Pro
+Date reel
+Pro
+Type
+4
+Keycap keyboard
+Pro
+Slot text
+Sand text
+Pro
+Typewriter terminal
+Pro
+Loaders
+4
+Stretch refresh
+Pro
+Morph loader
+Pro
+Skeleton morph
+Pro
+Black hole
+Pro
+Playful
+4
+Sticker peel
+Pro
+Page curl
+Pro
+Orbit logos
+Pro
+Prize wheel
+New
+Pro
+Cursor
+4
+Dot grid
+Pro
+Image trail
+New
+Pro
+Gravity well
+Pro
+Ink fluid
+Pro
+AI
+51
+Agent status
+Pro
+Tool call
+Pro
+Agent plan
+Pro
+Agent timeline
+Pro
+Context window
+Pro
+Reasoning block
+New
+Pro
+Source cards
+New
+Pro
+Model card
+New
+Pro
+AI workflow
+New
+Pro
+Code suggestion
+New
+Pro
+Ghost text
+New
+Pro
+Image generation
+New
+Pro
+Dictation button
+New
+Pro
+Speech player
+New
+Pro
+Meeting summary
+New
+Pro
+Reply draft
+New
+Pro
+Agent handoff
+New
+Pro
+PII redaction
+New
+Pro
+Response feedback
+New
+Pro
+LLM cost calculator
+New
+Pro
+Provider keys
+New
+Pro
+Generation stats
+New
+Pro
+AI translate
+New
+Pro
+TL;DR toggle
+New
+Pro
+Connector setup
+New
+Pro
+Smart form fill
+New
+Pro
+Enrich column
+New
+Pro
+Ticket router
+New
+Pro
+Ask your data
+New
+Pro
+Agent cursor
+New
+Pro
+Provider status
+New
+Pro
+Training run
+New
+Pro
+Design to code
+New
+Pro
+AI command
+New
+Pro
+Starter prompts
+New
+Pro
+AI mascot
+New
+Pro
+Image reveal
+New
+Pro
+AI spark
+New
+Pro
+Sketch to image
+New
+Pro
+Building blocks
+New
+Pro
+Pixel mascot
+New
+Pro
+Ghost mascot
+New
+Pro
+Cube mascot
+New
+Pro
+Tone tuner
+New
+Pro
+Upgrade prompt
+New
+Pro
+Referral card
+New
+Pro
+Trial banner
+New
+Pro
+Team switcher
+New
+Pro
+Live visitors
+New
+Pro
+Social proof toast
+New
+Pro
+Install snippet
+New
+Pro
+Illustrations
+10
+Data flow
+Pro
+Payment flow
+Pro
+Model training
+Pro
+Multi-region failover
+Pro
+Vector search
+Pro
+Agent loop
+Pro
+Mixture of experts
+Pro
+Speculative decoding
+Pro
+Prompt cache
+Pro
+Reasoning tree
+Pro
+What’s new
+76 new
+Components
+Tool call
+Tool call
+Pro
+
+A tool call row for agent transcripts: the tool's mark and the call in plain words, a live state while it runs, and the input and output a click away, with approval and retry when needed.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+
+Is anything blocking the 2.8 release?
+
+Let me check what is blocking the release.
+
+Used 3 tools
+1 failed
+GitHub:
+Searched issues in arc-ui/web
+4 results
+·
+1.2s
+Done, 4 results, 1.2s
+GitHub: Searched issues in arc-ui/web, 4 results
+Linear:
+Read the Web 2.8 release project
+2 blocked
+·
+760ms
+Done, 2 blocked, 760ms
+Linear: Read the Web 2.8 release project, 2 blocked
+PostgreSQL:
+Could not query pending migrations
+Connection to app_production timed out after 5s
+Retry
+Failed: Connection to app_production timed out after 5s
+PostgreSQL: Could not query pending migrations. Connection to app_production timed out after 5s
+PostgreSQL timed out. Retry it to continue.
+When to use
+Showing what tools an AI agent used inside a chat or agent transcript, with the arguments and results one click away.
+Human in the loop actions where a call must be allowed or denied inline before it runs, such as posting a message or writing to a database.
+Making failures recoverable in place: a timed out query with its reason and a Retry button.
+Debug and audit views where developers need to copy exact tool inputs and outputs.
+When not to use
+Use agent-run for a full multi step run with a plan, a timeline and live logs rather than inline rows in a message.
+Use agent-approvals for a queue of pending approvals across many agents and runs.
+Use research-run when the work is mostly web research with sources and a streamed report.
+Use mcp-servers to manage which tools an agent can reach, not to show individual calls.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Tool call is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Tool call
+All 120 Pro components and 115 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { ToolCall, ToolCallGroup } from "@/components/arc/tool-call/tool-call";
+2
+ 
+3
+// One call on its own
+4
+<ToolCall
+5
+  tool="github"
+6
+  title="Searched issues in arc-ui/web"
+7
+  titles={{ running: "Searching issues in arc-ui/web" }}
+8
+  status="success"
+9
+  input={{ repo: "arc-ui/web", query: "is:open label:release-blocker" }}
+10
+  output={{ type: "list", items: [{ lead: "#1284", title: "Checkout button stays disabled after a coupon is removed", tag: "checkout" }] }}
+11
+  durationMs={1180}
+12
+/>
+13
+ 
+14
+// Every call from one assistant turn, wired to your agent loop
+15
+export function ToolCalls({ calls, working, agent }) {
+16
+  return (
+17
+    <ToolCallGroup
+18
+      calls={calls}
+19
+      active={working}
+20
+      onApprove={call => agent.approve(call.id)}
+21
+      onDeny={call => agent.deny(call.id)}
+22
+      onRetry={call => agent.retry(call.id)}
+23
+    />
+24
+  );
+25
+}
+API reference
+
+3 parts. The first is the root.
+
+ToolCall
+
+One inline tool call for an agent or chat transcript: the tool's mark, a verb phrase, quiet meta and a status icon. Clicking the row springs it open into Input (the arguments) and Output (a readable result), each with a copy button. Awaiting approval it shows inline Allow and Deny; on an error it shows the reason and Retry. With no props it renders a sample GitHub search.
+
+Prop
+Type
+Default
+Description
+id
+string
+–
+Stable id for the call. A group uses it as the React key, so a call that changes status keeps its row and its open state.
+tool
+"github" | "linear" | "postgres" | "slack" | "gmail" | "web" | { name: string; mark: ReactNode }
+–
+Which tool ran. The built in ids draw the real brand mark (web draws a globe for web search); a custom tool passes its own name and a 16px mark.
+title
+string
+–
+The settled verb phrase, such as "Searched issues in arc-ui/web". Keep it to one line; it truncates.
+titles
+Partial<Record<ToolCallStatus, string>>
+–
+Phrasing per status, such as { running: "Searching issues in arc-ui/web", approval: "Post a summary to #release" }. Falls back to title.
+status
+"running" | "success" | "error" | "approval" | "denied"
+–
+Running shimmers the title with a spinner; success shows a check, the summary and the duration; error shows the reason and Retry; approval shows Allow and Deny on an accent outline; denied shows that the call never ran.
+input
+Record<string, ToolCallValue>
+–
+The arguments the model passed, shown as a mono key and value list with a copy button.
+output
+{ type: "list"; items } | { type: "table"; columns; rows } | { type: "json"; value } | { type: "text"; text }
+–
+What came back. Lists show a number, a title and a tag per row; tables and JSON (with a syntax tint) fold after five rows or ten lines behind "Show 18 more lines". Copy gives JSON, lines or tab separated rows.
+summary
+string
+–
+Quiet meta before the duration, such as "4 results". Derived from the output when left out (results, rows, fields).
+message
+string
+–
+One line under the title: the error reason, or what allowing the call will do.
+durationMs
+number
+–
+How long the call took, shown as 640ms or 1.2s with tabular numerals. The group header shows the total.
+defaultOpen
+boolean
+false
+Opens the Input and Output panel on first render.
+open
+boolean
+–
+Controls the panel. Pair with onOpenChange.
+onOpenChange
+(open: boolean) => void
+–
+Called when the row is opened or closed.
+onApprove
+() => void
+–
+Allow on a call awaiting approval. Update status yourself (usually to running, then success). Without it the preview simulates the call and says so to assistive technology.
+onDeny
+() => void
+–
+Deny on a call awaiting approval. Without it the call is marked denied locally.
+onRetry
+() => void
+–
+Retry on a failed call. Without it the preview simulates a successful retry.
+renderOutput
+(call: ToolCallData) => ReactNode | undefined
+–
+Draws a custom result for a successful call inside the Output well, such as a chart or a file preview. Return undefined to fall back to the built in view.
+className
+string
+–
+Class on the call's outer element.
+ToolCallGroup
+
+Several calls from one assistant turn under a quiet header, "Used 4 tools", with an overlapping stack of the tools' marks and the total duration. Opening it staggers the rows in; while the agent works the header reads "Using 3 tools" with a shimmer. A call that needs a decision opens a closed group, and the group folds itself away once every call has finished unless the person has opened or closed anything.
+
+Prop
+Type
+Default
+Description
+calls
+ToolCallData[]
+four settled sample calls
+The calls in order, each with id, tool, title, status and optional titles, input, output, summary, message and durationMs. Append to the array as the agent starts new calls; each new row grows in.
+active
+boolean
+any call running
+The agent is still working in this turn, so the header keeps saying "Using" between calls instead of flickering to "Used".
+defaultOpen
+boolean
+open while any call is running, waiting or failed
+Whether the list is open on first render. A finished transcript starts folded.
+open
+boolean
+–
+Controls the list. Pair with onOpenChange. Calls that need a decision only open the group on their own when it is uncontrolled.
+onOpenChange
+(open: boolean) => void
+–
+Called when the header is toggled or the group folds itself.
+autoCollapse
+boolean
+true
+Folds the list 450ms after every call has finished, so the answer reads right under "Used 4 tools". Skipped once the person has opened or closed the group or any row.
+onApprove
+(call: ToolCallData) => void
+–
+Allow on a call awaiting approval.
+onDeny
+(call: ToolCallData) => void
+–
+Deny on a call awaiting approval.
+onRetry
+(call: ToolCallData) => void
+–
+Retry on a failed call.
+renderOutput
+(call: ToolCallData) => ReactNode | undefined
+–
+Custom result renderer applied to every successful call in the group.
+className
+string
+–
+Class on the group's outer element.
+ToolCallData
+
+The shape of one call, shared by ToolCall props and ToolCallGroup calls.
+
+Prop
+Type
+Default
+Description
+id
+Required
+string
+–
+Stable id for the call. A group uses it as the React key, so a call that changes status keeps its row and its open state.
+tool
+Required
+"github" | "linear" | "postgres" | "slack" | "gmail" | "web" | { name: string; mark: ReactNode }
+–
+Which tool ran. The built in ids draw the real brand mark (web draws a globe for web search); a custom tool passes its own name and a 16px mark.
+title
+Required
+string
+–
+The settled verb phrase, such as "Searched issues in arc-ui/web". Keep it to one line; it truncates.
+titles
+Partial<Record<ToolCallStatus, string>>
+–
+Phrasing per status, such as { running: "Searching issues in arc-ui/web", approval: "Post a summary to #release" }. Falls back to title.
+status
+Required
+"running" | "success" | "error" | "approval" | "denied"
+–
+Running shimmers the title with a spinner; success shows a check, the summary and the duration; error shows the reason and Retry; approval shows Allow and Deny on an accent outline; denied shows that the call never ran.
+input
+Record<string, ToolCallValue>
+–
+The arguments the model passed, shown as a mono key and value list with a copy button.
+output
+{ type: "list"; items } | { type: "table"; columns; rows } | { type: "json"; value } | { type: "text"; text }
+–
+What came back. Lists show a number, a title and a tag per row; tables and JSON (with a syntax tint) fold after five rows or ten lines behind "Show 18 more lines". Copy gives JSON, lines or tab separated rows.
+summary
+string
+–
+Quiet meta before the duration, such as "4 results". Derived from the output when left out (results, rows, fields).
+message
+string
+–
+One line under the title: the error reason, or what allowing the call will do.
+durationMs
+number
+–
+How long the call took, shown as 640ms or 1.2s with tabular numerals. The group header shows the total.
+Keyboard interactions
+Tab
+Moves through the group header, each call row, a row's Allow, Deny or Retry buttons, and inside an open row its copy buttons and the show more control.
+Enter, Space
+On the group header, opens or closes the list. On a call row, opens or closes Input and Output. On Allow, Deny, Retry, copy and show more, activates them.
+Accessibility
+The group header and every call row are real buttons with aria-expanded and aria-controls; a row's name reads the tool, the verb phrase and the status, such as "GitHub: Searched issues in arc-ui/web Done, 4 results, 1.2s".
+Status is never color alone: each status has its own icon shape (spinner, check, alert, shield, ban), failed and waiting calls show a reason line, and the row name spells the status out.
+Each call announces its status changes through a polite live region, including that the preview only simulates an action when no handler is passed.
+Allow, Deny and Retry are labelled with the call they act on, such as "Allow: Post a summary to #release".
+The input list is a description list; tables keep table semantics with column headers. Folded rows and lines are hidden from assistive technology until shown.
+Copy buttons confirm success or failure in place and through a live region, without changing width.
+Pointer focus draws no ring; keyboard focus shows Arc's shared ring, inset inside rows so it is never clipped.
+Motion
+Opening a row, opening the group and showing more lines animate height on the critically damped smooth spring, with a short opacity fade; chevrons turn on the shared CSS spring.
+Opening the group staggers its rows in 20ms apart with a 6px settle. Rows appended by a live run grow in from zero height instead, so nothing below them jumps.
+A row's height follows its content on the same spring when a reason line or wrapped actions appear, so a status change never resizes in one frame.
+Status icons trade places with a snappy scale and fade; the success check draws itself once. The running title uses the text shimmer and settles to solid when the call finishes.
+The mark stack widens on the morph spring as a new tool joins, so the header label glides instead of jumping.
+Reduced motion removes the stagger, spinner rotation, shimmer travel and springs. Panels, rows and statuses change immediately and every label, announcement and focus path stays.
+Responsive behavior
+Rows are container aware: below 440px the meta keeps only the duration, the reason line wraps, and Allow, Deny and Retry move under the reason so the title keeps its width.
+Under 440px the Input and Output panel drops its title indent and uses the full row width; wide JSON and tables scroll inside their own well, never the page.
+Rows are 40px tall and inline actions grow to 32px on touch screens. The whole row is the tap target for opening it.
+Performance
+Folded outputs use fixed row heights, so folding and unfolding never measures the DOM.
+Input and Output mount only while a row is open; a closed group unmounts its rows.
+Height follows content through one ResizeObserver per row, and width changes from the container cut straight to the new height without animating.
+No dependencies beyond motion and lucide-react; brand marks are inline SVG.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use ToolCallGroup for the tool calls of one assistant turn and ToolCall for a single call shown on its own. Render the group between the assistant's intro sentence and its answer.
+Append calls to the array as the agent starts them and change status in place; keep ids stable. Pass active while the agent is still working so the header does not flicker between calls.
+Give each call a past tense title and a present tense titles.running, and for approval calls an imperative titles.approval ("Post a summary to #release") plus a message saying what allowing will do.
+Pick the output type that reads best: list for search results and issues, table for SQL rows, json for structured API responses, text for a sent message or a short log. Use renderOutput for anything richer.
+Approve, deny and retry handlers should update the call's status; the component never changes status itself when a handler is passed. Without handlers it simulates locally, which suits previews only.
+Brand marks are sample content and never imply endorsement. For tools without a built in mark pass { name, mark } with a 16px inline SVG.
+/components/tool-call/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+AI chat
+Pro
+Block
+A full-screen AI chat where answers stream in as markdown with folding reasoning, tool chips and cited sources. People can switch chats and models, edit or retry a message into versions, rate replies and stop a reply mid-stream.
+Agent run
+Pro
+Block
+A single card that follows one AI coding agent through a task: steps stream in with the live one shimmering, tool calls open in place, and the agent stops on a two-file diff for you to approve or send back before it writes. When the run ends, the steps fold into one line and a result shows the files changed, the checks that passed and a pull request button.
+Agent approvals
+Pro
+Block
+One approval card for agents: the waiting tool call reads like a permission prompt with the tool's mark, the agent's reason and its arguments, and you approve, deny or allow it from now on.
+Agent loop
+Pro
+Component
+An illustration of the agent loop: gather context, take action, verify, repeat, with a bright head circling three stations around the model.
+Research run
+Pro
+Block
+Deep research that plans searches, reads sources with their marks, and streams a cited answer where every chip lights up the sentence it supports.
+MCP servers
+Pro
+Block
+Manage the MCP servers that give an agent its tools: see what the enabled tools cost in context, connect or pause a server, and switch single tools on or off.
+Text shimmer
+Component
+Show ongoing work with a calm light across the words.
+Previous
+Agent status
+Next
+Agent plan
+Arc · 240 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Tool call is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

@@ -1,0 +1,252 @@
+{
+  "complete": true,
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "layout": {
+        "pageOverflow": 0,
+        "sideways": 0,
+        "mainRight": 1432,
+        "width": 1440
+      },
+      "fonts": {
+        ".orch h1": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "20px",
+          "550",
+          "24px"
+        ],
+        ".ob-goal": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "16px",
+          "500",
+          "22px"
+        ],
+        ".ob-lane__titletext": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "20px"
+        ],
+        ".op-seg__label": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "400",
+          "20px"
+        ],
+        ".tl-name": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "19.6px"
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "layout": {
+        "pageOverflow": 0,
+        "sideways": 0,
+        "mainRight": 760,
+        "width": 768
+      },
+      "fonts": {
+        ".orch h1": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "20px",
+          "550",
+          "24px"
+        ],
+        ".ob-goal": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "16px",
+          "500",
+          "22px"
+        ],
+        ".ob-lane__titletext": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "20px"
+        ],
+        ".op-seg__label": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "400",
+          "20px"
+        ],
+        ".tl-name": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "19.6px"
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "pageOverflow": 0,
+        "sideways": 0,
+        "mainRight": 384,
+        "width": 390
+      },
+      "fonts": {
+        ".orch h1": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "20px",
+          "550",
+          "24px"
+        ],
+        ".ob-goal": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "16px",
+          "500",
+          "22px"
+        ],
+        ".ob-lane__titletext": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "20px"
+        ],
+        ".op-seg__label": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "400",
+          "20px"
+        ],
+        ".tl-name": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "19.6px"
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "pageOverflow": 0,
+        "sideways": 0,
+        "mainRight": 314,
+        "width": 320
+      },
+      "fonts": {
+        ".orch h1": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "20px",
+          "550",
+          "24px"
+        ],
+        ".ob-goal": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "16px",
+          "500",
+          "22px"
+        ],
+        ".ob-lane__titletext": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "20px"
+        ],
+        ".op-seg__label": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "400",
+          "20px"
+        ],
+        ".tl-name": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "19.6px"
+        ]
+      }
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "pageOverflow": 0,
+        "sideways": 0,
+        "mainRight": 836,
+        "width": 844
+      },
+      "fonts": {
+        ".orch h1": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "20px",
+          "550",
+          "24px"
+        ],
+        ".ob-goal": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "16px",
+          "500",
+          "22px"
+        ],
+        ".ob-lane__titletext": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "20px"
+        ],
+        ".op-seg__label": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "400",
+          "20px"
+        ],
+        ".tl-name": [
+          "Inter, ui-sans-serif, system-ui, sans-serif",
+          "14px",
+          "500",
+          "19.6px"
+        ]
+      }
+    },
+    {
+      "approvalWidth": 1440,
+      "actionBoxes": [
+        {
+          "x": 1106.640625,
+          "right": 1173.890625
+        },
+        {
+          "x": 1179.890625,
+          "right": 1260
+        }
+      ]
+    },
+    {
+      "approvalWidth": 320,
+      "actionBoxes": [
+        {
+          "x": 101,
+          "right": 168.25
+        },
+        {
+          "x": 174.25,
+          "right": 254.359375
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -36,7 +36,7 @@ export function S14ReadyToGetStarted() {
                     </div>
                     <footer className="Copy__footer">
                       <div className="CtaGroup CtaGroup--inline">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Primary CTA">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Primary CTA">
                           {"Start now"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -48,7 +48,7 @@ export function S14ReadyToGetStarted() {
                           </span>
                         </a>
                         {" "}
-                        <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Secondary CTA">
+                        <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Secondary CTA">
                           {"Contact sales"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -127,7 +127,7 @@ export function S14ReadyToGetStarted() {
                       </p>
                     </div>
                     <footer className="Copy__footer">
-                      <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Connect CTA">
+                      <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Connect CTA">
                         {"Explore Connect"}
                         <span className="nobr">
                           <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

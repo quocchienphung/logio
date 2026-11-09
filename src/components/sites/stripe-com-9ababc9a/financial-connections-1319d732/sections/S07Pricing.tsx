@@ -182,7 +182,7 @@ export function S07Pricing() {
                               {"Custom pricing is available for companies with a high volume of API calls or unique business models."}
                             </p>
                             <p>
-                              <a className="Link" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                              <a className="Link" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                 {"Contact sales"}
                               </a>
                             </p>

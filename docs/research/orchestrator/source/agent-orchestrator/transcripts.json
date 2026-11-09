@@ -1,0 +1,346 @@
+[
+ {
+  "pass": 0,
+  "lanes": [
+   {
+    "head": "Claude Sonnet 5.57.8s",
+    "title": "Notewise seat pricing",
+    "out": "Notewise undercuts our Team plan by $2 per seat and adds unlimited guests.",
+    "foot": "31.2k tokens$0.079",
+    "rows": [
+     {
+      "title": "Web search notewise pricing per seat 2026",
+      "target": "notewise pricing per seat 2026",
+      "detail": "6 results",
+      "time": "1.5s"
+     },
+     {
+      "title": "Fetch page notewise.io/pricing",
+      "target": "notewise.io/pricing",
+      "detail": "Read 3,140 words",
+      "time": "2.3s"
+     },
+     {
+      "title": "Read file docs/pricing.md",
+      "target": "docs/pricing.md",
+      "detail": "Read 212 lines",
+      "time": "1.6s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.9s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Notewise undercuts our Team plan by $2 per seat and adds unlimited guests.",
+      "time": ""
+     }
+    ]
+   },
+   {
+    "head": "Claude Haiku 5.56.8s",
+    "title": "Paperlane free tier",
+    "out": "Paperlane fits 5 members on its free plan where ours stops at 3.",
+    "foot": "19.5k tokens$0.002",
+    "rows": [
+     {
+      "title": "Fetch page paperlane.com/pricing",
+      "target": "paperlane.com/pricing",
+      "detail": "Read 2,260 words",
+      "time": "1.9s"
+     },
+     {
+      "title": "Web search paperlane free plan limits",
+      "target": "paperlane free plan limits",
+      "detail": "4 results",
+      "time": "1.5s"
+     },
+     {
+      "title": "Read file docs/pricing.md",
+      "target": "docs/pricing.md",
+      "detail": "Read 212 lines",
+      "time": "1.3s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.6s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Paperlane fits 5 members on its free plan where ours stops at 3.",
+      "time": ""
+     }
+    ]
+   },
+   {
+    "head": "Gemini 3.8 Flash8.4s",
+    "title": "Quillstack discounts",
+    "out": "Quillstack leads with a 20 percent yearly saving, and we never show ours.",
+    "foot": "28.9k tokens$0.012",
+    "rows": [
+     {
+      "title": "Web search quillstack annual billing discount",
+      "target": "quillstack annual billing discount",
+      "detail": "5 results",
+      "time": "1.4s"
+     },
+     {
+      "tone": "danger",
+      "title": "Fetch page failed quillstack.dev/pricing",
+      "target": "quillstack.dev/pricing",
+      "detail": "The page returned 503 Service Unavailable",
+      "time": "1.3s"
+     },
+     {
+      "title": "Retried",
+      "target": "",
+      "detail": "Attempt 2",
+      "time": ""
+     },
+     {
+      "title": "Fetch page quillstack.dev/pricing",
+      "target": "quillstack.dev/pricing",
+      "detail": "Read 1,980 words",
+      "time": "1.7s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.5s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Quillstack leads with a 20 percent yearly saving, and we never show ours.",
+      "time": ""
+     }
+    ]
+   },
+   {
+    "head": "GPT-6 Luna7.1s",
+    "title": "Driftboard add-ons",
+    "out": "Driftboard sells SSO as a $4 add-on, while ours needs a sales call.",
+    "foot": "24.7k tokens$0.012",
+    "rows": [
+     {
+      "title": "Web search driftboard business plan sso",
+      "target": "driftboard business plan sso",
+      "detail": "7 results",
+      "time": "1.4s"
+     },
+     {
+      "title": "Fetch page driftboard.app/pricing",
+      "target": "driftboard.app/pricing",
+      "detail": "Read 2,710 words",
+      "time": "2.1s"
+     },
+     {
+      "title": "Read file docs/pricing.md",
+      "target": "docs/pricing.md",
+      "detail": "Read 212 lines",
+      "time": "1.4s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.7s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Driftboard sells SSO as a $4 add-on, while ours needs a sales call.",
+      "time": ""
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "html": "<div><span aria-hidden=\"true\"><svg/></span><span>Summary</span><span><span><span><span><svg/></span><span>Merged 4 results</span></span></span></span></div><div><div><div><p><span>We charge more than </span><span>Notewise and Quillstack </span><span>for a smaller package, and </span><span>our free plan is </span><span>the tightest of the five. Three </span><span>changes would close the </span><span>gap:</span></p><ul><li><span>Cut Team to $10 </span><span>per seat on </span><span>yearly billing to match Notewise.</span></li><li><span>Raise the free plan </span><span>from 3 to </span><span>5 members, as Paperlane does.</span></li><li><span>Show the yearly saving </span><span>on the page </span><span>and sell SSO as a </span><span>paid add-on.</span></li></ul></div></div><div><div><dl><div><dt>Tokens</dt><dd>119.7k</dd></div><div><dt>Cost</dt><dd>$0.19</dd></div><div><dt>Wall time</dt><dd>11.4s</dd></div><div><dt>In sequence</dt><dd>32.8s</dd></div></dl><div><span><svg/>2.9x faster than running in sequence</span><button type=\"button\" aria-label=\"Copy summary\" data-copy-state=\"idle\"><span aria-hidden=\"true\"><span data-state=\"idle\"><svg/></span></span><span aria-hidden=\"true\"><span>Copy summary</span><span>Copied</span><span>Failed</span><span>Copy summary</span></span></button><span role=\"status\" aria-live=\"polite\"></span></div></div></div></div>",
+   "text": "SummaryMerged 4 resultsWe charge more than Notewise and Quillstack for a smaller package, and our free plan is the tightest of the five. Three changes would close the gap:Cut Team to $10 per seat on yearly billing to match Notewise.Raise the free plan from 3 to 5 members, as Paperlane does.Show the yearly saving on the page and sell SSO as a paid add-on.Tokens119.7kCost$0.19Wall time11.4sIn sequence32.8s2.9x faster than running in sequenceCopy summaryCopiedFailedCopy summary"
+  }
+ },
+ {
+  "pass": 1,
+  "lanes": [
+   {
+    "head": "Claude Sonnet 5.57.8s",
+    "title": "Notewise seat pricing",
+    "out": "Notewise undercuts our Team plan by $2 per seat and adds unlimited guests.",
+    "foot": "31.2k tokens$0.079",
+    "rows": [
+     {
+      "title": "Web search notewise pricing per seat 2026",
+      "target": "notewise pricing per seat 2026",
+      "detail": "6 results",
+      "time": "1.5s"
+     },
+     {
+      "title": "Fetch page notewise.io/pricing",
+      "target": "notewise.io/pricing",
+      "detail": "Read 3,140 words",
+      "time": "2.3s"
+     },
+     {
+      "title": "Read file docs/pricing.md",
+      "target": "docs/pricing.md",
+      "detail": "Read 212 lines",
+      "time": "1.6s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.9s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Notewise undercuts our Team plan by $2 per seat and adds unlimited guests.",
+      "time": ""
+     }
+    ]
+   },
+   {
+    "head": "Claude Haiku 5.56.8s",
+    "title": "Paperlane free tier",
+    "out": "Paperlane fits 5 members on its free plan where ours stops at 3.",
+    "foot": "19.5k tokens$0.002",
+    "rows": [
+     {
+      "title": "Fetch page paperlane.com/pricing",
+      "target": "paperlane.com/pricing",
+      "detail": "Read 2,260 words",
+      "time": "1.9s"
+     },
+     {
+      "title": "Web search paperlane free plan limits",
+      "target": "paperlane free plan limits",
+      "detail": "4 results",
+      "time": "1.5s"
+     },
+     {
+      "title": "Read file docs/pricing.md",
+      "target": "docs/pricing.md",
+      "detail": "Read 212 lines",
+      "time": "1.3s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.6s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Paperlane fits 5 members on its free plan where ours stops at 3.",
+      "time": ""
+     }
+    ]
+   },
+   {
+    "head": "Gemini 3.8 Flash8.4s",
+    "title": "Quillstack discounts",
+    "out": "Quillstack leads with a 20 percent yearly saving, and we never show ours.",
+    "foot": "28.9k tokens$0.012",
+    "rows": [
+     {
+      "title": "Web search quillstack annual billing discount",
+      "target": "quillstack annual billing discount",
+      "detail": "5 results",
+      "time": "1.4s"
+     },
+     {
+      "tone": "danger",
+      "title": "Fetch page failed quillstack.dev/pricing",
+      "target": "quillstack.dev/pricing",
+      "detail": "The page returned 503 Service Unavailable",
+      "time": "1.3s"
+     },
+     {
+      "title": "Retried",
+      "target": "",
+      "detail": "Attempt 2",
+      "time": ""
+     },
+     {
+      "title": "Fetch page quillstack.dev/pricing",
+      "target": "quillstack.dev/pricing",
+      "detail": "Read 1,980 words",
+      "time": "1.7s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.5s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Quillstack leads with a 20 percent yearly saving, and we never show ours.",
+      "time": ""
+     }
+    ]
+   },
+   {
+    "head": "GPT-6 Luna7.1s",
+    "title": "Driftboard add-ons",
+    "out": "Driftboard sells SSO as a $4 add-on, while ours needs a sales call.",
+    "foot": "24.7k tokens$0.012",
+    "rows": [
+     {
+      "title": "Web search driftboard business plan sso",
+      "target": "driftboard business plan sso",
+      "detail": "7 results",
+      "time": "1.4s"
+     },
+     {
+      "title": "Fetch page driftboard.app/pricing",
+      "target": "driftboard.app/pricing",
+      "detail": "Read 2,710 words",
+      "time": "2.1s"
+     },
+     {
+      "title": "Read file docs/pricing.md",
+      "target": "docs/pricing.md",
+      "detail": "Read 212 lines",
+      "time": "1.4s"
+     },
+     {
+      "title": "Write findings",
+      "target": "",
+      "detail": "",
+      "time": "1.7s"
+     },
+     {
+      "tone": "success",
+      "title": "Returned to the lead",
+      "target": "",
+      "detail": "Driftboard sells SSO as a $4 add-on, while ours needs a sales call.",
+      "time": ""
+     }
+    ]
+   }
+  ],
+  "summary": {
+   "html": "<div><span aria-hidden=\"true\"><svg/></span><span>Summary</span><span><span><span><span><svg/></span><span>Merged 4 results</span></span></span></span></div><div><div><div><p><span>We charge more than </span><span>Notewise and Quillstack </span><span>for a smaller package, and </span><span>our free plan is </span><span>the tightest of the five. Three </span><span>changes would close the </span><span>gap:</span></p><ul><li><span>Cut Team to $10 </span><span>per seat on </span><span>yearly billing to match Notewise.</span></li><li><span>Raise the free plan </span><span>from 3 to </span><span>5 members, as Paperlane does.</span></li><li><span>Show the yearly saving </span><span>on the page </span><span>and sell SSO as a </span><span>paid add-on.</span></li></ul></div></div><div><div><dl><div><dt>Tokens</dt><dd>119.7k</dd></div><div><dt>Cost</dt><dd>$0.19</dd></div><div><dt>Wall time</dt><dd>11.4s</dd></div><div><dt>In sequence</dt><dd>32.8s</dd></div></dl><div><span><svg/>2.9x faster than running in sequence</span><button type=\"button\" aria-label=\"Copy summary\" data-copy-state=\"idle\"><span aria-hidden=\"true\"><span data-state=\"idle\"><svg/></span></span><span aria-hidden=\"true\"><span>Copy summary</span><span>Copied</span><span>Failed</span><span>Copy summary</span></span></button><span role=\"status\" aria-live=\"polite\"></span></div></div></div></div>",
+   "text": "SummaryMerged 4 resultsWe charge more than Notewise and Quillstack for a smaller package, and our free plan is the tightest of the five. Three changes would close the gap:Cut Team to $10 per seat on yearly billing to match Notewise.Raise the free plan from 3 to 5 members, as Paperlane does.Show the yearly saving on the page and sell SSO as a paid add-on.Tokens119.7kCost$0.19Wall time11.4sIn sequence32.8s2.9x faster than running in sequenceCopy summaryCopiedFailedCopy summary"
+  }
+ }
+]

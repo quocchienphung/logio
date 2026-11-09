@@ -48,11 +48,11 @@ export function S03CustomizableModularComponents() {
                       <div className="Copy__body">
                         <p>
                           {"Stripe’s "}
-                          <a className="Link" href="https://stripe.com/docs/payments/payment-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/payment-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"payment element"}
                           </a>
                           {" comes with masking, styling, error handling, and client-side input validation for card acceptance. It also localizes pricing with "}
-                          <a className="Link" href="https://docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Adaptive Pricing"}
                           </a>
                           {", allows you to access "}
@@ -60,7 +60,7 @@ export function S03CustomizableModularComponents() {
                             {"100+ payment methods"}
                           </a>
                           {", and dynamically surfaces relevant payment methods using AI models to your customers—even if you "}
-                          <a className="Link" href="https://docs.stripe.com/payments/vault-and-forward" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/vault-and-forward" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"process card payments outside of Stripe"}
                           </a>
                           {"."}
@@ -994,7 +994,7 @@ export function S03CustomizableModularComponents() {
                                                   <div data-js-target-list="LinkPaymentMethodPhoneAnimation.checkoutFieldValues" className="LinkPaymentMethodPhoneAnimation__panelFieldValue LinkPaymentMethodPhoneAnimation__panelFieldValue--hasChange">
                                                     {" jane.diaz@example.com "}
                                                     <div className="LinkPaymentMethodPhoneAnimation__panelLink LinkPaymentMethodPhoneAnimation__panelLogo--LinkLogo">
-                                                      <a className="LinkTextLink LinkLogo LinkPaymentMethodPhoneAnimation__panelLogo" href="https://link.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Logo">
+                                                      <a className="LinkTextLink LinkLogo LinkPaymentMethodPhoneAnimation__panelLogo" href="/unavailable/stripe/link.com/" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Logo">
                                                         <svg className="LinkLogo__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 24" fill="none">
                                                           <title>
                                                             {"Link"}
@@ -1146,11 +1146,11 @@ export function S03CustomizableModularComponents() {
                               <div className="Copy__body">
                                 <p>
                                   {"Use the "}
-                                  <a className="Link" href="https://docs.stripe.com/payments/elements/mobile-payment-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/elements/mobile-payment-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"in-app payment element "}
                                   </a>
                                   {" to build checkout flows in your mobile app. You can style all elements to match the look and feel of your app and access "}
-                                  <a className="Link" href="https://docs.stripe.com/payments/payment-methods/overview" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/payment-methods/overview" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"100+ global payment methods"}
                                   </a>
                                   {"."}
@@ -1176,7 +1176,7 @@ export function S03CustomizableModularComponents() {
                               <div className="Copy__body">
                                 <p>
                                   {"Use the "}
-                                  <a className="Link" href="https://stripe.com/docs/payments/payment-method-messaging" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/payment-method-messaging" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"payment method messaging element"}
                                   </a>
                                   {" to promote buy now, pay later options before checkout. It automatically determines available plans and conditions, generates a localized description, and matches your page's styling."}
@@ -1201,27 +1201,27 @@ export function S03CustomizableModularComponents() {
                               <div className="Copy__body">
                                 <p>
                                   {"Use the "}
-                                  <a className="Link" href="https://stripe.com/docs/elements/express-checkout-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/stripe.com/docs/elements/express-checkout-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"express checkout element"}
                                   </a>
                                   {" to automatically display multiple one-click payment buttons. Supported payment methods include "}
-                                  <a className="Link" href="https://stripe.com/docs/apple-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/stripe.com/docs/apple-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"Apple Pay"}
                                   </a>
                                   {", "}
-                                  <a className="Link" href="https://stripe.com/docs/google-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/stripe.com/docs/google-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"Google Pay"}
                                   </a>
                                   {", "}
-                                  <a className="Link" href="https://docs.stripe.com/payments/amazon-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/amazon-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"Amazon Pay"}
                                   </a>
                                   {", "}
-                                  <a className="Link" href="https://stripe.com/docs/payments/paypal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/paypal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"PayPal"}
                                   </a>
                                   {", and "}
-                                  <a className="Link" href="https://stripe.com/docs/payments/link" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/stripe.com/docs/payments/link" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"Link"}
                                   </a>
                                   {"—Stripe's one-click checkout experience."}
@@ -1246,7 +1246,7 @@ export function S03CustomizableModularComponents() {
                               <div className="Copy__body">
                                 <p>
                                   {"Use the "}
-                                  <a className="Link" href="https://stripe.com/docs/elements/address-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/stripe.com/docs/elements/address-element" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"address element"}
                                   </a>
                                   {" to collect and validate addresses for billing, shipping, and more. It can help you reduce the risk of shipping goods to the wrong location, and more accurately apply the right sales taxes. "}

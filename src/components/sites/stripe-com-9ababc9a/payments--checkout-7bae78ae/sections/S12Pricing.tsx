@@ -41,7 +41,7 @@ export function S12Pricing() {
                         </div>
                         <div className="PricingGridHeader__body"></div>
                         <div className="PricingGridHeader__ctaContainer">
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__pay_as_you__pricing_details">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__pay_as_you__pricing_details">
                             {"Pricing details"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -60,7 +60,7 @@ export function S12Pricing() {
                         <div className="PricingGridRow__content">
                           <div className="PricingGridRow__body">
                             {" Checkout is included in Stripe’s integrated pricing and lets you accept credit cards, debit cards, mobile wallets and more. "}
-                            <a className="Link" href="https://stripe.com/billing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="know_what_you__pay_as_you__pricing_details">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/billing/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="know_what_you__pay_as_you__pricing_details">
                               {"Stripe Billing pricing"}
                             </a>
                             {" applies to recurring charges. "}
@@ -102,7 +102,7 @@ export function S12Pricing() {
                         <div className="PricingGridRow__content">
                           <div className="PricingGridRow__body">
                             {" Use your own domain when using Checkout as a hosted payment page. Get started in the "}
-                            <a className="Link" href="https://dashboard.stripe.com/settings/custom-domains" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="know_what_you__custom_domain__dashboard">
+                            <a className="Link" href="/unavailable/stripe/dashboard.stripe.com/settings/custom-domains" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="know_what_you__custom_domain__dashboard">
                               {"Dashboard"}
                             </a>
                             {". "}
@@ -136,7 +136,7 @@ export function S12Pricing() {
                         </div>
                         <div className="PricingGridHeader__body"></div>
                         <div className="PricingGridHeader__ctaContainer">
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/checkout/post-payment-invoices" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__post_payment_invoices__learn_more">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/checkout/post-payment-invoices" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__post_payment_invoices__learn_more">
                             {"Learn more"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -200,7 +200,7 @@ export function S12Pricing() {
                         </div>
                         <div className="PricingGridHeader__body"></div>
                         <div className="PricingGridHeader__ctaContainer">
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__adaptive_pricing__learn_more">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/checkout/adaptive-pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="know_what_you__adaptive_pricing__learn_more">
                             {"Learn more"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

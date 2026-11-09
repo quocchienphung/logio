@@ -43,7 +43,7 @@ export function S12Pricing() {
                         </div>
                         <div className="PricingGridHeader__body"></div>
                         <div className="PricingGridHeader__ctaContainer">
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="pricing_page">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/pricing" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="pricing_page">
                             {"Pricing details "}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -84,7 +84,7 @@ export function S12Pricing() {
                             </section>
                           </div>
                           <div className="PricingGridRow__ctaContainer">
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/pricing/local-payment-methods" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_pricing_lpm">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/pricing/local-payment-methods" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_pricing_lpm">
                               {"Payment method pricing"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -110,7 +110,7 @@ export function S12Pricing() {
                         </div>
                         <div className="PricingGridHeader__body"></div>
                         <div className="PricingGridHeader__ctaContainer">
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="contact_sales">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="contact_sales">
                             {"Contact sales"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

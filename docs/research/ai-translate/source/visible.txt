@@ -1,0 +1,295 @@
+Components
+AI translate
+AI translate
+Pro
+
+A message card where picking a language streams the AI translation in place, sentence by sentence over the dimmed original, with a detected-language chip, a Show original toggle and a status line credited to the model's mark.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Chloé Nguyen
+Mobile lead, Lyon · Oct 27, 09:14
+Detected
+French
+
+チームの皆さん、こんにちは！iOSアプリのバージョン4.2を Die ersten Rückmeldungen aus der Beta sind sehr gut: Die Synchronisierung dauert im Schnitt nur noch 3 statt 9 Sekunden. Könnt ihr die Übersetzungen der Bezahlbildschirme bis Donnerstag prüfen? Danke im Voraus und großartige Arbeit in diesem Sprint.
+
+Translate
+English
+Deutsch
+Español
+日本語
+Português
+Show original
+Show translation
+Translating to Japanese
+Translating to Japanese. Simulated, nothing was sent.
+Fail the next translation
+When to use
+Messages, comments, reviews or support tickets written in another language, translated on demand inside the product.
+Release notes or announcements that readers in several regions open in their own language.
+Any place you want an AI translation to feel inline and reversible, with the original one click away.
+When not to use
+Translating a whole page or app interface; use your i18n framework.
+Long documents with headings and lists; this renders one plain paragraph.
+Live captions or speech; use a realtime stream component.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+AI translate is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for AI translate
+All 118 Pro components and 117 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { AiTranslate } from "@/components/arc/ai-translate/ai-translate";
+2
+ 
+3
+export function TranslatableMessage({ message }) {
+4
+  return (
+5
+    <AiTranslate
+6
+      text={message.body}
+7
+      sourceLanguage={message.language}
+8
+      author={{ name: message.author.name, role: message.author.title, avatar: message.author.avatarUrl }}
+9
+      timestamp={message.sentAtLabel}
+10
+      model={{ name: "Claude Haiku 5.5" }}
+11
+      translate={async function* ({ text, from, to, signal }) {
+12
+        const response = await fetch("/api/translate", { method: "POST", body: JSON.stringify({ text, from, to }), signal });
+13
+        if (!response.ok || !response.body) throw new Error("The translation service is unavailable.");
+14
+        const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+15
+        while (true) {
+16
+          const { value, done } = await reader.read();
+17
+          if (done) return;
+18
+          yield value;
+19
+        }
+20
+      }}
+21
+      onValueChange={language => savePreferredLanguage(language)}
+22
+    />
+23
+  );
+24
+}
+25
+ 
+26
+// Pre-translated content, no network
+27
+<AiTranslate text={post.fr} sourceLanguage="fr" translations={{ en: post.en, de: post.de }} author={null} />
+API reference
+AiTranslate
+
+An inline translator for one message or paragraph. A byline with a detected language chip sits above the text; below it, a Translate picker (English, Deutsch, Français, Español, 日本語, Português), a Show original toggle and a status line credited to the model's mark. Picking a language dims the text on screen and streams the translation in place in fast chunks, each new sentence retiring one sentence of the old text, while the card's height springs to fit. Finished translations are cached, so Show original and switching back crossfade instantly. Failures put the previous text back and show Couldn't translate with Retry.
+
+Prop
+Type
+Default
+Description
+text
+string
+sample release note in French
+The text to translate, in its original language. Changing it clears cached translations and shows the new original.
+sourceLanguage
+"en" | "de" | "fr" | "es" | "ja" | "pt"
+–
+Language of text. When omitted it is detected from the text with a light stopword check and the chip reads Detected; when passed the chip reads Written in.
+languages
+AiTranslateLanguageCode[]
+all six
+Languages offered in the picker, in order. The source language appears as Original.
+value
+AiTranslateLanguageCode
+–
+The language on screen; the source language means the original. Pair with onValueChange to control it, for example to remember a reader's preferred language.
+defaultValue
+AiTranslateLanguageCode
+sourceLanguage
+Starting language when uncontrolled. A language other than the source translates on mount.
+onValueChange
+(language: AiTranslateLanguageCode) => void
+–
+Called when the reader picks a language or toggles Show original.
+translate
+(request: { text, from, to, signal: AbortSignal }) => Promise<string> | AsyncIterable<string>
+–
+Your translation call. Resolve the whole translation, or return an async iterable that yields text deltas as your model streams them. The signal aborts when the reader picks another language, shows the original or the card unmounts. A thrown Error's message is announced and kept as the error tooltip. Without it, translations are streamed as a simulation.
+translations
+Partial<Record<AiTranslateLanguageCode, string>>
+–
+Ready translations, streamed by the simulation. Useful for content you translated ahead of time; a missing language shows the error state.
+onTranslate
+(result: { from, to, text }) => void
+–
+Called once a translation has fully arrived, before it is cached.
+onError
+(error: Error, request: { from, to }) => void
+–
+Called when a translation fails. Aborted requests never call it.
+author
+{ name: string; role?: string; avatar?: string } | null
+sample author
+Who wrote the text, shown with an avatar. Pass null to hide the byline; the language chip stays.
+timestamp
+string
+–
+Shown after the role in the byline, for example "Oct 27, 09:14".
+model
+{ name: string; mark?: ReactNode }
+{ name: "Claude Haiku 5.5", mark: Claude mark }
+The model credited in the status line. The mark leads every status; the name is the idle label.
+autoPlay
+boolean
+true for the bare sample
+Tours English, Deutsch, 日本語 and Português, then the original, and loops. Pauses off screen and stops for good on the first pointer or key press inside the card. With reduced motion it translates once and stops.
+simulated
+boolean
+true without translate
+Adds "Simulated, nothing was sent" to the live status.
+className
+string
+–
+Class on the root section.
+Keyboard interactions
+Tab
+Moves through the Translate picker, the Show original toggle and, after a failure, Retry.
+Enter
+or
+Space
+or
+Arrow down
+On the picker, opens the language menu with the current language checked.
+Arrow keys, Home, End
+Move through the languages; typing a letter jumps to a language. The list loops.
+Enter
+or
+Space
+Picks the highlighted language and closes the menu. Picking the language that just failed retries it.
+Escape
+Closes the menu with focus back on the picker.
+Accessibility
+The card is a section named after the author. The paragraph carries the lang attribute of the language on screen, and dimmed old sentences keep their own lang, so screen readers pronounce both correctly.
+Start, completion, the original and failures are announced in a polite status region; the paragraph is aria-busy while it streams. The simulation says that nothing was sent.
+The language menu is a radio group with a checkmark on the current language. The Show original toggle is a pressed button whose label switches to Show translation.
+Status is never color alone: the model mark plus a label (Translating to German, Translated from French, Showing original), or a warning icon plus Couldn't translate.
+Every control is at least 32px tall, and labels reserve the width of their longest version, so nothing moves under the pointer.
+Motion
+Streaming: chunks of 3 to 6 words (about 10 characters in Japanese) land every 34ms and only fade in over 140ms. No blur, slide or per word spring.
+The text on screen dims to 45% over 200ms as translating starts, and each sentence that starts in the new language removes one dimmed sentence, so the translation replaces the paragraph sentence by sentence.
+Cached translations and the original swap with one crossfade: the old text leaves in 100ms, the new one fades in over 160ms with a 2px rise.
+The paragraph's height follows its text with a critically damped spring (visualDuration 0.24, no bounce); window resizes cut straight to the new height.
+Status labels crossfade in one shared cell; the picker and toggle labels crossfade inside their reserved width. The menu fades and scales from 98% in 150ms.
+Reduced motion keeps every end state and announcement but drops chunk fades, crossfades and the height spring, and autoplay runs once.
+Responsive behavior
+The card fills its container up to 620px and pads 16px on phones.
+Below a 470px card width the status line drops under the controls, left-aligned with the text; below 380px the chip shows just the language name.
+Names and meta truncate with an ellipsis; the paragraph wraps with text-wrap: pretty. No horizontal scroll at 360px.
+Performance
+Chunks append as spans with a CSS fade, so streaming re-renders one paragraph and never animates layout.
+One ResizeObserver drives the height spring; autoplay pauses through an IntersectionObserver while the card is off screen.
+Every request owns an AbortController; switching language or unmounting cancels the network call and timers.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Wire translate to your model. Return an async generator of deltas to stream real tokens, or a Promise<string> and the component streams it in chunks itself. Always pass the signal to fetch.
+Cache lives per instance and per text; a new text prop clears it. Persist translations yourself (onTranslate) if you want them across sessions, then pass them back in translations.
+Use the source language as value to show the original. Show original remembers the last translated language for Show translation.
+Keep one paragraph or message per instance. For a whole thread, render one AiTranslate per message and control value from a shared preferred language.
+Model names in samples must be current: Claude Haiku 5.5 is the default credit; swap the mark and name for your provider.
+Sentence splitting keeps decimals like 4.2 whole and handles 。！？ for Japanese.
+/components/ai-translate/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Chat thread
+Component
+A chat thread with grouped messages, reactions, read receipts, typing, and a composer with attachments.
+Text shimmer
+Component
+Show ongoing work with a calm light across the words.
+Dropdown menu
+Component
+A focused list of actions anchored to a trigger.
+Response feedback
+Pro
+Component
+A feedback control for AI replies where thumbs down opens an inline panel with reason chips and an optional note, thumbs up fills and asks what was good, and a submit shows a short thank-you before folding back into the row.
+Meeting summary
+Pro
+Component
+An AI meeting notes card: the header shows the Google Meet or Zoom mark, the attendees and the duration. Summary, Decisions and Action items stream in after a short summarizing pass. Hover any line to see the transcript quote it came from, then check off action items or send them to Linear or Notion.
+Previous
+Generation stats
+Next
+TL;DR toggle
+Arc · 239 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

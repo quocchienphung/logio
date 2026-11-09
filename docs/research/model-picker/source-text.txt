@@ -1,0 +1,297 @@
+affectUI
+⌘
+K
+Library
+Docs
+Pricing
+Style
+Clean
+Components
+54
+AI Answer
+Chat Composer
+Thinking State
+Writing Assistant
+Thinking Loader
+Combobox
+Command Menu
+Date Range Picker
+Dropzone
+OTP Input
+Segmented Control
+Stepper Form
+Toaster
+Usage Meter
+Agent Inbox
+Agent Lanes
+Agent Steering
+Agent Tree
+Autonomy Dial
+Cited Answer
+Compact Breakdown
+Context Window
+Delegate Board
+Experiment Card
+Integration Picker
+Integration Settings
+KPI Chart
+Memory Panel
+Message Actions
+Model Picker
+Permission Request
+Profile Menu
+Project Card
+Prompt Library
+Tips Panel
+Tool Call Card
+Approval Card
+Breakdown Chart
+Button
+Data Table
+Filter Menu
+Reaction Bar
+Smart Recommendation
+Agent Plan
+Billing Schedule
+Change Summary
+Comments Panel
+Email Draft
+Progress Tracker
+Comment Thread
+Inline Diff
+Setup Guide
+Decision Inbox
+Notification Stack
+Screens
+13
+App Shell Flat
+App Shell Inset
+Assistant Home
+Folders
+Folder
+Integrations
+Agent Chat
+CRM
+Analytics
+Agent Run
+Settings & Billing
+Onboarding
+Evals
+Blocks
+11
+Client Context
+Invoice & Credit Note
+Logo Marquee
+Metrics Dashboard
+Pricing Plans
+Task Board
+Testimonial Wall
+AI Workspace
+App Directory
+KPI Board
+Agent Gallery
+Illustrations
+24
+Cover Flow
+Frost Cloud
+Glow Cloud
+Glow Keyboard
+Integration Beam
+Logo Cluster
+Model Wheel
+Project Flow
+DACH Region
+Empty Calendar
+Integration Flow
+Voice Orb
+Tab Overload
+World Map Continental
+Ghosted Chat
+Lead Sourcing
+Enrichment Orbit
+Outreach Branches
+Glass Folder
+Side Folder
+Team Invite
+Layer Stack
+Agent Team
+Integration Grid
+Motion
+8
+Blur Crossfade
+Gradient Floor
+Gradient Text
+Grid Background
+Number Ticker
+Shimmer Loader
+Text Reveal
+Tilt Card
+119
+Get Pro
+Log In
+Components
+Model Picker
+Model Picker
+
+The model menu of an AI chat – point at a model and its speed, quality and cost bars fill, switch on extended thinking and its effort unfolds, while the tray rolls the first-token time and price.
+
+Get Pro to install
+Preview
+Code
+Copy prompt
+MCP
+Copy
+Ask anything…
+S
+Sonnet 5.5
+MODEL
+SPEED
+QUALITY
+COST
+O
+Opus 5.5
+Hardest problems
+S
+Sonnet 5.5
+Everyday work
+H
+Haiku 5.5
+Quick and light
+Auto
+Picks per message
+Varies
+Extended thinking
+Effort
+Low
+Medium
+High
+Web search
+~2.1s first token · $25 / M tokens
+↑↓
+↵
+Opus 5.5: about 2.1s to the first token, $25 per million tokens
+When to use
+The model switch in the toolbar of a chat composer – the place people decide between fast, cheap and smart
+Products with a few models that differ in speed, quality and price, and settings that ride along with the model: thinking, effort, web search
+When people should see what a choice costs them before they send – the last row of the menu shows first-token time and price
+When not to use
+Dozens of models from many providers – use Combobox or Command Menu, where people can type to search
+A setting page that lists every parameter – this menu is for the two or three things people change between messages
+A plain two-way choice – Segmented Control says it with less
+Installation
+
+Model Picker is a Pro component.
+
+Installation is part of Pro
+Get Pro to copy the code, install it with the CLI and use it in your projects.
+Unlock with Pro
+Usage
+Usage example is part of Pro
+Get Pro
+Examples
+Wired to your chat settings
+This example is part of Pro
+Get Pro
+Composer at the bottom, with a router option
+This example is part of Pro
+Get Pro
+API reference
+ModelPicker
+Prop	Type	Default	Description
+models	PickerModel[]	–	{ id, name, description?, icon?, speed?, quality?, cost?, latencyMs?, pricePerM? } – strengths go from 1 to 5 (cost 5 is the most expensive); leave all three out for a router like Auto and the row says "Varies"
+value	string	–	Id of the chosen model (controlled)
+defaultValue	string	first model	Chosen model when uncontrolled
+onChange	(id: string) => void	–	Called with the picked model's id
+thinking	boolean	–	Extended thinking switch (controlled)
+defaultThinking	boolean	false	Starting state of the thinking switch
+onThinkingChange	(on: boolean) => void	–	Called when the thinking switch flips
+webSearch	boolean	–	Web search switch (controlled)
+defaultWebSearch	boolean	false	Starting state of the web search switch
+onWebSearchChange	(on: boolean) => void	–	Called when the web search switch flips
+effort	"low" | "medium" | "high"	–	Thinking effort (controlled) – the control only shows while thinking is on
+defaultEffort	"low" | "medium" | "high"	"medium"	Starting effort
+onEffortChange	(effort) => void	–	Called with the new effort
+open	boolean	–	Controlled open state of the menu
+defaultOpen	boolean	false	Starts open when uncontrolled
+onOpenChange	(open: boolean) => void	–	Called when the menu opens or closes
+align	"start" | "end"	"start"	Which edge of the trigger the menu lines up with
+side	"bottom" | "top"	"bottom"	Opens below or above the trigger – use top for a composer at the bottom of the screen
+className	string	–	Extra class on the root
+Keyboard interactions
+Enter or Space or ↓	On the trigger: opens the menu and moves into the model list
+↑ or ↓ or Home or End	In the list: moves between models – the last row follows
+Enter or Space	In the list: picks the model and closes the menu
+Tab	From the list to Extended thinking, Effort and Web search
+← or →	In Effort: Low, Medium, High
+Esc	Closes the menu and returns to the trigger
+Accessibility
+The trigger has aria-haspopup, aria-expanded and aria-controls; its name carries the model and whether thinking is on
+Models are a listbox with options and aria-activedescendant, so focus stays on the list while the arrows move
+Thinking and web search are switches, Effort is a radio group with one tab stop
+While closed the menu is inert; the last row's numbers are announced politely once, not while they roll
+Motion
+The menu opens with a short fade and a soft scale from the corner of the trigger, and closes the same way
+Pointing at a model fills its bars segment by segment and steps the other rows back
+Effort unfolds under the thinking switch; its soft fill slides to the chosen level, and the lit row's bars fill in blue
+First-token time and price roll to their new values; the model name in the trigger crossfades and a small bulb unfolds next to it while thinking is on
+With prefers-reduced-motion everything switches without movement
+Responsive behavior
+The menu is 320px wide and never wider than the screen minus 32px. Below 300px the row glyphs and key hints give way and the bars move closer
+Touch screens: taller trigger, rows, switches and effort buttons; the key hints are hidden
+Dark mode built in: switches when an ancestor (usually <html>) has the class dark or data-theme="dark"
+Notes for AI
+
+Give your coding assistant this summary instead of screenshots.
+
+The menu is positioned absolutely from the trigger – keep the composer's overflow visible, or the menu gets cut
+Pick side="top" when the composer sits at the bottom of the viewport, and align="end" when the trigger is on the right
+latencyMs is the time without thinking; the last row multiplies it by the effort (×1.6, ×2.5, ×4) while thinking is on
+Keep descriptions to two or three words – the row has room for one short line next to the bars
+Related
+Chat Composer
+Chat
+Prompt composer with model picker, voice input, app connections and approval request
+Combobox
+Inputs
+Pick one or many from a searchable, grouped list – chips with avatars, highlighted matches, create-on-the-fly and full keyboard support
+Segmented Control
+Navigation
+Switch between two to six options – a raised pill or underline that glides, stretches a little and can be dragged across, with icons, counts and badges
+Context Window
+Agents
+What fills the model's context, as a field of cells – hover a part to light it up, remove files, and compact the conversation while its cells shimmer and clear
+affectUI · 54 components · 13 screens · 11 blocks · 24 illustrations · 8 motion effects
+affectUI
+
+Agent-ready React UI for AI products – one file each, no dependencies.
+
+Site
+Home
+Components
+Screens
+Blocks
+Illustrations
+Motion
+Pricing
+Docs
+Introduction
+Installation
+Accessibility
+Legal & Account
+Account
+License
+Terms
+Privacy
+Refund
+Imprint
+Cookie settings
+Contact
+
+Created by Flo
+
+Cookies
+
+With your OK we use Google Analytics and the Meta pixel to see how the site is used and to measure our ads. You can change this any time under “Cookie settings” in the footer. Privacy
+
+Decline
+Accept

@@ -43,7 +43,7 @@ export function S00ProductHeroSection() {
                             </a>
                           </li>
                           <li className="ProductNavItem" data-js-target-list="ProductNav.items">
-                            <a className="Link" href="https://stripe.com/payments/features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="features">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/payments/features" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="features">
                               {"Features"}
                             </a>
                           </li>
@@ -53,22 +53,22 @@ export function S00ProductHeroSection() {
                             </a>
                           </li>
                           <li className="ProductNavItem" data-js-target-list="ProductNav.items">
-                            <a className="Link" href="https://stripe.com/payments/authentication" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_authentication">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/payments/authentication" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_authentication">
                               {"Authentication"}
                             </a>
                           </li>
                           <li className="ProductNavItem" data-js-target-list="ProductNav.items">
-                            <a className="Link" href="https://stripe.com/payments/dispute-management" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_disputes_nav">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/payments/dispute-management" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_disputes_nav">
                               {"Disputes"}
                             </a>
                           </li>
                           <li className="ProductNavItem" data-js-target-list="ProductNav.items">
-                            <a className="Link" href="https://stripe.com/payments/ai" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_ai">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/payments/ai" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_ai">
                               {"AI"}
                             </a>
                           </li>
                           <li className="ProductNavItem" data-js-target-list="ProductNav.items">
-                            <a className="Link" href="https://docs.stripe.com/payments" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_docs">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payments_docs">
                               {"Docs"}
                             </a>
                           </li>
@@ -93,7 +93,7 @@ export function S00ProductHeroSection() {
                         </div>
                         <footer className="Copy__footer">
                           <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                            <a className="CtaButton variant--Button CtaButton--arrow" href="https://dashboard.stripe.com/register" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Hero cta">
+                            <a className="CtaButton variant--Button CtaButton--arrow" href="/signup" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Hero cta">
                               {"Start now"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -105,7 +105,7 @@ export function S00ProductHeroSection() {
                               </span>
                             </a>
                             {" "}
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Hero link">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="Hero link">
                               {"Contact sales"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

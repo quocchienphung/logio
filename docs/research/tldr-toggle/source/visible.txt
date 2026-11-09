@@ -1,0 +1,344 @@
+Components
+TL;DR toggle
+TL;DR toggle
+Pro
+
+An article card with a Full, Summary and Key points switch and a length slider. Switching streams an AI summary in place of the article as the card's height springs to fit, and each key point links back to the paragraph it came from, which gets scrolled to and highlighted.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Linear blog
+How we made sync 4x faster for the largest workspaces
+Olivia Bennett
+·
+Oct 21, 2026 · 2 min read
+Full
+Summary
+Key points
+Length
+~
+6
+0
+ 
+w
+o
+r
+d
+s
+
+Linear made sync about 4x faster for its largest workspaces by replacing the full bootstrap snapshot with partial bootstrapping. The client now loads only what the first screen needs, about 2 percent of the workspace, and streams the rest in the background. Median time to interactive fell from 11.2 to 2.6 seconds, and first-load memory dropped 58 percent.
+
+Claude Haiku 5.5
+·
+58 words
+Summary ready, 58 words. Simulated, nothing was sent.
+Simulate a failure
+When to use
+Offering a quick summary or key points above or in place of a long article, doc or report.
+Letting readers verify AI claims against the source, through key points that link back to paragraphs.
+Reading surfaces where people choose how much detail they want with a length control.
+When not to use
+Open-ended questions about content: use an answer or chat component such as ai-answer.
+Short content under a couple of paragraphs, where a summary saves no time.
+Summaries of many documents at once: use a list or a digest layout instead of one card per item.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+TL;DR toggle is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for TL;DR toggle
+All 118 Pro components and 117 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { TldrToggle, type TldrSummarize } from "@/components/arc/tldr-toggle/tldr-toggle";
+2
+ 
+3
+// Stream from your route: newline-delimited JSON events, { type: "text", text } or { type: "point", source }.
+4
+const summarize: TldrSummarize = async function* ({ mode, length, targetWords, pointCount, article, signal }) {
+5
+  const response = await fetch("/api/tldr", {
+6
+    method: "POST",
+7
+    body: JSON.stringify({ mode, length, targetWords, pointCount, paragraphs: article.paragraphs }),
+8
+    signal,
+9
+  });
+10
+  const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
+11
+  let buffer = "";
+12
+  for (;;) {
+13
+    const { value, done } = await reader.read();
+14
+    if (done) break;
+15
+    buffer += value;
+16
+    const lines = buffer.split("\n");
+17
+    buffer = lines.pop() ?? "";
+18
+    for (const line of lines) if (line) yield JSON.parse(line);
+19
+  }
+20
+};
+21
+ 
+22
+export function PostSummary({ post }) {
+23
+  return (
+24
+    <TldrToggle
+25
+      article={{
+26
+        title: post.title,
+27
+        source: { name: "Engineering blog" },
+28
+        author: { name: post.author.name, avatar: post.author.avatar },
+29
+        date: post.date,
+30
+        paragraphs: post.paragraphs, // [{ id: "intro", text: "..." }, ...]
+Show all 37 lines
+API reference
+
+3 parts. The first is the root.
+
+TldrToggle
+
+An article card with a Full, Summary and Key points switch and a length slider. Switching streams an AI summary in place of the article in fast 3 to 8 word chunks while the card's height follows on a spring with no bounce. Key points arrive as a checklist: each point ticks when it is written, and once the list is done its ¶ jump link switches back to the article, scrolls the source paragraph into view and highlights it. Results are kept per mode and length, so switching back is instant; Regenerate asks again, Stop or Escape ends a stream and keeps what arrived, and a failure shows the message with Try again. With no props it summarizes a sample Linear engineering post with a simulated Claude Haiku 5.5 and opens the summary by itself once in view.
+
+Prop
+Type
+Default
+Description
+article
+{ title: string; paragraphs: { id: string; text: string }[]; source?: { name: string; mark?: ReactNode }; author?: { name: string; avatar?: string }; date?: string; readingTime?: string }
+tldrSampleArticle
+The article to show and summarize. Paragraph ids are what key points link back to. readingTime is worked out at 230 words a minute when left out. An article with no paragraphs shows a quiet empty state.
+summarize
+(request: TldrRequest) => AsyncIterable<TldrStreamEvent> | Promise<string | TldrKeyPoint[]>
+–
+Produces the result. The request carries mode ("summary" | "points"), length (1 to 5), targetWords (35 to 130), pointCount (3 to 7), the article and an AbortSignal that fires on Stop, Escape, a mode or length change, or unmount. Stream { type: "text", text } events for prose; for key points send { type: "point", source: paragraphId } before each point's text. A promise of the finished string or points also works: the card streams it in chunks itself. Leave it out to run the built-in simulation, which sends nothing.
+model
+{ name: string; mark?: ReactNode }
+Claude Haiku 5.5
+The model credited in the footer, with a 14px mark. Give a mono mark its brand color, for example the Claude mark in #D97757.
+mode
+"full" | "summary" | "points"
+–
+Controlled mode. Pair with onModeChange.
+defaultMode
+"full" | "summary" | "points"
+"full"
+Starting mode when uncontrolled.
+onModeChange
+(mode: TldrMode) => void
+–
+Called when the switch, a jump link or autoplay changes the mode.
+length
+1 | 2 | 3 | 4 | 5
+–
+Controlled length. Summaries aim for about 35, 60, 85, 100 and 130 words; key points return 3 to 7 items.
+defaultLength
+1 | 2 | 3 | 4 | 5
+2
+Starting length when uncontrolled.
+onLengthChange
+(length: TldrLength) => void
+–
+Called when a slider drag is released or a key moves it, not on every step, so each change makes one request.
+onComplete
+(result: { mode; length; text: string; points?: TldrKeyPoint[]; words: number }) => void
+–
+Called when a result finishes, for analytics or a server-side cache. Stopped and failed runs do not call it.
+onJump
+(paragraphId: string) => void
+–
+Called when a key point's jump link is used, before the card scrolls to the paragraph.
+autoPlay
+boolean
+true without summarize
+Opens the summary by itself once the card is half in view for a second, unless the reader has already touched the card.
+simulated
+boolean
+true without summarize
+Adds "Simulated, nothing was sent" to announcements and error text. Set it when you wrap simulateTldr yourself.
+className
+string
+–
+Class on the root element.
+simulateTldr
+
+The simulation behind the preview, exported for prototypes and tests. It waits briefly, then streams the authored summary or key points for the sample article (or lead sentences of any other article) in 3 to 8 word chunks every 30 to 40ms. Nothing is sent anywhere.
+
+Prop
+Type
+Default
+Description
+request
+Required
+TldrRequest
+–
+The request the card passes to summarize.
+options.fail
+boolean
+false
+Throws after the thinking pause, to show the error state.
+options.thinkMs
+number
+700
+Milliseconds of thinking before the first chunk.
+streamResult
+
+Turns a finished string or key point list into paced stream events, honoring the AbortSignal. Useful when a provider returns whole results but you still want the card to stream.
+
+Prop
+Type
+Default
+Description
+result
+Required
+string | TldrKeyPoint[]
+–
+The finished summary, or the key points with their source paragraph ids.
+signal
+Required
+AbortSignal
+–
+Stops the stream.
+Keyboard interactions
+Tab
+Moves through the mode switch, the length slider, the key point jump links and the footer actions.
+Arrow keys
+On the mode switch, move between Full, Summary and Key points. On the slider, change the length by one step; each step makes one request.
+Home
+or
+End
+Jump to the first or last mode, or the shortest or longest length.
+Enter
+or
+Space
+On a jump link, switch to the article, scroll to its source paragraph, move focus there and highlight it.
+Escape
+Stops a running stream and keeps what arrived.
+Accessibility
+The card is an article with the title as a heading. The mode switch is a labelled group of pressed buttons, the length is a slider whose spoken value is the target ("~60 words", "4 points"), disabled in Full mode.
+A polite live region announces each run once ("Summarizing with Claude Haiku 5.5", "Summary ready, 58 words", "4 key points ready", "Stopped"), never the streamed chunks. With the simulation it adds "Simulated, nothing was sent".
+The card is aria-busy while a result streams. Failures render as an alert with the message and a Try again button.
+Jump links are named after their point ("Jump to paragraph 3: Partial bootstrapping loads..."), and the jump moves focus to the highlighted paragraph so screen reader and keyboard users land where the eye does.
+Status is never color alone: done, stopped and failed each pair an icon with a word, and key points tick from a dashed circle to a check.
+Motion
+The body's height follows its content on one critically damped spring (visualDuration .26, no bounce), whether a view swaps or text streams in. A container resize cuts straight to the new height.
+Views swap with a single crossfade: old out in 100ms, new in over 160ms. The footer's state label and actions crossfade the same way.
+Streamed chunks of 3 to 8 words arrive every 30 to 40ms and only fade in over 140ms. A cached result appears whole, with no fade.
+Thinking lasts about 0.7s with a calm shimmer on its label; the footer's Writing label shimmers while text arrives, so only one shimmer runs at a time.
+A jump waits for the height to settle, scrolls smoothly to the paragraph and fades a highlight in over 160ms and out over 600ms.
+Reduced motion drops the height spring, the chunk fades, smooth scrolling and the icon transitions; every end state and the highlight remain.
+Responsive behavior
+The card fills its container up to 680px. Below 520px the length slider moves under the mode switch at full width; below 440px the padding steps from 24px to 16px.
+Footer labels stay on one line, the model name truncates first, and actions keep 32px targets.
+Works at 360px with no horizontal scroll; long titles wrap and balance.
+Performance
+Each chunk is a small span with a CSS fade; a long summary renders a few dozen nodes.
+One ResizeObserver drives the height spring, and results are cached per mode and length, so switching back makes no request.
+Changing the slider aborts the previous request through its AbortSignal before the next starts.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use it where people read long content inside a product: blog posts, docs pages, release notes, tickets, research reports or support articles.
+Give paragraphs stable ids and have the model return the id each key point came from, so jump links land on the right paragraph.
+Pass length to the model as targetWords or pointCount rather than a vague word like "short".
+Stream when the provider streams; return a promise when it does not, and the card paces it.
+Without summarize the card runs a simulation and says so in its announcements; never ship that to production.
+/components/tldr-toggle/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+AI answer
+Pro
+Block
+One AI answer set like a clean article: it thinks, shows its sources as small cards with colored marks, and streams a formatted answer where every citation lights the sentence it supports. Copy, regenerate with options, rate, share, page through versions and ask a related question in place.
+Text shimmer
+Component
+Show ongoing work with a calm light across the words.
+Segmented control
+Component
+Switch between a small set of related views.
+Slider
+Component
+Pick a value or a range on a track that follows your finger.
+Copy button
+Component
+Copy a value with immediate confirmation.
+Tool call
+Pro
+Component
+A tool call row for agent transcripts: the tool's mark and the call in plain words, a live state while it runs, and the input and output a click away, with approval and retry when needed.
+Previous
+AI translate
+Next
+Connector setup
+Arc · 239 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top

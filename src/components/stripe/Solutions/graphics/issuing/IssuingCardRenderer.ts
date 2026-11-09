@@ -194,6 +194,12 @@ export class IssuingCardRenderer {
     this.resizeObserver.observe(document.body);
     this.hoverRoot?.addEventListener("mousemove", this.onMouseMove);
     this.hoverRoot?.addEventListener("mouseout", this.onMouseOut);
+    // link every program in parallel before the first draw (see IphoneDuoRenderer): all three passes
+    // visible for the compile, then back to the first pass
+    this.show(true, true, true);
+    await Promise.all([this.renderer.compileAsync(this.scene, this.waveCamera), this.renderer.compileAsync(this.postScene, this.postCamera)]).catch(() => {});
+    this.show(true, false, false);
+    if (this.disposed) return;
     this.loaded = true;
     this.loop.start();
     if (this.paused) this.render();

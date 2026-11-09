@@ -39,7 +39,7 @@ export function S05PrebuiltTemplates() {
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/stripe-data/write-queries#templates" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="explore_the_docs">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/stripe-data/write-queries" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="explore_the_docs">
                           {"Explore the docs"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

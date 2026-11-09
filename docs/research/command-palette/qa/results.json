@@ -1,0 +1,315 @@
+{
+  "base": "http://localhost:3001",
+  "checks": [
+    "Shift+Tab does not open navigator",
+    "Control+k does not open navigator",
+    "Meta+k does not open navigator",
+    "bare Tab opens a modal and focuses search",
+    "desktop panel matches 440 × 398 reference dimensions",
+    "panel is centered on both axes",
+    "initial highlight is visible on the first result",
+    "catalog covers route /billing",
+    "catalog covers route /billing/subscriptions",
+    "catalog covers route /billing/usage-based-billing",
+    "catalog covers route /managed-payments",
+    "catalog covers route /authorization-boost",
+    "catalog covers route /data-pipeline",
+    "catalog covers route /financial-connections",
+    "catalog covers route /invoicing",
+    "catalog covers route /payments/checkout",
+    "catalog covers route /payments/elements",
+    "catalog covers route /payments/link",
+    "catalog covers route /payments",
+    "catalog covers route /payments/payment-links",
+    "catalog covers route /payments/payment-methods",
+    "catalog covers route /revenue-recognition",
+    "catalog covers route /sigma",
+    "catalog covers route /tax",
+    "catalog covers route /terminal",
+    "catalog covers route /guide",
+    "catalog covers route /",
+    "catalog covers route /personalize",
+    "catalog covers route /skilled",
+    "catalog covers workspace Home",
+    "catalog covers workspace Companies",
+    "catalog covers workspace Contacts",
+    "catalog covers workspace Deals",
+    "catalog covers workspace Reports",
+    "catalog covers workspace New chat",
+    "catalog covers workspace Files",
+    "catalog covers workspace Run",
+    "catalog covers workspace Mapping",
+    "catalog covers workspace Process",
+    "catalog covers workspace Tracing",
+    "catalog covers workspace Invoice",
+    "catalog covers workspace Usage",
+    "catalog covers workspace Skilled",
+    "catalog covers workspace Repo",
+    "catalog covers workspace Storage",
+    "catalog covers workspace New business",
+    "catalog covers workspace Renewals",
+    "catalog covers workspace Partnerships",
+    "catalog has unique destinations",
+    "all option IDs are valid single ARIA references",
+    "arrows move active result while input keeps focus",
+    "End reaches last result and scrolls it into view",
+    "Home returns to first result",
+    "hover updates selection without stealing input focus",
+    "label prefix ranks first",
+    "IME composition Escape preserves query and modal",
+    "matched label letters are emphasized",
+    "ordered-letter matching finds Process",
+    "Vietnamese aliases match without accents",
+    "every query word must match",
+    "empty state matches reference height",
+    "no results removes active descendant",
+    "Enter with no results keeps panel open",
+    "first Escape clears query",
+    "second Escape closes",
+    "backdrop closes modal",
+    "clear button resets results and refocuses input",
+    "Tab stays inside open modal",
+    "homepage → Process navigation works",
+    "workspace navigation preserves document state",
+    "Tab opens above an existing native modal",
+    "closing restores the underlying native modal and input",
+    "settings destination opens correct section",
+    "Settings opens over the current workspace page",
+    "Escape does not close the underlying Settings",
+    "palette works on a product page",
+    "palette works on Explore pages",
+    "palette works on Skilled",
+    "390 × 844 fits and stays centered",
+    "phone hides opening shortcut hint",
+    "320 × 568 fits and stays centered",
+    "phone hides opening shortcut hint",
+    "844 × 390 fits and stays centered",
+    "reduced motion has no travel or scale",
+    "palette follows dark theme",
+    "no runtime errors",
+    "no calls to UIArc services"
+  ],
+  "errors": [],
+  "destinations": [
+    {
+      "label": "HomepageBack to Stripe",
+      "href": "/"
+    },
+    {
+      "label": "Explore pagesChoose a workspace",
+      "href": "/personalize?browse=1"
+    },
+    {
+      "label": "Guide meYour interactive introduction",
+      "href": "/guide"
+    },
+    {
+      "label": "InvoiceCreate and manage invoices",
+      "href": "/personalize?section=invoice"
+    },
+    {
+      "label": "New chatTalk with your assistant",
+      "href": "/personalize?section=new-chat"
+    },
+    {
+      "label": "FilesWorkspace files",
+      "href": "/personalize?section=files"
+    },
+    {
+      "label": "RunAgent plans and activity",
+      "href": "/personalize?section=run"
+    },
+    {
+      "label": "UsagePlans, members and API keys",
+      "href": "/personalize?section=usage"
+    },
+    {
+      "label": "HomeYour workspace overview",
+      "href": "/personalize?section=home"
+    },
+    {
+      "label": "CompaniesCompany CRM",
+      "href": "/personalize?section=companies"
+    },
+    {
+      "label": "ContactsPeople and contact details",
+      "href": "/personalize?section=contacts"
+    },
+    {
+      "label": "DealsYour sales pipeline",
+      "href": "/personalize?section=deals"
+    },
+    {
+      "label": "ReportsAnalytics and reports",
+      "href": "/personalize?section=reports"
+    },
+    {
+      "label": "New businessNew business pipeline",
+      "href": "/personalize?section=new-business"
+    },
+    {
+      "label": "RenewalsRenewal pipeline",
+      "href": "/personalize?section=renewals"
+    },
+    {
+      "label": "PartnershipsPartnership pipeline",
+      "href": "/personalize?section=partnerships"
+    },
+    {
+      "label": "MappingProjects, teams and tasks",
+      "href": "/personalize?section=mapping"
+    },
+    {
+      "label": "ProcessBuild and run your process",
+      "href": "/personalize?section=process"
+    },
+    {
+      "label": "TracingInspect process runs",
+      "href": "/personalize?section=tracing"
+    },
+    {
+      "label": "SkilledYour skill library",
+      "href": "/skilled"
+    },
+    {
+      "label": "RepoWorkspace activity",
+      "href": "/personalize?section=repo"
+    },
+    {
+      "label": "StorageDocument knowledge library",
+      "href": "/personalize?section=storage"
+    },
+    {
+      "label": "PaymentsOnline payments",
+      "href": "/payments"
+    },
+    {
+      "label": "CheckoutPrebuilt payment form",
+      "href": "/payments/checkout"
+    },
+    {
+      "label": "ElementsFlexible UI components",
+      "href": "/payments/elements"
+    },
+    {
+      "label": "Payment LinksNo-code payments",
+      "href": "/payments/payment-links"
+    },
+    {
+      "label": "Payment methodsPayment method library",
+      "href": "/payments/payment-methods"
+    },
+    {
+      "label": "LinkAccelerated checkout",
+      "href": "/payments/link"
+    },
+    {
+      "label": "TerminalIn-person payments",
+      "href": "/terminal"
+    },
+    {
+      "label": "Managed PaymentsMerchant of record",
+      "href": "/managed-payments"
+    },
+    {
+      "label": "Authorization BoostAcceptance optimizations",
+      "href": "/authorization-boost"
+    },
+    {
+      "label": "Financial ConnectionsLinked financial accounts",
+      "href": "/financial-connections"
+    },
+    {
+      "label": "BillingRecurring revenue",
+      "href": "/billing"
+    },
+    {
+      "label": "SubscriptionsSubscription management",
+      "href": "/billing/subscriptions"
+    },
+    {
+      "label": "Usage-based billingUsage and metered pricing",
+      "href": "/billing/usage-based-billing"
+    },
+    {
+      "label": "InvoicingOne-time or recurring invoices",
+      "href": "/invoicing"
+    },
+    {
+      "label": "TaxSales tax and VAT",
+      "href": "/tax"
+    },
+    {
+      "label": "Revenue RecognitionAccounting automation",
+      "href": "/revenue-recognition"
+    },
+    {
+      "label": "SigmaCustom reports",
+      "href": "/sigma"
+    },
+    {
+      "label": "Data PipelineData sync",
+      "href": "/data-pipeline"
+    },
+    {
+      "label": "General settingsWorkspace and regional defaults",
+      "href": "/personalize?section=home&settings=general"
+    },
+    {
+      "label": "AppearanceTheme, text and interface motion",
+      "href": "/personalize?section=home&settings=appearance"
+    },
+    {
+      "label": "NotificationsEmail and desktop preferences",
+      "href": "/personalize?section=home&settings=notifications"
+    },
+    {
+      "label": "SecurityWorkspace security policy",
+      "href": "/personalize?section=home&settings=security"
+    },
+    {
+      "label": "Where you logAccount sign-in and sessions",
+      "href": "/personalize?section=home&settings=where-you-log"
+    },
+    {
+      "label": "MembersWorkspace access and roles",
+      "href": "/personalize?section=home&settings=members"
+    },
+    {
+      "label": "Billing settingsInvoice and currency preferences",
+      "href": "/personalize?section=home&settings=billing"
+    },
+    {
+      "label": "Usage · GeneralAgent usage and plan management",
+      "href": "/personalize?section=usage&settings-tab=general"
+    },
+    {
+      "label": "Usage · MembersAgent usage and plan management",
+      "href": "/personalize?section=usage&settings-tab=members"
+    },
+    {
+      "label": "Usage · BillingAgent usage and plan management",
+      "href": "/personalize?section=usage&settings-tab=billing"
+    },
+    {
+      "label": "Usage · API keysAgent usage and plan management",
+      "href": "/personalize?section=usage&settings-tab=api-keys"
+    },
+    {
+      "label": "Company CRMCompany CRM view",
+      "href": "/personalize?section=companies&crm-view=Company%20CRM"
+    },
+    {
+      "label": "Team strategyCompany CRM view",
+      "href": "/personalize?section=companies&crm-view=Team%20strategy"
+    },
+    {
+      "label": "Pixel integrationCompany CRM view",
+      "href": "/personalize?section=companies&crm-view=Pixel%20integration"
+    },
+    {
+      "label": "Sales docsCompany CRM view",
+      "href": "/personalize?section=companies&crm-view=Sales%20docs"
+    }
+  ]
+}

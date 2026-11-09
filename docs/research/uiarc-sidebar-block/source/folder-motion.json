@@ -1,0 +1,72 @@
+[
+  {
+    "name": "before",
+    "state": "false",
+    "children": {
+      "h": 0,
+      "opacity": "0",
+      "transition": "all",
+      "gridRows": "32px 30px 34px"
+    }
+  },
+  {
+    "name": "+16ms",
+    "state": "true",
+    "children": {
+      "h": 0.1,
+      "opacity": "0",
+      "transition": "all",
+      "gridRows": "32px 30px 34px"
+    }
+  },
+  {
+    "name": "+50ms",
+    "state": "true",
+    "children": {
+      "h": 14.6,
+      "opacity": "0",
+      "transition": "all",
+      "gridRows": "32px 30px 34px"
+    }
+  },
+  {
+    "name": "+100ms",
+    "state": "true",
+    "children": {
+      "h": 63.2,
+      "opacity": "0.942188",
+      "transition": "all",
+      "gridRows": "32px 30px 34px"
+    }
+  },
+  {
+    "name": "+180ms",
+    "state": "true",
+    "children": {
+      "h": 92.6,
+      "opacity": "1",
+      "transition": "all",
+      "gridRows": "32px 30px 34px"
+    }
+  },
+  {
+    "name": "+300ms",
+    "state": "true",
+    "children": {
+      "h": 98,
+      "opacity": "1",
+      "transition": "all",
+      "gridRows": "32px 30px 34px"
+    }
+  },
+  {
+    "name": "+600ms",
+    "state": "true",
+    "children": {
+      "h": 98,
+      "opacity": "1",
+      "transition": "all",
+      "gridRows": "32px 30px 34px"
+    }
+  }
+]

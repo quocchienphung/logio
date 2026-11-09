@@ -1,0 +1,841 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+133
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+7
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+New
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+New
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+130
+Special components
+104
+Docks and tabs
+6
+Share sheet
+Pro
+Action morph
+Pro
+Morph nav
+Pro
+Dock
+Pro
+Liquid tab bar
+Pro
+Orbit menu
+Pro
+Glass
+4
+Glass menu
+Pro
+Glass segmented
+Pro
+Glass card
+Pro
+Glass tab bar
+Pro
+Surfaces
+6
+Sheet stack
+Pro
+Wallet stack
+Pro
+Control center
+Pro
+Holo card
+Pro
+Card to article
+Pro
+Link unfurl
+Pro
+Galleries
+4
+Product gallery
+Pro
+Lightbox gallery
+Pro
+Photo grid
+Pro
+Cover flow
+Pro
+Audio and video
+3
+Voice orb
+Pro
+Now playing
+Pro
+Voice recorder
+Pro
+Data
+4
+Booking pill
+Pro
+Activity rings
+Pro
+Time dial
+Pro
+Date reel
+Pro
+Type
+4
+Keycap keyboard
+Pro
+Slot text
+Sand text
+Pro
+Typewriter terminal
+Pro
+Loaders
+4
+Stretch refresh
+Pro
+Morph loader
+Pro
+Skeleton morph
+Pro
+Black hole
+Pro
+Playful
+4
+Sticker peel
+Pro
+Page curl
+Pro
+Orbit logos
+Pro
+Prize wheel
+New
+Pro
+Cursor
+4
+Dot grid
+Pro
+Image trail
+New
+Pro
+Gravity well
+Pro
+Ink fluid
+Pro
+AI
+51
+Agent status
+Pro
+Tool call
+Pro
+Agent plan
+Pro
+Agent timeline
+Pro
+Context window
+Pro
+Reasoning block
+New
+Pro
+Source cards
+New
+Pro
+Model card
+New
+Pro
+AI workflow
+New
+Pro
+Code suggestion
+New
+Pro
+Ghost text
+New
+Pro
+Image generation
+New
+Pro
+Dictation button
+New
+Pro
+Speech player
+New
+Pro
+Meeting summary
+New
+Pro
+Reply draft
+New
+Pro
+Agent handoff
+New
+Pro
+PII redaction
+New
+Pro
+Response feedback
+New
+Pro
+LLM cost calculator
+New
+Pro
+Provider keys
+New
+Pro
+Generation stats
+New
+Pro
+AI translate
+New
+Pro
+TL;DR toggle
+New
+Pro
+Connector setup
+New
+Pro
+Smart form fill
+New
+Pro
+Enrich column
+New
+Pro
+Ticket router
+New
+Pro
+Ask your data
+New
+Pro
+Agent cursor
+New
+Pro
+Provider status
+New
+Pro
+Training run
+New
+Pro
+Design to code
+New
+Pro
+AI command
+New
+Pro
+Starter prompts
+New
+Pro
+AI mascot
+New
+Pro
+Image reveal
+New
+Pro
+AI spark
+New
+Pro
+Sketch to image
+New
+Pro
+Building blocks
+New
+Pro
+Pixel mascot
+New
+Pro
+Ghost mascot
+New
+Pro
+Cube mascot
+New
+Pro
+Tone tuner
+New
+Pro
+Upgrade prompt
+New
+Pro
+Referral card
+New
+Pro
+Trial banner
+New
+Pro
+Team switcher
+New
+Pro
+Live visitors
+New
+Pro
+Social proof toast
+New
+Pro
+Install snippet
+New
+Pro
+Illustrations
+10
+Data flow
+Pro
+Payment flow
+Pro
+Model training
+Pro
+Multi-region failover
+Pro
+Vector search
+Pro
+Agent loop
+Pro
+Mixture of experts
+Pro
+Speculative decoding
+Pro
+Prompt cache
+Pro
+Reasoning tree
+Pro
+What’s new
+76 new
+Components
+Agent timeline
+Agent timeline
+Pro
+
+A compact timeline of one orchestrated agent run: the orchestrator and its subagents share a time axis, handoffs draw in between rows, and a playhead replays thinking, tool calls and waiting while the header counts time, tokens and cost. Hover a span for what it did, or click it to trace its handoff path.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Checkout conversion drop on Oct 14
+
+Running
+Paused
+Ready
+ · 
+6.4s
+ · 
+15,912
+ tokens · 
+$0.05
+, 3 agents working
+
+Orchestrator
+Claude Opus 5.5
+Checker
+GPT-6 Luna
+Researcher
+Claude Sonnet 5.5
+Analyst
+Claude Haiku 5.5
+Writer
+Gemini 3.8 Flash
+0s
+5s
+10s
+15s
+20s
+25s
+1x
+2x
+Thinking
+Tool call
+Waiting
+Handoff
+Failed
+
+When to use
+Showing how an orchestrator split work across subagents and how long each part took, in a run history, a trace viewer or a debugging panel.
+Replaying a finished agent run in a product demo or changelog, with real numbers for time, tokens and cost.
+Following a multi-agent run live as events stream in from your backend.
+When not to use
+Use agent-orchestrator for a full screen of agent lanes with streaming text and messages; this timeline is the compact, reusable view of timing.
+Use observability-trace for distributed request tracing across services rather than agents.
+Use agent-run or research-run when people need the agent's steps, sources and answer, not the timing.
+Use tool-call for the detail of a single tool invocation, and agent-status for one agent's current state.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Agent timeline is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Agent timeline
+All 120 Pro components and 115 Pro blocks
+Fixes and updates for every Pro piece
+
+$249
+one payment
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { AgentTimeline } from "@/components/arc/agent-timeline/agent-timeline";
+2
+ 
+3
+// The sample run, replaying.
+4
+<AgentTimeline />
+5
+ 
+6
+// A finished run from your traces renders complete, ready to replay.
+7
+<AgentTimeline
+8
+  run={{
+9
+    title: "Weekly churn report",
+10
+    agents: [
+11
+      { id: "lead", name: "Orchestrator", model: "Claude Opus 5.5", price: 8 },
+12
+      { id: "sql", name: "Analyst", model: "Claude Haiku 5.5", price: 0.2 },
+13
+    ],
+14
+    spans: [
+15
+      { agentId: "lead", kind: "thinking", start: 0, end: 1.4, label: "Planned the report", tokens: 1200 },
+16
+      { agentId: "lead", kind: "waiting", start: 1.4, end: 6.2, label: "Waiting on the analyst" },
+17
+      { agentId: "sql", kind: "tool", tool: "PostgreSQL", start: 1.7, end: 4.1, label: "Pulled churn by plan", tokens: 2400 },
+18
+      { agentId: "sql", kind: "thinking", start: 4.1, end: 5.9, label: "Summarized the numbers", tokens: 900 },
+19
+    ],
+20
+    handoffs: [
+21
+      { from: "lead", to: "sql", at: 1.4, label: "Churn by plan, last 8 weeks" },
+22
+      { from: "sql", to: "lead", at: 6.2, label: "Churn is up on the Team plan" },
+23
+    ],
+24
+  }}
+25
+  onSpanSelect={span => console.log(span?.label)}
+26
+/>
+27
+ 
+28
+// Live: keep appending events to the run, leave end off open spans.
+29
+<AgentTimeline run={liveRun} live={status === "running"} />
+API reference
+AgentTimeline
+
+A compact timeline of one orchestrated agent run. Each row is an agent with a color dot, its name and its model with the provider mark, the orchestrator on top. Spans on a shared time axis show thinking (a tint of the agent color), tool calls (solid) and waiting (hatched), and thin elbow connectors show work handed to a subagent and results coming back, with a dot where they meet the orchestrator. The run replays live: a playhead sweeps, the active span grows with a square leading edge and a short shine, connectors draw in as handoffs happen, and the header counts elapsed time, tokens and cost until it settles into a summary such as "5 agents · 26.4s · 1.5x faster than sequential · $0.16". Hover or focus a span for a card with what it did, its tool, duration, tokens and handoffs; click to pin it and dim everything off its handoff path. A failed tool call turns into a cross with a Failed label when it ends, and its retry shows a retry icon. Play, pause, restart, a speed control and scrubbing along the axis drive the replay; passing a finished run renders it complete, and live mode follows a run in progress.
+
+Prop
+Type
+Default
+Description
+run
+AgentTimelineRun
+sampleRun
+The run: { title?, agents, spans, handoffs?, duration?, startedAt? }. Rows follow agents in order and the first agent is the orchestrator. Defaults to a sample incident investigation with five agents, a failed query and a retry.
+agents
+AgentTimelineAgent[]
+–
+Overrides run.agents. Each agent is { id, name, model?, role?, color?, mark?, price? }. color defaults to neutral for the first agent and --series-1 to --series-4 after it; mark is inferred from the model name for Claude, GPT and Gemini; price is a blended USD rate per million tokens used for cost.
+spans
+AgentTimelineSpan[]
+–
+Overrides run.spans. Each span is { id?, agentId, kind: "thinking" | "tool" | "waiting", start, end?, label, detail?, tool?, tokens?, cost?, status?: "ok" | "failed", retry? } with times in seconds from the start of the run. tool is a name (GitHub, Web search, PostgreSQL and Notion have built-in marks) or { name, mark }. Leave end out while a span is open in a live run.
+handoffs
+AgentTimelineHandoff[]
+–
+Overrides run.handoffs. Each handoff is { from, to, at, label? }. The connector shape is inferred: a dispatch drops from the source at `at` and enters the target's next span, a result leaves the end of the source's last span and rises into the target.
+title
+string
+–
+Heading. Defaults to run.title, then "Agent run".
+autoPlay
+boolean
+true for the sample, false with data
+Replay from zero when the timeline scrolls into view. Without it a run renders finished, ready to replay. Reduced motion always starts finished until the person presses play.
+speed
+number
+1
+Starting playback speed. 1 is real time.
+speeds
+number[]
+[1, 2]
+Options in the speed control. The control hides when only one speed remains.
+live
+boolean
+false
+Follow a run in progress: the clock runs from run.startedAt (epoch ms) or from mount, open spans grow to now, the axis extends in calm steps and the playback controls hide. Append spans and handoffs as events arrive and set live to false when the run ends; the timeline settles on the summary.
+onSpanSelect
+(span: AgentTimelineSpan | null) => void
+–
+Called when a span is pinned, with the span, or unpinned, with null.
+onComplete
+() => void
+–
+Called once each time a replay reaches the end or a live run ends.
+className
+string
+–
+Class on the root element.
+style
+CSSProperties
+–
+Inline style on the root, for example to override --series-1 to --series-4.
+Keyboard interactions
+Tab
+Moves to the timeline's spans (one tab stop), the time scrubber, then play or pause, restart and the speed control.
+Arrow left
+or
+Arrow right
+On a span, moves to the previous or next span in the same row. On the scrubber, steps time by half a second; with Shift, by five seconds.
+Arrow up
+or
+Arrow down
+On a span, moves to the nearest span in the row above or below.
+Home
+or
+End
+On a span, jumps to the first or last span in its row. On the scrubber, jumps to the start or the end of the run.
+Page up
+or
+Page down
+On the scrubber, steps time by five seconds.
+Enter, Space
+On a span, pins it and highlights its handoff path; again to unpin.
+Escape
+Unpins the pinned span.
+Accessibility
+The root is a labelled section. Each row of spans is a group named by its agent label, and every span is a button whose name reads the agent, the kind, the tool, failure, what it did, its time range and tokens; aria-pressed marks the pinned span.
+Spans use a roving tab index, so the chart is one tab stop and arrow keys move between spans by row and by time.
+The scrubber is a slider with a value text such as "12.4s of 26.4s" and full keyboard support; dragging anywhere on the axis moves it.
+Status is never color alone: a failed call shows a cross icon and the word Failed in its card and the legend, a retry shows a retry icon and its note, and the finished state shows a check with the summary.
+A polite live region announces replay, pause and the finished summary. The counting status line is not live, so it never floods a screen reader.
+The span card repeats what the span's accessible name already says, so it is hidden from assistive technology.
+Pointer focus draws no ring; keyboard focus shows Arc's shared focus ring on spans, the scrubber thumb and the controls.
+Motion
+Bars and the playhead read one CSS variable for the current time, updated every animation frame, so spans grow smoothly without React rendering per frame; React updates counters and states about twenty times a second.
+An active span has a square, solid leading edge and a short shine that stops when it ends; its corner rounds off as it completes. A failed call changes to its failed look with a quick color fade when it returns.
+Connectors draw in with a clip reveal from the side the handoff leaves, about 360ms, and the port dot pops in at the start of a dispatch or after a result lands.
+The span card glides between spans on the morph spring, crossfades its content and springs to its new height; the status line and play button swap with one minimal crossfade.
+When the run ends the playhead fades out and the status settles into the summary.
+Reduced motion starts on the finished run and drops the shine, the connector draw, the card glide and the status crossfades. Playback still works when the person asks for it.
+Responsive behavior
+Fills its container up to the canvas width. Below a 520px container the label column narrows to dot and name, and the model moves into the span card.
+When the plot would be narrower than 300px it scrolls horizontally inside its own frame with the agent labels pinned, and the replay keeps the playhead in view unless the person has just scrolled.
+The status line wraps after a separator, never before, and the counters reserve the width of their final value, so the header never shifts while it counts.
+Hover cards are anchored inside the component and flip below the row when there is no room above.
+Performance
+The run is normalized once per data change: spans sorted, connector shapes and totals memoized.
+Per frame the clock writes one CSS variable; widths, the playhead and connectors are pure CSS from it. React re-renders at most about twenty times a second while playing, and memoized span buttons only update when their state changes.
+The replay clock only runs while the timeline is in view, and stops when the run ends.
+Handles a few hundred spans comfortably; for long traces, pass a window of the run or aggregate tiny spans.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Choose it to show one orchestrated multi-agent run as a timeline: which agent did what, when, in parallel, with handoffs. It fits a card 360 to 760px wide.
+Put the orchestrator first. Order subagents so connectors pass through idle rows: the agent that returns first sits right under the orchestrator, and dispatches go to the deepest row first.
+Give each handoff a time that matches the spans around it: a dispatch just before the target's first span, a result just after the source's last span. The shape is inferred from those gaps.
+Use kind "waiting" for an agent that is blocked on others, so parallelism and idle time read at a glance and the summary's speedup counts only real work.
+Mark a failed tool call with status "failed" and a detail message, and the call that retried it with retry: true.
+Real model and tool marks are built in by name; pass mark for anything else. Brand marks are sample content, never implied endorsements.
+/components/agent-timeline/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Agent orchestrator
+Pro
+Block
+A lead agent splits a goal into a plan, fans the subtasks out to parallel worker lanes and merges what comes back, with each lane's model, progress and result in view.
+Agent run
+Pro
+Block
+A single card that follows one AI coding agent through a task: steps stream in with the live one shimmering, tool calls open in place, and the agent stops on a two-file diff for you to approve or send back before it writes. When the run ends, the steps fold into one line and a result shows the files changed, the checks that passed and a pull request button.
+Research run
+Pro
+Block
+Deep research that plans searches, reads sources with their marks, and streams a cited answer where every chip lights up the sentence it supports.
+Tool call
+Pro
+Component
+A tool call row for agent transcripts: the tool's mark and the call in plain words, a live state while it runs, and the input and output a click away, with approval and retry when needed.
+Agent status
+Pro
+Component
+A compact live status pill for a running AI agent: the agent's mark in a live ring, the current activity and an elapsed timer, opening into the steps so far.
+Agent plan
+Pro
+Component
+The plan an agent writes before it acts: edit, reorder or add steps while it is a draft, then watch it work through them as a live checklist.
+Context window
+Pro
+Component
+An AI context window as a grid of 200 cells: the system prompt, tools, files, summary and messages fill it in order, a threshold row marks where compaction starts, and sending a message, attaching a file or compacting shows exactly how much still fits.
+Previous
+Agent plan
+Next
+Context window
+Arc · 240 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Agent timeline is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

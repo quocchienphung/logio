@@ -1,0 +1,309 @@
+{
+  "results": [
+    {
+      "theme": "light",
+      "section": {
+        "rect": [
+          221,
+          226,
+          620,
+          372.5625
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(3.04863 0 0)"
+      },
+      "panel": {
+        "rect": [
+          200,
+          120,
+          1040,
+          760
+        ],
+        "background": "lab(100 0 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "1px solid lab(92.46 -0.0000298023 -0.0000119209)"
+      },
+      "scroller": {
+        "rect": [
+          201,
+          226,
+          1040,
+          655
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(3.04863 0 0)"
+      },
+      "label": {
+        "rect": [
+          221,
+          297.578125,
+          106.453125,
+          20
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(3.04863 0 0)"
+      },
+      "hint": {
+        "rect": [
+          221,
+          318.578125,
+          356,
+          16.796875
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(52.44 0 -0.0000119209)",
+        "fontSize": "12px",
+        "border": "0px none lab(52.44 0 -0.0000119209)"
+      },
+      "security": {
+        "rect": [
+          221,
+          1918.625,
+          620,
+          667.9375
+        ],
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(23, 23, 23)",
+        "fontSize": "14px",
+        "border": "1px solid rgb(233, 233, 233)"
+      },
+      "sectionOverflow": 0
+    },
+    {
+      "theme": "light",
+      "section": {
+        "rect": [
+          221,
+          -1399,
+          620,
+          372.5625
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(3.04863 0 0)"
+      },
+      "panel": {
+        "rect": [
+          200,
+          120,
+          1040,
+          760
+        ],
+        "background": "lab(100 0 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "1px solid lab(92.46 -0.0000298023 -0.0000119209)"
+      },
+      "scroller": {
+        "rect": [
+          201,
+          226,
+          1040,
+          655
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(3.04863 0 0)"
+      },
+      "label": {
+        "rect": [
+          221,
+          -1327.421875,
+          106.453125,
+          20
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(3.04863 0 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(3.04863 0 0)"
+      },
+      "hint": {
+        "rect": [
+          221,
+          -1306.421875,
+          356,
+          16.796875
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(52.44 0 -0.0000119209)",
+        "fontSize": "12px",
+        "border": "0px none lab(52.44 0 -0.0000119209)"
+      },
+      "security": {
+        "rect": [
+          221,
+          293.625,
+          620,
+          667.9375
+        ],
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(23, 23, 23)",
+        "fontSize": "14px",
+        "border": "1px solid rgb(233, 233, 233)"
+      },
+      "sectionOverflow": 0
+    },
+    {
+      "theme": "dark",
+      "section": {
+        "rect": [
+          221,
+          226,
+          620,
+          372.5625
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(95.36 0.0000596046 0)"
+      },
+      "panel": {
+        "rect": [
+          200,
+          120,
+          1040,
+          760
+        ],
+        "background": "lab(6.69783 0 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "1px solid lab(17.64 0 0)"
+      },
+      "scroller": {
+        "rect": [
+          201,
+          226,
+          1040,
+          655
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(95.36 0.0000596046 0)"
+      },
+      "label": {
+        "rect": [
+          221,
+          297.578125,
+          106.453125,
+          20
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(95.36 0.0000596046 0)"
+      },
+      "hint": {
+        "rect": [
+          221,
+          318.578125,
+          356,
+          16.796875
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(57.08 0 0)",
+        "fontSize": "12px",
+        "border": "0px none lab(57.08 0 0)"
+      },
+      "security": {
+        "rect": [
+          221,
+          1918.625,
+          620,
+          667.9375
+        ],
+        "background": "rgb(35, 35, 38)",
+        "color": "rgb(237, 237, 237)",
+        "fontSize": "14px",
+        "border": "1px solid rgb(56, 56, 60)"
+      },
+      "sectionOverflow": 0
+    },
+    {
+      "theme": "dark",
+      "section": {
+        "rect": [
+          221,
+          -1399,
+          620,
+          372.5625
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(95.36 0.0000596046 0)"
+      },
+      "panel": {
+        "rect": [
+          200,
+          120,
+          1040,
+          760
+        ],
+        "background": "lab(6.69783 0 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "1px solid lab(17.64 0 0)"
+      },
+      "scroller": {
+        "rect": [
+          201,
+          226,
+          1040,
+          655
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(95.36 0.0000596046 0)"
+      },
+      "label": {
+        "rect": [
+          221,
+          -1327.421875,
+          106.453125,
+          20
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(95.36 0.0000596046 0)",
+        "fontSize": "13px",
+        "border": "0px none lab(95.36 0.0000596046 0)"
+      },
+      "hint": {
+        "rect": [
+          221,
+          -1306.421875,
+          356,
+          16.796875
+        ],
+        "background": "rgba(0, 0, 0, 0)",
+        "color": "lab(57.08 0 0)",
+        "fontSize": "12px",
+        "border": "0px none lab(57.08 0 0)"
+      },
+      "security": {
+        "rect": [
+          221,
+          293.625,
+          620,
+          667.9375
+        ],
+        "background": "rgb(35, 35, 38)",
+        "color": "rgb(237, 237, 237)",
+        "fontSize": "14px",
+        "border": "1px solid rgb(56, 56, 60)"
+      },
+      "sectionOverflow": 0
+    }
+  ],
+  "errors": []
+}

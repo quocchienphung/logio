@@ -1,0 +1,30 @@
+{
+  "passed": [
+    "Enter picker",
+    "Space picker",
+    "TSV accept",
+    "native drag/drop",
+    "unsupported format",
+    "empty file",
+    "over 20MB",
+    "remove and same-file re-add",
+    "retry callback",
+    "Clear callback",
+    "real extraction progress",
+    "review disables removal",
+    "approve and store",
+    "dark appearance",
+    "390px touch reduced motion",
+    "no horizontal overflow",
+    "no runtime errors"
+  ],
+  "measurements": {
+    "viewport": 390,
+    "document": 390,
+    "dropzone": {
+      "width": 268,
+      "scroll": 268
+    }
+  },
+  "errors": []
+}

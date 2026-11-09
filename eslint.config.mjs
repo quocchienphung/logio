@@ -19,6 +19,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Frozen reference bundles captured for forensics, not project code.
     "docs/**",
+    // PDF.js worker copied verbatim from its installed package by scripts/storage-assets.mjs.
+    "public/storage/pdf.worker.min.mjs",
     // Builder-agent git worktrees (each has its own checkout and .next output).
     ".claude/worktrees/**",
   ]),

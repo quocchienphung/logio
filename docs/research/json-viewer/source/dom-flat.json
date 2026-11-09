@@ -1,0 +1,1562 @@
+{
+ "count": 302,
+ "rows": [
+  {
+   "d": 0,
+   "tag": "div",
+   "cls": "jv_root",
+   "attrs": {},
+   "style": "--json-max-height:380px"
+  },
+  {
+   "d": 1,
+   "tag": "div",
+   "cls": "jv_toolbar",
+   "attrs": {}
+  },
+  {
+   "d": 2,
+   "tag": "label",
+   "cls": "jv_search",
+   "attrs": {}
+  },
+  {
+   "d": 3,
+   "tag": "svg",
+   "cls": "lucide lucide-search jv_searchIcon",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "15",
+    "height": "15",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 4,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "m21 21-4.34-4.34"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "circle",
+   "cls": "",
+   "attrs": {
+    "cx": "11",
+    "cy": "11",
+    "r": "8"
+   },
+   "text": ""
+  },
+  {
+   "d": 3,
+   "tag": "input",
+   "cls": "jv_input",
+   "attrs": {
+    "type": "search",
+    "placeholder": "Search keys and values",
+    "aria-label": "Search JSON",
+    "aria-controls": "_R_l6usseinqbsnndb_-tree",
+    "spellcheck": "false",
+    "autocomplete": "off",
+    "value": ""
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "span",
+   "cls": "jv_divider",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "button",
+   "cls": "jv_tool",
+   "attrs": {
+    "type": "button",
+    "aria-label": "Expand all",
+    "title": "Expand all"
+   }
+  },
+  {
+   "d": 3,
+   "tag": "svg",
+   "cls": "lucide lucide-chevrons-up-down",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "15",
+    "height": "15",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 4,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "m7 15 5 5 5-5"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "m7 9 5-5 5 5"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "button",
+   "cls": "jv_tool",
+   "attrs": {
+    "type": "button",
+    "aria-label": "Collapse all",
+    "title": "Collapse all"
+   }
+  },
+  {
+   "d": 3,
+   "tag": "svg",
+   "cls": "lucide lucide-chevrons-down-up",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "15",
+    "height": "15",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 4,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "m7 20 5-5 5 5"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "m7 4 5 5 5-5"
+   },
+   "text": ""
+  },
+  {
+   "d": 1,
+   "tag": "div",
+   "cls": "jv_tree",
+   "attrs": {
+    "id": "_R_l6usseinqbsnndb_-tree",
+    "role": "tree",
+    "aria-label": "Order response"
+   }
+  },
+  {
+   "d": 2,
+   "tag": "div",
+   "cls": "jv_row",
+   "attrs": {
+    "role": "treeitem",
+    "tabindex": "0",
+    "aria-level": "1",
+    "aria-posinset": "1",
+    "aria-setsize": "1",
+    "aria-expanded": "true",
+    "aria-selected": "true",
+    "aria-label": "order, object, 13 keys",
+    "data-kind": "node",
+    "data-active": "true"
+   },
+   "style": "--level:0;height:30px;opacity:1;overflow:visible"
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_highlight",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "style": "opacity: 1;",
+   "text": ""
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_line",
+   "attrs": {}
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_chevron",
+   "attrs": {
+    "data-open": "true",
+    "data-branch": "true",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 5,
+   "tag": "svg",
+   "cls": "lucide lucide-chevron-right",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "m9 18 6-6-6-6"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_key",
+   "attrs": {},
+   "text": "order"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_colon",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_summary",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "span",
+   "cls": "jv_countLabel",
+   "attrs": {},
+   "text": "13 keys"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_actions",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy value",
+    "title": "Copy value"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-copy",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "rect",
+   "cls": "",
+   "attrs": {
+    "width": "14",
+    "height": "14",
+    "x": "8",
+    "y": "8",
+    "rx": "2",
+    "ry": "2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+   },
+   "text": ""
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy path",
+    "title": "Copy path"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-link-2",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M9 17H7A5 5 0 0 1 7 7h2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M15 7h2a5 5 0 1 1 0 10h-2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "line",
+   "cls": "",
+   "attrs": {
+    "x1": "8",
+    "x2": "16",
+    "y1": "12",
+    "y2": "12"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "div",
+   "cls": "jv_row",
+   "attrs": {
+    "role": "treeitem",
+    "tabindex": "-1",
+    "aria-level": "2",
+    "aria-posinset": "1",
+    "aria-setsize": "13",
+    "aria-selected": "false",
+    "aria-label": "id: ord_8Kd2Q7",
+    "data-kind": "node"
+   },
+   "style": "--level:1;height:30px;opacity:1;overflow:visible"
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_line",
+   "attrs": {}
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_chevron",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_key",
+   "attrs": {},
+   "text": "id"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_colon",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ":"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_value",
+   "attrs": {
+    "data-type": "string"
+   },
+   "text": "\"ord_8Kd2Q7\""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_actions",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy value",
+    "title": "Copy value"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-copy",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "rect",
+   "cls": "",
+   "attrs": {
+    "width": "14",
+    "height": "14",
+    "x": "8",
+    "y": "8",
+    "rx": "2",
+    "ry": "2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+   },
+   "text": ""
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy path",
+    "title": "Copy path"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-link-2",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M9 17H7A5 5 0 0 1 7 7h2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M15 7h2a5 5 0 1 1 0 10h-2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "line",
+   "cls": "",
+   "attrs": {
+    "x1": "8",
+    "x2": "16",
+    "y1": "12",
+    "y2": "12"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "div",
+   "cls": "jv_row",
+   "attrs": {
+    "role": "treeitem",
+    "tabindex": "-1",
+    "aria-level": "2",
+    "aria-posinset": "2",
+    "aria-setsize": "13",
+    "aria-selected": "false",
+    "aria-label": "object: order",
+    "data-kind": "node"
+   },
+   "style": "--level:1;height:30px;opacity:1;overflow:visible"
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_line",
+   "attrs": {}
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_chevron",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_key",
+   "attrs": {},
+   "text": "object"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_colon",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ":"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_value",
+   "attrs": {
+    "data-type": "string"
+   },
+   "text": "\"order\""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_actions",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy value",
+    "title": "Copy value"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-copy",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "rect",
+   "cls": "",
+   "attrs": {
+    "width": "14",
+    "height": "14",
+    "x": "8",
+    "y": "8",
+    "rx": "2",
+    "ry": "2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+   },
+   "text": ""
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy path",
+    "title": "Copy path"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-link-2",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M9 17H7A5 5 0 0 1 7 7h2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M15 7h2a5 5 0 1 1 0 10h-2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "line",
+   "cls": "",
+   "attrs": {
+    "x1": "8",
+    "x2": "16",
+    "y1": "12",
+    "y2": "12"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "div",
+   "cls": "jv_row",
+   "attrs": {
+    "role": "treeitem",
+    "tabindex": "-1",
+    "aria-level": "2",
+    "aria-posinset": "3",
+    "aria-setsize": "13",
+    "aria-selected": "false",
+    "aria-label": "status: fulfilled",
+    "data-kind": "node"
+   },
+   "style": "--level:1;height:30px;opacity:1;overflow:visible"
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_line",
+   "attrs": {}
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_chevron",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_key",
+   "attrs": {},
+   "text": "status"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_colon",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ":"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_value",
+   "attrs": {
+    "data-type": "string"
+   },
+   "text": "\"fulfilled\""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_actions",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy value",
+    "title": "Copy value"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-copy",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "rect",
+   "cls": "",
+   "attrs": {
+    "width": "14",
+    "height": "14",
+    "x": "8",
+    "y": "8",
+    "rx": "2",
+    "ry": "2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+   },
+   "text": ""
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy path",
+    "title": "Copy path"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-link-2",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M9 17H7A5 5 0 0 1 7 7h2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M15 7h2a5 5 0 1 1 0 10h-2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "line",
+   "cls": "",
+   "attrs": {
+    "x1": "8",
+    "x2": "16",
+    "y1": "12",
+    "y2": "12"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "div",
+   "cls": "jv_row",
+   "attrs": {
+    "role": "treeitem",
+    "tabindex": "-1",
+    "aria-level": "2",
+    "aria-posinset": "4",
+    "aria-setsize": "13",
+    "aria-selected": "false",
+    "aria-label": "livemode: false",
+    "data-kind": "node"
+   },
+   "style": "--level:1;height:30px;opacity:1;overflow:visible"
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_line",
+   "attrs": {}
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_chevron",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_key",
+   "attrs": {},
+   "text": "livemode"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_colon",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ":"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_value",
+   "attrs": {
+    "data-type": "boolean"
+   },
+   "text": "false"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_actions",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy value",
+    "title": "Copy value"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-copy",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "rect",
+   "cls": "",
+   "attrs": {
+    "width": "14",
+    "height": "14",
+    "x": "8",
+    "y": "8",
+    "rx": "2",
+    "ry": "2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+   },
+   "text": ""
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy path",
+    "title": "Copy path"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-link-2",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M9 17H7A5 5 0 0 1 7 7h2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M15 7h2a5 5 0 1 1 0 10h-2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "line",
+   "cls": "",
+   "attrs": {
+    "x1": "8",
+    "x2": "16",
+    "y1": "12",
+    "y2": "12"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "div",
+   "cls": "jv_row",
+   "attrs": {
+    "role": "treeitem",
+    "tabindex": "-1",
+    "aria-level": "2",
+    "aria-posinset": "5",
+    "aria-setsize": "13",
+    "aria-selected": "false",
+    "aria-label": "created: 1757851200",
+    "data-kind": "node"
+   },
+   "style": "--level:1;height:30px;opacity:1;overflow:visible"
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_line",
+   "attrs": {}
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_chevron",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_key",
+   "attrs": {},
+   "text": "created"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_colon",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ":"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_value",
+   "attrs": {
+    "data-type": "number"
+   },
+   "text": "1757851200"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_actions",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy value",
+    "title": "Copy value"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-copy",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "rect",
+   "cls": "",
+   "attrs": {
+    "width": "14",
+    "height": "14",
+    "x": "8",
+    "y": "8",
+    "rx": "2",
+    "ry": "2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+   },
+   "text": ""
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy path",
+    "title": "Copy path"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-link-2",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M9 17H7A5 5 0 0 1 7 7h2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "path",
+   "cls": "",
+   "attrs": {
+    "d": "M15 7h2a5 5 0 1 1 0 10h-2"
+   },
+   "text": ""
+  },
+  {
+   "d": 8,
+   "tag": "line",
+   "cls": "",
+   "attrs": {
+    "x1": "8",
+    "x2": "16",
+    "y1": "12",
+    "y2": "12"
+   },
+   "text": ""
+  },
+  {
+   "d": 2,
+   "tag": "div",
+   "cls": "jv_row",
+   "attrs": {
+    "role": "treeitem",
+    "tabindex": "-1",
+    "aria-level": "2",
+    "aria-posinset": "6",
+    "aria-setsize": "13",
+    "aria-selected": "false",
+    "aria-label": "currency: usd",
+    "data-kind": "node"
+   },
+   "style": "--level:1;height:30px;opacity:1;overflow:visible"
+  },
+  {
+   "d": 3,
+   "tag": "span",
+   "cls": "jv_line",
+   "attrs": {}
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_chevron",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_key",
+   "attrs": {},
+   "text": "currency"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_colon",
+   "attrs": {
+    "aria-hidden": "true"
+   },
+   "text": ":"
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_value",
+   "attrs": {
+    "data-type": "string"
+   },
+   "text": "\"usd\""
+  },
+  {
+   "d": 4,
+   "tag": "span",
+   "cls": "jv_actions",
+   "attrs": {}
+  },
+  {
+   "d": 5,
+   "tag": "button",
+   "cls": "jv_action",
+   "attrs": {
+    "type": "button",
+    "tabindex": "-1",
+    "data-state": "idle",
+    "aria-label": "Copy value",
+    "title": "Copy value"
+   }
+  },
+  {
+   "d": 6,
+   "tag": "span",
+   "cls": "jv_actionGlyph",
+   "attrs": {},
+   "style": "opacity:1;transform:none"
+  },
+  {
+   "d": 7,
+   "tag": "svg",
+   "cls": "lucide lucide-copy",
+   "attrs": {
+    "xmlns": "http://www.w3.org/2000/svg",
+    "width": "14",
+    "height": "14",
+    "viewBox": "0 0 24 24",
+    "fill": "none",
+    "stroke": "currentColor",
+    "stroke-width": "1.75",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "aria-hidden": "true"
+   }
+  },
+  {
+   "d": 8,
+   "tag": "rect",
+   "cls": "",
+   "attrs": {
+    "width": "14",
+    "height": "14",
+    "x": "8",
+    "y": "8",
+    "rx": "2",
+    "ry": "2"
+   },
+   "text": ""
+  }
+ ],
+ "tokens": {
+  "--border": "oklch(93.5% 0 0)",
+  "--border-subtle": "oklch(96.5% 0 0)",
+  "--surface": "oklch(100% 0 0)",
+  "--surface-muted": "oklch(97.8% 0 0)",
+  "--foreground": "oklch(15% 0 0)",
+  "--text-secondary": "oklch(46% 0 0)",
+  "--text-muted": "oklch(59% 0 0)",
+  "--success": "oklch(50% .12 162)",
+  "--accent": "oklch(33% 0 0)",
+  "--warning": "oklch(55% .12 68)",
+  "--danger": "oklch(53% .18 10)",
+  "--radius-panel": "1.625rem",
+  "--duration-fast": ".16s",
+  "--duration-standard": ".24s",
+  "--duration-spring": ".58s",
+  "--ease-standard": "cubic-bezier(.22,1,.36,1)",
+  "--ease-enter": "cubic-bezier(.16,1,.3,1)",
+  "--ease-spring": "linear(0,.0213,.0739,.1443,.2235,.305,.3849,.4606,.5305,.594,.6508,.7011,.7452,.7836,.8168,.8454,.8699,.8907,.9084,.9234,.9361,.9467,.9557,.9632,.9694,.9747,.979,.9826,.9857,.9882,.9902,.992,.9934,.9946,.9955,.9963,1)",
+  "--text-xs": ".75rem",
+  "--text-sm": ".875rem",
+  "--font-body": "\"inter\",\"inter Fallback\",sans-serif",
+  "--tracking-body": "-.01em",
+  "--space-3": ".75rem"
+ },
+ "rootRect": "{\"x\":378.59375,\"y\":430.84375,\"width\":668.8125,\"height\":472,\"top\":430.84375,\"right\":1047.40625,\"bottom\":902.84375,\"left\":378.59375}",
+ "toolbar": [
+  {
+   "label": "Expand all",
+   "title": "Expand all",
+   "cls": "jv_tool",
+   "disabled": false
+  },
+  {
+   "label": "Collapse all",
+   "title": "Collapse all",
+   "cls": "jv_tool",
+   "disabled": false
+  },
+  {
+   "label": "Copy value",
+   "title": "Copy value",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy path",
+   "title": "Copy path",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy value",
+   "title": "Copy value",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy path",
+   "title": "Copy path",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy value",
+   "title": "Copy value",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy path",
+   "title": "Copy path",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy value",
+   "title": "Copy value",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy path",
+   "title": "Copy path",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy value",
+   "title": "Copy value",
+   "cls": "jv_action",
+   "disabled": false
+  },
+  {
+   "label": "Copy path",
+   "title": "Copy path",
+   "cls": "jv_action",
+   "disabled": false
+  }
+ ]
+}

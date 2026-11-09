@@ -20,13 +20,16 @@ import {
 } from "@/components/stripe/icons";
 import { MegaMenuContent } from "./MegaMenu";
 import { MENUS, type Menu } from "./menus";
+import { interactionMotion } from "@/components/interaction/motion-tokens";
 
 type MenuId = Menu["id"];
 type Status = "initial" | "open" | "close";
 
-const OPEN_DELAY = 100;
-const CLOSE_DELAY = 150;
-const CLOSE_ANIM = 300; // --navigation-duration-slow
+// UIArc Morph nav's public preview: pointer intent 60ms, gap tolerance 180ms.
+const OPEN_DELAY = 60;
+const CLOSE_DELAY = 180;
+const CONTENT_EXIT = 120;
+const CLOSE_ANIM = interactionMotion.exit;
 const MOBILE_QUERY = "(max-width: 939px)";
 
 /**
@@ -148,13 +151,13 @@ function NavigationMenu() {
         );
         setLeaving(active);
         clear("leave");
-        timers.current.leave = window.setTimeout(() => setLeaving(null), 500);
-      } else {
+        timers.current.leave = window.setTimeout(() => setLeaving(null), CONTENT_EXIT);
+      } else if (!active) {
         setDirection(undefined);
       }
       setActive(id);
       measureAnchor();
-      setPopupStatus((s) => (s === "open" ? s : "initial"));
+      setPopupStatus((s) => s === "close" ? "open" : s ?? "initial");
     },
     [active, measureAnchor],
   );
@@ -162,6 +165,9 @@ function NavigationMenu() {
   const scheduleOpen = (id: MenuId) => {
     if (mobile) return;
     clear("open");
+    // Cancel departure immediately, before waiting for intent. Otherwise an older close timer
+    // can fire during these 60ms and cancel the new open (a fast out-and-back pointer stalls).
+    clear("close");
     timers.current.open = window.setTimeout(() => open(id), OPEN_DELAY);
   };
 
@@ -204,13 +210,14 @@ function NavigationMenu() {
     setPopupStatus("initial");
   };
 
-  // initial → open on the next frame so the clip-path/opacity transitions run
+  // Keep one painted initial frame. A single rAF can run before the mounting paint and skip entry.
   useLayoutEffect(() => {
     if (popupStatus !== "initial") return;
-    let raf = requestAnimationFrame(() => {
-      raf = requestAnimationFrame(() => setPopupStatus("open"));
+    let next = 0;
+    const raf = requestAnimationFrame(() => {
+      next = requestAnimationFrame(() => setPopupStatus("open"));
     });
-    return () => cancelAnimationFrame(raf);
+    return () => { cancelAnimationFrame(raf); cancelAnimationFrame(next); };
   }, [popupStatus]);
 
   // animate popup height between desktop menus
@@ -218,12 +225,17 @@ function NavigationMenu() {
     if (!active || mobile) return;
     const el = contentRefs.current[active];
     if (!el) return;
-    const measure = () => setPopupHeight(el.offsetHeight);
+    // The content must measure independently of the animated viewport (see overrides.css).
+    // Otherwise observing its stretched height feeds each animation frame back into the target.
+    const measure = () => {
+      const height = Math.round(el.getBoundingClientRect().height);
+      setPopupHeight((previous) => previous === height ? previous : height);
+    };
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [active, popupStatus, mobile]);
+  }, [active, mobile]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -305,7 +317,8 @@ function NavigationMenu() {
               }
               aria-controls={`navigation-popup-${m.id}`}
               data-active={active === m.id ? "" : undefined}
-              onMouseEnter={() => scheduleOpen(m.id)}
+              onPointerEnter={(e) => { if (e.pointerType === "mouse") scheduleOpen(m.id); }}
+              onPointerLeave={() => clear("open")}
               onFocus={(e) => {
                 if (!mobile && !restoringFocus.current && e.currentTarget.matches(":focus-visible")) open(m.id);
               }}
@@ -332,7 +345,7 @@ function NavigationMenu() {
         <li className="hds-navigation-menu__item navigation-item navigation-item--desktop-only navigation-item--guide-me">
           <a
             className="hds-button hds-navigation-menu__trigger hds-button--transparent"
-            href="/personalize"
+            href="/guide"
             onMouseEnter={scheduleClose}
           >
             <SparkleIcon />
@@ -342,7 +355,7 @@ function NavigationMenu() {
         <li className="hds-navigation-menu__item navigation-item navigation-item__sign-in--mobile">
           <a
             className="hds-button hds-navigation-menu__trigger hds-button--transparent"
-            href="https://dashboard.stripe.com/login"
+            href="/login"
           >
             Sign in
           </a>
@@ -354,17 +367,17 @@ function NavigationMenu() {
           id="navigation-personalize-mobile"
         >
           <strong className="hds-text hds-text--sm hds-text--emphasized">
-            Not sure where to start?
+            Company CRM
           </strong>{" "}
-          Tell us about your business to get personalized Stripe product
-          recommendations.
+          Manage companies, explore your pipeline and organize your sales workspace.
         </span>
         <a
           className="hds-link hds-link--callout"
-          href="/personalize"
+          href="/guide"
           aria-describedby="navigation-personalize-mobile"
+          aria-label="Guide me"
         >
-          Find what&apos;s right for you
+          <SparkleIcon /> Guide me
           <LinkArrow />
         </a>
       </div>
@@ -380,7 +393,7 @@ function NavigationMenu() {
         <div className="hds-button-group">
           <a
             className="hds-button hds-button--primary"
-            href="https://dashboard.stripe.com/register"
+            href="/signup"
           >
             Start now
             <ButtonArrow />
@@ -482,7 +495,7 @@ function NavigationMenu() {
             <li className="hds-navigation-menu__item navigation-item">
               <a
                 className="hds-button navigation-cta-button navigation-item__sign-in hds-button--secondary-on-quiet hds-button--compact"
-                href="https://dashboard.stripe.com/login"
+                href="/login"
                 aria-label="Sign in"
                 onMouseEnter={scheduleClose}
               >
@@ -580,6 +593,7 @@ function NavigationMenu() {
                 <nav
                   className="hds-navigation-menu__popup"
                   data-status={popupStatus ?? undefined}
+                  inert={popupStatus === "close"}
                   data-activation-direction={mobile ? undefined : direction}
                   id={
                     active
@@ -618,6 +632,7 @@ function NavigationMenu() {
                           }}
                           className="hds-navigation-menu__content"
                           data-status={contentStatus(m.id)}
+                          inert={m.id !== active}
                         >
                           <MegaMenuContent menu={m} />
                         </div>

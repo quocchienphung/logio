@@ -48,7 +48,7 @@ export function S00ProductHeroSection() {
                         </div>
                         <footer className="Copy__footer">
                           <div className="CtaGroup CtaGroup--inline Copy__ctaGroup">
-                            <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/docs/payments/link" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_method_link_hero_docs_cta">
+                            <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/docs/payments/link" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_method_link_hero_docs_cta">
                               {"Explore the docs"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -60,7 +60,7 @@ export function S00ProductHeroSection() {
                               </span>
                             </a>
                             {" "}
-                            <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="paymentmethod_link_hero_contact_sales">
+                            <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/contact/sales" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="paymentmethod_link_hero_contact_sales">
                               {"Contact sales"}
                               <span className="nobr">
                                 <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

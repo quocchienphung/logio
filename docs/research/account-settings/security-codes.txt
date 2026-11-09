@@ -1,0 +1,73 @@
+Security
+
+Control how you sign in to Fieldnote as maya@fieldnote.example.
+
+Two-factor authentication
+
+Ask for a code from your authenticator app when you sign in on a new device.
+
+Setting up
+Scan
+, done
+Verify
+, done
+3
+Save codes
+Save your backup codes
+
+Each code signs you in once if you lose your phone. This is the only time they are shown.
+
+Copy codes
+Download
+7kq2-m9xp
+c4tn-8wzr
+p3hd-6yvb
+x9fm-2rkt
+b5wl-4qne
+r8jc-7tgs
+m2vx-9dph
+t6nz-3kwf
+h4gy-5bmq
+w7rs-8cjd
+
+Copy or download the codes to finish
+Copy or download the codes to finish
+
+Finish setup
+Password
+
+Last changed March 4, 2026
+Last changed March 4, 2026
+
+Change password
+Active sessions
+5
+5
+
+Devices signed in to your account in the last 30 days.
+
+MacBook Pro
+This device
+Chrome 129 · San Francisco, US · Active now
+iPhone 15 Pro
+Fieldnote for iOS · San Francisco, US · 2 hours ago
+Revoke
+Windows desktop
+Edge 128 · Austin, US · Yesterday at 4:12 PM
+Revoke
+iPad Air
+Safari 18 · Lisbon, PT · Sep 14
+Revoke
+ThinkPad X1
+New location
+Firefox 130 · Berlin, DE · Sep 9
+Revoke
+
+You stay signed in on this device
+You stay signed in on this device
+
+Sign out of other sessions
+Sign out of other sessions
+Press and hold for 1.2 seconds to confirm. With a keyboard, hold Space or Enter.
+
+Code accepted. Save your backup codes to finish

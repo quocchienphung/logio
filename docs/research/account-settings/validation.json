@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-31",
+  "account_qa": {
+    "command": "node scripts/qa/account-settings.mjs http://localhost:3001",
+    "mode": "production",
+    "passed": 10,
+    "page_errors": 0,
+    "external_requests": 0
+  },
+  "settings_regression": {
+    "command": "node scripts/qa/settings-command.mjs",
+    "passed": 71,
+    "page_errors": 0
+  },
+  "unit_tests": { "command": "npm test", "passed": 418, "failed": 0 },
+  "production_build": "passed",
+  "typecheck": "passed",
+  "changed_files_eslint": "passed without warnings",
+  "diff_check": "passed",
+  "visual_review": "Source preview and integrated desktop/mobile Settings screenshots inspected; workspace menu placement and Settings content width are intentional adaptations, not a pixel-identical copy of the source host page.",
+  "runtime_limit": "Where you log is explicitly a preview. No real account authentication, password, TOTP enrollment or session revocation service is connected. Only non-secret preview metadata persists."
+}

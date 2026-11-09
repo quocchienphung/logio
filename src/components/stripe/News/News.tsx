@@ -760,7 +760,7 @@ export function News() {
                         <div className="hds-button-group">
                           <a
                             className="book-button"
-                            href="https://press.stripe.com/"
+                            href="/unavailable/stripe/press.stripe.com/"
                             data-analytics-label="book_of_the__stripe_press"
                           >
                             <div className="book-button__icon-container">

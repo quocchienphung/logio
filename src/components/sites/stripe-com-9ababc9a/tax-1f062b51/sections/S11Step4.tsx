@@ -34,7 +34,7 @@ export function S11Step4() {
                   <div className="Copy__body">
                     <p>
                       {"Keeping track of filing deadlines and reconciling transactions is time-consuming and can easily lead to mistakes. File "}
-                      <a className="Link" href="https://docs.stripe.com/tax/file-with-taxjar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                      <a className="Link" href="/unavailable/stripe/docs.stripe.com/tax/file-with-taxjar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                         {"US sales tax"}
                       </a>
                       {" directly from the Dashboard, powered by TaxJar. Your returns are automatically prepared and filed every period. For global filings, automate across more than 90 countries through Stripe and our filing partners. You can also access location-specific reports to file on your own, with your accountant, or with a preferred partner."}

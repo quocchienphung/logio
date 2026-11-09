@@ -75,7 +75,7 @@ export function S09StripeNamedALeader() {
                                   {", Vice President, Merchant Services, Shopify "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/shopify" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_shopify_customer_story">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/shopify" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_shopify_customer_story">
                                 {"Read the full story "}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -116,7 +116,7 @@ export function S09StripeNamedALeader() {
                                   {", Vice President of Payments, Risk, and Identity, Uber "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/newsroom/news/stripe-and-uber" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_uber_newsroom_story">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/newsroom/news/stripe-and-uber" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_uber_newsroom_story">
                                 {"Read the full story "}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -154,7 +154,7 @@ export function S09StripeNamedALeader() {
                                   {", Product Manager, Matches Fashion "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/matchesfashion" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_matchesfashion_customer_story">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/matchesfashion" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_matchesfashion_customer_story">
                                 {"Read the full story "}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -192,7 +192,7 @@ export function S09StripeNamedALeader() {
                                   {", Product Manager, Slack "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/slack" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_slack_customer_story">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/slack" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_slack_customer_story">
                                 {"Read the full story "}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

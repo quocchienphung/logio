@@ -1,0 +1,782 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+133
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+7
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+New
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+New
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+130
+Special components
+104
+Docks and tabs
+6
+Share sheet
+Pro
+Action morph
+Pro
+Morph nav
+Pro
+Dock
+Pro
+Liquid tab bar
+Pro
+Orbit menu
+Pro
+Glass
+4
+Glass menu
+Pro
+Glass segmented
+Pro
+Glass card
+Pro
+Glass tab bar
+Pro
+Surfaces
+6
+Sheet stack
+Pro
+Wallet stack
+Pro
+Control center
+Pro
+Holo card
+Pro
+Card to article
+Pro
+Link unfurl
+Pro
+Galleries
+4
+Product gallery
+Pro
+Lightbox gallery
+Pro
+Photo grid
+Pro
+Cover flow
+Pro
+Audio and video
+3
+Voice orb
+Pro
+Now playing
+Pro
+Voice recorder
+Pro
+Data
+4
+Booking pill
+Pro
+Activity rings
+Pro
+Time dial
+Pro
+Date reel
+Pro
+Type
+4
+Keycap keyboard
+Pro
+Slot text
+Sand text
+Pro
+Typewriter terminal
+Pro
+Loaders
+4
+Stretch refresh
+Pro
+Morph loader
+Pro
+Skeleton morph
+Pro
+Black hole
+Pro
+Playful
+4
+Sticker peel
+Pro
+Page curl
+Pro
+Orbit logos
+Pro
+Prize wheel
+New
+Pro
+Cursor
+4
+Dot grid
+Pro
+Image trail
+New
+Pro
+Gravity well
+Pro
+Ink fluid
+Pro
+AI
+51
+Agent status
+Pro
+Tool call
+Pro
+Agent plan
+Pro
+Agent timeline
+Pro
+Context window
+Pro
+Reasoning block
+New
+Pro
+Source cards
+New
+Pro
+Model card
+New
+Pro
+AI workflow
+New
+Pro
+Code suggestion
+New
+Pro
+Ghost text
+New
+Pro
+Image generation
+New
+Pro
+Dictation button
+New
+Pro
+Speech player
+New
+Pro
+Meeting summary
+New
+Pro
+Reply draft
+New
+Pro
+Agent handoff
+New
+Pro
+PII redaction
+New
+Pro
+Response feedback
+New
+Pro
+LLM cost calculator
+New
+Pro
+Provider keys
+New
+Pro
+Generation stats
+New
+Pro
+AI translate
+New
+Pro
+TL;DR toggle
+New
+Pro
+Connector setup
+New
+Pro
+Smart form fill
+New
+Pro
+Enrich column
+New
+Pro
+Ticket router
+New
+Pro
+Ask your data
+New
+Pro
+Agent cursor
+New
+Pro
+Provider status
+New
+Pro
+Training run
+New
+Pro
+Design to code
+New
+Pro
+AI command
+New
+Pro
+Starter prompts
+New
+Pro
+AI mascot
+New
+Pro
+Image reveal
+New
+Pro
+AI spark
+New
+Pro
+Sketch to image
+New
+Pro
+Building blocks
+New
+Pro
+Pixel mascot
+New
+Pro
+Ghost mascot
+New
+Pro
+Cube mascot
+New
+Pro
+Tone tuner
+New
+Pro
+Upgrade prompt
+New
+Pro
+Referral card
+New
+Pro
+Trial banner
+New
+Pro
+Team switcher
+New
+Pro
+Live visitors
+New
+Pro
+Social proof toast
+New
+Pro
+Install snippet
+New
+Pro
+Illustrations
+10
+Data flow
+Pro
+Payment flow
+Pro
+Model training
+Pro
+Multi-region failover
+Pro
+Vector search
+Pro
+Agent loop
+Pro
+Mixture of experts
+Pro
+Speculative decoding
+Pro
+Prompt cache
+Pro
+Reasoning tree
+Pro
+What’s new
+76 new
+Components
+Morph nav
+Morph nav
+Pro
+
+A navigation bar that morphs into rich menus, search, and a compact state as one surface.
+
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Fieldwork
+Product
+Solutions
+Resources
+Pricing
+Start free
+
+Hover a section or press search
+
+Full
+Compact
+When to use
+The top navigation of a marketing or product site with a few sections that each hold several destinations.
+Headers where search should grow out of the bar instead of opening a separate modal.
+Sites that want one primary action, such as Sign up, pinned to the end of the bar.
+When not to use
+Use liquid-tab-bar for an app-style switcher between a handful of peer sections.
+Use tabs for switching views inside a page.
+Use dropdown-menu when you only need one menu of commands, not site navigation.
+Installation
+
+Pro source and install commands unlock with a Pro plan.
+
+Morph nav is part of Arc Pro
+Pro
+
+The preview is open to everyone. Arc Pro adds the source and the install command, for this component and the rest of the Pro library.
+
+Source and CLI install for Morph nav
+All 120 Pro components and 115 Pro blocks
+Fixes and updates for every Pro piece
+
+Get Arc Pro
+See all plans
+
+Join 300+ developers who bought Arc Pro
+
+Secure checkout
+Instant access
+Every future Pro release
+
+Already have Pro? Sign in
+
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { MorphNav } from "@/components/arc/morph-nav/morph-nav";
+2
+ 
+3
+export function SiteHeader({ scrolled }: { scrolled: boolean }) {
+4
+  return (
+5
+    <MorphNav
+6
+      brand={{ name: "Arc", mark: <Logo />, href: "/" }}
+7
+      items={[
+8
+        { value: "product", label: "Product", links: [
+9
+          { label: "Components", description: "Motion-first building blocks", href: "/components" },
+10
+          { label: "Blocks", description: "Full sections", href: "/blocks" },
+11
+        ] },
+12
+        { value: "pricing", label: "Pricing", href: "/pricing" },
+13
+      ]}
+14
+      search={{ items: [{ label: "Dialog", group: "Components", href: "/components/dialog" }] }}
+15
+      action={{ label: "Sign up", href: "/sign-up" }}
+16
+      current="product"
+17
+      compact={scrolled}
+18
+    />
+19
+  );
+20
+}
+Examples
+Tighten on scroll
+example.tsx
+Copy
+Copied
+Failed
+1
+const [scrolled, setScrolled] = useState(false);
+2
+useEffect(() => {
+3
+  const onScroll = () => setScrolled(window.scrollY > 24);
+4
+  window.addEventListener("scroll", onScroll, { passive: true });
+5
+  return () => window.removeEventListener("scroll", onScroll);
+6
+}, []);
+7
+ 
+8
+<MorphNav items={items} current={section} compact={scrolled} onNavigate={d => d.href && router.push(d.href)} />
+API reference
+MorphNav
+
+A site navigation bar made of one continuous surface: a highlight glides between items, items with links grow the bar into a dropdown panel, and search morphs out of the bar itself.
+
+Prop
+Type
+Default
+Description
+items
+Required
+{ value: string; label: string; href?: string; links?: { label: string; description?: string; icon?: ReactNode; href?: string }[]; columns?: 1 | 2; feature?: ReactNode; footer?: ReactNode }[]
+–
+Top level destinations. Items with links or a feature open a panel; other items act as plain links. columns defaults to 2 when there are more than three links. Clicking a link or button inside feature closes the panel.
+brand
+{ name: string; mark: ReactNode; href?: string }
+–
+Brand button at the start of the bar.
+action
+{ label: string; icon?: ReactNode; href?: string; onClick?: () => void }
+–
+The one primary action at the end of the bar.
+search
+{ placeholder?: string; items: { label: string; description?: string; group?: string; icon?: ReactNode; href?: string; keywords?: string }[] }
+–
+Search entries. Leave it out to hide search.
+current
+string
+–
+Value of the item that holds the current page.
+compact
+boolean
+false
+Tightens the bar, for example once the page scrolls.
+collapseBelow
+number
+720
+Below this container width in px the items fold into one menu.
+onNavigate
+(destination: { label: string; href?: string; section?: string }) => void
+–
+Called for every destination: links, search results, plain items, and the brand.
+label
+string
+"Main"
+Accessible name of the nav landmark.
+className
+string
+–
+Extra class on the nav element.
+Keyboard interactions
+ArrowLeft
+or
+ArrowRight
+Moves between top level items, wrapping; an open panel follows to the new item.
+Home
+or
+End
+Focuses the first or last item.
+ArrowDown
+or
+Enter
+or
+Space
+On an item with a panel, opens it and moves focus to its first link. If the panel is already open, moves focus into it.
+ArrowUp
+or
+ArrowDown
+Inside a panel, moves between links; ArrowUp on the first link returns to the trigger. In search, moves the active result.
+Enter
+In search, opens the active result.
+Escape
+Closes search or the open panel and returns focus to where it came from.
+Accessibility
+Renders a nav landmark; the current item carries aria-current="page" and panel triggers use aria-expanded and aria-controls.
+Open panels are regions labelled by their trigger; the panel closes when focus leaves the nav.
+Search is a combobox driving a listbox with aria-activedescendant, and the result count is announced politely. With an empty query it lists the first five entries as Suggested.
+A pointer down outside the nav closes the panel or search.
+Motion
+The surface springs to each panel's size, with a little bounce when it grows and none when it shrinks. Moving to a neighbour slides the new panel in from that side while a highlight glides between items.
+Hover opens a panel after a 60ms intent delay and leaving the nav closes it after 180ms, so crossing a gap does not flicker it shut.
+Search grows out of the same surface as the bar fades and blurs away; compact and narrow states retune the bar.
+Reduced motion drops travel, scale, and blur and keeps short fades.
+Responsive behavior
+The root is a container; below collapseBelow (720px of its own width by default) the items fold into one menu.
+Panels and search cap at the container width minus a gutter, and below 420px viewport width link panels drop to one column.
+Hover-to-open only reacts to mouse pointers, so touch opens panels on tap without a hover flash.
+Performance
+The bar uses a 22px backdrop blur, which falls back to a solid surface under prefers-reduced-transparency and prefers-contrast.
+Two ResizeObservers track the container and the open panel size; only the open panel is mounted.
+Search ranks entries in memory on each keystroke and shows at most six results, so large indexes should be pre-filtered.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Choose it for the top navigation of a marketing or product site with a handful of sections that each hold several destinations. Use tabs for in-page view switching and liquid-tab-bar for an app-style section switcher.
+Pass current from the router and compact from a scroll listener. Route in onNavigate for client-side navigation; plain items and links with href also work as anchors.
+/components/morph-nav/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Tabs
+Component
+Switch between related content in the same context.
+Liquid tab bar
+Pro
+Component
+Tabs with a lens selection that slides between them, swaps labels cleanly, and fills in icons as it passes.
+Dropdown menu
+Component
+A focused list of actions anchored to a trigger.
+Search field
+Component
+A recognizable search entry point with clear affordances.
+Popover
+Component
+A small anchored surface for contextual information.
+Previous
+Action morph
+Next
+Dock
+Arc · 240 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+Examples
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+Morph nav is part of Arc Pro, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

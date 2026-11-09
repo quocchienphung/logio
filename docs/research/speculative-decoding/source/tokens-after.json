@@ -1,0 +1,222 @@
+[
+  {
+    "text": "Your",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "preview",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "deploy",
+    "data": {
+      "origin": "target",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "finished",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "in",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "42",
+    "data": {
+      "origin": "target",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "seconds",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": ",",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "and",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "all",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "318",
+    "data": {
+      "origin": "target",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "checks",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "passed",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": ",",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "so",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "the",
+    "data": {
+      "origin": "target",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "branch",
+    "data": {
+      "origin": "target",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "is",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "ready",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "to",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": "merge",
+    "data": {
+      "origin": "draft",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  },
+  {
+    "text": ".",
+    "data": {
+      "origin": "target",
+      "on": "true"
+    },
+    "cls": "speculative-decoding_tok__8ymdn",
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklch(0.15 0 0)"
+  }
+]

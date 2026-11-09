@@ -48,7 +48,7 @@ export function S05Bank() {
                           <p>
                             {"Link bypasses high-friction manual card entry by autofilling customers’ saved payment details. Link can access up-to-date card information even if the physical card has expired or been replaced. "}
                           </p>
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://stripe.com/docs/payments/link" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_cards_docs">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/stripe.com/docs/payments/link" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_cards_docs">
                             {"Explore the docs"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -76,7 +76,7 @@ export function S05Bank() {
                           <p>
                             {"Customers seamlessly add and reuse their US bank accounts to quickly check out using Link. Instant Bank Payments are built into Link and deliver the cost savings of bank payments with the confirmation speed of cards."}
                           </p>
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/link/instant-bank-payments" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_method_link_bank_accounts_docs_instant_bank_payments">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/link/instant-bank-payments" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payment_method_link_bank_accounts_docs_instant_bank_payments">
                             {"Explore the docs"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -104,7 +104,7 @@ export function S05Bank() {
                           <p>
                             {"Let customers pay over time in one click. Klarna on Link helps businesses boost conversion rates and increase average order value."}
                           </p>
-                          <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/payments/link/klarna" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_klarna_explore_docs">
+                          <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/payments/link/klarna" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="link_klarna_explore_docs">
                             {"Explore the docs"}
                             <span className="nobr">
                               <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

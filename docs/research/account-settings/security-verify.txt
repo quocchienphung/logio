@@ -1,0 +1,58 @@
+Security
+
+Control how you sign in to Fieldnote as maya@fieldnote.example.
+
+Two-factor authentication
+
+Ask for a code from your authenticator app when you sign in on a new device.
+
+Setting up
+Cancel
+Scan
+, done
+2
+Verify
+3
+Save codes
+Enter the 6-digit code from your app
+Demo code: 246810. Codes refresh every 30 seconds.
+Demo code: 246810. Codes refresh every 30 seconds.
+Back
+Verify
+Password
+
+Last changed March 4, 2026
+Last changed March 4, 2026
+
+Change password
+Active sessions
+5
+5
+
+Devices signed in to your account in the last 30 days.
+
+MacBook Pro
+This device
+Chrome 129 · San Francisco, US · Active now
+iPhone 15 Pro
+Fieldnote for iOS · San Francisco, US · 2 hours ago
+Revoke
+Windows desktop
+Edge 128 · Austin, US · Yesterday at 4:12 PM
+Revoke
+iPad Air
+Safari 18 · Lisbon, PT · Sep 14
+Revoke
+ThinkPad X1
+New location
+Firefox 130 · Berlin, DE · Sep 9
+Revoke
+
+You stay signed in on this device
+You stay signed in on this device
+
+Sign out of other sessions
+Sign out of other sessions
+Press and hold for 1.2 seconds to confirm. With a keyboard, hold Space or Enter.
+
+Scan the code with your authenticator app to continue

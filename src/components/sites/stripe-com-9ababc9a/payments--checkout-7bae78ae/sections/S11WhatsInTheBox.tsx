@@ -84,7 +84,7 @@ export function S11WhatsInTheBox() {
                               {"Stripe Billing"}
                             </a>
                             {" to set up recurring payments and free trials. Your customers can update their payment information through our prebuilt "}
-                            <a className="Link" href="https://docs.stripe.com/billing/subscriptions/customer-portal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__subscriptions_and_trials__customer_portal">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/billing/subscriptions/customer-portal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__subscriptions_and_trials__customer_portal">
                               {"customer portal"}
                             </a>
                             {". "}
@@ -126,7 +126,7 @@ export function S11WhatsInTheBox() {
                           {" Platform and marketplace payments "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Use "}
-                            <a className="Link" href="https://stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__platform_and_marketplace__stripe_connect">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/connect" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__platform_and_marketplace__stripe_connect">
                               {"Stripe Connect"}
                             </a>
                             {" to onboard sellers, route payments, and manage your platform and marketplace payments. "}
@@ -197,7 +197,7 @@ export function S11WhatsInTheBox() {
                           {" Alipay "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Capture the growing buying power of Chinese consumers by offering "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#alipay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__alipay">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__alipay">
                               {"Alipay"}
                             </a>
                             {"—one of China’s most popular digital wallets, with over one billion users. "}
@@ -216,7 +216,7 @@ export function S11WhatsInTheBox() {
                           {" Affirm "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your US customers pay for purchases in monthly payments up to 36 months with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#affirm" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__affirm">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__affirm">
                               {"Affirm"}
                             </a>
                           </span>
@@ -234,7 +234,7 @@ export function S11WhatsInTheBox() {
                           {" Afterpay / Clearpay "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your customers break their payment into 4 interest-free installments using "}
-                            <a className="Link" href="https://docs.stripe.com/payments/afterpay-clearpay/accept-a-payment" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__afterpay">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/afterpay-clearpay/accept-a-payment" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__afterpay">
                               {"Afterpay"}
                             </a>
                             {" (also known as Clearpay) "}
@@ -253,7 +253,7 @@ export function S11WhatsInTheBox() {
                           {" Apple Pay "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Offer "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#apple-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__apple_pay">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__apple_pay">
                               {"Apple Pay"}
                             </a>
                             {" out of the box to customers who have set it up on their device or browser—no domain registration required. "}
@@ -272,7 +272,7 @@ export function S11WhatsInTheBox() {
                           {" Bacs Direct Debit "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your UK customers set up one-off or recurring payments through "}
-                            <a className="Link" href="https://stripe.com/payments/bacs-debit" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__bacs_debit">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/payments/bacs-debit" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__bacs_debit">
                               {"Bacs Direct Debit"}
                             </a>
                             {". "}
@@ -291,7 +291,7 @@ export function S11WhatsInTheBox() {
                           {" Bancontact "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Belgian customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#bancontact" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__bancontact">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__bancontact">
                               {"Bancontact"}
                             </a>
                             {"—Belgium’s most popular payment method offered by over 80% of online businesses. "}
@@ -310,7 +310,7 @@ export function S11WhatsInTheBox() {
                           {" Boleto "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Brazilian customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#boleto" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__boleto">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__boleto">
                               {"Boleto"}
                             </a>
                             {"—a voucher-based payment method that represents more than 20% of transactions in Brazil. "}
@@ -329,7 +329,7 @@ export function S11WhatsInTheBox() {
                           {" EPS "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Austrian customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#eps" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__eps">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__eps">
                               {"EPS"}
                             </a>
                             {"—an online transfer payment method with over 15% market share in Austria. "}
@@ -348,7 +348,7 @@ export function S11WhatsInTheBox() {
                           {" FPX "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Malaysian customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#FPX" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__fpx">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__fpx">
                               {"FPX"}
                             </a>
                             {"—a popular Malaysian payment method using their bank credentials. "}
@@ -367,7 +367,7 @@ export function S11WhatsInTheBox() {
                           {" Giropay "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let German customer’s pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#giropay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__giropay">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__giropay">
                               {"Giropay"}
                             </a>
                             {"—a popular bank transfer method. "}
@@ -386,7 +386,7 @@ export function S11WhatsInTheBox() {
                           {" Google Pay "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Offer "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#google-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__google_pay">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__google_pay">
                               {"Google Pay"}
                             </a>
                             {" out of the box to customers who have set it up on their device or browser. "}
@@ -405,7 +405,7 @@ export function S11WhatsInTheBox() {
                           {" GrabPay "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your customers pay with "}
-                            <a className="Link" href="https://docs.stripe.com/payments/grabpay/accept-a-payment" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__grabpay">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/grabpay/accept-a-payment" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__grabpay">
                               {"GrabPay"}
                             </a>
                             {"—a popular payment method in Southeast Asia. "}
@@ -424,7 +424,7 @@ export function S11WhatsInTheBox() {
                           {" iDEAL "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Dutch customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#ideal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__ideal">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__ideal">
                               {"iDEAL"}
                             </a>
                             {"—the most popular bank transfer method in the Netherlands accounting for over 50% of online payments. "}
@@ -442,7 +442,7 @@ export function S11WhatsInTheBox() {
                         <button className="PortalTooltipItem" data-js-controller="PortalTooltipItem">
                           {" Instant bank payments "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
-                            <a className="Link" href="https://docs.stripe.com/payments/link/instant-bank-payments" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payment_methods__instant_bank_payments">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/link/instant-bank-payments" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="payment_methods__instant_bank_payments">
                               {"Instant Bank Payments"}
                             </a>
                             {" deliver the cost savings of bank debits with the simplicity of cards. Available in the US for Link-enabled users. "}
@@ -461,7 +461,7 @@ export function S11WhatsInTheBox() {
                           {" Klarna "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your customers choose when and how to pay for a purchase with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#klarna" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__klarna">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__klarna">
                               {"Klarna"}
                             </a>
                             {". "}
@@ -499,7 +499,7 @@ export function S11WhatsInTheBox() {
                           {" OXXO "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Mexican customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#oxxo" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__oxxo">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__oxxo">
                               {"OXXO"}
                             </a>
                             {"—a voucher-based payment method that represents more than 30% of transactions in Mexico. "}
@@ -518,7 +518,7 @@ export function S11WhatsInTheBox() {
                           {" Pre-authorized debits "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#pre-authorized-debits-canada" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__pre_authorized_debits">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__pre_authorized_debits">
                               {"pre-authorized debits (PADs)"}
                             </a>
                             {", a popular direct debit payment method in Canada. "}
@@ -537,7 +537,7 @@ export function S11WhatsInTheBox() {
                           {" Przelewy24 "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Polish customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#p24" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__p24">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__p24">
                               {"P24"}
                             </a>
                             {"—a popular bank transfer method in Poland. "}
@@ -556,7 +556,7 @@ export function S11WhatsInTheBox() {
                           {" SEPA Direct Debit "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Debit your customers’ bank accounts in 34 European countries. "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#sepa-direct-debit" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__sepa_debit">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__sepa_debit">
                               {"SEPA Debit"}
                             </a>
                             {" is most often used for recurring payments for digital goods or services. "}
@@ -575,7 +575,7 @@ export function S11WhatsInTheBox() {
                           {" WeChatPay "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your Chinese customers pay with "}
-                            <a className="Link" href="https://stripe.com/guides/payment-methods-guide#wechat-pay" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__wechat_pay">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/guides/payment-methods-guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__payment_methods__wechat_pay">
                               {"WeChat Pay"}
                             </a>
                             {"—the wallet inside the popular Chinese messaging app WeChat that has more than 900 million active monthly users. "}
@@ -601,7 +601,7 @@ export function S11WhatsInTheBox() {
                           {" Simplified PCI validation "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Minimize your PCI burden—Checkout lets you qualify for the simplest form of PCI validation, a "}
-                            <a className="Link" href="https://docs.stripe.com/security/guide#validating-pci-compliance" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__saq_a">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/security/guide" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__saq_a">
                               {"prefilled SAQ A"}
                             </a>
                             {". "}
@@ -684,7 +684,7 @@ export function S11WhatsInTheBox() {
                           {" Language support "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Offer a localized checkout page in over "}
-                            <a className="Link" href="https://support.stripe.com/questions/supported-languages-for-stripe-checkout" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__language_support">
+                            <a className="Link" href="/unavailable/stripe/support.stripe.com/questions/supported-languages-for-stripe-checkout" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__language_support">
                               {"25 languages"}
                             </a>
                             {". "}
@@ -703,7 +703,7 @@ export function S11WhatsInTheBox() {
                           {" Fraud logic "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Use AI to "}
-                            <a className="Link" href="https://stripe.com/radar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__radar">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/radar" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__radar">
                               {"block fraudulent transactions"}
                             </a>
                             {" and apply extra authentication to high-risk payments or when required by regulation. "}
@@ -722,7 +722,7 @@ export function S11WhatsInTheBox() {
                           {" Card testing protection "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Protect your business from "}
-                            <a className="Link" href="https://docs.stripe.com/card-testing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__card_testing">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/card-testing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__card_testing">
                               {"card testing"}
                             </a>
                             {" without impacting conversion by triggering CAPTCHA in case of an attack. "}
@@ -771,7 +771,7 @@ export function S11WhatsInTheBox() {
                           {" Carbon removal "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Use "}
-                            <a className="Link" href="https://stripe.com/climate" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__carbon_removal">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/climate" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__carbon_removal">
                               {"Stripe Climate"}
                             </a>
                             {" to direct a fraction of your revenue to remove carbon dioxide from the atmosphere. "}
@@ -790,7 +790,7 @@ export function S11WhatsInTheBox() {
                           {" Chargeback Protection "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Enable "}
-                            <a className="Link" href="https://stripe.com/radar/chargeback-protection" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__chargeback_protection">
+                            <a className="Link" href="/unavailable/stripe/stripe.com/radar/chargeback-protection" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__chargeback_protection">
                               {"Chargeback Protection"}
                             </a>
                             {" on your account to let us take on fraudulent disputes for you. "}
@@ -839,7 +839,7 @@ export function S11WhatsInTheBox() {
                           {" Customer portal "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Let your customers manage their payment details and subscriptions by sharing a link to a secure, prebuilt "}
-                            <a className="Link" href="https://docs.stripe.com/billing/subscriptions/integrating-customer-portal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__customer_portal">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/billing/subscriptions/integrating-customer-portal" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__customer_portal">
                               {"customer portal"}
                             </a>
                             {". "}
@@ -858,7 +858,7 @@ export function S11WhatsInTheBox() {
                           {" Pricing table "}
                           <span className="PortalTooltipItem__tooltip" data-js-target="PortalTooltipItem.tooltip">
                             {" Generate a "}
-                            <a className="Link" href="https://docs.stripe.com/payments/checkout/pricing-table" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__pricing_table">
+                            <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/checkout/pricing-table" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="checkout_at_a__built_in_features__pricing_table">
                               {"pricing table"}
                             </a>
                             {" from the Dashboard—no coding required—to display subscription and one-time pricing information to customers. "}

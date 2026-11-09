@@ -1,0 +1,689 @@
+{
+  "results": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "home",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "companies",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "contacts",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "deals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "reports",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "new-chat",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "files",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "run",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "usage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "mapping",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "process",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "tracing",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "invoice",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "repo",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "storage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "new-business",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "renewals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "partnerships",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "section": "skilled",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "home",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "companies",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "contacts",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "deals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "reports",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "new-chat",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "files",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "run",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "usage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "mapping",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "process",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "tracing",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "invoice",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "repo",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "storage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "new-business",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "renewals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "partnerships",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "section": "skilled",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "home",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "companies",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "contacts",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "deals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "reports",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "new-chat",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "files",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "run",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "usage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "mapping",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "process",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "tracing",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "invoice",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "repo",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "storage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "new-business",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "renewals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "partnerships",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "section": "skilled",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "home",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "companies",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "contacts",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "deals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "reports",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "new-chat",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "files",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "run",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "usage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "mapping",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "process",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "tracing",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "invoice",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "repo",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "storage",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "new-business",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "renewals",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "partnerships",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "section": "skilled",
+      "overflow": 0,
+      "font": "Inter, ui-sans-serif, system-ui, sans-serif"
+    }
+  ],
+  "errors": []
+}

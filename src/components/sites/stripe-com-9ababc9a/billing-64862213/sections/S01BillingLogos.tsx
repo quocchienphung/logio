@@ -9,7 +9,7 @@ export function S01BillingLogos() {
           <div className="logo-carousel__marquee-container logo-carousel__marquee-container--centered">
             <ul className="logo-carousel__marquee">
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/atlassian" data-analytics-label="billing_page_logo__atlassian" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/atlassian" data-analytics-label="billing_page_logo__atlassian" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Atlassian">
                       <g transform="translate(0, -1.19)">
@@ -20,7 +20,7 @@ export function S01BillingLogos() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/newsroom/news/stripe-openai-instant-checkout" data-analytics-label="billing_page_logo__openai" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/newsroom/news/stripe-openai-instant-checkout" data-analytics-label="billing_page_logo__openai" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="OpenAI">
                       <g transform="translate(0, -1.9)">
@@ -31,7 +31,7 @@ export function S01BillingLogos() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/figma" data-analytics-label="billing_page_logo__figma" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/figma" data-analytics-label="billing_page_logo__figma" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Figma">
                       <g transform="translate(-1.00, -0.70)">
@@ -42,7 +42,7 @@ export function S01BillingLogos() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/eviden" data-analytics-label="billing_page_logo__eviden" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/eviden" data-analytics-label="billing_page_logo__eviden" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Eviden">
                       <g transform="translate(0, -1.47)">
@@ -55,7 +55,7 @@ export function S01BillingLogos() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/instacart" data-analytics-label="billing_page_logo__instacart" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/instacart" data-analytics-label="billing_page_logo__instacart" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Instacart">
                       <g transform="translate(0, -1.6)">
@@ -68,7 +68,7 @@ export function S01BillingLogos() {
                 </a>
               </li>
               <li className="logo-carousel__item">
-                <a className="hds-link" href="https://stripe.com/customers/nasdaq" data-analytics-label="billing_page_logo__nasdaq" data-analytics-category="Carousels" draggable="false">
+                <a className="hds-link" href="/unavailable/stripe/stripe.com/customers/nasdaq" data-analytics-label="billing_page_logo__nasdaq" data-analytics-category="Carousels" draggable="false">
                   <div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="142" height="34" fill="none" viewBox="0 0 200 48" role="img" aria-label="Nasdaq">
                       <g transform="translate(0, -1.5)">

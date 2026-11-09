@@ -33,14 +33,14 @@ export function S09StreamlinedAccountManagementAnd() {
                       <div className="Copy__body">
                         <p>
                           {"With "}
-                          <a className="Link" href="https://docs.stripe.com/payments/account/orgs" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/account/orgs" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"Stripe Organizations"}
                           </a>
                           {", centrally manage all lines of business or subsidiaries across multiple Stripe accounts in the Dashboard, and access new business insights by using Stripe Sigma to analyze data across all your accounts."}
                         </p>
                       </div>
                       <footer className="Copy__footer">
-                        <a className="CtaButton variant--Button CtaButton--arrow" href="https://docs.stripe.com/get-started/account/orgs#request-access" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sigma_organizations_request_cta">
+                        <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/get-started/account/orgs" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="sigma_organizations_request_cta">
                           {"Get started"}
                           <span className="nobr">
                             <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

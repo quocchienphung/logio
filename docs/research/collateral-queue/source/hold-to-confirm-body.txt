@@ -1,0 +1,460 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+8
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Toggle group
+New
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+131
+Special components
+101
+What’s new
+4 new
+Components
+Hold to confirm
+Hold to confirm
+
+Confirm a destructive action by holding, not tapping.
+
+$
+pnpm dlx shadcn@latest add @uiarc/hold-to-confirm
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Hold to delete
+Hold to delete
+Press and hold for 1.2 seconds to confirm. With a keyboard, hold Space or Enter.
+
+Hold for 1.2 seconds, or hold Space
+
+When to use
+Destructive actions like delete or revoke where the consequence is already visible on screen.
+Replacing a confirm dialog with a deliberate press in compact settings rows.
+Actions that should not fire on an accidental tap on touch devices.
+When not to use
+Use dialog when people need to read what will happen before confirming.
+Use button or action-button for safe, easily undone actions.
+Use swipe-actions for delete in touch lists.
+Installation
+
+Add Hold to confirm with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/hold-to-confirm
+pnpm dlx shadcn@latest add @uiarc/hold-to-confirm
+
+Adds the component and its local dependencies, and installs motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/hold-to-confirm.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { HoldToConfirm } from "@/components/arc/hold-to-confirm/hold-to-confirm";
+2
+ 
+3
+export function DeleteProject({ onDelete }: { onDelete: () => void }) {
+4
+  return (
+5
+    <HoldToConfirm
+6
+      label="Hold to delete project"
+7
+      confirmedLabel="Deleted"
+8
+      duration={1500}
+9
+      onConfirm={onDelete}
+10
+    />
+11
+  );
+12
+}
+Examples
+Keep holding hint
+example.tsx
+Copy
+Copied
+Failed
+1
+const [holding, setHolding] = useState(false);
+2
+ 
+3
+<HoldToConfirm label="Hold to revoke key" onConfirm={revoke} onHoldChange={setHolding} />
+4
+<p aria-hidden="true">{holding ? "Keep holding" : ""}</p>
+API reference
+HoldToConfirm
+
+A button that commits only after a press is held, with a fill that tracks the hold and rewinds on early release.
+
+Prop
+Type
+Default
+Description
+label
+Required
+string
+–
+Instruction and action, such as "Hold to delete project".
+onConfirm
+Required
+() => void
+–
+Called once when the hold completes.
+confirmedLabel
+string
+"Done"
+Label after the hold completes.
+duration
+number
+1200
+Hold length in milliseconds.
+icon
+ReactNode
+<Trash2 />
+Leading icon. Replaced by a drawn check when done.
+tone
+"danger" | "neutral"
+"danger"
+Fill color.
+confirmed
+boolean
+–
+Controls the done state. Set back to false to reset; leave undefined to let the button manage it.
+onHoldChange
+(holding: boolean) => void
+–
+Reports when a hold starts and ends, for hints like "Keep holding".
+...props
+ButtonHTMLAttributes<HTMLButtonElement>
+–
+Forwarded to the button, except children and onClick.
+Keyboard interactions
+Space
+or
+Enter (hold)
+Fills the button; releasing early rewinds it.
+Tab away
+Cancels an active hold.
+Accessibility
+aria-describedby points to a hidden hint: "Press and hold for N seconds to confirm. With a keyboard, hold Space or Enter."
+aria-label tracks the visible label; a role="status" region announces confirmedLabel.
+Once done the button sets aria-disabled; the text is drawn twice so it changes color exactly at the fill edge.
+Motion
+The fill advances on a linear timeline while held, rewinds on a smooth spring when released, and resumes from where it was on a quick re-press.
+The button presses to about 0.97; on completion the label morphs, the width springs, and a check draws itself in. Touch devices get a short vibration.
+Reduced motion drops the press scale and rewind spring and swaps label and icon with a fade; the fill still tracks the hold.
+Responsive behavior
+Uses pointer events with capture, so mouse, pen, and touch holds all work; sliding more than 24px off the button cancels the hold.
+Touch holds trigger a short vibration on completion where the device supports it.
+Keyboard users hold Space or Enter, and a hidden hint explains the duration.
+Performance
+The fill runs on a single linear motion animation, not a React state update per frame.
+The label is drawn twice to change color at the fill edge; a ResizeObserver handles the width spring on completion.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for destructive or hard-to-undo actions when the consequence is already visible on screen. Use dialog when people need to read what will happen first.
+Write the label as an instruction ("Hold to …"); pass confirmed to reset it after an undo or a failed request.
+Pair with onHoldChange to show a nearby hint while the press is held.
+/components/hold-to-confirm/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Button
+Component
+A clear, responsive action with quiet secondary states.
+Action button
+Component
+A compact button for frequent toolbar actions.
+Dialog
+Component
+A focused surface for decisions that need attention.
+Swipe actions
+Component
+Reveal row actions with a swipe, or from the same actions in a menu.
+More like this in Pro
+Explore Pro
+Wallet stack
+Pro
+Component
+Fan a stack of cards and lift one out to see its activity.
+Liquid tab bar
+Pro
+Component
+Tabs with a lens selection that slides between them, swaps labels cleanly, and fills in icons as it passes.
+Cover flow
+Pro
+Component
+A depth rail of images you can throw, with soft grounded shadows and a quiet reflection.
+Previous
+Confirm morph
+Next
+Swipe actions
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+Examples
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+117 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

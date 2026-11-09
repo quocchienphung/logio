@@ -14,7 +14,7 @@ export function S12Footnotes() {
               {"1"}
             </sup>
             {" Metronome, a Stripe product, is not included in Stripe Billing. See "}
-            <a className="hds-link hds-link--secondary" href="https://stripe.com/billing/pricing" data-analytics-label="footnotes__metronome_footnote__pricing_page_link">
+            <a className="hds-link hds-link--secondary" href="/unavailable/stripe/stripe.com/billing/pricing" data-analytics-label="footnotes__metronome_footnote__pricing_page_link">
               {"pricing page"}
             </a>
             {" for more details."}

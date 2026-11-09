@@ -1,0 +1,495 @@
+Arc
+Components
+Blocks
+Docs
+Pricing
+Try the demo
+Search
+⌘ K
+Appearance
+Get Pro
+Sign in
+Ctrl K
+All
+Free
+Pro
+More
+Docs
+Introduction
+Installation
+Theming
+Motion
+AI and MCP
+Changelog
+Components
+134
+Buttons
+11
+Button
+Action button
+Split button
+Button group
+Floating button group
+Expanding button group
+Copy button
+Action swap
+Icon morph
+Confirm morph
+Theme switcher
+Gestures
+3
+Hold to confirm
+Swipe actions
+Reactions
+Menus
+3
+Dropdown menu
+Context menu
+User menu
+Text fields
+7
+Input
+Textarea
+Password field
+Password strength
+Search field
+Expanding search
+Inline edit
+Special inputs
+7
+Number field
+Money input
+Phone input
+Scrub input
+Tag input
+Mention input
+Shortcut recorder
+Selects
+5
+Select
+Combobox
+Multi-select
+Morph select
+Chip group
+Toggles
+8
+Radio cards
+Billing toggle
+Checkbox
+Radio group
+Switch
+Segmented control
+Rating
+Toggle group
+New
+Sliders
+4
+Slider
+Elastic slider
+Range histogram slider
+Ruler slider
+Pickers
+6
+Calendar
+Date picker
+Date range picker
+Time picker
+Color picker
+Emoji picker
+Pro
+Editors
+4
+Rich text editor
+Signature pad
+File dropzone
+Avatar upload
+Pro
+Navigation
+5
+Tabs
+Breadcrumb
+Pagination
+Mega menu morph
+Pro
+Table of contents progress
+New
+Pro
+Expand
+5
+Scroll area
+Accordion
+Expandable card
+Resizable panels
+Expandable text
+Overlays
+8
+Dialog
+Drawer
+Bottom sheet
+Popover
+Hover card
+Tooltip
+Share access
+Pro
+Confirm popover
+Pro
+Messages
+6
+Alert
+Toast
+Toast stack
+Announcement bar
+Cookie consent
+Undo toast
+Pro
+Progress
+6
+Progress
+Skeleton
+Stepper
+Countdown
+Usage meter
+Onboarding checklist
+Avatars
+4
+Avatar
+Avatar group
+Badge
+Presence stack
+Pro
+Cards
+4
+Card
+Metric card
+Empty state
+Metric ticker
+New
+Pro
+Charts
+14
+Line chart
+Bar chart
+Donut chart
+Streamgraph
+Brush chart
+Waffle chart
+Slope chart
+Sparkline
+Gauge
+Activity heatmap
+Animated counter
+Ridgeline
+Treemap
+Split bar
+Pro
+Advanced charts
+7
+Sunburst
+Pro
+Sankey flow
+Pro
+Funnel chart
+Pro
+Radar chart
+Pro
+Realtime stream
+Pro
+Race bar chart
+Pro
+Data grid
+Pro
+Tables
+7
+Sortable data table
+Tree table
+Tree view
+Reorderable list
+Filter toolbar
+Code block
+JSON viewer
+Activity
+3
+Timeline
+Comment thread
+Chat thread
+Media
+3
+Image compare
+Carousel
+Card stack
+Text effects
+4
+Text reveal
+In-view title
+Text morph
+Text shimmer
+Blocks
+131
+Special components
+101
+What’s new
+4 new
+Components
+Dialog
+Dialog
+
+A focused surface for decisions that need attention.
+
+$
+pnpm dlx shadcn@latest add @uiarc/dialog
+Copy page
+Copied
+Copy failed
+Preview
+Code
+Live · keyboard ready
+Review changes
+Opens a focused decision surface
+When to use
+Confirmations and decisions that must interrupt, such as Delete project.
+Short forms like rename or invite that fit in one focused panel.
+Flows where the dialog title changes between steps and should crossfade in place.
+When not to use
+Use drawer for long forms or detail panels that keep the page in context.
+Use bottom-sheet for mobile-first secondary tasks with snap heights.
+Use popover for light, non-modal content anchored to a trigger.
+Installation
+
+Add Dialog with the shadcn CLI, or copy the source by hand.
+
+CLI
+Manual
+pnpm
+npm
+yarn
+bun
+Copy
+Copied
+Failed
+$
+pnpm dlx shadcn@latest add @uiarc/dialog
+pnpm dlx shadcn@latest add @uiarc/dialog
+
+Adds the component and its local dependencies, and installs @radix-ui/react-dialog, motion, lucide-react. First time? Add the @uiarc registry to components.json, or use the full URL:
+
+pnpm dlx shadcn@latest add https://uiarc.dev/r/dialog.json
+Usage
+example.tsx
+Copy
+Copied
+Failed
+1
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from "@/components/arc/dialog/dialog";
+2
+import { Button } from "@/components/arc/button/button";
+3
+ 
+4
+export function RenameProject() {
+5
+  return (
+6
+    <Dialog>
+7
+      <DialogTrigger asChild><Button>Rename</Button></DialogTrigger>
+8
+      <DialogContent title="Rename project" description="This changes the URL too.">
+9
+        <input defaultValue="Arc" aria-label="Project name" />
+10
+        <DialogClose asChild><Button>Save</Button></DialogClose>
+11
+      </DialogContent>
+12
+    </Dialog>
+13
+  );
+14
+}
+Examples
+Confirm with a custom cancel
+example.tsx
+Copy
+Copied
+Failed
+1
+<Dialog open={open} onOpenChange={setOpen}>
+2
+  <DialogContent title="Delete project?" description="This cannot be undone.">
+3
+    <DialogClose asChild><Button variant="secondary">Cancel</Button></DialogClose>
+4
+    <Button onClick={remove}>Delete</Button>
+5
+  </DialogContent>
+6
+</Dialog>
+API reference
+
+4 parts. The first is the root.
+
+Dialog
+
+Root that tracks open state so the content can animate out. Controlled or uncontrolled.
+
+Prop
+Type
+Default
+Description
+open
+boolean
+–
+Controlled open state.
+defaultOpen
+boolean
+false
+Initial open state when uncontrolled.
+onOpenChange
+(open: boolean) => void
+–
+Called when the dialog opens or closes.
+...props
+ComponentPropsWithoutRef<typeof DialogPrimitive.Root>
+–
+Other Radix Dialog root props, such as modal.
+DialogTrigger
+
+Radix Dialog.Trigger. Use asChild to wrap your own button.
+
+Prop
+Type
+Default
+Description
+...props
+ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger>
+–
+Radix trigger props, including asChild.
+DialogContent
+
+Portaled overlay and panel with a titled header and built-in close button.
+
+Prop
+Type
+Default
+Description
+title
+Required
+string
+–
+Dialog title, rendered as Radix Dialog.Title. Changes crossfade while open.
+description
+string
+–
+Optional supporting line, rendered as Dialog.Description.
+children
+Required
+ReactNode
+–
+Body content, usually a form or actions.
+...props
+ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+–
+Radix content props such as className, onEscapeKeyDown, and onPointerDownOutside.
+DialogClose
+
+Radix Dialog.Close for custom cancel or confirm buttons.
+
+Prop
+Type
+Default
+Description
+...props
+ComponentPropsWithoutRef<typeof DialogPrimitive.Close>
+–
+Radix close props, including asChild.
+Keyboard interactions
+Escape
+Closes the dialog and returns focus to the trigger.
+Tab
+or
+Shift
++
+Tab
+Cycles focus within the dialog.
+Accessibility
+Radix renders role="dialog" with aria-modal, traps focus, and restores it to the trigger on close.
+title and description are wired to aria-labelledby and aria-describedby.
+The close button carries aria-label="Close dialog".
+Motion
+The overlay fades while the panel rises 8px and scales from 0.96 on a smooth spring; closing is shorter and retargets from the current state.
+Title and description changes rise in with a soft blur.
+Reduced motion uses a plain opacity fade, including the CSS keyframe fallback for bare Radix roots.
+Responsive behavior
+The panel is min(100vw minus a 32px gutter, 440px) wide and centered, so it fits phones without extra CSS.
+Height caps at the viewport minus a gutter and the panel scrolls beyond that.
+Performance
+The overlay uses a 7px backdrop blur, which can cost frames on low-end devices over busy pages.
+Content renders in a portal only while open and unmounts after the exit animation.
+Notes for AI
+
+Give your coding assistant the Markdown reference instead of screenshots.
+
+Use for decisions that must interrupt: confirmations, short forms. Use drawer for side panels, bottom-sheet for mobile-first secondary tasks, popover for light non-modal content.
+Always compose Dialog > DialogTrigger + DialogContent. Wrap your own buttons with asChild.
+/components/dialog/markdown
+Copy URL
+Copied
+Failed
+
+The full library index for assistants is at /llms.txt.
+
+Related
+Drawer
+Component
+A temporary side surface for focused work.
+Bottom sheet
+Component
+A sheet that rests at a peek or full height and follows your finger.
+Popover
+Component
+A small anchored surface for contextual information.
+Hold to confirm
+Component
+Confirm a destructive action by holding, not tapping.
+More like this in Pro
+Explore Pro
+Mega menu morph
+Pro
+Component
+A site header whose menus share one floating panel. Moving between sections morphs its size, slides the next menu in from that side and glides the caret under the new trigger, with hover intent, a safe triangle and an accordion sheet on narrow screens.
+Table of contents progress
+Pro
+Component
+A table of contents that reads along with you: a line bends through the nested headings, fills as you scroll, and carries a marker to the current section, with smooth jumps and a time-left countdown.
+Share access
+Pro
+Component
+A share panel: invite people as validated email chips with suggestions, change roles from a compact menu, remove with undo, switch link access and copy the link, with every change landing in place.
+Previous
+Expandable text
+Next
+Drawer
+Arc · 238 components
+llms.txt
+
+On this page
+
+Preview
+When to use
+When not to use
+Installation
+Usage
+Examples
+API reference
+Keyboard
+Accessibility
+Motion
+Responsive behavior
+Performance
+Notes for AI
+Related
+View as Markdown
+Back to top
+117 motion components, plus every block and template. One payment, new releases included.
+Arc Pro
+See Pro

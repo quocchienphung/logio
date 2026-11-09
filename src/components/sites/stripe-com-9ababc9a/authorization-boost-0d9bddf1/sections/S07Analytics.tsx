@@ -47,7 +47,7 @@ export function S07Analytics() {
                               <span className="ListItem__label">
                                 <p>
                                   {"View "}
-                                  <a className="Link" href="https://docs.stripe.com/payments/analytics" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/analytics" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"payments performance"}
                                   </a>
                                   {" and access insights in one place"}
@@ -79,7 +79,7 @@ export function S07Analytics() {
                               <span className="ListItem__label">
                                 <p>
                                   {"Receive "}
-                                  <a className="Link" href="https://docs.stripe.com/health-alerts#availability" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                                  <a className="Link" href="/unavailable/stripe/docs.stripe.com/health-alerts" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                                     {"AI-driven anomaly alerts"}
                                   </a>
                                   {" for sudden changes in payments performance"}

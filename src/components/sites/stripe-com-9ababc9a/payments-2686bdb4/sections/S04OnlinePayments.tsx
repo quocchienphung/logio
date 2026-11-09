@@ -669,7 +669,7 @@ export function S04OnlinePayments() {
                                 </section>
                               </div>
                               <div className="ProductFeatureCard__cta">
-                                <a className="CtaButton variant--Link CtaButton--arrow" href="https://docs.stripe.com/checkout/form/quickstart" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="product_matrix__prebuilt_payment_form__explore_checkout">
+                                <a className="CtaButton variant--Link CtaButton--arrow" href="/unavailable/stripe/docs.stripe.com/checkout/form/quickstart" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="product_matrix__prebuilt_payment_form__explore_checkout">
                                   {"Explore embedded form"}
                                   <span className="nobr">
                                     <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -827,11 +827,11 @@ export function S04OnlinePayments() {
                       <div className="Copy__body">
                         <p>
                           {"Turn on the most popular payment methods from the Stripe Dashboard, and then use Stripe’s AI models to dynamically show customers the most relevant ones you’ve enabled. Experiment with new payment methods, "}
-                          <a className="Link" href="https://docs.stripe.com/payments/a-b-testing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/a-b-testing" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"A/B test"}
                           </a>
                           {" to understand impact, and set "}
-                          <a className="Link" href="https://docs.stripe.com/payments/payment-method-rules" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
+                          <a className="Link" href="/unavailable/stripe/docs.stripe.com/payments/payment-method-rules" data-js-controller="AnalyticsButton" data-analytics-category="Links" data-analytics-action="Clicked" data-analytics-label="Related content">
                             {"custom rules"}
                           </a>
                           {" with no code—while offloading maintenance and eligibility requirements to Stripe."}
@@ -1170,7 +1170,7 @@ export function S04OnlinePayments() {
                                   {", VP of Product and Partnerships, OpenAI "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/newsroom/news/stripe-and-openai" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_testimonials_openai">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/newsroom/news/stripe-and-openai" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="payments_testimonials_openai">
                                 {"Read more"}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -1208,7 +1208,7 @@ export function S04OnlinePayments() {
                                   {", Founder and CEO, Ticket Tailor "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/ticket-tailor" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="ticket_tailor_customer">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/ticket-tailor" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="ticket_tailor_customer">
                                 {"Read the full story "}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -1250,7 +1250,7 @@ export function S04OnlinePayments() {
                                   {", SVP Payments, BigCommerce "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/bigcommerce" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonials_bigcommerce">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/bigcommerce" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonials_bigcommerce">
                                 {"Read the full story "}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
@@ -1288,7 +1288,7 @@ export function S04OnlinePayments() {
                                   {", Product Manager, Digital Payments, Zoom "}
                                 </footer>
                               </blockquote>
-                              <a className="CtaButton variant--Button CtaButton--arrow" href="https://stripe.com/customers/zoom" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonial_zoom">
+                              <a className="CtaButton variant--Button CtaButton--arrow" href="/unavailable/stripe/stripe.com/customers/zoom" data-js-controller="AnalyticsButton" data-analytics-category="Buttons" data-analytics-action="Clicked" data-analytics-label="testimonial_zoom">
                                 {"Read the full story "}
                                 <span className="nobr">
                                   <svg className="HoverArrow" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

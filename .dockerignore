@@ -13,6 +13,7 @@ dist
 # Git
 .git
 .gitignore
+.logio-data
 
 # Environment files (pass via docker-compose env_file or runtime env vars)
 .env
@@ -37,7 +38,8 @@ CLAUDE.md
 
 # Docs / research (large, not needed at runtime)
 docs
-scripts
+scripts/*
+!scripts/storage-assets.mjs
 
 # Docker files themselves (no need to copy into image)
 Dockerfile

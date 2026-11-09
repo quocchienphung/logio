@@ -1,0 +1,295 @@
+{
+  "entries": 3139,
+  "duplicates": [],
+  "missing": [
+    {
+      "key": "calc(50% - 116px)",
+      "files": [
+        "src/components/sites/shimmer-loader/SectionSkeleton.tsx"
+      ]
+    },
+    {
+      "key": "calc(22% - 40px)",
+      "files": [
+        "src/components/sites/shimmer-loader/SectionSkeleton.tsx"
+      ]
+    },
+    {
+      "key": "calc(66% - 20px)",
+      "files": [
+        "src/components/sites/shimmer-loader/SectionSkeleton.tsx"
+      ]
+    },
+    {
+      "key": "calc(54% - 40px)",
+      "files": [
+        "src/components/sites/shimmer-loader/SectionSkeleton.tsx"
+      ]
+    },
+    {
+      "key": "calc(18% - 20px)",
+      "files": [
+        "src/components/sites/shimmer-loader/SectionSkeleton.tsx"
+      ]
+    },
+    {
+      "key": "claude-sonnet-5-5",
+      "files": [
+        "src/components/sites/affectui-context-window/ContextWindow.tsx"
+      ]
+    },
+    {
+      "key": "aria-label",
+      "files": [
+        "src/components/sites/affectui-combobox/Combobox.tsx"
+      ]
+    },
+    {
+      "key": "Revenue grew",
+      "files": [
+        "src/components/sites/affectui-run/RunDraft.tsx"
+      ]
+    },
+    {
+      "key": "VISA",
+      "files": [
+        "src/components/sites/affectui-settings/SettingsBilling.tsx"
+      ]
+    },
+    {
+      "key": "Visa ••••",
+      "files": [
+        "src/components/sites/affectui-settings/SettingsBilling.tsx"
+      ]
+    },
+    {
+      "key": "name@company.com",
+      "files": [
+        "src/components/sites/affectui-settings/SettingsTabs.tsx"
+      ]
+    },
+    {
+      "key": "&nbsp;",
+      "files": [
+        "src/components/sites/settings-command/SaveBar.tsx"
+      ]
+    },
+    {
+      "key": "thay đổi",
+      "files": [
+        "src/components/sites/settings-command/SaveBar.tsx"
+      ]
+    },
+    {
+      "key": "chưa lưu",
+      "files": [
+        "src/components/sites/settings-command/SaveBar.tsx"
+      ]
+    },
+    {
+      "key": "unsaved&nbsp;",
+      "files": [
+        "src/components/sites/settings-command/SaveBar.tsx"
+      ]
+    },
+    {
+      "key": "{0} thay đổi chưa lưu",
+      "files": [
+        "src/components/sites/settings-command/SaveBar.tsx"
+      ]
+    },
+    {
+      "key": "Esc",
+      "files": [
+        "src/components/sites/settings-command/SettingsPalette.tsx",
+        "src/components/sites/affectui-run/RunApproval.tsx",
+        "src/components/sites/affectui-permission-request/PermissionRequest.tsx",
+        "src/components/sites/command-palette/CommandPanel.tsx"
+      ]
+    },
+    {
+      "key": "en-US",
+      "files": [
+        "src/components/sites/security-settings/SecuritySettings.tsx",
+        "src/components/sites/invoice/InvoiceBlock.tsx"
+      ]
+    },
+    {
+      "key": "numeric",
+      "files": [
+        "src/components/sites/security-settings/SecuritySettings.tsx",
+        "src/components/sites/skilled/SkillCard.tsx",
+        "src/components/sites/storage/Storage.tsx"
+      ]
+    },
+    {
+      "key": "short",
+      "files": [
+        "src/components/sites/security-settings/SecuritySettings.tsx",
+        "src/components/sites/skilled/SkillCard.tsx",
+        "src/components/sites/storage/Storage.tsx"
+      ]
+    },
+    {
+      "key": "Asia/Ho_Chi_Minh",
+      "files": [
+        "src/components/sites/security-settings/SecuritySettings.tsx",
+        "src/components/sites/skilled/Skilled.tsx",
+        "src/components/sites/skilled/SkillCard.tsx"
+      ]
+    },
+    {
+      "key": "9:14 AM",
+      "files": [
+        "src/components/sites/affectui-run/AgentRun.tsx"
+      ]
+    },
+    {
+      "key": "Ctrl ↵",
+      "files": [
+        "src/components/sites/affectui-run/RunApproval.tsx"
+      ]
+    },
+    {
+      "key": "PDF",
+      "files": [
+        "src/components/sites/invoice/InvoiceBlock.tsx"
+      ]
+    },
+    {
+      "key": "billing@company.com",
+      "files": [
+        "src/components/sites/invoice/InvoiceEditor.tsx"
+      ]
+    },
+    {
+      "key": "USD · $",
+      "files": [
+        "src/components/sites/invoice/InvoiceEditor.tsx"
+      ]
+    },
+    {
+      "key": "EUR · €",
+      "files": [
+        "src/components/sites/invoice/InvoiceEditor.tsx"
+      ]
+    },
+    {
+      "key": "GBP · £",
+      "files": [
+        "src/components/sites/invoice/InvoiceEditor.tsx"
+      ]
+    },
+    {
+      "key": "1 Sep – 30 Sep 2026",
+      "files": [
+        "src/components/sites/invoice/InvoiceEditor.tsx"
+      ]
+    },
+    {
+      "key": "https://your-payment-provider.com/…",
+      "files": [
+        "src/components/sites/invoice/InvoiceEditor.tsx"
+      ]
+    },
+    {
+      "key": "is",
+      "files": [
+        "src/components/sites/process/ProcessPermissions.tsx"
+      ]
+    },
+    {
+      "key": "s are",
+      "files": [
+        "src/components/sites/process/ProcessPermissions.tsx"
+      ]
+    },
+    {
+      "key": "{id}",
+      "files": [
+        "src/components/sites/process/ProcessDialogs.tsx"
+      ]
+    },
+    {
+      "key": "{runId}",
+      "files": [
+        "src/components/sites/process/ProcessDialogs.tsx"
+      ]
+    },
+    {
+      "key": "Ctrl / ⌘ ↵",
+      "files": [
+        "src/components/sites/skilled/Skilled.tsx"
+      ]
+    },
+    {
+      "key": "https://github.com/owner/repo",
+      "files": [
+        "src/components/sites/skilled/Skilled.tsx"
+      ]
+    },
+    {
+      "key": "evidence-first-research",
+      "files": [
+        "src/components/sites/skilled/Skilled.tsx"
+      ]
+    },
+    {
+      "key": "ms",
+      "files": [
+        "src/components/sites/skilled/Skilled.tsx"
+      ]
+    },
+    {
+      "key": "en-GB",
+      "files": [
+        "src/components/sites/skilled/Skilled.tsx",
+        "src/components/sites/skilled/SkillCard.tsx",
+        "src/components/sites/storage/Storage.tsx"
+      ]
+    },
+    {
+      "key": "e.g. research-agent",
+      "files": [
+        "src/components/sites/skilled/Skilled.tsx"
+      ]
+    },
+    {
+      "key": "SHA-256",
+      "files": [
+        "src/components/sites/skilled/SkillCard.tsx",
+        "src/components/sites/storage/Storage.tsx"
+      ]
+    },
+    {
+      "key": "SHA-256: {0}",
+      "files": [
+        "src/components/sites/skilled/SkillCard.tsx"
+      ]
+    },
+    {
+      "key": "SKILL.md",
+      "files": [
+        "src/components/sites/skilled/SkillEditor.tsx"
+      ]
+    },
+    {
+      "key": "Name,Status,Owner",
+      "files": [
+        "src/components/sites/affectui-files/FilesDialogs.tsx"
+      ]
+    },
+    {
+      "key": "{0} KB",
+      "files": [
+        "src/components/sites/affectui-files/FilesDialogs.tsx"
+      ]
+    },
+    {
+      "key": "Tab",
+      "files": [
+        "src/components/sites/command-palette/CommandPanel.tsx"
+      ]
+    }
+  ]
+}

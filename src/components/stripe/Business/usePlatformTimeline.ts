@@ -60,7 +60,7 @@ export function usePlatformTimeline(root: RefObject<HTMLElement | null>) {
     const setup: AnimationSequence = [
       [
         browser,
-        { opacity: 0, transform: "translate3d(0, 80px, 0)" },
+        { opacity: 0, transform: "translate3d(0px, 80px, 0px)" },
         { duration: 0 },
       ],
     ];
@@ -68,7 +68,7 @@ export function usePlatformTimeline(root: RefObject<HTMLElement | null>) {
       [browser, { opacity: 1 }, { duration: 0.5, ease: EASE.easeSwift }],
       [
         browser,
-        { transform: "translate3d(0, 0, 0)" },
+        { transform: "translate3d(0px, 0px, 0px)" },
         { at: "<", duration: 0.75, ease: EASE.easeSwift },
       ],
     ];
@@ -76,7 +76,7 @@ export function usePlatformTimeline(root: RefObject<HTMLElement | null>) {
       setup.push(
         [
           p.feature!,
-          { opacity: 0, transform: "translate3d(0, 30px, 0)" },
+          { opacity: 0, transform: "translate3d(0px, 30px, 0px)" },
           { duration: 0 },
         ],
         [
@@ -90,7 +90,7 @@ export function usePlatformTimeline(root: RefObject<HTMLElement | null>) {
       play.push(
         [
           p.feature!,
-          { opacity: 1, transform: "translate3d(0, 0, 0)" },
+          { opacity: 1, transform: "translate3d(0px, 0px, 0px)" },
           { duration: 0.5, ease: EASE.easeSwift },
         ],
         [

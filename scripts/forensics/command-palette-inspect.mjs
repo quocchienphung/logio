@@ -1,0 +1,15 @@
+import fs from 'node:fs/promises';
+import { chromium } from 'playwright';
+const out='docs/research/command-palette/source'; await fs.mkdir(out,{recursive:true});
+const browser=await chromium.launch({channel:'chrome'});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+await page.goto('https://uiarc.dev/components/blocks/command-palette',{waitUntil:'domcontentloaded'}); await page.waitForTimeout(1600);
+await fs.writeFile(`${out}/page.txt`,await page.locator('body').innerText());
+await page.getByRole('button',{name:'Open command palette',exact:true}).click(); await page.waitForTimeout(1000);
+console.log('dialogs',await page.getByRole('dialog').count());
+console.log('comboboxes',await page.getByRole('combobox').evaluateAll(es=>es.map(e=>({html:e.outerHTML,parent:e.parentElement.parentElement.outerHTML.slice(0,2500)}))));
+const dialog=page.getByRole('combobox').locator('..').locator('..');
+console.log(await dialog.evaluate(e=>e.outerHTML));
+await fs.writeFile(`${out}/open-styles.json`,JSON.stringify(await dialog.evaluate(el=>[el,...el.querySelectorAll('*')].map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {tag:e.tagName,cls:e.getAttribute('class'),text:e.children.length?null:e.textContent,role:e.getAttribute('role'),rect:[r.x,r.y,r.width,r.height],style:Object.fromEntries(['fontFamily','fontSize','fontWeight','lineHeight','letterSpacing','padding','gap','border','borderRadius','boxShadow','background','color','opacity','transform','transition','backdropFilter','maxHeight','maxWidth','position'].map(k=>[k,s[k]]))};})),null,2));
+await dialog.screenshot({path:`${out}/open.png`});
+await page.screenshot({path:`${out}/page.png`}); await browser.close();
